@@ -1,0 +1,140 @@
+{
+  "Callout Block": {
+    "prefix": ["/callout", "callout"],
+    "body": [
+      ":::callout{type=\"${1|info,warning,tip,danger|}\" title=\"${2:Callout Title}\"}",
+      "${3:Explain the architectural invariant, edge case, or warning here...}",
+      ":::",
+      "",
+      "$0"
+    ],
+    "description": "Insert a Bauhaus styled Callout Box with type selector and tab navigation"
+  },
+
+  "Code Block with Metadata": {
+    "prefix": ["/code", "code"],
+    "body": [
+      "```${1|typescript,javascript,sql,java,python,bash,yaml,json,dockerfile,go,rust|} title=\"${2:filename.ext}\" highlight=\"${3:1-4}\"",
+      "${4:// Implementation code}",
+      "```",
+      "",
+      "$0"
+    ],
+    "description": "Insert code snippet with language selector, filename banner, and highlighted lines"
+  },
+
+  "Figure Image with Caption": {
+    "prefix": ["/image", "image", "/figure", "figure"],
+    "body": [
+      ":::figure",
+      "![${1:Component topology diagram}](/images/content/${2:filename.png})",
+      "*Figure ${3:1.1}: ${4:Detailed caption describing data flow, latency boundaries, and component interactions.}*",
+      ":::",
+      "",
+      "$0"
+    ],
+    "description": "Insert responsive zoomable figure with caption"
+  },
+
+  "Architectural Comparison Table": {
+    "prefix": ["/table", "table"],
+    "body": [
+      "| Metric / Characteristic | ${1:Option A (e.g. HikariCP)} | ${2:Option B (e.g. PgBouncer)} |",
+      "| :--- | :--- | :--- |",
+      "| **Throughput (req/sec)** | ${3:12,500} | ${4:48,000} |",
+      "| **p99 Tail Latency** | ${5:18.2ms} | ${6:3.4ms} |",
+      "| **Memory Footprint** | ${7:512MB (JVM)} | ${8:32MB (C native)} |",
+      "| **Multiplexing Mode** | ${9:Session-scoped} | ${10:Transaction-scoped} |",
+      "",
+      "$0"
+    ],
+    "description": "Insert 3-column architectural comparison table"
+  },
+
+  "Key Takeaways Checklist": {
+    "prefix": ["/checklist", "checklist", "/takeaways", "takeaways"],
+    "body": [
+      "### Production Checklist & Invariants",
+      "",
+      "- [ ] **${1:Cap App-Tier Connection Maxima}:** ${2:Ensure max pools do not exceed database backend limits.}",
+      "- [ ] **${3:Enable Leak Detection}:** ${4:Catch unclosed connections using leak detection thresholds.}",
+      "- [ ] **${5:Configure Transaction Concentrator}:** ${6:Multiplex connections in transaction pooling mode.}",
+      "",
+      "$0"
+    ],
+    "description": "Insert production takeaways checklist"
+  },
+
+  "Mermaid Architecture Diagram": {
+    "prefix": ["/diagram", "diagram", "/mermaid", "mermaid"],
+    "body": [
+      "```mermaid",
+      "sequenceDiagram",
+      "    autonumber",
+      "    actor Client as ${1:Client / Ingress}",
+      "    participant GW as ${2:API Gateway}",
+      "    participant SVC as ${3:Core Service}",
+      "    participant DB as ${4:PostgreSQL (Primary)}",
+      "",
+      "    Client->>GW: POST ${5:/api/v2/transact}",
+      "    GW->>SVC: Forward Request with Trace Header",
+      "    SVC->>DB: Acquire Connection & Exec Statement",
+      "    DB-->>SVC: Commit Transaction (Row Tuples)",
+      "    SVC-->>GW: 200 OK (${6:4.2ms})",
+      "    GW-->>Client: Response Returned",
+      "```",
+      "",
+      "$0"
+    ],
+    "description": "Insert Mermaid sequence or flowchart architecture diagram"
+  },
+
+  "Mathematical / Sizing Formula": {
+    "prefix": ["/formula", "formula", "/math", "math"],
+    "body": [
+      ":::formula{title=\"${1:Pool Sizing Heuristic}\"}",
+      "$$\\\\text{Pool Size} = \\\\mathbf{${2:T_n}} \\\\times (\\\\mathbf{${3:C_{eff}}} - 1) + 1$$",
+      "*Where $\\\\mathbf{${2:T_n}}$ represents maximum concurrent worker threads and $\\\\mathbf{${3:C_{eff}}}$ is effective CPU cores.*",
+      ":::",
+      "",
+      "$0"
+    ],
+    "description": "Insert LaTeX KaTeX mathematical formula block with title"
+  },
+
+  "Editorial Quote": {
+    "prefix": ["/quote", "quote"],
+    "body": [
+      "> \"${1:Quote or excerpt detailing architectural wisdom...}\"",
+      "> ",
+      "> — **${2:Author Name}**, *${3:Book, RFC, or Source Paper}*",
+      "",
+      "$0"
+    ],
+    "description": "Insert formatted editorial quotation block with author attribution"
+  },
+
+  "Section Heading H2": {
+    "prefix": ["/h2", "h2"],
+    "body": [
+      "## ${1:01}. ${2:Section Title}",
+      "",
+      "${3:Section introductory paragraph...}",
+      "",
+      "$0"
+    ],
+    "description": "Insert numbered section heading"
+  },
+
+  "Section Subheading H3": {
+    "prefix": ["/h3", "h3"],
+    "body": [
+      "### ${1:Subsection Title}",
+      "",
+      "${2:Content paragraph...}",
+      "",
+      "$0"
+    ],
+    "description": "Insert subsection heading"
+  }
+}

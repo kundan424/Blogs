@@ -1,0 +1,18 @@
+{
+  "[markdown]": {
+    "editor.quickSuggestions": {
+      "other": "on",
+      "comments": "off",
+      "strings": "on"
+    },
+    "editor.suggestOnTriggerCharacters": true,
+    "editor.snippetSuggestions": "top",
+    "editor.wordWrap": "on",
+    "editor.tabCompletion": "on",
+    "editor.lineNumbers": "on"
+  },
+  "files.associations": {
+    "*.md": "markdown",
+    "*.mdx": "markdown"
+  }
+}

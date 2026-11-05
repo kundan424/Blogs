@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "yzhang.markdown-all-in-one",
+    "bierner.markdown-preview-github-styles",
+    "tamasfe.even-better-toml",
+    "redhat.vscode-yaml"
+  ]
+}

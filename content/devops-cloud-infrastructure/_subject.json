@@ -1,0 +1,7 @@
+{
+  "name": "DevOps & Cloud Infrastructure",
+  "slug": "devops-cloud-infrastructure",
+  "hubNumber": "Domain Hub #04",
+  "icon": "cloud_sync",
+  "description": "Kubernetes cluster topology, container hardening, zero-trust service mesh configuration, Envoy API gateways, and CI/CD pipelines."
+}

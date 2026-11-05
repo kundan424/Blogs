@@ -1,0 +1,7 @@
+{
+  "name": "Data Structures & Algorithms",
+  "slug": "data-structures-algorithms",
+  "hubNumber": "Domain Hub #03",
+  "icon": "account_tree",
+  "description": "Memory layout, lock-free ring buffers, cache-oblivious B-Trees, graph reachability algorithms, and high-frequency primitives."
+}

@@ -1,0 +1,7 @@
+{
+  "name": "Security, Auth & Distributed Identity",
+  "slug": "security-auth-identity",
+  "hubNumber": "Domain Hub #06",
+  "icon": "verified_user",
+  "description": "OAuth2/OIDC token exchange flows, cryptographic key rotations, zero-knowledge proofs, row-level authorization, and mTLS."
+}

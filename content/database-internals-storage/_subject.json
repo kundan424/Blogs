@@ -1,0 +1,7 @@
+{
+  "name": "Database Internals & Storage",
+  "slug": "database-internals-storage",
+  "hubNumber": "Domain Hub #02",
+  "icon": "database",
+  "description": "PostgreSQL write-ahead logs (WAL), MVCC tuple isolation, lock contention, B-Tree index fragmentation, and schema migrations."
+}

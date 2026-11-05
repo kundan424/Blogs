@@ -1,0 +1,7 @@
+{
+  "name": "Backend & Distributed Systems",
+  "slug": "backend-distributed-systems",
+  "hubNumber": "Domain Hub #01",
+  "icon": "hub",
+  "description": "Core execution models, concurrent actors, distributed consensus, transactional outbox patterns, and fault-tolerant service communication under high scale."
+}

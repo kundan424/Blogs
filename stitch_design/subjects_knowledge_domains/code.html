@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+
+<html lang="en" style=""><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"primary-container":"#1b1b1b","outline-variant":"#cfc4c5","on-primary-container":"#848484","on-secondary-fixed":"#3b0900","surface-tint":"#5e5e5e","on-surface":"#000000","on-primary":"#ffffff","surface-container":"#eeeeee","error-container":"#ffdad6","tertiary":"#000000","secondary-fixed":"#ffdbd1","stone":"#ebe8e4","on-tertiary-fixed":"#001257","inverse-surface":"#343029","eggshell":"#fdfcfc","surface-container-low":"#fbf2e8","warm-taupe":"#f5f3f1","secondary":"#ad2c00","surface-container-lowest":"#ffffff","surface-bright":"#fff8f2","on-tertiary-container":"#0447ff","smoke":"#777169","violet-spark":"#0447ff","background":"#fff8f2","inverse-primary":"#c6c6c6","on-secondary-fixed-variant":"#872100","on-tertiary":"#ffffff","graphite":"#44403b","secondary-fixed-dim":"#ffb5a0","primary-fixed":"#e2e2e2","tertiary-container":"#001257","on-secondary-container":"#fffbff","surface-dim":"#e1d9cf","secondary-container":"#ffebe5","on-secondary":"#ffffff","ember-orange":"#ff4704","surface-container-high":"#e8e8e8","on-background":"#1f1b15","outline":"#ebe8e4","on-surface-variant":"#4c4546","primary":"#000000","ash":"#a59f97","on-primary-fixed":"#1b1b1b","on-error":"#ffffff","surface-container-highest":"#eae1d7","ink":"#000000","tertiary-fixed-dim":"#b9c3ff","on-primary-fixed-variant":"#474747","on-tertiary-fixed-variant":"#0033c1","error":"#ba1a1a","inverse-on-surface":"#f8efe5","on-error-container":"#93000a","surface":"#f9f9f9","tertiary-fixed":"#dde1ff","primary-fixed-dim":"#c6c6c6","surface-variant":"#eae1d7"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"margin":"1rem","margin-desktop":"2.5rem","space-md":"1rem","space-sm":"0.5rem","gutter":"1rem","space-lg":"1.5rem","space-xs":"0.25rem","space-xl":"2.5rem","gutter-desktop":"1.5rem"},"fontFamily":{"label-sm":["Geist"],"mono-data":["Geist"],"label-md":["Geist"],"headline-xl":["Inter"],"headline-sm":["Inter"],"headline-lg":["Inter"],"headline-md":["Inter"],"body-sm":["Inter"],"body-md":["Inter"],"title-md":["Inter"],"headline-xl-mobile":["Inter"],"display-lg":["Inter"],"body-lg":["Inter"],"display-lg-mobile":["Inter"]},"fontSize":{"label-sm":["11px",{"lineHeight":"16px","letterSpacing":"0.04em","fontWeight":"500"}],"mono-data":["12px",{"lineHeight":"16px","letterSpacing":"0em","fontWeight":"400"}],"label-md":["13px",{"lineHeight":"18px","letterSpacing":"0.02em","fontWeight":"500"}],"headline-xl":["40px",{"lineHeight":"48px","letterSpacing":"-0.025em","fontWeight":"300"}],"headline-sm":["20px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"400"}],"headline-lg":["30px",{"lineHeight":"38px","letterSpacing":"-0.02em","fontWeight":"300"}],"headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"300"}],"body-sm":["12px",{"lineHeight":"18px","letterSpacing":"0.01em","fontWeight":"400"}],"body-md":["14px",{"lineHeight":"22px","letterSpacing":"0em","fontWeight":"400"}],"title-md":["16px",{"lineHeight":"24px","letterSpacing":"-0.005em","fontWeight":"500"}],"headline-xl-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"300"}],"display-lg":["56px",{"lineHeight":"64px","letterSpacing":"-0.03em","fontWeight":"300"}],"body-lg":["16px",{"lineHeight":"26px","letterSpacing":"0em","fontWeight":"400"}],"display-lg-mobile":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"300"}]}}}};</script></head><body class="bg-eggshell text-on-surface font-body-md"><header class="fixed top-0 w-full z-50 bg-eggshell/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 max-w-7xl mx-auto px-margin lg:px-margin-desktop flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg"><a class="flex items-center gap-space-sm text-ink group" data-path="home" href="#"><span class="flex items-center justify-center w-7 h-7 rounded bg-warm-taupe text-ink font-mono-data text-mono-data group-hover:bg-primary-container group-hover:text-on-primary transition-colors">$_</span><div class="flex flex-col leading-none"><span class="font-label-md text-label-md tracking-tight text-ink font-medium">dev.notes</span><span class="font-label-sm text-label-sm text-smoke">/learnings</span></div></a><nav class="hidden md:flex items-center gap-space-xs" data-active-classes="bg-warm-taupe text-on-surface font-medium"><a class="px-space-sm py-space-xs rounded text-on-surface-variant font-label-md text-label-md hover:bg-surface-container hover:text-on-surface transition-colors" data-path="home" href="#">Home</a><a class="px-space-sm py-space-xs rounded text-on-surface-variant font-label-md text-label-md hover:bg-surface-container hover:text-on-surface transition-colors" data-path="subjects" href="#">Subjects</a><a class="px-space-sm py-space-xs rounded text-on-surface-variant font-label-md text-label-md hover:bg-surface-container hover:text-on-surface transition-colors" data-path="topics" href="#">Topics</a><a class="px-space-sm py-space-xs rounded text-on-surface-variant font-label-md text-label-md hover:bg-surface-container hover:text-on-surface transition-colors" data-path="series" href="#">Series</a><a class="px-space-sm py-space-xs rounded text-on-surface-variant font-label-md text-label-md hover:bg-surface-container hover:text-on-surface transition-colors" data-path="about" href="#">About</a></nav></div><div class="flex items-center gap-space-sm"><button class="flex items-center gap-space-md px-space-sm py-space-xs rounded-lg bg-warm-taupe text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" type="button"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[16px]">search</span><span class="hidden sm:inline font-mono-data text-mono-data">Search notes...</span></div><kbd class="hidden sm:inline-flex items-center px-1.5 py-0.5 rounded bg-surface-container-lowest font-mono-data text-label-sm text-smoke">⌘K</kbd></button><a aria-label="Source Repository" class="p-space-xs rounded text-on-surface-variant hover:text-on-surface hover:bg-warm-taupe transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">code</span></a><button aria-label="Toggle Theme" class="p-space-xs rounded text-on-surface-variant hover:text-on-surface hover:bg-warm-taupe transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">light_mode</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-eggshell min-h-screen"><div class="flex flex-col w-full">
+<div class="max-w-6xl mx-auto w-full px-4 sm:px-8 py-10 space-y-12">
+<!-- ZONE 1: Page Header & Global Summary Bar -->
+<section class="flex flex-col md:flex-row justify-between items-start md:items-end pb-8 gap-6 border-b border-stone">
+<div class="space-y-3 max-w-2xl">
+<div class="flex items-center gap-2 font-mono-data text-label-sm text-smoke">
+<a class="hover:text-ink transition-colors" href="#">Home</a>
+<span>/</span>
+<span class="text-ink">Subjects</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-ink font-light tracking-tight">
+          Subjects &amp; Knowledge Domains
+        </h1>
+<p class="font-body-md text-body-md text-smoke">
+          Foundational engineering pillars categorizing in-depth architectural RFCs, production runbooks, internals, and implementation notes.
+        </p>
+</div>
+<!-- Aggregated Metrics Row -->
+<div class="flex items-center gap-8 self-stretch md:self-auto justify-between md:justify-end pt-4 md:pt-0">
+<div class="flex flex-col">
+<span class="font-headline-lg text-headline-lg text-ink font-light leading-none">6</span>
+<span class="font-mono-data text-label-sm text-smoke mt-1">Total Subjects</span>
+</div>
+<div class="h-8 w-px bg-stone"></div>
+<div class="flex flex-col">
+<span class="font-headline-lg text-headline-lg text-ink font-light leading-none">48</span>
+<span class="font-mono-data text-label-sm text-smoke mt-1">Published Notes</span>
+</div>
+<div class="h-8 w-px bg-stone"></div>
+<div class="flex flex-col">
+<span class="font-headline-lg text-headline-lg text-ink font-light leading-none">3</span>
+<span class="font-mono-data text-label-sm text-smoke mt-1">Active Series</span>
+</div>
+</div>
+</section>
+<!-- ZONE 2: Filter & View Control Bar -->
+<section class="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 py-2">
+<!-- Search Input -->
+<div class="relative w-full sm:w-80">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-smoke pointer-events-none">search</span>
+<input class="w-full pl-9 pr-14 py-2 bg-eggshell rounded-lg border border-stone text-body-md text-ink placeholder:text-smoke focus:outline-none focus:border-ink transition-colors" id="subject-filter-input" placeholder="Filter subjects or sub-topics..." type="text"/>
+<div class="absolute right-2.5 top-1/2 -translate-y-1/2 flex items-center gap-1.5">
+<button class="hidden text-smoke hover:text-ink text-[16px] material-symbols-outlined" id="clear-search-btn" title="Clear">cancel</button>
+<kbd class="px-1.5 py-0.5 rounded bg-warm-taupe border border-stone font-mono-data text-label-sm text-smoke pointer-events-none">ESC</kbd>
+</div>
+</div>
+<!-- Sort Controls -->
+<div class="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0" id="sort-controls-container">
+<span class="font-mono-data text-label-sm text-smoke mr-2 hidden md:inline">Sort:</span>
+<button class="sort-pill px-3.5 py-1.5 rounded-full font-label-md text-label-md transition-colors bg-ink text-white" data-sort="notes">
+          Most Notes
+        </button>
+<button class="sort-pill px-3.5 py-1.5 rounded-full font-label-md text-label-md transition-colors bg-warm-taupe text-smoke hover:text-ink hover:bg-stone/50" data-sort="updated">
+          Recently Updated
+        </button>
+<button class="sort-pill px-3.5 py-1.5 rounded-full font-label-md text-label-md transition-colors bg-warm-taupe text-smoke hover:text-ink hover:bg-stone/50" data-sort="alpha">
+          Alphabetical (A-Z)
+        </button>
+</div>
+</section>
+<!-- ZONE 3: Primary Subject Directory Grid -->
+<section>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6" id="subjects-grid">
+<!-- CARD 1 -->
+<article class="subject-card flex flex-col justify-between p-6 bg-warm-taupe border border-stone rounded-2xl transition-all duration-150 hover:border-graphite/40" data-name="Backend &amp; Distributed Systems" data-notes="16" data-topics="spring-boot distributed-systems redis microservices kafka" data-updated-days="2">
+<div class="space-y-4">
+<!-- Header Row -->
+<div class="flex items-start justify-between gap-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-white border border-stone flex items-center justify-center text-ink">
+<span class="material-symbols-outlined text-[20px]">hub</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-ink font-light hover:underline cursor-pointer">
+                    Backend &amp; Distributed Systems
+                  </h2>
+</div>
+</div>
+<div class="flex items-center gap-2 flex-shrink-0">
+<span class="px-2.5 py-1 rounded-full bg-white border border-stone font-mono-data text-label-sm text-ink">16 notes</span>
+<span class="hidden sm:inline font-mono-data text-label-sm text-smoke">Updated 2d ago</span>
+</div>
+</div>
+<!-- Description -->
+<p class="font-body-md text-body-md text-smoke line-clamp-2">
+              Core execution models, concurrent actors, distributed consensus, transactional outbox patterns, and fault-tolerant service communication.
+            </p>
+<!-- Topic Tags -->
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="topic-tag px-2.5 py-1 rounded-full bg-eggshell border border-stone font-mono-data text-label-sm text-graphite hover:text-ink hover:border-graphite cursor-pointer transition-colors">#spring-boot</span>
+<span class="topic-tag px-2.5 py-1 rounded-full bg-eggshell border border-stone font-mono-data text-label-sm text-graphite hover:text-ink hover:border-graphite cursor-pointer transition-colors">#distributed-systems</span>
+<span class="topic-tag px-2.5 py-1 rounded-full bg-eggshell border border-stone font-mono-data text-label-sm text-graphite hover:text-ink hover:border-graphite cursor-pointer transition-colors">#redis</span>
+<span class="topic-tag px-2.5 py-1 rounded-full bg-eggshell border border-stone font-mono-data text-label-sm text-graphite hover:text-ink hover:border-graphite cursor-pointer transition-colors">#microservices</span>
+<span class="topic-tag px-2.5 py-1 rounded-full bg-eggshell border border-stone font-mono-data text-label-sm text-graphite hover:text-ink hover:border-graphite cursor-pointer transition-colors">#kafka</span>
+</div>
+<!-- Featured Notes -->
+<div class="border-t border-stone pt-3 space-y-2">
+<div class="font-label-sm text-label-sm uppercase tracking-wider text-smoke">Key Architectures</div>
+<ul class="space-y-2">
+<li>
+<a class="group flex items-center justify-between gap-3 text-body-md text-on-surface hover:text-ink" href="#">
+<span class="flex items-center gap-2 truncate">
+<span class="material-symbols-outlined text-[16px] text-smoke group-hover:text-ink transition-colors">arrow_right_alt</span>
+<span class="truncate group-hover:underline">Optimizing Connection Pooling in HikariCP under Spike Load</span>
+</span>
+<span class="font-mono-data text-label-sm text-smoke flex-shrink-0">08m read</span>
+</a>
+</li>
+<li>
+<a class="group flex items-center justify-between gap-3 text-body-md text-on-surface hover:text-ink" href="#">
+<span class="flex items-center gap-2 truncate">
+<span class="material-symbols-outlined text-[16px] text-smoke group-hover:text-ink transition-colors">arrow_right_alt</span>
+<span class="truncate group-hover:underline">Distributed Locking with Redis Redlock &amp; Fencing Tokens</span>
+</span>
+<span class="font-mono-data text-label-sm text-smoke flex-shrink-0">11m read</span>
+</a>
+</li>
+<li>
+<a class="group flex items-center justify-between gap-3 text-body-md text-on-surface hover:text-ink" href="#">
+<span class="flex items-center gap-2 truncate">
+<span class="material-symbols-outlined text-[16px] text-smoke group-hover:text-ink transition-colors">arrow_right_alt</span>
+<span class="truncate group-hover:underline">Designing Idempotent REST &amp; gRPC APIs with Redis Deduplication</span>
+</span>
+<span class="font-mono-data text-label-sm text-smoke flex-shrink-0">07m read</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+<!-- Card Footer Action Row -->
+<div class="border-t border-stone pt-4 mt-6 flex items-center justify-between">
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container text-ember-orange font-mono-data text-label-sm">
+<span>✦</span>
+<span>Includes 1 multi-part series</span>
+</div>
+<a class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white border border-stone font-label-md text-label-md text-ink hover:bg-ink hover:text-white transition-all" href="#">
+<span>Explore Subject</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- CARD 2 -->
+<article class="subject-card flex flex-col justify-between p-6 bg-warm-taupe border border-stone rounded-2xl transition-all duration-150 hover:border-graphite/40" data-name="Database Internals &amp; Storage Engines" data-notes="12" data-topics="postgresql indexing mvcc sql-tuning flyway" data-updated-days="4">
+<div class="space-y-4">
+<!-- Header Row -->
+<div class="flex items-start justify-between gap-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-white border border-stone flex items-center justify-center text-ink">
+<span class="material-symbols-outlined text-[20px]">database</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-ink font-light hover:underline cursor-pointer">
+                    Database Internals &amp; Storage Engines
+                  </h2>
+</div>
+</div>
+<div class="flex items-center gap-2 flex-shrink-0">
+<span class="px-2.5 py-1 rounded-full bg-white border border-stone font-mono-data text-label-sm text-ink">12 notes</span>
+<span class="hidden sm:inline font-mono-data text-label-sm text-smoke">Updated 4d ago</span>
+</div>
+</div>
+<!-- Description -->
+<p class="font-body-md text-body-md text-smoke line-clamp-2">
+              Write-ahead logging (WAL), MVCC isolation anomalies, B-Tree vs LSM-Tree storage layouts, lock contention profiles, and query plan optimization.
+            </p>
+<!-- Topic Tags -->
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="topic-tag px-2.5 py-1 rounded-full bg-eggshell border border-stone font-mono-data text-label-sm text-graphite hover:text-ink hover:border-graphite cursor-pointer transition-colors">#postgresql</span>
+<span class="topic-tag px-2.5 py-1 rounded-full bg-eggshell border border-stone font-mono-data text-label-sm text-graphite hover:text-ink hover:border-graphite cursor-pointer transition-colors">#indexing</span>
+<span class="topic-tag px-2.5 py-1 rounded-full bg-eggshell border border-stone font-mono-data text-label-sm text-graphite hover:text-ink hover:border-graphite cursor-pointer transition-colors">#mvcc</span>
+<span class="topic-tag px-2.5 py-1 rounded-full bg-eggshell border border-stone font-mono-data text-label-sm text-graphite hover:text-ink hover:border-graphite cursor-pointer transition-colors">#sql-tuning</span>
+<span class="topic-tag px-2.5 py-1 rounded-full bg-eggshell border border-stone font-mono-data text-label-sm text-graphite hover:text-ink hover:border-graphite cursor-pointer transition-colors">#flyway</span>
+</div>
+<!-- Featured Notes -->
+<div class="border-t border-stone pt-3 space-y-2">
+<div class="font-label-sm text-label-sm uppercase tracking-wider text-smoke">Key Architectures</div>
+<ul class="space-y-2">
+<li>
+<a class="group flex items-center justify-between gap-3 text-body-md text-on-surface hover:text-ink" href="#">
+<span class="flex items-center gap-2 truncate">
+<span class="material-symbols-outlined text-[16px] text-smoke group-hover:text-ink transition-colors">arrow_right_alt</span>
+<span class="truncate group-hover:underline">Deep Dive into PostgreSQL MVCC &amp; Vacuuming Internals</span>
+</span>
+<span class="font-mono-data text-label-sm text-smoke flex-shrink-0">14m read</span>
+</a>
+</li>
+<li>
+<a class="group flex items-center justify-between gap-3 text-body-md text-on-surface hover:text-ink" href="#">
+<span class="flex items-center gap-2 truncate">
+<span class="material-symbols-outlined text-[16px] text-smoke group-hover:text-ink transition-colors">arrow_right_alt</span>
+<span class="truncate group-hover:underline">Analyzing Postgres Lock Contention and Row-Level Deadlocks</span>
+</span>
+<span class="font-mono-data text-label-sm text-smoke flex-shrink-0">09m read</span>
+</a>
+</li>
+<li>
+<a class="group flex items-center justify-between gap-3 text-body-md text-on-surface hover:text-ink" href="#">
+<span class="flex items-center gap-2 truncate">
+<span class="material-symbols-outlined text-[16px] text-smoke group-hover:text-ink transition-colors">arrow_right_alt</span>
+<span class="truncate group-hover:underline">Indexing Strategies for JSONB Workloads &amp; GIN Performance</span>
+</span>
+<span class="font-mono-data text-label-sm text-smoke flex-shrink-0">06m read</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+<!-- Card Footer Action Row -->
+<div class="border-t border-stone pt-4 mt-6 flex items-center justify-between">
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container text-ember-orange font-mono-data text-label-sm">
+<span>✦</span>
+<span>Includes 1 multi-part series</span>
+</div>
+<a class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white border border-stone font-label-md text-label-md text-ink hover:bg-ink hover:text-white transition-all" href="#">
+<span>Explore Subject</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- CARD 3 -->
+<article class="subject-card flex flex-col justify-between p-6 bg-warm-taupe border border-stone rounded-2xl transition-all duration-150 hover:border-graphite/40" data-name="Data Structures &amp; Algorithms" data-notes="11" data-topics="dsa concurrency graph-theory memory-layout dynamic-programming" data-updated-days="7">
+<div class="space-y-4">
+<!-- Header Row -->
+<div class="flex items-start justify-between gap-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-white border border-stone flex items-center justify-center text-ink">
+<span class="material-symbols-outlined text-[20px]">account_tree</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-ink font-light hover:underline cursor-pointer">
+                    Data Structures &amp; Algorithms
+                  </h2>
+</div>
+</div>
+<div class="flex items-center gap-2 flex-shrink-0">
+<span class="px-2.5 py-1 rounded-full bg-white border border-stone font-mono-data text-label-sm text-ink">11 notes</span>
+<span class="hidden sm:inline font-mono-data text-label-sm text-smoke">Updated 1w ago</span>
+</div>
+</div>
+<!-- Description -->
+<p class="font-body-md text-body-md text-smoke line-clamp-2">
+              Memory layout considerations, lock-free primitives, cache-oblivious structures, and graph reachability optimizations under high throughput.
+            </p>
+<!-- Topic Tags -->
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="topic-tag px-2.5 py-1 rounded-full bg-eggshell border border-stone font-mono-data text-label-sm text-graphite hover:text-ink hover:border-graphite cursor-pointer transition-colors">#dsa</span>
+<span class="topic-tag px-2.5 py-1 rounded-full bg-eggshell border border-stone font-mono-data text-label-sm text-graphite hover:text-ink hover:border-graphite cursor-pointer transition-colors">#concurrency</span>
+<span class="topic-tag px-2.5 py-1 rounded-full bg-eggshell border border-stone font-mono-data text-label-sm text-graphite hover:text-ink hover:border-graphite cursor-pointer transition-colors">#graph-theory</span>
+<span class="topic-tag px-2.5 py-1 rounded-full bg-eggshell border border-stone font-mono-data text-label-sm text-graphite hover:text-ink hover:border-graphite cursor-pointer transition-colors">#memory-layout</span>
+<span class="topic-tag px-2.5 py-1 rounded-full bg-eggshell border border-stone font-mono-data text-label-sm text-graphite hover:text-ink hover:border-graphite cursor-pointer transition-colors">#dynamic-programming</span>
+</div>
+<!-- Featured Notes -->
+<div class="border-t border-stone pt-3 space-y-2">
+<div class="font-label-sm text-label-sm uppercase tracking-wider text-smoke">Key Architectures</div>
+<ul class="space-y-2">
+<li>
+<a class="group flex items-center justify-between gap-3 text-body-md text-on-surface hover:text-ink" href="#">
+<span class="flex items-center gap-2 truncate">
+<span class="material-symbols-outlined text-[16px] text-smoke group-hover:text-ink transition-colors">arrow_right_alt</span>
+<span class="truncate group-hover:underline">Lock-Free Ring Buffers in Memory with Atomic CAS</span>
+</span>
+<span class="font-mono-data text-label-sm text-smoke flex-shrink-0">10m read</span>
+</a>
+</li>
+<li>
+<a class="group flex items-center justify-between gap-3 text-body-md text-on-surface hover:text-ink" href="#">
+<span class="flex items-center gap-2 truncate">
+<span class="material-symbols-outlined text-[16px] text-smoke group-hover:text-ink transition-colors">arrow_right_alt</span>
+<span class="truncate group-hover:underline">Zero-Copy Serialization with FlatBuffers and Protobuf in High-Throughput Pipelines</span>
+</span>
+<span class="font-mono-data text-label-sm text-smoke flex-shrink-0">10m read</span>
+</a>
+</li>
+<li>
+<a class="group flex items-center justify-between gap-3 text-body-md text-on-surface hover:text-ink" href="#">
+<span class="flex items-center gap-2 truncate">
+<span class="material-symbols-outlined text-[16px] text-smoke group-hover:text-ink transition-colors">arrow_right_alt</span>
+<span class="truncate group-hover:underline">Disjoint-Set Union for Dynamic Network Connectivity</span>
+</span>
+<span class="font-mono-data text-label-sm text-smoke flex-shrink-0">07m read</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+<!-- Card Footer Action Row -->
+<div class="border-t border-stone pt-4 mt-6 flex items-center justify-between">
+<span class="font-mono-data text-label-sm text-smoke">Single Topic Compendium</span>
+<a class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white border border-stone font-label-md text-label-md text-ink hover:bg-ink hover:text-white transition-all" href="#">
+<span>Explore Subject</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- CARD 4 -->
+<article class="subject-card flex flex-col justify-between p-6 bg-warm-taupe border border-stone rounded-2xl transition-all duration-150 hover:border-graphite/40" data-name="DevOps &amp; Cloud Infrastructure" data-notes="9" data-topics="docker kubernetes envoy ci-cd linux-internals" data-updated-days="3">
+<div class="space-y-4">
+<!-- Header Row -->
+<div class="flex items-start justify-between gap-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-white border border-stone flex items-center justify-center text-ink">
+<span class="material-symbols-outlined text-[20px]">cloud_queue</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-ink font-light hover:underline cursor-pointer">
+                    DevOps &amp; Cloud Infrastructure
+                  </h2>
+</div>
+</div>
+<div class="flex items-center gap-2 flex-shrink-0">
+<span class="px-2.5 py-1 rounded-full bg-white border border-stone font-mono-data text-label-sm text-ink">09 notes</span>
+<span class="hidden sm:inline font-mono-data text-label-sm text-smoke">Updated 3d ago</span>
+</div>
+</div>
+<!-- Description -->
+<p class="font-body-md text-body-md text-smoke line-clamp-2">
+              Kubernetes container security runtimes, zero-trust service mesh configuration, Envoy API ingress, and reproducible CI/CD execution.
+            </p>
+<!-- Topic Tags -->
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="topic-tag px-2.5 py-1 rounded-full bg-eggshell border border-stone font-mono-data text-label-sm text-graphite hover:text-ink hover:border-graphite cursor-pointer transition-colors">#docker</span>
+<span class="topic-tag px-2.5 py-1 rounded-full bg-eggshell border border-stone font-mono-data text-label-sm text-graphite hover:text-ink hover:border-graphite cursor-pointer transition-colors">#kubernetes</span>
+<span class="topic-tag px-2.5 py-1 rounded-full bg-eggshell border border-stone font-mono-data text-label-sm text-graphite hover:text-ink hover:border-graphite cursor-pointer transition-colors">#envoy</span>
+<span class="topic-tag px-2.5 py-1 rounded-full bg-eggshell border border-stone font-mono-data text-label-sm text-graphite hover:text-ink hover:border-graphite cursor-pointer transition-colors">#ci-cd</span>
+<span class="topic-tag px-2.5 py-1 rounded-full bg-eggshell border border-stone font-mono-data text-label-sm text-graphite hover:text-ink hover:border-graphite cursor-pointer transition-colors">#linux-internals</span>
+</div>
+<!-- Featured Notes -->
+<div class="border-t border-stone pt-3 space-y-2">
+<div class="font-label-sm text-label-sm uppercase tracking-wider text-smoke">Key Architectures</div>
+<ul class="space-y-2">
+<li>
+<a class="group flex items-center justify-between gap-3 text-body-md text-on-surface hover:text-ink" href="#">
+<span class="flex items-center gap-2 truncate">
+<span class="material-symbols-outlined text-[16px] text-smoke group-hover:text-ink transition-colors">arrow_right_alt</span>
+<span class="truncate group-hover:underline">Graceful Shutdown and Drain Mechanics in Spring Boot &amp; Kubernetes</span>
+</span>
+<span class="font-mono-data text-label-sm text-smoke flex-shrink-0">07m read</span>
+</a>
+</li>
+<li>
+<a class="group flex items-center justify-between gap-3 text-body-md text-on-surface hover:text-ink" href="#">
+<span class="flex items-center gap-2 truncate">
+<span class="material-symbols-outlined text-[16px] text-smoke group-hover:text-ink transition-colors">arrow_right_alt</span>
+<span class="truncate group-hover:underline">Container Hardening &amp; Rootless Docker Security Runtime</span>
+</span>
+<span class="font-mono-data text-label-sm text-smoke flex-shrink-0">08m read</span>
+</a>
+</li>
+<li>
+<a class="group flex items-center justify-between gap-3 text-body-md text-on-surface hover:text-ink" href="#">
+<span class="flex items-center gap-2 truncate">
+<span class="material-symbols-outlined text-[16px] text-smoke group-hover:text-ink transition-colors">arrow_right_alt</span>
+<span class="truncate group-hover:underline">Zero-Trust Service Mesh with Envoy and Mutual TLS</span>
+</span>
+<span class="font-mono-data text-label-sm text-smoke flex-shrink-0">12m read</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+<!-- Card Footer Action Row -->
+<div class="border-t border-stone pt-4 mt-6 flex items-center justify-between">
+<span class="font-mono-data text-label-sm text-smoke">Infrastructure Playbooks</span>
+<a class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white border border-stone font-label-md text-label-md text-ink hover:bg-ink hover:text-white transition-all" href="#">
+<span>Explore Subject</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- CARD 5 -->
+<article class="subject-card flex flex-col justify-between p-6 bg-warm-taupe border border-stone rounded-2xl transition-all duration-150 hover:border-graphite/40" data-name="System Design &amp; Distributed Architecture" data-notes="10" data-topics="system-design rate-limiting multi-tenancy event-driven scalability" data-updated-days="5">
+<div class="space-y-4">
+<!-- Header Row -->
+<div class="flex items-start justify-between gap-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-white border border-stone flex items-center justify-center text-ink">
+<span class="material-symbols-outlined text-[20px]">schema</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-ink font-light hover:underline cursor-pointer">
+                    System Design &amp; Distributed Architecture
+                  </h2>
+</div>
+</div>
+<div class="flex items-center gap-2 flex-shrink-0">
+<span class="px-2.5 py-1 rounded-full bg-white border border-stone font-mono-data text-label-sm text-ink">10 notes</span>
+<span class="hidden sm:inline font-mono-data text-label-sm text-smoke">Updated 5d ago</span>
+</div>
+</div>
+<!-- Description -->
+<p class="font-body-md text-body-md text-smoke line-clamp-2">
+              Designing high-availability platforms, multi-tenant database isolation, rate-limiting algorithms, and event-driven data streaming.
+            </p>
+<!-- Topic Tags -->
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="topic-tag px-2.5 py-1 rounded-full bg-eggshell border border-stone font-mono-data text-label-sm text-graphite hover:text-ink hover:border-graphite cursor-pointer transition-colors">#system-design</span>
+<span class="topic-tag px-2.5 py-1 rounded-full bg-eggshell border border-stone font-mono-data text-label-sm text-graphite hover:text-ink hover:border-graphite cursor-pointer transition-colors">#rate-limiting</span>
+<span class="topic-tag px-2.5 py-1 rounded-full bg-eggshell border border-stone font-mono-data text-label-sm text-graphite hover:text-ink hover:border-graphite cursor-pointer transition-colors">#multi-tenancy</span>
+<span class="topic-tag px-2.5 py-1 rounded-full bg-eggshell border border-stone font-mono-data text-label-sm text-graphite hover:text-ink hover:border-graphite cursor-pointer transition-colors">#event-driven</span>
+<span class="topic-tag px-2.5 py-1 rounded-full bg-eggshell border border-stone font-mono-data text-label-sm text-graphite hover:text-ink hover:border-graphite cursor-pointer transition-colors">#scalability</span>
+</div>
+<!-- Featured Notes -->
+<div class="border-t border-stone pt-3 space-y-2">
+<div class="font-label-sm text-label-sm uppercase tracking-wider text-smoke">Key Architectures</div>
+<ul class="space-y-2">
+<li>
+<a class="group flex items-center justify-between gap-3 text-body-md text-on-surface hover:text-ink" href="#">
+<span class="flex items-center gap-2 truncate">
+<span class="material-symbols-outlined text-[16px] text-smoke group-hover:text-ink transition-colors">arrow_right_alt</span>
+<span class="truncate group-hover:underline">Building a Multi-Tenant SaaS API Gateway with Dynamic Tenancy</span>
+</span>
+<span class="font-mono-data text-label-sm text-smoke flex-shrink-0">15m read</span>
+</a>
+</li>
+<li>
+<a class="group flex items-center justify-between gap-3 text-body-md text-on-surface hover:text-ink" href="#">
+<span class="flex items-center gap-2 truncate">
+<span class="material-symbols-outlined text-[16px] text-smoke group-hover:text-ink transition-colors">arrow_right_alt</span>
+<span class="truncate group-hover:underline">Implementing Distributed Rate Limiting with Redis Token Bucket</span>
+</span>
+<span class="font-mono-data text-label-sm text-smoke flex-shrink-0">06m read</span>
+</a>
+</li>
+<li>
+<a class="group flex items-center justify-between gap-3 text-body-md text-on-surface hover:text-ink" href="#">
+<span class="flex items-center gap-2 truncate">
+<span class="material-symbols-outlined text-[16px] text-smoke group-hover:text-ink transition-colors">arrow_right_alt</span>
+<span class="truncate group-hover:underline">Designing Multi-Tenant Database Isolation in SaaS Applications</span>
+</span>
+<span class="font-mono-data text-label-sm text-smoke flex-shrink-0">12m read</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+<!-- Card Footer Action Row -->
+<div class="border-t border-stone pt-4 mt-6 flex items-center justify-between">
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container text-ember-orange font-mono-data text-label-sm">
+<span>✦</span>
+<span>Includes 1 multi-part series</span>
+</div>
+<a class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white border border-stone font-label-md text-label-md text-ink hover:bg-ink hover:text-white transition-all" href="#">
+<span>Explore Subject</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- CARD 6 -->
+<article class="subject-card flex flex-col justify-between p-6 bg-warm-taupe border border-stone rounded-2xl transition-all duration-150 hover:border-graphite/40" data-name="Compilers, Runtimes &amp; Low-Level Systems" data-notes="8" data-topics="jvm-internals gc-tuning ebpf profiling jit" data-updated-days="14">
+<div class="space-y-4">
+<!-- Header Row -->
+<div class="flex items-start justify-between gap-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-white border border-stone flex items-center justify-center text-ink">
+<span class="material-symbols-outlined text-[20px]">memory</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-ink font-light hover:underline cursor-pointer">
+                    Compilers, Runtimes &amp; Low-Level Systems
+                  </h2>
+</div>
+</div>
+<div class="flex items-center gap-2 flex-shrink-0">
+<span class="px-2.5 py-1 rounded-full bg-white border border-stone font-mono-data text-label-sm text-ink">08 notes</span>
+<span class="hidden sm:inline font-mono-data text-label-sm text-smoke">Updated 2w ago</span>
+</div>
+</div>
+<!-- Description -->
+<p class="font-body-md text-body-md text-smoke line-clamp-2">
+              JVM JIT compilation mechanics, garbage collection ergonomics (ZGC &amp; Shenandoah), bytecode analysis, and eBPF kernel observability.
+            </p>
+<!-- Topic Tags -->
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="topic-tag px-2.5 py-1 rounded-full bg-eggshell border border-stone font-mono-data text-label-sm text-graphite hover:text-ink hover:border-graphite cursor-pointer transition-colors">#jvm-internals</span>
+<span class="topic-tag px-2.5 py-1 rounded-full bg-eggshell border border-stone font-mono-data text-label-sm text-graphite hover:text-ink hover:border-graphite cursor-pointer transition-colors">#gc-tuning</span>
+<span class="topic-tag px-2.5 py-1 rounded-full bg-eggshell border border-stone font-mono-data text-label-sm text-graphite hover:text-ink hover:border-graphite cursor-pointer transition-colors">#ebpf</span>
+<span class="topic-tag px-2.5 py-1 rounded-full bg-eggshell border border-stone font-mono-data text-label-sm text-graphite hover:text-ink hover:border-graphite cursor-pointer transition-colors">#profiling</span>
+<span class="topic-tag px-2.5 py-1 rounded-full bg-eggshell border border-stone font-mono-data text-label-sm text-graphite hover:text-ink hover:border-graphite cursor-pointer transition-colors">#jit</span>
+</div>
+<!-- Featured Notes -->
+<div class="border-t border-stone pt-3 space-y-2">
+<div class="font-label-sm text-label-sm uppercase tracking-wider text-smoke">Key Architectures</div>
+<ul class="space-y-2">
+<li>
+<a class="group flex items-center justify-between gap-3 text-body-md text-on-surface hover:text-ink" href="#">
+<span class="flex items-center gap-2 truncate">
+<span class="material-symbols-outlined text-[16px] text-smoke group-hover:text-ink transition-colors">arrow_right_alt</span>
+<span class="truncate group-hover:underline">Comparing Generational ZGC vs Shenandoah Latency Profiles</span>
+</span>
+<span class="font-mono-data text-label-sm text-smoke flex-shrink-0">13m read</span>
+</a>
+</li>
+<li>
+<a class="group flex items-center justify-between gap-3 text-body-md text-on-surface hover:text-ink" href="#">
+<span class="flex items-center gap-2 truncate">
+<span class="material-symbols-outlined text-[16px] text-smoke group-hover:text-ink transition-colors">arrow_right_alt</span>
+<span class="truncate group-hover:underline">JVM Escape Analysis &amp; Scalar Replacement in Hot Code Paths</span>
+</span>
+<span class="font-mono-data text-label-sm text-smoke flex-shrink-0">11m read</span>
+</a>
+</li>
+<li>
+<a class="group flex items-center justify-between gap-3 text-body-md text-on-surface hover:text-ink" href="#">
+<span class="flex items-center gap-2 truncate">
+<span class="material-symbols-outlined text-[16px] text-smoke group-hover:text-ink transition-colors">arrow_right_alt</span>
+<span class="truncate group-hover:underline">Tracing Linux Kernel Context Switches with eBPF and BCC</span>
+</span>
+<span class="font-mono-data text-label-sm text-smoke flex-shrink-0">09m read</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+<!-- Card Footer Action Row -->
+<div class="border-t border-stone pt-4 mt-6 flex items-center justify-between">
+<span class="font-mono-data text-label-sm text-smoke">Low-Level Runbooks</span>
+<a class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-white border border-stone font-label-md text-label-md text-ink hover:bg-ink hover:text-white transition-all" href="#">
+<span>Explore Subject</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</article>
+</div>
+<!-- No match fallback state -->
+<div class="hidden text-center py-16 px-4 space-y-3 bg-warm-taupe/40 border border-stone rounded-2xl mt-4" id="no-results-state">
+<span class="material-symbols-outlined text-4xl text-smoke">search_off</span>
+<div class="font-headline-sm text-headline-sm text-ink font-light">No matching subjects found</div>
+<p class="font-body-md text-body-md text-smoke max-w-sm mx-auto">
+          Try adjusting your search criteria or resetting the keyword filter.
+        </p>
+<button class="px-4 py-2 rounded-full bg-ink text-white font-label-md text-label-md hover:bg-primary-container transition-colors" id="reset-filter-btn">
+          Reset Filter
+        </button>
+</div>
+</section>
+<!-- ZONE 4: Cross-Cutting "All Topics Matrix" -->
+<section class="pt-10 border-t border-stone space-y-6">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-3">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-ink font-light">
+            Browse by Granular Topic
+          </h2>
+<p class="font-body-sm text-body-sm text-smoke">
+            24 tags spanning across subjects
+          </p>
+</div>
+<div class="flex items-center gap-1 bg-warm-taupe p-1 rounded-full border border-stone">
+<button class="px-3 py-1 rounded-full font-mono-data text-label-sm bg-white text-ink shadow-sm" id="topics-sort-popular">
+            Popular
+          </button>
+<button class="px-3 py-1 rounded-full font-mono-data text-label-sm text-smoke hover:text-ink" id="topics-sort-alpha">
+            Alphabetical (A-Z)
+          </button>
+</div>
+</div>
+<!-- Responsive Topic Matrix -->
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3" id="topic-matrix-container">
+<div class="topic-matrix-item flex justify-between items-center px-3.5 py-2 rounded-full bg-white/70 hover:bg-white border border-stone transition-all text-label-md font-mono-data group cursor-pointer" data-count="14" data-name="postgresql">
+<span class="text-graphite group-hover:text-ink truncate">#postgresql</span>
+<span class="text-smoke group-hover:text-ink font-mono-data text-label-sm ml-2">14</span>
+</div>
+<div class="topic-matrix-item flex justify-between items-center px-3.5 py-2 rounded-full bg-white/70 hover:bg-white border border-stone transition-all text-label-md font-mono-data group cursor-pointer" data-count="12" data-name="system-design">
+<span class="text-graphite group-hover:text-ink truncate">#system-design</span>
+<span class="text-smoke group-hover:text-ink font-mono-data text-label-sm ml-2">12</span>
+</div>
+<div class="topic-matrix-item flex justify-between items-center px-3.5 py-2 rounded-full bg-white/70 hover:bg-white border border-stone transition-all text-label-md font-mono-data group cursor-pointer" data-count="11" data-name="spring-boot">
+<span class="text-graphite group-hover:text-ink truncate">#spring-boot</span>
+<span class="text-smoke group-hover:text-ink font-mono-data text-label-sm ml-2">11</span>
+</div>
+<div class="topic-matrix-item flex justify-between items-center px-3.5 py-2 rounded-full bg-white/70 hover:bg-white border border-stone transition-all text-label-md font-mono-data group cursor-pointer" data-count="11" data-name="dsa">
+<span class="text-graphite group-hover:text-ink truncate">#dsa</span>
+<span class="text-smoke group-hover:text-ink font-mono-data text-label-sm ml-2">11</span>
+</div>
+<div class="topic-matrix-item flex justify-between items-center px-3.5 py-2 rounded-full bg-white/70 hover:bg-white border border-stone transition-all text-label-md font-mono-data group cursor-pointer" data-count="9" data-name="kubernetes">
+<span class="text-graphite group-hover:text-ink truncate">#kubernetes</span>
+<span class="text-smoke group-hover:text-ink font-mono-data text-label-sm ml-2">9</span>
+</div>
+<div class="topic-matrix-item flex justify-between items-center px-3.5 py-2 rounded-full bg-white/70 hover:bg-white border border-stone transition-all text-label-md font-mono-data group cursor-pointer" data-count="8" data-name="redis">
+<span class="text-graphite group-hover:text-ink truncate">#redis</span>
+<span class="text-smoke group-hover:text-ink font-mono-data text-label-sm ml-2">8</span>
+</div>
+<div class="topic-matrix-item flex justify-between items-center px-3.5 py-2 rounded-full bg-white/70 hover:bg-white border border-stone transition-all text-label-md font-mono-data group cursor-pointer" data-count="8" data-name="microservices">
+<span class="text-graphite group-hover:text-ink truncate">#microservices</span>
+<span class="text-smoke group-hover:text-ink font-mono-data text-label-sm ml-2">8</span>
+</div>
+<div class="topic-matrix-item flex justify-between items-center px-3.5 py-2 rounded-full bg-white/70 hover:bg-white border border-stone transition-all text-label-md font-mono-data group cursor-pointer" data-count="7" data-name="docker">
+<span class="text-graphite group-hover:text-ink truncate">#docker</span>
+<span class="text-smoke group-hover:text-ink font-mono-data text-label-sm ml-2">7</span>
+</div>
+<div class="topic-matrix-item flex justify-between items-center px-3.5 py-2 rounded-full bg-white/70 hover:bg-white border border-stone transition-all text-label-md font-mono-data group cursor-pointer" data-count="7" data-name="indexing">
+<span class="text-graphite group-hover:text-ink truncate">#indexing</span>
+<span class="text-smoke group-hover:text-ink font-mono-data text-label-sm ml-2">7</span>
+</div>
+<div class="topic-matrix-item flex justify-between items-center px-3.5 py-2 rounded-full bg-white/70 hover:bg-white border border-stone transition-all text-label-md font-mono-data group cursor-pointer" data-count="6" data-name="concurrency">
+<span class="text-graphite group-hover:text-ink truncate">#concurrency</span>
+<span class="text-smoke group-hover:text-ink font-mono-data text-label-sm ml-2">6</span>
+</div>
+<div class="topic-matrix-item flex justify-between items-center px-3.5 py-2 rounded-full bg-white/70 hover:bg-white border border-stone transition-all text-label-md font-mono-data group cursor-pointer" data-count="6" data-name="sql-tuning">
+<span class="text-graphite group-hover:text-ink truncate">#sql-tuning</span>
+<span class="text-smoke group-hover:text-ink font-mono-data text-label-sm ml-2">6</span>
+</div>
+<div class="topic-matrix-item flex justify-between items-center px-3.5 py-2 rounded-full bg-white/70 hover:bg-white border border-stone transition-all text-label-md font-mono-data group cursor-pointer" data-count="6" data-name="multi-tenancy">
+<span class="text-graphite group-hover:text-ink truncate">#multi-tenancy</span>
+<span class="text-smoke group-hover:text-ink font-mono-data text-label-sm ml-2">6</span>
+</div>
+<div class="topic-matrix-item flex justify-between items-center px-3.5 py-2 rounded-full bg-white/70 hover:bg-white border border-stone transition-all text-label-md font-mono-data group cursor-pointer" data-count="6" data-name="event-driven">
+<span class="text-graphite group-hover:text-ink truncate">#event-driven</span>
+<span class="text-smoke group-hover:text-ink font-mono-data text-label-sm ml-2">6</span>
+</div>
+<div class="topic-matrix-item flex justify-between items-center px-3.5 py-2 rounded-full bg-white/70 hover:bg-white border border-stone transition-all text-label-md font-mono-data group cursor-pointer" data-count="5" data-name="kafka">
+<span class="text-graphite group-hover:text-ink truncate">#kafka</span>
+<span class="text-smoke group-hover:text-ink font-mono-data text-label-sm ml-2">5</span>
+</div>
+<div class="topic-matrix-item flex justify-between items-center px-3.5 py-2 rounded-full bg-white/70 hover:bg-white border border-stone transition-all text-label-md font-mono-data group cursor-pointer" data-count="5" data-name="jvm-internals">
+<span class="text-graphite group-hover:text-ink truncate">#jvm-internals</span>
+<span class="text-smoke group-hover:text-ink font-mono-data text-label-sm ml-2">5</span>
+</div>
+<div class="topic-matrix-item flex justify-between items-center px-3.5 py-2 rounded-full bg-white/70 hover:bg-white border border-stone transition-all text-label-md font-mono-data group cursor-pointer" data-count="5" data-name="rate-limiting">
+<span class="text-graphite group-hover:text-ink truncate">#rate-limiting</span>
+<span class="text-smoke group-hover:text-ink font-mono-data text-label-sm ml-2">5</span>
+</div>
+<div class="topic-matrix-item flex justify-between items-center px-3.5 py-2 rounded-full bg-white/70 hover:bg-white border border-stone transition-all text-label-md font-mono-data group cursor-pointer" data-count="5" data-name="linux-internals">
+<span class="text-graphite group-hover:text-ink truncate">#linux-internals</span>
+<span class="text-smoke group-hover:text-ink font-mono-data text-label-sm ml-2">5</span>
+</div>
+<div class="topic-matrix-item flex justify-between items-center px-3.5 py-2 rounded-full bg-white/70 hover:bg-white border border-stone transition-all text-label-md font-mono-data group cursor-pointer" data-count="5" data-name="graph-theory">
+<span class="text-graphite group-hover:text-ink truncate">#graph-theory</span>
+<span class="text-smoke group-hover:text-ink font-mono-data text-label-sm ml-2">5</span>
+</div>
+<div class="topic-matrix-item flex justify-between items-center px-3.5 py-2 rounded-full bg-white/70 hover:bg-white border border-stone transition-all text-label-md font-mono-data group cursor-pointer" data-count="5" data-name="ci-cd">
+<span class="text-graphite group-hover:text-ink truncate">#ci-cd</span>
+<span class="text-smoke group-hover:text-ink font-mono-data text-label-sm ml-2">5</span>
+</div>
+<div class="topic-matrix-item flex justify-between items-center px-3.5 py-2 rounded-full bg-white/70 hover:bg-white border border-stone transition-all text-label-md font-mono-data group cursor-pointer" data-count="4" data-name="mvcc">
+<span class="text-graphite group-hover:text-ink truncate">#mvcc</span>
+<span class="text-smoke group-hover:text-ink font-mono-data text-label-sm ml-2">4</span>
+</div>
+<div class="topic-matrix-item flex justify-between items-center px-3.5 py-2 rounded-full bg-white/70 hover:bg-white border border-stone transition-all text-label-md font-mono-data group cursor-pointer" data-count="4" data-name="gc-tuning">
+<span class="text-graphite group-hover:text-ink truncate">#gc-tuning</span>
+<span class="text-smoke group-hover:text-ink font-mono-data text-label-sm ml-2">4</span>
+</div>
+<div class="topic-matrix-item flex justify-between items-center px-3.5 py-2 rounded-full bg-white/70 hover:bg-white border border-stone transition-all text-label-md font-mono-data group cursor-pointer" data-count="4" data-name="envoy">
+<span class="text-graphite group-hover:text-ink truncate">#envoy</span>
+<span class="text-smoke group-hover:text-ink font-mono-data text-label-sm ml-2">4</span>
+</div>
+<div class="topic-matrix-item flex justify-between items-center px-3.5 py-2 rounded-full bg-white/70 hover:bg-white border border-stone transition-all text-label-md font-mono-data group cursor-pointer" data-count="4" data-name="memory-layout">
+<span class="text-graphite group-hover:text-ink truncate">#memory-layout</span>
+<span class="text-smoke group-hover:text-ink font-mono-data text-label-sm ml-2">4</span>
+</div>
+<div class="topic-matrix-item flex justify-between items-center px-3.5 py-2 rounded-full bg-white/70 hover:bg-white border border-stone transition-all text-label-md font-mono-data group cursor-pointer" data-count="3" data-name="ebpf">
+<span class="text-graphite group-hover:text-ink truncate">#ebpf</span>
+<span class="text-smoke group-hover:text-ink font-mono-data text-label-sm ml-2">3</span>
+</div>
+</div>
+</section>
+</div>
+<!-- Interactive Logic -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Set active navigation link in app shell
+      const subjectsNavLink = document.querySelector('nav a[data-path="subjects"]');
+      if (subjectsNavLink) {
+        subjectsNavLink.classList.add('bg-warm-taupe', 'text-on-surface', 'font-medium');
+        subjectsNavLink.classList.remove('text-on-surface-variant');
+      }
+
+      // Live Filtering
+      const filterInput = document.getElementById("subject-filter-input");
+      const clearSearchBtn = document.getElementById("clear-search-btn");
+      const cards = Array.from(document.querySelectorAll(".subject-card"));
+      const noResults = document.getElementById("no-results-state");
+      const resetBtn = document.getElementById("reset-filter-btn");
+
+      function filterContent(query) {
+        const q = query.trim().toLowerCase().replace(/^#/, '');
+        let visibleCount = 0;
+
+        cards.forEach((card) => {
+          const name = (card.getAttribute("data-name") || "").toLowerCase();
+          const topics = (card.getAttribute("data-topics") || "").toLowerCase();
+          const matches = !q || name.includes(q) || topics.includes(q);
+
+          if (matches) {
+            card.classList.remove("hidden");
+            visibleCount++;
+          } else {
+            card.classList.add("hidden");
+          }
+        });
+
+        if (visibleCount === 0) {
+          noResults.classList.remove("hidden");
+        } else {
+          noResults.classList.add("hidden");
+        }
+
+        if (q.length > 0) {
+          clearSearchBtn.classList.remove("hidden");
+        } else {
+          clearSearchBtn.classList.add("hidden");
+        }
+      }
+
+      filterInput.addEventListener("input", (e) => {
+        filterContent(e.target.value);
+      });
+
+      clearSearchBtn.addEventListener("click", () => {
+        filterInput.value = "";
+        filterContent("");
+        filterInput.focus();
+      });
+
+      resetBtn.addEventListener("click", () => {
+        filterInput.value = "";
+        filterContent("");
+        filterInput.focus();
+      });
+
+      // Keyboard escape clear
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && document.activeElement === filterInput) {
+          filterInput.value = "";
+          filterContent("");
+        }
+      });
+
+      // Quick Tag Filter Clicks
+      document.querySelectorAll(".topic-tag, .topic-matrix-item").forEach((tagEl) => {
+        tagEl.addEventListener("click", () => {
+          const rawText = tagEl.innerText.trim();
+          const topicName = rawText.split('\n')[0].replace('#', '').trim();
+          filterInput.value = topicName;
+          filterContent(topicName);
+          window.scrollTo({ top: filterInput.getBoundingClientRect().top + window.scrollY - 100, behavior: 'smooth' });
+        });
+      });
+
+      // Subject Directory Sorting
+      const sortButtons = document.querySelectorAll(".sort-pill");
+      const grid = document.getElementById("subjects-grid");
+
+      sortButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          sortButtons.forEach((b) => {
+            b.classList.remove("bg-ink", "text-white");
+            b.classList.add("bg-warm-taupe", "text-smoke");
+          });
+          btn.classList.add("bg-ink", "text-white");
+          btn.classList.remove("bg-warm-taupe", "text-smoke");
+
+          const sortType = btn.getAttribute("data-sort");
+          const sortedCards = [...cards].sort((a, b) => {
+            if (sortType === "notes") {
+              return parseInt(b.getAttribute("data-notes")) - parseInt(a.getAttribute("data-notes"));
+            } else if (sortType === "updated") {
+              return parseInt(a.getAttribute("data-updated-days")) - parseInt(b.getAttribute("data-updated-days"));
+            } else if (sortType === "alpha") {
+              return a.getAttribute("data-name").localeCompare(b.getAttribute("data-name"));
+            }
+            return 0;
+          });
+
+          sortedCards.forEach((c) => grid.appendChild(c));
+        });
+      });
+
+      // Topic Matrix Sorting
+      const matrixContainer = document.getElementById("topic-matrix-container");
+      const matrixItems = Array.from(document.querySelectorAll(".topic-matrix-item"));
+      const btnPopular = document.getElementById("topics-sort-popular");
+      const btnAlpha = document.getElementById("topics-sort-alpha");
+
+      btnPopular.addEventListener("click", () => {
+        btnPopular.classList.add("bg-white", "text-ink", "shadow-sm");
+        btnPopular.classList.remove("text-smoke");
+        btnAlpha.classList.remove("bg-white", "text-ink", "shadow-sm");
+        btnAlpha.classList.add("text-smoke");
+
+        const sorted = [...matrixItems].sort((a, b) => {
+          return parseInt(b.getAttribute("data-count")) - parseInt(a.getAttribute("data-count"));
+        });
+        sorted.forEach((item) => matrixContainer.appendChild(item));
+      });
+
+      btnAlpha.addEventListener("click", () => {
+        btnAlpha.classList.add("bg-white", "text-ink", "shadow-sm");
+        btnAlpha.classList.remove("text-smoke");
+        btnPopular.classList.remove("bg-white", "text-ink", "shadow-sm");
+        btnPopular.classList.add("text-smoke");
+
+        const sorted = [...matrixItems].sort((a, b) => {
+          return a.getAttribute("data-name").localeCompare(b.getAttribute("data-name"));
+        });
+        sorted.forEach((item) => matrixContainer.appendChild(item));
+      });
+    });
+  </script>
+</div></main><footer class="w-full bg-warm-taupe shadow-[0_1px_8px_rgba(0,0,0,0.02)]"><div class="max-w-7xl mx-auto px-margin lg:px-margin-desktop py-space-xl"><div class="grid grid-cols-1 md:grid-cols-4 gap-space-xl pb-space-lg"><div class="space-y-space-sm md:col-span-2"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-violet-spark animate-pulse"></span><span class="font-mono-data text-label-sm text-ink uppercase tracking-wider">System Status: Operative</span></div><p class="font-body-sm text-body-sm text-smoke max-w-md">Curated technical distillation, architecture whitepapers, systems engineering runbooks, and algorithmic primitives synthesized for deliberate practitioners.</p></div><div class="space-y-space-xs"><div class="font-mono-data text-label-sm text-ink uppercase tracking-wider">Knowledge Index</div><ul class="space-y-space-xs"><li class="font-body-sm text-body-sm text-on-surface-variant">Distributed Systems</li><li class="font-body-sm text-body-sm text-on-surface-variant">Compilers &amp; Runtimes</li><li class="font-body-sm text-body-sm text-on-surface-variant">Data Modeling &amp; ACID</li><li class="font-body-sm text-body-sm text-on-surface-variant">Performance Profiling</li></ul></div><div class="space-y-space-xs"><div class="font-mono-data text-label-sm text-ink uppercase tracking-wider">Repository &amp; Feeds</div><ul class="space-y-space-xs"><li class="font-body-sm text-body-sm text-on-surface-variant">GitHub Notes Repo</li><li class="font-body-sm text-body-sm text-on-surface-variant">RSS Learning Stream</li><li class="font-body-sm text-body-sm text-on-surface-variant">Changelog &amp; Commits</li><li class="font-body-sm text-body-sm text-on-surface-variant">Architectural RFCs</li></ul></div></div><div class="pt-space-md flex flex-col sm:flex-row items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm"><span class="w-1.5 h-1.5 rounded-full bg-ember-orange"></span><span class="font-mono-data text-label-sm text-smoke">© 2025 dev.notes / MIT License</span></div><div class="font-mono-data text-label-sm text-smoke">v2.4.0-snapshot • bauhaus-grid</div></div></div></footer>
+</body></html>

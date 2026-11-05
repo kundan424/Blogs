@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+
+<html lang="en" style=""><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"primary-container":"#1b1b1b","outline-variant":"#cfc4c5","on-primary-container":"#848484","on-secondary-fixed":"#3b0900","surface-tint":"#5e5e5e","on-surface":"#000000","on-primary":"#ffffff","surface-container":"#eeeeee","error-container":"#ffdad6","tertiary":"#000000","secondary-fixed":"#ffdbd1","stone":"#ebe8e4","on-tertiary-fixed":"#001257","inverse-surface":"#343029","eggshell":"#fdfcfc","surface-container-low":"#fbf2e8","warm-taupe":"#f5f3f1","secondary":"#ad2c00","surface-container-lowest":"#ffffff","surface-bright":"#fff8f2","on-tertiary-container":"#0447ff","smoke":"#777169","violet-spark":"#0447ff","background":"#fff8f2","inverse-primary":"#c6c6c6","on-secondary-fixed-variant":"#872100","on-tertiary":"#ffffff","graphite":"#44403b","secondary-fixed-dim":"#ffb5a0","primary-fixed":"#e2e2e2","tertiary-container":"#001257","on-secondary-container":"#fffbff","surface-dim":"#e1d9cf","secondary-container":"#ffebe5","on-secondary":"#ffffff","ember-orange":"#ff4704","surface-container-high":"#e8e8e8","on-background":"#1f1b15","outline":"#ebe8e4","on-surface-variant":"#4c4546","primary":"#000000","ash":"#a59f97","on-primary-fixed":"#1b1b1b","on-error":"#ffffff","surface-container-highest":"#eae1d7","ink":"#000000","tertiary-fixed-dim":"#b9c3ff","on-primary-fixed-variant":"#474747","on-tertiary-fixed-variant":"#0033c1","error":"#ba1a1a","inverse-on-surface":"#f8efe5","on-error-container":"#93000a","surface":"#f9f9f9","tertiary-fixed":"#dde1ff","primary-fixed-dim":"#c6c6c6","surface-variant":"#eae1d7"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"margin":"1rem","margin-desktop":"2.5rem","space-md":"1rem","space-sm":"0.5rem","gutter":"1rem","space-lg":"1.5rem","space-xs":"0.25rem","space-xl":"2.5rem","gutter-desktop":"1.5rem"},"fontFamily":{"label-sm":["Geist"],"mono-data":["Geist"],"label-md":["Geist"],"headline-xl":["Inter"],"headline-sm":["Inter"],"headline-lg":["Inter"],"headline-md":["Inter"],"body-sm":["Inter"],"body-md":["Inter"],"title-md":["Inter"],"headline-xl-mobile":["Inter"],"display-lg":["Inter"],"body-lg":["Inter"],"display-lg-mobile":["Inter"]},"fontSize":{"label-sm":["11px",{"lineHeight":"16px","letterSpacing":"0.04em","fontWeight":"500"}],"mono-data":["12px",{"lineHeight":"16px","letterSpacing":"0em","fontWeight":"400"}],"label-md":["13px",{"lineHeight":"18px","letterSpacing":"0.02em","fontWeight":"500"}],"headline-xl":["40px",{"lineHeight":"48px","letterSpacing":"-0.025em","fontWeight":"300"}],"headline-sm":["20px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"400"}],"headline-lg":["30px",{"lineHeight":"38px","letterSpacing":"-0.02em","fontWeight":"300"}],"headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"300"}],"body-sm":["12px",{"lineHeight":"18px","letterSpacing":"0.01em","fontWeight":"400"}],"body-md":["14px",{"lineHeight":"22px","letterSpacing":"0em","fontWeight":"400"}],"title-md":["16px",{"lineHeight":"24px","letterSpacing":"-0.005em","fontWeight":"500"}],"headline-xl-mobile":["28px",{"lineHeight":"36px","letterSpacing":"-0.02em","fontWeight":"300"}],"display-lg":["56px",{"lineHeight":"64px","letterSpacing":"-0.03em","fontWeight":"300"}],"body-lg":["16px",{"lineHeight":"26px","letterSpacing":"0em","fontWeight":"400"}],"display-lg-mobile":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"300"}]}}}};</script></head><body class="bg-eggshell text-on-surface font-body-md"><header class="fixed top-0 w-full z-50 bg-eggshell/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 max-w-7xl mx-auto px-margin lg:px-margin-desktop flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-lg"><a class="flex items-center gap-space-sm text-ink group" data-path="home" href="#"><span class="flex items-center justify-center w-7 h-7 rounded bg-warm-taupe text-ink font-mono-data text-mono-data group-hover:bg-primary-container group-hover:text-on-primary transition-colors">$_</span><div class="flex flex-col leading-none"><span class="font-label-md text-label-md tracking-tight text-ink font-medium">dev.notes</span><span class="font-label-sm text-label-sm text-smoke">/learnings</span></div></a><nav class="hidden md:flex items-center gap-space-xs" data-active-classes="bg-warm-taupe text-on-surface font-medium"><a class="px-space-sm py-space-xs rounded text-on-surface-variant font-label-md text-label-md hover:bg-surface-container hover:text-on-surface transition-colors" data-path="home" href="#">Home</a><a class="px-space-sm py-space-xs rounded text-on-surface-variant font-label-md text-label-md hover:bg-surface-container hover:text-on-surface transition-colors" data-path="subjects" href="#">Subjects</a><a class="px-space-sm py-space-xs rounded text-on-surface-variant font-label-md text-label-md hover:bg-surface-container hover:text-on-surface transition-colors" data-path="topics" href="#">Topics</a><a class="px-space-sm py-space-xs rounded text-on-surface-variant font-label-md text-label-md hover:bg-surface-container hover:text-on-surface transition-colors" data-path="series" href="#">Series</a><a class="px-space-sm py-space-xs rounded text-on-surface-variant font-label-md text-label-md hover:bg-surface-container hover:text-on-surface transition-colors" data-path="about" href="#">About</a></nav></div><div class="flex items-center gap-space-sm"><button class="flex items-center gap-space-md px-space-sm py-space-xs rounded-lg bg-warm-taupe text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" type="button"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[16px]">search</span><span class="hidden sm:inline font-mono-data text-mono-data">Search notes...</span></div><kbd class="hidden sm:inline-flex items-center px-1.5 py-0.5 rounded bg-surface-container-lowest font-mono-data text-label-sm text-smoke">⌘K</kbd></button><a aria-label="Source Repository" class="p-space-xs rounded text-on-surface-variant hover:text-on-surface hover:bg-warm-taupe transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">code</span></a><button aria-label="Toggle Theme" class="p-space-xs rounded text-on-surface-variant hover:text-on-surface hover:bg-warm-taupe transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">light_mode</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-eggshell min-h-screen"><div class="flex flex-col w-full text-on-surface">
+<!-- READING PROGRESS BAR (Fixed Top) -->
+<div class="fixed top-0 left-0 right-0 h-[2.5px] bg-stone/40 z-50 pointer-events-none">
+<div class="h-full bg-gradient-to-r from-ember-orange via-primary to-violet-spark w-0 transition-all duration-75 ease-out" id="reading-progress-fill"></div>
+</div>
+<!-- FLOATING COPY NOTIFICATION TOAST -->
+<div class="fixed bottom-6 right-6 z-50 transform translate-y-12 opacity-0 pointer-events-none transition-all duration-200 flex items-center gap-space-xs px-space-md py-space-sm rounded-full bg-primary text-on-primary shadow-xl font-mono-data text-mono-data" id="copy-toast">
+<span class="material-symbols-outlined text-[16px] text-ember-orange">check_circle</span>
+<span id="toast-message">Permalink copied to clipboard</span>
+</div>
+<!-- MAIN EDITORIAL CONTAINER (12-Col Responsive Bauhaus Grid) -->
+<div class="max-w-6xl w-full mx-auto px-4 md:px-8 py-8 md:py-12">
+<!-- ZONE 1: ARTICLE HEADER BLOCK -->
+<header class="mb-10 lg:mb-14">
+<!-- Breadcrumb Navigation -->
+<nav aria-label="Breadcrumb" class="flex items-center flex-wrap gap-space-xs font-mono-data text-mono-data text-smoke mb-6">
+<a class="hover:text-ink transition-colors" href="#">Home</a>
+<span class="text-ash">/</span>
+<a class="hover:text-ink transition-colors" href="#">Subjects</a>
+<span class="text-ash">/</span>
+<a class="hover:text-ink transition-colors" href="#">Backend &amp; Distributed Systems</a>
+<span class="text-ash">/</span>
+<span class="text-ink font-medium truncate max-w-[240px] sm:max-w-md">Optimizing PostgreSQL Connection Pooling...</span>
+</nav>
+<!-- Metadata Badges Row -->
+<div class="flex flex-wrap items-center gap-space-sm mb-6">
+<a class="inline-flex items-center gap-space-xs px-3 py-1 rounded-full bg-warm-taupe text-graphite font-label-md text-label-md hover:bg-surface-container transition-colors" href="#">
+<span class="w-1.5 h-1.5 rounded-full bg-ember-orange"></span>
+          Database Internals &amp; Storage
+        </a>
+<span class="font-mono-data text-mono-data text-smoke flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]">calendar_today</span>
+          Oct 24, 2026
+        </span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-surface-container font-mono-data text-label-sm text-ink">
+<span class="w-1.5 h-1.5 rounded-full bg-violet-spark animate-pulse"></span>
+          Updated Oct 28, 2026
+        </span>
+<span class="font-mono-data text-mono-data text-smoke flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]">timer</span>
+          8 min read
+        </span>
+</div>
+<!-- Main Display Headline -->
+<h1 class="font-display-lg text-headline-xl md:text-display-lg text-ink tracking-tight font-light mb-6 leading-tight max-w-4xl">
+        Optimizing PostgreSQL Connection Pooling in HikariCP under Spike Load
+      </h1>
+<!-- Executive Abstract / Subtitle -->
+<p class="font-body-lg text-body-lg text-graphite leading-relaxed max-w-3xl mb-8">
+        Why naive thread-to-connection mapping exhausts PostgreSQL backends during 5,000 req/sec surges. A mechanical breakdown of thread starvation heuristics, kernel context-switch thrashing, and deterministic pool sizing.
+      </p>
+<!-- Topic Tags Row -->
+<div class="flex flex-wrap items-center gap-2">
+<a class="px-3 py-1 rounded-full bg-surface-container font-mono-data text-label-sm text-on-surface-variant hover:text-ink hover:bg-warm-taupe transition-colors" href="#">#postgresql</a>
+<a class="px-3 py-1 rounded-full bg-surface-container font-mono-data text-label-sm text-on-surface-variant hover:text-ink hover:bg-warm-taupe transition-colors" href="#">#spring-boot</a>
+<a class="px-3 py-1 rounded-full bg-surface-container font-mono-data text-label-sm text-on-surface-variant hover:text-ink hover:bg-warm-taupe transition-colors" href="#">#hikaricp</a>
+<a class="px-3 py-1 rounded-full bg-surface-container font-mono-data text-label-sm text-on-surface-variant hover:text-ink hover:bg-warm-taupe transition-colors" href="#">#concurrency</a>
+<a class="px-3 py-1 rounded-full bg-surface-container font-mono-data text-label-sm text-on-surface-variant hover:text-ink hover:bg-warm-taupe transition-colors" href="#">#benchmarks</a>
+</div>
+</header>
+<!-- MOBILE TOLLBAR / TOC DISCLOSURE (< 1024px) -->
+<aside aria-label="Mobile Table of Contents" class="block lg:hidden mb-10 bg-warm-taupe rounded-xl p-space-md shadow-sm">
+<details class="group cursor-pointer">
+<summary class="flex items-center justify-between font-mono-data text-label-md text-ink font-medium list-none">
+<span class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-ember-orange">toc</span>
+            ON THIS PAGE (TABLE OF CONTENTS)
+          </span>
+<span class="material-symbols-outlined transition-transform duration-200 group-open:rotate-180">expand_more</span>
+</summary>
+<div class="mt-4 pt-4 space-y-2 font-mono-data text-label-sm text-smoke">
+<a class="block hover:text-ink py-1" href="#the-connection-overhead-conundrum">01. The Connection Overhead Conundrum</a>
+<a class="block hover:text-ink py-1" href="#formula-breakdown">02. Sizing Formula &amp; Mathematical Heuristic</a>
+<a class="block hover:text-ink py-1" href="#hikaricp-configuration-matrix">03. Production HikariCP Configuration Matrix</a>
+<a class="block hover:text-ink py-1" href="#benchmarking-under-spike-load">04. Benchmarking Latencies Under Spike Load</a>
+<a class="block hover:text-ink py-1" href="#production-takeaways">05. Production Takeaways &amp; Sizing Runbook</a>
+</div>
+</details>
+</aside>
+<!-- ZONE 2: CONDITIONAL SERIES STEPPER BOX -->
+<section aria-label="Series Stepper" class="mb-12 bg-warm-taupe rounded-xl p-space-lg shadow-sm">
+<div class="flex items-center justify-between flex-wrap gap-3 pb-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-lowest flex items-center justify-center text-ink shadow-sm">
+<span class="material-symbols-outlined text-[18px]">layers</span>
+</div>
+<div>
+<div class="font-mono-data text-label-sm uppercase tracking-wider text-smoke">Curated Architecture Series</div>
+<h2 class="font-title-md text-title-md text-ink font-semibold">Multi-Tenant SaaS &amp; High-Throughput I/O</h2>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-mono-data text-label-sm font-medium">Part 3 of 4</span>
+<button aria-expanded="true" class="p-1 rounded hover:bg-surface-container text-graphite transition-colors" id="toggle-series-btn" title="Toggle Series List" type="button">
+<span class="material-symbols-outlined text-[20px]" id="series-toggle-icon">keyboard_arrow_up</span>
+</button>
+</div>
+</div>
+<!-- Stepper Content Container -->
+<div class="pt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3" id="series-stepper-content">
+<!-- Part 1 -->
+<a class="p-3 rounded-lg bg-eggshell/80 hover:bg-surface-container-lowest transition-all group flex flex-col justify-between h-full" href="#">
+<div>
+<div class="flex items-center justify-between text-smoke mb-1">
+<span class="font-mono-data text-label-sm">Part 01</span>
+<span class="material-symbols-outlined text-[16px] text-graphite">check_circle</span>
+</div>
+<p class="font-label-md text-label-md text-graphite group-hover:text-ink leading-snug">Tenant Context Routing &amp; Multiplexing</p>
+</div>
+<span class="font-mono-data text-[10px] text-smoke mt-3 block">Completed</span>
+</a>
+<!-- Part 2 -->
+<a class="p-3 rounded-lg bg-eggshell/80 hover:bg-surface-container-lowest transition-all group flex flex-col justify-between h-full" href="#">
+<div>
+<div class="flex items-center justify-between text-smoke mb-1">
+<span class="font-mono-data text-label-sm">Part 02</span>
+<span class="material-symbols-outlined text-[16px] text-graphite">check_circle</span>
+</div>
+<p class="font-label-md text-label-md text-graphite group-hover:text-ink leading-snug">Distributed Locking with Redis Redlock</p>
+</div>
+<span class="font-mono-data text-[10px] text-smoke mt-3 block">Completed</span>
+</a>
+<!-- Part 3 (Active) -->
+<div class="p-3 rounded-lg bg-surface-container-lowest shadow-sm flex flex-col justify-between h-full">
+<div>
+<div class="flex items-center justify-between text-ember-orange mb-1">
+<span class="font-mono-data text-label-sm font-semibold">Part 03 • Current</span>
+<span class="w-2 h-2 rounded-full bg-ember-orange animate-ping"></span>
+</div>
+<p class="font-label-md text-label-md text-ink font-semibold leading-snug">Optimizing Postgres Connection Pooling in HikariCP</p>
+</div>
+<span class="font-mono-data text-[10px] text-ember-orange font-medium mt-3 block">Reading Now</span>
+</div>
+<!-- Part 4 -->
+<div class="p-3 rounded-lg bg-surface-container/50 opacity-75 flex flex-col justify-between h-full">
+<div>
+<div class="flex items-center justify-between text-smoke mb-1">
+<span class="font-mono-data text-label-sm">Part 04</span>
+<span class="material-symbols-outlined text-[16px]">lock_clock</span>
+</div>
+<p class="font-label-md text-label-md text-smoke leading-snug">Distributed Observability &amp; Pool Telemetry</p>
+</div>
+<span class="font-mono-data text-[10px] text-smoke mt-3 block">Upcoming Next</span>
+</div>
+</div>
+</section>
+<!-- ASYMMETRIC TWO-COLUMN WORKBENCH (8 cols / 4 cols) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14">
+<!-- ============================================== -->
+<!-- ZONE 3: RICH MDX ARTICLE BODY (PROSE CONTAINER) -->
+<!-- ============================================== -->
+<article class="lg:col-span-8 max-w-3xl space-y-12">
+<!-- SECTION 1 -->
+<section class="scroll-mt-24" id="the-connection-overhead-conundrum">
+<div class="flex items-baseline gap-2 mb-4 group">
+<h2 class="font-headline-lg text-headline-lg text-ink font-light tracking-tight">
+              The Connection Overhead Conundrum
+            </h2>
+<a aria-label="Anchor link to The Connection Overhead Conundrum" class="opacity-0 group-hover:opacity-100 text-smoke hover:text-ember-orange font-mono-data transition-opacity text-headline-md" href="#the-connection-overhead-conundrum">#</a>
+</div>
+<div class="space-y-4 font-body-md text-body-md text-graphite leading-relaxed">
+<p>
+              When high-concurrency microservices suffer latency degradation under sudden traffic spikes (e.g. 5,000 requests per second), the instinctive operator reaction is almost universally incorrect: <span class="text-ink font-medium italic">"Increase the connection pool limit from 30 to 200."</span>
+</p>
+<p>
+              PostgreSQL relies on a <strong>process-per-backend</strong> operational model. Unlike MySQL or Oracle, which multiplex statements onto OS or lightweight threads within a shared memory space, every single PostgreSQL connection spins up a dedicated Unix process via <code>fork()</code>.
+            </p>
+</div>
+<!-- Semantic Callout: Warning Box -->
+<div class="my-6 p-5 rounded-xl bg-warm-taupe space-y-2 shadow-sm">
+<div class="flex items-center gap-space-xs text-secondary font-mono-data text-label-sm uppercase tracking-wider font-semibold">
+<span class="material-symbols-outlined text-[18px]">memory</span>
+              PostgreSQL Process Cost Heuristics
+            </div>
+<p class="font-body-sm text-body-sm text-graphite leading-relaxed">
+              Each backend process claims roughly <strong>10MB to 16MB</strong> of private memory space (<code class="bg-surface-container px-1 py-0.5 rounded text-ink font-mono-data">work_mem</code>, query parse trees, sort buffers), plus shared memory locks. Allowing 500 active connections starves your Linux kernel cache, forcing NVMe block reads when tables could have resided entirely in OS file system buffers.
+            </p>
+</div>
+<p class="font-body-md text-body-md text-graphite leading-relaxed">
+            More critically, when hundreds of OS processes contend for a fixed slice of hardware CPU cores, Linux spends more clock cycles executing context switches than parsing SQL execution trees.
+          </p>
+</section>
+<!-- SECTION 2 -->
+<section class="scroll-mt-24" id="formula-breakdown">
+<div class="flex items-baseline gap-2 mb-4 group">
+<h2 class="font-headline-lg text-headline-lg text-ink font-light tracking-tight">
+              Sizing Formula &amp; Mathematical Heuristic
+            </h2>
+<a aria-label="Anchor link to Sizing Formula" class="opacity-0 group-hover:opacity-100 text-smoke hover:text-ember-orange font-mono-data transition-opacity text-headline-md" href="#formula-breakdown">#</a>
+</div>
+<p class="font-body-md text-body-md text-graphite leading-relaxed mb-6">
+            HikariCP author Brett Wooldridge and PostgreSQL benchmark pioneers derived a time-tested equation modeled on Little’s Law and Amdahl’s law of concurrency limits:
+          </p>
+<!-- Mathematical Formula Vector / Blueprint Card -->
+<div class="p-6 rounded-xl bg-surface-container-lowest shadow-md space-y-4">
+<div class="flex items-center justify-between text-smoke pb-2 font-mono-data text-label-sm uppercase">
+<span>PostgreSQL Connection Sizing Theorem</span>
+<span>Theory vs Silicon</span>
+</div>
+<div class="py-4 px-6 rounded-lg bg-warm-taupe text-center font-mono-data text-title-md md:text-headline-sm text-ink tracking-tight">
+              pool_size = ( (core_count × 2) + effective_spindle_count )
+            </div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2 font-body-sm text-body-sm text-smoke">
+<div class="p-3 rounded bg-surface-container/60">
+<span class="font-mono-data text-label-sm text-ink block font-medium mb-1">core_count × 2</span>
+                Maximizes saturation of physical hardware CPU threads before thrashing the L1/L2 cache and triggering run-queue stalls.
+              </div>
+<div class="p-3 rounded bg-surface-container/60">
+<span class="font-mono-data text-label-sm text-ink block font-medium mb-1">effective_spindle_count</span>
+                Accounts for I/O waits. For modern enterprise NVMe SSD arrays with direct memory mapping, this value typically resolves to <strong>1</strong>.
+              </div>
+</div>
+</div>
+<!-- Key Takeaway Callout (Ember Orange Accent) -->
+<div class="mt-6 p-5 rounded-xl bg-secondary-container/40 space-y-2 shadow-sm">
+<div class="flex items-center gap-space-xs text-ember-orange font-mono-data text-label-sm uppercase tracking-wider font-semibold">
+<span class="material-symbols-outlined text-[18px]">lightbulb</span>
+              Key Architectural Takeaway
+            </div>
+<p class="font-body-sm text-body-sm text-on-surface leading-relaxed">
+              If your database server runs on an 8-core CPU, the mathematically optimal connection pool size is <strong>(8 × 2) + 1 = 17 connections</strong>. Sizing your Spring Boot pool to 100 on an 8-core host directly degrades response time under high load.
+            </p>
+</div>
+</section>
+<!-- SECTION 3 -->
+<section class="scroll-mt-24" id="hikaricp-configuration-matrix">
+<div class="flex items-baseline gap-2 mb-4 group">
+<h2 class="font-headline-lg text-headline-lg text-ink font-light tracking-tight">
+              Production HikariCP Configuration Matrix
+            </h2>
+<a aria-label="Anchor link to HikariCP Configuration Matrix" class="opacity-0 group-hover:opacity-100 text-smoke hover:text-ember-orange font-mono-data transition-opacity text-headline-md" href="#hikaricp-configuration-matrix">#</a>
+</div>
+<p class="font-body-md text-body-md text-graphite leading-relaxed mb-6">
+            Below is the verified production configuration for high-throughput microservices. Notice the fixed pool size strategy: setting <code class="bg-surface-container px-1 py-0.5 rounded text-ink font-mono-data">minimum-idle</code> equal to <code class="bg-surface-container px-1 py-0.5 rounded text-ink font-mono-data">maximum-pool-size</code> turns HikariCP into a deterministic, zero-allocation connection cache.
+          </p>
+<!-- Rich Code Block Component -->
+<div class="rounded-xl overflow-hidden bg-primary-container text-eggshell shadow-xl">
+<!-- Code Block Header -->
+<div class="flex items-center justify-between px-4 py-2.5 bg-ink text-smoke font-mono-data text-label-sm">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-ember-orange">description</span>
+<span class="text-on-primary">src/main/resources/application.yml</span>
+<span class="text-on-primary-container ml-2">yaml</span>
+</div>
+<button class="flex items-center gap-1 px-2.5 py-1 rounded bg-surface-container-highest/20 hover:bg-surface-container-highest/40 text-on-primary transition-colors text-label-sm" onclick="copyCodeSnippet(this)" title="Copy code block">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+<span class="copy-label">Copy</span>
+</button>
+</div>
+<!-- Syntax / Diff Content -->
+<div class="p-4 font-mono-data text-mono-data overflow-x-auto leading-relaxed">
+<pre class="text-stone"><code><span class="text-smoke"># HikariCP Concurrency &amp; Starvation Hardening</span>
+<span class="text-violet-spark">spring:</span>
+  <span class="text-violet-spark">datasource:</span>
+    <span class="text-violet-spark">hikari:</span>
+      <span class="text-smoke"># Sized precisely for 8-core AWS Aurora DB instance</span>
+<span class="text-error bg-error-container/10 px-1 block">-     maximum-pool-size: 100</span>
+<span class="text-emerald-400 bg-emerald-950/20 px-1 block">+     maximum-pool-size: 16</span>
+<span class="text-emerald-400 bg-emerald-950/20 px-1 block">+     minimum-idle: 16             # Fixed pool avoids connection spikes</span>
+      
+      <span class="text-smoke"># Timeout bounds preventing hung thread cascading failures</span>
+      <span class="text-on-secondary-fixed">connection-timeout:</span> <span class="text-amber-300">3000</span>     <span class="text-smoke"># 3s fail-fast limit</span>
+      <span class="text-on-secondary-fixed">idle-timeout:</span> <span class="text-amber-300">600000</span>          <span class="text-smoke"># 10 min idle expiration</span>
+      <span class="text-on-secondary-fixed">max-lifetime:</span> <span class="text-amber-300">1800000</span>          <span class="text-smoke"># 30 min renewal</span>
+      
+      <span class="text-smoke"># Diagnostics: Logs stack trace of threads holding lease &gt; 2s</span>
+<span class="text-emerald-400 bg-emerald-950/20 px-1 block">+     leak-detection-threshold: 2000</span>
+      <span class="text-on-secondary-fixed">pool-name:</span> <span class="text-amber-300">FastCheckoutPool</span></code></pre>
+</div>
+</div>
+</section>
+<!-- SECTION 4 -->
+<section class="scroll-mt-24" id="benchmarking-under-spike-load">
+<div class="flex items-baseline gap-2 mb-4 group">
+<h2 class="font-headline-lg text-headline-lg text-ink font-light tracking-tight">
+              Benchmarking Latencies Under Spike Load
+            </h2>
+<a aria-label="Anchor link to Benchmarking" class="opacity-0 group-hover:opacity-100 text-smoke hover:text-ember-orange font-mono-data transition-opacity text-headline-md" href="#benchmarking-under-spike-load">#</a>
+</div>
+<p class="font-body-md text-body-md text-graphite leading-relaxed mb-6">
+            We subjected an 8-vCPU PostgreSQL cluster to synthetic bursts of 5,000 req/sec over HTTP using k6. The outcome clearly demonstrates that larger pool sizes inflate Tail Latencies (P99) dramatically due to process-scheduler queue depth.
+          </p>
+<!-- Benchmarks Data Table -->
+<div class="overflow-x-auto rounded-xl bg-warm-taupe shadow-sm p-1">
+<table class="w-full text-left font-mono-data text-body-sm">
+<thead class="bg-surface-container text-ink font-semibold uppercase text-label-sm">
+<tr>
+<th class="py-3 px-4">Pool Size</th>
+<th class="py-3 px-4">Throughput (TPS)</th>
+<th class="py-3 px-4">P50 Latency</th>
+<th class="py-3 px-4">P99 Latency</th>
+<th class="py-3 px-4">Postgres CPU%</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-stone/60 text-graphite">
+<tr class="hover:bg-eggshell/60 transition-colors">
+<td class="py-3 px-4 font-bold text-ink">10 (Under-sized)</td>
+<td class="py-3 px-4">2,840</td>
+<td class="py-3 px-4">3.4 ms</td>
+<td class="py-3 px-4">124.0 ms</td>
+<td class="py-3 px-4">68%</td>
+</tr>
+<tr class="bg-surface-container-lowest font-medium text-ink shadow-sm">
+<td class="py-3 px-4 text-violet-spark flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-violet-spark"></span>
+                    16 (Optimal)
+                  </td>
+<td class="py-3 px-4 text-ink font-bold">4,910</td>
+<td class="py-3 px-4 text-ink font-bold">1.2 ms</td>
+<td class="py-3 px-4 text-ink font-bold">8.4 ms</td>
+<td class="py-3 px-4 text-ink">92% (Zero Thrashing)</td>
+</tr>
+<tr class="hover:bg-eggshell/60 transition-colors">
+<td class="py-3 px-4 font-bold text-ink">30 (Over-provisioned)</td>
+<td class="py-3 px-4">4,120</td>
+<td class="py-3 px-4">2.8 ms</td>
+<td class="py-3 px-4">42.1 ms</td>
+<td class="py-3 px-4">98%</td>
+</tr>
+<tr class="hover:bg-eggshell/60 transition-colors bg-secondary-container/20">
+<td class="py-3 px-4 font-bold text-error">100 (Naive Default)</td>
+<td class="py-3 px-4">1,940</td>
+<td class="py-3 px-4">9.6 ms</td>
+<td class="py-3 px-4 text-error font-bold">612.0 ms</td>
+<td class="py-3 px-4 text-error">100% (Context Sw.)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Mini Inline Bar Visualization for Latency (Inline SVG) -->
+<div class="mt-6 p-4 rounded-xl bg-surface-container-lowest shadow-sm space-y-3">
+<span class="font-mono-data text-label-sm text-smoke uppercase">P99 Tail Latency Comparison (Lower is Better)</span>
+<div class="space-y-2">
+<div>
+<div class="flex justify-between font-mono-data text-[11px] mb-1">
+<span>Pool 16 (Tuned)</span>
+<span class="text-ink font-bold">8.4 ms</span>
+</div>
+<div class="h-2 rounded-full bg-stone overflow-hidden">
+<div class="h-full bg-violet-spark w-[3%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-mono-data text-[11px] mb-1">
+<span>Pool 30</span>
+<span class="text-graphite font-medium">42.1 ms</span>
+</div>
+<div class="h-2 rounded-full bg-stone overflow-hidden">
+<div class="h-full bg-smoke w-[14%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-mono-data text-[11px] mb-1">
+<span class="text-error">Pool 100 (Unconstrained)</span>
+<span class="text-error font-bold">612.0 ms</span>
+</div>
+<div class="h-2 rounded-full bg-stone overflow-hidden">
+<div class="h-full bg-ember-orange w-[96%]"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 5 -->
+<section class="scroll-mt-24" id="production-takeaways">
+<div class="flex items-baseline gap-2 mb-4 group">
+<h2 class="font-headline-lg text-headline-lg text-ink font-light tracking-tight">
+              Production Takeaways &amp; Sizing Runbook
+            </h2>
+<a aria-label="Anchor link to Production Takeaways" class="opacity-0 group-hover:opacity-100 text-smoke hover:text-ember-orange font-mono-data transition-opacity text-headline-md" href="#production-takeaways">#</a>
+</div>
+<div class="space-y-4 font-body-md text-body-md text-graphite leading-relaxed">
+<p>
+              When preparing an operational rollout under expected traffic surges, enforce these four principles in your continuous deployment checks:
+            </p>
+<ul class="space-y-3 pl-5 list-disc marker:text-ember-orange">
+<li>
+<strong>Cap App-Tier Connection Maxima:</strong> Ensure the aggregated maximum pools across all auto-scaled pods never exceed Postgres <code class="bg-surface-container px-1 py-0.5 rounded text-ink font-mono-data">max_connections - 15</code> (reserving headroom for replication superusers).
+              </li>
+<li>
+<strong>Introduce PgBouncer in Transaction Mode:</strong> If 80 application instances each demand 10 connections (totalling 800), place a connection concentrator like PgBouncer in front of PostgreSQL to route multiplexed transactions to 20 persistent backend processes.
+              </li>
+<li>
+<strong>Enable Leak Detection:</strong> A lingering transaction holding an open connection blocks the entire queue. Use <code class="bg-surface-container px-1 py-0.5 rounded text-ink font-mono-data">leakDetectionThreshold=2000</code> in staging and production to catch uncommitted Hibernate transactions.
+              </li>
+</ul>
+</div>
+</section>
+</article>
+<!-- ============================================== -->
+<!-- ZONE 4: STICKY RIGHT SIDEBAR (4 COLS - DESKTOP) -->
+<!-- ============================================== -->
+<aside class="hidden lg:block lg:col-span-4">
+<div class="sticky top-24 space-y-8 pl-6 border-l border-stone">
+<!-- Widget 1: Interactive Table of Contents -->
+<div class="space-y-4">
+<div class="flex items-center gap-space-xs font-mono-data text-label-sm text-smoke uppercase tracking-wider">
+<span class="material-symbols-outlined text-[16px] text-ember-orange">segment</span>
+              ON THIS PAGE
+            </div>
+<nav aria-label="Table of contents" class="space-y-2 font-mono-data text-label-sm" id="toc-nav">
+<a class="toc-link block text-smoke hover:text-ink transition-colors py-1 pl-2 rounded hover:bg-warm-taupe" href="#the-connection-overhead-conundrum">
+                The Connection Overhead Conundrum
+              </a>
+<a class="toc-link block text-smoke hover:text-ink transition-colors py-1 pl-2 rounded hover:bg-warm-taupe" href="#formula-breakdown">
+                Sizing Formula &amp; Mathematical Heuristic
+              </a>
+<a class="toc-link block text-smoke hover:text-ink transition-colors py-1 pl-2 rounded hover:bg-warm-taupe" href="#hikaricp-configuration-matrix">
+                HikariCP Configuration Matrix
+              </a>
+<a class="toc-link block text-smoke hover:text-ink transition-colors py-1 pl-2 rounded hover:bg-warm-taupe" href="#benchmarking-under-spike-load">
+                Benchmarking Under Spike Load
+              </a>
+<a class="toc-link block text-smoke hover:text-ink transition-colors py-1 pl-2 rounded hover:bg-warm-taupe" href="#production-takeaways">
+                Production Takeaways &amp; Sizing Runbook
+              </a>
+</nav>
+</div>
+<!-- Widget 2: Article Quick-Utility Bar -->
+<div class="p-4 rounded-xl bg-warm-taupe space-y-3">
+<div class="font-mono-data text-label-sm text-ink uppercase tracking-wider font-semibold">
+              Note Utilities
+            </div>
+<div class="flex items-center gap-2">
+<button class="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-surface-container-lowest text-graphite hover:text-ink hover:bg-eggshell transition-all font-mono-data text-label-sm shadow-sm" onclick="copyCurrentPermalink()" title="Copy Note Permalink">
+<span class="material-symbols-outlined text-[16px]">link</span>
+                Copy Link
+              </button>
+<a class="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-surface-container-lowest text-graphite hover:text-ink hover:bg-eggshell transition-all font-mono-data text-label-sm shadow-sm" href="https://github.com" rel="noopener noreferrer" target="_blank" title="Edit Markdown Note on GitHub">
+<span class="material-symbols-outlined text-[16px]">edit_note</span>
+                Edit Note
+              </a>
+<button class="p-2 rounded-lg bg-surface-container-lowest text-graphite hover:text-ink hover:bg-eggshell transition-all shadow-sm" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="Scroll to Top">
+<span class="material-symbols-outlined text-[18px]">arrow_upward</span>
+</button>
+</div>
+</div>
+<!-- Widget 3: Related Notes Mini-List -->
+<div class="space-y-3">
+<div class="font-mono-data text-label-sm text-smoke uppercase tracking-wider">
+              Related in Database Internals
+            </div>
+<div class="space-y-2">
+<a class="block p-3 rounded-xl bg-warm-taupe hover:bg-surface-container transition-colors group" href="#">
+<p class="font-label-md text-label-md text-ink group-hover:text-ember-orange transition-colors font-medium">
+                  Deep Dive into PostgreSQL MVCC &amp; Vacuuming
+                </p>
+<div class="flex items-center gap-2 font-mono-data text-label-sm text-smoke mt-1">
+<span>14 min read</span>
+<span>•</span>
+<span>Engine Internals</span>
+</div>
+</a>
+<a class="block p-3 rounded-xl bg-warm-taupe hover:bg-surface-container transition-colors group" href="#">
+<p class="font-label-md text-label-md text-ink group-hover:text-ember-orange transition-colors font-medium">
+                  Analyzing Postgres Lock Contention and Deadlocks
+                </p>
+<div class="flex items-center gap-2 font-mono-data text-label-sm text-smoke mt-1">
+<span>9 min read</span>
+<span>•</span>
+<span>Profiling</span>
+</div>
+</a>
+<a class="block p-3 rounded-xl bg-warm-taupe hover:bg-surface-container transition-colors group" href="#">
+<p class="font-label-md text-label-md text-ink group-hover:text-ember-orange transition-colors font-medium">
+                  Automating Schema Migrations with Flyway &amp; Canary Testing
+                </p>
+<div class="flex items-center gap-2 font-mono-data text-label-sm text-smoke mt-1">
+<span>7 min read</span>
+<span>•</span>
+<span>CI/CD Automation</span>
+</div>
+</a>
+</div>
+</div>
+</div>
+</aside>
+</div>
+<!-- ============================================== -->
+<!-- ZONE 5: ARTICLE FOOTER & SEQUENTIAL PAGER      -->
+<!-- ============================================== -->
+<footer class="mt-16 pt-8 border-t border-stone space-y-10">
+<!-- Metadata Row -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-mono-data text-label-sm text-smoke">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-graphite">terminal</span>
+<span>Synthesized in Markdown • Last verified under HikariCP v5.1.0</span>
+</div>
+<a class="inline-flex items-center gap-1 text-ink hover:text-ember-orange transition-colors font-medium" href="https://github.com" rel="noopener noreferrer" target="_blank">
+          Spot a typo or issue? Edit on GitHub →
+        </a>
+</div>
+<!-- Adjacent Post Sequential Pager (2-Cards Grid) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Previous Note -->
+<a class="p-5 rounded-xl bg-warm-taupe hover:bg-surface-container transition-all group flex flex-col justify-between" href="#">
+<div>
+<span class="font-mono-data text-label-sm text-smoke flex items-center gap-1 mb-2">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+              PREVIOUS IN SERIES (PART 2)
+            </span>
+<h3 class="font-title-md text-title-md text-ink group-hover:text-ember-orange transition-colors font-medium">
+              Distributed Locking with Redis Redlock &amp; Fencing Tokens
+            </h3>
+</div>
+<span class="font-mono-data text-label-sm text-smoke mt-4 block">11 min read • Architecture</span>
+</a>
+<!-- Next Note -->
+<a class="p-5 rounded-xl bg-warm-taupe hover:bg-surface-container transition-all group flex flex-col justify-between text-left md:text-right" href="#">
+<div>
+<span class="font-mono-data text-label-sm text-violet-spark flex items-center gap-1 justify-start md:justify-end mb-2 font-medium">
+              NEXT IN SERIES (PART 4)
+              <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</span>
+<h3 class="font-title-md text-title-md text-ink group-hover:text-violet-spark transition-colors font-medium">
+              Distributed Observability &amp; Pool Telemetry with Micrometer
+            </h3>
+</div>
+<span class="font-mono-data text-label-sm text-smoke mt-4 block">Scheduled release • Metrics</span>
+</a>
+</div>
+</footer>
+</div>
+<!-- CLIENT INTERACTIONS JAVASCRIPT -->
+<script>
+    // 1. Reading Progress Bar Tracker
+    function updateReadingProgress() {
+      const fill = document.getElementById('reading-progress-fill');
+      if (!fill) return;
+      const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      if (docHeight <= 0) return;
+      const scrolled = (window.scrollY / docHeight) * 100;
+      fill.style.width = Math.min(Math.max(scrolled, 0), 100) + '%';
+    }
+    window.addEventListener('scroll', updateReadingProgress, { passive: true });
+
+    // 2. Interactive ToC Highlight on Scroll
+    const observerOptions = {
+      root: null,
+      rootMargin: '-80px 0px -60% 0px',
+      threshold: 0
+    };
+
+    const sections = document.querySelectorAll('article section[id]');
+    const tocLinks = document.querySelectorAll('#toc-nav a');
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const activeId = entry.target.getAttribute('id');
+          tocLinks.forEach(link => {
+            if (link.getAttribute('href') === '#' + activeId) {
+              link.classList.add('text-ink', 'font-medium', 'bg-warm-taupe', 'translate-x-1');
+              link.classList.remove('text-smoke');
+            } else {
+              link.classList.remove('text-ink', 'font-medium', 'bg-warm-taupe', 'translate-x-1');
+              link.classList.add('text-smoke');
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach(sec => sectionObserver.observe(sec));
+
+    // 3. Smooth ToC Scrolling with History State
+    tocLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: 'smooth' });
+          history.pushState(null, null, targetId);
+        }
+      });
+    });
+
+    // 4. Code Block Copy Mechanism
+    function copyCodeSnippet(button) {
+      const pre = button.closest('.rounded-xl').querySelector('pre');
+      if (!pre) return;
+      const textToCopy = pre.innerText;
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        const label = button.querySelector('.copy-label');
+        const originalText = label.innerText;
+        label.innerText = 'Copied ✓';
+        button.classList.add('text-emerald-400');
+        setTimeout(() => {
+          label.innerText = originalText;
+          button.classList.remove('text-emerald-400');
+        }, 2000);
+      });
+    }
+
+    // 5. Toast Feedback & Permalink Copy
+    function copyCurrentPermalink() {
+      const url = window.location.href;
+      navigator.clipboard.writeText(url).then(() => {
+        showToast('Permalink copied to clipboard');
+      });
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('copy-toast');
+      const toastMsg = document.getElementById('toast-message');
+      if (!toast) return;
+      if (toastMsg) toastMsg.innerText = message;
+      toast.classList.remove('translate-y-12', 'opacity-0', 'pointer-events-none');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.add('translate-y-12', 'opacity-0', 'pointer-events-none');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 2500);
+    }
+
+    // 6. Series Stepper Collapse / Expand Toggle
+    const seriesToggleBtn = document.getElementById('toggle-series-btn');
+    const seriesContent = document.getElementById('series-stepper-content');
+    const seriesToggleIcon = document.getElementById('series-toggle-icon');
+
+    if (seriesToggleBtn && seriesContent && seriesToggleIcon) {
+      seriesToggleBtn.addEventListener('click', () => {
+        const isHidden = seriesContent.classList.toggle('hidden');
+        seriesToggleBtn.setAttribute('aria-expanded', !isHidden);
+        seriesToggleIcon.innerText = isHidden ? 'keyboard_arrow_down' : 'keyboard_arrow_up';
+      });
+    }
+  </script>
+</div></main><footer class="w-full bg-warm-taupe shadow-[0_1px_8px_rgba(0,0,0,0.02)]"><div class="max-w-7xl mx-auto px-margin lg:px-margin-desktop py-space-xl"><div class="grid grid-cols-1 md:grid-cols-4 gap-space-xl pb-space-lg"><div class="space-y-space-sm md:col-span-2"><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-violet-spark animate-pulse"></span><span class="font-mono-data text-label-sm text-ink uppercase tracking-wider">System Status: Operative</span></div><p class="font-body-sm text-body-sm text-smoke max-w-md">Curated technical distillation, architecture whitepapers, systems engineering runbooks, and algorithmic primitives synthesized for deliberate practitioners.</p></div><div class="space-y-space-xs"><div class="font-mono-data text-label-sm text-ink uppercase tracking-wider">Knowledge Index</div><ul class="space-y-space-xs"><li class="font-body-sm text-body-sm text-on-surface-variant">Distributed Systems</li><li class="font-body-sm text-body-sm text-on-surface-variant">Compilers &amp; Runtimes</li><li class="font-body-sm text-body-sm text-on-surface-variant">Data Modeling &amp; ACID</li><li class="font-body-sm text-body-sm text-on-surface-variant">Performance Profiling</li></ul></div><div class="space-y-space-xs"><div class="font-mono-data text-label-sm text-ink uppercase tracking-wider">Repository &amp; Feeds</div><ul class="space-y-space-xs"><li class="font-body-sm text-body-sm text-on-surface-variant">GitHub Notes Repo</li><li class="font-body-sm text-body-sm text-on-surface-variant">RSS Learning Stream</li><li class="font-body-sm text-body-sm text-on-surface-variant">Changelog &amp; Commits</li><li class="font-body-sm text-body-sm text-on-surface-variant">Architectural RFCs</li></ul></div></div><div class="pt-space-md flex flex-col sm:flex-row items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm"><span class="w-1.5 h-1.5 rounded-full bg-ember-orange"></span><span class="font-mono-data text-label-sm text-smoke">© 2025 dev.notes / MIT License</span></div><div class="font-mono-data text-label-sm text-smoke">v2.4.0-snapshot • bauhaus-grid</div></div></div></footer>
+</body></html>

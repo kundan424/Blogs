@@ -1,0 +1,166 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#181614" />
+      <stop offset="100%" stop-color="#12100e" />
+    </linearGradient>
+    <linearGradient id="primaryBox" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2a2521" />
+      <stop offset="100%" stop-color="#1e1b18" />
+    </linearGradient>
+    <linearGradient id="accentBox" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2d1f14" />
+      <stop offset="100%" stop-color="#23170e" />
+    </linearGradient>
+    <linearGradient id="springGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1b2e1f" />
+      <stop offset="100%" stop-color="#122016" />
+    </linearGradient>
+    <linearGradient id="violetBox" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#211b33" />
+      <stop offset="100%" stop-color="#171224" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <style>
+    .title { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; font-weight: 600; fill: #f3efe9; letter-spacing: 0.5px; }
+    .subtitle { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11.5px; fill: #a8a29e; }
+    .header { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; font-weight: 700; fill: #e07a5f; text-transform: uppercase; letter-spacing: 1.5px; }
+    .line { stroke: #57534e; stroke-width: 1.5; stroke-dasharray: 4,4; }
+    .solid-arrow { stroke: #818cf8; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+    .green-arrow { stroke: #4ade80; stroke-width: 2; fill: none; marker-end: url(#arrowGreen); }
+    .badge { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; font-weight: 600; fill: #818cf8; }
+  </style>
+
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 9 5 L 0 9 z" fill="#818cf8" />
+  </marker>
+  <marker id="arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M 0 1 L 9 5 L 0 9 z" fill="#4ade80" />
+  </marker>
+
+  <!-- Background Canvas -->
+  <rect width="960" height="520" rx="16" fill="url(#bgGrad)" stroke="#38332c" stroke-width="1.5" />
+
+  <!-- Diagram Title Header -->
+  <text x="40" y="44" class="header">ANATOMY OF SPRING BOOT RUNTIME EXECUTION</text>
+  <text x="40" y="66" class="subtitle" font-size="13px">End-to-end request lifecycle through embedded Tomcat, DispatcherServlet, and IoC Container</text>
+
+  <!-- Step 01: Client Request Ingress -->
+  <g transform="translate(40, 100)">
+    <rect width="130" height="130" rx="12" fill="url(#primaryBox)" stroke="#443e37" filter="url(#shadow)" />
+    <circle cx="65" cy="40" r="18" fill="#2d2823" stroke="#e07a5f" stroke-width="1.5" />
+    <text x="65" y="45" text-anchor="middle" font-family="monospace" font-size="14" fill="#e07a5f">HTTP</text>
+    <text x="65" y="80" text-anchor="middle" class="title">Client Request</text>
+    <text x="65" y="98" text-anchor="middle" class="subtitle">REST / gRPC / JSON</text>
+    <text x="65" y="114" text-anchor="middle" class="badge">:8080</text>
+  </g>
+
+  <!-- Arrow 1 -> 2 -->
+  <path d="M 170 165 L 210 165" class="solid-arrow" />
+
+  <!-- Step 02: Embedded Web Container (Tomcat / Netty) -->
+  <g transform="translate(210, 90)">
+    <rect width="170" height="150" rx="12" fill="url(#primaryBox)" stroke="#443e37" filter="url(#shadow)" />
+    <rect x="12" y="12" width="146" height="24" rx="6" fill="#181512" />
+    <text x="85" y="28" text-anchor="middle" class="header" fill="#f4a261">01. Web Server</text>
+    <text x="85" y="65" text-anchor="middle" class="title">Embedded Tomcat</text>
+    <text x="85" y="85" text-anchor="middle" class="subtitle">Worker Thread Pool</text>
+    <rect x="25" y="102" width="120" height="26" rx="6" fill="#26211c" stroke="#57534e" />
+    <text x="85" y="119" text-anchor="middle" class="subtitle" fill="#d6d3d1">FilterChainProxy</text>
+  </g>
+
+  <!-- Arrow 2 -> 3 -->
+  <path d="M 380 165 L 420 165" class="solid-arrow" />
+
+  <!-- Step 03: Core DispatcherServlet -->
+  <g transform="translate(420, 80)">
+    <rect width="230" height="170" rx="12" fill="url(#accentBox)" stroke="#e07a5f" stroke-width="1.5" filter="url(#shadow)" />
+    <rect x="12" y="12" width="206" height="24" rx="6" fill="#1b120c" />
+    <text x="115" y="28" text-anchor="middle" class="header" fill="#e07a5f">02. Front Controller</text>
+    <text x="115" y="65" text-anchor="middle" class="title" font-size="14px">DispatcherServlet</text>
+    <text x="115" y="85" text-anchor="middle" class="subtitle">Central Request Orchestration</text>
+    
+    <g transform="translate(18, 102)">
+      <rect width="92" height="52" rx="6" fill="#26170d" stroke="#57361d" />
+      <text x="46" y="22" text-anchor="middle" class="title" font-size="11px">Handler</text>
+      <text x="46" y="38" text-anchor="middle" class="subtitle" font-size="10px">Mapping</text>
+    </g>
+    <g transform="translate(120, 102)">
+      <rect width="92" height="52" rx="6" fill="#26170d" stroke="#57361d" />
+      <text x="46" y="22" text-anchor="middle" class="title" font-size="11px">Handler</text>
+      <text x="46" y="38" text-anchor="middle" class="subtitle" font-size="10px">Adapter</text>
+    </g>
+  </g>
+
+  <!-- Arrow 3 -> 4 -->
+  <path d="M 650 165 L 690 165" class="solid-arrow" />
+
+  <!-- Step 04: Controllers & Business Layer -->
+  <g transform="translate(690, 80)">
+    <rect width="230" height="170" rx="12" fill="url(#springGreen)" stroke="#22c55e" stroke-width="1.5" filter="url(#shadow)" />
+    <rect x="12" y="12" width="206" height="24" rx="6" fill="#0d180f" />
+    <text x="115" y="28" text-anchor="middle" class="header" fill="#4ade80">03. Application Beans</text>
+    
+    <g transform="translate(15, 48)">
+      <rect width="200" height="30" rx="6" fill="#142417" stroke="#22c55e" stroke-width="1" />
+      <text x="100" y="68" text-anchor="middle" class="title" font-size="12px">@RestController</text>
+    </g>
+    <g transform="translate(15, 86)">
+      <rect width="200" height="30" rx="6" fill="#142417" stroke="#2e5436" />
+      <text x="100" y="106" text-anchor="middle" class="title" font-size="12px">@Service (Business Logic)</text>
+    </g>
+    <g transform="translate(15, 124)">
+      <rect width="200" height="30" rx="6" fill="#142417" stroke="#2e5436" />
+      <text x="100" y="144" text-anchor="middle" class="title" font-size="12px">@Repository (Spring Data)</text>
+    </g>
+  </g>
+
+  <!-- Downward Arrow from Dispatcher to IoC Container -->
+  <path d="M 535 250 L 535 305" class="solid-arrow" />
+
+  <!-- BOTTOM SECTION: SPRING APPLICATION CONTEXT & AUTO-CONFIGURATION ENGINE -->
+  <g transform="translate(40, 310)">
+    <rect width="880" height="175" rx="14" fill="url(#violetBox)" stroke="#6366f1" stroke-width="1.5" filter="url(#shadow)" />
+    
+    <!-- Context Header -->
+    <rect x="16" y="14" width="848" height="26" rx="6" fill="#130f24" />
+    <text x="440" y="31" text-anchor="middle" class="header" fill="#a5b4fc">
+      SPRING APPLICATIONCONTEXT (IoC &amp; AUTO-CONFIGURATION ENGINE)
+    </text>
+
+    <!-- Sub-Box 1: Auto-Configuration Engine -->
+    <g transform="translate(24, 52)">
+      <rect width="260" height="105" rx="8" fill="#19142b" stroke="#3730a3" />
+      <text x="130" y="24" text-anchor="middle" class="title" font-size="12px">Auto-Configuration Imports</text>
+      <text x="130" y="44" text-anchor="middle" class="subtitle">AutoConfiguration.imports</text>
+      <text x="130" y="62" text-anchor="middle" class="subtitle">@ConditionalOnClass</text>
+      <text x="130" y="80" text-anchor="middle" class="subtitle">@ConditionalOnMissingBean</text>
+      <rect x="50" y="88" width="160" height="12" rx="3" fill="#312e81" />
+      <text x="130" y="97" text-anchor="middle" class="badge" fill="#c7d2fe" font-size="9px">ConditionEvaluationReport</text>
+    </g>
+
+    <!-- Sub-Box 2: Bean Lifecycle & DI -->
+    <g transform="translate(310, 52)">
+      <rect width="260" height="105" rx="8" fill="#19142b" stroke="#3730a3" />
+      <text x="130" y="24" text-anchor="middle" class="title" font-size="12px">BeanFactory &amp; Lifecycle</text>
+      <text x="130" y="44" text-anchor="middle" class="subtitle">1. BeanDefinitionRegistry</text>
+      <text x="130" y="62" text-anchor="middle" class="subtitle">2. BeanPostProcessor (BPP)</text>
+      <text x="130" y="80" text-anchor="middle" class="subtitle">3. @PostConstruct / InitializingBean</text>
+      <text x="130" y="98" text-anchor="middle" class="badge">Singleton Scope Cache</text>
+    </g>
+
+    <!-- Sub-Box 3: Actuator & Observability -->
+    <g transform="translate(596, 52)">
+      <rect width="260" height="105" rx="8" fill="#19142b" stroke="#3730a3" />
+      <text x="130" y="24" text-anchor="middle" class="title" font-size="12px">Production Observability</text>
+      <text x="130" y="44" text-anchor="middle" class="subtitle">Micrometer &amp; Actuator Endpoints</text>
+      <text x="130" y="62" text-anchor="middle" class="subtitle">/actuator/health (Liveness/Readiness)</text>
+      <text x="130" y="80" text-anchor="middle" class="subtitle">/actuator/metrics &amp; Prometheus</text>
+      <text x="130" y="98" text-anchor="middle" class="badge">HikariPool &amp; JVM Telemetry</text>
+    </g>
+  </g>
+</svg>

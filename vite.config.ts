@@ -4,6 +4,7 @@ import path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: process.env.GITHUB_PAGES === 'true' || process.env.GITHUB_ACTIONS === 'true' ? '/Blogs/' : '/',
   plugins: [react()],
   resolve: {
     alias: {
@@ -11,3 +12,4 @@ export default defineConfig({
     },
   },
 });
+

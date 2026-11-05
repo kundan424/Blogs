@@ -239,26 +239,35 @@ const markdownComponents: Components = {
       </table>
     </div>
   ),
-  img: ({ src, alt, title }) => (
-    <figure className="my-8 rounded-2xl overflow-hidden border border-stone/80 dark:border-[#332e27] bg-surface-container-lowest dark:bg-[#1a1815] shadow-sm">
-      <div className="p-3 sm:p-6 flex justify-center bg-stone/20 dark:bg-[#141210]">
-        <img
-          src={src}
-          alt={alt || 'Technical architectural diagram'}
-          className="rounded-xl max-h-[520px] w-auto object-contain shadow-xs"
-          loading="lazy"
-        />
-      </div>
-      {(alt || title) && (
-        <figcaption className="p-3.5 text-center font-mono-data text-label-sm text-smoke border-t border-stone/60 dark:border-[#2e2924] bg-warm-taupe/40 dark:bg-[#181614]">
-          <span className="font-semibold text-ink dark:text-white mr-1.5 uppercase tracking-wider text-[11px]">
-            ARCHITECTURAL DIAGRAM:
-          </span>
-          {alt || title}
-        </figcaption>
-      )}
-    </figure>
-  ),
+  img: ({ src, alt, title }) => {
+    const rawSrc = typeof src === 'string' ? src : '';
+    const basePrefix = import.meta.env.BASE_URL.replace(/\/$/, '');
+    const resolvedSrc =
+      rawSrc.startsWith('/') && !rawSrc.startsWith('//') && basePrefix
+        ? `${basePrefix}${rawSrc}`
+        : rawSrc;
+
+    return (
+      <figure className="my-8 rounded-2xl overflow-hidden border border-stone/80 dark:border-[#332e27] bg-surface-container-lowest dark:bg-[#1a1815] shadow-sm">
+        <div className="p-3 sm:p-6 flex justify-center bg-stone/20 dark:bg-[#141210]">
+          <img
+            src={resolvedSrc}
+            alt={alt || 'Technical architectural diagram'}
+            className="rounded-xl max-h-[520px] w-auto object-contain shadow-xs"
+            loading="lazy"
+          />
+        </div>
+        {(alt || title) && (
+          <figcaption className="p-3.5 text-center font-mono-data text-label-sm text-smoke border-t border-stone/60 dark:border-[#2e2924] bg-warm-taupe/40 dark:bg-[#181614]">
+            <span className="font-semibold text-ink dark:text-white mr-1.5 uppercase tracking-wider text-[11px]">
+              ARCHITECTURAL DIAGRAM:
+            </span>
+            {alt || title}
+          </figcaption>
+        )}
+      </figure>
+    );
+  },
   thead: ({ children }) => (
     <thead className="bg-warm-taupe dark:bg-[#1c1a17] border-b border-stone/80 dark:border-[#332e27] text-ink font-medium">
       {children}

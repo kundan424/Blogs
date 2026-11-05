@@ -24,9 +24,11 @@ function ScrollToTop() {
 }
 
 export function App() {
+  const routerBase = import.meta.env.BASE_URL.replace(/\/$/, '') || '/';
+
   return (
     <ThemeProvider>
-      <BrowserRouter>
+      <BrowserRouter basename={routerBase}>
         <ToastProvider>
           <SearchModalProvider>
             <ScrollToTop />

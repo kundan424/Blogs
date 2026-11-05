@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-eggshell: #fdfcfc;
+    --color-warm-taupe: #f5f3f1;
+    --color-stone: #ebe8e4;
+    --color-ink: #000000;
+    --color-graphite: #44403b;
+    --color-smoke: #777169;
+    --color-ash: #a59f97;
+    --color-violet-spark: #0447ff;
+    --color-ember-orange: #ff4704;
+
+    --surface-container-lowest: #ffffff;
+    --surface-container-low: #fbf2e8;
+    --surface-container: #eeeeee;
+    --surface-container-high: #e8e8e8;
+    --surface-container-highest: #eae1d7;
+
+    --primary-container: #1b1b1b;
+    --on-primary-container: #848484;
+    --secondary-container: #ffebe5;
+    --secondary: #ad2c00;
+    --tertiary-fixed: #dde1ff;
+  }
+
+  html.dark {
+    --color-eggshell: #100f0d;
+    --color-warm-taupe: #1c1a17;
+    --color-stone: #2e2924;
+    --color-ink: #fdfcfc;
+    --color-graphite: #d4cfc9;
+    --color-smoke: #a19a91;
+    --color-ash: #6b645c;
+    --color-violet-spark: #5480ff;
+    --color-ember-orange: #ff6026;
+
+    --surface-container-lowest: #181613;
+    --surface-container-low: #141310;
+    --surface-container: #23201c;
+    --surface-container-high: #2b2723;
+    --surface-container-highest: #332f2a;
+
+    --primary-container: #2b2724;
+    --on-primary-container: #d4cfc9;
+    --secondary-container: #36170d;
+    --secondary: #ff7547;
+    --tertiary-fixed: #141e3b;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-eggshell);
+    color: var(--color-ink);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  /* Dark mode overrides for explicit white containers */
+  html.dark .bg-white {
+    background-color: var(--surface-container-lowest) !important;
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar,
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar,
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  pre, code {
+    font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+  vertical-align: middle;
+  line-height: 1;
+}

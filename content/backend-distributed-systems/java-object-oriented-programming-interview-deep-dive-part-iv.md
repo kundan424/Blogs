@@ -14,7 +14,7 @@ tags:
 published: true
 publishDate: Nov 07, 2026
 updatedDate: Nov 07, 2026
-readTime: 38m read
+readTime: 40m read
 author:
   name: Kundan
   role: Software Engineer
@@ -29,6 +29,10 @@ A principal- and staff-level interview architecture manual analyzing practical p
 ---
 
 ## 76. The HashMap Mutable Key Bug
+
+:::callout{type="info" title="Scenario Problem Statement"}
+**Question:** You use a custom `Employee` object as a key in a `HashMap`. After inserting the employee into the map, you update their department field via `emp.setDepartment("HR")`. When you call `map.get(emp)`, it returns `null`. Why did this happen, and how do you fix the `Employee` class design?
+:::
 
 ```text
                      THE HASHMAP MUTABLE KEY TRAP
@@ -53,14 +57,14 @@ A principal- and staff-level interview architecture manual analyzing practical p
 ```
 
 ### Why `map.get(emp)` Returned `null`
-When `emp` was inserted, the `HashMap` calculated its bucket via:
-$$\text{bucketIndex} = (n - 1) \& \text{hash}(\text{emp.hashCode()})$$
-Mutating `emp.setDepartment("HR")` altered the value returned by `emp.hashCode()`. When `map.get(emp)` was called, the map recalculated the bucket index using the **new** hash code, looking in a completely different bucket that was empty!
+`HashMap` calculates the storage bucket using:
+$$\text{bucketIndex} = (n - 1) \& \text{hash}(\text{key.hashCode()})$$
+When `emp.setDepartment("HR")` was invoked, the value returned by `emp.hashCode()` changed. When `map.get(emp)` was called, the map recalculated the bucket index using the **new** hash code, searching in Bucket #9 instead of Bucket #3. Bucket #9 is empty, returning `null`.
 
-Even if it happened to hash to the same bucket by coincidence, the `key.equals(targetKey)` check would fail if `equals()` depended on the mutated field.
+Even if the hash code collided with Bucket #3 by pure chance, the `key.equals(targetKey)` comparison would fail if `equals()` depended on `department`. The entry becomes an **inaccessible memory leak**.
 
-### Production Solution: Immutable Keys
-Key objects in hash-based collections must be **deeply immutable**, or their `hashCode()` and `equals()` methods must depend strictly on **immutable identity fields** (e.g., `employeeId`):
+### Production Design Fix
+Key objects in hash-based collections must be **deeply immutable**, or their `hashCode()` and `equals()` contracts must depend strictly on **immutable identity fields** (e.g., `employeeId`):
 
 ```java title="ImmutableEmployeeKey.java"
 // Solution 1: Java Record (Deeply Immutable Value Type)
@@ -74,7 +78,7 @@ public record EmployeeKey(String employeeId, String tenantId) {
 // Solution 2: Class with Invariant Identity in equals/hashCode
 public final class Employee {
     private final String employeeId; // Immutable identity
-    private volatile String department; // Mutable state, NOT in equals/hashCode
+    private volatile String department; // Mutable business attribute
 
     public Employee(String employeeId, String department) {
         this.employeeId = Objects.requireNonNull(employeeId);
@@ -89,12 +93,12 @@ public final class Employee {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Employee that)) return false;
-        return Objects.equals(employeeId, that.employeeId); // Only identity
+        return Objects.equals(employeeId, that.employeeId); // Only compare immutable identity
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(employeeId); // Stable across lifecycle
+        return Objects.hash(employeeId); // Stable across entire object lifecycle
     }
 }
 ```
@@ -102,6 +106,10 @@ public final class Employee {
 ---
 
 ## 77. The Fragile Base Class Problem: `CustomHashSet` Double Counting
+
+:::callout{type="info" title="Scenario Problem Statement"}
+**Question:** You have a `CustomHashSet` that extends `HashSet` to count how many elements have ever been added. You override `add()` and `addAll()` to increment a counter before calling `super.add()` and `super.addAll()`. When you call `addAll()` with 3 items, the counter increments by 6 instead of 3. Why did this happen inside `HashSet`, and how do you fix your design using Composition?
+:::
 
 ```text
        WHY INHERITANCE DOUBLED THE ADD COUNT
@@ -128,12 +136,10 @@ public final class Employee {
 ```
 
 ### Why It Broke
-Inheritance violates encapsulation. `CustomHashSet` relied on an undocumented implementation detail: that `HashSet.addAll()` delegates internally to `this.add()`. Because virtual methods use **Dynamic Method Dispatch**, `super.addAll()` dispatched back down to the overridden `CustomHashSet.add()`, causing the counter to increment twice for every element.
+Inheritance exposes implementation details. `HashSet.addAll()` delegates internally to `this.add()`. Because virtual methods use Dynamic Method Dispatch (late binding), `super.addAll()` dispatched back down to the overridden `CustomHashSet.add()`, incrementing the counter twice for every element.
 
-### The Fix: Composition Over Inheritance (Forwarding Decorator)
-
+### The Fix: Forwarding Decorator via Composition
 ```java title="InstrumentedSet.java"
-// Forwarding Decorator: Completely decoupled from HashSet internal mechanics
 public class InstrumentedSet<E> implements Set<E> {
     private final Set<E> delegate;
     private int addCount = 0;
@@ -151,7 +157,7 @@ public class InstrumentedSet<E> implements Set<E> {
     @Override
     public boolean addAll(Collection<? extends E> c) {
         addCount += c.size();
-        return delegate.addAll(c); // Delegates safely; no double counting!
+        return delegate.addAll(c); // Safe: Forwarding avoids internal recursion bugs!
     }
 
     public int getAddCount() { return addCount; }
@@ -162,7 +168,6 @@ public class InstrumentedSet<E> implements Set<E> {
     @Override public boolean contains(Object o) { return delegate.contains(o); }
     @Override public Iterator<E> iterator() { return delegate.iterator(); }
     @Override public void clear() { delegate.clear(); }
-    // ... other Set forwarding methods
 }
 ```
 
@@ -170,12 +175,15 @@ public class InstrumentedSet<E> implements Set<E> {
 
 ## 78. Payment Gateway Extensibility: Refactoring God `if-else` Blocks
 
+:::callout{type="info" title="Scenario Problem Statement"}
+**Question:** You are building an e-commerce checkout system supporting Credit Card, UPI, and PayPal. Currently, a 500-line `if-else` block handles payment processing. Next month, you need to add Apple Pay and Crypto without modifying the core checkout class. How do you refactor this using OOP principles and Design Patterns?
+:::
+
 ```text
    BEFORE (Violates OCP): 500-Line if-else God Method
    if (type == CREDIT_CARD) { ... }
    else if (type == UPI) { ... }
    else if (type == PAYPAL) { ... }
-   // Adding APPLE_PAY requires modifying and risking existing production code!
 
    AFTER (Satisfies OCP): Strategy + Factory Registry
    CheckoutService ──▶ PaymentStrategyRegistry
@@ -210,16 +218,16 @@ public class ApplePayStrategy implements PaymentStrategy {
 
 @Service
 public class CheckoutService {
-    private final Map<PaymentMethod, PaymentStrategy> paymentRegistry;
+    private final Map<PaymentMethod, PaymentStrategy> registry;
 
     // Open for Extension: Spring aggregates all strategy beans automatically!
     public CheckoutService(List<PaymentStrategy> strategies) {
-        this.paymentRegistry = strategies.stream()
+        this.registry = strategies.stream()
             .collect(Collectors.toUnmodifiableMap(PaymentStrategy::getMethod, Function.identity()));
     }
 
     public PaymentResult checkout(PaymentRequest request) {
-        PaymentStrategy strategy = paymentRegistry.get(request.getMethod());
+        PaymentStrategy strategy = registry.get(request.getMethod());
         if (strategy == null) {
             throw new UnsupportedOperationException("Payment method unsupported: " + request.getMethod());
         }
@@ -231,6 +239,10 @@ public class CheckoutService {
 ---
 
 ## 79. Immutable Class State Leak via Mutable References
+
+:::callout{type="info" title="Scenario Problem Statement"}
+**Question:** A junior developer writes an `ImmutableUser` class with `private final String name` and `private final List<String> roles`, initialized via constructor with no setters. Yet, in production, unauthorized roles are being added to users at runtime. How is the state being mutated, and what exact code change fixes it?
+:::
 
 ```text
        WHERE THE IMMUTABILITY LEAK OCCURS
@@ -246,7 +258,7 @@ public class CheckoutService {
 ```
 
 ### The Root Cause
-Declaring a field `private final List<String> roles` only makes the **reference pointer** immutable (it cannot point to a different `List` instance). The underlying heap object remains completely mutable.
+Declaring a field `private final List<String> roles` only makes the **reference pointer** immutable (it cannot point to a different `List` instance). The underlying heap array remains completely mutable.
 
 ### The Exact Production Fix
 ```java title="SecureImmutableUser.java"
@@ -257,7 +269,7 @@ public final class ImmutableUser {
     public ImmutableUser(String name, List<String> roles) {
         this.name = Objects.requireNonNull(name, "name required");
         // FIX 1: Defensive copy on constructor input using Java 10+ List.copyOf
-        // (List.copyOf guarantees an unmodifiable, null-safe, detached copy)
+        // (Guarantees an unmodifiable, null-safe, detached copy)
         this.roles = List.copyOf(roles);
     }
 
@@ -275,6 +287,10 @@ public final class ImmutableUser {
 ---
 
 ## 80. API Evolution Without Breaking Downstream Clients
+
+:::callout{type="info" title="Scenario Problem Statement"}
+**Question:** You maintain a core payment library used by 40 microservices via a `PaymentProcessor` interface. You must add a new method `processRefund()` to the interface, but you cannot force all 40 teams to update their implementation classes immediately. How do you evolve the interface safely?
+:::
 
 ```text
        EVOLVING CORE INTERFACES SAFELY
@@ -314,6 +330,10 @@ public interface PaymentProcessor {
 ---
 
 ## 81. Notification Combinatorial Explosion: The Decorator Pattern
+
+:::callout{type="info" title="Scenario Problem Statement"}
+**Question:** You have a `Notifier` class. Subclasses include `EmailNotifier`, `SMSNotifier`, and `SlackNotifier`. Now product management wants combinations: `EmailAndSMSNotifier`, `EmailAndSlackNotifier`, and `AllThreeNotifier`. Using inheritance is creating dozens of classes. How do you redesign this hierarchy?
+:::
 
 ```text
        COMBINATORIAL EXPLOSION (Inheritance: O(2^N) Classes)
@@ -379,8 +399,9 @@ customNotifier.send("Service latency spike alert!");
 
 ## 82. Thread-Safe Configuration Manager with Zero Lock Contention
 
-### The Architectural Problem
-Multiple request threads read configuration continuously (e.g., $50,000\text{ req/sec}$). Once an hour, a background thread updates 20 configuration parameters. Using `synchronized` or `ReentrantReadWriteLock` causes read lock contention and CPU cache invalidation.
+:::callout{type="info" title="Scenario Problem Statement"}
+**Question:** Your application reads database and API configurations at startup. Multiple threads read this config concurrently, and once every hour a background thread refreshes the config altogether. How do you design the `Config` object using OOP and immutability so readers never see partially updated state and don't suffer lock contention?
+:::
 
 ```text
        ATOMIC REFERENCE COPY-ON-WRITE CONFIGURATION
@@ -431,6 +452,10 @@ public class ConfigurationManager {
 
 ## 83. Legacy Third-Party Integration: The Adapter Pattern
 
+:::callout{type="info" title="Scenario Problem Statement"}
+**Question:** Your system expects all analytics providers to implement your `AnalyticsService` interface with `trackEvent(Event e)`. However, you just licensed a new third-party SDK whose class is final and uses a completely different method signature: `sendMetric(String name, Map<String, Object> payload)`. How do you integrate it cleanly without touching your existing business logic?
+:::
+
 ```text
    Domain Layer Expected Contract:                Third-Party SDK (final class):
    ┌─────────────────────────────┐                ┌───────────────────────────────┐
@@ -475,6 +500,10 @@ public final class SegmentAnalyticsAdapter implements AnalyticsService {
 
 ## 84. Memory Leak in the Observer Pattern (Lapsed Listener Problem)
 
+:::callout{type="info" title="Scenario Problem Statement"}
+**Question:** You implemented an event listener system where UI components register themselves with a global `EventManager` singleton. Even after UI screens are closed, heap dumps show they are never garbage collected, eventually causing an `OutOfMemoryError`. Why is this happening from an object-reference perspective, and how do you solve it?
+:::
+
 ```text
                      THE LAPSED LISTENER MEMORY LEAK
                      
@@ -489,13 +518,10 @@ public final class SegmentAnalyticsAdapter implements AnalyticsService {
 ```
 
 ### Why the OutOfMemoryError Occurs
-The long-lived singleton holds strong references to listeners in its collection. Even when UI components are disposed and discarded by the UI thread, **the root reference path from the `EventManager` singleton prevents the garbage collector from reclaiming the component**, leaking megabytes of memory on every screen open/close.
+The long-lived singleton holds strong references to listeners in its collection. Even when UI components are disposed and discarded by the UI thread, **the root reference path from the `EventManager` singleton prevents the garbage collector from reclaiming the component**, leaking memory on every screen transition.
 
-### The Three Solutions
-1. **Explicit Unregistration**: Implement `AutoCloseable` on the listener registration:
-   ```java
-   public interface Registration extends AutoCloseable { void unregister(); }
-   ```
+### The Solutions
+1. **Explicit Unregistration**: Implement `AutoCloseable` on the listener registration.
 2. **Weak References (`WeakHashMap`)**: The listener collection holds weak references; GC reclaims them automatically when no other strong references exist:
 
 ```java title="WeakEventManager.java"
@@ -519,6 +545,10 @@ public class EventManager {
 ---
 
 ## 85. Cross-Cutting Logging & Auditing: The Dynamic Proxy Pattern
+
+:::callout{type="info" title="Scenario Problem Statement"}
+**Question:** You have 30 service classes implementing business interfaces. A compliance requirement mandates logging execution time and checking user roles before every method call. You are forbidden from copying and pasting logging code into all 30 classes. How do you architect this in Java?
+:::
 
 ```text
    Client Request
@@ -571,6 +601,10 @@ public class SecurityAuditProxy implements InvocationHandler {
 ---
 
 ## 86. Bird Hierarchy: Liskov Substitution Principle (LSP) Restructuring
+
+:::callout{type="info" title="Scenario Problem Statement"}
+**Question:** You are designing a simulation game with a base class `Bird` containing `fly()`. You add `Eagle` and `Sparrow`, which work fine. Then you add `Ostrich` and `Penguin`, which throw `UnsupportedOperationException` inside `fly()`. Why is this a bad OOP design, and how do you restructure the classes/interfaces?
+:::
 
 ### Why `Ostrich extends Bird` Throwing `UnsupportedOperationException` Is Broken
 A client written to accept `Bird` expects that calling `bird.fly()` is a valid, safe operation. When `Ostrich` throws `UnsupportedOperationException`, it breaks caller assumptions and violates the Liskov Substitution Principle.
@@ -626,6 +660,10 @@ public class Penguin extends Bird implements Swimmable {
 
 ## 87. Connection Pool Exhaustion: Implementing `AutoCloseable`
 
+:::callout{type="info" title="Scenario Problem Statement"}
+**Question:** Developers on your team keep creating database connections and file streams inside service objects, forgetting to close them when exceptions occur. How do you design your custom resource wrapper class so that Java's `try-with-resources` block automatically closes the connection?
+:::
+
 ```java title="ManagedDatabaseLease.java"
 public final class ManagedDatabaseLease implements AutoCloseable {
     private final Connection connection;
@@ -667,6 +705,10 @@ public void queryAccount(String id) throws Exception {
 
 ## 88. Deep Cloning a Complex Invoice: Fixing Object Graph Aliasing
 
+:::callout{type="info" title="Scenario Problem Statement"}
+**Question:** In a billing system, users can create a "Duplicate Invoice" from a template invoice. When a user edits line items on the duplicated invoice, the original template invoice in memory also changes. Explain the bug and write the cleanest OOP approach to clone the object graph.
+:::
+
 ### The Bug
 The duplication logic executed a shallow clone: `new Invoice(original.id, original.items)`. Both invoices held references to the **exact same `ArrayList<LineItem>`**. When line items were modified on the duplicated invoice, the shared instances inside the original template were mutated.
 
@@ -684,7 +726,6 @@ public final class Invoice {
         // Deep copy collection of line items
         this.lineItems = new ArrayList<>(lineItems.size());
         for (LineItem item : lineItems) {
-            // Re-instantiate if LineItem is a mutable class, or copy directly if immutable
             this.lineItems.add(new LineItem(item.sku(), item.quantity(), item.unitPrice()));
         }
     }
@@ -703,6 +744,10 @@ public final class Invoice {
 ---
 
 ## 89. Multi-Criteria Dynamic Sorting: `Comparable` vs. `Comparator`
+
+:::callout{type="info" title="Scenario Problem Statement"}
+**Question:** You have an `Employee` class (`id`, `name`, `salary`, `joiningDate`). The default sorting across the app should always be by `id`. However, the HR dashboard needs to sort by `salary` descending, and if salaries are equal, by `name` alphabetically. How do you implement both without breaking the default sort?
+:::
 
 ```java title="EmployeeSortingArchitecture.java"
 public class Employee implements Comparable<Employee> {
@@ -740,6 +785,10 @@ staff.sort(Employee.HR_SALARY_COMPARATOR); // HR Multi-criteria sort
 
 ## 90. Preventing Subclass Tampering in Security SDKs
 
+:::callout{type="info" title="Scenario Problem Statement"}
+**Question:** You are writing a `SecurityTokenValidator` class for an internal banking SDK. External developers need to use this class, and maybe extend some helper methods, but they must never be able to override the core `validateSignature()` algorithm, or alternatively, never subclass the validator at all. How do you enforce both levels of restriction?
+:::
+
 ### Requirement 1: Prevent Overriding a Single Core Algorithm
 Use the **Template Method Pattern** with a `final` method:
 
@@ -774,6 +823,10 @@ public sealed class SecurityTokenValidator permits InternalTrustedValidator {}
 ---
 
 ## 91. Constructor Parameter Overload: Refactoring via Builder Pattern
+
+:::callout{type="info" title="Scenario Problem Statement"}
+**Question:** You are designing an `HttpRequest` class that requires a `url`, `method`, `headers`, `queryParams`, `body`, `timeout`, `followRedirects`, and `retryCount`. Most callers only need `url` and `method`. Creating 8 overloaded constructors has become unmaintainable. How do you refactor this class?
+:::
 
 ```java title="HttpRequestBuilder.java"
 public final class HttpRequest {
@@ -819,6 +872,10 @@ public final class HttpRequest {
 
 ## 92. Eliminating Deep Null Checks: `Optional` Monadic Composition
 
+:::callout{type="info" title="Scenario Problem Statement"}
+**Question:** An `Order` has a `Customer`, a `Customer` has an `Address`, and an `Address` has a `ZipCode`. Deep null checks (`if (order != null && order.getCustomer() != null...)`) are polluting your service layer. How do you use OOP practices (such as `Optional<T>` or the Null Object Pattern) to eliminate this clutter?
+:::
+
 ### The Legacy Anti-Pattern
 ```java
 // Fragile, cluttered null checks:
@@ -855,6 +912,10 @@ public String extractZipCode(Order order) {
 ---
 
 ## 93. State Machine Transitions: Smart State Enums
+
+:::callout{type="info" title="Scenario Problem Statement"}
+**Question:** An e-commerce `Order` goes through states: `CREATED -> PAID -> SHIPPED -> DELIVERED`, or `CANCELLED`. Currently, state is stored as a `String`, and scattered `if` statements check if an order can be cancelled (e.g., you cannot cancel a `DELIVERED` order). How do you refactor this using the State Design Pattern or smart Java Enums?
+:::
 
 ```text
        E-COMMERCE ORDER STATE MACHINE
@@ -906,6 +967,10 @@ public enum OrderState {
 
 ## 94. Resolving Diamond Conflict with Interface Default Methods
 
+:::callout{type="info" title="Scenario Problem Statement"}
+**Question:** Your `SmartPhone` class implements both `Camera` and `Phone` interfaces. Both interfaces have a default method `powerSavingMode()`. The code refuses to compile. What are your exact options in Java to resolve this compilation error?
+:::
+
 ```java title="DiamondConflictDisambiguation.java"
 public interface Camera {
     default void powerSavingMode() {
@@ -938,6 +1003,10 @@ public class SmartPhone implements Camera, Phone {
 
 ## 95. Protecting Sensitive Data in Logs: Masked String Representations
 
+:::callout{type="info" title="Scenario Problem Statement"}
+**Question:** During a security audit, you discover that whenever an exception occurs and a `Customer` object is logged (`logger.error("Failed for " + customer)`), the customer's plaintext password and SSN are printed to Splunk via `toString()`. Especially if using Lombok `@ToString` or Java records, how do you prevent sensitive fields from leaking?
+:::
+
 ```java title="MaskedCustomer.java"
 public record CustomerRecord(String id, String email, String ssn, String passwordHash) {
 
@@ -959,6 +1028,10 @@ public record CustomerRecord(String id, String email, String ssn, String passwor
 ---
 
 ## 96. Decomposing the "God Page" Anti-Pattern in Test Automation
+
+:::callout{type="info" title="Scenario Problem Statement"}
+**Question:** In a UI automation framework, every page class extends a 3,000-line `BasePage` class containing wait utilities, screenshot logic, database helpers, and Excel readers. Any change to `BasePage` risks breaking 100 test classes. How do you decompose this "God Class" into a clean OOP architecture?
+:::
 
 ```text
    BEFORE: 3,000-Line BasePage God Class (Inheritance)
@@ -994,6 +1067,10 @@ public final class LoginPage {
 
 ## 97. Enforcing Invariants During Deserialization
 
+:::callout{type="info" title="Scenario Problem Statement"}
+**Question:** You designed a `BankAccount` class where the constructor strictly validates that balance cannot be negative. However, a malicious client sends a crafted byte stream via Java Serialization with a negative balance, bypassing the constructor entirely. How does deserialization bypass constructors, and how do you enforce invariants during deserialization (or by using Java records)?
+:::
+
 ### How Deserialization Bypasses Constructors
 Standard Java Deserialization uses internal reflection (`ReflectionFactory.newConstructorForSerialization()`) to instantiate objects **without invoking the class's constructor**, allowing corrupted or malicious streams to populate invalid state.
 
@@ -1025,6 +1102,10 @@ public record BankAccount(String accountId, BigDecimal balance) {
 ---
 
 ## 98. Polymorphic JSON Serialization in REST APIs
+
+:::callout{type="info" title="Scenario Problem Statement"}
+**Question:** You have a REST endpoint returning a `List<Vehicle>`, where items at runtime are instances of `Car` (has `trunkCapacity`) and `Truck` (has `towingCapacity`). When serialized to JSON, only the base `Vehicle` fields appear, stripping out subclass-specific fields. Why does this happen, and how is polymorphic serialization configured in Java?
+:::
 
 ### Why Subclass Fields Are Stripped
 By default, JSON libraries like Jackson serialize an object based on the **static reference type** (`Vehicle`). If a method returns `List<Vehicle>`, Jackson only inspects `Vehicle` getter methods unless configured with polymorphic type information.
@@ -1062,6 +1143,10 @@ public class Truck extends Vehicle {
 ---
 
 ## 99. Breaking Circular Dependencies Between Domain Services
+
+:::callout{type="info" title="Scenario Problem Statement"}
+**Question:** Class `OrderService` depends on `CustomerService` in its constructor, and `CustomerService` depends on `OrderService` in its constructor. The application fails to start due to a circular dependency. From an OOP design perspective, what does this smell indicate, and how do you decouple them?
+:::
 
 ```text
        CIRCULAR DEPENDENCY SMELL
@@ -1101,6 +1186,10 @@ public class CustomerService {
 ---
 
 ## 100. Restricting Domain Subtypes with Sealed Interfaces
+
+:::callout{type="info" title="Scenario Problem Statement"}
+**Question:** You are building a financial ledger where a `Transaction` can only ever be a `Credit`, `Debit`, or `Refund`. You want the compiler to guarantee that no developer in another package can create a new subclass of `Transaction`, enabling exhaustive switch checks without a default branch. How do you model this in modern Java (Java 17+)?
+:::
 
 ```java title="LedgerTransaction.java"
 // Java 17+ Sealed Interface: Restricts subtypes across the entire JVM

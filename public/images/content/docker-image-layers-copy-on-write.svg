@@ -1,0 +1,274 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 600" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgCanvas" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#12100e" />
+      <stop offset="100%" stop-color="#080706" />
+    </linearGradient>
+
+    <!-- Column Gradients -->
+    <linearGradient id="colGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#14241c" />
+      <stop offset="100%" stop-color="#0c1711" />
+    </linearGradient>
+    <linearGradient id="colBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#112233" />
+      <stop offset="100%" stop-color="#0a1420" />
+    </linearGradient>
+    <linearGradient id="colAmber" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#261c10" />
+      <stop offset="100%" stop-color="#171008" />
+    </linearGradient>
+    <linearGradient id="colRose" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#261217" />
+      <stop offset="100%" stop-color="#17090d" />
+    </linearGradient>
+
+    <!-- Drop Shadow -->
+    <filter id="boxShadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.5" />
+    </filter>
+
+    <!-- Crisp Directional Arrow Markers -->
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#10b981" />
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#38bdf8" />
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#f59e0b" />
+    </marker>
+    <marker id="arrowRose" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#f43f5e" />
+    </marker>
+  </defs>
+
+  <style>
+    .font-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+    .font-sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  </style>
+
+  <!-- Canvas Frame -->
+  <rect width="1040" height="600" rx="16" fill="url(#bgCanvas)" stroke="#26221d" stroke-width="1.5" />
+
+  <!-- HEADER TITLE -->
+  <g transform="translate(40, 24)">
+    <text x="480" y="20" text-anchor="middle" class="font-mono" font-size="14" font-weight="700" fill="#38bdf8" letter-spacing="1.2">OVERLAY2 UNION FILESYSTEM: THE 4 LIFECYCLE OPERATIONS</text>
+    <text x="480" y="38" text-anchor="middle" class="font-sans" font-size="12" fill="#a8a29e">How OverlayFS resolves Reads, New Writes, Copy-on-Write (CoW), and Deletions without criss-crossing storage</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- 4 COLUMNS CONTAINER (X: 40, Width: 960, 4 columns of 228px, 16px gap)    -->
+  <!-- ========================================================================= -->
+
+  <!-- ==================== COLUMN 1: READ OPERATION ==================== -->
+  <g transform="translate(40, 75)">
+    <rect width="228" height="425" rx="12" fill="url(#colGreen)" stroke="#10b981" stroke-width="1.5" filter="url(#boxShadow)" />
+    
+    <!-- Column Header -->
+    <rect x="0" y="0" width="228" height="38" rx="12" fill="#064e3b" />
+    <path d="M 0 28 L 0 38 L 228 38 L 228 28 Z" fill="#064e3b" />
+    <text x="114" y="24" text-anchor="middle" class="font-mono" font-size="12" font-weight="700" fill="#a7f3d0">1. READ (UNMODIFIED)</text>
+
+    <!-- Step 1: Merged View -->
+    <g transform="translate(14, 52)">
+      <rect width="200" height="64" rx="8" fill="#14211a" stroke="#059669" stroke-width="1" />
+      <text x="12" y="20" class="font-sans" font-size="10" font-weight="600" fill="#6ee7b7">CONTAINER SEES (merged):</text>
+      <text x="12" y="38" class="font-mono" font-size="11.5" font-weight="700" fill="#f8fafc">/app/app.jar</text>
+      <text x="12" y="52" class="font-sans" font-size="10" fill="#a7f3d0">Normal read request</text>
+    </g>
+
+    <!-- Straight Down Arrow 1 -->
+    <g transform="translate(114, 126)">
+      <line x1="0" y1="0" x2="0" y2="40" stroke="#10b981" stroke-width="2.5" marker-end="url(#arrowGreen)" />
+      <rect x="-48" y="10" width="96" height="20" rx="4" fill="#064e3b" stroke="#10b981" stroke-width="1" />
+      <text x="0" y="24" text-anchor="middle" class="font-mono" font-size="9" font-weight="700" fill="#d1fae5">PASSTHROUGH</text>
+    </g>
+
+    <!-- Step 2: Writable Layer Status -->
+    <g transform="translate(14, 176)">
+      <rect width="200" height="52" rx="8" fill="#0f1715" stroke="#334155" stroke-width="1" stroke-dasharray="3,3" />
+      <text x="12" y="18" class="font-sans" font-size="10" font-weight="600" fill="#94a3b8">WRITABLE LAYER (upperdir):</text>
+      <text x="12" y="36" class="font-mono" font-size="11" fill="#64748b">(Not present / Empty)</text>
+    </g>
+
+    <!-- Straight Down Arrow 2 -->
+    <g transform="translate(114, 238)">
+      <line x1="0" y1="0" x2="0" y2="40" stroke="#10b981" stroke-width="2.5" marker-end="url(#arrowGreen)" />
+      <rect x="-42" y="10" width="84" height="20" rx="4" fill="#064e3b" stroke="#10b981" stroke-width="1" />
+      <text x="0" y="24" text-anchor="middle" class="font-mono" font-size="9" font-weight="700" fill="#d1fae5">FETCH LOWER</text>
+    </g>
+
+    <!-- Step 3: Lowerdir Layer -->
+    <g transform="translate(14, 288)">
+      <rect width="200" height="88" rx="8" fill="#142b22" stroke="#10b981" stroke-width="1.2" />
+      <text x="12" y="18" class="font-sans" font-size="10" font-weight="600" fill="#a7f3d0">IMAGE LAYER (lowerdir):</text>
+      <text x="12" y="38" class="font-mono" font-size="11.5" font-weight="700" fill="#ffffff">Layer 3: App Code</text>
+      <text x="12" y="56" class="font-mono" font-size="10.5" fill="#34d399">└── app.jar</text>
+      <text x="12" y="74" class="font-sans" font-size="9.5" fill="#6ee7b7">✓ Read directly from disk</text>
+    </g>
+
+    <!-- Bottom summary tag -->
+    <text x="114" y="405" text-anchor="middle" class="font-sans" font-size="10.5" font-weight="600" fill="#a7f3d0">0 MB disk copied (Free)</text>
+  </g>
+
+  <!-- ==================== COLUMN 2: NEW WRITE ==================== -->
+  <g transform="translate(284, 75)">
+    <rect width="228" height="425" rx="12" fill="url(#colBlue)" stroke="#0284c7" stroke-width="1.5" filter="url(#boxShadow)" />
+    
+    <!-- Column Header -->
+    <rect x="0" y="0" width="228" height="38" rx="12" fill="#0c4a6e" />
+    <path d="M 0 28 L 0 38 L 228 38 L 228 28 Z" fill="#0c4a6e" />
+    <text x="114" y="24" text-anchor="middle" class="font-mono" font-size="12" font-weight="700" fill="#bae6fd">2. WRITE (NEW FILE)</text>
+
+    <!-- Step 1: Merged View -->
+    <g transform="translate(14, 52)">
+      <rect width="200" height="64" rx="8" fill="#122533" stroke="#0284c7" stroke-width="1" />
+      <text x="12" y="20" class="font-sans" font-size="10" font-weight="600" fill="#7dd3fc">CONTAINER SEES (merged):</text>
+      <text x="12" y="38" class="font-mono" font-size="11.5" font-weight="700" fill="#f8fafc">/tmp/session.log</text>
+      <text x="12" y="52" class="font-sans" font-size="10" fill="#38bdf8">Created at runtime</text>
+    </g>
+
+    <!-- Straight Down Arrow 1 -->
+    <g transform="translate(114, 126)">
+      <line x1="0" y1="0" x2="0" y2="40" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrowBlue)" />
+      <rect x="-48" y="10" width="96" height="20" rx="4" fill="#075985" stroke="#38bdf8" stroke-width="1" />
+      <text x="0" y="24" text-anchor="middle" class="font-mono" font-size="9" font-weight="700" fill="#e0f2fe">DIRECT WRITE</text>
+    </g>
+
+    <!-- Step 2: Writable Layer Status -->
+    <g transform="translate(14, 176)">
+      <rect width="200" height="74" rx="8" fill="#142c40" stroke="#0284c7" stroke-width="1.2" />
+      <text x="12" y="18" class="font-sans" font-size="10" font-weight="600" fill="#38bdf8">WRITABLE LAYER (upperdir):</text>
+      <text x="12" y="38" class="font-mono" font-size="11.5" font-weight="700" fill="#ffffff">+ session.log</text>
+      <text x="12" y="56" class="font-sans" font-size="10" fill="#bae6fd">Stored in container's private diff/</text>
+    </g>
+
+    <!-- Straight Down Block: Lowerdir ignored -->
+    <g transform="translate(114, 260)">
+      <line x1="0" y1="0" x2="0" y2="18" stroke="#334155" stroke-width="1.5" stroke-dasharray="3,3" />
+    </g>
+
+    <!-- Step 3: Lowerdir Layer (Untouched) -->
+    <g transform="translate(14, 288)">
+      <rect width="200" height="88" rx="8" fill="#0f171d" stroke="#334155" stroke-width="1" stroke-dasharray="3,3" />
+      <text x="12" y="18" class="font-sans" font-size="10" font-weight="600" fill="#64748b">IMAGE LAYER (lowerdir):</text>
+      <text x="12" y="44" class="font-mono" font-size="11" fill="#475569">(Untouched on Host)</text>
+      <text x="12" y="64" class="font-sans" font-size="9.5" fill="#64748b">No lower layer touched</text>
+    </g>
+
+    <!-- Bottom summary tag -->
+    <text x="114" y="405" text-anchor="middle" class="font-sans" font-size="10.5" font-weight="600" fill="#7dd3fc">Saved in ephemeral upperdir</text>
+  </g>
+
+  <!-- ==================== COLUMN 3: COPY-ON-WRITE ==================== -->
+  <g transform="translate(528, 75)">
+    <rect width="228" height="425" rx="12" fill="url(#colAmber)" stroke="#f59e0b" stroke-width="1.5" filter="url(#boxShadow)" />
+    
+    <!-- Column Header -->
+    <rect x="0" y="0" width="228" height="38" rx="12" fill="#78350f" />
+    <path d="M 0 28 L 0 38 L 228 38 L 228 28 Z" fill="#78350f" />
+    <text x="114" y="24" text-anchor="middle" class="font-mono" font-size="12" font-weight="700" fill="#fef08a">3. COPY-ON-WRITE (CoW)</text>
+
+    <!-- Step 1: Merged View -->
+    <g transform="translate(14, 52)">
+      <rect width="200" height="64" rx="8" fill="#291a0c" stroke="#d97706" stroke-width="1" />
+      <text x="12" y="20" class="font-sans" font-size="10" font-weight="600" fill="#fbbf24">CONTAINER SEES (merged):</text>
+      <text x="12" y="38" class="font-mono" font-size="11.5" font-weight="700" fill="#fef08a">/app/config.json</text>
+      <text x="12" y="52" class="font-sans" font-size="10" fill="#fde047">Modified values active</text>
+    </g>
+
+    <!-- UPWARD CoW ARROW from Lower to Upper (Self-Contained Inside Column 3) -->
+    <g transform="translate(114, 126)">
+      <line x1="0" y1="40" x2="0" y2="0" stroke="#f59e0b" stroke-width="2.5" marker-end="url(#arrowAmber)" />
+      <rect x="-42" y="10" width="84" height="20" rx="4" fill="#451a03" stroke="#f59e0b" stroke-width="1" />
+      <text x="0" y="24" text-anchor="middle" class="font-mono" font-size="9" font-weight="700" fill="#fde047">1. COPY UP ↑</text>
+    </g>
+
+    <!-- Step 2: Writable Layer (Holds Modified Copy) -->
+    <g transform="translate(14, 176)">
+      <rect width="200" height="74" rx="8" fill="#33210d" stroke="#f59e0b" stroke-width="1.2" />
+      <text x="12" y="18" class="font-sans" font-size="10" font-weight="600" fill="#fde047">WRITABLE LAYER (upperdir):</text>
+      <text x="12" y="38" class="font-mono" font-size="11.5" font-weight="700" fill="#ffffff">⟳ config.json (MODIFIED)</text>
+      <text x="12" y="56" class="font-sans" font-size="10" fill="#fef3c7">2. Writes applied exclusively here</text>
+    </g>
+
+    <!-- Downward link to source -->
+    <g transform="translate(114, 260)">
+      <line x1="0" y1="0" x2="0" y2="18" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3,3" />
+    </g>
+
+    <!-- Step 3: Lowerdir Layer (Original Preserved) -->
+    <g transform="translate(14, 288)">
+      <rect width="200" height="88" rx="8" fill="#22180f" stroke="#78350f" stroke-width="1.2" />
+      <text x="12" y="18" class="font-sans" font-size="10" font-weight="600" fill="#d97706">IMAGE LAYER (lowerdir):</text>
+      <text x="12" y="38" class="font-mono" font-size="11.5" font-weight="700" fill="#e2e8f0">Layer 3: App Code</text>
+      <text x="12" y="56" class="font-mono" font-size="10.5" fill="#f59e0b">└── config.json (Original)</text>
+      <text x="12" y="74" class="font-sans" font-size="9.5" fill="#fbbf24">✓ Original untouched on disk</text>
+    </g>
+
+    <!-- Bottom summary tag -->
+    <text x="114" y="405" text-anchor="middle" class="font-sans" font-size="10.5" font-weight="600" fill="#fde047">Original Image Never Mutates</text>
+  </g>
+
+  <!-- ==================== COLUMN 4: WHITEOUT DELETION ==================== -->
+  <g transform="translate(772, 75)">
+    <rect width="228" height="425" rx="12" fill="url(#colRose)" stroke="#f43f5e" stroke-width="1.5" filter="url(#boxShadow)" />
+    
+    <!-- Column Header -->
+    <rect x="0" y="0" width="228" height="38" rx="12" fill="#881337" />
+    <path d="M 0 28 L 0 38 L 228 38 L 228 28 Z" fill="#881337" />
+    <text x="114" y="24" text-anchor="middle" class="font-mono" font-size="12" font-weight="700" fill="#fecdd3">4. DELETE (WHITEOUT)</text>
+
+    <!-- Step 1: Merged View -->
+    <g transform="translate(14, 52)">
+      <rect width="200" height="64" rx="8" fill="#2d1319" stroke="#e11d48" stroke-width="1" />
+      <text x="12" y="20" class="font-sans" font-size="10" font-weight="600" fill="#fb7185">CONTAINER SEES (merged):</text>
+      <text x="12" y="38" class="font-mono" font-size="11.5" font-weight="700" fill="#fda4af" text-decoration="line-through">/etc/nginx.conf</text>
+      <text x="12" y="52" class="font-sans" font-size="10" fill="#f43f5e">File deleted / Hidden (ENOENT)</text>
+    </g>
+
+    <!-- Straight Down Arrow 1 -->
+    <g transform="translate(114, 126)">
+      <line x1="0" y1="0" x2="0" y2="40" stroke="#f43f5e" stroke-width="2.5" marker-end="url(#arrowRose)" />
+      <rect x="-48" y="10" width="96" height="20" rx="4" fill="#4c0519" stroke="#f43f5e" stroke-width="1" />
+      <text x="0" y="24" text-anchor="middle" class="font-mono" font-size="9" font-weight="700" fill="#ffe4e6">CREATE MASK</text>
+    </g>
+
+    <!-- Step 2: Writable Layer (Holds Whiteout Marker) -->
+    <g transform="translate(14, 176)">
+      <rect width="200" height="74" rx="8" fill="#38151e" stroke="#f43f5e" stroke-width="1.2" />
+      <text x="12" y="18" class="font-sans" font-size="10" font-weight="600" fill="#f43f5e">WRITABLE LAYER (upperdir):</text>
+      <text x="12" y="38" class="font-mono" font-size="11" font-weight="700" fill="#ffffff">✕ .wh.nginx.conf</text>
+      <text x="12" y="56" class="font-sans" font-size="10" fill="#fecdd3">Character device (0,0) masks lower</text>
+    </g>
+
+    <!-- Straight Down Link -->
+    <g transform="translate(114, 260)">
+      <line x1="0" y1="0" x2="0" y2="18" stroke="#f43f5e" stroke-width="1.5" stroke-dasharray="3,3" />
+    </g>
+
+    <!-- Step 3: Lowerdir Layer (Masked, still exists) -->
+    <g transform="translate(14, 288)">
+      <rect width="200" height="88" rx="8" fill="#221216" stroke="#881337" stroke-width="1.2" />
+      <text x="12" y="18" class="font-sans" font-size="10" font-weight="600" fill="#fb7185">IMAGE LAYER (lowerdir):</text>
+      <text x="12" y="38" class="font-mono" font-size="11.5" font-weight="700" fill="#cbd5e1">Layer 2: Nginx Package</text>
+      <text x="12" y="56" class="font-mono" font-size="10.5" fill="#f43f5e">└── nginx.conf (Masked)</text>
+      <text x="12" y="74" class="font-sans" font-size="9.5" fill="#fda4af">Still exists, but invisible in merged</text>
+    </g>
+
+    <!-- Bottom summary tag -->
+    <text x="114" y="405" text-anchor="middle" class="font-sans" font-size="10.5" font-weight="600" fill="#fecdd3">Lower Read-Only File Protected</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- BOTTOM ARCHITECTURAL TAKEAWAY BAR                                         -->
+  <!-- ========================================================================= -->
+  <g transform="translate(40, 520)">
+    <rect width="960" height="58" rx="10" fill="#171411" stroke="#332c25" stroke-width="1.2" />
+    <circle cx="24" cy="29" r="6" fill="#38bdf8" />
+    <text x="40" y="25" class="font-mono" font-size="11" font-weight="700" fill="#e0f2fe">SYSTEM INVARIANT: CONTENT-ADDRESSABLE IMMUTABILITY</text>
+    <text x="40" y="44" class="font-sans" font-size="11" fill="#a8a29e">Lower layers never mutate. 1,000 running containers using the same base image share the identical lowerdir on disk with zero duplication overhead.</text>
+  </g>
+</svg>

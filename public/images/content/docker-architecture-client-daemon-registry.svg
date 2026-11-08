@@ -1,0 +1,185 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141210" />
+      <stop offset="100%" stop-color="#0d0b09" />
+    </linearGradient>
+    <linearGradient id="clientCard" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e2230" />
+      <stop offset="100%" stop-color="#121520" />
+    </linearGradient>
+    <linearGradient id="hostCard" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#142426" />
+      <stop offset="100%" stop-color="#0c1718" />
+    </linearGradient>
+    <linearGradient id="regCard" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2a1f26" />
+      <stop offset="100%" stop-color="#191217" />
+    </linearGradient>
+    <linearGradient id="daemonBox" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#0369a1" />
+    </linearGradient>
+    <linearGradient id="subBox" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#242b35" />
+      <stop offset="100%" stop-color="#181c23" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.5" />
+    </filter>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#38bdf8" />
+    </marker>
+    <marker id="arrowOrange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#f97316" />
+    </marker>
+    <marker id="arrowPurple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#c084fc" />
+    </marker>
+  </defs>
+
+  <style>
+    .title { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; font-weight: 700; fill: #f3efe9; letter-spacing: 0.5px; }
+    .header { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; }
+    .text-sm { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: #d6d3d1; }
+    .text-dim { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 10px; fill: #a8a29e; }
+    .code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; fill: #7dd3fc; }
+  </style>
+
+  <rect width="960" height="480" rx="16" fill="url(#bgGrad)" stroke="#2e2823" stroke-width="1.5" />
+  <text x="480" y="36" text-anchor="middle" class="header" fill="#38bdf8">The Docker Engine Architecture: Client, Host Daemon, and Registries</text>
+
+  <!-- 1. DOCKER CLIENT -->
+  <g transform="translate(30, 60)">
+    <rect width="210" height="385" rx="12" fill="url(#clientCard)" stroke="#38bdf8" stroke-width="1" filter="url(#shadow)" />
+    <text x="105" y="30" text-anchor="middle" class="title" fill="#38bdf8">DOCKER CLIENT</text>
+    <text x="105" y="48" text-anchor="middle" class="text-dim">CLI / REST API Consumer</text>
+
+    <g transform="translate(15, 75)">
+      <rect width="180" height="48" rx="6" fill="url(#subBox)" stroke="#475569" stroke-width="1" />
+      <text x="18" y="22" class="code">docker build</text>
+      <text x="18" y="38" class="text-dim">Sends context tarball</text>
+    </g>
+    <g transform="translate(15, 135)">
+      <rect width="180" height="48" rx="6" fill="url(#subBox)" stroke="#475569" stroke-width="1" />
+      <text x="18" y="22" class="code">docker pull / push</text>
+      <text x="18" y="38" class="text-dim">Syncs image manifests</text>
+    </g>
+    <g transform="translate(15, 195)">
+      <rect width="180" height="48" rx="6" fill="url(#subBox)" stroke="#475569" stroke-width="1" />
+      <text x="18" y="22" class="code">docker run / exec</text>
+      <text x="18" y="38" class="text-dim">Instantiates container</text>
+    </g>
+    <g transform="translate(15, 255)">
+      <rect width="180" height="48" rx="6" fill="url(#subBox)" stroke="#475569" stroke-width="1" />
+      <text x="18" y="22" class="code">docker volume / ps</text>
+      <text x="18" y="38" class="text-dim">Queries state &amp; storage</text>
+    </g>
+
+    <!-- Transport boundary info -->
+    <g transform="translate(15, 320)">
+      <rect width="180" height="48" rx="6" fill="#0f172a" stroke="#1e293b" stroke-width="1" />
+      <text x="90" y="20" text-anchor="middle" class="text-dim">IPC Transport Layer:</text>
+      <text x="90" y="36" text-anchor="middle" class="code" fill="#a5f3fc">/var/run/docker.sock</text>
+    </g>
+  </g>
+
+  <!-- ARROWS BETWEEN CLIENT & HOST -->
+  <path d="M 242 165 L 290 165" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrowBlue)" />
+  <path d="M 290 220 L 245 220" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="3,3" marker-end="url(#arrowBlue)" />
+  <text x="268" y="155" text-anchor="middle" class="text-dim" fill="#38bdf8">REST</text>
+
+  <!-- 2. DOCKER HOST (DAEMON) -->
+  <g transform="translate(295, 60)">
+    <rect width="380" height="385" rx="12" fill="url(#hostCard)" stroke="#0284c7" stroke-width="1.5" filter="url(#shadow)" />
+    <text x="190" y="30" text-anchor="middle" class="title" fill="#0284c7">DOCKER HOST (DOCKERD ENGINE)</text>
+    <text x="190" y="48" text-anchor="middle" class="text-dim">Manages Container Runtime, Storage, and Virtual Networking</text>
+
+    <!-- Daemon Core -->
+    <g transform="translate(20, 65)">
+      <rect width="340" height="52" rx="6" fill="url(#daemonBox)" stroke="#38bdf8" stroke-width="1" />
+      <text x="170" y="22" text-anchor="middle" class="title" fill="#ffffff">Docker Daemon (dockerd)</text>
+      <text x="170" y="40" text-anchor="middle" class="text-dim" fill="#e0f2fe">REST API Server + Image Builder (BuildKit) + GraphDriver</text>
+    </g>
+
+    <!-- containerd & runc layer -->
+    <g transform="translate(20, 125)">
+      <rect width="340" height="38" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1" />
+      <text x="170" y="24" text-anchor="middle" class="code" fill="#cbd5e1">containerd ──▶ containerd-shim ──▶ runc (OCI)</text>
+    </g>
+
+    <!-- Active Entities Grid -->
+    <g transform="translate(20, 175)">
+      <!-- Local Images Cache -->
+      <g transform="translate(0, 0)">
+        <rect width="162" height="110" rx="6" fill="url(#subBox)" stroke="#475569" stroke-width="1" />
+        <text x="81" y="22" text-anchor="middle" class="title" fill="#f59e0b">Images (Read-Only)</text>
+        <text x="15" y="44" class="text-dim">• Layer 1 (base rootfs)</text>
+        <text x="15" y="62" class="text-dim">• Layer 2 (apt dependencies)</text>
+        <text x="15" y="80" class="text-dim">• Layer 3 (compiled binary)</text>
+        <text x="15" y="98" class="code" fill="#fcd34d">sha256:7b1e8a9f...</text>
+      </g>
+
+      <!-- Running Containers -->
+      <g transform="translate(178, 0)">
+        <rect width="162" height="110" rx="6" fill="url(#subBox)" stroke="#0284c7" stroke-width="1" />
+        <text x="81" y="22" text-anchor="middle" class="title" fill="#38bdf8">Containers (Processes)</text>
+        <text x="15" y="44" class="text-dim">• R/W Writable Layer</text>
+        <text x="15" y="62" class="text-dim">• PID Namespace isolation</text>
+        <text x="15" y="80" class="text-dim">• cgroups CPU/RAM limits</text>
+        <text x="15" y="98" class="code" fill="#38bdf8">nginx-web (Up 42m)</text>
+      </g>
+    </g>
+
+    <!-- Volumes & Networks -->
+    <g transform="translate(20, 298)">
+      <rect width="162" height="68" rx="6" fill="#132322" stroke="#10b981" stroke-width="1" />
+      <text x="81" y="22" text-anchor="middle" class="title" fill="#34d399">Volumes Storage</text>
+      <text x="15" y="42" class="text-dim">/var/lib/docker/volumes/</text>
+      <text x="15" y="58" class="text-dim">Host-Managed Persistence</text>
+    </g>
+
+    <g transform="translate(198, 298)">
+      <rect width="162" height="68" rx="6" fill="#1f182c" stroke="#8b5cf6" stroke-width="1" />
+      <text x="81" y="22" text-anchor="middle" class="title" fill="#a78bfa">Networks (Bridge)</text>
+      <text x="15" y="42" class="text-dim">docker0 (172.17.0.1)</text>
+      <text x="15" y="58" class="text-dim">veth peer pairs + iptables</text>
+    </g>
+  </g>
+
+  <!-- ARROWS BETWEEN HOST & REGISTRY -->
+  <path d="M 677 165 L 725 165" stroke="#f97316" stroke-width="2" marker-end="url(#arrowOrange)" />
+  <path d="M 725 210 L 680 210" stroke="#f97316" stroke-width="2" marker-end="url(#arrowOrange)" />
+  <text x="702" y="155" text-anchor="middle" class="text-dim" fill="#f97316">PUSH</text>
+  <text x="702" y="230" text-anchor="middle" class="text-dim" fill="#f97316">PULL</text>
+
+  <!-- 3. REMOTE REGISTRY -->
+  <g transform="translate(730, 60)">
+    <rect width="200" height="385" rx="12" fill="url(#regCard)" stroke="#ec4899" stroke-width="1" filter="url(#shadow)" />
+    <text x="100" y="30" text-anchor="middle" class="title" fill="#f43f5e">DOCKER REGISTRY</text>
+    <text x="100" y="48" text-anchor="middle" class="text-dim">OCI Image Repositories</text>
+
+    <g transform="translate(15, 75)">
+      <rect width="170" height="70" rx="6" fill="url(#subBox)" stroke="#be123c" stroke-width="1" />
+      <text x="15" y="24" class="title" fill="#fb7185">Docker Hub</text>
+      <text x="15" y="44" class="text-dim">Public Official Images:</text>
+      <text x="15" y="60" class="code" fill="#fda4af">nginx, redis, openjdk</text>
+    </g>
+
+    <g transform="translate(15, 160)">
+      <rect width="170" height="70" rx="6" fill="url(#subBox)" stroke="#6b21a8" stroke-width="1" />
+      <text x="15" y="24" class="title" fill="#c084fc">Cloud Registries</text>
+      <text x="15" y="44" class="text-dim">AWS ECR, GCP Artifact Reg,</text>
+      <text x="15" y="60" class="code" fill="#e9d5ff">Azure ACR, Harbor</text>
+    </g>
+
+    <g transform="translate(15, 245)">
+      <rect width="170" height="120" rx="6" fill="#18181b" stroke="#3f3f46" stroke-width="1" />
+      <text x="15" y="24" class="title" fill="#e4e4e7">OCI Manifests</text>
+      <text x="15" y="44" class="text-dim">• Manifest List (Multi-arch)</text>
+      <text x="15" y="62" class="text-dim">• Config JSON (Env/Entry)</text>
+      <text x="15" y="80" class="text-dim">• Content Addressable Layers</text>
+      <text x="15" y="100" class="code" fill="#38bdf8">tars: sha256 gzip blobs</text>
+    </g>
+  </g>
+</svg>

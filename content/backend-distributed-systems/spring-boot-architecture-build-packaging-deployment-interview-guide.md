@@ -522,11 +522,13 @@ resources:
 
 A common misconception is that the JVM only consumes heap memory (`-Xmx`). In reality, total resident memory (RSS) equals:
 
-$$\text{Total Memory} = \text{Heap} + \text{Metaspace} + (\text{Thread Stack Size} \times \text{Thread Count}) + \text{Direct Memory (Netty)} + \text{Native Code/GC}$$
+:::formula{title="JVM Total Resident Set Size (RSS) Formula"}
+Total Memory = Heap + Metaspace + (Thread Stack Size × Thread Count) + Direct Memory (Netty) + Native Code/GC
+:::
 
 If an engineer configures `-Xmx850m` in a `1Gi` (1024MB) container:
 1. Heap allocates up to 850MB.
-2. 200 Tomcat threads consume $200 \times 1\text{MB} = 200\text{MB}$ in thread stack frames.
+2. 200 Tomcat threads consume 200 × 1 MB = 200 MB in thread stack frames.
 3. Total process memory exceeds 1050MB, triggering the Linux kernel OOM Killer immediately.
 
 **Remediation Playbook**:

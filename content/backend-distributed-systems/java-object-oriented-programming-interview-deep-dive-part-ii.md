@@ -794,7 +794,10 @@ public final class PartitionMetadata {
 ### What Breaks in a `HashMap` If You Override `equals()` Without `hashCode()`?
 
 When you insert an entry into a `HashMap`, the bucket location is calculated via:
-$$\text{bucketIndex} = (n - 1) \& \text{hash}(\text{key.hashCode()})$$
+
+:::formula{title="Bucket Index Resolution"}
+bucketIndex = (n - 1) & hash(key.hashCode())
+:::
 
 If you override `equals()` to compare field values (e.g., `orderId`), but do not override `hashCode()`, the class inherits `Object.hashCode()`, which calculates an **Identity Hash Code** based on the object's physical memory address.
 

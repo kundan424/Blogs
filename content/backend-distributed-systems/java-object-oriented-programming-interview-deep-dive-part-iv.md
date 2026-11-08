@@ -58,7 +58,10 @@ A principal- and staff-level interview architecture manual analyzing practical p
 
 ### Why `map.get(emp)` Returned `null`
 `HashMap` calculates the storage bucket using:
-$$\text{bucketIndex} = (n - 1) \& \text{hash}(\text{key.hashCode()})$$
+
+:::formula{title="Bucket Index Resolution"}
+bucketIndex = (n - 1) & hash(key.hashCode())
+:::
 When `emp.setDepartment("HR")` was invoked, the value returned by `emp.hashCode()` changed. When `map.get(emp)` was called, the map recalculated the bucket index using the **new** hash code, searching in Bucket #9 instead of Bucket #3. Bucket #9 is empty, returning `null`.
 
 Even if the hash code collided with Bucket #3 by pure chance, the `key.equals(targetKey)` comparison would fail if `equals()` depended on `department`. The entry becomes an **inaccessible memory leak**.

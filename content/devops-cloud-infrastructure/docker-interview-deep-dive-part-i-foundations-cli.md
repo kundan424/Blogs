@@ -286,7 +286,10 @@ docker run -d --stop-timeout 45 my-kafka-consumer:v1
 
 ### Precedence Hierarchy (Highest to Lowest)
 When variables with identical keys collide, Docker resolves them in this strict order:
-$$\text{CLI Flag } (\texttt{-e KEY=val}) \;\;>\;\; \text{Env File } (\texttt{--env-file .env}) \;\;>\;\; \text{Dockerfile } (\texttt{ENV KEY=val})$$
+
+:::formula{title="Precedence Hierarchy"}
+CLI Flag (-e KEY=val)  >  Env File (--env-file .env)  >  Dockerfile (ENV KEY=val)
+:::
 
 ```bash title="env-precedence-demo.sh"
 # Dockerfile contains: ENV APP_ENV=production
@@ -449,7 +452,7 @@ Configure global log rotation rules inside `/etc/docker/daemon.json`:
   }
 }
 ```
-*Effect: Caps log retention to a maximum of $5 \times 50\text{MB} = 250\text{MB}$ per container before rotating out the oldest logs.*
+*Effect: Caps log retention to a maximum of 5 × 50 MB = 250 MB per container before rotating out the oldest logs.*
 
 ---
 

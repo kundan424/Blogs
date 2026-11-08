@@ -625,7 +625,7 @@ Thread Stack                    Java Heap                                Metaspa
 1. **Compilation**: The Java compiler emits `invokevirtual` with a constant pool symbolic index for an instance method invocation.
 2. **Klass Word Inspection**: At runtime, the CPU reads the target object's header. The second 64-bit machine word is the **Klass Word**, an uncompressed/compressed pointer into Metaspace.
 3. **Array Indexing**: The `vtable` is an array of memory function pointers. HotSpot assigns the identical array index to any overriding method in child classes. The JVM computes the address via a single memory offset addition:
-   $$\text{MethodAddress} = \text{vtableBase} + (\text{index} \times \text{pointerSize})$$
+   `MethodAddress = vtableBase + (index × pointerSize)`
 4. **Interface Table (`itable`)**: When invoking via an interface (`invokeinterface`), the class may implement multiple interfaces in different orders. The JVM uses an `itable` containing an array of interface offsets with secondary stub resolution.
 5. **Polymorphic Inline Cache (PIC)**:
    - **Monomorphic (1 receiver type)**: HotSpot JIT emits a direct CPU jump (`call`) with an inline class check.
@@ -1124,7 +1124,10 @@ When requested to load a class, a ClassLoader always queries its parent before s
 
 ### Can Two Objects of the Same Class Loaded by Different ClassLoaders Be Cast?
 **NO.** In the Java Virtual Machine, type identity is defined by the fully qualified class name **and the defining ClassLoader instance**:
-$$\text{Type Identity} = (\text{Binary Class Name}, \text{ClassLoader Instance})$$
+
+:::formula{title="JVM Type Identity Invariant"}
+Type Identity = (Binary Class Name, ClassLoader Instance)
+:::
 
 If `ClassLoaderA` and `ClassLoaderB` both load `com.company.Order` from the exact same `.class` file on disk:
 ```java

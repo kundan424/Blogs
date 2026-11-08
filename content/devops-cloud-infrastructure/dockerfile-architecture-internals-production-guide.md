@@ -139,7 +139,7 @@ FROM [--platform=<platform>] <image>[:<tag>] [AS <stage-name>]
 - **Semantics**: Initializes a new build stage and sets the foundational base image for subsequent instructions.
 - **Mechanics**: Queries the local image store; if missing, pulls the OCI manifest list from the configured registry.
 - **The `--platform` Flag**: Allows building multi-architecture images explicitly (e.g., `--platform=linux/amd64` on Apple Silicon).
-- **The `scratch` Target**: A special, empty base image ($0\text{ bytes}$) used for deploying statically compiled standalone binaries (Go, Rust).
+- **The `scratch` Target**: A special, empty base image (0 bytes) used for deploying statically compiled standalone binaries (Go, Rust).
 - **The `AS <name>` Identifier**: Names the stage to enable **Multi-Stage Builds**, allowing subsequent stages to copy artifacts via `COPY --from=<name>`.
 
 ### 2. `WORKDIR`
@@ -378,7 +378,7 @@ ENTRYPOINT ["sh", "-c", "exec java $JAVA_OPTS org.springframework.boot.loader.la
 
 - **Line 1: `FROM maven:3.9.6-eclipse-temurin-21-jammy AS build-stage`**
   - **What it does**: Initializes the first stage named `build-stage`, pulling an image containing the Maven CLI, build tools, and full JDK 21 on top of Ubuntu Jammy.
-  - **Mechanics**: Sets the base layer for compilation. The compiler marks this stage as intermediate; its heavy tools ($850\text{MB}$) will **never be copied into the final production artifact**.
+  - **Mechanics**: Sets the base layer for compilation. The compiler marks this stage as intermediate; its heavy tools (850 MB) will **never be copied into the final production artifact**.
 
 - **Line 2: `WORKDIR /workspace`**
   - **What it does**: Directs the builder to set `/workspace` as the context directory.
@@ -401,14 +401,14 @@ ENTRYPOINT ["sh", "-c", "exec java $JAVA_OPTS org.springframework.boot.loader.la
 
 - **Line 7: `RUN java -Djarmode=layertools -jar target/*.jar extract --destination target/extracted`**
   - **What it does**: Uses Spring Boot's internal `layertools` mode to unpackage the fat JAR into four discrete directories: `dependencies`, `spring-boot-loader`, `snapshot-dependencies`, and `application`.
-  - **Why this matters**: In Step 12, copying these directories separately allows third-party libraries ($120\text{MB}$) to remain cached while only the recompiled application code ($2\text{MB}$) generates a new layer!
+  - **Why this matters**: In Step 12, copying these directories separately allows third-party libraries (120 MB) to remain cached while only the recompiled application code (2 MB) generates a new layer!
 
 ---
 
 #### Stage 2: Production Runtime Environment (Lines 8–18)
 
 - **Line 8: `FROM eclipse-temurin:21-jre-jammy AS runtime-stage`**
-  - **What it does**: Discards the entire `build-stage` and initializes a fresh, clean runtime image containing only the minimal Headless Java Runtime Environment (JRE). Image size drops from $900\text{MB}$ to $220\text{MB}$.
+  - **What it does**: Discards the entire `build-stage` and initializes a fresh, clean runtime image containing only the minimal Headless Java Runtime Environment (JRE). Image size drops from 900 MB to 220 MB.
 
 - **Line 9: `RUN apt-get update && apt-get install -y --no-install-recommends curl && rm -rf /var/lib/apt/lists/*`**
   - **What it does**: Installs `curl` (needed for container health checks) while maintaining minimal image bloat.

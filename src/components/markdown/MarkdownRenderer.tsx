@@ -18,6 +18,72 @@ type ContentBlock =
   | { type: 'interactive'; widget: string };
 
 /**
+ * Automatically cleans stray LaTeX notation (e.g. \text{...}, \times, $...$)
+ * outside code blocks so that unparsed LaTeX math renders as clean text.
+ */
+function sanitizeLatexArtifacts(raw: string): string {
+  // Only sanitize outside of triple-backtick code fences
+  const parts = raw.split(/(```[\s\S]*?```)/g);
+  return parts
+    .map((part, index) => {
+      // Odd indices are code fences: preserve completely as-is
+      if (index % 2 === 1) return part;
+
+      let cleaned = part;
+
+      // 1. Convert block math $$...$$ to :::formula blocks if present
+      cleaned = cleaned.replace(/\$\$\s*\r?\n?([\s\S]*?)\r?\n?\$\$/g, (_, eq) => {
+        let cleanEq = eq;
+        while (/\\text(?:tt)?\{([^{}]+)\}/.test(cleanEq)) {
+          cleanEq = cleanEq.replace(/\\text(?:tt)?\{([^{}]+)\}/g, '$1');
+        }
+        cleanEq = cleanEq
+          .replace(/\\times/g, '×')
+          .replace(/\\le(?![a-zA-Z])/g, '≤')
+          .replace(/\\ge(?![a-zA-Z])/g, '≥')
+          .replace(/\\ne(?![a-zA-Z])/g, '≠')
+          .replace(/\\approx/g, '≈')
+          .replace(/\\dots/g, '…')
+          .replace(/\\;/g, ' ')
+          .replace(/\\quad/g, ' ')
+          .replace(/\\qquad/g, '  ')
+          .replace(/\\&/g, '&')
+          .trim();
+        return `\n:::formula{title="Formula"}\n${cleanEq}\n:::\n`;
+      });
+
+      // 2. Unpack \text{...} and \texttt{...}
+      while (/\\text(?:tt)?\{([^{}]+)\}/.test(cleaned)) {
+        cleaned = cleaned.replace(/\\text(?:tt)?\{([^{}]+)\}/g, '$1');
+      }
+
+      // 3. Replace common LaTeX math symbols
+      cleaned = cleaned
+        .replace(/\\times/g, '×')
+        .replace(/\\le(?![a-zA-Z])/g, '≤')
+        .replace(/\\ge(?![a-zA-Z])/g, '≥')
+        .replace(/\\ne(?![a-zA-Z])/g, '≠')
+        .replace(/\\approx/g, '≈')
+        .replace(/\\dots/g, '…')
+        .replace(/\\;/g, ' ')
+        .replace(/\\quad/g, ' ')
+        .replace(/\\qquad/g, '  ')
+        .replace(/\\&/g, '&');
+
+      // 4. Strip stray $...$ around inline expressions with units or text (e.g. $0 bytes$, $850MB$)
+      cleaned = cleaned.replace(/(?<!\\)\$([^$\n\r]+?)\$/g, (match, inner) => {
+        if (/[a-zA-Z×=+\-*/]/.test(inner)) {
+          return inner.trim();
+        }
+        return match;
+      });
+
+      return cleaned;
+    })
+    .join('');
+}
+
+/**
  * Splits raw markdown into standard markdown chunks and custom directive blocks
  * such as :::callout{type="..." title="..."} ... :::
  */
@@ -291,7 +357,8 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
   content,
   className,
 }) => {
-  const blocks = parseContentBlocks(content);
+  const sanitizedContent = React.useMemo(() => sanitizeLatexArtifacts(content), [content]);
+  const blocks = parseContentBlocks(sanitizedContent);
 
   return (
     <div className={cn('markdown-content prose max-w-none text-ink', className)}>

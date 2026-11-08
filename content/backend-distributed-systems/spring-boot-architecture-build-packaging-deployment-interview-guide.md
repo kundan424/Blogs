@@ -1,5 +1,5 @@
 ---
-title: 'Spring Boot Architecture, Build, Packaging & Production Deployment: Senior Engineering Guide & Interview Manual'
+title: 'Spring Boot Architecture, Build, Packaging & Production Deployment Guide'
 slug: spring-boot-architecture-build-packaging-deployment-interview-guide
 subject: backend-distributed-systems
 abstract: >-

@@ -1,7 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { seriesList } from '../../data/series';
 import { getEnrichedTopics } from '../../utils/contentLoader';
-import { SeriesCard } from '../cards/SeriesCard';
 import { useToast } from '../../context/ToastContext';
 
 interface HomeSidebarProps {
@@ -35,9 +33,6 @@ export const HomeSidebar: React.FC<HomeSidebarProps> = ({
   return (
     <aside className="space-y-space-lg lg:col-span-4">
       <div className="sticky top-20 space-y-space-lg">
-        {/* Active Learning Series Box */}
-        {seriesList[0] && <SeriesCard series={seriesList[0]} />}
-
         {/* Popular Topics Tag Cloud with Post Counts */}
         <div className="rounded-xl bg-warm-taupe dark:bg-[#1a1815] p-space-lg shadow-sm border border-stone/80 dark:border-[#332e27]">
           <div className="flex items-center justify-between mb-space-sm">

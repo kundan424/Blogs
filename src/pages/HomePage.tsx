@@ -128,16 +128,16 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* SECTION 2: EXPLORE BY SUBJECT BENTO GRID */}
-      <section className="w-full bg-surface-container-lowest dark:bg-[#141210] py-space-xl lg:py-24 border-y border-stone/50 dark:border-[#2e2924]" id="core-subjects">
+      {/* SECTION 2: EXPLORE BY SUBJECT GRID (COMPACT) */}
+      <section className="w-full bg-surface-container-lowest dark:bg-[#0c0f17] py-8 lg:py-12 border-y border-stone/50 dark:border-[#1d273a]" id="core-subjects">
         <div className="mx-auto max-w-7xl px-margin lg:px-margin-desktop">
           {/* Section Title & Anchor */}
-          <div className="mb-space-xl flex flex-col md:flex-row md:items-end justify-between gap-space-sm">
+          <div className="mb-6 flex flex-col md:flex-row md:items-end justify-between gap-space-sm">
             <div>
               <div className="font-mono-data text-label-sm uppercase tracking-wider text-smoke font-medium">
                 TAXONOMY / HIERARCHY
               </div>
-              <h2 className="mt-space-xs font-headline-md text-headline-md text-ink font-light">
+              <h2 className="mt-space-xs font-title-lg text-[22px] sm:text-headline-md text-ink font-light">
                 Core Technical Subjects
               </h2>
             </div>
@@ -145,13 +145,13 @@ export const HomePage: React.FC = () => {
               to="/subjects"
               className="group inline-flex items-center gap-1 font-label-md text-label-md text-violet-spark hover:underline"
             >
-              <span>View all 6 subjects &amp; taxonomy</span>
+              <span>View all {enrichedSubjects.length} subjects &amp; taxonomy</span>
               <span className="transition-transform group-hover:translate-x-1">→</span>
             </Link>
           </div>
 
-          {/* Bento Grid (4 Architectural Panels) */}
-          <div className="grid grid-cols-1 gap-space-lg lg:grid-cols-12">
+          {/* Bento Grid (4 Architectural Panels with Previous Orientation) */}
+          <div className="grid grid-cols-1 gap-4 sm:gap-5 lg:grid-cols-12">
             {enrichedSubjects[0] && (
               <SubjectCard
                 subject={enrichedSubjects[0]}
@@ -188,7 +188,7 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* SECTION 3 & 4: ASYMMETRIC FEED (2/3) + STICKY DISCOVERY SIDEBAR (1/3) */}
+      {/* SECTION 3 & 4: CHRONOLOGICAL FEED (8 COLS) + POPULAR TOPICS SIDEBAR (4 COLS) */}
       <section className="w-full bg-eggshell py-space-xl lg:py-24" id="feed-section">
         <div className="mx-auto max-w-7xl px-margin lg:px-margin-desktop">
           <div className="grid grid-cols-1 gap-space-xl lg:grid-cols-12">
@@ -251,7 +251,7 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            {/* RIGHT COLUMN: STICKY DISCOVERY SIDEBAR (4 COLS) */}
+            {/* RIGHT COLUMN: POPULAR TOPICS SIDEBAR (4 COLS) */}
             <HomeSidebar
               activeTopic={selectedTopic}
               onSelectTopic={(tag) => {

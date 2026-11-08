@@ -1,197 +1,244 @@
-import React, { useState } from 'react';
-import { NoteAuthor, NoteSection } from '../../types';
-import { useToast } from '../../context/ToastContext';
+import React, { useState, useMemo } from 'react';
+import { NoteSection } from '../../types';
 
-export const ArticleAuthorRail: React.FC<{
-  author: NoteAuthor;
-  readTime: string;
-  slug?: string;
-  initialClaps?: number;
-}> = ({ author, readTime, slug, initialClaps = 0 }) => {
-  const { showToast } = useToast();
-  const [claps, setClaps] = useState(() => {
-    if (slug) {
-      try {
-        const stored = localStorage.getItem(`blog_claps_${slug}`);
-        if (stored) return Number(stored);
-      } catch {}
-    }
-    return initialClaps;
-  });
-
-  const [bookmarked, setBookmarked] = useState(() => {
-    if (slug) {
-      try {
-        const stored = localStorage.getItem(`blog_bookmark_${slug}`);
-        if (stored) return stored === 'true';
-      } catch {}
-    }
-    return false;
-  });
-
-  const handleCopyLink = () => {
-    navigator.clipboard.writeText(window.location.href);
-    showToast('Permalink copied to clipboard');
-  };
-
-  const handleClap = () => {
-    const nextClaps = claps + 1;
-    setClaps(nextClaps);
-    if (slug) {
-      try {
-        localStorage.setItem(`blog_claps_${slug}`, String(nextClaps));
-      } catch {}
-    }
-    showToast(`Applauded note (+1) — Total: ${nextClaps}`);
-  };
-
-  const handleBookmark = () => {
-    const nextState = !bookmarked;
-    setBookmarked(nextState);
-    if (slug) {
-      try {
-        localStorage.setItem(`blog_bookmark_${slug}`, String(nextState));
-      } catch {}
-    }
-    showToast(nextState ? 'Saved note to reading list' : 'Removed from reading list');
-  };
-
-  return (
-    <div className="flex flex-col items-center gap-4 py-3.5 px-1.5 rounded-2xl bg-warm-taupe/90 dark:bg-[#1a1815] border border-stone/80 dark:border-[#332e27] shadow-sm w-full max-w-[64px] mx-auto">
-      {/* Author Avatar with Hover Popover */}
-      <div className="group relative flex flex-col items-center">
-        <div className="w-10 h-10 rounded-full bg-ink text-on-primary flex items-center justify-center font-mono-data text-label-sm font-semibold cursor-default shadow-sm ring-1 ring-stone dark:ring-[#332e27]">
-          {(author?.name || 'Kundan').split(' ').map((n) => n[0]).join('')}
-        </div>
-        {/* Hover Popover Card */}
-        <div className="absolute left-full ml-3 top-0 hidden group-hover:block w-56 p-3.5 rounded-xl bg-warm-taupe dark:bg-[#1e1b18] border border-stone dark:border-[#332e27] shadow-xl z-50 pointer-events-none animate-in fade-in zoom-in-95 duration-100 font-sans">
-          <p className="font-label-md text-label-md font-medium text-ink">{author?.name || 'Kundan'}</p>
-          <span className="font-mono-data text-[11px] text-smoke block mt-0.5">{author?.role || 'Software Engineer'}</span>
-          {author?.bio && (
-            <p className="font-body-sm text-[12px] text-smoke mt-2 border-t border-stone/60 dark:border-[#332e27] pt-1.5 leading-snug">
-              {author.bio}
-            </p>
-          )}
-        </div>
-      </div>
-
-      <div className="w-6 h-px bg-stone dark:bg-[#332e27]" />
-
-      {/* Claps Button with Count Badge */}
-      <div className="flex flex-col items-center gap-1">
-        <button
-          type="button"
-          onClick={handleClap}
-          title="Applaud note"
-          className="w-9 h-9 rounded-xl bg-surface-container-lowest dark:bg-[#221f1b] hover:bg-warm-taupe border border-stone/80 dark:border-[#332e27] text-graphite hover:text-ember-orange flex items-center justify-center transition-all group shadow-sm"
-        >
-          <span className="material-symbols-outlined text-[18px] text-ember-orange group-hover:scale-110 transition-transform">
-            favorite
-          </span>
-        </button>
-        <span className="font-mono-data text-[11px] text-graphite font-medium">
-          {claps}
-        </span>
-      </div>
-
-      {/* Bookmark Button */}
-      <button
-        type="button"
-        onClick={handleBookmark}
-        title={bookmarked ? 'Saved to reading list' : 'Save note for later'}
-        className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all border shadow-sm ${
-          bookmarked
-            ? 'bg-ink text-on-primary border-ink'
-            : 'bg-surface-container-lowest dark:bg-[#221f1b] hover:bg-warm-taupe text-graphite hover:text-ink border-stone/80 dark:border-[#332e27]'
-        }`}
-      >
-        <span className="material-symbols-outlined text-[18px]">
-          {bookmarked ? 'bookmark_added' : 'bookmark'}
-        </span>
-      </button>
-
-      {/* Copy Permalink Button */}
-      <button
-        type="button"
-        onClick={handleCopyLink}
-        title="Copy permalink"
-        className="w-9 h-9 rounded-xl bg-surface-container-lowest dark:bg-[#221f1b] hover:bg-warm-taupe border border-stone/80 dark:border-[#332e27] text-graphite hover:text-ink flex items-center justify-center transition-all shadow-sm"
-      >
-        <span className="material-symbols-outlined text-[18px]">link</span>
-      </button>
-
-      <div className="w-6 h-px bg-stone dark:bg-[#332e27]" />
-
-      {/* Reading Time Badge */}
-      <div className="flex flex-col items-center text-center px-1" title={`Reading Pace: ${readTime}`}>
-        <span className="material-symbols-outlined text-[15px] text-smoke">schedule</span>
-        <span className="font-mono-data text-[10px] text-smoke leading-tight mt-0.5 whitespace-nowrap">
-          {readTime.replace(' min read', 'm')}
-        </span>
-      </div>
-    </div>
-  );
-};
-
-export const TableOfContents: React.FC<{
+interface EmbeddedArticleSidebarProps {
   sections: NoteSection[];
   activeId?: string;
   onSelect: (id: string) => void;
-}> = ({ sections, activeId, onSelect }) => {
+  subjectTitle?: string;
+  readTime?: string;
+  className?: string;
+  onToggleCollapse?: () => void;
+}
+
+export const EmbeddedArticleSidebar: React.FC<EmbeddedArticleSidebarProps> = ({
+  sections,
+  activeId,
+  onSelect,
+  subjectTitle = 'ON THIS PAGE',
+  readTime = '20m read',
+  className = '',
+  onToggleCollapse,
+}) => {
+  const [searchQuery, setSearchQuery] = useState('');
+
+  // Extract pure number (e.g., "01", "10") and clean title from section
+  const parsedSections = useMemo(() => {
+    return sections.map((sec, idx) => {
+      const numMatch = sec.title.match(/^(\d+)\.\s*(.*)$/);
+      const number = numMatch ? numMatch[1].padStart(2, '0') : String(idx + 1).padStart(2, '0');
+      const cleanTitle = numMatch ? numMatch[2] : sec.title;
+      return {
+        ...sec,
+        displayNumber: number,
+        cleanTitle,
+      };
+    });
+  }, [sections]);
+
+  // Filter sections by search query
+  const filteredSections = useMemo(() => {
+    if (!searchQuery.trim()) return parsedSections;
+    const q = searchQuery.toLowerCase().trim();
+    return parsedSections.filter((sec) => {
+      const matchParent =
+        sec.cleanTitle.toLowerCase().includes(q) || sec.displayNumber.includes(q);
+      const matchChild = sec.subsections?.some((sub) =>
+        sub.title.toLowerCase().includes(q)
+      );
+      return matchParent || matchChild;
+    });
+  }, [parsedSections, searchQuery]);
+
+  // Find active parent section index to calculate reading progress
+  const activeIndex = useMemo(() => {
+    const idx = parsedSections.findIndex((sec) => {
+      if (sec.id === activeId) return true;
+      return sec.subsections?.some((sub) => sub.id === activeId);
+    });
+    return idx >= 0 ? idx : 0;
+  }, [parsedSections, activeId]);
+
   return (
-    <div className="space-y-3">
-      <div className="font-mono-data text-label-sm uppercase tracking-wider text-smoke flex items-center gap-1.5 pb-2 border-b border-stone dark:border-[#332e27] font-semibold">
-        <span className="material-symbols-outlined text-[16px] text-ember-orange">
-          toc
-        </span>
-        <span>ON THIS PAGE</span>
+    <aside
+      className={`flex flex-col bg-warm-taupe/80 dark:bg-[#0d0e15] border-r border-stone/70 dark:border-[#1e2029] select-none text-ink dark:text-[#e2e8f0] transition-colors duration-200 ${className}`}
+    >
+      {/* Top Header Section */}
+      <div className="p-3 border-b border-stone/70 dark:border-[#1b1c28] shrink-0">
+        <div className="flex items-center justify-between gap-1.5">
+          <span className="font-mono text-[10.5px] font-semibold tracking-wider uppercase text-smoke dark:text-[#a5b4fc] truncate">
+            {subjectTitle}
+          </span>
+          <div className="flex items-center gap-1 shrink-0">
+            <span className="h-1.5 w-1.5 rounded-full bg-violet-spark dark:bg-[#818cf8] animate-pulse" />
+            {onToggleCollapse && (
+              <button
+                type="button"
+                onClick={onToggleCollapse}
+                title="Hide sidebar (expand reading view)"
+                className="p-1 rounded text-smoke dark:text-[#94a3b8] hover:text-ink dark:hover:text-white hover:bg-stone/30 dark:hover:bg-[#1a1c28] transition-colors"
+                aria-label="Hide sidebar"
+              >
+                <span className="material-symbols-outlined text-[16px]">dock_to_left</span>
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* Search Input Bar */}
+        <div className="relative mt-2">
+          <span className="material-symbols-outlined text-[14px] absolute left-2.5 top-2 text-smoke dark:text-[#64748b]">
+            search
+          </span>
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder={`Search ${sections.length} topics...`}
+            className="w-full pl-8 pr-6 py-1.5 rounded-lg bg-surface-container-lowest dark:bg-[#08090d] border border-stone/80 dark:border-[#232533] text-[11px] text-ink dark:text-[#e2e8f0] placeholder:text-smoke dark:placeholder-[#64748b] focus:outline-none focus:border-violet-spark dark:focus:border-[#7c3aed] transition-colors font-mono"
+          />
+          {searchQuery && (
+            <button
+              type="button"
+              onClick={() => setSearchQuery('')}
+              className="absolute right-2 top-2 text-smoke dark:text-[#64748b] hover:text-ink dark:hover:text-[#e2e8f0]"
+            >
+              <span className="material-symbols-outlined text-[13px]">close</span>
+            </button>
+          )}
+        </div>
+
+        {/* Track progress link & reading meta */}
+        <div className="mt-2.5 flex items-center justify-between text-[11px] font-mono">
+          <a
+            href="#progress"
+            onClick={(e) => {
+              e.preventDefault();
+            }}
+            title={`Lesson ${activeIndex + 1} of ${sections.length}`}
+            className="text-violet-spark dark:text-[#c084fc] hover:underline flex items-center gap-1 font-medium text-[11px] truncate"
+          >
+            <span>Sign in to track your progress</span>
+          </a>
+          <span className="text-smoke/80 dark:text-[#64748b] text-[10.5px] shrink-0" title={`Topic ${activeIndex + 1} of ${sections.length}`}>
+            {readTime}
+          </span>
+        </div>
       </div>
 
-      <nav className="space-y-1 font-mono-data text-label-sm max-h-[calc(100vh-220px)] overflow-y-auto pr-1">
-        {sections.map((section) => {
+      {/* Embedded Lessons Navigation Tree */}
+      <nav className="flex-1 overflow-y-auto px-2 py-2.5 space-y-0.5 scrollbar-thin scrollbar-thumb-stone dark:scrollbar-thumb-[#232536] scrollbar-track-transparent">
+        {filteredSections.map((section) => {
           const isDirectActive = activeId === section.id;
           const isSubActive = section.subsections?.some((sub) => sub.id === activeId);
-          const isActive = isDirectActive || isSubActive;
+          const isCurrentSection = isDirectActive || isSubActive;
 
           return (
-            <div key={section.id} className="space-y-1">
+            <div key={section.id} className="space-y-0.5">
+              {/* Parent Section Header Item */}
               <button
                 type="button"
                 onClick={() => onSelect(section.id)}
-                className={`block w-full text-left py-1.5 px-2.5 rounded-lg transition-all leading-snug ${
-                  isActive
-                    ? 'bg-surface-container-lowest dark:bg-[#26221d] text-ink dark:text-white font-medium border-l-2 border-violet-spark pl-3 shadow-xs'
-                    : 'text-smoke hover:text-ink hover:bg-surface-container-lowest/60 dark:hover:bg-[#201d19] dark:text-[#a8a29e]'
+                className={`group flex items-center w-full text-left px-2.5 py-1.5 rounded-lg transition-all duration-150 ${
+                  isCurrentSection
+                    ? 'bg-violet-spark/10 dark:bg-[#1f1837] border border-violet-spark/40 dark:border-[#6b21a8]/50 text-ink dark:text-[#f5f3ff] shadow-xs'
+                    : 'text-graphite dark:text-[#94a3b8] hover:text-ink dark:hover:text-[#f8fafc] hover:bg-stone/30 dark:hover:bg-[#131420] border border-transparent'
                 }`}
               >
-                {section.title}
+                {/* 2-Digit Section Number Badge */}
+                <span
+                  className={`font-mono text-[11px] font-medium w-6 shrink-0 transition-colors ${
+                    isCurrentSection
+                      ? 'text-violet-spark dark:text-[#c084fc] font-semibold'
+                      : 'text-smoke dark:text-[#64748b] group-hover:text-violet-spark dark:group-hover:text-[#a5b4fc]'
+                  }`}
+                >
+                  {section.displayNumber}
+                </span>
+
+                {/* Section Title */}
+                <span
+                  className={`text-[12px] leading-snug flex-1 line-clamp-1 transition-colors ${
+                    isCurrentSection ? 'font-medium text-ink dark:text-[#f1f5f9]' : 'font-normal'
+                  }`}
+                >
+                  {section.cleanTitle}
+                </span>
+
+                {/* Active Indicator or Chevron */}
+                {section.subsections && section.subsections.length > 0 && (
+                  <span
+                    className={`material-symbols-outlined text-[13px] shrink-0 ml-1 transition-transform duration-200 ${
+                      isCurrentSection
+                        ? 'text-violet-spark dark:text-[#c084fc] rotate-180'
+                        : 'text-ash dark:text-[#475569] group-hover:text-smoke dark:group-hover:text-[#94a3b8]'
+                    }`}
+                  >
+                    expand_more
+                  </span>
+                )}
               </button>
 
-              {section.subsections && section.subsections.length > 0 && (
-                <div className="pl-3 ml-2 border-l border-stone/50 dark:border-[#2e2924] space-y-1">
-                  {section.subsections.map((sub) => {
-                    const isCurrent = activeId === sub.id;
-                    return (
-                      <button
-                        key={sub.id}
-                        type="button"
-                        onClick={() => onSelect(sub.id)}
-                        className={`block w-full text-left py-1 px-2 rounded text-[12px] transition-all leading-snug ${
-                          isCurrent
-                            ? 'text-violet-spark font-medium'
-                            : 'text-smoke/80 hover:text-ink dark:text-[#8c827a]'
-                        }`}
-                      >
-                        {sub.title}
-                      </button>
-                    );
-                  })}
+              {/* Expanded Nested Subsections when Section is Active */}
+              {isCurrentSection && (
+                <div className="mt-0.5 ml-3 pl-2.5 border-l border-violet-spark/30 dark:border-[#35255e]/60 space-y-0.5 py-0.5 animate-in fade-in slide-in-from-top-1 duration-150">
+                  {/* Module Overview link */}
+                  <button
+                    type="button"
+                    onClick={() => onSelect(section.id)}
+                    className={`flex items-center gap-1.5 w-full text-left px-2 py-1 rounded-md text-[11px] transition-colors ${
+                      isDirectActive
+                        ? 'bg-violet-spark/15 dark:bg-[#291e4a] text-violet-spark dark:text-[#e9d5ff] font-medium'
+                        : 'text-smoke dark:text-[#94a3b8] hover:text-ink dark:hover:text-[#f8fafc] hover:bg-stone/20 dark:hover:bg-[#181928]'
+                    }`}
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-violet-spark dark:bg-[#a855f7]" />
+                    <span>Topic Overview</span>
+                  </button>
+
+                  {/* Child Subsections / Detailed In-Depth Anchors */}
+                  {section.subsections &&
+                    section.subsections.map((sub) => {
+                      const isSubCurrent = activeId === sub.id;
+                      return (
+                        <button
+                          key={sub.id}
+                          type="button"
+                          onClick={() => onSelect(sub.id)}
+                          className={`group flex items-start gap-1.5 w-full text-left px-2 py-1 rounded-md text-[11px] leading-snug transition-colors ${
+                            isSubCurrent
+                              ? 'bg-violet-spark/20 dark:bg-[#2b204f] text-violet-spark dark:text-white font-medium border-l-2 border-violet-spark dark:border-[#a855f7] pl-1.5'
+                              : 'text-smoke dark:text-[#94a3b8] hover:text-ink dark:hover:text-[#f8fafc] hover:bg-stone/20 dark:hover:bg-[#161726]'
+                          }`}
+                        >
+                          <span
+                            className={`material-symbols-outlined text-[12px] shrink-0 mt-0.5 ${
+                              isSubCurrent
+                                ? 'text-violet-spark dark:text-[#c084fc]'
+                                : 'text-ash dark:text-[#64748b]'
+                            }`}
+                          >
+                            subdirectory_arrow_right
+                          </span>
+                          <span className="line-clamp-2">{sub.title}</span>
+                        </button>
+                      );
+                    })}
                 </div>
               )}
             </div>
           );
         })}
+
+        {filteredSections.length === 0 && (
+          <div className="py-6 text-center text-smoke dark:text-[#64748b] text-[11px] font-mono">
+            No sections match "{searchQuery}"
+          </div>
+        )}
       </nav>
-    </div>
+    </aside>
   );
 };
+
+// Re-export TableOfContents for backward compatibility
+export const TableOfContents = EmbeddedArticleSidebar;

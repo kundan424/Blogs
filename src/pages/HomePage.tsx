@@ -219,11 +219,11 @@ export const HomePage: React.FC = () => {
 
               {/* Feed Articles List */}
               <div className="space-y-space-md">
-                {filteredNotes.map((note) => (
+                 {filteredNotes.map((note) => (
                   <NoteCard
                     key={note.id}
                     note={note}
-                    onTagClick={(tag) => setSelectedTopic(tag)}
+                    onTagClick={(tag: string) => setSelectedTopic(tag)}
                   />
                 ))}
 

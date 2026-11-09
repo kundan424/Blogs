@@ -1,5 +1,5 @@
 ---
-title: "Dockerfile Architecture & Internals: Theory, BuildKit Mechanics, and Production Engineering"
+title: "Dockerfile Architecture & Internals"
 slug: dockerfile-architecture-internals-production-guide
 subject: devops-cloud-infrastructure
 abstract: "A comprehensive, theory-style architectural guide to Dockerfiles: OCI image specifications, BuildKit Directed Acyclic Graph (DAG) solvers, content-addressable layer caching, instruction taxonomies, and a line-by-line mechanical analysis of a hardened multi-stage production Dockerfile."
@@ -291,176 +291,196 @@ Prevent non-production assets, secrets, and local platform binaries from poisoni
 
 ## 05. Line-by-Line Breakdown of a Hardened Production Dockerfile
 
-The following Dockerfile models an enterprise Java/Spring Boot microservice demonstrating:
-- Multi-stage architecture
-- BuildKit dependency caching
-- Dedicated unprivileged system user
-- Secure JVM ergonomics inside cgroups
-- Non-root health monitoring
+### How a Dockerfile Deploys an App (Concept by Concept)
+
+To deploy a Spring Boot application properly in production, you use a **Multi-Stage Dockerfile**. Stage 1 compiles the code using Maven and the full JDK; Stage 2 copies only the final `.jar` into a lightweight JRE image so your production container isn't bloated with source code and Maven caches.
 
 ```dockerfile title="Dockerfile"
-# =========================================================================
-# STAGE 1: BUILD ENVIRONMENT (JDK + Maven)
-# =========================================================================
-# Line 1: Declare the build environment base image and name the stage
-FROM maven:3.9.6-eclipse-temurin-21-jammy AS build-stage
+# ==========================================
+# STAGE 1: Build Stage
+# ==========================================
+FROM eclipse-temurin:21-jdk-alpine AS builder
+WORKDIR /build
 
-# Line 2: Set the isolated working directory for compilation
-WORKDIR /workspace
-
-# Line 3: Copy only dependency descriptors to leverage layer caching
+# Cache dependencies first
 COPY pom.xml .
+COPY .mvn/ .mvn/
+COPY mvnw .
+RUN ./mvnw dependency:go-offline
 
-# Line 4: Download external dependencies using BuildKit persistent cache
-RUN --mount=type=cache,target=/root/.m2 \
-    mvn dependency:go-offline -B
-
-# Line 5: Copy the application source tree
+# Copy source and compile fat JAR
 COPY src ./src
+RUN ./mvnw clean package -DskipTests
 
-# Line 6: Compile, test, and package the executable fat JAR
-RUN --mount=type=cache,target=/root/.m2 \
-    mvn clean package -DskipTests -B
+# ==========================================
+# STAGE 2: Production Runtime Stage
+# ==========================================
+FROM eclipse-temurin:21-jre-alpine
+WORKDIR /app
 
-# Line 7: Extract JAR layers using Spring Boot layer-tools for optimal caching
-RUN java -Djarmode=layertools -jar target/*.jar extract --destination target/extracted
+# Create a non-root user for security
+RUN addgroup -S spring && adduser -S spring -G spring
+USER spring:spring
 
-# =========================================================================
-# STAGE 2: PRODUCTION RUNTIME ENVIRONMENT (JRE Only)
-# =========================================================================
-# Line 8: Base runtime using a minimal Debian-slim headless JRE
-FROM eclipse-temurin:21-jre-jammy AS runtime-stage
+# Copy only the built artifact from Stage 1
+COPY --from=builder /build/target/*.jar app.jar
 
-# Line 9: Install curl for health checking, apply security patches, and clean cache in ONE step
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends curl && \
-    rm -rf /var/lib/apt/lists/*
-
-# Line 10: Create an isolated unprivileged system group and user
-RUN groupadd --system --gid 10001 appgroup && \
-    useradd --system --uid 10001 --gid appgroup --shell /sbin/nologin --no-create-home appuser
-
-# Line 11: Establish production deployment directory
-WORKDIR /opt/service
-
-# Line 12: Copy Spring Boot layers from build-stage with explicit ownership
-COPY --from=build-stage --chown=appuser:appgroup /workspace/target/extracted/dependencies/ ./
-COPY --from=build-stage --chown=appuser:appgroup /workspace/target/extracted/spring-boot-loader/ ./
-COPY --from=build-stage --chown=appuser:appgroup /workspace/target/extracted/snapshot-dependencies/ ./
-COPY --from=build-stage --chown=appuser:appgroup /workspace/target/extracted/application/ ./
-
-# Line 13: Configure production JVM ergonomics for Linux cgroups
-ENV JAVA_OPTS="-XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -XX:+ExitOnOutOfMemoryError"
-ENV SERVER_PORT=8080
-
-# Line 14: Document the listening HTTP port
+# Document the port the app listens on
 EXPOSE 8080
 
-# Line 15: Drop root privileges permanently
-USER 10001:10001
-
-# Line 16: Configure production healthcheck probe
-HEALTHCHECK --interval=30s --timeout=3s --start-period=40s --retries=3 \
-    CMD curl -f http://localhost:8080/actuator/health || exit 1
-
-# Line 17: Specify POSIX signal for graceful shutdown
-STOPSIGNAL SIGTERM
-
-# Line 18: Execute Spring Boot launcher in exec form
-ENTRYPOINT ["sh", "-c", "exec java $JAVA_OPTS org.springframework.boot.loader.launch.JarLauncher"]
+# Define the startup command
+ENTRYPOINT ["java", "-jar", "app.jar"]
 ```
 
 ---
 
-### Detailed Mechanical Breakdown (Line-by-Line)
+### Every Dockerfile Term & Concept Explained
 
-#### Stage 1: Build Environment (Lines 1–7)
+#### `FROM <image>:<tag> [AS <name>]` (Base Image & Multi-Stage)
+Every Dockerfile starts with `FROM`. Instead of building an operating system from scratch, you start from a pre-built foundation layer—here, Alpine Linux pre-installed with Eclipse Temurin Java 21. Using `AS builder` names the first stage so you can discard the heavy JDK and Maven cache later, keeping the final production image ~180MB instead of ~800MB.
 
-- **Line 1: `FROM maven:3.9.6-eclipse-temurin-21-jammy AS build-stage`**
-  - **What it does**: Initializes the first stage named `build-stage`, pulling an image containing the Maven CLI, build tools, and full JDK 21 on top of Ubuntu Jammy.
-  - **Mechanics**: Sets the base layer for compilation. The compiler marks this stage as intermediate; its heavy tools (850 MB) will **never be copied into the final production artifact**.
+#### Image Layers & Layer Caching
+Every instruction (`FROM`, `COPY`, `RUN`) creates a read-only layer on top of the previous one. Docker caches these layers. Notice how `COPY pom.xml .` and `RUN ./mvnw dependency:go-offline` come before `COPY src ./src`. If you only change a Java controller and rebuild, Docker sees `pom.xml` hasn't changed, skips downloading Maven dependencies from the internet, and reuses the cached layer—cutting build times from minutes to seconds.
 
-- **Line 2: `WORKDIR /workspace`**
-  - **What it does**: Directs the builder to set `/workspace` as the context directory.
-  - **Mechanics**: Modifies the `WorkingDir` property and creates `/workspace`.
+#### `WORKDIR /app` (Working Directory)
+Sets the current directory inside the container for all subsequent commands (`RUN`, `COPY`, `ENTRYPOINT`). If the folder doesn't exist, Docker creates it automatically. This eliminates the need to write messy instructions like `RUN cd /app && ...`.
 
-- **Line 3: `COPY pom.xml .`**
-  - **What it does**: Copies **only** `pom.xml` from the host build context into `/workspace/pom.xml`.
-  - **Why not `COPY . .`?**: This is the cardinal rule of build caching. Dependencies change far less often than business code. Isolating `pom.xml` ensures this layer's checksum only changes when project dependencies are modified.
+#### `COPY <src> <dest>`
+Copies files from your local machine (the Build Context) into the container's filesystem. In Stage 2, `COPY --from=builder` reaches back into Stage 1's filesystem to grab the compiled `.jar` and leaves everything else behind.
 
-- **Line 4: `RUN --mount=type=cache,target=/root/.m2 mvn dependency:go-offline -B`**
-  - **What it does**: Downloads all external Maven dependencies into the local cache.
-  - **Mechanics**: `--mount=type=cache` mounts a persistent directory from BuildKit's host cache into `/root/.m2`. Even if `pom.xml` changes slightly, previously downloaded dependencies are not re-downloaded from the internet. The `-B` flag enforces batch (non-interactive) mode.
+#### `RUN <command>` (Build-Time Execution)
+Executes a shell command while the image is being built and commits the result as a new layer. Used for compiling code, installing OS packages, or creating system users (`adduser`). It does not run when the container boots.
 
-- **Line 5: `COPY src ./src`**
-  - **What it does**: Copies the application's Java source files into `/workspace/src`.
-  - **Mechanics**: Computes content checksums for the source files. If a developer edits a Java controller, the build cache invalidates from this step forward, while Steps 1–4 are retrieved instantly from cache.
+#### `USER <user>:<group>`
+By default, Docker containers run as root (`UID 0`). If an attacker exploits a vulnerability in your app, running as root makes it easier to compromise the host. Switching to an unprivileged user (`spring`) locks down permissions.
 
-- **Line 6: `RUN --mount=type=cache,target=/root/.m2 mvn clean package -DskipTests -B`**
-  - **What it does**: Compiles the Java source files, runs bytecode enhancements, and packages the application into an executable fat JAR in `/workspace/target/`.
+#### `EXPOSE <port>`
+Purely metadata/documentation telling developers and orchestration tools that the application inside the container listens on port 8080. It does not actually open the port on your host machine—you still map ports at runtime using `-p 8080:8080` (e.g., `docker run -p 8080:8080 myapp`), which forwards traffic from the host's port 8080 to the container's internal port 8080.
 
-- **Line 7: `RUN java -Djarmode=layertools -jar target/*.jar extract --destination target/extracted`**
-  - **What it does**: Uses Spring Boot's internal `layertools` mode to unpackage the fat JAR into four discrete directories: `dependencies`, `spring-boot-loader`, `snapshot-dependencies`, and `application`.
-  - **Why this matters**: In Step 12, copying these directories separately allows third-party libraries (120 MB) to remain cached while only the recompiled application code (2 MB) generates a new layer!
+#### `ENV <key>=<value>` (Environment Variables)
+Sets environment variables inside the container (e.g., `ENV SPRING_PROFILES_ACTIVE=prod`). In production, secrets like `SPRING_DATASOURCE_PASSWORD` are injected outside the Dockerfile at runtime via `docker run -e` or Docker Compose so secrets aren't baked into the image.
+
+#### `ENTRYPOINT` vs. `CMD` (Runtime Execution)
+Unlike `RUN` (which runs during `docker build`), `ENTRYPOINT` and `CMD` specify the process that starts when the container boots (`docker run`).
+- `ENTRYPOINT ["java", "-jar", "app.jar"]` sets the fixed executable that the container runs. The container stays alive only as long as this process (PID 1) is running; if the Java process exits, the container stops.
+- `CMD` provides default arguments to that `ENTRYPOINT` (or a default command that can be easily overridden from the CLI).
 
 ---
 
-#### Stage 2: Production Runtime Environment (Lines 8–18)
+### Detailed Line-by-Line Command Breakdown & Mechanical Working
 
-- **Line 8: `FROM eclipse-temurin:21-jre-jammy AS runtime-stage`**
-  - **What it does**: Discards the entire `build-stage` and initializes a fresh, clean runtime image containing only the minimal Headless Java Runtime Environment (JRE). Image size drops from 900 MB to 220 MB.
+To understand how Docker compiles and runs this multi-stage container under the hood, let's trace every instruction step by step:
 
-- **Line 9: `RUN apt-get update && apt-get install -y --no-install-recommends curl && rm -rf /var/lib/apt/lists/*`**
-  - **What it does**: Installs `curl` (needed for container health checks) while maintaining minimal image bloat.
-  - **Mechanics**: 
-    - `--no-install-recommends`: Skips non-essential suggested packages.
-    - `rm -rf /var/lib/apt/lists/*`: Deletes the temporary package index lists in the **same execution layer**, ensuring the apt cache does not persist in the final image layer.
+#### Stage 1: Build Stage (Lines 1–8)
 
-- **Line 10: `RUN groupadd --system --gid 10001 appgroup && useradd --system --uid 10001 --gid appgroup --shell /sbin/nologin --no-create-home appuser`**
-  - **What it does**: Creates an unprivileged system user (`appuser`, UID `10001`) and group (`appgroup`, GID `10001`).
-  - **Security Invariant**: 
-    - `--shell /sbin/nologin`: Blocks interactive shell logins if the process is compromised.
-    - `--no-create-home`: Prevents creating unnecessary home directory clutter.
-    - Explicit UID/GID (`10001`): Fixed numeric IDs prevent collisions with host users and enable consistent Kubernetes `securityContext` policies.
+- **Line 1: `FROM eclipse-temurin:21-jdk-alpine AS builder`**
+  - **Command & Syntax**: `FROM <base-image> AS <stage-alias>`
+  - **Under the Hood**: Pulls an Alpine Linux image bundled with Eclipse Temurin OpenJDK 21. Alpine uses `musl libc` and BusyBox utilities, yielding a minimal ~300MB compiler footprint. The `AS builder` token tags this graph branch in BuildKit's DAG, designating it as an intermediate compilation target whose intermediate layers will not leak into the production release.
+  
+- **Line 2: `WORKDIR /build`**
+  - **Command & Syntax**: `WORKDIR <absolute-path>`
+  - **Under the Hood**: Updates the OCI configuration property `WorkingDir` to `/build`. If the `/build` directory does not exist, the Docker daemon creates it automatically (`mkdir -p /build`). All subsequent relative commands (`.` and `./src`) resolve against `/build`.
 
-- **Line 11: `WORKDIR /opt/service`**
-  - **What it does**: Establishes the production execution path.
+- **Line 3: `COPY pom.xml .`**
+  - **Command & Syntax**: `COPY <host-path> <container-path>`
+  - **Under the Hood**: Copies the Maven Project Object Model file from the local workspace to `/build/pom.xml`. BuildKit computes the SHA-256 checksum of `pom.xml`. Because dependencies change far less frequently than business code, isolating `pom.xml` preserves the dependency cache layer.
 
-- **Line 12: `COPY --from=build-stage --chown=appuser:appgroup ...`**
-  - **What it does**: Copies the extracted Spring Boot layers from `build-stage` into `/opt/service/`, assigning ownership directly to `appuser:appgroup`.
-  - **Layer Invalidation Order**:
-    1. `dependencies/` (Slowest changing: third-party dependencies).
-    2. `spring-boot-loader/` (Framework launcher classes).
-    3. `snapshot-dependencies/` (Internal company libraries).
-    4. `application/` (Fastest changing: your compiled controllers and business logic).
-  - **Why `--chown` on `COPY` is mandatory**: If you omit `--chown`, files are copied with root ownership. Running `RUN chown -R appuser:appgroup /opt/service` afterwards would duplicate all files in a second layer, doubling image size!
+- **Line 4: `COPY .mvn/ .mvn/` & `COPY mvnw .`**
+  - **Command & Syntax**: `COPY <host-directory> <container-directory>` / `COPY <file> <container-dest>`
+  - **Under the Hood**: Copies the Maven Wrapper engine (`mvnw` shell script and `.mvn/wrapper/maven-wrapper.properties`). This guarantees consistent build reproducibility: the container uses the exact Maven version pinned to the repository without requiring Maven to be pre-installed on the host or base image.
 
-- **Line 13: `ENV JAVA_OPTS="-XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -XX:+ExitOnOutOfMemoryError"`**
-  - **What it does**: Configures production JVM container ergonomics:
-    - `-XX:+UseContainerSupport`: Instructs the JVM to read cgroup limits for CPU and memory rather than host hardware limits.
-    - `-XX:MaxRAMPercentage=75.0`: Dynamically allocates 75% of the container's memory limit to the JVM heap, leaving 25% for Metaspace, thread stacks, and native buffers.
-    - `-XX:+ExitOnOutOfMemoryError`: Halts the JVM immediately when an OOM occurs, allowing the container orchestrator (Kubernetes/Docker) to restart the failed pod.
+- **Line 5: `RUN ./mvnw dependency:go-offline`**
+  - **Command & Syntax**: `RUN <build-time-shell-command>`
+  - **Under the Hood**: Invokes Maven's Dependency Plugin in non-interactive batch mode to download all dependencies, plugins, and parent POMs declared in `pom.xml` into the local container directory (`/root/.m2/repository`). When this step completes, Docker snapshots this state into an immutable image layer. Subsequent builds with identical `pom.xml` will execute this step in **0.0 seconds** via cache hit.
 
-- **Line 14: `EXPOSE 8080`**
-  - **What it does**: Documents that the application listens on port 8080.
+- **Line 6: `COPY src ./src`**
+  - **Command & Syntax**: `COPY <host-src-dir> <container-dest-dir>`
+  - **Under the Hood**: Injects the application's Java source files, resources, and configuration into `/build/src`. This line serves as the **cache invalidation boundary**. When a software engineer edits application business logic, only this layer and downstream layers rebuild; the heavy dependency download from Line 5 remains fully cached.
 
-- **Line 15: `USER 10001:10001`**
-  - **What it does**: Switches the container execution context from `root` (UID 0) to `appuser` (UID 10001).
-  - **Mechanics**: Drops all Linux capabilities. Any remote code execution exploit is trapped within an unprivileged sandbox.
+- **Line 7: `RUN ./mvnw clean package -DskipTests`**
+  - **Command & Syntax**: `RUN <build-time-shell-command>`
+  - **Under the Hood**: Executes Maven compiler and package plugins. `clean` ensures no stale classes remain, while `package` compiles `.java` sources into `.class` bytecode and packages everything into an executable Spring Boot fat JAR inside `/build/target/*.jar`. Passing `-DskipTests` bypasses running unit/integration test suites during container image compilation, delegating test execution to dedicated CI/CD pipeline test stages.
 
-- **Line 16: `HEALTHCHECK --interval=30s --timeout=3s --start-period=40s --retries=3 CMD curl -f http://localhost:8080/actuator/health || exit 1`**
-  - **What it does**: Configures Docker's automated health monitoring probe:
-    - `--interval=30s`: Probes the endpoint every 30 seconds.
-    - `--timeout=3s`: Fails the check if `curl` does not respond within 3 seconds.
-    - `--start-period=40s`: Warm-up grace period during JVM bootstrapping; failures during this window do not count toward `--retries`.
-    - `--retries=3`: Marks the container status as `unhealthy` after 3 consecutive failures.
+---
 
-- **Line 17: `STOPSIGNAL SIGTERM`**
-  - **What it does**: Explicitly sets POSIX signal 15 (`SIGTERM`) as the termination signal emitted on `docker stop`.
+#### Stage 2: Production Runtime Stage (Lines 9–17)
 
-- **Line 18: `ENTRYPOINT ["sh", "-c", "exec java $JAVA_OPTS org.springframework.boot.loader.launch.JarLauncher"]`**
-  - **What it does**: Boots the application.
-  - **The `exec` Keyword Mechanic**: Running `exec java ...` causes the Java process to **replace the shell process**, inheriting `PID 1`. This ensures POSIX `SIGTERM` signals emitted by `docker stop` travel directly to the JVM for clean database connection draining and shutdown hooks.
+- **Line 8: `FROM eclipse-temurin:21-jre-alpine`**
+  - **Command & Syntax**: `FROM <runtime-image>`
+  - **Under the Hood**: Completely resets the build context by pulling a fresh, ultra-lightweight Alpine Linux image containing **only the Java Runtime Environment (JRE 21)**. All compilers (`javac`), source files, local `.git` metadata, and cached `.m2` repository artifacts from Stage 1 are abandoned. The final image size plummets from ~800MB to ~180MB, radically shrinking the attack surface and download latency.
+
+- **Line 9: `WORKDIR /app`**
+  - **Command & Syntax**: `WORKDIR <absolute-path>`
+  - **Under the Hood**: Establishes `/app` as the execution directory for the production service container.
+
+- **Line 10: `RUN addgroup -S spring && adduser -S spring -G spring`**
+  - **Command & Syntax**: `RUN <alpine-user-creation-command>`
+  - **Under the Hood**: Alpine Linux utilizes BusyBox user-management tooling:
+    - `addgroup -S spring`: Creates a system-level group named `spring` with a low system GID.
+    - `adduser -S spring -G spring`: Creates an unprivileged system user `spring` without root privileges, assigned to group `spring`.
+    - **Security Impact**: Containers default to `root` (UID 0). Running as root means any arbitrary code execution vulnerability (such as a Log4j or serialization exploit) allows the attacker to compromise container internals and attempt kernel breakout to the host. Creating an unprivileged user establishes defense-in-depth.
+
+- **Line 11: `USER spring:spring`**
+  - **Command & Syntax**: `USER <user>:<group>`
+  - **Under the Hood**: Modifies the OCI image config JSON property `User` to `spring:spring`. From this point forward in the Dockerfile and throughout container runtime, all commands and process forks run with dropped privileges.
+
+- **Line 12: `COPY --from=builder /build/target/*.jar app.jar`**
+  - **Command & Syntax**: `COPY --from=<stage-alias> <source-path> <dest-path>`
+  - **Under the Hood**: Multi-stage extraction. The builder reaches across the stage boundary into the isolated filesystem of the `builder` stage, selects the compiled Spring Boot fat JAR from `/build/target/`, and copies it into `/app/app.jar`.
+
+- **Line 13: `EXPOSE 8080`**
+  - **Command & Syntax**: `EXPOSE <port>`
+  - **Under the Hood**: Inscribes the metadata field `"ExposedPorts": { "8080/tcp": {} }` in the image manifest. It documents the listening port for service meshes, Kubernetes ingress, and developers. It does not publish the port on the host network automatically.
+
+- **Line 14: `ENTRYPOINT ["java", "-jar", "app.jar"]`**
+  - **Command & Syntax**: `ENTRYPOINT ["executable", "param1", "param2"]` (Exec Form)
+  - **Under the Hood**: Configures the default container execution process using the JSON array **Exec Form**. The Linux kernel invokes `execve("/usr/bin/java", ["java", "-jar", "app.jar"], ...)` directly, making the JVM process **PID 1** inside the container namespace.
+  - **Signal Handling Mechanics**: Because there is no intermediary subshell (`/bin/sh -c`), POSIX signals emitted by the container orchestrator (`SIGTERM` during `docker stop` or Kubernetes pod eviction) travel directly to the Java process. This triggers Spring Boot's shutdown hooks, allowing active HTTP transactions to complete and HikariCP connection pools to disconnect gracefully before timeout.
+
+---
+
+### From Dockerfile to Live Deployment
+
+Once you have authored your Dockerfile, deploying the application follows a clean three-step production lifecycle:
+
+```text
+       THE 3-STEP CONTAINER DEPLOYMENT LIFECYCLE
+       
+   ┌────────────────────────────────────────────────────────┐
+   │ 1. BUILD (Local / CI Server)                           │
+   │    docker build -t username/myapp:1.0.0 .              │
+   │    • Evaluates .dockerignore                           │
+   │    • Executes Stage 1 (JDK compile) & Stage 2 (JRE)    │
+   │    • Outputs immutable OCI image snapshot              │
+   └───────────────────────────┬────────────────────────────┘
+                               │
+                               ▼
+   ┌────────────────────────────────────────────────────────┐
+   │ 2. PUSH (Distribution)                                 │
+   │    docker push username/myapp:1.0.0                    │
+   │    • Uploads layer diffs to Container Registry         │
+   │    • Docker Hub / AWS ECR / Google Artifact Registry   │
+   └───────────────────────────┬────────────────────────────┘
+                               │
+                               ▼
+   ┌────────────────────────────────────────────────────────┐
+   │ 3. RUN (Production Environment)                        │
+   │    docker run -p 8080:8080 -e ENV=prod username/myapp  │
+   │    • Server pulls immutable image layers               │
+   │    • Injects environment secrets (DB password, JWT)    │
+   │    • Connects to isolated virtual bridge network       │
+   │    • Boots containerized JVM process as non-root       │
+   └────────────────────────────────────────────────────────┘
+```
+
+1. **Build (`docker build -t username/myapp:1.0.0 .`)**:  
+   The Docker daemon reads your Dockerfile, executes the multi-stage DAG, caches reusable layers, and outputs an immutable OCI image tagged `username/myapp:1.0.0`.
+
+2. **Push (`docker push username/myapp:1.0.0`)**:  
+   You upload that image to a centralized container registry (such as Docker Hub, GitHub Container Registry, AWS ECR, or Google Artifact Registry).
+
+3. **Run (`docker run / docker compose up`)**:  
+   Your production server pulls `username/myapp:1.0.0` from the registry, injects production environment variables (PostgreSQL URL, Redis host, JWT secrets), attaches persistent Volumes if local storage is needed, and starts the container on an isolated virtual Network.
 
 ---
 

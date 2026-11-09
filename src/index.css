@@ -4,43 +4,89 @@
 
 @layer base {
   :root {
-    --color-eggshell: #fdfcfc;
+    /* Replit Warm Tokens */
+    --color-canvas: #faf6f1;
+    --color-accent: #ff3c00;
+    --color-optical: #ff764c;
+    --color-coral: #ff764d;
+    --color-peach: #f9aa8b;
+    --color-salmon: #ffb199;
+    --color-footer-heading: #111827;
+    --color-strong: #191818;
+    --color-ink: #312e2e;
+    --color-olive: #2c3328;
+    --color-hero-ink: #37383c;
+    --color-support: #4b4d53;
+    --color-footer-text: #4b5563;
+    --color-muted: #6f6c6a;
+    --color-stone: #dbd4cf;
+    --color-filter-edge: #d8d5cf;
+    --color-edge: #dfddd8;
+    --color-cool-card: #ededed;
+    --color-gallery: #f3f2ee;
+    --color-panel: #f3f3f1;
+    --color-preview: #f6f5f4;
+    --color-footer: #faf5f0;
+    --color-white: #ffffff;
+
+    /* Semantic / Compatibility Tokens */
+    --color-eggshell: #faf6f1;
     --color-warm-taupe: #f5f3f1;
-    --color-stone: #ebe8e4;
-    --color-ink: #000000;
     --color-graphite: #44403b;
-    --color-smoke: #777169;
+    --color-smoke: #6f6c6a;
     --color-ash: #a59f97;
-    --color-violet-spark: #0447ff;
-    --color-ember-orange: #ff4704;
+    --color-violet-spark: #ff3c00;
+    --color-ember-orange: #ff3c00;
 
     --surface-container-lowest: #ffffff;
-    --surface-container-low: #fbf2e8;
-    --surface-container: #eeeeee;
-    --surface-container-high: #e8e8e8;
-    --surface-container-highest: #eae1d7;
+    --surface-container-low: #faf5f0;
+    --surface-container: #f3f2ee;
+    --surface-container-high: #ededed;
+    --surface-container-highest: #dbd4cf;
 
-    --primary-container: #1b1b1b;
-    --on-primary-container: #848484;
-    --secondary-container: #ffebe5;
-    --secondary: #ad2c00;
-    --tertiary-fixed: #dde1ff;
+    --primary-container: #191818;
+    --on-primary-container: #dfddd8;
+    --secondary-container: #ffb199;
+    --secondary: #ff3c00;
+    --tertiary-fixed: #f3f2ee;
   }
 
   html.dark {
-    --color-eggshell: #100f0d;
+    --color-canvas: #141310;
+    --color-accent: #ff4714;
+    --color-optical: #ff764c;
+    --color-coral: #8f3a22;
+    --color-peach: #522d1f;
+    --color-salmon: #5c3527;
+    --color-footer-heading: #faf6f1;
+    --color-strong: #faf6f1;
+    --color-ink: #ede8e1;
+    --color-olive: #1a2018;
+    --color-hero-ink: #faf6f1;
+    --color-support: #aba49b;
+    --color-footer-text: #a8a29a;
+    --color-muted: #9c958c;
+    --color-stone: #332f2a;
+    --color-filter-edge: #3d3831;
+    --color-edge: #38332c;
+    --color-cool-card: #1f1e1c;
+    --color-gallery: #181714;
+    --color-panel: #201e1a;
+    --color-preview: #1a1916;
+    --color-footer: #100f0d;
+    --color-white: #1f1e1c;
+
+    --color-eggshell: #141310;
     --color-warm-taupe: #1c1a17;
-    --color-stone: #2e2924;
-    --color-ink: #fdfcfc;
     --color-graphite: #d4cfc9;
     --color-smoke: #a19a91;
     --color-ash: #6b645c;
-    --color-violet-spark: #5480ff;
-    --color-ember-orange: #ff6026;
+    --color-violet-spark: #ff6026;
+    --color-ember-orange: #ff4714;
 
-    --surface-container-lowest: #181613;
-    --surface-container-low: #141310;
-    --surface-container: #23201c;
+    --surface-container-lowest: #141310;
+    --surface-container-low: #181614;
+    --surface-container: #201e1a;
     --surface-container-high: #2b2723;
     --surface-container-highest: #332f2a;
 
@@ -48,7 +94,7 @@
     --on-primary-container: #d4cfc9;
     --secondary-container: #36170d;
     --secondary: #ff7547;
-    --tertiary-fixed: #141e3b;
+    --tertiary-fixed: #1f1e1c;
   }
 
   html {
@@ -109,6 +155,7 @@
 }
 
 .material-symbols-outlined {
+  font-family: 'Material Symbols Outlined' !important;
   font-variation-settings:
     'FILL' 0,
     'wght' 400,
@@ -116,4 +163,127 @@
     'opsz' 24;
   vertical-align: middle;
   line-height: 1;
+  display: inline-block;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Replit Signature Optical Artwork & Effects */
+.optical-fold-card {
+  position: relative;
+  overflow: hidden;
+  background-color: #f9aa8b;
+  border-radius: 24px;
+}
+
+.optical-strip-1 {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 418px;
+  background: radial-gradient(ellipse at left center, #ff764c 72%, rgba(255, 118, 76, 0.42) 100%);
+  pointer-events: none;
+}
+
+.optical-strip-2 {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 168px;
+  background: radial-gradient(ellipse at left center, #ff764c 45%, rgba(255, 118, 76, 0.45) 100%);
+  pointer-events: none;
+}
+
+.optical-strip-3 {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 89px;
+  background: radial-gradient(ellipse at left center, #ff764c 30%, rgba(255, 118, 76, 0.35) 100%);
+  pointer-events: none;
+}
+
+.composer-glow {
+  position: absolute;
+  inset: -32px -60px;
+  background: radial-gradient(ellipse at center, rgba(255, 177, 153, 0.38) 0%, rgba(255, 177, 153, 0.12) 50%, transparent 75%);
+  filter: blur(32px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 40s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Header & Primary Action button visibility override */
+.nav-action-btn,
+.btn-primary-accent {
+  background-color: #ff3c00 !important;
+  color: #ffffff !important;
+  border: 1px solid #ff3c00 !important;
+}
+
+.nav-action-btn:hover,
+.btn-primary-accent:hover {
+  background-color: #e03500 !important;
+  color: #ffffff !important;
+}
+
+.nav-action-btn *,
+.btn-primary-accent * {
+  color: #ffffff !important;
+}
+
+/* Replit Outline Action Button */
+.btn-outline-accent {
+  background-color: #ffffff !important;
+  color: #ff3c00 !important;
+  border: 1.5px solid #ff3c00 !important;
+}
+
+.btn-outline-accent * {
+  color: #ff3c00 !important;
+}
+
+.btn-outline-accent:hover {
+  background-color: #ff3c00 !important;
+  color: #ffffff !important;
+}
+
+.btn-outline-accent:hover * {
+  color: #ffffff !important;
+}
+
+html.dark .btn-outline-accent {
+  background-color: #1a1815 !important;
+  color: #ff3c00 !important;
+  border: 1.5px solid #ff3c00 !important;
+}
+
+html.dark .btn-outline-accent:hover {
+  background-color: #ff3c00 !important;
+  color: #ffffff !important;
+}
+
+html.dark .btn-outline-accent:hover * {
+  color: #ffffff !important;
 }

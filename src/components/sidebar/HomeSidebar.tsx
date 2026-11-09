@@ -31,15 +31,15 @@ export const HomeSidebar: React.FC<HomeSidebarProps> = ({
   }, []);
 
   return (
-    <aside className="space-y-space-lg lg:col-span-4">
-      <div className="sticky top-20 space-y-space-lg">
+    <aside className="space-y-6 lg:col-span-4">
+      <div className="sticky top-24 space-y-6">
         {/* Popular Topics Tag Cloud with Post Counts */}
-        <div className="rounded-xl bg-warm-taupe dark:bg-[#1a1815] p-space-lg shadow-sm border border-stone/80 dark:border-[#332e27]">
-          <div className="flex items-center justify-between mb-space-sm">
-            <h4 className="font-title-md text-title-md text-ink">Popular Topics</h4>
-            <span className="font-mono-data text-label-sm text-smoke">Index v2.4</span>
+        <div className="rounded-[20px] bg-panel dark:bg-[#1f1e1a] p-6 border border-edge/80 dark:border-stone/30">
+          <div className="flex items-center justify-between mb-2">
+            <h4 className="font-sans text-[17px] font-medium text-strong dark:text-white">Popular Topics</h4>
+            <span className="font-mono text-[11px] text-muted">Index v2.4</span>
           </div>
-          <p className="font-body-sm text-body-sm text-smoke mb-space-md">
+          <p className="text-[13px] text-muted dark:text-ash mb-4">
             Click any tag to dynamically cross-reference notes in the feed.
           </p>
           <div className="flex flex-wrap gap-2">
@@ -50,20 +50,20 @@ export const HomeSidebar: React.FC<HomeSidebarProps> = ({
                   key={pt.tag}
                   type="button"
                   onClick={() => onSelectTopic && onSelectTopic(pt.tag)}
-                  className={`group flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-left transition-all border border-stone/60 dark:border-[#332e27] ${
+                  className={`group flex items-center gap-1.5 rounded-[8px] px-3 py-1.5 text-left transition-all border ${
                     isActive
-                      ? 'bg-ink text-on-primary'
-                      : 'bg-surface-container-lowest dark:bg-[#201d19] hover:bg-ink hover:text-on-primary'
+                      ? 'bg-strong text-white border-strong dark:bg-white dark:text-strong'
+                      : 'bg-canvas dark:bg-[#141310] border-edge dark:border-stone/30 text-footer-text dark:text-ash hover:border-filter-edge hover:text-strong dark:hover:text-white'
                   }`}
                 >
-                  <span className="font-mono-data text-label-sm font-medium">
-                    {pt.name}
+                  <span className="font-mono text-[12px] font-medium">
+                    #{pt.name}
                   </span>
                   <span
-                    className={`rounded px-1.5 py-0.2 font-mono-data text-label-sm ${
+                    className={`rounded px-1.5 py-0.5 font-mono text-[10px] ${
                       isActive
-                        ? 'bg-graphite text-on-primary'
-                        : 'bg-warm-taupe dark:bg-[#151311] text-smoke group-hover:bg-graphite group-hover:text-on-primary'
+                        ? 'bg-white/20 text-white dark:bg-black/20 dark:text-strong'
+                        : 'bg-stone/40 dark:bg-stone/20 text-muted'
                     }`}
                   >
                     {pt.count}
@@ -75,34 +75,35 @@ export const HomeSidebar: React.FC<HomeSidebarProps> = ({
         </div>
 
         {/* Weekly Technical Newsletter Box */}
-        <div className="rounded-xl bg-surface-container-lowest dark:bg-[#1a1815] p-space-lg shadow-sm border border-stone/80 dark:border-[#332e27]">
-          <span className="font-mono-data text-label-sm text-smoke uppercase tracking-wider">
+        <div className="rounded-[20px] bg-panel dark:bg-[#1f1e1a] p-6 border border-edge/80 dark:border-stone/30">
+          <span className="font-mono text-[12px] font-medium text-muted uppercase tracking-wider block mb-1">
             WEEKLY SYNTHESIS
           </span>
-          <h4 className="mt-space-xs font-title-md text-title-md text-ink">
+          <h4 className="text-[17px] font-medium text-strong dark:text-white">
             Zero Noise Engineering Memo
           </h4>
-          <p className="mt-space-xs font-body-sm text-body-sm text-smoke leading-relaxed">
+          <p className="mt-1 text-[13px] text-muted dark:text-ash leading-relaxed">
             Condensed architectural learnings, concurrency post-mortems, and performance profiling tools delivered each Sunday morning.
           </p>
 
-          <form onSubmit={handleSubscribe} className="mt-space-md space-y-space-xs">
+          <form onSubmit={handleSubscribe} className="mt-4 space-y-2">
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="engineer@domain.com"
               required
-              className="w-full rounded-lg bg-warm-taupe dark:bg-[#2c2927] px-3 py-2 font-mono-data text-label-md text-ink placeholder:text-smoke focus:outline-none focus:bg-surface-container-lowest border border-stone/60 dark:border-[#332e27] shadow-sm"
+              className="w-full rounded-[8px] bg-canvas dark:bg-[#141310] px-3.5 py-2.5 font-mono text-[13px] text-strong dark:text-white placeholder:text-muted/70 focus:outline-none focus:border-accent border border-edge dark:border-stone/30 shadow-2xs"
             />
             <button
               type="submit"
-              className="w-full rounded-full bg-ink py-2 font-label-md text-label-md text-on-primary hover:bg-graphite transition-colors shadow-sm"
+              style={{ backgroundColor: '#ff3c00', color: '#ffffff' }}
+              className="btn-primary-accent w-full rounded-[8px] bg-[#ff3c00] h-[40px] font-sans text-[14px] font-medium text-white hover:bg-[#e03500] hover:opacity-95 transition-all cursor-pointer shadow-xs"
             >
               Subscribe to Digest
             </button>
             {subscribed && (
-              <div className="mt-2 font-mono-data text-label-sm text-violet-spark flex items-center gap-1">
+              <div className="mt-2 font-mono text-[12px] text-accent flex items-center gap-1">
                 <span className="material-symbols-outlined text-[14px]">check</span>
                 Dispatch added to delivery registry.
               </div>

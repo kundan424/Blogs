@@ -16,7 +16,7 @@ export const EmbeddedArticleSidebar: React.FC<EmbeddedArticleSidebarProps> = ({
   activeId,
   onSelect,
   subjectTitle = 'ON THIS PAGE',
-  readTime = '20m read',
+  readTime,
   className = '',
   onToggleCollapse,
 }) => {
@@ -50,15 +50,6 @@ export const EmbeddedArticleSidebar: React.FC<EmbeddedArticleSidebarProps> = ({
     });
   }, [parsedSections, searchQuery]);
 
-  // Find active parent section index to calculate reading progress
-  const activeIndex = useMemo(() => {
-    const idx = parsedSections.findIndex((sec) => {
-      if (sec.id === activeId) return true;
-      return sec.subsections?.some((sub) => sub.id === activeId);
-    });
-    return idx >= 0 ? idx : 0;
-  }, [parsedSections, activeId]);
-
   return (
     <aside
       className={`flex flex-col bg-warm-taupe/80 dark:bg-[#0d0e15] border-r border-stone/70 dark:border-[#1e2029] select-none text-ink dark:text-[#e2e8f0] transition-colors duration-200 ${className}`}
@@ -66,9 +57,16 @@ export const EmbeddedArticleSidebar: React.FC<EmbeddedArticleSidebarProps> = ({
       {/* Top Header Section */}
       <div className="p-3 border-b border-stone/70 dark:border-[#1b1c28] shrink-0">
         <div className="flex items-center justify-between gap-1.5">
-          <span className="font-mono text-[10.5px] font-semibold tracking-wider uppercase text-smoke dark:text-[#a5b4fc] truncate">
-            {subjectTitle}
-          </span>
+          <div className="flex items-center gap-2 truncate">
+            <span className="font-mono text-[10.5px] font-semibold tracking-wider uppercase text-smoke dark:text-[#a5b4fc] truncate">
+              {subjectTitle}
+            </span>
+            {readTime && (
+              <span className="font-mono text-[10px] text-smoke/70 dark:text-[#818cf8] shrink-0">
+                • {readTime}
+              </span>
+            )}
+          </div>
           <div className="flex items-center gap-1 shrink-0">
             <span className="h-1.5 w-1.5 rounded-full bg-violet-spark dark:bg-[#818cf8] animate-pulse" />
             {onToggleCollapse && (
@@ -107,23 +105,7 @@ export const EmbeddedArticleSidebar: React.FC<EmbeddedArticleSidebarProps> = ({
             </button>
           )}
         </div>
-
-        {/* Track progress link & reading meta */}
-        <div className="mt-2.5 flex items-center justify-between text-[11px] font-mono">
-          <a
-            href="#progress"
-            onClick={(e) => {
-              e.preventDefault();
-            }}
-            title={`Lesson ${activeIndex + 1} of ${sections.length}`}
-            className="text-violet-spark dark:text-[#c084fc] hover:underline flex items-center gap-1 font-medium text-[11px] truncate"
-          >
-            <span>Sign in to track your progress</span>
-          </a>
-          <span className="text-smoke/80 dark:text-[#64748b] text-[10.5px] shrink-0" title={`Topic ${activeIndex + 1} of ${sections.length}`}>
-            {readTime}
-          </span>
-        </div>
+       
       </div>
 
       {/* Embedded Lessons Navigation Tree */}

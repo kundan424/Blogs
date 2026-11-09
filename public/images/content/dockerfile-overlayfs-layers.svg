@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440" width="100%" height="auto" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bgCanvas4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <linearGradient id="roLayerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1e1b4b" />
+      <stop offset="100%" stop-color="#312e81" />
+    </linearGradient>
+    <linearGradient id="rwLayerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#064e3b" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+    <marker id="arrowCyan4" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
+    </marker>
+    <marker id="arrowGreen4" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#34d399" />
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="440" rx="14" fill="url(#bgCanvas4)" stroke="#334155" stroke-width="1.5" />
+
+  <!-- Title -->
+  <text x="480" y="34" text-anchor="middle" fill="#f8fafc" font-size="16.5" font-weight="700" letter-spacing="0.5">
+    DOCKER IMAGE LAYERS: UNION FILE SYSTEM (OverlayFS) ARCHITECTURE
+  </text>
+  <line x1="50" y1="48" x2="910" y2="48" stroke="#334155" stroke-width="1" />
+
+  <!-- ========================================================= -->
+  <!-- LEFT COLUMN: STACKED LAYERS VISUAL                        -->
+  <!-- ========================================================= -->
+  <g transform="translate(36, 68)">
+    <!-- Container R/W Layer (Top) -->
+    <rect x="0" y="0" width="540" height="58" rx="8" fill="url(#rwLayerGrad)" stroke="#34d399" stroke-width="2" stroke-dasharray="6,4" />
+    <rect x="12" y="10" width="130" height="20" rx="4" fill="#065f46" />
+    <text x="77" y="24" text-anchor="middle" fill="#a7f3d0" font-family="monospace" font-size="10" font-weight="700">UPPERDIR (R/W)</text>
+    <text x="152" y="24" fill="#ecfdf5" font-size="12.5" font-weight="700">Container Layer (Thin Read-Write)</text>
+    <text x="14" y="46" fill="#a7f3d0" font-size="11">Ephemeral: modified /tmp files, local logs, deleted on container removal (0-5 MB)</text>
+
+    <!-- Bracket Indicator for R/W -->
+    <line x1="550" y1="8" x2="550" y2="50" stroke="#34d399" stroke-width="2" />
+    <text x="562" y="33" fill="#34d399" font-size="11" font-weight="600">Writable per container</text>
+
+    <!-- Layer 4: Application Code -->
+    <rect x="0" y="68" width="540" height="52" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2" />
+    <rect x="12" y="78" width="60" height="18" rx="3" fill="#0369a1" />
+    <text x="42" y="91" text-anchor="middle" fill="#e0f2fe" font-family="monospace" font-size="9.5" font-weight="700">LAYER 4</text>
+    <text x="82" y="91" fill="#f8fafc" font-family="monospace" font-size="11" font-weight="600">COPY target/app.jar /app/app.jar</text>
+    <text x="440" y="91" fill="#38bdf8" font-family="monospace" font-size="10.5">~42 MB [diff]</text>
+    <text x="14" y="110" fill="#94a3b8" font-size="10">Content-addressable SHA-256 digest: sha256:7b1e8902c3fa...</text>
+
+    <!-- Layer 3: System User / WorkingDir -->
+    <rect x="0" y="128" width="540" height="52" rx="6" fill="#1e293b" stroke="#64748b" stroke-width="1.2" />
+    <rect x="12" y="138" width="60" height="18" rx="3" fill="#475569" />
+    <text x="42" y="151" text-anchor="middle" fill="#f1f5f9" font-family="monospace" font-size="9.5" font-weight="700">LAYER 3</text>
+    <text x="82" y="151" fill="#f8fafc" font-family="monospace" font-size="11" font-weight="600">RUN addgroup -S spring &amp;&amp; adduser -S spring</text>
+    <text x="450" y="151" fill="#cbd5e1" font-family="monospace" font-size="10.5">~12 KB [diff]</text>
+    <text x="14" y="170" fill="#94a3b8" font-size="10">System group /etc/group and /etc/passwd entries created</text>
+
+    <!-- Layer 2: Java Runtime -->
+    <rect x="0" y="188" width="540" height="52" rx="6" fill="#1e293b" stroke="#818cf8" stroke-width="1.2" />
+    <rect x="12" y="198" width="60" height="18" rx="3" fill="#4338ca" />
+    <text x="42" y="211" text-anchor="middle" fill="#e0e7ff" font-family="monospace" font-size="9.5" font-weight="700">LAYER 2</text>
+    <text x="82" y="211" fill="#f8fafc" font-family="monospace" font-size="11" font-weight="600">Eclipse Temurin JRE 21 Runtime</text>
+    <text x="440" y="211" fill="#a5b4fc" font-family="monospace" font-size="10.5">~125 MB [diff]</text>
+    <text x="14" y="230" fill="#94a3b8" font-size="10">JVM binaries, libjvm.so, core Java class libraries (shared across instances)</text>
+
+    <!-- Layer 1: Base Alpine OS -->
+    <rect x="0" y="248" width="540" height="52" rx="6" fill="#1e293b" stroke="#94a3b8" stroke-width="1.2" />
+    <rect x="12" y="258" width="60" height="18" rx="3" fill="#334155" />
+    <text x="42" y="271" text-anchor="middle" fill="#f8fafc" font-family="monospace" font-size="9.5" font-weight="700">LAYER 1</text>
+    <text x="82" y="271" fill="#f8fafc" font-family="monospace" font-size="11" font-weight="600">FROM eclipse-temurin:21-jre-alpine (Alpine 3.19)</text>
+    <text x="450" y="271" fill="#e2e8f0" font-family="monospace" font-size="10.5">~7.8 MB</text>
+    <text x="14" y="290" fill="#94a3b8" font-size="10">Minimal rootfs: /bin, /lib, /etc, BusyBox utilities (musl libc)</text>
+
+    <!-- Bracket Indicator for Lowerdir -->
+    <line x1="550" y1="74" x2="550" y2="294" stroke="#818cf8" stroke-width="2" />
+    <text x="562" y="180" fill="#818cf8" font-size="11" font-weight="600">LOWERDIR: Read-Only Image Layers</text>
+    <text x="562" y="196" fill="#94a3b8" font-size="10">Immutable &amp; Shared by ALL containers</text>
+  </g>
+
+  <!-- ========================================================= -->
+  <!-- RIGHT COLUMN: MERGED VIEW & COPY-ON-WRITE BOX             -->
+  <!-- ========================================================= -->
+  <g transform="translate(670, 68)">
+    <rect width="254" height="302" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1.5" />
+
+    <!-- Merged View Box -->
+    <rect x="14" y="14" width="226" height="130" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2" />
+    <text x="127" y="36" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="700">MERGED VIEW (Container)</text>
+    <text x="127" y="54" text-anchor="middle" fill="#94a3b8" font-size="10.5">Unified virtual directory seen by PID 1</text>
+    <rect x="24" y="66" width="206" height="66" rx="4" fill="#090d16" />
+    <text x="34" y="84" fill="#cbd5e1" font-family="monospace" font-size="10">/app/app.jar</text>
+    <text x="34" y="99" fill="#cbd5e1" font-family="monospace" font-size="10">/opt/java/openjdk/</text>
+    <text x="34" y="114" fill="#cbd5e1" font-family="monospace" font-size="10">/bin/sh, /etc/passwd</text>
+    <text x="34" y="126" fill="#34d399" font-family="monospace" font-size="9.5">+ container temp files</text>
+
+    <!-- Copy-on-Write (CoW) Principle -->
+    <rect x="14" y="156" width="226" height="132" rx="8" fill="#172554" stroke="#3b82f6" stroke-width="1.2" />
+    <text x="127" y="178" text-anchor="middle" fill="#93c5fd" font-size="12" font-weight="700">COPY-ON-WRITE (CoW)</text>
+    <text x="24" y="198" fill="#e0e7ff" font-size="10.5" font-weight="600">• Reading files:</text>
+    <text x="30" y="213" fill="#cbd5e1" font-size="10">Directly accessed from read-only image layers.</text>
+    <text x="24" y="233" fill="#e0e7ff" font-size="10.5" font-weight="600">• Modifying an image file:</text>
+    <text x="30" y="248" fill="#cbd5e1" font-size="10">File is copied UP into R/W layer before write occurs.</text>
+    <text x="24" y="272" fill="#34d399" font-size="10" font-weight="600">Result: Original image is NEVER mutated!</text>
+  </g>
+
+  <!-- Bottom Explanatory Strip -->
+  <rect x="36" y="380" width="888" height="42" rx="8" fill="#1e293b" stroke="#475569" stroke-width="1" />
+  <text x="480" y="405" text-anchor="middle" fill="#e2e8f0" font-size="11.5">
+    <tspan fill="#38bdf8" font-weight="700">Key Takeaway:</tspan> 10 Spring Boot containers running the same image consume <tspan fill="#34d399" font-weight="700">175 MB total image disk space</tspan> + 10 tiny R/W layers, not 1,750 MB!
+  </text>
+</svg>

@@ -88,6 +88,24 @@
     font-family: 'JetBrains Mono', 'Fira Code', 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-feature-settings: "liga" 1, "calt" 1;
   }
+
+  /* Global typography overrides for article markdown content */
+  .markdown-content h1 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+  .markdown-content h2 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+  .markdown-content h3 {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+  .markdown-content h4 {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
 }
 
 .material-symbols-outlined {

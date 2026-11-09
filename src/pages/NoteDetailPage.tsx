@@ -421,7 +421,7 @@ export const NoteDetailPage: React.FC = () => {
               </div>
 
               {/* Main Display Headline */}
-              <h1 className="font-sans text-[28px] sm:text-[36px] lg:text-[42px] text-ink dark:text-[#f8fafc] tracking-tight font-light mb-4 leading-tight">
+              <h1 className="font-sans text-[22px] sm:text-[28px] lg:text-[32px] text-ink dark:text-[#f8fafc] tracking-tight font-normal mb-4 leading-snug">
                 {note.title}
               </h1>
 

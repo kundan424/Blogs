@@ -169,6 +169,24 @@ function getNodeText(node: React.ReactNode): string {
 
 const markdownComponents: Components = {
   // Headings with dynamic anchor IDs matching Table of Contents
+  h1: ({ children }) => {
+    const text = getNodeText(children).trim();
+    const id = text
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, '')
+      .trim()
+      .replace(/\s+/g, '-');
+
+    return (
+      <h1
+        id={id}
+        className="scroll-mt-24 mt-8 mb-4 text-[21px] sm:text-[24px] font-normal tracking-tight text-ink dark:text-[#f8fafc] border-b border-stone/40 dark:border-[#2e2924] pb-2"
+      >
+        {children}
+      </h1>
+    );
+  },
+
   h2: ({ children }) => {
     const text = getNodeText(children).trim();
     const cleanTitle = text.replace(/^\d+\.\s*/, '').trim();
@@ -181,12 +199,12 @@ const markdownComponents: Components = {
     return (
       <h2
         id={id}
-        className="scroll-mt-24 mt-12 mb-4 font-headline-md text-headline-md text-ink font-light border-b border-stone/50 dark:border-[#2e2924] pb-2 flex items-center justify-between group"
+        className="scroll-mt-24 mt-10 mb-3 text-[18px] sm:text-[20px] text-ink dark:text-[#f8fafc] font-medium tracking-tight border-b border-stone/50 dark:border-[#2e2924] pb-2 flex items-center justify-between group"
       >
         <span>{children}</span>
         <a
           href={`#${id}`}
-          className="opacity-0 group-hover:opacity-100 text-smoke hover:text-ink transition-opacity text-[16px] font-mono-data"
+          className="opacity-0 group-hover:opacity-100 text-smoke hover:text-ink transition-opacity text-[14px] font-mono-data"
           aria-label="Link to section"
         >
           #
@@ -206,12 +224,49 @@ const markdownComponents: Components = {
     return (
       <h3
         id={id}
-        className="scroll-mt-24 mt-8 mb-3 font-headline-sm text-headline-sm text-ink font-normal"
+        className="scroll-mt-24 mt-7 mb-2.5 text-[15px] sm:text-[16px] text-ink dark:text-[#f8fafc] font-semibold flex items-center justify-between group"
       >
-        {children}
+        <span>{children}</span>
+        <a
+          href={`#${id}`}
+          className="opacity-0 group-hover:opacity-100 text-smoke hover:text-ink transition-opacity text-[13px] font-mono-data"
+          aria-label="Link to subsection"
+        >
+          #
+        </a>
       </h3>
     );
   },
+
+  h4: ({ children }) => {
+    const text = getNodeText(children).trim();
+    const id = text
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, '')
+      .trim()
+      .replace(/\s+/g, '-');
+
+    return (
+      <h4
+        id={id}
+        className="scroll-mt-24 mt-5 mb-2 text-[13.5px] sm:text-[14.5px] text-ink dark:text-[#f8fafc] font-semibold"
+      >
+        {children}
+      </h4>
+    );
+  },
+
+  h5: ({ children }) => (
+    <h5 className="mt-4 mb-2 text-[12.5px] sm:text-[13px] font-semibold text-graphite dark:text-[#d4cfc9] uppercase tracking-wider">
+      {children}
+    </h5>
+  ),
+
+  h6: ({ children }) => (
+    <h6 className="mt-4 mb-2 text-[12px] font-semibold text-smoke dark:text-[#a19a91] uppercase tracking-wider">
+      {children}
+    </h6>
+  ),
 
   p: ({ children }) => (
     <p className="my-4 font-body-md text-body-md text-graphite dark:text-[#d4cfc9] leading-relaxed">

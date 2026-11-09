@@ -18,23 +18,23 @@ export const Navbar: React.FC = () => {
   ];
 
   return (
-    <header className="fixed top-0 w-full z-40 bg-eggshell/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] border-b border-stone/40">
-      <div className="h-16 max-w-7xl mx-auto px-margin lg:px-margin-desktop flex items-center justify-between gap-space-md">
+    <header className="sticky top-0 w-full z-[1002] bg-canvas/95 dark:bg-[#141310]/95 backdrop-blur-md border-b border-stone/40 dark:border-stone/20 transition-colors">
+      <div className="h-20 max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
         {/* Left: Brand + Nav */}
-        <div className="flex items-center gap-space-lg">
-          <Link to="/" className="flex items-center gap-space-sm text-ink group">
-            <span className="flex items-center justify-center w-7 h-7 rounded bg-warm-taupe text-ink font-mono-data text-mono-data group-hover:bg-primary-container group-hover:text-on-primary transition-colors">
+        <div className="flex items-center gap-8">
+          <Link to="/" className="flex items-center gap-2.5 text-ink dark:text-white group">
+            <span className="flex items-center justify-center w-7 h-7 rounded-[6px] bg-[#37383c] text-white font-mono text-[12px] font-medium transition-colors">
               $_
             </span>
             <div className="flex flex-col leading-none">
-              <span className="font-label-md text-label-md tracking-tight text-ink font-medium">
+              <span className="font-sans text-[15px] font-medium tracking-tight text-ink dark:text-white">
                 dev.notes
               </span>
-              <span className="font-label-sm text-label-sm text-smoke">/learnings</span>
+              <span className="font-mono text-[11px] text-muted dark:text-ash">/architecture</span>
             </div>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-space-xs">
+          <nav className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => {
               const isActive =
                 link.path === '/'
@@ -46,10 +46,10 @@ export const Navbar: React.FC = () => {
                   key={link.path}
                   to={link.path}
                   className={cn(
-                    'px-space-sm py-space-xs rounded transition-colors font-label-md text-label-md',
+                    'px-3 py-1.5 rounded-[6px] transition-colors font-sans text-[14px] leading-5',
                     isActive
-                      ? 'bg-warm-taupe text-on-surface font-medium'
-                      : 'text-on-surface-variant hover:bg-surface-container hover:text-on-surface'
+                      ? 'bg-stone/50 dark:bg-stone/30 text-ink dark:text-white font-medium'
+                      : 'text-muted dark:text-ash hover:bg-stone/30 hover:text-ink dark:hover:text-white'
                   )}
                 >
                   {link.label}
@@ -60,20 +60,20 @@ export const Navbar: React.FC = () => {
         </div>
 
         {/* Right: Actions */}
-        <div className="flex items-center gap-space-sm">
+        <div className="flex items-center gap-3">
           {/* Search Trigger */}
           <button
             type="button"
             onClick={openSearch}
-            className="flex items-center gap-space-md px-space-sm py-space-xs rounded-lg bg-warm-taupe text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors"
+            className="flex items-center gap-3 px-3 py-1.5 rounded-[8px] bg-panel dark:bg-[#1f1e1a] border border-edge dark:border-stone/30 text-muted dark:text-ash hover:text-ink dark:hover:text-white hover:border-filter-edge transition-colors"
           >
-            <div className="flex items-center gap-space-xs">
+            <div className="flex items-center gap-2">
               <span className="material-symbols-outlined text-[16px]">search</span>
-              <span className="hidden sm:inline font-mono-data text-mono-data">
+              <span className="hidden sm:inline font-mono text-[12px]">
                 Search notes...
               </span>
             </div>
-            <kbd className="hidden sm:inline-flex items-center px-1.5 py-0.5 rounded bg-surface-container-lowest font-mono-data text-label-sm text-smoke">
+            <kbd className="hidden sm:inline-flex items-center px-1.5 py-0.5 rounded bg-canvas dark:bg-[#141310] font-mono text-[11px] text-muted border border-edge dark:border-stone/30">
               ⌘K
             </kbd>
           </button>
@@ -84,29 +84,35 @@ export const Navbar: React.FC = () => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Source Repository"
-            className="p-space-xs rounded text-on-surface-variant hover:text-on-surface hover:bg-warm-taupe transition-colors"
+            className="p-2 rounded-[8px] text-muted hover:text-ink hover:bg-stone/40 dark:hover:bg-stone/20 transition-colors"
           >
-            <span className="material-symbols-outlined text-[20px]">code</span>
+            <span className="material-symbols-outlined text-[19px]">code</span>
           </a>
 
           {/* Mode Switcher */}
           <ModeSwitcher />
 
-          {/* Profile Avatar */}
-          <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0">
-            <span className="material-symbols-outlined text-on-primary text-[18px]">
-              person
-            </span>
-          </div>
+          {/* Header Action: Replit Header Action Style with solid orange fill */}
+          <button
+            type="button"
+            onClick={() => {
+              const el = document.getElementById('feed-section') || document.getElementById('core-subjects');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
+            style={{ backgroundColor: '#ff3c00', color: '#ffffff' }}
+            className="nav-action-btn hidden sm:inline-flex items-center justify-center bg-[#ff3c00] text-white rounded-[8px] px-4 h-[38px] text-[14px] font-medium tracking-[-0.02em] hover:bg-[#e03500] hover:opacity-95 transition-all cursor-pointer shadow-sm border border-transparent"
+          >
+            Explore Notes
+          </button>
 
           {/* Mobile Menu Toggle Button */}
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-space-xs rounded text-on-surface-variant hover:text-on-surface hover:bg-warm-taupe"
+            className="md:hidden p-2 rounded-[8px] text-muted hover:text-ink hover:bg-stone/40 dark:hover:bg-stone/20"
             aria-label="Toggle Mobile Menu"
           >
-            <span className="material-symbols-outlined text-[24px]">
+            <span className="material-symbols-outlined text-[22px]">
               {mobileMenuOpen ? 'close' : 'menu'}
             </span>
           </button>

@@ -118,19 +118,6 @@ export const NoteDetailPage: React.FC = () => {
 
   const sections = useMemo(() => note.sections || [], [note.sections]);
 
-  const allSectionIds = useMemo(() => {
-    const list: string[] = [];
-    for (const sec of sections) {
-      list.push(sec.id);
-      if (sec.subsections) {
-        for (const sub of sec.subsections) {
-          list.push(sub.id);
-        }
-      }
-    }
-    return list;
-  }, [sections]);
-
   const [activeSection, setActiveSection] = useState(
     sections.length > 0 ? sections[0].id : ''
   );
@@ -161,41 +148,35 @@ export const NoteDetailPage: React.FC = () => {
     setActiveSection(sections[0].id);
 
     const handleScroll = () => {
-      const sectionElements: { id: string; top: number }[] = [];
+      // Find all rendered heading elements in document order
+      const headingElements = Array.from(
+        document.querySelectorAll<HTMLElement>('article h2[id], article h3[id]')
+      );
 
-      for (const id of allSectionIds) {
-        const el = document.getElementById(id);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          sectionElements.push({
-            id,
-            top: rect.top,
-          });
-        }
-      }
+      if (headingElements.length === 0) return;
 
-      if (sectionElements.length === 0) return;
-
-      const TOP_OFFSET = 140;
       const windowHeight = window.innerHeight;
       const scrollY = window.scrollY || window.pageYOffset;
       const docHeight = document.documentElement.scrollHeight;
-      const isAtBottom = windowHeight + scrollY >= docHeight - 60;
+      const isAtBottom = windowHeight + scrollY >= docHeight - 80;
 
       if (isAtBottom) {
-        setActiveSection(sectionElements[sectionElements.length - 1].id);
+        setActiveSection(headingElements[headingElements.length - 1].id);
         return;
       }
 
-      if (scrollY < 120) {
-        setActiveSection(sectionElements[0].id);
+      if (scrollY < 140) {
+        setActiveSection(headingElements[0].id);
         return;
       }
 
-      let currentActive = sectionElements[0].id;
-      for (const sec of sectionElements) {
-        if (sec.top <= TOP_OFFSET) {
-          currentActive = sec.id;
+      const TRIGGER_OFFSET = 160;
+      let currentActive = headingElements[0].id;
+
+      for (const el of headingElements) {
+        const top = el.getBoundingClientRect().top;
+        if (top <= TRIGGER_OFFSET) {
+          currentActive = el.id;
         } else {
           break;
         }
@@ -216,13 +197,13 @@ export const NoteDetailPage: React.FC = () => {
     };
 
     window.addEventListener('scroll', onScroll, { passive: true });
-    const timer = setTimeout(handleScroll, 100);
+    const timer = setTimeout(handleScroll, 120);
 
     return () => {
       window.removeEventListener('scroll', onScroll);
       clearTimeout(timer);
     };
-  }, [sections, allSectionIds, slug]);
+  }, [sections, slug]);
 
   const scrollToSection = (id: string) => {
     setActiveSection(id);
@@ -313,66 +294,69 @@ export const NoteDetailPage: React.FC = () => {
         </div>
       )}
 
-      {/* Floating Reopen Sidebar Button when collapsed */}
-      {sidebarHidden && sections.length > 0 && (
-        <button
-          type="button"
-          onClick={toggleSidebar}
-          className="fixed left-4 top-20 z-30 hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-[8px] bg-white/95 dark:bg-panel/95 border border-edge text-secondary-ink hover:text-navy dark:hover:text-white shadow-secondary-btn backdrop-blur-md transition-all font-mono text-[11.5px] cursor-pointer"
-          title="Open table of contents sidebar"
-        >
-          <span className="material-symbols-outlined text-[15px] text-navy dark:text-ice">
-            dock_to_right
-          </span>
-          <span className="font-medium">On This Page ({sections.length})</span>
-        </button>
-      )}
-
-      {/* TOP PARENT BREADCRUMB BAR */}
-      <div className="w-full max-w-column mx-auto px-5 pt-6 pb-1">
-        <Breadcrumb
-          items={[
-            { label: 'Home', href: '/', icon: 'home' },
-            { label: 'Subjects', href: '/subjects' },
-            { label: note.subjectName, href: `/subjects/${note.subjectSlug}` },
-            ...(linkedCurriculum
-              ? [
-                  {
-                    label: linkedCurriculum.path.title,
-                    href: `/learning-paths/${linkedCurriculum.path.slug}`,
-                  },
-                ]
-              : []),
-            { label: note.title },
-          ]}
-          className="text-muted-ink"
-        />
-      </div>
-
-      {/* 2-COLUMN VIEW: EMBEDDED LEFT SIDEBAR + ARTICLE SCROLL AREA */}
-      <div className="w-full max-w-column mx-auto flex flex-1 px-5 pt-4 pb-12 gap-8 items-start">
-        {/* LEFT COLUMN: EMBEDDED ON THIS PAGE SIDEBAR (260px) */}
+      {/* 2-COLUMN DOCUMENTATION LAYOUT (DEDICATED SIDEBAR PANE + ARTICLE SECTION) */}
+      <div className="w-full flex flex-1 items-start">
+        {/* LEFT COLUMN: DEDICATED NAVIGATION SIDEBAR PANE (NO GAP, 1PX RIGHT BORDER) */}
         {!sidebarHidden && sections.length > 0 && (
-          <div className="hidden lg:block w-[260px] shrink-0 sticky top-20 max-h-[calc(100vh-100px)] z-20 rounded-[8px] border border-edge overflow-hidden shadow-catalog-edge">
+          <aside className="hidden lg:block w-[280px] xl:w-[300px] shrink-0 sticky top-16 h-[calc(100vh-64px)] border-r border-edge bg-canvas/40 dark:bg-[#0e111a] overflow-hidden self-start">
             <EmbeddedArticleSidebar
               sections={sections}
               activeId={activeSection}
               onSelect={scrollToSection}
+              onToggleCollapse={toggleSidebar}
               subjectTitle={
-                note.subjectName
-                  ? `${note.subjectName.toUpperCase()} LESSONS`
-                  : 'LESSON OUTLINE'
+                linkedCurriculum
+                  ? linkedCurriculum.path.title.toUpperCase()
+                  : note.subjectName
+                    ? `${note.subjectName.toUpperCase()} TOPICS`
+                    : 'ON THIS PAGE'
               }
               readTime={note.readTime}
-              onToggleCollapse={toggleSidebar}
-              className="w-full h-full"
+              className="w-full h-full border-r-0 bg-transparent"
             />
-          </div>
+          </aside>
         )}
 
-        {/* RIGHT COLUMN: ARTICLE SCROLL CANVAS */}
-        <main className="flex-1 min-w-0 bg-white dark:bg-panel p-6 sm:p-10 lg:p-12 rounded-[12px] border border-edge shadow-catalog-edge transition-colors">
-          <div className="max-w-3xl mx-auto space-y-10">
+        {/* RIGHT COLUMN: ARTICLE SECTION */}
+        <div className="flex-1 min-w-0 px-4 sm:px-6 lg:px-8 py-5 space-y-4 max-w-5xl">
+          {/* TOP NAV BAR: [Hide menu] Button + Breadcrumbs lockup (MATCHES USER IMAGE) */}
+          <div className="flex items-center gap-3 flex-wrap">
+            {sections.length > 0 && (
+              <button
+                type="button"
+                onClick={toggleSidebar}
+                className="hidden lg:inline-flex items-center gap-1.5 px-3 py-1 rounded-[6px] bg-white dark:bg-panel border border-edge text-secondary-ink hover:text-navy dark:hover:text-white hover:border-[#3e5199] dark:hover:border-focus-blue transition-all shadow-2xs cursor-pointer font-mono text-[11.5px]"
+                title={sidebarHidden ? 'Show menu' : 'Hide menu'}
+              >
+                <span className="material-symbols-outlined text-[15px]">
+                  {sidebarHidden ? 'dock_to_right' : 'dock_to_left'}
+                </span>
+                <span>{sidebarHidden ? 'Show menu' : 'Hide menu'}</span>
+              </button>
+            )}
+
+            {/* Breadcrumbs right beside the menu toggle */}
+            <Breadcrumb
+              items={[
+                { label: 'Home', href: '/' },
+                { label: note.subjectName, href: `/subjects/${note.subjectSlug}` },
+                ...(linkedCurriculum
+                  ? [
+                      {
+                        label: linkedCurriculum.path.title,
+                        href: `/learning-paths/${linkedCurriculum.path.slug}`,
+                      },
+                    ]
+                  : []),
+                { label: note.title },
+              ]}
+              className="text-muted-ink"
+            />
+          </div>
+
+          {/* ARTICLE CONTENT CARD (ITS OWN SEPARATE SECTION) */}
+          <main className="w-full bg-white dark:bg-panel p-6 sm:p-10 lg:p-12 rounded-[12px] border border-edge shadow-catalog-edge transition-colors">
+            <div className="w-full space-y-10">
             {/* ZONE 1: ARTICLE HEADER BLOCK */}
             <header className="border-b border-edge pb-8">
               {/* Learning Path Curriculum Ribbon */}
@@ -626,5 +610,6 @@ export const NoteDetailPage: React.FC = () => {
         </main>
       </div>
     </div>
-  );
+  </div>
+);
 };

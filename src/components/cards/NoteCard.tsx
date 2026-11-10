@@ -41,7 +41,7 @@ export const NoteCard: React.FC<NoteCardProps> = ({
         <div className="relative z-10 flex flex-wrap items-center justify-between gap-2 font-mono text-[11.5px] text-muted-ink">
           <div className="flex items-center gap-2">
             {note.subjectName && (
-              <span className="rounded-[4px] bg-panel dark:bg-panel/60 border border-edge/80 px-2 py-0.5 text-navy dark:text-ice font-medium uppercase tracking-wider text-[10.5px]">
+              <span className="rounded-[4px] bg-panel dark:bg-panel/60 border border-edge/80 px-2 py-0.5 text-navy dark:text-ice font-normal uppercase tracking-wider text-[10.5px]">
                 {note.subjectName.split('&')[0]}
               </span>
             )}
@@ -51,8 +51,8 @@ export const NoteCard: React.FC<NoteCardProps> = ({
           <span className="text-secondary-ink dark:text-muted-ink">{note.readTime}</span>
         </div>
 
-        {/* Title: Navy Grotesk */}
-        <h3 className="relative z-10 mt-3 text-[17px] sm:text-[18px] font-semibold leading-snug tracking-tight text-navy dark:text-white group-hover:text-dot-blue dark:group-hover:text-ice transition-colors">
+        {/* Title: Refined Medium Font Weight */}
+        <h3 className="relative z-10 mt-3 text-[17px] sm:text-[18px] font-medium leading-snug tracking-tight text-navy dark:text-white group-hover:text-dot-blue dark:group-hover:text-ice transition-colors">
           <Link
             to={`/notes/${note.slug}`}
             className="focus:outline-none"
@@ -99,7 +99,7 @@ export const NoteCard: React.FC<NoteCardProps> = ({
         <Link
           to={`/notes/${note.slug}`}
           onClick={(e) => e.stopPropagation()}
-          className="inline-flex items-center gap-1 text-[13px] font-medium text-navy dark:text-ice group-hover:translate-x-1 hover:underline transition-transform shrink-0 cursor-pointer"
+          className="inline-flex items-center gap-1 text-[13px] font-normal text-navy dark:text-ice group-hover:translate-x-1 hover:underline transition-transform shrink-0 cursor-pointer"
           aria-label={`Read note: ${note.title}`}
         >
           <span>Read note</span>

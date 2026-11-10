@@ -35,16 +35,16 @@ export const SubjectCard: React.FC<SubjectCardProps> = ({
               </span>
             </div>
             <div>
-              <span className="font-mono text-[10.5px] font-medium text-muted-ink uppercase tracking-wider block">
+              <span className="font-mono text-[10.5px] font-normal text-muted-ink uppercase tracking-wider block">
                 {subject.hubNumber || 'DOMAIN HUB'}
               </span>
-              <h3 className="text-[18px] sm:text-[20px] font-semibold leading-tight tracking-tight text-navy dark:text-white group-hover:text-dot-blue dark:group-hover:text-ice transition-colors">
+              <h3 className="text-[18px] sm:text-[19px] font-medium leading-tight tracking-tight text-navy dark:text-white group-hover:text-dot-blue dark:group-hover:text-ice transition-colors">
                 <Link to={`/subjects/${subject.slug}`}>{subject.name}</Link>
               </h3>
             </div>
           </div>
 
-          <span className="rounded-[4px] bg-panel dark:bg-panel/60 px-2.5 py-1 font-mono text-[11px] font-medium text-secondary-ink dark:text-muted-ink border border-edge/60 shrink-0">
+          <span className="rounded-[4px] bg-panel dark:bg-panel/60 px-2.5 py-1 font-mono text-[11px] font-normal text-secondary-ink dark:text-muted-ink border border-edge/60 shrink-0">
             {subject.notesCount} {subject.notesCount === 1 ? 'note' : 'notes'}
           </span>
         </div>
@@ -89,7 +89,7 @@ export const SubjectCard: React.FC<SubjectCardProps> = ({
         </span>
         <Link
           to={`/subjects/${subject.slug}`}
-          className="inline-flex items-center gap-1.5 font-medium text-navy dark:text-ice hover:underline group-hover:translate-x-0.5 transition-transform"
+          className="inline-flex items-center gap-1.5 font-normal text-navy dark:text-ice hover:underline group-hover:translate-x-0.5 transition-transform"
         >
           <span>Explore Hub</span>
           <span className="material-symbols-outlined text-[15px]">arrow_forward</span>

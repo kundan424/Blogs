@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { NoteSection } from '../../types';
+import { cn } from '../../utils/cn';
 
 interface EmbeddedArticleSidebarProps {
   sections: NoteSection[];
@@ -23,17 +24,39 @@ export const EmbeddedArticleSidebar: React.FC<EmbeddedArticleSidebarProps> = ({
   const [searchQuery, setSearchQuery] = useState('');
   const navRef = useRef<HTMLElement | null>(null);
 
-  // Keep active sidebar item within the visible bounds of the sidebar as user scrolls down
+  // Smoothly synchronize sidebar navigation with the active article topic
   useEffect(() => {
     if (!activeId || !navRef.current) return;
-    const activeEl = navRef.current.querySelector<HTMLElement>('[data-active="true"]');
-    if (activeEl && navRef.current) {
-      const navRect = navRef.current.getBoundingClientRect();
+
+    const rafId = requestAnimationFrame(() => {
+      const nav = navRef.current;
+      if (!nav) return;
+
+      const activeEl =
+        nav.querySelector<HTMLElement>('[data-active-exact="true"]') ||
+        nav.querySelector<HTMLElement>('[data-active="true"]');
+      if (!activeEl) return;
+
+      const navRect = nav.getBoundingClientRect();
       const elRect = activeEl.getBoundingClientRect();
-      if (elRect.top < navRect.top || elRect.bottom > navRect.bottom) {
-        activeEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+      // Check if active element is outside or close to the edge of the sidebar visible viewport
+      const isAbove = elRect.top < navRect.top + 32;
+      const isBelow = elRect.bottom > navRect.bottom - 32;
+
+      if (isAbove || isBelow) {
+        const currentScroll = nav.scrollTop;
+        const relativeOffset = elRect.top - navRect.top;
+        const targetScroll = currentScroll + relativeOffset - (nav.clientHeight / 2) + (elRect.height / 2);
+
+        nav.scrollTo({
+          top: Math.max(0, targetScroll),
+          behavior: 'smooth',
+        });
       }
-    }
+    });
+
+    return () => cancelAnimationFrame(rafId);
   }, [activeId]);
 
   // Extract pure number (e.g., "01", "10") and clean title from section
@@ -65,8 +88,11 @@ export const EmbeddedArticleSidebar: React.FC<EmbeddedArticleSidebarProps> = ({
   }, [parsedSections, searchQuery]);
 
   return (
-    <aside
-      className={`flex flex-col bg-white/90 dark:bg-panel border-r border-edge select-none text-body-ink transition-colors duration-200 ${className}`}
+    <div
+      className={cn(
+        'flex flex-col select-none text-body-ink transition-colors duration-200',
+        className || 'bg-white/90 dark:bg-panel border-r border-edge'
+      )}
     >
       {/* Top Header Section */}
       <div className="p-3 border-b border-edge shrink-0">
@@ -137,6 +163,7 @@ export const EmbeddedArticleSidebar: React.FC<EmbeddedArticleSidebarProps> = ({
               <button
                 type="button"
                 data-active={isCurrentSection ? 'true' : undefined}
+                data-active-exact={isDirectActive ? 'true' : undefined}
                 onClick={() => onSelect(section.id)}
                 className={`group flex items-center w-full text-left px-2.5 py-2 rounded-[8px] transition-all duration-150 cursor-pointer ${
                   isCurrentSection
@@ -186,9 +213,9 @@ export const EmbeddedArticleSidebar: React.FC<EmbeddedArticleSidebarProps> = ({
                   {/* Module Overview link */}
                   <button
                     type="button"
-                    data-active={isDirectActive ? 'true' : undefined}
+                    data-active-exact={isDirectActive ? 'true' : undefined}
                     onClick={() => onSelect(section.id)}
-                    className={`flex items-center gap-1.5 w-full text-left px-2 py-1 rounded-[6px] text-[11px] transition-colors cursor-pointer ${
+                    className={`flex items-center gap-2 w-full text-left px-2 py-1 rounded-[6px] text-[11px] transition-colors cursor-pointer ${
                       isDirectActive
                         ? 'bg-[#3e5199]/15 dark:bg-[#3e5199]/35 border-l-2 border-[#3e5199] dark:border-focus-blue text-[#1b2d70] dark:text-ice font-semibold pl-1.5'
                         : 'text-secondary-ink hover:text-navy dark:hover:text-white hover:bg-canvas'
@@ -208,22 +235,22 @@ export const EmbeddedArticleSidebar: React.FC<EmbeddedArticleSidebarProps> = ({
                         <button
                           key={sub.id}
                           type="button"
-                          data-active={isSubCurrent ? 'true' : undefined}
+                          data-active-exact={isSubCurrent ? 'true' : undefined}
                           onClick={() => onSelect(sub.id)}
-                          className={`group flex items-start gap-1.5 w-full text-left px-2 py-1 rounded-[6px] text-[11px] leading-snug transition-colors cursor-pointer ${
+                          className={`group flex items-start gap-2 w-full text-left px-2 py-1 rounded-[6px] text-[11.5px] leading-snug transition-colors cursor-pointer ${
                             isSubCurrent
                               ? 'bg-[#3e5199]/15 dark:bg-[#3e5199]/35 text-[#1b2d70] dark:text-ice font-semibold border-l-2 border-[#3e5199] dark:border-focus-blue pl-1.5 shadow-2xs'
                               : 'text-secondary-ink hover:text-navy dark:hover:text-white hover:bg-canvas'
                           }`}
                         >
                           <span
-                            className={`material-symbols-outlined text-[12px] shrink-0 mt-0.5 ${
+                            className={`material-symbols-outlined text-[13px] shrink-0 mt-0.5 ${
                               isSubCurrent
                                 ? 'text-[#3e5199] dark:text-focus-blue font-bold'
-                                : 'text-muted-ink'
+                                : 'text-muted-ink group-hover:text-navy dark:group-hover:text-white'
                             }`}
                           >
-                            subdirectory_arrow_right
+                            menu_book
                           </span>
                           <span className={`line-clamp-2 ${isSubCurrent ? 'text-[#1b2d70] dark:text-ice font-semibold' : ''}`}>
                             {sub.title}
@@ -243,7 +270,7 @@ export const EmbeddedArticleSidebar: React.FC<EmbeddedArticleSidebarProps> = ({
           </div>
         )}
       </nav>
-    </aside>
+    </div>
   );
 };
 

@@ -304,51 +304,51 @@ export const LearningPathDetailPage: React.FC = () => {
                       className="relative pl-12"
                     >
                       {/* Timeline Node Badge on spine */}
-                      <div className="absolute left-2.5 top-0 -translate-x-1/2 w-8 h-8 rounded-full bg-navy text-white dark:bg-white dark:text-navy flex items-center justify-center font-mono text-[12px] font-bold shadow-md ring-4 ring-canvas">
+                      <div className="absolute left-2.5 top-0 -translate-x-1/2 w-7 h-7 rounded-full bg-navy text-white dark:bg-white dark:text-navy flex items-center justify-center font-mono text-[11px] font-semibold shadow-xs ring-4 ring-canvas">
                         {module.number}
                       </div>
 
                       {/* Unified Module Container Card */}
                       <div
                         className={cn(
-                          'rounded-[12px] border bg-white dark:bg-panel overflow-hidden transition-all duration-200 shadow-catalog-edge',
+                          'rounded-[10px] border overflow-hidden transition-all duration-200 shadow-catalog-edge',
                           isExpanded
-                            ? 'border-[#3e5199] dark:border-focus-blue shadow-sm'
-                            : 'border-edge hover:border-[#3e5199]/70'
+                            ? 'border-[#3e5199]/40 dark:border-focus-blue/40 bg-white dark:bg-[#121622]'
+                            : 'border-edge hover:border-[#3e5199]/40 bg-white/80 dark:bg-panel/80'
                         )}
                       >
                         {/* Interactive Collapsible Module Header */}
                         <button
                           type="button"
                           onClick={() => toggleModule(module.id)}
-                          className="w-full p-4 sm:p-5 text-left transition-colors cursor-pointer select-none space-y-2 group hover:bg-navy/[0.015] dark:hover:bg-white/[0.015]"
+                          className="w-full p-3 sm:p-4 text-left transition-colors cursor-pointer select-none space-y-1.5 group hover:bg-canvas/30 dark:hover:bg-white/[0.015]"
                         >
                           <div className="flex flex-wrap items-center justify-between gap-2">
                             <div className="flex items-center gap-2">
                               <span
                                 className={cn(
-                                  'px-2.5 py-0.5 rounded-[4px] font-mono text-[11px] font-bold tracking-wider',
+                                  'px-2 py-0.5 rounded-[4px] font-mono text-[10px] font-semibold tracking-wider',
                                   isExpanded
-                                    ? 'bg-[#3e5199] text-white'
-                                    : 'bg-panel dark:bg-canvas text-navy dark:text-ice border border-edge/60'
+                                    ? 'bg-[#3e5199]/15 text-[#3e5199] dark:bg-[#3e5199]/30 dark:text-ice border border-[#3e5199]/30'
+                                    : 'bg-canvas dark:bg-canvas/50 text-secondary-ink dark:text-ice border border-edge/60'
                                 )}
                               >
                                 MODULE {module.number}
                               </span>
-                              <span className="font-mono text-[11.5px] text-muted-ink">
+                              <span className="font-mono text-[11px] text-muted-ink">
                                 {module.lessons.length} {module.lessons.length === 1 ? 'article' : 'articles'} ({publishedCount} published)
                               </span>
                             </div>
 
                             <div className="flex items-center gap-2.5">
-                              <span className="font-mono text-[11px] text-proof-green bg-proof-green/10 px-2 py-0.5 rounded font-medium">
+                              <span className="font-mono text-[10px] text-proof-green bg-proof-green/10 px-1.5 py-0.5 rounded font-medium">
                                 {publishedCount === module.lessons.length
                                   ? 'ALL READY'
                                   : `${module.lessons.length - publishedCount} UPCOMING`}
                               </span>
                               <span
                                 className={cn(
-                                  'material-symbols-outlined text-[20px] text-muted-ink group-hover:text-navy dark:group-hover:text-white transition-transform duration-200',
+                                  'material-symbols-outlined text-[18px] text-muted-ink group-hover:text-navy dark:group-hover:text-white transition-transform duration-200',
                                   isExpanded ? 'rotate-180' : ''
                                 )}
                               >
@@ -358,24 +358,24 @@ export const LearningPathDetailPage: React.FC = () => {
                           </div>
 
                           <div className="flex items-center justify-between gap-4">
-                            <h3 className="text-[18px] sm:text-[20px] font-semibold text-navy dark:text-white tracking-tight group-hover:text-[#3e5199] dark:group-hover:text-ice transition-colors">
+                            <h3 className="text-[15px] sm:text-[16.5px] font-medium text-navy dark:text-white tracking-tight group-hover:text-[#3e5199] dark:group-hover:text-ice transition-colors">
                               {module.title}
                             </h3>
-                            <span className="font-mono text-[11px] text-muted-ink shrink-0 hidden sm:inline">
+                            <span className="font-mono text-[10.5px] text-muted-ink shrink-0 hidden sm:inline">
                               {isExpanded ? 'Click to collapse' : 'Click to view articles'}
                             </span>
                           </div>
 
                           {module.description && (
-                            <p className="text-[13.5px] text-secondary-ink dark:text-body-ink leading-relaxed">
+                            <p className="text-[12.5px] text-secondary-ink dark:text-muted-ink leading-relaxed">
                               {module.description}
                             </p>
                           )}
                         </button>
 
-                        {/* Attached Lessons in this Module (Embedded directly with a light background) */}
+                        {/* Attached Lessons in this Module (Embedded directly with a subtle light background) */}
                         {isExpanded && (
-                          <div className="border-t border-edge/80 dark:border-edge/50 bg-[#fafafc] dark:bg-[#10131d] divide-y divide-edge/60 dark:divide-edge/30">
+                          <div className="border-t border-edge/60 dark:border-edge/30 bg-[#fbfbfd]/70 dark:bg-[#0c0e16]/30 divide-y divide-edge/40 dark:divide-edge/20">
                             {module.lessons.map((lesson) => {
                               const isPublished = lesson.status === 'published';
 
@@ -388,32 +388,32 @@ export const LearningPathDetailPage: React.FC = () => {
                                     }
                                   }}
                                   className={cn(
-                                    'p-3.5 sm:p-4.5 px-4 sm:px-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 transition-colors',
+                                    'py-2.5 sm:py-3 px-3.5 sm:px-4.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 transition-colors',
                                     isPublished
                                       ? 'hover:bg-white dark:hover:bg-[#161b28] cursor-pointer group'
-                                      : 'opacity-70 bg-panel/20'
+                                      : 'opacity-65 bg-canvas/30'
                                   )}
                                 >
                                   {/* Left: Sequence + Title + Status + Read Time */}
-                                  <div className="space-y-1.5 min-w-0 flex-1">
+                                  <div className="space-y-1 min-w-0 flex-1">
                                     <div className="flex items-center gap-2 flex-wrap">
-                                      <span className="font-mono text-[11px] font-semibold px-2 py-0.5 rounded bg-panel dark:bg-canvas text-navy dark:text-ice border border-edge/60">
+                                      <span className="font-mono text-[10px] font-medium px-1.5 py-0.5 rounded bg-canvas dark:bg-[#161a26] text-navy dark:text-ice border border-edge/60">
                                         LESSON {lesson.number}
                                       </span>
 
                                       {isPublished ? (
-                                        <span className="inline-flex items-center gap-1 font-mono text-[10.5px] text-proof-green bg-proof-green/10 border border-proof-green/20 px-2 py-0.5 rounded-[4px] font-medium">
-                                          <span className="w-1.5 h-1.5 rounded-full bg-proof-green" />
+                                        <span className="inline-flex items-center gap-1 font-mono text-[9.5px] text-proof-green bg-proof-green/10 border border-proof-green/20 px-1.5 py-0.5 rounded-[4px] font-medium">
+                                          <span className="w-1 h-1 rounded-full bg-proof-green" />
                                           <span>Published Article</span>
                                         </span>
                                       ) : (
-                                        <span className="inline-flex items-center gap-1 font-mono text-[10.5px] text-muted-ink bg-panel border border-edge/80 px-2 py-0.5 rounded-[4px]">
+                                        <span className="inline-flex items-center gap-1 font-mono text-[9.5px] text-muted-ink bg-canvas border border-edge/80 px-1.5 py-0.5 rounded-[4px]">
                                           <span>Scheduled on Roadmap</span>
                                         </span>
                                       )}
 
                                       {lesson.readTime && isPublished && (
-                                        <span className="font-mono text-[11px] text-muted-ink">
+                                        <span className="font-mono text-[10.5px] text-muted-ink">
                                           • {lesson.readTime}
                                         </span>
                                       )}
@@ -421,7 +421,7 @@ export const LearningPathDetailPage: React.FC = () => {
 
                                     <h4
                                       className={cn(
-                                        'text-[15.5px] sm:text-[16.5px] font-semibold leading-snug tracking-tight',
+                                        'text-[13px] sm:text-[14px] font-medium leading-snug tracking-tight',
                                         isPublished
                                           ? 'text-navy dark:text-white group-hover:text-[#3e5199] dark:group-hover:text-ice transition-colors'
                                           : 'text-secondary-ink dark:text-muted-ink'
@@ -447,15 +447,15 @@ export const LearningPathDetailPage: React.FC = () => {
                                       <Link
                                         to={`/notes/${lesson.noteSlug}`}
                                         onClick={(e) => e.stopPropagation()}
-                                        className="btn-primary h-8 px-3.5 text-[12.5px] gap-1.5 shadow-2xs group-hover:shadow-xs"
+                                        className="btn-primary h-7 px-2.5 text-[11px] gap-1 shadow-2xs group-hover:shadow-xs rounded-[5px]"
                                       >
                                         <span>Read Lesson</span>
-                                        <span className="material-symbols-outlined text-[14px]">
+                                        <span className="material-symbols-outlined text-[13px]">
                                           arrow_forward
                                         </span>
                                       </Link>
                                     ) : (
-                                      <span className="font-mono text-[11px] text-muted-ink px-2.5 py-1 rounded bg-panel border border-edge/60">
+                                      <span className="font-mono text-[10px] text-muted-ink px-2 py-0.5 rounded bg-canvas border border-edge/60">
                                         In Development
                                       </span>
                                     )}

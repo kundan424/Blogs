@@ -317,8 +317,8 @@ export const NoteDetailPage: React.FC = () => {
           </aside>
         )}
 
-        {/* RIGHT COLUMN: ARTICLE SECTION */}
-        <div className="flex-1 min-w-0 px-4 sm:px-6 lg:px-8 py-5 space-y-4 max-w-5xl">
+        {/* RIGHT COLUMN: ARTICLE SECTION (EXPANDS TO 100% WIDTH WHEN SIDEBAR IS COLLAPSED) */}
+        <div className="flex-1 min-w-0 w-full px-4 sm:px-6 lg:px-8 py-5 space-y-4">
           {/* TOP NAV BAR: [Hide menu] Button + Breadcrumbs lockup (MATCHES USER IMAGE) */}
           <div className="flex items-center gap-3 flex-wrap">
             {sections.length > 0 && (
@@ -467,42 +467,7 @@ export const NoteDetailPage: React.FC = () => {
               )}
 
               {/* Interactive Engagement Bar: Claps, Bookmarks & Share */}
-              <div className="pt-6 pb-2 border-t border-edge flex items-center justify-between gap-3 font-mono text-[12px] select-none">
-                <div className="flex items-center gap-2.5">
-                  <button
-                    type="button"
-                    onClick={handleClap}
-                    className="flex items-center gap-2 px-3 py-1.5 rounded-[6px] border border-edge bg-canvas dark:bg-[#121620] hover:border-navy dark:hover:border-ice text-body-ink hover:text-navy dark:hover:text-white transition-all cursor-pointer shadow-2xs active:scale-95"
-                  >
-                    <span className="material-symbols-outlined text-[16px] text-proof-green">
-                      thumb_up
-                    </span>
-                    <span>{claps} Claps</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={handleBookmark}
-                    className="flex items-center gap-2 px-3 py-1.5 rounded-[6px] border border-edge bg-canvas dark:bg-[#121620] hover:border-navy dark:hover:border-ice text-body-ink hover:text-navy dark:hover:text-white transition-all cursor-pointer shadow-2xs active:scale-95"
-                  >
-                    <span className="material-symbols-outlined text-[16px] text-dot-blue">
-                      {bookmarked ? 'bookmark_added' : 'bookmark_border'}
-                    </span>
-                    <span>{bookmarked ? 'Saved' : 'Save'}</span>
-                  </button>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={handleCopyLink}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-[6px] border border-edge bg-canvas dark:bg-[#121620] hover:border-navy dark:hover:border-ice text-body-ink hover:text-navy dark:hover:text-white transition-all cursor-pointer shadow-2xs"
-                >
-                  <span className="material-symbols-outlined text-[15px]">
-                    share
-                  </span>
-                  <span className="hidden sm:inline">Share Permalink</span>
-                </button>
-              </div>
+             
               <div className="pt-8 border-t border-edge grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {prevNote && (
                   <Link

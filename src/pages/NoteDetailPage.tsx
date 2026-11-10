@@ -58,55 +58,6 @@ export const NoteDetailPage: React.FC = () => {
     return undefined;
   }, [note.slug]);
 
-  // Claps State & Handler
-  const [claps, setClaps] = useState(() => {
-    if (note.slug) {
-      try {
-        const stored = localStorage.getItem(`blog_claps_${note.slug}`);
-        if (stored) return Number(stored);
-      } catch {}
-    }
-    return note.claps || 0;
-  });
-
-  const handleClap = () => {
-    const nextVal = claps + 1;
-    setClaps(nextVal);
-    if (note.slug) {
-      try {
-        localStorage.setItem(`blog_claps_${note.slug}`, String(nextVal));
-      } catch {}
-    }
-    showToast(`Applauded note (+1) • Total: ${nextVal}`);
-  };
-
-  // Bookmark State & Handler
-  const [bookmarked, setBookmarked] = useState(() => {
-    if (note.slug) {
-      try {
-        const stored = localStorage.getItem(`blog_bookmark_${note.slug}`);
-        if (stored) return stored === 'true';
-      } catch {}
-    }
-    return false;
-  });
-
-  const handleBookmark = () => {
-    const nextState = !bookmarked;
-    setBookmarked(nextState);
-    if (note.slug) {
-      try {
-        localStorage.setItem(`blog_bookmark_${note.slug}`, String(nextState));
-      } catch {}
-    }
-    showToast(nextState ? 'Saved note to reading list' : 'Removed from reading list');
-  };
-
-  const handleCopyLink = () => {
-    navigator.clipboard.writeText(window.location.href);
-    showToast('Permalink copied to clipboard');
-  };
-
   const [comments, setComments] = useState<CommentItem[]>(() => {
     try {
       const stored = localStorage.getItem(`blog_comments_${note.slug}`);

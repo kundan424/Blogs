@@ -1,3 +1,36 @@
+export type LessonStatus = 'published' | 'upcoming' | 'draft';
+
+export interface Lesson {
+  id: string;
+  number: string; // e.g. "1.1", "1.2"
+  title: string;
+  description?: string;
+  status: LessonStatus;
+  noteSlug?: string; // links to /notes/:slug when published
+  readTime?: string;
+  topics?: string[];
+}
+
+export interface LearningModule {
+  id: string;
+  number: string; // e.g. "01", "02"
+  title: string;
+  description?: string;
+  lessons: Lesson[];
+}
+
+export interface LearningPath {
+  id: string;
+  slug: string;
+  title: string;
+  description: string;
+  subjectSlug: string;
+  icon?: string;
+  level?: 'Beginner' | 'Intermediate' | 'Advanced' | 'Production Scale';
+  estimatedDuration?: string; // e.g. "3 Modules • 7 Lessons"
+  modules: LearningModule[];
+}
+
 export interface Subject {
   id: string;
   slug: string;
@@ -15,6 +48,7 @@ export interface Subject {
     slug: string;
     readTime: string;
   }[];
+  learningPaths?: LearningPath[];
 }
 
 export interface Topic {
@@ -61,23 +95,11 @@ export interface Note {
   featured?: boolean;
   claps?: number;
   sections?: NoteSection[];
-}
-
-export interface SeriesStep {
-  number: number;
-  title: string;
-  status: 'completed' | 'current' | 'upcoming';
-  meta: string;
-  slug?: string;
-}
-
-export interface Series {
-  id: string;
-  slug: string;
-  title: string;
-  description: string;
-  currentPart: number;
-  totalParts: number;
-  progressPercent: number;
-  steps: SeriesStep[];
+  learningPath?: {
+    slug: string;
+    name: string;
+    module: string;
+    moduleName?: string;
+    lesson: string;
+  };
 }

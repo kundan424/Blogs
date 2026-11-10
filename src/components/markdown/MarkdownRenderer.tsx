@@ -180,7 +180,7 @@ const markdownComponents: Components = {
     return (
       <h1
         id={id}
-        className="scroll-mt-24 mt-8 mb-4 text-[21px] sm:text-[24px] font-normal tracking-tight text-ink dark:text-[#f8fafc] border-b border-stone/40 dark:border-[#2e2924] pb-2"
+        className="scroll-mt-24 mt-8 mb-4 text-[22px] sm:text-[26px] font-medium tracking-tight text-navy dark:text-white border-b border-edge pb-2"
       >
         {children}
       </h1>
@@ -199,12 +199,12 @@ const markdownComponents: Components = {
     return (
       <h2
         id={id}
-        className="scroll-mt-24 mt-10 mb-3 text-[18px] sm:text-[20px] text-ink dark:text-[#f8fafc] font-medium tracking-tight border-b border-stone/50 dark:border-[#2e2924] pb-2 flex items-center justify-between group"
+        className="scroll-mt-24 mt-10 mb-3 text-[18px] sm:text-[21px] text-navy dark:text-white font-medium tracking-tight border-b border-edge pb-2 flex items-center justify-between group"
       >
         <span>{children}</span>
         <a
           href={`#${id}`}
-          className="opacity-0 group-hover:opacity-100 text-smoke hover:text-ink transition-opacity text-[14px] font-mono-data"
+          className="opacity-0 group-hover:opacity-100 text-muted-ink hover:text-navy dark:hover:text-white transition-opacity text-[14px] font-mono"
           aria-label="Link to section"
         >
           #
@@ -224,12 +224,12 @@ const markdownComponents: Components = {
     return (
       <h3
         id={id}
-        className="scroll-mt-24 mt-7 mb-2.5 text-[15px] sm:text-[16px] text-ink dark:text-[#f8fafc] font-semibold flex items-center justify-between group"
+        className="scroll-mt-24 mt-7 mb-2.5 text-[15px] sm:text-[17px] text-navy dark:text-white font-medium flex items-center justify-between group"
       >
         <span>{children}</span>
         <a
           href={`#${id}`}
-          className="opacity-0 group-hover:opacity-100 text-smoke hover:text-ink transition-opacity text-[13px] font-mono-data"
+          className="opacity-0 group-hover:opacity-100 text-muted-ink hover:text-navy dark:hover:text-white transition-opacity text-[13px] font-mono"
           aria-label="Link to subsection"
         >
           #
@@ -249,7 +249,7 @@ const markdownComponents: Components = {
     return (
       <h4
         id={id}
-        className="scroll-mt-24 mt-5 mb-2 text-[13.5px] sm:text-[14.5px] text-ink dark:text-[#f8fafc] font-semibold"
+        className="scroll-mt-24 mt-5 mb-2 text-[14px] sm:text-[15px] text-navy dark:text-white font-medium"
       >
         {children}
       </h4>
@@ -257,19 +257,19 @@ const markdownComponents: Components = {
   },
 
   h5: ({ children }) => (
-    <h5 className="mt-4 mb-2 text-[12.5px] sm:text-[13px] font-semibold text-graphite dark:text-[#d4cfc9] uppercase tracking-wider">
+    <h5 className="mt-4 mb-2 text-[12.5px] sm:text-[13px] font-medium text-secondary-ink dark:text-ash uppercase tracking-wider font-mono">
       {children}
     </h5>
   ),
 
   h6: ({ children }) => (
-    <h6 className="mt-4 mb-2 text-[12px] font-semibold text-smoke dark:text-[#a19a91] uppercase tracking-wider">
+    <h6 className="mt-4 mb-2 text-[12px] font-medium text-muted-ink uppercase tracking-wider font-mono">
       {children}
     </h6>
   ),
 
   p: ({ children }) => (
-    <p className="my-4 font-body-md text-body-md text-graphite dark:text-[#d4cfc9] leading-relaxed">
+    <p className="my-4 text-body-ink leading-relaxed text-[15px] sm:text-[15.5px]">
       {children}
     </p>
   ),
@@ -281,7 +281,7 @@ const markdownComponents: Components = {
     if (isInline) {
       return (
         <code
-          className="rounded bg-warm-taupe dark:bg-[#221f1b] border border-stone/60 dark:border-[#332e27] px-1.5 py-0.5 font-mono-data text-[12px] text-ink dark:text-[#f8efe5]"
+          className="rounded-[4px] bg-canvas dark:bg-[#121620] border border-edge px-1.5 py-0.5 font-mono text-[12px] text-navy dark:text-ice"
           {...props}
         >
           {children}
@@ -300,7 +300,7 @@ const markdownComponents: Components = {
         code={rawCode}
         language={lang}
         filename={filename}
-        className="my-6 shadow-sm"
+        className="my-6 shadow-catalog-edge"
       />
     );
   },
@@ -308,7 +308,7 @@ const markdownComponents: Components = {
   pre: ({ children }) => <>{children}</>,
 
   blockquote: ({ children }) => (
-    <blockquote className="my-6 border-l-2 border-ink dark:border-[#d4cfc9] pl-4 italic text-graphite dark:text-[#a19a91] font-body-md">
+    <blockquote className="my-6 border-l-2 border-focus-blue dark:border-focus-blue pl-4 italic text-body-charcoal dark:text-body-ink text-[15px]">
       {children}
     </blockquote>
   ),
@@ -318,7 +318,7 @@ const markdownComponents: Components = {
     return (
       <ul
         className={cn(
-          'my-4 space-y-2 text-graphite dark:text-[#d4cfc9] font-body-md',
+          'my-4 space-y-2 text-body-ink text-[15px]',
           isTaskList ? 'list-none pl-0' : 'list-disc list-inside'
         )}
       >
@@ -327,7 +327,7 @@ const markdownComponents: Components = {
     );
   },
   ol: ({ children }) => (
-    <ol className="my-4 space-y-2 list-decimal list-inside text-graphite dark:text-[#d4cfc9] font-body-md">
+    <ol className="my-4 space-y-2 list-decimal list-inside text-body-ink text-[15px]">
       {children}
     </ol>
   ),
@@ -335,7 +335,7 @@ const markdownComponents: Components = {
     const isTaskItem = className?.includes('task-list-item');
     if (isTaskItem) {
       return (
-        <li className="flex items-start gap-3 p-3.5 rounded-xl bg-warm-taupe/60 dark:bg-[#1a1815] border border-stone/70 dark:border-[#332e27] leading-relaxed my-2">
+        <li className="flex items-start gap-3 p-3.5 rounded-[8px] bg-canvas dark:bg-[#121620] border border-edge leading-relaxed my-2">
           {children}
         </li>
       );
@@ -345,7 +345,7 @@ const markdownComponents: Components = {
   input: ({ type, checked, disabled, ...props }) => {
     if (type === 'checkbox') {
       return (
-        <span className="material-symbols-outlined text-[18px] text-violet-spark shrink-0 mt-0.5 select-none">
+        <span className="material-symbols-outlined text-[18px] text-proof-green shrink-0 mt-0.5 select-none">
           {checked ? 'check_circle' : 'radio_button_unchecked'}
         </span>
       );
@@ -354,8 +354,8 @@ const markdownComponents: Components = {
   },
 
   table: ({ children }) => (
-    <div className="my-8 overflow-x-auto rounded-xl border border-stone/80 dark:border-[#332e27] bg-surface-container-lowest dark:bg-[#141210] shadow-sm">
-      <table className="w-full text-left font-mono-data text-label-sm">
+    <div className="my-8 overflow-x-auto rounded-[8px] border border-edge bg-white dark:bg-panel shadow-catalog-edge">
+      <table className="w-full text-left font-mono text-[13px]">
         {children}
       </table>
     </div>
@@ -369,18 +369,18 @@ const markdownComponents: Components = {
         : rawSrc;
 
     return (
-      <figure className="my-8 rounded-2xl overflow-hidden border border-stone/80 dark:border-[#332e27] bg-surface-container-lowest dark:bg-[#1a1815] shadow-sm">
-        <div className="p-3 sm:p-6 flex justify-center bg-stone/20 dark:bg-[#141210]">
+      <figure className="my-8 rounded-[8px] overflow-hidden border border-edge bg-canvas shadow-catalog-edge">
+        <div className="p-3 sm:p-6 flex justify-center bg-canvas">
           <img
             src={resolvedSrc}
             alt={alt || 'Technical architectural diagram'}
-            className="rounded-xl max-h-[520px] w-auto object-contain shadow-xs"
+            className="rounded-[6px] max-h-[520px] w-auto object-contain shadow-xs"
             loading="lazy"
           />
         </div>
         {(alt || title) && (
-          <figcaption className="p-3.5 text-center font-mono-data text-label-sm text-smoke border-t border-stone/60 dark:border-[#2e2924] bg-warm-taupe/40 dark:bg-[#181614]">
-            <span className="font-semibold text-ink dark:text-white mr-1.5 uppercase tracking-wider text-[11px]">
+          <figcaption className="p-3 text-center font-mono text-[11px] text-muted-ink border-t border-edge bg-white dark:bg-panel">
+            <span className="font-semibold text-navy dark:text-white mr-1.5 uppercase tracking-wider text-[11px]">
               ARCHITECTURAL DIAGRAM:
             </span>
             {alt || title}
@@ -390,17 +390,17 @@ const markdownComponents: Components = {
     );
   },
   thead: ({ children }) => (
-    <thead className="bg-warm-taupe dark:bg-[#1c1a17] border-b border-stone/80 dark:border-[#332e27] text-ink font-medium">
+    <thead className="bg-canvas border-b border-edge text-navy dark:text-white font-medium">
       {children}
     </thead>
   ),
   tbody: ({ children }) => (
-    <tbody className="divide-y divide-stone/50 dark:divide-[#2e2924] text-graphite dark:text-[#d4cfc9]">
+    <tbody className="divide-y divide-edge text-secondary-ink dark:text-ash">
       {children}
     </tbody>
   ),
   tr: ({ children }) => (
-    <tr className="hover:bg-warm-taupe/40 dark:hover:bg-[#1f1c18] transition-colors">
+    <tr className="hover:bg-canvas transition-colors">
       {children}
     </tr>
   ),
@@ -416,7 +416,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
   const blocks = parseContentBlocks(sanitizedContent);
 
   return (
-    <div className={cn('markdown-content prose max-w-none text-ink', className)}>
+    <div className={cn('markdown-content prose max-w-none text-body-ink', className)}>
       {blocks.map((block, idx) => {
         if (block.type === 'markdown') {
           return (
@@ -433,31 +433,31 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
         if (block.type === 'callout') {
           let iconName = 'info';
           let borderStyle =
-            'border-violet-spark/40 dark:border-violet-spark/30 bg-violet-spark/5 dark:bg-[#141e3b]/30';
-          let badgeColor = 'text-violet-spark dark:text-[#5480ff]';
+            'border-focus-blue/50 bg-ice/20 text-navy dark:text-ice';
+          let badgeColor = 'text-navy dark:text-ice';
 
           if (block.calloutType === 'warning') {
             iconName = 'warning';
             borderStyle =
-              'border-ember-orange/40 dark:border-ember-orange/30 bg-ember-orange/5 dark:bg-[#36170d]/30';
-            badgeColor = 'text-ember-orange dark:text-[#ff7547]';
+              'border-customer-ember/40 bg-customer-ember/10 text-body-charcoal dark:text-body-ink';
+            badgeColor = 'text-customer-ember';
           } else if (block.calloutType === 'danger') {
             iconName = 'error';
             borderStyle =
-              'border-red-500/40 dark:border-red-500/30 bg-red-500/5 dark:bg-red-950/20';
-            badgeColor = 'text-red-500';
+              'border-red-500/40 bg-red-500/10 text-red-900 dark:text-red-300';
+            badgeColor = 'text-red-600 dark:text-red-400';
           } else if (block.calloutType === 'tip') {
             iconName = 'lightbulb';
             borderStyle =
-              'border-emerald-500/40 dark:border-emerald-500/30 bg-emerald-500/5 dark:bg-emerald-950/20';
-            badgeColor = 'text-emerald-500';
+              'border-proof-green/40 bg-proof-green/10 text-body-charcoal dark:text-body-ink';
+            badgeColor = 'text-proof-green';
           }
 
           return (
             <div
               key={idx}
               className={cn(
-                'my-6 p-4 rounded-xl border text-ink shadow-sm',
+                'my-6 p-4 rounded-[8px] border shadow-catalog-edge',
                 borderStyle
               )}
             >
@@ -465,11 +465,11 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
                 <span className={cn('material-symbols-outlined text-[18px]', badgeColor)}>
                   {iconName}
                 </span>
-                <span className="font-mono-data text-label-sm uppercase font-semibold tracking-wide">
+                <span className="font-mono text-[11.5px] uppercase font-semibold tracking-wide">
                   {block.title || block.calloutType}
                 </span>
               </div>
-              <div className="font-body-md text-graphite dark:text-[#d4cfc9] text-[13.5px] leading-relaxed">
+              <div className="text-secondary-ink dark:text-ash text-[13.5px] leading-relaxed">
                 <ReactMarkdown
                   remarkPlugins={[remarkGfm]}
                   components={markdownComponents}
@@ -485,7 +485,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
           return (
             <div
               key={idx}
-              className="my-8 rounded-xl border border-stone/80 dark:border-[#332e27] bg-surface-container-lowest dark:bg-[#141210] p-4 text-center shadow-sm"
+              className="my-8 rounded-[8px] border border-edge bg-canvas p-4 text-center shadow-catalog-edge"
             >
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
@@ -501,12 +501,12 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
           return (
             <div
               key={idx}
-              className="my-6 p-5 rounded-xl border border-stone/80 dark:border-[#332e27] bg-warm-taupe/60 dark:bg-[#1a1815] shadow-sm"
+              className="my-6 p-5 rounded-[8px] border border-edge bg-canvas shadow-catalog-edge"
             >
-              <div className="font-mono-data text-label-sm uppercase text-smoke mb-3 font-medium">
+              <div className="font-mono text-[11px] uppercase tracking-wider text-muted-ink mb-3 font-medium">
                 {block.title}
               </div>
-              <div className="text-center font-mono-data text-[15px] text-ink py-2">
+              <div className="text-center font-mono text-[14px] text-navy dark:text-white py-2">
                 <ReactMarkdown
                   remarkPlugins={[remarkGfm]}
                   components={markdownComponents}

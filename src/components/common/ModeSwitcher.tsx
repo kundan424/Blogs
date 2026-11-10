@@ -50,17 +50,17 @@ export const ModeSwitcher: React.FC<ModeSwitcherProps> = ({ className }) => {
         onDoubleClick={toggleTheme}
         aria-label="Theme mode switcher (double click to quick toggle)"
         title={`Theme: ${theme.toUpperCase()} (click for options, double-click to toggle)`}
-        className="p-space-xs rounded text-on-surface-variant hover:text-on-surface hover:bg-warm-taupe transition-colors flex items-center justify-center"
+        className="p-1.5 rounded-[8px] text-secondary-ink hover:text-navy dark:hover:text-white hover:bg-canvas transition-colors flex items-center justify-center cursor-pointer"
       >
-        <span className="material-symbols-outlined text-[20px] transition-transform duration-200">
+        <span className="material-symbols-outlined text-[18px] transition-transform duration-200">
           {currentIcon}
         </span>
       </button>
 
       {/* Popover Menu */}
       {dropdownOpen && (
-        <div className="absolute right-0 mt-2 w-44 rounded-xl bg-warm-taupe border border-stone shadow-xl p-1.5 z-50 animate-in fade-in zoom-in-95 duration-100 font-mono-data text-label-sm">
-          <div className="px-2.5 py-1 text-[11px] uppercase tracking-wider text-smoke font-medium">
+        <div className="absolute right-0 mt-2 w-44 rounded-[8px] bg-white dark:bg-panel border border-edge shadow-catalog-edge p-1.5 z-50 animate-in fade-in zoom-in-95 duration-100 font-mono text-[12px]">
+          <div className="px-2.5 py-1 text-[10.5px] uppercase tracking-wider text-muted-ink font-medium">
             Appearance
           </div>
 
@@ -68,20 +68,20 @@ export const ModeSwitcher: React.FC<ModeSwitcherProps> = ({ className }) => {
             type="button"
             onClick={() => handleSelectMode('light')}
             className={cn(
-              'flex items-center justify-between w-full px-2.5 py-1.5 rounded-lg text-left transition-colors',
+              'flex items-center justify-between w-full px-2.5 py-1.5 rounded-[6px] text-left transition-colors cursor-pointer',
               theme === 'light'
-                ? 'bg-surface-container-lowest text-ink font-semibold shadow-sm'
-                : 'text-graphite hover:bg-surface-container-lowest/70 hover:text-ink'
+                ? 'bg-canvas text-navy dark:text-white font-semibold'
+                : 'text-secondary-ink hover:bg-canvas hover:text-navy dark:hover:text-white'
             )}
           >
             <div className="flex items-center gap-2">
-              <span className="material-symbols-outlined text-[16px] text-ember-orange">
+              <span className="material-symbols-outlined text-[16px] text-navy dark:text-white">
                 light_mode
               </span>
-              <span>Light Paper</span>
+              <span>Light Canvas</span>
             </div>
             {theme === 'light' && (
-              <span className="material-symbols-outlined text-[14px] text-violet-spark">
+              <span className="material-symbols-outlined text-[14px] text-proof-green">
                 check
               </span>
             )}
@@ -91,20 +91,20 @@ export const ModeSwitcher: React.FC<ModeSwitcherProps> = ({ className }) => {
             type="button"
             onClick={() => handleSelectMode('dark')}
             className={cn(
-              'flex items-center justify-between w-full px-2.5 py-1.5 rounded-lg text-left transition-colors',
+              'flex items-center justify-between w-full px-2.5 py-1.5 rounded-[6px] text-left transition-colors cursor-pointer',
               theme === 'dark'
-                ? 'bg-surface-container-lowest text-ink font-semibold shadow-sm'
-                : 'text-graphite hover:bg-surface-container-lowest/70 hover:text-ink'
+                ? 'bg-canvas text-navy dark:text-white font-semibold'
+                : 'text-secondary-ink hover:bg-canvas hover:text-navy dark:hover:text-white'
             )}
           >
             <div className="flex items-center gap-2">
-              <span className="material-symbols-outlined text-[16px] text-violet-spark">
+              <span className="material-symbols-outlined text-[16px] text-navy dark:text-ice">
                 dark_mode
               </span>
-              <span>Dark Bauhaus</span>
+              <span>Dark Theme</span>
             </div>
             {theme === 'dark' && (
-              <span className="material-symbols-outlined text-[14px] text-violet-spark">
+              <span className="material-symbols-outlined text-[14px] text-proof-green">
                 check
               </span>
             )}
@@ -114,20 +114,20 @@ export const ModeSwitcher: React.FC<ModeSwitcherProps> = ({ className }) => {
             type="button"
             onClick={() => handleSelectMode('system')}
             className={cn(
-              'flex items-center justify-between w-full px-2.5 py-1.5 rounded-lg text-left transition-colors',
+              'flex items-center justify-between w-full px-2.5 py-1.5 rounded-[6px] text-left transition-colors cursor-pointer',
               theme === 'system'
-                ? 'bg-surface-container-lowest text-ink font-semibold shadow-sm'
-                : 'text-graphite hover:bg-surface-container-lowest/70 hover:text-ink'
+                ? 'bg-canvas text-navy dark:text-white font-semibold'
+                : 'text-secondary-ink hover:bg-canvas hover:text-navy dark:hover:text-white'
             )}
           >
             <div className="flex items-center gap-2">
-              <span className="material-symbols-outlined text-[16px] text-smoke">
+              <span className="material-symbols-outlined text-[16px] text-muted-ink">
                 computer
               </span>
               <span>System Sync</span>
             </div>
             {theme === 'system' && (
-              <span className="material-symbols-outlined text-[14px] text-violet-spark">
+              <span className="material-symbols-outlined text-[14px] text-proof-green">
                 check
               </span>
             )}

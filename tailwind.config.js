@@ -8,163 +8,190 @@ export default {
   theme: {
     extend: {
       colors: {
-        "primary": "var(--color-ink)",
-        "on-primary": "var(--color-eggshell)",
-        "primary-container": "var(--primary-container)",
-        "on-primary-container": "var(--on-primary-container)",
-        "primary-fixed": "#e2e2e2",
-        "primary-fixed-dim": "#c6c6c6",
-        "on-primary-fixed": "#1b1b1b",
-        "on-primary-fixed-variant": "#474747",
-        "inverse-primary": "#c6c6c6",
+        /* =====================================================================
+           COLUMN BRAND TOKENS
+           ===================================================================== */
+        // Default headings, main buttons and directory labels; supporting copy can use this ink at 60% opacity
+        "navy": "#111a4a",
+        "navy-ink": "#111a4a",
 
-        "secondary": "var(--secondary)",
-        "on-secondary": "#ffffff",
-        "secondary-container": "var(--secondary-container)",
-        "on-secondary-container": "#fffbff",
-        "secondary-fixed": "#ffdbd1",
-        "secondary-fixed-dim": "#ffb5a0",
-        "on-secondary-fixed": "#3b0900",
-        "on-secondary-fixed-variant": "#872100",
+        // Left side of the narrow announcement gradient
+        "announcement-indigo": "#3e5199",
+        "banner-start": "#3e5199",
 
-        "tertiary": "var(--color-ink)",
-        "on-tertiary": "var(--color-eggshell)",
-        "tertiary-container": "#001257",
-        "on-tertiary-container": "var(--color-violet-spark)",
-        "tertiary-fixed": "var(--tertiary-fixed)",
-        "tertiary-fixed-dim": "#b9c3ff",
-        "on-tertiary-fixed": "#001257",
-        "on-tertiary-fixed-variant": "#0033c1",
+        // Right side of the announcement gradient
+        "announcement-periwinkle": "#5568ad",
+        "banner-end": "#5568ad",
 
-        "surface": "var(--color-warm-taupe)",
-        "on-surface": "var(--color-ink)",
-        "surface-variant": "var(--surface-container-high)",
-        "on-surface-variant": "var(--color-graphite)",
-        "surface-tint": "#5e5e5e",
-        "surface-dim": "var(--surface-container-high)",
-        "surface-bright": "var(--color-eggshell)",
-        "surface-container-lowest": "var(--surface-container-lowest)",
-        "surface-container-low": "var(--surface-container-low)",
-        "surface-container": "var(--surface-container)",
-        "surface-container-high": "var(--surface-container-high)",
-        "surface-container-highest": "var(--surface-container-highest)",
+        // Bounded infrastructure chapters
+        "deep-teal": "#011821",
 
-        "background": "var(--color-eggshell)",
-        "on-background": "var(--color-ink)",
-        "outline": "var(--color-stone)",
-        "outline-variant": "var(--color-stone)",
-        "inverse-surface": "#343029",
-        "inverse-on-surface": "#f8efe5",
+        // Darker blue controls and closing headings in the warm theme (editorial product launches)
+        "launch-midnight": "#080b32",
 
-        "error": "#ba1a1a",
-        "on-error": "#ffffff",
-        "error-container": "#ffdad6",
-        "on-error-container": "#93000a",
+        /* =====================================================================
+           COLUMN NEUTRAL TOKENS
+           ===================================================================== */
+        // Compact customer quotations; alpha versions supply fine shadows
+        "quote-black": "#000000",
 
-        /* Brand / Editorial Tokens */
-        "eggshell": "var(--color-eggshell)",
-        "warm-taupe": "var(--color-warm-taupe)",
-        "stone": "var(--color-stone)",
-        "ink": "var(--color-ink)",
-        "graphite": "var(--color-graphite)",
-        "smoke": "var(--color-smoke)",
-        "ash": "var(--color-ash)",
-        "ember-orange": "var(--color-ember-orange)",
-        "violet-spark": "var(--color-violet-spark)",
+        // Navigation and product-detail headings
+        "near-black": "#12161e",
+        "near-black-ink": "#12161e",
+        "heading-ink": "#12161e",
 
-        /* Replit Warm Canvas & Capability Tokens */
-        "canvas": "var(--color-canvas)",
-        "accent": "#ff3c00",
-        "optical": "#ff764c",
-        "coral": "#ff764d",
-        "peach": "#f9aa8b",
-        "salmon": "#ffb199",
-        "olive": "#2c3328",
-        "gallery": "var(--color-gallery)",
-        "panel": "var(--color-panel)",
-        "preview": "var(--color-preview)",
-        "footer": "var(--color-footer)",
-        "footer-heading": "var(--color-footer-heading)",
-        "footer-text": "var(--color-footer-text)",
-        "hero-ink": "var(--color-hero-ink)",
-        "strong": "var(--color-strong)",
-        "support": "var(--color-support)",
-        "muted": "var(--color-muted)",
-        "filter-edge": "var(--color-filter-edge)",
-        "edge": "var(--color-edge)",
-        "cool-card": "var(--color-cool-card)",
+        // Secondary button labels
+        "control-charcoal": "#232730",
+        "control-ink": "#232730",
+
+        // Longer explanations and catalog titles
+        "body-charcoal": "#3b3e47",
+        "body-ink": "#3b3e47",
+
+        // Small descriptive copy and subtle control edges
+        "secondary-gray": "#575a64",
+        "secondary-ink": "#575a64",
+
+        // Captions, directory links and subdued supporting text
+        "muted-gray": "#7c7f88",
+        "muted-ink": "#7c7f88",
+
+        // Warm panel's outline (editorial product launches)
+        "warm-hairline": "#e7e4e0",
+
+        // Section rules and the closing panel's 1px outline
+        "cool-hairline": "#e3e4e8",
+        "edge": "#e3e4e8",
+
+        // Warm launch theme canvas (editorial product launches)
+        "warm-stone": "#eceae7",
+
+        // Closing panel and technical response backing
+        "closing-gray": "#eeeff2",
+        "panel": "#eeeff2",
+
+        // Warm launch closing panel (editorial product launches)
+        "warm-milk": "#f5f3f1",
+
+        // Default marketing canvas
+        "cool-canvas": "#f6f6f8",
+        "canvas": "#f6f6f8",
+
+        // Slightly cooler canvas for product-detail pages
+        "product-frost": "#f6f7fa",
+
+        // White surfaces, reversed text and glass edges
+        "milk-white": "#ffffff",
+        "milk": "#ffffff",
+
+        /* =====================================================================
+           COLUMN ACCENT TOKENS
+           ===================================================================== */
+        // Active customer tab and compact proof objects; not the default conversion color
+        "customer-ember": "#ec652b",
+        "ember": "#ec652b",
+
+        // Metrics, proof labels and small graph endpoints
+        "proof-green": "#167e6c",
+
+        // Closing matrix icons, with inactive dots at 20% opacity
+        "dot-blue": "#4575cd",
+
+        // Emphasized narrative statements (company and culture narratives)
+        "editorial-blue": "#1b2d70",
+
+        // 2px navigation focus ring and editorial quote rules
+        "focus-blue": "#a2c1ed",
+
+        // Headlines on deep teal
+        "icy-cyan": "#c1e8ef",
+        "ice": "#c1e8ef",
+
+        /* =====================================================================
+           SEMANTIC & SYSTEM SURFACE ALIASES (BACKWARDS COMPATIBLE)
+           ===================================================================== */
+        "primary": "#111a4a",
+        "on-primary": "#ffffff",
+        "secondary": "#232730",
+        "accent": "#111a4a",
+        "accent-orange": "#ec652b",
+        "ink": "#111a4a",
+        "stone": "#e3e4e8",
+        "strong": "#12161e",
+        "muted": "#7c7f88",
+        "smoke": "#575a64",
+        "ash": "#7c7f88",
+        "eggshell": "#f6f6f8",
+        "warm-taupe": "#ffffff",
+        "graphite": "#3b3e47",
+        "gallery": "#eeeff2",
+        "footer": "#eeeff2",
+        "footer-heading": "#111a4a",
+        "footer-text": "#7c7f88",
+        "cool-card": "#ffffff",
+        "filter-edge": "#e3e4e8",
+        "preview": "#ffffff",
+        "surface": "#ffffff",
+        "on-surface": "#111a4a",
+        "surface-container-lowest": "#ffffff",
+        "surface-container-low": "#f6f6f8",
+        "surface-container": "#eeeff2",
+        "surface-container-high": "#e3e4e8",
       },
       borderRadius: {
-        DEFAULT: "0.25rem",
-        lg: "0.5rem",
-        xl: "0.75rem",
-        "2xl": "1rem",
-        "3xl": "1.5rem",
+        DEFAULT: "8px",
+        sm: "4px",
+        md: "8px",
+        lg: "8px",
+        xl: "12px",
+        "2xl": "16px",
         full: "9999px",
       },
-      spacing: {
-        margin: "1rem",
-        "margin-desktop": "2.5rem",
-        "space-xs": "0.25rem",
-        "space-sm": "0.5rem",
-        "space-md": "1rem",
-        "space-lg": "1.5rem",
-        "space-xl": "2.5rem",
-        gutter: "1rem",
-        "gutter-desktop": "1.5rem",
-      },
       fontFamily: {
-        sans: ["'Replit Diatype'", "Inter", "Arial", "sans-serif"],
-        diatype: ["'Replit Diatype'", "Inter", "Arial", "sans-serif"],
-        "diatype-mono": ["'Replit Diatype Mono'", "'IBM Plex Mono'", "'JetBrains Mono'", "monospace"],
-        mono: ["'Replit Diatype Mono'", "'IBM Plex Mono'", "'JetBrains Mono'", "'Fira Code'", "'Geist Mono'", "monospace"],
-        code: ["'JetBrains Mono'", "'Fira Code'", "'Geist Mono'", "monospace"],
-        "jetbrains-mono": ["'JetBrains Mono'", "'Fira Code'", "monospace"],
-        waldenburg: ["Waldenburg", "Inter", "sans-serif"],
-        inter: ["Inter", "sans-serif"],
-        geist: ["Geist", "sans-serif"],
-        "geist-mono": ["'JetBrains Mono'", "Geist Mono", "monospace"],
-        "label-sm": ["Geist", "sans-serif"],
-        "mono-data": ["'Replit Diatype Mono'", "'IBM Plex Mono'", "'JetBrains Mono'", "monospace"],
-        "label-md": ["Geist", "sans-serif"],
-        "headline-xl": ["Inter", "sans-serif"],
-        "headline-sm": ["Inter", "sans-serif"],
-        "headline-lg": ["Inter", "sans-serif"],
-        "headline-md": ["Inter", "sans-serif"],
-        "body-sm": ["Inter", "sans-serif"],
-        "body-md": ["Inter", "sans-serif"],
-        "title-md": ["Inter", "sans-serif"],
-        "headline-xl-mobile": ["Inter", "sans-serif"],
-        "display-lg": ["Inter", "sans-serif"],
-        "body-lg": ["Inter", "sans-serif"],
-        "display-lg-mobile": ["Inter", "sans-serif"],
+        sans: [
+          '"SuisseIntl"',
+          '"Inter"',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          '"Segoe UI"',
+          'Roboto',
+          'sans-serif',
+        ],
+        mono: [
+          '"SuisseIntlMono"',
+          '"IBM Plex Mono"',
+          'ui-monospace',
+          'Menlo',
+          'Consolas',
+          'monospace',
+        ],
+        code: [
+          '"SFMono"',
+          '"Roboto Mono"',
+          '"IBM Plex Mono"',
+          'monospace',
+        ],
       },
       letterSpacing: {
-        tightest: "-0.06em",
-        tighter: "-0.04em",
-        tight: "-0.03em",
-        technical: "0.12em",
+        tightest: "-0.03em",
+        tighter: "-0.02em",
+        tight: "-0.01em",
+        normal: "0em",
+        technical: "0.1em",
       },
       maxWidth: {
-        marketing: "1380px",
-        nav: "1280px",
-        footer: "1280px",
+        column: "1112px",
+        marketing: "1112px",
+        content: "1072px",
+        nav: "1112px",
+        footer: "1112px",
       },
-      fontSize: {
-        "label-sm": ["11px", { lineHeight: "16px", letterSpacing: "0.04em", fontWeight: "500" }],
-        "mono-data": ["12px", { lineHeight: "16px", letterSpacing: "0em", fontWeight: "400" }],
-        "label-md": ["13px", { lineHeight: "18px", letterSpacing: "0.02em", fontWeight: "500" }],
-        "headline-xl": ["40px", { lineHeight: "48px", letterSpacing: "-0.025em", fontWeight: "300" }],
-        "headline-sm": ["20px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "400" }],
-        "headline-lg": ["30px", { lineHeight: "38px", letterSpacing: "-0.02em", fontWeight: "300" }],
-        "headline-md": ["24px", { lineHeight: "32px", letterSpacing: "-0.015em", fontWeight: "300" }],
-        "body-sm": ["12px", { lineHeight: "18px", letterSpacing: "0.01em", fontWeight: "400" }],
-        "body-md": ["14px", { lineHeight: "22px", letterSpacing: "0em", fontWeight: "400" }],
-        "title-md": ["16px", { lineHeight: "24px", letterSpacing: "-0.005em", fontWeight: "500" }],
-        "headline-xl-mobile": ["28px", { lineHeight: "36px", letterSpacing: "-0.02em", fontWeight: "300" }],
-        "display-lg": ["56px", { lineHeight: "64px", letterSpacing: "-0.03em", fontWeight: "300" }],
-        "body-lg": ["16px", { lineHeight: "26px", letterSpacing: "0em", fontWeight: "400" }],
-        "display-lg-mobile": ["36px", { lineHeight: "44px", letterSpacing: "-0.02em", fontWeight: "300" }],
+      boxShadow: {
+        "catalog-edge": "0px 0px 0px 1px rgba(0,0,0,0.05), 0px 1px 3px 0px rgba(0,0,0,0.05)",
+        "floating-glass": "24px 48px 64px 0px rgba(30,30,44,0.15), 0px 0px 0px 1px #ffffff inset",
+        "closing-card": "0px 1px 2px 0px rgba(0,0,0,0.1)",
+        "primary-btn": "0px 0px 0px 1px #111a4a, 0px 2px 4px 0px rgba(0,0,0,0.25), 0px 1px 2px 0px rgba(0,0,0,0.25)",
+        "secondary-btn": "0px 0px 0px 1px rgba(87,90,100,0.12)",
       },
     },
   },

@@ -4,286 +4,433 @@
 
 @layer base {
   :root {
-    /* Replit Warm Tokens */
-    --color-canvas: #faf6f1;
-    --color-accent: #ff3c00;
-    --color-optical: #ff764c;
-    --color-coral: #ff764d;
-    --color-peach: #f9aa8b;
-    --color-salmon: #ffb199;
-    --color-footer-heading: #111827;
-    --color-strong: #191818;
-    --color-ink: #312e2e;
-    --color-olive: #2c3328;
-    --color-hero-ink: #37383c;
-    --color-support: #4b4d53;
-    --color-footer-text: #4b5563;
-    --color-muted: #6f6c6a;
-    --color-stone: #dbd4cf;
-    --color-filter-edge: #d8d5cf;
-    --color-edge: #dfddd8;
-    --color-cool-card: #ededed;
-    --color-gallery: #f3f2ee;
-    --color-panel: #f3f3f1;
-    --color-preview: #f6f5f4;
-    --color-footer: #faf5f0;
+    /* =========================================================================
+       COLUMN BRAND PALETTE
+       ========================================================================= */
+    /* Default headings, main buttons and directory labels; supporting copy at 60% */
+    --color-navy: #111a4a;
+    --color-navy-ink: #111a4a;
+
+    /* Left side of the narrow announcement gradient */
+    --color-announcement-indigo: #3e5199;
+    --color-banner-start: #3e5199;
+
+    /* Right side of the announcement gradient */
+    --color-announcement-periwinkle: #5568ad;
+    --color-banner-end: #5568ad;
+
+    /* Bounded infrastructure chapters */
+    --color-deep-teal: #011821;
+
+    /* Darker blue controls and closing headings in warm theme */
+    --color-launch-midnight: #080b32;
+
+    /* =========================================================================
+       COLUMN NEUTRAL PALETTE
+       ========================================================================= */
+    /* Compact customer quotations; alpha versions supply fine shadows */
+    --color-quote-black: #000000;
+    --color-black: #000000;
+
+    /* Navigation and product-detail headings */
+    --color-near-black: #12161e;
+    --color-near-black-ink: #12161e;
+    --color-heading-ink: #12161e;
+
+    /* Secondary button labels */
+    --color-control-charcoal: #232730;
+    --color-control-ink: #232730;
+
+    /* Longer explanations and catalog titles */
+    --color-body-charcoal: #3b3e47;
+    --color-body-ink: #3b3e47;
+
+    /* Small descriptive copy and subtle control edges */
+    --color-secondary-gray: #575a64;
+    --color-secondary-ink: #575a64;
+
+    /* Captions, directory links and subdued supporting text */
+    --color-muted-gray: #7c7f88;
+    --color-muted-ink: #7c7f88;
+
+    /* Warm panel's outline (editorial product launches) */
+    --color-warm-hairline: #e7e4e0;
+
+    /* Section rules and the closing panel's 1px outline */
+    --color-cool-hairline: #e3e4e8;
+    --color-edge: #e3e4e8;
+
+    /* Warm launch theme canvas (editorial product launches) */
+    --color-warm-stone: #eceae7;
+
+    /* Closing panel and technical response backing */
+    --color-closing-gray: #eeeff2;
+    --color-panel: #eeeff2;
+
+    /* Warm launch closing panel (editorial product launches) */
+    --color-warm-milk: #f5f3f1;
+
+    /* Default marketing canvas */
+    --color-cool-canvas: #f6f6f8;
+    --color-canvas: #f6f6f8;
+
+    /* Slightly cooler canvas for product-detail pages */
+    --color-product-frost: #f6f7fa;
+
+    /* White surfaces, reversed text and glass edges */
+    --color-milk-white: #ffffff;
     --color-white: #ffffff;
 
-    /* Semantic / Compatibility Tokens */
-    --color-eggshell: #faf6f1;
-    --color-warm-taupe: #f5f3f1;
-    --color-graphite: #44403b;
-    --color-smoke: #6f6c6a;
-    --color-ash: #a59f97;
-    --color-violet-spark: #ff3c00;
-    --color-ember-orange: #ff3c00;
+    /* =========================================================================
+       COLUMN ACCENT PALETTE
+       ========================================================================= */
+    /* Active customer tab and compact proof objects; not default conversion */
+    --color-customer-ember: #ec652b;
+    --color-orange: #ec652b;
+    --color-ember: #ec652b;
 
-    --surface-container-lowest: #ffffff;
-    --surface-container-low: #faf5f0;
-    --surface-container: #f3f2ee;
-    --surface-container-high: #ededed;
-    --surface-container-highest: #dbd4cf;
+    /* Metrics, proof labels and small graph endpoints */
+    --color-proof-green: #167e6c;
 
-    --primary-container: #191818;
-    --on-primary-container: #dfddd8;
-    --secondary-container: #ffb199;
-    --secondary: #ff3c00;
-    --tertiary-fixed: #f3f2ee;
+    /* Closing matrix icons, with inactive dots at 20% opacity */
+    --color-dot-blue: #4575cd;
+
+    /* Emphasized narrative statements (company and culture narratives) */
+    --color-editorial-blue: #1b2d70;
+
+    /* 2px navigation focus ring and editorial quote rules */
+    --color-focus-blue: #a2c1ed;
+
+    /* Headlines on deep teal */
+    --color-icy-cyan: #c1e8ef;
+    --color-ice: #c1e8ef;
+
+    /* Semantic / Backwards Compatibility Mappings */
+    --color-eggshell: #f6f6f8;
+    --color-warm-taupe: #ffffff;
+    --color-ink: #111a4a;
+    --color-strong: #12161e;
+    --color-stone: #e3e4e8;
+    --color-smoke: #575a64;
+    --color-ash: #7c7f88;
+    --color-accent: #111a4a;
+    --color-gallery: #eeeff2;
+    --color-preview: #ffffff;
+    --color-footer: #eeeff2;
+    --color-footer-heading: #111a4a;
+    --color-footer-text: #7c7f88;
   }
 
   html.dark {
-    --color-canvas: #141310;
-    --color-accent: #ff4714;
-    --color-optical: #ff764c;
-    --color-coral: #8f3a22;
-    --color-peach: #522d1f;
-    --color-salmon: #5c3527;
-    --color-footer-heading: #faf6f1;
-    --color-strong: #faf6f1;
-    --color-ink: #ede8e1;
-    --color-olive: #1a2018;
-    --color-hero-ink: #faf6f1;
-    --color-support: #aba49b;
-    --color-footer-text: #a8a29a;
-    --color-muted: #9c958c;
-    --color-stone: #332f2a;
-    --color-filter-edge: #3d3831;
-    --color-edge: #38332c;
-    --color-cool-card: #1f1e1c;
-    --color-gallery: #181714;
-    --color-panel: #201e1a;
-    --color-preview: #1a1916;
-    --color-footer: #100f0d;
-    --color-white: #1f1e1c;
+    /* Deep Slate / Dark Column Mode */
+    --color-canvas: #0c0f17;
+    --color-cool-canvas: #0c0f17;
+    --color-product-frost: #0c0f17;
+    --color-panel: #141824;
+    --color-closing-gray: #141824;
+    --color-edge: #232a3d;
+    --color-cool-hairline: #232a3d;
+    --color-warm-hairline: #2d354d;
+    --color-white: #171d2b;
+    --color-milk-white: #171d2b;
+    --color-navy: #ffffff;
+    --color-navy-ink: #ffffff;
+    --color-heading-ink: #ffffff;
+    --color-near-black: #ffffff;
+    --color-near-black-ink: #ffffff;
+    --color-strong: #ffffff;
+    --color-ink: #edf1fa;
+    --color-body-charcoal: #b8c1d9;
+    --color-body-ink: #b8c1d9;
+    --color-secondary-gray: #94a0bf;
+    --color-secondary-ink: #94a0bf;
+    --color-muted-gray: #6b7799;
+    --color-muted-ink: #6b7799;
+    --color-control-charcoal: #edf1fa;
+    --color-control-ink: #edf1fa;
 
-    --color-eggshell: #141310;
-    --color-warm-taupe: #1c1a17;
-    --color-graphite: #d4cfc9;
-    --color-smoke: #a19a91;
-    --color-ash: #6b645c;
-    --color-violet-spark: #ff6026;
-    --color-ember-orange: #ff4714;
-
-    --surface-container-lowest: #141310;
-    --surface-container-low: #181614;
-    --surface-container: #201e1a;
-    --surface-container-high: #2b2723;
-    --surface-container-highest: #332f2a;
-
-    --primary-container: #2b2724;
-    --on-primary-container: #d4cfc9;
-    --secondary-container: #36170d;
-    --secondary: #ff7547;
-    --tertiary-fixed: #1f1e1c;
+    --color-eggshell: #0c0f17;
+    --color-warm-taupe: #141824;
+    --color-stone: #232a3d;
+    --color-smoke: #94a0bf;
+    --color-ash: #6b7799;
+    --color-accent: #c1e8ef;
+    --color-gallery: #141824;
+    --color-preview: #171d2b;
+    --color-footer: #0c0f17;
+    --color-footer-heading: #ffffff;
+    --color-footer-text: #6b7799;
   }
 
-  html {
-    scroll-behavior: smooth;
+  /* 2px focus ring using focus-blue (#a2c1ed) */
+  :focus-visible {
+    outline: 2px solid var(--color-focus-blue, #a2c1ed);
+    outline-offset: 2px;
   }
 
   body {
-    margin: 0;
-    padding: 0;
-    background-color: var(--color-eggshell);
-    color: var(--color-ink);
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--color-canvas);
+    color: var(--color-body-ink);
+    font-family: "SuisseIntl", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    transition: background-color 0.2s ease, color 0.2s ease;
-  }
-
-  /* Dark mode overrides for explicit white containers */
-  html.dark .bg-white {
-    background-color: var(--surface-container-lowest) !important;
-  }
-
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  .no-scrollbar::-webkit-scrollbar,
-  .scrollbar-none::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* Hide scrollbar for IE, Edge and Firefox */
-  .no-scrollbar,
-  .scrollbar-none {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-
-  pre, code {
-    font-family: 'JetBrains Mono', 'Fira Code', 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    font-feature-settings: "liga" 1, "calt" 1;
-  }
-
-  /* Global typography overrides for article markdown content */
-  .markdown-content h1 {
-    font-size: 1.5rem;
-    line-height: 2rem;
-  }
-  .markdown-content h2 {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-  }
-  .markdown-content h3 {
-    font-size: 1rem;
-    line-height: 1.5rem;
-  }
-  .markdown-content h4 {
-    font-size: 0.875rem;
-    line-height: 1.25rem;
   }
 }
 
-.material-symbols-outlined {
-  font-family: 'Material Symbols Outlined' !important;
-  font-variation-settings:
-    'FILL' 0,
-    'wght' 400,
-    'GRAD' 0,
-    'opsz' 24;
-  vertical-align: middle;
+/* =========================================================================
+   COLUMN BUTTON RECIPES (Physical Key Controls: 36px high, 8px radius)
+   ========================================================================= */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 8px;
+  background-color: #111a4a;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
   line-height: 1;
-  display: inline-block;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
+  text-decoration: none;
+  box-shadow: 0px 0px 0px 1px #111a4a, 0px 2px 4px 0px rgba(0,0,0,0.25), 0px 1px 2px 0px rgba(0,0,0,0.25);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
   white-space: nowrap;
-  direction: ltr;
-  -webkit-font-smoothing: antialiased;
 }
 
-/* Replit Signature Optical Artwork & Effects */
-.optical-fold-card {
-  position: relative;
+.btn-primary:hover {
+  background-color: #1a2561;
+  box-shadow: 0px 0px 0px 1px #1a2561, 0px 3px 6px 0px rgba(0,0,0,0.3);
+}
+
+.btn-primary:active {
+  box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.2);
+  transform: translateY(0.5px);
+}
+
+.dark .btn-primary {
+  background-color: #ffffff;
+  color: #111a4a;
+  box-shadow: 0px 0px 0px 1px #ffffff, 0px 2px 4px 0px rgba(0,0,0,0.5);
+}
+
+.dark .btn-primary:hover {
+  background-color: #f6f6f8;
+  box-shadow: 0px 0px 0px 1px #f6f6f8, 0px 3px 6px 0px rgba(0,0,0,0.6);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.65);
+  color: #232730;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  backdrop-filter: blur(4px);
+  box-shadow: 0px 0px 0px 1px rgba(87, 90, 100, 0.15);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-secondary:hover {
+  background-color: #ffffff;
+  box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.1), 0px 0px 0px 1px rgba(87, 90, 100, 0.25);
+}
+
+.btn-secondary:active {
+  box-shadow: 0px 0px 0px 1px rgba(87, 90, 100, 0.2);
+  transform: translateY(0.5px);
+}
+
+.dark .btn-secondary {
+  background-color: rgba(23, 29, 43, 0.7);
+  color: #edf1fa;
+  box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.1);
+}
+
+.dark .btn-secondary:hover {
+  background-color: rgba(23, 29, 43, 1);
+  box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.25), 0px 1px 3px 0px rgba(0, 0, 0, 0.3);
+}
+
+/* =========================================================================
+   COLUMN SURFACES & CONTAINERS
+   ========================================================================= */
+
+.floating-glass {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 8px;
+  backdrop-filter: blur(12px);
+  box-shadow: 24px 48px 64px 0px rgba(30, 30, 44, 0.12), 0px 0px 0px 1px #ffffff inset;
+  border: 1px solid rgba(227, 228, 232, 0.6);
+}
+
+.dark .floating-glass {
+  background: rgba(20, 24, 36, 0.85);
+  box-shadow: 24px 48px 64px 0px rgba(0, 0, 0, 0.4), 0px 0px 0px 1px rgba(255, 255, 255, 0.05) inset;
+  border: 1px solid rgba(35, 42, 61, 0.8);
+}
+
+.deep-platform-chapter {
+  background-color: #011821;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 16px 16px;
+  border-radius: 12px;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.closing-destination {
+  background-color: #eeeff2;
+  border: 1px solid #e3e4e8;
+  border-radius: 12px;
+  margin-left: 12px;
+  margin-right: 12px;
   overflow: hidden;
-  background-color: #f9aa8b;
-  border-radius: 24px;
 }
 
-.optical-strip-1 {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  width: 418px;
-  background: radial-gradient(ellipse at left center, #ff764c 72%, rgba(255, 118, 76, 0.42) 100%);
-  pointer-events: none;
+.dark .closing-destination {
+  background-color: #121622;
+  border-color: #232a3d;
 }
 
-.optical-strip-2 {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  width: 168px;
-  background: radial-gradient(ellipse at left center, #ff764c 45%, rgba(255, 118, 76, 0.45) 100%);
-  pointer-events: none;
-}
-
-.optical-strip-3 {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  width: 89px;
-  background: radial-gradient(ellipse at left center, #ff764c 30%, rgba(255, 118, 76, 0.35) 100%);
-  pointer-events: none;
-}
-
-.composer-glow {
-  position: absolute;
-  inset: -32px -60px;
-  background: radial-gradient(ellipse at center, rgba(255, 177, 153, 0.38) 0%, rgba(255, 177, 153, 0.12) 50%, transparent 75%);
-  filter: blur(32px);
-  pointer-events: none;
-  z-index: 0;
-}
-
-@keyframes marquee-scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-.animate-marquee {
+.closing-route-card {
   display: flex;
-  width: max-content;
-  animation: marquee-scroll 40s linear infinite;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 24px 28px 28px;
+  height: 209px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid #ffffff;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(12px);
+  transition: all 0.2s ease;
+  text-decoration: none;
 }
 
-.animate-marquee:hover {
-  animation-play-state: paused;
+.dark .closing-route-card {
+  background: rgba(23, 29, 43, 0.45);
+  border-color: rgba(255, 255, 255, 0.08);
 }
 
-/* Header & Primary Action button visibility override */
-.nav-action-btn,
-.btn-primary-accent {
-  background-color: #ff3c00 !important;
-  color: #ffffff !important;
-  border: 1px solid #ff3c00 !important;
+.closing-route-card:hover {
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
 }
 
-.nav-action-btn:hover,
-.btn-primary-accent:hover {
-  background-color: #e03500 !important;
-  color: #ffffff !important;
+.dark .closing-route-card:hover {
+  background: rgba(23, 29, 43, 0.8);
 }
 
-.nav-action-btn *,
-.btn-primary-accent * {
-  color: #ffffff !important;
+.catalog-card {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.05), 0px 1px 3px 0px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(4px);
+  transition: all 0.25s ease;
 }
 
-/* Replit Outline Action Button */
-.btn-outline-accent {
-  background-color: #ffffff !important;
-  color: #ff3c00 !important;
-  border: 1.5px solid #ff3c00 !important;
+.dark .catalog-card {
+  background: rgba(20, 24, 36, 0.7);
+  box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.06), 0px 1px 3px 0px rgba(0, 0, 0, 0.3);
 }
 
-.btn-outline-accent * {
-  color: #ff3c00 !important;
+.catalog-card:hover {
+  box-shadow: 0px 0px 0px 1px rgba(17, 26, 74, 0.2), 0px 4px 14px 0px rgba(17, 26, 74, 0.08);
+  transform: translateY(-1px);
 }
 
-.btn-outline-accent:hover {
-  background-color: #ff3c00 !important;
-  color: #ffffff !important;
+.dark .catalog-card:hover {
+  box-shadow: 0px 0px 0px 1px rgba(193, 232, 239, 0.25), 0px 4px 14px 0px rgba(0, 0, 0, 0.4);
 }
 
-.btn-outline-accent:hover * {
-  color: #ffffff !important;
+/* =========================================================================
+   COLUMN HALFTONE MINT-BLUE ATMOSPHERE
+   ========================================================================= */
+
+.halftone-atmosphere {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 65%;
+  pointer-events: none;
+  background-image: 
+    radial-gradient(circle at 70% 35%, rgba(193, 232, 239, 0.35) 0%, rgba(69, 117, 205, 0.08) 50%, transparent 75%),
+    radial-gradient(circle, #4575cd 1.2px, transparent 1.2px);
+  background-size: 100% 100%, 14px 14px;
+  mask-image: radial-gradient(circle at 65% 45%, black 40%, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle at 65% 45%, black 40%, transparent 80%);
+  opacity: 0.85;
 }
 
-html.dark .btn-outline-accent {
-  background-color: #1a1815 !important;
-  color: #ff3c00 !important;
-  border: 1.5px solid #ff3c00 !important;
+.dark .halftone-atmosphere {
+  opacity: 0.35;
 }
 
-html.dark .btn-outline-accent:hover {
-  background-color: #ff3c00 !important;
-  color: #ffffff !important;
+/* Monospace Eyebrow with terminal cursor */
+.column-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "SuisseIntlMono", "IBM Plex Mono", monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #7c7f88;
 }
 
-html.dark .btn-outline-accent:hover * {
-  color: #ffffff !important;
+.column-eyebrow::after {
+  content: "▋";
+  font-size: 10px;
+  color: #4575cd;
+  animation: blink 1.2s infinite;
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* Sleek Column Custom Scrollbar */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-edge, #e3e4e8) transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--color-edge, #e3e4e8);
+  border-radius: 9999px;
+  transition: background-color 0.2s ease;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--color-announcement-indigo, #3e5199);
 }

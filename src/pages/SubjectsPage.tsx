@@ -1,6 +1,5 @@
 import React, { useState, useMemo } from 'react';
 import { getEnrichedSubjects, getAllNotes } from '../utils/contentLoader';
-import { seriesList } from '../data/series';
 import { SubjectCard } from '../components/cards/SubjectCard';
 import { Breadcrumb } from '../components/common/Breadcrumb';
 import { SearchInput } from '../components/common/SearchInput';
@@ -35,10 +34,10 @@ export const SubjectsPage: React.FC = () => {
   }, [subjects, searchQuery, sortBy]);
 
   return (
-    <div className="w-full bg-canvas text-ink min-h-screen py-10 transition-colors">
-      <div className="max-w-6xl mx-auto w-full px-4 sm:px-8 space-y-10">
+    <div className="w-full bg-canvas text-body-ink min-h-screen py-10 transition-colors">
+      <div className="max-w-column mx-auto w-full px-5 space-y-10">
         {/* ZONE 1: Page Header & Global Summary Bar */}
-        <section className="flex flex-col md:flex-row justify-between items-start md:items-end pb-8 gap-6 border-b border-edge/80 dark:border-stone/30">
+        <section className="flex flex-col md:flex-row justify-between items-start md:items-end pb-8 gap-6 border-b border-edge">
           <div className="space-y-3 max-w-2xl">
             <Breadcrumb
               items={[
@@ -46,10 +45,11 @@ export const SubjectsPage: React.FC = () => {
                 { label: 'Subjects' },
               ]}
             />
-            <h1 className="text-[32px] sm:text-[42px] font-normal leading-tight tracking-tight text-strong dark:text-white">
+            <div className="column-eyebrow text-muted-ink">DOMAIN DIRECTORY</div>
+            <h1 className="text-[32px] sm:text-[44px] font-medium leading-[1.1] tracking-[-0.03em] text-navy dark:text-white">
               Subjects &amp; Knowledge Domains
             </h1>
-            <p className="text-[15px] leading-relaxed text-muted dark:text-ash">
+            <p className="text-[15px] sm:text-[16px] leading-relaxed text-secondary-ink dark:text-ash">
               Foundational engineering pillars categorizing in-depth architectural RFCs, production runbooks, internals, and implementation notes.
             </p>
           </div>
@@ -57,29 +57,20 @@ export const SubjectsPage: React.FC = () => {
           {/* Aggregated Metrics Row */}
           <div className="flex items-center gap-6 sm:gap-8 self-stretch md:self-auto justify-between md:justify-end pt-4 md:pt-0">
             <div className="flex flex-col">
-              <span className="text-[28px] sm:text-[32px] font-normal text-strong dark:text-white leading-none">
+              <span className="text-[28px] sm:text-[32px] font-medium text-navy dark:text-white leading-none">
                 {subjects.length}
               </span>
-              <span className="font-mono text-[12px] text-muted dark:text-ash mt-1">
+              <span className="font-mono text-[11px] uppercase tracking-wider text-muted-ink mt-1.5">
                 Total Subjects
               </span>
             </div>
-            <div className="h-8 w-px bg-edge/80 dark:bg-stone/30" />
+            <div className="h-8 w-px bg-edge" />
             <div className="flex flex-col">
-              <span className="text-[28px] sm:text-[32px] font-normal text-strong dark:text-white leading-none">
+              <span className="text-[28px] sm:text-[32px] font-medium text-proof-green leading-none">
                 {allNotes.length}
               </span>
-              <span className="font-mono text-[12px] text-muted dark:text-ash mt-1">
+              <span className="font-mono text-[11px] uppercase tracking-wider text-muted-ink mt-1.5">
                 Published Notes
-              </span>
-            </div>
-            <div className="h-8 w-px bg-edge/80 dark:bg-stone/30" />
-            <div className="flex flex-col">
-              <span className="text-[28px] sm:text-[32px] font-normal text-strong dark:text-white leading-none">
-                {seriesList.length}
-              </span>
-              <span className="font-mono text-[12px] text-muted dark:text-ash mt-1">
-                Active Series
               </span>
             </div>
           </div>
@@ -99,42 +90,42 @@ export const SubjectsPage: React.FC = () => {
           </div>
 
           {/* Sort Controls */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0">
-            <span className="font-mono text-[12px] text-muted dark:text-ash mr-1 hidden md:inline">
+          <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0 shrink-0">
+            <span className="font-mono text-[11px] uppercase tracking-wider text-muted-ink mr-1 shrink-0 inline">
               Sort:
             </span>
             <button
               type="button"
               onClick={() => setSortBy('notes')}
-              className={`h-[36px] px-[16px] rounded-full text-[13px] font-mono transition-all border cursor-pointer ${
+              className={`h-[36px] px-4 rounded-[8px] text-[13px] font-mono transition-all border cursor-pointer select-none inline-flex items-center justify-center ${
                 sortBy === 'notes'
-                  ? 'bg-[#191818] text-white border-[#191818] dark:bg-white dark:text-[#191818] shadow-xs'
-                  : 'bg-transparent text-muted dark:text-ash border-edge hover:border-filter-edge dark:border-stone/40 hover:text-strong dark:hover:text-white'
+                  ? 'bg-gradient-to-r from-[#3e5199] to-[#5568ad] text-white border-[#3e5199] shadow-sm font-semibold'
+                  : 'bg-white dark:bg-panel text-body-ink border-edge hover:border-[#3e5199] hover:text-[#3e5199] hover:bg-[#3e5199]/5 shadow-xs'
               }`}
             >
-              Most Notes
+              <span>Most Notes</span>
             </button>
             <button
               type="button"
               onClick={() => setSortBy('updated')}
-              className={`h-[36px] px-[16px] rounded-full text-[13px] font-mono transition-all border cursor-pointer ${
+              className={`h-[36px] px-4 rounded-[8px] text-[13px] font-mono transition-all border cursor-pointer select-none inline-flex items-center justify-center ${
                 sortBy === 'updated'
-                  ? 'bg-[#191818] text-white border-[#191818] dark:bg-white dark:text-[#191818] shadow-xs'
-                  : 'bg-transparent text-muted dark:text-ash border-edge hover:border-filter-edge dark:border-stone/40 hover:text-strong dark:hover:text-white'
+                  ? 'bg-gradient-to-r from-[#3e5199] to-[#5568ad] text-white border-[#3e5199] shadow-sm font-semibold'
+                  : 'bg-white dark:bg-panel text-body-ink border-edge hover:border-[#3e5199] hover:text-[#3e5199] hover:bg-[#3e5199]/5 shadow-xs'
               }`}
             >
-              Recently Updated
+              <span>Recently Updated</span>
             </button>
             <button
               type="button"
               onClick={() => setSortBy('alpha')}
-              className={`h-[36px] px-[16px] rounded-full text-[13px] font-mono transition-all border cursor-pointer ${
+              className={`h-[36px] px-4 rounded-[8px] text-[13px] font-mono transition-all border cursor-pointer select-none inline-flex items-center justify-center ${
                 sortBy === 'alpha'
-                  ? 'bg-[#191818] text-white border-[#191818] dark:bg-white dark:text-[#191818] shadow-xs'
-                  : 'bg-transparent text-muted dark:text-ash border-edge hover:border-filter-edge dark:border-stone/40 hover:text-strong dark:hover:text-white'
+                  ? 'bg-gradient-to-r from-[#3e5199] to-[#5568ad] text-white border-[#3e5199] shadow-sm font-semibold'
+                  : 'bg-white dark:bg-panel text-body-ink border-edge hover:border-[#3e5199] hover:text-[#3e5199] hover:bg-[#3e5199]/5 shadow-xs'
               }`}
             >
-              Alphabetical (A-Z)
+              <span>Alphabetical (A-Z)</span>
             </button>
           </div>
         </section>
@@ -148,18 +139,17 @@ export const SubjectsPage: React.FC = () => {
           </div>
 
           {filteredAndSortedSubjects.length === 0 && (
-            <div className="py-16 text-center rounded-[20px] bg-preview dark:bg-[#1a1815] border border-edge/80 dark:border-stone/30">
-              <span className="material-symbols-outlined text-[36px] text-muted">
+            <div className="py-16 text-center rounded-[12px] bg-panel border border-edge">
+              <span className="material-symbols-outlined text-[36px] text-muted-ink">
                 search_off
               </span>
-              <p className="mt-3 text-[18px] font-normal text-strong dark:text-white">
+              <p className="mt-3 text-[18px] font-medium text-navy dark:text-white">
                 No subjects found matching "{searchQuery}"
               </p>
               <button
                 type="button"
                 onClick={() => setSearchQuery('')}
-                style={{ backgroundColor: '#ff3c00', color: '#ffffff' }}
-                className="btn-primary-accent mt-4 rounded-[8px] bg-[#ff3c00] px-5 py-2.5 text-[14px] text-white hover:bg-[#e03500] hover:opacity-95 transition-all cursor-pointer font-medium shadow-xs"
+                className="btn-primary mt-4 cursor-pointer inline-flex items-center justify-center"
               >
                 Reset Search
               </button>

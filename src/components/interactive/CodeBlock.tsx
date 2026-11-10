@@ -134,7 +134,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
   return (
     <div
       className={cn(
-        'group relative my-6 rounded-2xl overflow-hidden bg-[#0c0d12] border border-[#1b1c28] text-[#e2e8f0] shadow-xl',
+        'group relative my-6 rounded-[8px] overflow-hidden bg-[#0c0d12] border border-[#1b1c28] text-[#e2e8f0] shadow-catalog-edge',
         className
       )}
     >

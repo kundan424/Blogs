@@ -2,9 +2,9 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { notes } from '../data/notes';
 import { getNoteBySlug, getAllNotes } from '../utils/contentLoader';
+import { getAllLearningPaths } from '../utils/learningPathLoader';
 import { MarkdownRenderer } from '../components/markdown/MarkdownRenderer';
 import { Breadcrumb } from '../components/common/Breadcrumb';
-import { ReadingProgressBar } from '../components/interactive/ReadingProgressBar';
 import { EmbeddedArticleSidebar } from '../components/sidebar/ArticleSidebar';
 import { useToast } from '../context/ToastContext';
 
@@ -39,6 +39,24 @@ export const NoteDetailPage: React.FC = () => {
     currentIndex >= 0 && currentIndex < allNotes.length - 1
       ? allNotes[currentIndex + 1]
       : allNotes[0];
+
+  // Check if this note is part of any structured learning path
+  const linkedCurriculum = useMemo(() => {
+    const paths = getAllLearningPaths();
+    for (const p of paths) {
+      for (const m of p.modules) {
+        const match = m.lessons.find((l) => l.noteSlug === note.slug);
+        if (match) {
+          return {
+            path: p,
+            module: m,
+            lesson: match,
+          };
+        }
+      }
+    }
+    return undefined;
+  }, [note.slug]);
 
   // Claps State & Handler
   const [claps, setClaps] = useState(() => {
@@ -243,17 +261,14 @@ export const NoteDetailPage: React.FC = () => {
   };
 
   return (
-    <div className="w-full bg-eggshell dark:bg-[#090a0f] text-ink dark:text-[#e2e8f0] min-h-screen flex flex-col transition-colors duration-200 selection:bg-warm-taupe dark:selection:bg-[#38265a] selection:text-ink dark:selection:text-[#f5f3ff]">
-      {/* Top Reading Progress Bar */}
-      <ReadingProgressBar />
-
+    <div className="w-full bg-product-frost dark:bg-[#0c0f17] text-body-ink min-h-screen flex flex-col transition-colors selection:bg-ice/50 selection:text-navy">
       {/* MOBILE ON-THIS-PAGE ACCORDION BAR (< 1024px) */}
       {sections.length > 0 && (
-        <div className="block lg:hidden border-b border-stone/80 dark:border-[#1e2029] bg-warm-taupe dark:bg-[#0d0e15] px-4 py-3 sticky top-16 z-30 shadow-xs">
+        <div className="block lg:hidden border-b border-edge bg-white dark:bg-panel px-4 py-3 sticky top-16 z-30 shadow-xs">
           <button
             type="button"
             onClick={() => setMobileTocOpen(!mobileTocOpen)}
-            className="flex items-center justify-between w-full font-mono text-[12px] text-violet-spark dark:text-[#c084fc] font-medium"
+            className="flex items-center justify-between w-full font-mono text-[12px] text-navy dark:text-ice font-medium cursor-pointer"
           >
             <span className="flex items-center gap-2">
               <span className="material-symbols-outlined text-[16px]">menu_book</span>
@@ -264,7 +279,7 @@ export const NoteDetailPage: React.FC = () => {
             </span>
           </button>
           {mobileTocOpen && (
-            <div className="mt-3 pt-3 border-t border-stone/70 dark:border-[#1e2029] max-h-72 overflow-y-auto space-y-1.5 font-mono text-[12px]">
+            <div className="mt-3 pt-3 border-t border-edge max-h-72 overflow-y-auto space-y-1.5 font-mono text-[12px]">
               {sections.map((sec, idx) => (
                 <button
                   key={sec.id}
@@ -273,14 +288,24 @@ export const NoteDetailPage: React.FC = () => {
                     scrollToSection(sec.id);
                     setMobileTocOpen(false);
                   }}
-                  className={`flex items-center gap-2 w-full text-left py-2 px-3 rounded-lg transition-colors ${
+                  className={`flex items-center gap-2.5 w-full text-left py-2 px-3 rounded-[6px] transition-colors cursor-pointer ${
                     activeSection === sec.id
-                      ? 'bg-violet-spark/10 dark:bg-[#1f1837] text-violet-spark dark:text-[#e9d5ff] font-semibold border-l-2 border-violet-spark dark:border-[#a855f7]'
-                      : 'text-graphite dark:text-[#94a3b8] hover:text-ink dark:hover:text-white hover:bg-stone/20 dark:hover:bg-[#151624]'
+                      ? 'bg-gradient-to-r from-[#3e5199]/15 to-[#5568ad]/10 dark:from-[#3e5199]/35 dark:to-[#5568ad]/20 text-[#1b2d70] dark:text-ice font-semibold border-l-[3.5px] border-[#3e5199] dark:border-focus-blue'
+                      : 'text-secondary-ink hover:text-navy dark:hover:text-white hover:bg-canvas'
                   }`}
                 >
-                  <span className="text-violet-spark dark:text-[#a855f7] font-semibold">{String(idx + 1).padStart(2, '0')}</span>
-                  <span className="truncate">{sec.title.replace(/^\d+\.\s*/, '')}</span>
+                  <span
+                    className={`font-mono text-[11px] font-bold ${
+                      activeSection === sec.id
+                        ? 'text-[#3e5199] dark:text-focus-blue'
+                        : 'text-proof-green'
+                    }`}
+                  >
+                    {String(idx + 1).padStart(2, '0')}
+                  </span>
+                  <span className={`truncate ${activeSection === sec.id ? 'text-[#1b2d70] dark:text-ice font-semibold' : ''}`}>
+                    {sec.title.replace(/^\d+\.\s*/, '')}
+                  </span>
                 </button>
               ))}
             </div>
@@ -293,29 +318,50 @@ export const NoteDetailPage: React.FC = () => {
         <button
           type="button"
           onClick={toggleSidebar}
-          className="fixed left-4 top-20 z-30 hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-full bg-warm-taupe/95 dark:bg-[#10111a]/95 border border-stone/80 dark:border-[#25283b] text-graphite dark:text-[#cbd5e1] hover:text-ink dark:hover:text-white shadow-lg backdrop-blur-md transition-all font-mono text-[11.5px] hover:scale-105"
+          className="fixed left-4 top-20 z-30 hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-[8px] bg-white/95 dark:bg-panel/95 border border-edge text-secondary-ink hover:text-navy dark:hover:text-white shadow-secondary-btn backdrop-blur-md transition-all font-mono text-[11.5px] cursor-pointer"
           title="Open table of contents sidebar"
         >
-          <span className="material-symbols-outlined text-[15px] text-violet-spark dark:text-[#a855f7]">
+          <span className="material-symbols-outlined text-[15px] text-navy dark:text-ice">
             dock_to_right
           </span>
           <span className="font-medium">On This Page ({sections.length})</span>
         </button>
       )}
 
+      {/* TOP PARENT BREADCRUMB BAR */}
+      <div className="w-full max-w-column mx-auto px-5 pt-6 pb-1">
+        <Breadcrumb
+          items={[
+            { label: 'Home', href: '/', icon: 'home' },
+            { label: 'Subjects', href: '/subjects' },
+            { label: note.subjectName, href: `/subjects/${note.subjectSlug}` },
+            ...(linkedCurriculum
+              ? [
+                  {
+                    label: linkedCurriculum.path.title,
+                    href: `/learning-paths/${linkedCurriculum.path.slug}`,
+                  },
+                ]
+              : []),
+            { label: note.title },
+          ]}
+          className="text-muted-ink"
+        />
+      </div>
+
       {/* 2-COLUMN VIEW: EMBEDDED LEFT SIDEBAR + ARTICLE SCROLL AREA */}
-      <div className="w-full max-w-[1720px] mx-auto flex flex-1">
-        {/* LEFT COLUMN: EMBEDDED ON THIS PAGE SIDEBAR (SHRUNK COMPACT: 250px - 280px) */}
+      <div className="w-full max-w-column mx-auto flex flex-1 px-5 pt-4 pb-12 gap-8 items-start">
+        {/* LEFT COLUMN: EMBEDDED ON THIS PAGE SIDEBAR (260px) */}
         {!sidebarHidden && sections.length > 0 && (
-          <div className="hidden lg:block w-[250px] lg:w-[270px] xl:w-[280px] shrink-0 sticky top-16 h-[calc(100vh-64px)] z-20">
+          <div className="hidden lg:block w-[260px] shrink-0 sticky top-20 max-h-[calc(100vh-100px)] z-20 rounded-[8px] border border-edge overflow-hidden shadow-catalog-edge">
             <EmbeddedArticleSidebar
               sections={sections}
               activeId={activeSection}
               onSelect={scrollToSection}
               subjectTitle={
                 note.subjectName
-                  ? `${note.subjectName.toUpperCase()} ONE-STOP INTERVIEW PREP`
-                  : 'JAVA ONE-STOP INTERVIEW PREP'
+                  ? `${note.subjectName.toUpperCase()} LESSONS`
+                  : 'LESSON OUTLINE'
               }
               readTime={note.readTime}
               onToggleCollapse={toggleSidebar}
@@ -324,37 +370,51 @@ export const NoteDetailPage: React.FC = () => {
           </div>
         )}
 
-        {/* RIGHT COLUMN: ARTICLE SCROLL CANVAS (RESPONSIVE FOR LIGHT & DARK MODE) */}
-        <main
-          className={`flex-1 min-w-0 bg-[#faf8f5] dark:bg-[#0a0b10] py-8 lg:py-12 border-l border-stone/60 dark:border-[#1a1b26] transition-colors duration-200 ${
-            sidebarHidden
-              ? 'px-6 sm:px-12 lg:px-20 max-w-5xl mx-auto'
-              : 'px-6 sm:px-10 lg:pl-12 lg:pr-10 xl:pl-16 xl:pr-14'
-          }`}
-        >
-          <div className="max-w-4xl mx-auto space-y-10">
+        {/* RIGHT COLUMN: ARTICLE SCROLL CANVAS */}
+        <main className="flex-1 min-w-0 bg-white dark:bg-panel p-6 sm:p-10 lg:p-12 rounded-[12px] border border-edge shadow-catalog-edge transition-colors">
+          <div className="max-w-3xl mx-auto space-y-10">
             {/* ZONE 1: ARTICLE HEADER BLOCK */}
-            <header className="border-b border-stone/80 dark:border-[#1e2029] pb-8">
-              {/* Breadcrumbs */}
-              <Breadcrumb
-                items={[
-                  { label: 'Home', href: '/' },
-                  { label: 'Subjects', href: '/subjects' },
-                  { label: note.subjectName, href: `/subjects/${note.subjectSlug}` },
-                  { label: note.title },
-                ]}
-                className="mb-6 text-smoke dark:text-[#94a3b8]"
-              />
+            <header className="border-b border-edge pb-8">
+              {/* Learning Path Curriculum Ribbon */}
+              {linkedCurriculum && (
+                <div className="mb-6 p-3.5 rounded-[8px] bg-panel/70 dark:bg-panel/40 border border-edge/80 flex flex-wrap items-center justify-between gap-3 text-[12px] font-mono shadow-2xs">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="material-symbols-outlined text-[17px] text-proof-green">
+                      schema
+                    </span>
+                    <span className="text-muted-ink uppercase tracking-wider text-[10.5px]">
+                      Learning Path:
+                    </span>
+                    <Link
+                      to={`/learning-paths/${linkedCurriculum.path.slug}`}
+                      className="font-semibold text-navy dark:text-white hover:underline"
+                    >
+                      {linkedCurriculum.path.title}
+                    </Link>
+                    <span className="text-muted-ink">•</span>
+                    <span className="text-secondary-ink dark:text-muted-ink">
+                      Module {linkedCurriculum.module.number} (Lesson {linkedCurriculum.lesson.number})
+                    </span>
+                  </div>
+                  <Link
+                    to={`/learning-paths/${linkedCurriculum.path.slug}`}
+                    className="inline-flex items-center gap-1 text-proof-green hover:underline font-medium text-[11.5px]"
+                  >
+                    <span>Full Curriculum</span>
+                    <span className="material-symbols-outlined text-[13px]">arrow_forward</span>
+                  </Link>
+                </div>
+              )}
 
               {/* Local Draft Mode Alert Banner */}
               {isDraft && (
-                <div className="mb-6 rounded-xl border border-amber-500/40 bg-amber-500/10 px-4 py-3 text-amber-800 dark:text-amber-400 flex flex-wrap items-center justify-between gap-2 font-mono text-label-sm shadow-xs">
+                <div className="mb-6 rounded-[8px] border border-amber-500/40 bg-amber-500/10 px-4 py-3 text-amber-800 dark:text-amber-300 flex flex-wrap items-center justify-between gap-2 font-mono text-[12px]">
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
                     <span className="font-semibold uppercase tracking-wider">Local Draft Mode</span>
-                    <span className="text-smoke text-[11px]">({(note as any).filePath || 'Draft File'})</span>
+                    <span className="text-muted-ink text-[11px]">({(note as any).filePath || 'Draft File'})</span>
                   </div>
-                  <span className="text-[11px] text-smoke dark:text-[#94a3b8]">published: false (visible only in development)</span>
+                  <span className="text-[11px] text-muted-ink">published: false (visible only in development)</span>
                 </div>
               )}
 
@@ -363,82 +423,36 @@ export const NoteDetailPage: React.FC = () => {
                 <div className="flex flex-wrap items-center gap-2">
                   <Link
                     to={`/subjects/${note.subjectSlug}`}
-                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-warm-taupe dark:bg-[#131520] text-graphite dark:text-[#cbd5e1] font-mono text-[12px] hover:bg-surface-container dark:hover:bg-[#1e2133] hover:text-ink dark:hover:text-white transition-colors border border-stone/80 dark:border-[#23273d]"
+                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[8px] bg-canvas dark:bg-[#121620] text-navy dark:text-ice font-mono text-[12px] hover:border-navy transition-colors border border-edge"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-violet-spark dark:bg-[#c084fc]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-proof-green" />
                     {note.subjectName}
                   </Link>
-                  <span className="font-mono text-[12px] text-smoke dark:text-[#94a3b8] flex items-center gap-1">
+                  <span className="font-mono text-[12px] text-muted-ink flex items-center gap-1">
                     <span className="material-symbols-outlined text-[14px]">calendar_today</span>
                     {note.publishDate}
                   </span>
                   {note.updatedDate && (
-                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-surface-container-high dark:bg-[#121626] font-mono text-[11px] text-graphite dark:text-[#a5b4fc] border border-stone/70 dark:border-[#202747]">
-                      <span className="w-1.5 h-1.5 rounded-full bg-violet-spark dark:bg-[#818cf8] animate-pulse" />
+                    <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-[8px] bg-canvas font-mono text-[11px] text-secondary-ink border border-edge">
+                      <span className="w-1.5 h-1.5 rounded-full bg-proof-green animate-pulse" />
                       Updated {note.updatedDate}
                     </span>
                   )}
-                  <span className="font-mono text-[12px] text-smoke dark:text-[#94a3b8] flex items-center gap-1">
+                  <span className="font-mono text-[12px] text-muted-ink flex items-center gap-1">
                     <span className="material-symbols-outlined text-[14px]">timer</span>
                     {note.readTime}
                   </span>
                 </div>
 
-                {/* Quick Interactive Actions (Applaud, Bookmark, Permalink) */}
-                <div className="flex items-center gap-1.5 bg-warm-taupe/90 dark:bg-[#10121a] p-1 rounded-xl border border-stone/80 dark:border-[#1e2029]">
-                  <button
-                    type="button"
-                    onClick={handleClap}
-                    title="Applaud note"
-                    className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-graphite dark:text-[#cbd5e1] hover:text-ember-orange dark:hover:text-[#fb7185] hover:bg-stone/30 dark:hover:bg-[#1a1c28] transition-all text-[12px] font-mono"
-                  >
-                    <span className="material-symbols-outlined text-[16px] text-ember-orange dark:text-[#f43f5e]">favorite</span>
-                    <span>{claps}</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handleBookmark}
-                    title={bookmarked ? 'Saved to reading list' : 'Save for later'}
-                    className={`p-1.5 rounded-lg transition-all ${
-                      bookmarked
-                        ? 'bg-ink text-on-primary dark:bg-[#7c3aed] dark:text-white'
-                        : 'text-smoke dark:text-[#94a3b8] hover:text-ink dark:hover:text-white hover:bg-stone/30 dark:hover:bg-[#1a1c28]'
-                    }`}
-                  >
-                    <span className="material-symbols-outlined text-[16px]">
-                      {bookmarked ? 'bookmark_added' : 'bookmark'}
-                    </span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handleCopyLink}
-                    title="Copy permalink"
-                    className="p-1.5 rounded-lg text-smoke dark:text-[#94a3b8] hover:text-ink dark:hover:text-white hover:bg-stone/30 dark:hover:bg-[#1a1c28] transition-all"
-                  >
-                    <span className="material-symbols-outlined text-[16px]">link</span>
-                  </button>
-                </div>
               </div>
 
               {/* Main Display Headline */}
-              <h1 className="font-sans text-[22px] sm:text-[28px] lg:text-[32px] text-ink dark:text-[#f8fafc] tracking-tight font-normal mb-4 leading-snug">
+              <h1 className="text-[26px] sm:text-[34px] lg:text-[30px] text-navy dark:text-white tracking-[-0.03em] font-medium mb-4 leading-[1.15]">
                 {note.title}
               </h1>
 
-              {/* Author Byline */}
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-8 h-8 rounded-full bg-ink text-on-primary dark:bg-[#1e2133] dark:text-[#c084fc] flex items-center justify-center font-mono text-[12px] font-semibold ring-1 ring-stone dark:ring-[#31354c]">
-                  {(note.author?.name || 'Kundan').split(' ').map((n) => n[0]).join('')}
-                </div>
-                <div className="flex flex-wrap items-baseline gap-x-2 text-[13px]">
-                  <span className="text-ink dark:text-[#f1f5f9] font-medium">{note.author?.name || 'Kundan'}</span>
-                  <span className="text-smoke dark:text-[#94a3b8] font-mono text-[12px]">{note.author?.role || 'Software Engineer'}</span>
-                  <span className="text-smoke/70 dark:text-[#64748b] font-mono text-[12px] hidden sm:inline">• {note.author?.handle || '@kundan'}</span>
-                </div>
-              </div>
-
               {/* Executive Abstract */}
-              <p className="font-body-lg sm:text-display-sm  text-graphite dark:text-[#151515] leading-relaxed max-w-3xl mb-6">
+              <p className="text-[16px] sm:text-[17px] text-secondary-ink dark:text-ash leading-relaxed max-w-3xl mb-6 font-normal">
                 {note.abstract}
               </p>
 
@@ -448,7 +462,7 @@ export const NoteDetailPage: React.FC = () => {
                   <Link
                     key={tag}
                     to={`/topics/${tag}`}
-                    className="px-3 py-1 rounded-full bg-warm-taupe dark:bg-[#11131c] font-mono text-[11.5px] text-graphite dark:text-[#94a3b8] hover:text-ink dark:hover:text-white hover:bg-stone/50 dark:hover:bg-[#1c1f2e] transition-colors border border-stone/70 dark:border-[#1e2130]"
+                    className="px-3 py-1 rounded-[8px] bg-canvas dark:bg-[#121620] font-mono text-[11.5px] text-secondary-ink hover:text-navy dark:hover:text-white hover:border-navy transition-colors border border-edge"
                   >
                     #{tag}
                   </Link>
@@ -457,34 +471,70 @@ export const NoteDetailPage: React.FC = () => {
             </header>
 
             {/* ZONE 2: ARTICLE BODY CONTENT */}
-            <article className="space-y-10 leading-relaxed font-body-md text-graphite dark:text-[#cbd5e1]">
+            <article className="space-y-8 leading-relaxed font-body text-body-ink">
               {(note as any).markdownBody ? (
                 <MarkdownRenderer content={(note as any).markdownBody} />
               ) : (
-                <div className="py-16 text-center text-smoke dark:text-[#64748b] border border-dashed border-stone dark:border-[#1e2029] rounded-2xl">
+                <div className="py-16 text-center text-muted-ink border border-dashed border-edge rounded-[8px]">
                   <span className="material-symbols-outlined text-[32px] mb-2">article</span>
-                  <p className="font-body-md text-ink dark:text-[#f1f5f9]">No markdown content available for this note.</p>
-                  <p className="font-mono text-[12px] text-smoke dark:text-[#64748b] mt-1">Slug: {note.slug}</p>
+                  <p className="font-body text-navy dark:text-white">No markdown content available for this note.</p>
+                  <p className="font-mono text-[12px] text-muted-ink mt-1">Slug: {note.slug}</p>
                 </div>
               )}
 
-              {/* Next / Prev Article Navigation Pager */}
-              <div className="pt-8 border-t border-stone/80 dark:border-[#1e2029] grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* Interactive Engagement Bar: Claps, Bookmarks & Share */}
+              <div className="pt-6 pb-2 border-t border-edge flex items-center justify-between gap-3 font-mono text-[12px] select-none">
+                <div className="flex items-center gap-2.5">
+                  <button
+                    type="button"
+                    onClick={handleClap}
+                    className="flex items-center gap-2 px-3 py-1.5 rounded-[6px] border border-edge bg-canvas dark:bg-[#121620] hover:border-navy dark:hover:border-ice text-body-ink hover:text-navy dark:hover:text-white transition-all cursor-pointer shadow-2xs active:scale-95"
+                  >
+                    <span className="material-symbols-outlined text-[16px] text-proof-green">
+                      thumb_up
+                    </span>
+                    <span>{claps} Claps</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={handleBookmark}
+                    className="flex items-center gap-2 px-3 py-1.5 rounded-[6px] border border-edge bg-canvas dark:bg-[#121620] hover:border-navy dark:hover:border-ice text-body-ink hover:text-navy dark:hover:text-white transition-all cursor-pointer shadow-2xs active:scale-95"
+                  >
+                    <span className="material-symbols-outlined text-[16px] text-dot-blue">
+                      {bookmarked ? 'bookmark_added' : 'bookmark_border'}
+                    </span>
+                    <span>{bookmarked ? 'Saved' : 'Save'}</span>
+                  </button>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={handleCopyLink}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-[6px] border border-edge bg-canvas dark:bg-[#121620] hover:border-navy dark:hover:border-ice text-body-ink hover:text-navy dark:hover:text-white transition-all cursor-pointer shadow-2xs"
+                >
+                  <span className="material-symbols-outlined text-[15px]">
+                    share
+                  </span>
+                  <span className="hidden sm:inline">Share Permalink</span>
+                </button>
+              </div>
+              <div className="pt-8 border-t border-edge grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {prevNote && (
                   <Link
                     to={`/notes/${prevNote.slug}`}
-                    className="group flex flex-col justify-between p-4 rounded-xl bg-warm-taupe dark:bg-[#0d0e15] border border-stone/80 dark:border-[#1e2029] hover:border-violet-spark/50 dark:hover:border-[#6366f1]/50 hover:bg-surface-container-lowest dark:hover:bg-[#11131c] transition-all text-left"
+                    className="group flex flex-col justify-between p-4 rounded-[8px] bg-canvas dark:bg-[#121620] border border-edge hover:border-navy transition-all text-left shadow-secondary-btn"
                   >
-                    <div className="flex items-center gap-1.5 font-mono text-[11px] text-smoke dark:text-[#64748b] uppercase tracking-wider mb-2 group-hover:text-violet-spark dark:group-hover:text-[#a5b4fc] transition-colors">
+                    <div className="flex items-center gap-1.5 font-mono text-[11px] text-muted-ink uppercase tracking-wider mb-2 group-hover:text-navy dark:group-hover:text-ice transition-colors">
                       <span className="material-symbols-outlined text-[14px] transition-transform group-hover:-translate-x-1">
                         arrow_back
                       </span>
                       <span>PREVIOUS NOTE</span>
                     </div>
-                    <span className="text-[14px] text-ink dark:text-[#f1f5f9] group-hover:text-violet-spark dark:group-hover:text-[#c084fc] transition-colors font-medium line-clamp-1">
+                    <span className="text-[14px] text-navy hover:underline hover:text-blue-500 dark:text-white font-medium line-clamp-1">
                       {prevNote.title}
                     </span>
-                    <span className="font-mono text-[11px] text-smoke dark:text-[#64748b] mt-1.5">
+                    <span className="font-mono text-[11px] text-muted-ink mt-1.5">
                       {prevNote.subjectName} • {prevNote.readTime}
                     </span>
                   </Link>
@@ -493,18 +543,18 @@ export const NoteDetailPage: React.FC = () => {
                 {nextNote && (
                   <Link
                     to={`/notes/${nextNote.slug}`}
-                    className="group flex flex-col justify-between p-4 rounded-xl bg-warm-taupe dark:bg-[#0d0e15] border border-stone/80 dark:border-[#1e2029] hover:border-violet-spark/50 dark:hover:border-[#6366f1]/50 hover:bg-surface-container-lowest dark:hover:bg-[#11131c] transition-all sm:text-right"
+                    className="group flex flex-col justify-between p-4 rounded-[8px] bg-canvas dark:bg-[#121620] border border-edge hover:border-navy transition-all sm:text-right shadow-secondary-btn"
                   >
-                    <div className="flex items-center sm:justify-end gap-1.5 font-mono text-[11px] text-smoke dark:text-[#64748b] uppercase tracking-wider mb-2 group-hover:text-violet-spark dark:group-hover:text-[#a5b4fc] transition-colors">
+                    <div className="flex items-center sm:justify-end gap-1.5 font-mono text-[11px] text-muted-ink uppercase tracking-wider mb-2 group-hover:text-navy dark:group-hover:text-ice transition-colors">
                       <span>NEXT NOTE</span>
                       <span className="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">
                         arrow_forward
                       </span>
                     </div>
-                    <span className="text-[14px] text-ink dark:text-[#f1f5f9] group-hover:text-violet-spark dark:group-hover:text-[#c084fc] transition-colors font-medium line-clamp-1">
+                    <span className="text-[14px] text-navy hover:underline hover:text-blue-500 dark:text-white font-medium line-clamp-1">
                       {nextNote.title}
                     </span>
-                    <span className="font-mono text-[11px] text-smoke dark:text-[#64748b] mt-1.5">
+                    <span className="font-mono text-[11px] text-muted-ink mt-1.5">
                       {nextNote.subjectName} • {nextNote.readTime}
                     </span>
                   </Link>
@@ -512,12 +562,12 @@ export const NoteDetailPage: React.FC = () => {
               </div>
 
               {/* Discussion / Responses Section */}
-              <section className="pt-10 border-t border-stone/80 dark:border-[#1e2029] space-y-6">
+              <section className="pt-10 border-t border-edge space-y-6">
                 <div className="flex items-center justify-between">
-                  <h3 className="font-sans text-[20px] text-ink dark:text-[#f8fafc] font-light">
+                  <h3 className="text-[20px] text-navy dark:text-white font-medium">
                     Discussion &amp; Runbook Notes ({comments.length})
                   </h3>
-                  <span className="font-mono text-[12px] text-smoke dark:text-[#64748b]">
+                  <span className="font-mono text-[12px] text-muted-ink">
                     Peer Review
                   </span>
                 </div>
@@ -529,12 +579,12 @@ export const NoteDetailPage: React.FC = () => {
                     value={commentText}
                     onChange={(e) => setCommentText(e.target.value)}
                     placeholder="Share production war stories, benchmark findings, or ask technical questions..."
-                    className="w-full p-3.5 rounded-xl bg-warm-taupe dark:bg-[#0d0e15] border border-stone/80 dark:border-[#1e2029] font-body-sm text-ink dark:text-[#f1f5f9] placeholder:text-smoke dark:placeholder-[#64748b] focus:outline-none focus:border-violet-spark dark:focus:border-[#7c3aed] transition-colors text-[13.5px]"
+                    className="w-full p-3.5 rounded-[8px] bg-canvas dark:bg-[#121620] border border-edge text-body-ink placeholder:text-muted-ink focus:outline-none focus:border-navy dark:focus:border-focus-blue transition-colors text-[13.5px]"
                   />
                   <div className="flex justify-end">
                     <button
                       type="submit"
-                      className="px-5 py-2 rounded-full bg-ink text-on-primary dark:bg-[#7c3aed] dark:text-white font-mono text-[12px] font-medium hover:bg-graphite dark:hover:bg-[#6d28d9] transition-colors shadow-xs"
+                      className="btn-primary cursor-pointer inline-flex items-center justify-center"
                     >
                       Post Comment
                     </button>
@@ -542,29 +592,29 @@ export const NoteDetailPage: React.FC = () => {
                 </form>
 
                 {/* Existing Comments List */}
-                <div className="space-y-4 pt-2">
+                <div className="space-y-3 pt-2">
                   {comments.map((c) => (
                     <div
                       key={c.id}
-                      className="p-4 rounded-xl bg-surface-container-lowest dark:bg-[#0d0e15] border border-stone/80 dark:border-[#1e2029] space-y-2"
+                      className="p-4 rounded-[8px] bg-canvas dark:bg-[#121620] border border-edge space-y-2"
                     >
                       <div className="flex items-center justify-between font-mono text-[12px]">
                         <div className="flex items-center gap-2">
-                          <span className="font-medium text-ink dark:text-[#f1f5f9]">{c.author}</span>
-                          <span className="text-smoke dark:text-[#64748b]">• {c.role}</span>
+                          <span className="font-medium text-navy dark:text-white">{c.author}</span>
+                          <span className="text-muted-ink">• {c.role}</span>
                         </div>
-                        <span className="text-smoke dark:text-[#64748b] text-[11px]">{c.date}</span>
+                        <span className="text-muted-ink text-[11px]">{c.date}</span>
                       </div>
-                      <p className="font-body-sm text-graphite dark:text-[#cbd5e1] leading-relaxed text-[13px]">
+                      <p className="text-secondary-ink dark:text-ash leading-relaxed text-[13.5px]">
                         {c.content}
                       </p>
                     </div>
                   ))}
 
                   {comments.length === 0 && (
-                    <div className="py-8 text-center rounded-xl bg-warm-taupe/40 dark:bg-[#0c0d13] border border-dashed border-stone dark:border-[#1e2029]">
-                      <span className="material-symbols-outlined text-[24px] text-smoke dark:text-[#64748b]">forum</span>
-                      <p className="mt-1 font-body-sm text-smoke dark:text-[#64748b] text-[13px]">
+                    <div className="py-8 text-center rounded-[8px] bg-canvas border border-dashed border-edge">
+                      <span className="material-symbols-outlined text-[24px] text-muted-ink">forum</span>
+                      <p className="mt-1 text-muted-ink text-[13px]">
                         No comments yet. Share your architecture heuristics or benchmark questions above.
                       </p>
                     </div>

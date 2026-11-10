@@ -25,7 +25,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   return (
     <div
       className={cn(
-        'no-scrollbar flex items-center gap-1.5 overflow-x-auto pb-2 scrollbar-none font-mono-data text-[10px]',
+        'no-scrollbar flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none font-mono text-[13px]',
         className
       )}
       role="tablist"

@@ -73,10 +73,10 @@ export const TopicHubPage: React.FC = () => {
   }, [notesWithTopic, currentTopic.name]);
 
   return (
-    <div className="w-full bg-eggshell min-h-screen py-8">
-      <div className="max-w-6xl w-full mx-auto px-4 md:px-8 space-y-8">
+    <div className="w-full bg-canvas text-body-ink min-h-screen py-10 transition-colors">
+      <div className="max-w-column w-full mx-auto px-5 space-y-10">
         {/* Zone 1: Topic Header Banner */}
-        <header className="w-full pb-6 border-b border-stone flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <header className="w-full pb-8 border-b border-edge flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="space-y-3 max-w-2xl">
             {/* Breadcrumb */}
             <Breadcrumb
@@ -88,19 +88,19 @@ export const TopicHubPage: React.FC = () => {
               ]}
             />
 
-            {/* Topic Title with Bauhaus Hash Badge */}
+            {/* Topic Title with Column Hash Badge */}
             <div className="flex items-center gap-3">
-              <span className="bg-warm-taupe text-ink shadow-[0_0_0_1px_#ebe8e4] px-2.5 py-1 rounded-full font-mono-data text-mono-data inline-flex items-center gap-1">
-                <span className="text-ember-orange">#</span>topic
+              <span className="bg-ice/40 dark:bg-deep-teal text-navy dark:text-ice px-2.5 py-1 rounded-[8px] font-mono text-[12px] border border-ice/60 dark:border-ice/20 inline-flex items-center gap-1 font-medium">
+                <span className="text-proof-green">#</span>topic
               </span>
-              <h1 className="font-headline-xl text-headline-xl text-ink tracking-tight font-light lowercase">
+              <h1 className="text-[32px] sm:text-[44px] font-medium leading-[1.1] tracking-[-0.03em] text-navy dark:text-white lowercase">
                 {currentTopic.name}
               </h1>
             </div>
 
-            <p className="font-body-md text-body-md text-smoke leading-relaxed">
+            <p className="text-[15px] sm:text-[16px] text-secondary-ink dark:text-ash leading-relaxed">
               All learning notes, architectural breakdowns, and implementations tagged with{' '}
-              <span className="font-mono-data text-ink bg-warm-taupe px-1.5 py-0.5 rounded text-label-sm border border-stone">
+              <span className="font-mono text-navy dark:text-white bg-white dark:bg-panel px-1.5 py-0.5 rounded-[4px] border border-edge">
                 #{currentTopic.name}
               </span>{' '}
               across {currentTopic.domainReach} core subjects.
@@ -108,36 +108,36 @@ export const TopicHubPage: React.FC = () => {
           </div>
 
           {/* Telemetry Metric Row */}
-          <div className="flex items-center gap-4 sm:gap-6 bg-surface-container-lowest dark:bg-[#1a1815] p-3.5 rounded-xl shadow-[0_0_0_1px_#ebe8e4] dark:shadow-[0_0_0_1px_#332e27] shrink-0 border border-stone dark:border-[#332e27]">
+          <div className="flex items-center gap-4 sm:gap-6 bg-white dark:bg-panel p-4 rounded-[8px] border border-edge shadow-catalog-edge shrink-0">
             <div className="flex flex-col">
-              <span className="font-mono-data text-label-sm text-smoke uppercase tracking-wider">
+              <span className="font-mono text-[11px] uppercase tracking-wider text-muted-ink">
                 Total Matches
               </span>
-              <div className="flex items-baseline gap-1 mt-0.5">
-                <span className="font-headline-sm text-headline-sm text-ink font-light">
+              <div className="flex items-baseline gap-1 mt-1">
+                <span className="text-[26px] font-medium text-navy dark:text-white leading-none">
                   {currentTopic.count}
                 </span>
-                <span className="font-mono-data text-label-sm text-smoke">notes</span>
+                <span className="font-mono text-[11px] text-muted-ink">notes</span>
               </div>
             </div>
-            <div className="w-px h-8 bg-stone dark:bg-[#332e27]" />
+            <div className="w-px h-8 bg-edge" />
             <div className="flex flex-col">
-              <span className="font-mono-data text-label-sm text-smoke uppercase tracking-wider">
+              <span className="font-mono text-[11px] uppercase tracking-wider text-muted-ink">
                 Domain Reach
               </span>
-              <div className="flex items-baseline gap-1 mt-0.5">
-                <span className="font-headline-sm text-headline-sm text-ink font-light">
+              <div className="flex items-baseline gap-1 mt-1">
+                <span className="text-[26px] font-medium text-navy dark:text-white leading-none">
                   0{currentTopic.domainReach}
                 </span>
-                <span className="font-mono-data text-label-sm text-smoke">subjects</span>
+                <span className="font-mono text-[11px] text-muted-ink">subjects</span>
               </div>
             </div>
-            <div className="w-px h-8 bg-stone dark:bg-[#332e27]" />
+            <div className="w-px h-8 bg-edge" />
             <div className="flex flex-col">
-              <span className="font-mono-data text-label-sm text-smoke uppercase tracking-wider">
+              <span className="font-mono text-[11px] uppercase tracking-wider text-muted-ink">
                 Last Revision
               </span>
-              <span className="font-mono-data text-mono-data text-ink mt-1">
+              <span className="font-mono text-[13px] text-body-ink mt-1">
                 {currentTopic.lastRevision}
               </span>
             </div>
@@ -149,7 +149,7 @@ export const TopicHubPage: React.FC = () => {
           {/* Main Feed Column (8 cols) */}
           <section className="lg:col-span-8 space-y-6">
             {/* Filter Tabs */}
-            <div className="pb-4 border-b border-stone dark:border-[#332e27]">
+            <div className="pb-4 border-b border-edge">
               <FilterBar
                 items={subjectFilterItems}
                 selectedId={selectedSubjectFilter}
@@ -164,17 +164,17 @@ export const TopicHubPage: React.FC = () => {
               ))}
 
               {matchingNotes.length === 0 && (
-                <div className="py-16 text-center rounded-xl bg-warm-taupe dark:bg-[#1a1815] border border-stone dark:border-[#332e27]">
-                  <span className="material-symbols-outlined text-[32px] text-smoke">
+                <div className="py-16 text-center rounded-[8px] bg-panel border border-edge">
+                  <span className="material-symbols-outlined text-[32px] text-muted-ink">
                     search_off
                   </span>
-                  <p className="mt-2 font-headline-sm text-headline-sm text-ink">
+                  <p className="mt-2 text-[16px] font-medium text-navy dark:text-white">
                     No notes matching this subject filter
                   </p>
                   <button
                     type="button"
                     onClick={() => setSelectedSubjectFilter('all')}
-                    className="mt-4 rounded-full bg-ink px-4 py-2 font-label-md text-label-md text-on-primary hover:bg-graphite transition-colors shadow-sm"
+                    className="btn-primary mt-4 inline-flex items-center justify-center cursor-pointer"
                   >
                     Show All Matching Notes
                   </button>
@@ -187,8 +187,8 @@ export const TopicHubPage: React.FC = () => {
           <aside className="lg:col-span-4 space-y-6">
             <div className="sticky top-20 space-y-6">
               {/* Co-occurring Topics Tag Cloud */}
-              <div className="p-space-lg rounded-xl bg-warm-taupe dark:bg-[#1a1815] border border-stone/80 dark:border-[#332e27] shadow-sm">
-                <div className="font-mono-data text-label-sm uppercase tracking-wider text-smoke mb-3 font-semibold">
+              <div className="p-5 rounded-[8px] bg-white dark:bg-panel border border-edge shadow-catalog-edge">
+                <div className="font-mono text-[11px] uppercase tracking-wider text-muted-ink mb-3 font-semibold">
                   CO-OCCURRING TOPICS
                 </div>
                 <div className="flex flex-wrap gap-2">
@@ -196,12 +196,12 @@ export const TopicHubPage: React.FC = () => {
                     <Link
                       key={item.name}
                       to={`/topics/${item.name}`}
-                      className="group inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container-lowest dark:bg-[#201d19] border border-stone/50 dark:border-[#332e27] hover:bg-ink hover:text-white transition-colors"
+                      className="group inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[8px] bg-canvas dark:bg-[#121620] border border-edge hover:border-navy hover:text-navy dark:hover:text-white transition-all"
                     >
-                      <span className="font-mono-data text-label-sm">
+                      <span className="font-mono text-[12px] text-body-ink group-hover:text-navy dark:group-hover:text-white">
                         #{item.name}
                       </span>
-                      <span className="font-mono-data text-[11px] text-smoke group-hover:text-white/80">
+                      <span className="font-mono text-[11px] text-muted-ink group-hover:text-navy/80 dark:group-hover:text-white/80">
                         {item.count}
                       </span>
                     </Link>
@@ -210,32 +210,32 @@ export const TopicHubPage: React.FC = () => {
               </div>
 
               {/* Related Subjects Cards */}
-              <div className="p-space-lg rounded-xl bg-surface-container-lowest dark:bg-[#1a1815] border border-stone/80 dark:border-[#332e27] shadow-sm">
-                <div className="font-mono-data text-label-sm uppercase tracking-wider text-smoke mb-3 font-semibold">
+              <div className="p-5 rounded-[8px] bg-white dark:bg-panel border border-edge shadow-catalog-edge">
+                <div className="font-mono text-[11px] uppercase tracking-wider text-muted-ink mb-3 font-semibold">
                   INTERSECTING SUBJECTS
                 </div>
-                <div className="space-y-3">
+                <div className="space-y-2.5">
                   {intersectingSubjects.map((sub) => (
                     <Link
                       key={sub.id}
                       to={`/subjects/${sub.slug}`}
-                      className="block p-3 rounded-lg bg-warm-taupe dark:bg-[#201d19] border border-stone/50 dark:border-[#332e27] hover:bg-stone/60 dark:hover:bg-[#282420] transition-colors"
+                      className="block p-3 rounded-[8px] bg-canvas dark:bg-[#121620] border border-edge hover:border-navy hover:text-navy dark:hover:text-white transition-all group"
                     >
                       <div className="flex items-center gap-2">
-                        <span className="material-symbols-outlined text-[18px] text-ink">
+                        <span className="material-symbols-outlined text-[18px] text-navy dark:text-ice">
                           {sub.icon}
                         </span>
-                        <span className="font-label-md text-label-md font-medium text-ink">
+                        <span className="text-[13px] font-medium text-navy dark:text-white">
                           {sub.name}
                         </span>
                       </div>
-                      <span className="font-mono-data text-label-sm text-smoke mt-1 block">
+                      <span className="font-mono text-[11px] text-muted-ink mt-1 block">
                         {sub.notesCount} {sub.notesCount === 1 ? 'note' : 'notes'} • {sub.hubNumber}
                       </span>
                     </Link>
                   ))}
                   {intersectingSubjects.length === 0 && (
-                    <p className="font-mono-data text-label-sm text-smoke py-1">
+                    <p className="font-mono text-[12px] text-muted-ink py-1">
                       No intersecting subjects indexed.
                     </p>
                   )}
@@ -243,36 +243,36 @@ export const TopicHubPage: React.FC = () => {
               </div>
 
               {/* Quick Canonical References */}
-              <div className="p-space-lg rounded-xl bg-warm-taupe dark:bg-[#1a1815] border border-stone/80 dark:border-[#332e27] shadow-sm">
-                <div className="font-mono-data text-label-sm uppercase tracking-wider text-smoke mb-3 font-semibold">
+              <div className="p-5 rounded-[8px] bg-white dark:bg-panel border border-edge shadow-catalog-edge">
+                <div className="font-mono text-[11px] uppercase tracking-wider text-muted-ink mb-3 font-semibold">
                   EXTERNAL SPECS &amp; REFS
                 </div>
-                <div className="space-y-2 font-mono-data text-label-sm">
+                <div className="space-y-2 font-mono text-[12px]">
                   <a
                     href="https://www.postgresql.org/docs/"
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center justify-between text-graphite hover:text-ink hover:underline py-1"
+                    className="flex items-center justify-between text-secondary-ink hover:text-navy dark:hover:text-white py-1 transition-colors"
                   >
                     <span>PostgreSQL 16 Reference Manual</span>
                     <span className="material-symbols-outlined text-[14px]">open_in_new</span>
                   </a>
-                  <div className="h-px bg-stone dark:bg-[#332e27]" />
+                  <div className="h-px bg-edge" />
                   <a
                     href="https://github.com/brettwooldridge/HikariCP"
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center justify-between text-graphite hover:text-ink hover:underline py-1"
+                    className="flex items-center justify-between text-secondary-ink hover:text-navy dark:hover:text-white py-1 transition-colors"
                   >
                     <span>HikariCP Connection Pool Heuristics</span>
                     <span className="material-symbols-outlined text-[14px]">open_in_new</span>
                   </a>
-                  <div className="h-px bg-stone dark:bg-[#332e27]" />
+                  <div className="h-px bg-edge" />
                   <a
                     href="https://www.pgbouncer.org/"
                     target="_blank"
                     rel="noreferrer"
-                    className="flex items-center justify-between text-graphite hover:text-ink hover:underline py-1"
+                    className="flex items-center justify-between text-secondary-ink hover:text-navy dark:hover:text-white py-1 transition-colors"
                   >
                     <span>PgBouncer Transaction Pooling Guide</span>
                     <span className="material-symbols-outlined text-[14px]">open_in_new</span>

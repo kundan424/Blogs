@@ -25,16 +25,16 @@ export const MetricItem: React.FC<MetricItemProps> = ({
             style={{ backgroundColor: indicatorColor }}
           />
         )}
-        <span className="font-headline-md text-headline-md text-ink font-light leading-none">
+        <span className="text-[26px] font-medium text-navy dark:text-white leading-none">
           {value}
         </span>
         {subValue && (
-          <span className="font-mono-data text-label-sm text-smoke ml-1">
+          <span className="font-mono text-[11px] text-muted-ink ml-1">
             {subValue}
           </span>
         )}
       </div>
-      <span className="font-mono-data text-label-sm text-smoke mt-1 uppercase tracking-wider">
+      <span className="font-mono text-[11px] text-muted-ink mt-1 uppercase tracking-wider">
         {label}
       </span>
     </div>

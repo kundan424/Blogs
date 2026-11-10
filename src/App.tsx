@@ -9,8 +9,8 @@ import { SubjectsPage } from './pages/SubjectsPage';
 import { SubjectHubPage } from './pages/SubjectHubPage';
 import { TopicHubPage } from './pages/TopicHubPage';
 import { NoteDetailPage } from './pages/NoteDetailPage';
-import { SeriesPage } from './pages/SeriesPage';
 import { AboutPage } from './pages/AboutPage';
+import { LearningPathDetailPage } from './pages/LearningPathDetailPage';
 
 // Scroll to top on route change
 function ScrollToTop() {
@@ -37,10 +37,11 @@ export function App() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/subjects" element={<SubjectsPage />} />
                 <Route path="/subjects/:slug" element={<SubjectHubPage />} />
+                <Route path="/subjects/:subjectSlug/paths/:pathSlug" element={<LearningPathDetailPage />} />
+                <Route path="/learning-paths/:pathSlug" element={<LearningPathDetailPage />} />
                 <Route path="/topics" element={<TopicHubPage />} />
                 <Route path="/topics/:slug" element={<TopicHubPage />} />
                 <Route path="/notes/:slug" element={<NoteDetailPage />} />
-                <Route path="/series" element={<SeriesPage />} />
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="*" element={<HomePage />} />
               </Routes>

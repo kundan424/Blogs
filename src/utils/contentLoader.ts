@@ -153,6 +153,7 @@ function parseAllArticles(): NoteContent[] {
       featured: data.featured === true,
       claps: typeof data.claps === 'number' ? data.claps : 0,
       filePath,
+      learningPath: data.learningPath || undefined,
     };
 
     articles.push(article);

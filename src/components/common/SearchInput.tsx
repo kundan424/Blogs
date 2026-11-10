@@ -20,7 +20,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
 }) => {
   return (
     <div className={cn('relative w-full', className)}>
-      <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-smoke pointer-events-none">
+      <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-muted-ink pointer-events-none">
         search
       </span>
       <input
@@ -28,21 +28,21 @@ export const SearchInput: React.FC<SearchInputProps> = ({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="w-full pl-9 pr-14 py-2 bg-eggshell rounded-lg border border-stone text-body-md text-ink placeholder:text-smoke focus:outline-none focus:border-ink transition-colors"
+        className="h-[36px] w-full pl-9 pr-14 bg-white dark:bg-panel rounded-[8px] border border-edge text-[14px] text-body-ink placeholder:text-muted-ink focus:outline-none focus:border-navy dark:focus:border-focus-blue transition-colors"
       />
       <div className="absolute right-2.5 top-1/2 -translate-y-1/2 flex items-center gap-1.5">
         {value && onClear && (
           <button
             type="button"
             onClick={onClear}
-            className="text-smoke hover:text-ink text-[16px] material-symbols-outlined"
+            className="text-muted-ink hover:text-navy dark:hover:text-white text-[16px] material-symbols-outlined cursor-pointer"
             title="Clear"
           >
             cancel
           </button>
         )}
         {shortcutBadge && (
-          <kbd className="px-1.5 py-0.5 rounded bg-warm-taupe border border-stone font-mono-data text-label-sm text-smoke pointer-events-none">
+          <kbd className="px-1.5 py-0.5 rounded-[4px] bg-canvas border border-edge font-mono text-[11px] text-muted-ink pointer-events-none">
             {shortcutBadge}
           </kbd>
         )}

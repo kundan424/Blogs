@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Note } from '../../types';
 import { cn } from '../../utils/cn';
 
@@ -16,102 +16,94 @@ export const NoteCard: React.FC<NoteCardProps> = ({
   onTagClick,
   className,
 }) => {
+  const navigate = useNavigate();
+
   return (
     <article
+      onClick={() => navigate(`/notes/${note.slug}`)}
       className={cn(
-        'group relative rounded-[16px] transition-all duration-200 cursor-pointer font-sans flex flex-col justify-between',
-        variant === 'card' &&
-          'bg-preview dark:bg-[#1c1a17] hover:bg-[#f2eee9] dark:hover:bg-[#25221c] p-5 sm:p-6 hover:-translate-y-0.5 hover:shadow-xs border border-edge/80 dark:border-[#332f28] hover:border-accent/50 dark:hover:border-accent/60',
-        variant === 'compact' &&
-          'p-4 bg-preview dark:bg-[#1c1a17] hover:bg-[#f2eee9] dark:hover:bg-[#25221c] border border-edge/80 dark:border-[#332f28] hover:border-accent/50 dark:hover:border-accent/60 hover:shadow-xs',
-        variant === 'flat' &&
-          'p-5 sm:p-6 bg-preview/80 hover:bg-[#f2eee9] dark:bg-[#1c1a17] dark:hover:bg-[#25221c] border border-edge/80 dark:border-[#332f28] hover:border-accent/50 dark:hover:border-accent/60',
+        'catalog-card group relative flex flex-col justify-between transition-all duration-200 cursor-pointer',
+        variant === 'compact' && 'p-4',
+        variant === 'flat' && 'p-5 bg-white/50 dark:bg-panel/40',
         className
       )}
     >
       {/* Stretched primary clickable link spanning the complete note card */}
       <Link
         to={`/notes/${note.slug}`}
-        className="absolute inset-0 z-0 rounded-[16px] focus:outline-none focus:ring-2 focus:ring-accent/30"
+        className="absolute inset-0 z-0 rounded-[8px] focus:outline-none focus:ring-2 focus:ring-focus-blue"
         aria-label={note.title}
+        onClick={(e) => e.stopPropagation()}
       />
 
       <div>
-        {/* Top Metadata Row */}
-        <div className="relative z-10 flex flex-wrap items-center justify-between gap-2 font-mono text-[12px] text-muted dark:text-[#a8a29a]">
+        {/* Top Metadata Row: Subject Domain Tag + Date + Reading Time */}
+        <div className="relative z-10 flex flex-wrap items-center justify-between gap-2 font-mono text-[11.5px] text-muted-ink">
           <div className="flex items-center gap-2">
-            {((note as any).isDraft || (note as any).published === false) && (
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/30">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
-                LOCAL DRAFT
+            {note.subjectName && (
+              <span className="rounded-[4px] bg-panel dark:bg-panel/60 border border-edge/80 px-2 py-0.5 text-navy dark:text-ice font-medium uppercase tracking-wider text-[10.5px]">
+                {note.subjectName.split('&')[0]}
               </span>
             )}
-            {note.subjectName && (
-              <Link
-                to={`/subjects/${note.subjectSlug}`}
-                className="rounded-[6px] bg-[#f0ebe3] dark:bg-[#28241e] border border-edge/80 dark:border-[#3d3830] px-2 py-0.5 text-strong dark:text-[#dcd6cc] hover:text-accent dark:hover:text-accent hover:border-accent/40 dark:hover:border-accent/40 transition-colors font-mono text-[11px] font-medium uppercase tracking-technical"
-              >
-                {note.subjectName.split('&')[0]}
-              </Link>
-            )}
-            <span className="text-muted/60 dark:text-[#6f6c6a]">•</span>
-            <span className="text-muted dark:text-[#a8a29a]">{note.publishDate}</span>
+            <span className="opacity-50">•</span>
+            <span>{note.publishDate}</span>
           </div>
-          <span className="font-mono text-muted dark:text-[#a8a29a]">{note.readTime}</span>
+          <span className="text-secondary-ink dark:text-muted-ink">{note.readTime}</span>
         </div>
 
-        {/* Title - Clean Diatype / grotesk heading */}
-        <h3 className="relative z-10 mt-3 text-[18px] sm:text-[20px] font-normal leading-snug tracking-[-0.03em] text-strong dark:text-[#faf6f1] group-hover:text-accent dark:group-hover:text-accent transition-colors">
-          <Link to={`/notes/${note.slug}`} className="focus:outline-none">
+        {/* Title: Navy Grotesk */}
+        <h3 className="relative z-10 mt-3 text-[17px] sm:text-[18px] font-semibold leading-snug tracking-tight text-navy dark:text-white group-hover:text-dot-blue dark:group-hover:text-ice transition-colors">
+          <Link
+            to={`/notes/${note.slug}`}
+            className="focus:outline-none"
+            onClick={(e) => e.stopPropagation()}
+          >
             {note.title}
           </Link>
         </h3>
 
         {/* Abstract */}
         {note.abstract && (
-          <p className="relative z-10 mt-2 text-[13.5px] text-[#5c5957] dark:text-[#b8b2a8] line-clamp-2 leading-relaxed font-normal">
+          <p className="relative z-10 mt-2 text-[13.5px] text-secondary-ink dark:text-body-ink line-clamp-2 leading-relaxed">
             {note.abstract}
           </p>
         )}
       </div>
 
-      {/* Base Row: Topic tags on left & "Read now →" arrow on right side */}
-      <div className="relative z-10 mt-5 pt-3.5 border-t border-edge/60 dark:border-[#2f2b25] flex items-center justify-between gap-3">
-        {/* Left: Tags */}
+      {/* Base Row: Topic tags on left & Read link on right */}
+      <div className="relative z-10 mt-5 pt-3.5 border-t border-edge/60 dark:border-edge/30 flex items-center justify-between gap-3">
+        {/* Tags */}
         <div className="flex flex-wrap items-center gap-1.5 min-w-0">
           {note.tags && note.tags.length > 0 ? (
-            note.tags.slice(0, 4).map((tag) => (
+            note.tags.slice(0, 3).map((tag) => (
               <button
                 key={tag}
                 type="button"
                 onClick={(e) => {
+                  e.stopPropagation();
                   if (onTagClick) {
-                    e.preventDefault();
-                    e.stopPropagation();
                     onTagClick(tag);
                   }
                 }}
-                className="rounded-full bg-canvas dark:bg-[#25221c] border border-filter-edge dark:border-[#38332c] px-2.5 py-0.5 font-mono text-[11px] text-muted dark:text-[#b8b2a8] hover:text-strong dark:hover:text-white hover:border-accent/60 dark:hover:border-accent/60 hover:bg-[#f6f2ec] dark:hover:bg-[#2f2a24] transition-colors cursor-pointer"
+                className="rounded-[4px] bg-canvas dark:bg-canvas/40 border border-edge/80 dark:border-edge/40 px-2 py-0.5 font-mono text-[11px] text-secondary-ink dark:text-muted-ink hover:text-navy dark:hover:text-white hover:border-navy transition-colors cursor-pointer"
               >
                 #{tag}
               </button>
             ))
           ) : (
-            <span className="font-mono text-[11px] text-muted dark:text-[#a8a29a]">#internals</span>
+            <span className="font-mono text-[11px] text-muted-ink">#internals</span>
           )}
         </div>
 
-        {/* Right side: Read now link button */}
+        {/* Read action: explicit Link so clicking arrow or text navigates immediately */}
         <Link
           to={`/notes/${note.slug}`}
-          style={{ color: '#ff3c00' }}
-          className="relative z-20 shrink-0 inline-flex items-center gap-1.5 font-mono text-[12px] sm:text-[13px] font-medium text-accent hover:text-accent/90 dark:text-accent dark:hover:text-accent/90 hover:underline group-hover:underline ml-auto cursor-pointer"
-          aria-label={`Read ${note.title} now`}
+          onClick={(e) => e.stopPropagation()}
+          className="inline-flex items-center gap-1 text-[13px] font-medium text-navy dark:text-ice group-hover:translate-x-1 hover:underline transition-transform shrink-0 cursor-pointer"
+          aria-label={`Read note: ${note.title}`}
         >
-          <span>Read now</span>
-          <span className="material-symbols-outlined text-[16px] transition-transform duration-200 group-hover:translate-x-1" style={{ color: '#ff3c00' }}>
-            arrow_forward
-          </span>
+          <span>Read note</span>
+          <span className="material-symbols-outlined text-[15px]">arrow_forward</span>
         </Link>
       </div>
     </article>

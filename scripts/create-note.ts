@@ -6,6 +6,7 @@ import matter from 'gray-matter';
 import { scanContentDirectory } from './lib/contentScanner';
 import { slugify } from './lib/slugify';
 import { BLUEPRINTS } from './lib/blueprints';
+import { learningPaths } from '../src/data/learningPaths';
 
 const CONTENT_DIR = path.resolve('content');
 
@@ -27,6 +28,13 @@ interface NoteMetadata {
   series?: {
     name: string;
     part: number;
+  };
+  learningPath?: {
+    slug: string;
+    name: string;
+    module: string;
+    moduleName?: string;
+    lesson: string;
   };
 }
 
@@ -152,30 +160,102 @@ async function runWizard() {
     }
   }
 
-  // 5. SERIES SELECTION (OPTIONAL)
-  let seriesData: { name: string; part: number } | undefined;
-  if (discovery.series.length > 0) {
-    const seriesChoices = [
-      { name: 'None (Standalone Article)', value: '__NONE__' },
-      ...discovery.series.map((s) => ({
-        name: `Attach to Series: "${s.name}" (Next is Part ${s.highestPart + 1})`,
-        value: s.name,
-      })),
-      { name: '+ Start a New Series', value: '__NEW_SERIES__' },
-    ];
+  // 5. CURRICULUM & LEARNING PATH ASSIGNMENT (OPTIONAL)
+  let learningPathData:
+    | {
+        slug: string;
+        name: string;
+        module: string;
+        moduleName?: string;
+        lesson: string;
+      }
+    | undefined;
 
-    const chosenSeries = await select({
-      message: 'Step 5/6: Attach to a Learning Series?',
-      choices: seriesChoices,
+  const availablePaths = learningPaths.filter((lp) => lp.subjectSlug === selectedSubjectSlug);
+
+  const pathChoices = [
+    { name: 'None (Standalone Article)', value: '__NONE__' },
+    ...availablePaths.map((lp) => ({
+      name: `Attach to Curriculum: "${lp.title}" (${lp.modules.length} modules)`,
+      value: lp.slug,
+    })),
+    { name: '+ Create New Learning Path for this Subject', value: '__NEW_PATH__' },
+  ];
+
+  const chosenPath = await select({
+    message: 'Step 5/6: Attach to a Structured Learning Path / Curriculum?',
+    choices: pathChoices,
+  });
+
+  if (chosenPath === '__NEW_PATH__') {
+    const newPathTitle = await input({
+      message: 'Enter New Learning Path Title (e.g. Distributed Systems & Consensus):',
+      validate: (v) => v.trim().length > 0 || 'Title cannot be empty',
     });
+    const newModuleTitle = await input({
+      message: 'Enter Initial Module Title (e.g. Core Architecture & Runtime Mechanics):',
+      default: 'Core Architecture & Foundations',
+    });
+    const lessonNum = await input({
+      message: 'Enter Lesson Sequence Number (e.g. 1.1):',
+      default: '1.1',
+    });
+    learningPathData = {
+      slug: slugify(newPathTitle),
+      name: newPathTitle.trim(),
+      module: '01',
+      moduleName: newModuleTitle.trim(),
+      lesson: lessonNum.trim(),
+    };
+  } else if (chosenPath !== '__NONE__') {
+    const selectedPathObj = availablePaths.find((lp) => lp.slug === chosenPath);
+    if (selectedPathObj) {
+      const moduleChoices = [
+        ...selectedPathObj.modules.map((m) => ({
+          name: `Module ${m.number}: ${m.title} (${m.lessons.length} lessons)`,
+          value: m.number,
+        })),
+        { name: '+ Add New Module to this Path', value: '__NEW_MODULE__' },
+      ];
 
-    if (chosenSeries === '__NEW_SERIES__') {
-      const newSeriesName = await input({ message: 'Enter New Series Name:' });
-      seriesData = { name: newSeriesName.trim(), part: 1 };
-    } else if (chosenSeries !== '__NONE__') {
-      const existing = discovery.series.find((s) => s.name === chosenSeries);
-      const nextPart = (existing?.highestPart || 0) + 1;
-      seriesData = { name: chosenSeries, part: nextPart };
+      const chosenModuleNum = await select({
+        message: 'Select Target Module:',
+        choices: moduleChoices,
+      });
+
+      if (chosenModuleNum === '__NEW_MODULE__') {
+        const newModTitle = await input({
+          message: 'Enter New Module Title:',
+        });
+        const nextModNum = String(selectedPathObj.modules.length + 1).padStart(2, '0');
+        const lessonNum = await input({
+          message: `Enter Lesson Number (e.g. ${selectedPathObj.modules.length + 1}.1):`,
+          default: `${selectedPathObj.modules.length + 1}.1`,
+        });
+        learningPathData = {
+          slug: selectedPathObj.slug,
+          name: selectedPathObj.title,
+          module: nextModNum,
+          moduleName: newModTitle.trim(),
+          lesson: lessonNum.trim(),
+        };
+      } else {
+        const modObj = selectedPathObj.modules.find((m) => m.number === chosenModuleNum);
+        const nextLessonIdx = (modObj?.lessons.length || 0) + 1;
+        const defaultLessonNum = `${parseInt(chosenModuleNum, 10)}.${nextLessonIdx}`;
+        const lessonNum = await input({
+          message: 'Enter Lesson Sequence Number:',
+          default: defaultLessonNum,
+        });
+
+        learningPathData = {
+          slug: selectedPathObj.slug,
+          name: selectedPathObj.title,
+          module: chosenModuleNum,
+          moduleName: modObj?.title,
+          lesson: lessonNum.trim(),
+        };
+      }
     }
   }
 
@@ -216,8 +296,8 @@ async function runWizard() {
     blueprint: selectedBlueprintId,
   };
 
-  if (seriesData) {
-    metadata.series = seriesData;
+  if (learningPathData) {
+    metadata.learningPath = learningPathData;
   }
 
   // 8. GENERATE MARKDOWN FILE
@@ -240,8 +320,8 @@ async function runWizard() {
   console.log(`  Status        : DRAFT (published: false)`);
   console.log(`  Blueprint     : ${blueprint.name}`);
   console.log(`  Topic Tags    : ${selectedTags.map((t) => `#${t}`).join(', ') || 'None'}`);
-  if (seriesData) {
-    console.log(`  Series        : "${seriesData.name}" [Part ${seriesData.part}]`);
+  if (learningPathData) {
+    console.log(`  Curriculum    : "${learningPathData.name}" [Module ${learningPathData.module} • Lesson ${learningPathData.lesson}]`);
   }
   console.log('-----------------------------------------------------------');
   console.log(` Launching editor at line ${cursorLine}...`);

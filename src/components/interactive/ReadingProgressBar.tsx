@@ -18,9 +18,9 @@ export const ReadingProgressBar: React.FC = () => {
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 right-0 h-[2.5px] bg-stone/40 z-50 pointer-events-none">
+    <div className="fixed top-0 left-0 right-0 h-[3px] bg-edge/40 z-[9999] pointer-events-none">
       <div
-        className="h-full bg-gradient-to-r from-ember-orange via-primary to-violet-spark transition-all duration-75 ease-out"
+        className="h-full bg-gradient-to-r from-banner-start via-dot-blue to-proof-green transition-all duration-75 ease-out shadow-xs"
         style={{ width: `${completion}%` }}
       />
     </div>

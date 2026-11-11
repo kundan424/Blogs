@@ -1,121 +1,121 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="auto" preserveAspectRatio="xMidYMid meet">
   <defs>
     <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
-      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.08" />
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.06" />
     </filter>
   </defs>
 
   <style>
     /* Default: Light Mode (Clean White Canvas) */
-    svg {
+    :root {
       --diag-canvas: #ffffff;
-      --diag-header-tag: #0284c7;
-      --diag-header-sub: #64748b;
-      --diag-text-title: #0f172a;
-      --diag-text-rule: #334155;
+      --diag-header-tag: #111a4a;
+      --diag-header-sub: #1b2d70;
+      --diag-text-title: #111a4a;
+      --diag-text-rule: #1b2d70;
 
-      --diag-card-a-bg: #fff5f5;
-      --diag-card-a-border: #fca5a5;
-      --diag-card-a-letter: #dc2626;
-      --diag-card-a-quote: #b91c1c;
+      --diag-card-a-bg: #f8fafc;
+      --diag-card-a-border: #111a4a;
+      --diag-card-a-letter: #111a4a;
+      --diag-card-a-quote: #1b2d70;
       --diag-card-a-box-bg: #ffffff;
-      --diag-card-a-box-border: #fca5a5;
+      --diag-card-a-box-border: #111a4a;
 
-      --diag-card-c-bg: #fffbeb;
-      --diag-card-c-border: #fde68a;
-      --diag-card-c-letter: #d97706;
-      --diag-card-c-quote: #b45309;
+      --diag-card-c-bg: #f8fafc;
+      --diag-card-c-border: #1b2d70;
+      --diag-card-c-letter: #1b2d70;
+      --diag-card-c-quote: #3e5199;
       --diag-card-c-box-bg: #ffffff;
-      --diag-card-c-box-border: #fde68a;
+      --diag-card-c-box-border: #1b2d70;
 
-      --diag-card-i-bg: #f0f9ff;
-      --diag-card-i-border: #bae6fd;
-      --diag-card-i-letter: #0284c7;
-      --diag-card-i-quote: #0369a1;
+      --diag-card-i-bg: #f8fafc;
+      --diag-card-i-border: #3e5199;
+      --diag-card-i-letter: #3e5199;
+      --diag-card-i-quote: #111a4a;
       --diag-card-i-box-bg: #ffffff;
-      --diag-card-i-box-border: #bae6fd;
+      --diag-card-i-box-border: #3e5199;
 
-      --diag-card-d-bg: #f0fdf4;
-      --diag-card-d-border: #bbf7d0;
-      --diag-card-d-letter: #16a34a;
-      --diag-card-d-quote: #15803d;
+      --diag-card-d-bg: #f8fafc;
+      --diag-card-d-border: #167e6c;
+      --diag-card-d-letter: #167e6c;
+      --diag-card-d-quote: #167e6c;
       --diag-card-d-box-bg: #ffffff;
-      --diag-card-d-box-border: #bbf7d0;
+      --diag-card-d-box-border: #167e6c;
     }
 
     /* Dark Mode (Web Application) */
     html.dark svg, .dark svg {
-      --diag-canvas: #0c1017;
-      --diag-header-tag: #38bdf8;
-      --diag-header-sub: #94a3b8;
-      --diag-text-title: #f8fafc;
+      --diag-canvas: #12161e;
+      --diag-header-tag: #3e5199;
+      --diag-header-sub: #5568ad;
+      --diag-text-title: #ffffff;
       --diag-text-rule: #cbd5e1;
 
-      --diag-card-a-bg: #241116;
-      --diag-card-a-border: #ef4444;
-      --diag-card-a-letter: #f87171;
-      --diag-card-a-quote: #fca5a5;
-      --diag-card-a-box-bg: #1b080d;
-      --diag-card-a-box-border: #7f1d1d;
+      --diag-card-a-bg: #111a4a15;
+      --diag-card-a-border: #111a4a;
+      --diag-card-a-letter: #5568ad;
+      --diag-card-a-quote: #3e5199;
+      --diag-card-a-box-bg: #0c1017;
+      --diag-card-a-box-border: #111a4a;
 
-      --diag-card-c-bg: #221b0f;
-      --diag-card-c-border: #f59e0b;
-      --diag-card-c-letter: #fbbf24;
-      --diag-card-c-quote: #fde68a;
-      --diag-card-c-box-bg: #1b1207;
-      --diag-card-c-box-border: #78350f;
+      --diag-card-c-bg: #111a4a15;
+      --diag-card-c-border: #1b2d70;
+      --diag-card-c-letter: #5568ad;
+      --diag-card-c-quote: #3e5199;
+      --diag-card-c-box-bg: #0c1017;
+      --diag-card-c-box-border: #1b2d70;
 
-      --diag-card-i-bg: #10202e;
-      --diag-card-i-border: #38bdf8;
-      --diag-card-i-letter: #38bdf8;
-      --diag-card-i-quote: #7dd3fc;
-      --diag-card-i-box-bg: #081829;
-      --diag-card-i-box-border: #0284c7;
+      --diag-card-i-bg: #111a4a15;
+      --diag-card-i-border: #3e5199;
+      --diag-card-i-letter: #3e5199;
+      --diag-card-i-quote: #5568ad;
+      --diag-card-i-box-bg: #0c1017;
+      --diag-card-i-box-border: #3e5199;
 
-      --diag-card-d-bg: #10261e;
-      --diag-card-d-border: #34d399;
-      --diag-card-d-letter: #34d399;
-      --diag-card-d-quote: #6ee7b7;
-      --diag-card-d-box-bg: #091b14;
-      --diag-card-d-box-border: #059669;
+      --diag-card-d-bg: #167e6c15;
+      --diag-card-d-border: #167e6c;
+      --diag-card-d-letter: #167e6c;
+      --diag-card-d-quote: #167e6c;
+      --diag-card-d-box-bg: #0c1017;
+      --diag-card-d-box-border: #167e6c;
     }
 
     /* Standalone SVG Viewer */
     @media (prefers-color-scheme: dark) {
-      svg:root {
-        --diag-canvas: #0c1017;
-        --diag-header-tag: #38bdf8;
-        --diag-header-sub: #94a3b8;
-        --diag-text-title: #f8fafc;
+      :root:not(html) {
+        --diag-canvas: #12161e;
+        --diag-header-tag: #3e5199;
+        --diag-header-sub: #5568ad;
+        --diag-text-title: #ffffff;
         --diag-text-rule: #cbd5e1;
 
-        --diag-card-a-bg: #241116;
-        --diag-card-a-border: #ef4444;
-        --diag-card-a-letter: #f87171;
-        --diag-card-a-quote: #fca5a5;
-        --diag-card-a-box-bg: #1b080d;
-        --diag-card-a-box-border: #7f1d1d;
+        --diag-card-a-bg: #111a4a15;
+        --diag-card-a-border: #111a4a;
+        --diag-card-a-letter: #5568ad;
+        --diag-card-a-quote: #3e5199;
+        --diag-card-a-box-bg: #0c1017;
+        --diag-card-a-box-border: #111a4a;
 
-        --diag-card-c-bg: #221b0f;
-        --diag-card-c-border: #f59e0b;
-        --diag-card-c-letter: #fbbf24;
-        --diag-card-c-quote: #fde68a;
-        --diag-card-c-box-bg: #1b1207;
-        --diag-card-c-box-border: #78350f;
+        --diag-card-c-bg: #111a4a15;
+        --diag-card-c-border: #1b2d70;
+        --diag-card-c-letter: #5568ad;
+        --diag-card-c-quote: #3e5199;
+        --diag-card-c-box-bg: #0c1017;
+        --diag-card-c-box-border: #1b2d70;
 
-        --diag-card-i-bg: #10202e;
-        --diag-card-i-border: #38bdf8;
-        --diag-card-i-letter: #38bdf8;
-        --diag-card-i-quote: #7dd3fc;
-        --diag-card-i-box-bg: #081829;
-        --diag-card-i-box-border: #0284c7;
+        --diag-card-i-bg: #111a4a15;
+        --diag-card-i-border: #3e5199;
+        --diag-card-i-letter: #3e5199;
+        --diag-card-i-quote: #5568ad;
+        --diag-card-i-box-bg: #0c1017;
+        --diag-card-i-box-border: #3e5199;
 
-        --diag-card-d-bg: #10261e;
-        --diag-card-d-border: #34d399;
-        --diag-card-d-letter: #34d399;
-        --diag-card-d-quote: #6ee7b7;
-        --diag-card-d-box-bg: #091b14;
-        --diag-card-d-box-border: #059669;
+        --diag-card-d-bg: #167e6c15;
+        --diag-card-d-border: #167e6c;
+        --diag-card-d-letter: #167e6c;
+        --diag-card-d-quote: #167e6c;
+        --diag-card-d-box-bg: #0c1017;
+        --diag-card-d-box-border: #167e6c;
       }
     }
 
@@ -126,7 +126,6 @@
     .card-quote { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11.5px; font-weight: 600; }
     .rule-item { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11.5px; fill: var(--diag-text-rule); }
     .code-term { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10.5px; font-weight: 600; }
-    .div-line { stroke: var(--diag-card-border); stroke-width: 1; }
   </style>
 
   <!-- Background Base Canvas -->

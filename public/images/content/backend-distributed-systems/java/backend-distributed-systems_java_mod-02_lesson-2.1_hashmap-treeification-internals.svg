@@ -1,124 +1,124 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" width="100%" height="auto" preserveAspectRatio="xMidYMid meet">
   <defs>
     <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
-      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.08" />
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.06" />
     </filter>
     <marker id="arrowAmber" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--diag-arrow-amber)" />
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#3e5199" />
     </marker>
     <marker id="arrowRed" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--diag-arrow-red)" />
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#167e6c" />
     </marker>
     <marker id="arrowIndigo" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--diag-arrow-indigo)" />
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#3e5199" />
     </marker>
   </defs>
 
   <style>
     /* Default: Light Mode */
-    svg {
+    :root {
       --diag-canvas: #ffffff;
-      --diag-header-main: #d97706;
-      --diag-header-sub: #64748b;
-      --diag-rule-box-bg: #fffbeb;
-      --diag-rule-box-border: #fcd34d;
-      --diag-rule-title: #b45309;
-      --diag-rule-desc: #334155;
+      --diag-header-main: #111a4a;
+      --diag-header-sub: #1b2d70;
+      --diag-rule-box-bg: #f8fafc;
+      --diag-rule-box-border: #3e5199;
+      --diag-rule-title: #111a4a;
+      --diag-rule-desc: #1b2d70;
 
-      --diag-table-label: #4338ca;
+      --diag-table-label: #1b2d70;
       --diag-bucket-bg: #f8fafc;
-      --diag-bucket-border: #818cf8;
-      --diag-dim: #64748b;
+      --diag-bucket-border: #3e5199;
+      --diag-dim: #1b2d70;
 
-      --diag-chain-card-bg: #fffdf5;
-      --diag-chain-card-border: #fde68a;
+      --diag-chain-card-bg: #f8fafc;
+      --diag-chain-card-border: #3e5199;
       --diag-node-bg: #ffffff;
-      --diag-node-border: #f59e0b;
-      --diag-node-text: #0f172a;
+      --diag-node-border: #1b2d70;
+      --diag-node-text: #111a4a;
 
-      --diag-tree-card-bg: #fef2f2;
-      --diag-tree-card-border: #fecaca;
+      --diag-tree-card-bg: #f8fafc;
+      --diag-tree-card-border: #167e6c;
       --diag-tree-black-bg: #ffffff;
-      --diag-tree-black-border: #475569;
-      --diag-tree-black-text: #0f172a;
-      --diag-tree-red-bg: #fee2e2;
-      --diag-tree-red-border: #ef4444;
-      --diag-tree-red-text: #b91c1c;
+      --diag-tree-black-border: #111a4a;
+      --diag-tree-black-text: #111a4a;
+      --diag-tree-red-bg: #e6f7f4;
+      --diag-tree-red-border: #167e6c;
+      --diag-tree-red-text: #167e6c;
 
-      --diag-arrow-amber: #d97706;
-      --diag-arrow-red: #ef4444;
-      --diag-arrow-indigo: #64748b;
+      --diag-arrow-amber: #3e5199;
+      --diag-arrow-red: #167e6c;
+      --diag-arrow-indigo: #3e5199;
     }
 
     /* Dark Mode (Web Application) */
     html.dark svg, .dark svg {
-      --diag-canvas: #0c1017;
-      --diag-header-main: #fbbf24;
-      --diag-header-sub: #94a3b8;
-      --diag-rule-box-bg: #14192b;
-      --diag-rule-box-border: #253254;
-      --diag-rule-title: #fbbf24;
-      --diag-rule-desc: #e2e8f0;
+      --diag-canvas: #12161e;
+      --diag-header-main: #3e5199;
+      --diag-header-sub: #5568ad;
+      --diag-rule-box-bg: #111a4a15;
+      --diag-rule-box-border: #3e5199;
+      --diag-rule-title: #ffffff;
+      --diag-rule-desc: #cbd5e1;
 
-      --diag-table-label: #818cf8;
-      --diag-bucket-bg: #141a29;
-      --diag-bucket-border: #818cf8;
-      --diag-dim: #94a3b8;
+      --diag-table-label: #5568ad;
+      --diag-bucket-bg: #0c1017;
+      --diag-bucket-border: #3e5199;
+      --diag-dim: #cbd5e1;
 
-      --diag-chain-card-bg: #121829;
-      --diag-chain-card-border: #1e293b;
-      --diag-node-bg: #1c1917;
-      --diag-node-border: #f59e0b;
-      --diag-node-text: #f8fafc;
+      --diag-chain-card-bg: #111a4a15;
+      --diag-chain-card-border: #3e5199;
+      --diag-node-bg: #0c1017;
+      --diag-node-border: #3e5199;
+      --diag-node-text: #ffffff;
 
-      --diag-tree-card-bg: #181115;
-      --diag-tree-card-border: #2d1e26;
-      --diag-tree-black-bg: #18181b;
-      --diag-tree-black-border: #71717a;
-      --diag-tree-black-text: #f8fafc;
-      --diag-tree-red-bg: #450a0a;
-      --diag-tree-red-border: #ef4444;
-      --diag-tree-red-text: #fecaca;
+      --diag-tree-card-bg: #167e6c15;
+      --diag-tree-card-border: #167e6c;
+      --diag-tree-black-bg: #0c1017;
+      --diag-tree-black-border: #111a4a;
+      --diag-tree-black-text: #ffffff;
+      --diag-tree-red-bg: #167e6c22;
+      --diag-tree-red-border: #167e6c;
+      --diag-tree-red-text: #167e6c;
 
-      --diag-arrow-amber: #f59e0b;
-      --diag-arrow-red: #ef4444;
-      --diag-arrow-indigo: #71717a;
+      --diag-arrow-amber: #3e5199;
+      --diag-arrow-red: #167e6c;
+      --diag-arrow-indigo: #3e5199;
     }
 
     /* Standalone SVG Viewer */
     @media (prefers-color-scheme: dark) {
-      svg:root {
-        --diag-canvas: #0c1017;
-        --diag-header-main: #fbbf24;
-        --diag-header-sub: #94a3b8;
-        --diag-rule-box-bg: #14192b;
-        --diag-rule-box-border: #253254;
-        --diag-rule-title: #fbbf24;
-        --diag-rule-desc: #e2e8f0;
+      :root:not(html) {
+        --diag-canvas: #12161e;
+        --diag-header-main: #3e5199;
+        --diag-header-sub: #5568ad;
+        --diag-rule-box-bg: #111a4a15;
+        --diag-rule-box-border: #3e5199;
+        --diag-rule-title: #ffffff;
+        --diag-rule-desc: #cbd5e1;
 
-        --diag-table-label: #818cf8;
-        --diag-bucket-bg: #141a29;
-        --diag-bucket-border: #818cf8;
-        --diag-dim: #94a3b8;
+        --diag-table-label: #5568ad;
+        --diag-bucket-bg: #0c1017;
+        --diag-bucket-border: #3e5199;
+        --diag-dim: #cbd5e1;
 
-        --diag-chain-card-bg: #121829;
-        --diag-chain-card-border: #1e293b;
-        --diag-node-bg: #1c1917;
-        --diag-node-border: #f59e0b;
-        --diag-node-text: #f8fafc;
+        --diag-chain-card-bg: #111a4a15;
+        --diag-chain-card-border: #3e5199;
+        --diag-node-bg: #0c1017;
+        --diag-node-border: #3e5199;
+        --diag-node-text: #ffffff;
 
-        --diag-tree-card-bg: #181115;
-        --diag-tree-card-border: #2d1e26;
-        --diag-tree-black-bg: #18181b;
-        --diag-tree-black-border: #71717a;
-        --diag-tree-black-text: #f8fafc;
-        --diag-tree-red-bg: #450a0a;
-        --diag-tree-red-border: #ef4444;
-        --diag-tree-red-text: #fecaca;
+        --diag-tree-card-bg: #167e6c15;
+        --diag-tree-card-border: #167e6c;
+        --diag-tree-black-bg: #0c1017;
+        --diag-tree-black-border: #111a4a;
+        --diag-tree-black-text: #ffffff;
+        --diag-tree-red-bg: #167e6c22;
+        --diag-tree-red-border: #167e6c;
+        --diag-tree-red-text: #167e6c;
 
-        --diag-arrow-amber: #f59e0b;
-        --diag-arrow-red: #ef4444;
-        --diag-arrow-indigo: #71717a;
+        --diag-arrow-amber: #3e5199;
+        --diag-arrow-red: #167e6c;
+        --diag-arrow-indigo: #3e5199;
       }
     }
 
@@ -165,7 +165,7 @@
     <g transform="translate(0, 80)" filter="url(#shadow)">
       <rect width="130" height="48" rx="6" fill="var(--diag-bucket-bg)" stroke="var(--diag-bucket-border)" stroke-width="1.2" />
       <text x="12" y="22" class="table-label">Table[1]</text>
-      <text x="12" y="38" class="node-dim" fill="#16a34a">head pointer ──►</text>
+      <text x="12" y="38" class="node-dim" fill="#167e6c">head pointer ──►</text>
     </g>
 
     <!-- Table[2] -->
@@ -177,9 +177,9 @@
 
     <!-- Table[3] (Treeified) -->
     <g transform="translate(0, 208)" filter="url(#shadow)">
-      <rect width="130" height="64" rx="6" fill="var(--diag-bucket-bg)" stroke="#d97706" stroke-width="1.6" />
-      <text x="12" y="24" class="table-label" fill="#d97706">Table[3]</text>
-      <text x="12" y="42" class="node-dim" fill="#d97706" font-weight="600">Treeified Root ──►</text>
+      <rect width="130" height="64" rx="6" fill="var(--diag-bucket-bg)" stroke="#167e6c" stroke-width="1.6" />
+      <text x="12" y="24" class="table-label" fill="#167e6c">Table[3]</text>
+      <text x="12" y="42" class="node-dim" fill="#167e6c" font-weight="600">Treeified Root ──►</text>
       <text x="12" y="55" class="node-dim" font-size="9px">bin &gt;= 8</text>
     </g>
   </g>
@@ -229,13 +229,13 @@
 
   <g transform="translate(210, 235)" filter="url(#shadow)">
     <rect width="715" height="255" rx="8" fill="var(--diag-tree-card-bg)" stroke="var(--diag-tree-card-border)" stroke-width="1" />
-    <text x="16" y="24" class="rule-title" fill="#dc2626" font-size="11px">Treeified Bucket: Red-Black Tree Hierarchy (Logarithmic Traversal • O(log k) Search)</text>
-    <text x="690" y="24" text-anchor="end" class="node-dim" fill="#b91c1c">Worst-case O(n) DOS Protection</text>
+    <text x="16" y="24" class="rule-title" fill="#167e6c" font-size="11px">Treeified Bucket: Red-Black Tree Hierarchy (Logarithmic Traversal • O(log k) Search)</text>
+    <text x="690" y="24" text-anchor="end" class="node-dim" fill="#167e6c">Worst-case O(n) DOS Protection</text>
 
     <!-- ROOT NODE (Black) -->
     <g transform="translate(320, 42)">
       <rect width="180" height="34" rx="6" fill="var(--diag-tree-black-bg)" stroke="var(--diag-tree-black-border)" stroke-width="1.5" />
-      <circle cx="18" cy="17" r="6" fill="#18181b" stroke="#475569" stroke-width="1.5" />
+      <circle cx="18" cy="17" r="6" fill="#111a4a" stroke="#111a4a" stroke-width="1.5" />
       <text x="32" y="21" class="tree-node-text" fill="var(--diag-tree-black-text)">Root: Hash #104 (B)</text>
     </g>
 
@@ -246,14 +246,14 @@
     <!-- LEFT CHILD 1 (Black) -->
     <g transform="translate(160, 115)">
       <rect width="170" height="34" rx="6" fill="var(--diag-tree-black-bg)" stroke="var(--diag-tree-black-border)" stroke-width="1.5" />
-      <circle cx="18" cy="17" r="6" fill="#18181b" stroke="#475569" stroke-width="1.5" />
+      <circle cx="18" cy="17" r="6" fill="#111a4a" stroke="#111a4a" stroke-width="1.5" />
       <text x="32" y="21" class="tree-node-text" fill="var(--diag-tree-black-text)">Left: Hash #42 (B)</text>
     </g>
 
     <!-- RIGHT CHILD 1 (Red) -->
     <g transform="translate(490, 115)">
       <rect width="170" height="34" rx="6" fill="var(--diag-tree-red-bg)" stroke="var(--diag-tree-red-border)" stroke-width="1.5" />
-      <circle cx="18" cy="17" r="6" fill="#dc2626" />
+      <circle cx="18" cy="17" r="6" fill="#167e6c" />
       <text x="32" y="21" class="tree-node-text" fill="var(--diag-tree-red-text)">Right: Hash #188 (R)</text>
     </g>
 
@@ -266,28 +266,28 @@
     <!-- Sub-children -->
     <g transform="translate(60, 185)">
       <rect width="140" height="28" rx="5" fill="var(--diag-tree-red-bg)" stroke="var(--diag-tree-red-border)" stroke-width="1" />
-      <circle cx="14" cy="14" r="5" fill="#dc2626" />
+      <circle cx="14" cy="14" r="5" fill="#167e6c" />
       <text x="26" y="18" class="tree-node-text" font-size="9.5px" fill="var(--diag-tree-red-text)">Hash #18 (R)</text>
     </g>
     <g transform="translate(240, 185)">
       <rect width="140" height="28" rx="5" fill="var(--diag-tree-red-bg)" stroke="var(--diag-tree-red-border)" stroke-width="1" />
-      <circle cx="14" cy="14" r="5" fill="#dc2626" />
+      <circle cx="14" cy="14" r="5" fill="#167e6c" />
       <text x="26" y="18" class="tree-node-text" font-size="9.5px" fill="var(--diag-tree-red-text)">Hash #78 (R)</text>
     </g>
     <g transform="translate(420, 185)">
-      <rect width="140" height="28" rx="5" fill="var(--diag-tree-black-bg)" stroke="var(--diag-tree-black-border)" stroke-width="1" />
-      <circle cx="14" cy="14" r="5" fill="#18181b" stroke="#475569" />
+      <rect width="140" height="28" rx="5" fill="var(--diag-tree-black-bg)" stroke="var(--diag-tree-black-border)" stroke-width="1.5" />
+      <circle cx="14" cy="14" r="5" fill="#111a4a" />
       <text x="26" y="18" class="tree-node-text" font-size="9.5px" fill="var(--diag-tree-black-text)">Hash #140 (B)</text>
     </g>
     <g transform="translate(590, 185)">
-      <rect width="140" height="28" rx="5" fill="var(--diag-tree-black-bg)" stroke="var(--diag-tree-black-border)" stroke-width="1" />
-      <circle cx="14" cy="14" r="5" fill="#18181b" stroke="#475569" />
+      <rect width="140" height="28" rx="5" fill="var(--diag-tree-black-bg)" stroke="var(--diag-tree-black-border)" stroke-width="1.5" />
+      <circle cx="14" cy="14" r="5" fill="#111a4a" />
       <text x="26" y="18" class="tree-node-text" font-size="9.5px" fill="var(--diag-tree-black-text)">Hash #240 (B)</text>
     </g>
 
     <!-- Bottom invariant note -->
     <text x="16" y="238" class="node-dim" fill="var(--diag-dim)">
-      • Self-balancing tree guarantees black-height consistency. If node count falls to <tspan fill="#d97706" font-weight="600">6 (UNTREEIFY_THRESHOLD)</tspan> during resize/delete, converts back to linked list.
+      • Self-balancing tree guarantees black-height consistency. If node count falls to <tspan fill="#167e6c" font-weight="600">6 (UNTREEIFY_THRESHOLD)</tspan> during resize/delete, converts back to linked list.
     </text>
   </g>
 </svg>

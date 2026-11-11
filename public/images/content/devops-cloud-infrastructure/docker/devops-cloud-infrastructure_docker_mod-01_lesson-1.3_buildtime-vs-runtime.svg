@@ -1,125 +1,200 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 390" width="100%" height="auto" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 390" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
   <defs>
-    <linearGradient id="bgCanvas2b" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0f172a" />
-      <stop offset="100%" stop-color="#1e293b" />
-    </linearGradient>
-    <marker id="arrowAmber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#f59e0b" />
-    </marker>
-    <marker id="arrowCyan" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#06b6d4" />
-    </marker>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.08" />
+    </filter>
   </defs>
 
-  <rect width="960" height="390" rx="14" fill="url(#bgCanvas2b)" stroke="#334155" stroke-width="1.5" />
+  <style>
+    /* Default: Light Mode (Clean White Canvas) */
+    svg {
+      --diag-canvas: #ffffff;
+      --diag-header-title: #111a4a;
+      --diag-divider: #cbd5e1;
+
+      --diag-build-border: #3e5199;
+      --diag-build-header: #3e5199;
+      --diag-build-badge: #3e5199;
+      --diag-build-text: #ffffff;
+      --diag-build-sub: #1b2d70;
+
+      --diag-run-border: #167e6c;
+      --diag-run-header: #167e6c;
+      --diag-run-badge: #167e6c;
+      --diag-run-text: #ffffff;
+      --diag-run-sub: #167e6c;
+
+      --diag-card-bg: #f8fafc;
+      --diag-card-inner: #ffffff;
+      --diag-card-border: #cbd5e1;
+
+      --diag-text-main: #111a4a;
+      --diag-text-dim: #64748b;
+    }
+
+    /* Dark Mode (Web Application) */
+    html.dark svg, .dark svg {
+      --diag-canvas: #12161e;
+      --diag-header-title: #788cd4;
+      --diag-divider: #243049;
+
+      --diag-build-border: #3e5199;
+      --diag-build-header: #3e5199;
+      --diag-build-badge: #3e5199;
+      --diag-build-text: #ffffff;
+      --diag-build-sub: #93a5e8;
+
+      --diag-run-border: #167e6c;
+      --diag-run-header: #167e6c;
+      --diag-run-badge: #167e6c;
+      --diag-run-text: #ffffff;
+      --diag-run-sub: #2dd4bf;
+
+      --diag-card-bg: #171d2b;
+      --diag-card-inner: #131b2a;
+      --diag-card-border: #243049;
+
+      --diag-text-main: #f8fafc;
+      --diag-text-dim: #94a3b8;
+    }
+
+    /* Standalone SVG Viewer */
+    @media (prefers-color-scheme: dark) {
+      :root:not(html) {
+        --diag-canvas: #12161e;
+        --diag-header-title: #788cd4;
+        --diag-divider: #243049;
+
+        --diag-build-border: #3e5199;
+        --diag-build-header: #3e5199;
+        --diag-build-badge: #3e5199;
+        --diag-build-text: #ffffff;
+        --diag-build-sub: #93a5e8;
+
+        --diag-run-border: #167e6c;
+        --diag-run-header: #167e6c;
+        --diag-run-badge: #167e6c;
+        --diag-run-text: #ffffff;
+        --diag-run-sub: #2dd4bf;
+
+        --diag-card-bg: #171d2b;
+        --diag-card-inner: #131b2a;
+        --diag-card-border: #243049;
+
+        --diag-text-main: #f8fafc;
+        --diag-text-dim: #94a3b8;
+      }
+    }
+  </style>
+
+  <rect width="960" height="390" rx="12" fill="var(--diag-canvas)" />
 
   <!-- Title -->
-  <text x="480" y="34" text-anchor="middle" fill="#f8fafc" font-size="16.5" font-weight="700" letter-spacing="0.5">
+  <text x="480" y="34" text-anchor="middle" fill="var(--diag-header-title)" font-size="15" font-weight="700" letter-spacing="0.5">
     EXECUTION TIMELINE: WHICH DOCKERFILE INSTRUCTIONS RUN AT BUILD-TIME VS. RUN-TIME?
   </text>
-  <line x1="50" y1="48" x2="910" y2="48" stroke="#334155" stroke-width="1" />
+  <line x1="50" y1="48" x2="910" y2="48" stroke="var(--diag-divider)" stroke-width="1" />
 
   <!-- ========================================================= -->
   <!-- LEFT SIDE: BUILD-TIME PHASE (docker build)                -->
   <!-- ========================================================= -->
   <g transform="translate(28, 66)">
-    <rect width="435" height="298" rx="10" fill="#1c1917" stroke="#f59e0b" stroke-width="1.5" />
+    <rect width="435" height="298" rx="10" fill="var(--diag-card-bg)" stroke="var(--diag-build-border)" stroke-width="1.5" filter="url(#shadow)" />
 
     <!-- Phase Header -->
-    <rect x="16" y="14" width="403" height="30" rx="6" fill="#78350f" />
-    <text x="217" y="34" text-anchor="middle" fill="#fef3c7" font-size="12.5" font-weight="700" letter-spacing="0.5">
+    <rect x="16" y="14" width="403" height="30" rx="6" fill="var(--diag-build-header)" />
+    <text x="217" y="34" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700" letter-spacing="0.5">
       PHASE 1: BUILD-TIME (Executes during `docker build`)
     </text>
 
-    <text x="217" y="64" text-anchor="middle" fill="#fcd34d" font-size="11">
+    <text x="217" y="64" text-anchor="middle" fill="var(--diag-build-sub)" font-size="11" font-weight="600">
       Runs ONCE on Developer Machine / CI Runner to create Read-Only Layers
     </text>
 
     <!-- Instruction Rows -->
     <g transform="translate(18, 78)">
       <!-- Row 1: FROM -->
-      <rect x="0" y="0" width="399" height="36" rx="5" fill="#0f172a" stroke="#475569" />
-      <rect x="8" y="7" width="76" height="22" rx="4" fill="#f59e0b" />
-      <text x="46" y="22" text-anchor="middle" fill="#0f172a" font-family="monospace" font-size="11" font-weight="700">FROM</text>
-      <text x="96" y="22" fill="#e2e8f0" font-size="11.5">Downloads base OS &amp; JDK/JRE 21 layer</text>
+      <rect x="0" y="0" width="399" height="36" rx="5" fill="var(--diag-card-inner)" stroke="var(--diag-card-border)" />
+      <rect x="8" y="7" width="76" height="22" rx="4" fill="var(--diag-build-badge)" />
+      <text x="46" y="22" text-anchor="middle" fill="var(--diag-build-text)" font-family="monospace" font-size="11" font-weight="700">FROM</text>
+      <text x="96" y="22" fill="var(--diag-text-main)" font-size="11.5">Downloads base OS &amp; JDK/JRE 21 layer</text>
 
       <!-- Row 2: WORKDIR -->
-      <rect x="0" y="44" width="399" height="36" rx="5" fill="#0f172a" stroke="#475569" />
-      <rect x="8" y="51" width="76" height="22" rx="4" fill="#f59e0b" />
-      <text x="46" y="66" text-anchor="middle" fill="#0f172a" font-family="monospace" font-size="11" font-weight="700">WORKDIR</text>
-      <text x="96" y="66" fill="#e2e8f0" font-size="11.5">Creates &amp; enters directory (/app) inside image</text>
+      <rect x="0" y="44" width="399" height="36" rx="5" fill="var(--diag-card-inner)" stroke="var(--diag-card-border)" />
+      <rect x="8" y="51" width="76" height="22" rx="4" fill="var(--diag-build-badge)" />
+      <text x="46" y="66" text-anchor="middle" fill="var(--diag-build-text)" font-family="monospace" font-size="11" font-weight="700">WORKDIR</text>
+      <text x="96" y="66" fill="var(--diag-text-main)" font-size="11.5">Creates &amp; enters directory (/app) inside image</text>
 
       <!-- Row 3: COPY -->
-      <rect x="0" y="88" width="399" height="36" rx="5" fill="#0f172a" stroke="#475569" />
-      <rect x="8" y="95" width="76" height="22" rx="4" fill="#f59e0b" />
-      <text x="46" y="110" text-anchor="middle" fill="#0f172a" font-family="monospace" font-size="11" font-weight="700">COPY</text>
-      <text x="96" y="110" fill="#e2e8f0" font-size="11.5">Copies pom.xml, src/, or .jar from host into image</text>
+      <rect x="0" y="88" width="399" height="36" rx="5" fill="var(--diag-card-inner)" stroke="var(--diag-card-border)" />
+      <rect x="8" y="95" width="76" height="22" rx="4" fill="var(--diag-build-badge)" />
+      <text x="46" y="110" text-anchor="middle" fill="var(--diag-build-text)" font-family="monospace" font-size="11" font-weight="700">COPY</text>
+      <text x="96" y="110" fill="var(--diag-text-main)" font-size="11.5">Copies pom.xml, src/, or .jar from host into image</text>
 
       <!-- Row 4: RUN -->
-      <rect x="0" y="132" width="399" height="36" rx="5" fill="#0f172a" stroke="#475569" />
-      <rect x="8" y="139" width="76" height="22" rx="4" fill="#f59e0b" />
-      <text x="46" y="154" text-anchor="middle" fill="#0f172a" font-family="monospace" font-size="11" font-weight="700">RUN</text>
-      <text x="96" y="154" fill="#e2e8f0" font-size="11.5">Executes `./mvnw package` or `adduser` &amp; commits layer</text>
+      <rect x="0" y="132" width="399" height="36" rx="5" fill="var(--diag-card-inner)" stroke="var(--diag-card-border)" />
+      <rect x="8" y="139" width="76" height="22" rx="4" fill="var(--diag-build-badge)" />
+      <text x="46" y="154" text-anchor="middle" fill="var(--diag-build-text)" font-family="monospace" font-size="11" font-weight="700">RUN</text>
+      <text x="96" y="154" fill="var(--diag-text-main)" font-size="11.5">Executes `./mvnw package` or `adduser` &amp; commits layer</text>
 
       <!-- Row 5: ARG -->
-      <rect x="0" y="176" width="399" height="36" rx="5" fill="#0f172a" stroke="#475569" />
-      <rect x="8" y="183" width="76" height="22" rx="4" fill="#f59e0b" />
-      <text x="46" y="198" text-anchor="middle" fill="#0f172a" font-family="monospace" font-size="11" font-weight="700">ARG</text>
-      <text x="96" y="198" fill="#e2e8f0" font-size="11.5">Build-only variables (e.g., JAR_FILE path); gone at runtime</text>
+      <rect x="0" y="176" width="399" height="36" rx="5" fill="var(--diag-card-inner)" stroke="var(--diag-card-border)" />
+      <rect x="8" y="183" width="76" height="22" rx="4" fill="var(--diag-build-badge)" />
+      <text x="46" y="198" text-anchor="middle" fill="var(--diag-build-text)" font-family="monospace" font-size="11" font-weight="700">ARG</text>
+      <text x="96" y="198" fill="var(--diag-text-main)" font-size="11.5">Build-only variables (e.g., JAR_FILE path); gone at runtime</text>
     </g>
   </g>
 
   <!-- Center Divider Badge -->
-  <line x1="480" y1="66" x2="480" y2="364" stroke="#475569" stroke-width="1.5" stroke-dasharray="6,4" />
-  <rect x="446" y="195" width="68" height="36" rx="18" fill="#0f172a" stroke="#94a3b8" stroke-width="1.5" />
-  <text x="480" y="217" text-anchor="middle" fill="#f8fafc" font-size="11" font-weight="700">VS</text>
+  <line x1="480" y1="66" x2="480" y2="364" stroke="var(--diag-divider)" stroke-width="1.5" stroke-dasharray="6,4" />
+  <rect x="446" y="195" width="68" height="36" rx="18" fill="var(--diag-card-inner)" stroke="var(--diag-divider)" stroke-width="1.5" />
+  <text x="480" y="217" text-anchor="middle" fill="var(--diag-text-main)" font-size="11" font-weight="700">VS</text>
 
   <!-- ========================================================= -->
   <!-- RIGHT SIDE: RUN-TIME PHASE (docker run)                   -->
   <!-- ========================================================= -->
   <g transform="translate(497, 66)">
-    <rect width="435" height="298" rx="10" fill="#082f49" stroke="#06b6d4" stroke-width="1.5" />
+    <rect width="435" height="298" rx="10" fill="var(--diag-card-bg)" stroke="var(--diag-run-border)" stroke-width="1.5" filter="url(#shadow)" />
 
     <!-- Phase Header -->
-    <rect x="16" y="14" width="403" height="30" rx="6" fill="#155e75" />
-    <text x="217" y="34" text-anchor="middle" fill="#cffafe" font-size="12.5" font-weight="700" letter-spacing="0.5">
+    <rect x="16" y="14" width="403" height="30" rx="6" fill="var(--diag-run-header)" />
+    <text x="217" y="34" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700" letter-spacing="0.5">
       PHASE 2: RUN-TIME (Executes during `docker run`)
     </text>
 
-    <text x="217" y="64" text-anchor="middle" fill="#67e8f9" font-size="11">
+    <text x="217" y="64" text-anchor="middle" fill="var(--diag-run-sub)" font-size="11" font-weight="600">
       Runs EVERY TIME a Container boots on Local, Staging, or Production
     </text>
 
     <!-- Instruction Rows -->
     <g transform="translate(18, 78)">
       <!-- Row 1: ENTRYPOINT -->
-      <rect x="0" y="0" width="399" height="50" rx="5" fill="#0f172a" stroke="#06b6d4" stroke-width="1.2" />
-      <rect x="8" y="14" width="92" height="22" rx="4" fill="#06b6d4" />
-      <text x="54" y="29" text-anchor="middle" fill="#0f172a" font-family="monospace" font-size="11" font-weight="700">ENTRYPOINT</text>
-      <text x="110" y="22" fill="#f8fafc" font-size="11.5" font-weight="600">Starts PID 1 (`java -jar app.jar`)</text>
-      <text x="110" y="39" fill="#94a3b8" font-size="10.5">Spring Boot boots, connects to DB &amp; runs Flyway</text>
+      <rect x="0" y="0" width="399" height="50" rx="5" fill="var(--diag-card-inner)" stroke="var(--diag-run-border)" stroke-width="1.2" />
+      <rect x="8" y="14" width="92" height="22" rx="4" fill="var(--diag-run-badge)" />
+      <text x="54" y="29" text-anchor="middle" fill="var(--diag-run-text)" font-family="monospace" font-size="11" font-weight="700">ENTRYPOINT</text>
+      <text x="110" y="22" fill="var(--diag-text-main)" font-size="11.5" font-weight="600">Starts PID 1 (`java -jar app.jar`)</text>
+      <text x="110" y="39" fill="var(--diag-text-dim)" font-size="10.5">Spring Boot boots, connects to DB &amp; runs Flyway</text>
 
       <!-- Row 2: CMD -->
-      <rect x="0" y="58" width="399" height="44" rx="5" fill="#0f172a" stroke="#475569" />
-      <rect x="8" y="69" width="92" height="22" rx="4" fill="#06b6d4" />
-      <text x="54" y="84" text-anchor="middle" fill="#0f172a" font-family="monospace" font-size="11" font-weight="700">CMD</text>
-      <text x="110" y="79" fill="#e2e8f0" font-size="11.5">Passes default flags to ENTRYPOINT</text>
-      <text x="110" y="94" fill="#94a3b8" font-family="monospace" font-size="10">e.g. ["--spring.profiles.active=prod"]</text>
+      <rect x="0" y="58" width="399" height="44" rx="5" fill="var(--diag-card-inner)" stroke="var(--diag-card-border)" />
+      <rect x="8" y="69" width="92" height="22" rx="4" fill="var(--diag-run-badge)" />
+      <text x="54" y="84" text-anchor="middle" fill="var(--diag-run-text)" font-family="monospace" font-size="11" font-weight="700">CMD</text>
+      <text x="110" y="79" fill="var(--diag-text-main)" font-size="11.5">Passes default flags to ENTRYPOINT</text>
+      <text x="110" y="94" fill="var(--diag-text-dim)" font-family="monospace" font-size="10">e.g. ["--spring.profiles.active=prod"]</text>
 
       <!-- Row 3: ENV -->
-      <rect x="0" y="110" width="399" height="46" rx="5" fill="#0f172a" stroke="#475569" />
-      <rect x="8" y="122" width="92" height="22" rx="4" fill="#a855f7" />
-      <text x="54" y="137" text-anchor="middle" fill="#faf5ff" font-family="monospace" font-size="11" font-weight="700">ENV</text>
-      <text x="110" y="130" fill="#e2e8f0" font-size="11.5">Persists into container OS environment</text>
-      <text x="110" y="146" fill="#c084fc" font-size="10.5">Overridden at runtime via `docker run -e DB_URL=...`</text>
+      <rect x="0" y="110" width="399" height="46" rx="5" fill="var(--diag-card-inner)" stroke="var(--diag-card-border)" />
+      <rect x="8" y="122" width="92" height="22" rx="4" fill="#1b2d70" />
+      <text x="54" y="137" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="11" font-weight="700">ENV</text>
+      <text x="110" y="130" fill="var(--diag-text-main)" font-size="11.5">Persists into container OS environment</text>
+      <text x="110" y="146" fill="#1b2d70" font-size="10.5">Overridden at runtime via `docker run -e DB_URL=...`</text>
 
       <!-- Row 4: HEALTHCHECK -->
-      <rect x="0" y="164" width="399" height="48" rx="5" fill="#0f172a" stroke="#475569" />
-      <rect x="8" y="177" width="92" height="22" rx="4" fill="#10b981" />
-      <text x="54" y="192" text-anchor="middle" fill="#0f172a" font-family="monospace" font-size="10.5" font-weight="700">HEALTHCHECK</text>
-      <text x="110" y="185" fill="#e2e8f0" font-size="11.5">Periodically pings `/actuator/health`</text>
-      <text x="110" y="201" fill="#6ee7b7" font-size="10.5">Tells orchestrator if Spring Boot is ready for traffic</text>
+      <rect x="0" y="164" width="399" height="48" rx="5" fill="var(--diag-card-inner)" stroke="var(--diag-card-border)" />
+      <rect x="8" y="177" width="92" height="22" rx="4" fill="#167e6c" />
+      <text x="54" y="192" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="10.5" font-weight="700">HEALTHCHECK</text>
+      <text x="110" y="185" fill="var(--diag-text-main)" font-size="11.5">Periodically pings `/actuator/health`</text>
+      <text x="110" y="201" fill="#167e6c" font-size="10.5">Tells orchestrator if Spring Boot is ready for traffic</text>
     </g>
   </g>
 </svg>

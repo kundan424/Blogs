@@ -1,94 +1,144 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="auto" preserveAspectRatio="xMidYMid meet">
   <defs>
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#141210" />
-      <stop offset="100%" stop-color="#0d0b09" />
-    </linearGradient>
-    <linearGradient id="containerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#14262c" />
-      <stop offset="100%" stop-color="#0c181c" />
-    </linearGradient>
-    <linearGradient id="hostGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#241e1a" />
-      <stop offset="100%" stop-color="#171310" />
-    </linearGradient>
     <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
-      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.4" />
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.08" />
     </filter>
-    <marker id="arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 9 5 L 0 9 z" fill="#10b981" />
+    <marker id="arrowTeal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#167e6c" />
     </marker>
-    <marker id="arrowAmber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 9 5 L 0 9 z" fill="#f59e0b" />
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#3e5199" />
     </marker>
-    <marker id="arrowPurple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 9 5 L 0 9 z" fill="#a855f7" />
+    <marker id="arrowNavy" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#1b2d70" />
     </marker>
   </defs>
 
   <style>
-    .title { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; font-weight: 700; fill: #f3efe9; letter-spacing: 0.5px; }
-    .header { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; }
-    .text-sm { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: #d6d3d1; }
-    .text-dim { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 10px; fill: #a8a29e; }
+    /* Default: Light Mode (Clean White Canvas) */
+    svg {
+      --diag-canvas: #ffffff;
+      --diag-header: #111a4a;
+      --diag-card-bg: #f8fafc;
+      --diag-card-sub: #ffffff;
+      --diag-card-border: #cbd5e1;
+
+      --diag-vol-border: #167e6c;
+      --diag-vol-title: #167e6c;
+      --diag-bind-border: #3e5199;
+      --diag-bind-title: #3e5199;
+      --diag-tmpfs-border: #1b2d70;
+      --diag-tmpfs-title: #1b2d70;
+
+      --diag-title-main: #111a4a;
+      --diag-text-main: #1e293b;
+      --diag-text-dim: #64748b;
+    }
+
+    /* Dark Mode (Web Application) */
+    html.dark svg, .dark svg {
+      --diag-canvas: #12161e;
+      --diag-header: #788cd4;
+      --diag-card-bg: #171d2b;
+      --diag-card-sub: #131b2a;
+      --diag-card-border: #243049;
+
+      --diag-vol-border: #167e6c;
+      --diag-vol-title: #2dd4bf;
+      --diag-bind-border: #3e5199;
+      --diag-bind-title: #788cd4;
+      --diag-tmpfs-border: #1b2d70;
+      --diag-tmpfs-title: #93a5e8;
+
+      --diag-title-main: #f8fafc;
+      --diag-text-main: #cbd5e1;
+      --diag-text-dim: #94a3b8;
+    }
+
+    /* Standalone SVG Viewer */
+    @media (prefers-color-scheme: dark) {
+      :root:not(html) {
+        --diag-canvas: #12161e;
+        --diag-header: #788cd4;
+        --diag-card-bg: #171d2b;
+        --diag-card-sub: #131b2a;
+        --diag-card-border: #243049;
+
+        --diag-vol-border: #167e6c;
+        --diag-vol-title: #2dd4bf;
+        --diag-bind-border: #3e5199;
+        --diag-bind-title: #788cd4;
+        --diag-tmpfs-border: #1b2d70;
+        --diag-tmpfs-title: #93a5e8;
+
+        --diag-title-main: #f8fafc;
+        --diag-text-main: #cbd5e1;
+        --diag-text-dim: #94a3b8;
+      }
+    }
+
+    .title { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; font-weight: 700; fill: var(--diag-title-main); letter-spacing: 0.5px; }
+    .header { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; fill: var(--diag-header); }
+    .text-sm { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: var(--diag-text-main); }
+    .text-dim { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 10px; fill: var(--diag-text-dim); }
     .code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; }
     .badge { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; font-weight: 700; }
   </style>
 
-  <rect width="960" height="480" rx="16" fill="url(#bgGrad)" stroke="#2e2823" stroke-width="1.5" />
-  <text x="480" y="36" text-anchor="middle" class="header" fill="#10b981">Docker Storage Architecture: Volumes, Bind Mounts, and tmpfs</text>
+  <rect width="960" height="480" rx="12" fill="var(--diag-canvas)" />
+  <text x="480" y="36" text-anchor="middle" class="header">Docker Storage Architecture: Volumes, Bind Mounts, and tmpfs</text>
 
   <!-- ==================== TOP: RUNNING CONTAINER ==================== -->
   <g transform="translate(60, 55)">
-    <rect width="840" height="150" rx="12" fill="url(#containerGrad)" stroke="#0284c7" stroke-width="1.5" filter="url(#shadow)" />
-    <text x="420" y="28" text-anchor="middle" class="title" fill="#38bdf8">CONTAINER ISOLATED MOUNT NAMESPACE</text>
+    <rect width="840" height="150" rx="10" fill="var(--diag-card-bg)" stroke="#111a4a" stroke-width="1.5" filter="url(#shadow)" />
+    <text x="420" y="28" text-anchor="middle" class="title" fill="#111a4a">CONTAINER ISOLATED MOUNT NAMESPACE</text>
 
     <!-- Mount points inside container -->
     <g transform="translate(30, 48)">
       <!-- Mount Point 1: /var/lib/postgresql/data -->
       <g transform="translate(0, 0)">
-        <rect width="240" height="80" rx="6" fill="#1e293b" stroke="#10b981" stroke-width="1.5" />
-        <text x="15" y="24" class="title" fill="#34d399">/var/lib/postgresql/data</text>
+        <rect width="240" height="80" rx="6" fill="var(--diag-card-sub)" stroke="var(--diag-vol-border)" stroke-width="1.5" />
+        <text x="15" y="24" class="title" fill="var(--diag-vol-title)">/var/lib/postgresql/data</text>
         <text x="15" y="44" class="text-sm">Target: Database Storage</text>
-        <text x="15" y="62" class="badge" fill="#6ee7b7">MOUNT TYPE: VOLUME</text>
+        <text x="15" y="62" class="badge" fill="var(--diag-vol-title)">MOUNT TYPE: VOLUME</text>
       </g>
 
       <!-- Mount Point 2: /app/src -->
       <g transform="translate(270, 0)">
-        <rect width="240" height="80" rx="6" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5" />
-        <text x="15" y="24" class="title" fill="#fbbf24">/app/src (Code / Config)</text>
+        <rect width="240" height="80" rx="6" fill="var(--diag-card-sub)" stroke="var(--diag-bind-border)" stroke-width="1.5" />
+        <text x="15" y="24" class="title" fill="var(--diag-bind-title)">/app/src (Code / Config)</text>
         <text x="15" y="44" class="text-sm">Target: Source Directory</text>
-        <text x="15" y="62" class="badge" fill="#fde047">MOUNT TYPE: BIND MOUNT</text>
+        <text x="15" y="62" class="badge" fill="var(--diag-bind-title)">MOUNT TYPE: BIND MOUNT</text>
       </g>
 
       <!-- Mount Point 3: /tmp/session-tokens -->
       <g transform="translate(540, 0)">
-        <rect width="240" height="80" rx="6" fill="#1e293b" stroke="#a855f7" stroke-width="1.5" />
-        <text x="15" y="24" class="title" fill="#c084fc">/tmp/session-tokens</text>
+        <rect width="240" height="80" rx="6" fill="var(--diag-card-sub)" stroke="var(--diag-tmpfs-border)" stroke-width="1.5" />
+        <text x="15" y="24" class="title" fill="var(--diag-tmpfs-title)">/tmp/session-tokens</text>
         <text x="15" y="44" class="text-sm">Target: Transient In-Memory</text>
-        <text x="15" y="62" class="badge" fill="#d8b4fe">MOUNT TYPE: TMPFS</text>
+        <text x="15" y="62" class="badge" fill="var(--diag-tmpfs-title)">MOUNT TYPE: TMPFS</text>
       </g>
     </g>
   </g>
 
   <!-- ARROWS DOWN TO HOST -->
-  <path d="M 210 205 L 210 260" stroke="#10b981" stroke-width="2.5" marker-end="url(#arrowGreen)" />
-  <path d="M 480 205 L 480 260" stroke="#f59e0b" stroke-width="2.5" marker-end="url(#arrowAmber)" />
-  <path d="M 750 205 L 750 260" stroke="#a855f7" stroke-width="2.5" marker-end="url(#arrowPurple)" />
+  <path d="M 210 205 L 210 260" stroke="#167e6c" stroke-width="2.5" marker-end="url(#arrowTeal)" />
+  <path d="M 480 205 L 480 260" stroke="#3e5199" stroke-width="2.5" marker-end="url(#arrowBlue)" />
+  <path d="M 750 205 L 750 260" stroke="#1b2d70" stroke-width="2.5" marker-end="url(#arrowNavy)" />
 
   <!-- ==================== BOTTOM: HOST SYSTEM ==================== -->
   <g transform="translate(60, 265)">
-    <rect width="840" height="185" rx="12" fill="url(#hostGrad)" stroke="#443830" stroke-width="1.5" filter="url(#shadow)" />
-    <text x="420" y="26" text-anchor="middle" class="title" fill="#f97316">HOST OPERATING SYSTEM FILESYSTEM &amp; RAM</text>
+    <rect width="840" height="185" rx="10" fill="var(--diag-card-bg)" stroke="#1b2d70" stroke-width="1.5" filter="url(#shadow)" />
+    <text x="420" y="26" text-anchor="middle" class="title" fill="#1b2d70">HOST OPERATING SYSTEM FILESYSTEM &amp; RAM</text>
 
     <!-- Host Targets Grid -->
     <g transform="translate(30, 42)">
       <!-- 1. DOCKER MANAGED VOLUMES -->
       <g transform="translate(0, 0)">
-        <rect width="240" height="125" rx="8" fill="#132322" stroke="#10b981" stroke-width="1.5" />
-        <text x="15" y="24" class="title" fill="#34d399">1. DOCKER VOLUME</text>
-        <text x="15" y="44" class="code" fill="#a7f3d0">/var/lib/docker/volumes/</text>
-        <text x="15" y="60" class="code" fill="#a7f3d0">pg_data/_data/</text>
+        <rect width="240" height="125" rx="8" fill="var(--diag-card-sub)" stroke="var(--diag-vol-border)" stroke-width="1.5" />
+        <text x="15" y="24" class="title" fill="var(--diag-vol-title)">1. DOCKER VOLUME</text>
+        <text x="15" y="44" class="code" fill="var(--diag-vol-title)">/var/lib/docker/volumes/</text>
+        <text x="15" y="60" class="code" fill="var(--diag-vol-title)">pg_data/_data/</text>
         <text x="15" y="82" class="text-dim">• Fully managed by Docker daemon</text>
         <text x="15" y="98" class="text-dim">• Survives container deletion</text>
         <text x="15" y="114" class="text-dim">• Native I/O speed, driver plugins</text>
@@ -96,10 +146,10 @@
 
       <!-- 2. HOST BIND MOUNTS -->
       <g transform="translate(270, 0)">
-        <rect width="240" height="125" rx="8" fill="#261c14" stroke="#f59e0b" stroke-width="1.5" />
-        <text x="15" y="24" class="title" fill="#fbbf24">2. BIND MOUNT</text>
-        <text x="15" y="44" class="code" fill="#fde047">/home/developer/project/</text>
-        <text x="15" y="60" class="code" fill="#fde047">backend-service/src/</text>
+        <rect width="240" height="125" rx="8" fill="var(--diag-card-sub)" stroke="var(--diag-bind-border)" stroke-width="1.5" />
+        <text x="15" y="24" class="title" fill="var(--diag-bind-title)">2. BIND MOUNT</text>
+        <text x="15" y="44" class="code" fill="var(--diag-bind-title)">/home/developer/project/</text>
+        <text x="15" y="60" class="code" fill="var(--diag-bind-title)">backend-service/src/</text>
         <text x="15" y="82" class="text-dim">• Any arbitrary host directory or file</text>
         <text x="15" y="98" class="text-dim">• Ideal for local hot-reload dev</text>
         <text x="15" y="114" class="text-dim">• Dependent on host directory tree</text>
@@ -107,10 +157,10 @@
 
       <!-- 3. TMPFS RAM MOUNT -->
       <g transform="translate(540, 0)">
-        <rect width="240" height="125" rx="8" fill="#20152b" stroke="#a855f7" stroke-width="1.5" />
-        <text x="15" y="24" class="title" fill="#c084fc">3. TMPFS MOUNT</text>
-        <text x="15" y="44" class="code" fill="#e9d5ff">Host RAM / Virtual Memory</text>
-        <text x="15" y="60" class="code" fill="#e9d5ff">(Never written to physical disk)</text>
+        <rect width="240" height="125" rx="8" fill="var(--diag-card-sub)" stroke="var(--diag-tmpfs-border)" stroke-width="1.5" />
+        <text x="15" y="24" class="title" fill="var(--diag-tmpfs-title)">3. TMPFS MOUNT</text>
+        <text x="15" y="44" class="code" fill="var(--diag-tmpfs-title)">Host RAM / Virtual Memory</text>
+        <text x="15" y="60" class="code" fill="var(--diag-tmpfs-title)">(Never written to physical disk)</text>
         <text x="15" y="82" class="text-dim">• Ultra-fast RAM read/write</text>
         <text x="15" y="98" class="text-dim">• Wiped immediately on container stop</text>
         <text x="15" y="114" class="text-dim">• Prevents secrets persisting to disk</text>

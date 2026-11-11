@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 370" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 370" width="100%" height="auto" preserveAspectRatio="xMidYMid meet">
   <defs>
     <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
       <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.08" />
@@ -9,110 +9,110 @@
     /* Default: Light Mode (Clean White Canvas) */
     svg {
       --diag-canvas: #ffffff;
-      --diag-header-tag: #0284c7;
-      --diag-header-sub: #64748b;
+      --diag-header-tag: #111a4a;
+      --diag-header-sub: #475569;
       --diag-card-bg: #f8fafc;
       --diag-card-border: #cbd5e1;
       --diag-th-bg: #f1f5f9;
-      --diag-th-text: #475569;
+      --diag-th-text: #111a4a;
       --diag-grid-line: #e2e8f0;
 
-      --diag-row-title: #0f172a;
+      --diag-row-title: #111a4a;
       --diag-row-desc: #334155;
       --diag-row-eg: #64748b;
 
-      --diag-1xx-bg: #e0f2fe;
-      --diag-1xx-border: #0284c7;
-      --diag-1xx-text: #0369a1;
+      --diag-1xx-bg: #edf2ff;
+      --diag-1xx-border: #3e5199;
+      --diag-1xx-text: #3e5199;
 
-      --diag-2xx-bg: #dcfce7;
-      --diag-2xx-border: #16a34a;
-      --diag-2xx-text: #15803d;
+      --diag-2xx-bg: #e6f6f3;
+      --diag-2xx-border: #167e6c;
+      --diag-2xx-text: #167e6c;
 
-      --diag-3xx-bg: #fef3c7;
-      --diag-3xx-border: #d97706;
-      --diag-3xx-text: #b45309;
+      --diag-3xx-bg: #edf2ff;
+      --diag-3xx-border: #1b2d70;
+      --diag-3xx-text: #1b2d70;
 
-      --diag-4xx-bg: #ffedd5;
-      --diag-4xx-border: #ea580c;
-      --diag-4xx-text: #c2410c;
+      --diag-4xx-bg: #f0f3fa;
+      --diag-4xx-border: #3e5199;
+      --diag-4xx-text: #3e5199;
 
-      --diag-5xx-bg: #fee2e2;
-      --diag-5xx-border: #dc2626;
-      --diag-5xx-text: #b91c1c;
+      --diag-5xx-bg: #eaedf6;
+      --diag-5xx-border: #111a4a;
+      --diag-5xx-text: #111a4a;
     }
 
     /* Dark Mode (Web Application) */
     html.dark svg, .dark svg {
-      --diag-canvas: #0c1017;
-      --diag-header-tag: #38bdf8;
+      --diag-canvas: #12161e;
+      --diag-header-tag: #788cd4;
       --diag-header-sub: #94a3b8;
-      --diag-card-bg: #141a29;
+      --diag-card-bg: #171d2b;
       --diag-card-border: #243049;
-      --diag-th-bg: #131b2e;
-      --diag-th-text: #94a3b8;
-      --diag-grid-line: #1e293b;
+      --diag-th-bg: #131b2a;
+      --diag-th-text: #cbd5e1;
+      --diag-grid-line: #243049;
 
       --diag-row-title: #f8fafc;
       --diag-row-desc: #cbd5e1;
       --diag-row-eg: #94a3b8;
 
-      --diag-1xx-bg: #0d2438;
-      --diag-1xx-border: #0284c7;
-      --diag-1xx-text: #38bdf8;
+      --diag-1xx-bg: #131b2a;
+      --diag-1xx-border: #3e5199;
+      --diag-1xx-text: #788cd4;
 
-      --diag-2xx-bg: #0d261e;
-      --diag-2xx-border: #059669;
-      --diag-2xx-text: #34d399;
+      --diag-2xx-bg: #0d2822;
+      --diag-2xx-border: #167e6c;
+      --diag-2xx-text: #2dd4bf;
 
-      --diag-3xx-bg: #2b2014;
-      --diag-3xx-border: #d97706;
-      --diag-3xx-text: #fbbf24;
+      --diag-3xx-bg: #161e30;
+      --diag-3xx-border: #1b2d70;
+      --diag-3xx-text: #93a5e8;
 
-      --diag-4xx-bg: #301c18;
-      --diag-4xx-border: #ea580c;
-      --diag-4xx-text: #fb923c;
+      --diag-4xx-bg: #171d2b;
+      --diag-4xx-border: #3e5199;
+      --diag-4xx-text: #788cd4;
 
-      --diag-5xx-bg: #2e1419;
-      --diag-5xx-border: #dc2626;
-      --diag-5xx-text: #f87171;
+      --diag-5xx-bg: #1a2035;
+      --diag-5xx-border: #3e5199;
+      --diag-5xx-text: #f8fafc;
     }
 
     /* Standalone SVG Viewer */
     @media (prefers-color-scheme: dark) {
-      svg:root {
-        --diag-canvas: #0c1017;
-        --diag-header-tag: #38bdf8;
+      :root:not(html) {
+        --diag-canvas: #12161e;
+        --diag-header-tag: #788cd4;
         --diag-header-sub: #94a3b8;
-        --diag-card-bg: #141a29;
+        --diag-card-bg: #171d2b;
         --diag-card-border: #243049;
-        --diag-th-bg: #131b2e;
-        --diag-th-text: #94a3b8;
-        --diag-grid-line: #1e293b;
+        --diag-th-bg: #131b2a;
+        --diag-th-text: #cbd5e1;
+        --diag-grid-line: #243049;
 
         --diag-row-title: #f8fafc;
         --diag-row-desc: #cbd5e1;
         --diag-row-eg: #94a3b8;
 
-        --diag-1xx-bg: #0d2438;
-        --diag-1xx-border: #0284c7;
-        --diag-1xx-text: #38bdf8;
+        --diag-1xx-bg: #131b2a;
+        --diag-1xx-border: #3e5199;
+        --diag-1xx-text: #788cd4;
 
-        --diag-2xx-bg: #0d261e;
-        --diag-2xx-border: #059669;
-        --diag-2xx-text: #34d399;
+        --diag-2xx-bg: #0d2822;
+        --diag-2xx-border: #167e6c;
+        --diag-2xx-text: #2dd4bf;
 
-        --diag-3xx-bg: #2b2014;
-        --diag-3xx-border: #d97706;
-        --diag-3xx-text: #fbbf24;
+        --diag-3xx-bg: #161e30;
+        --diag-3xx-border: #1b2d70;
+        --diag-3xx-text: #93a5e8;
 
-        --diag-4xx-bg: #301c18;
-        --diag-4xx-border: #ea580c;
-        --diag-4xx-text: #fb923c;
+        --diag-4xx-bg: #171d2b;
+        --diag-4xx-border: #3e5199;
+        --diag-4xx-text: #788cd4;
 
-        --diag-5xx-bg: #2e1419;
-        --diag-5xx-border: #dc2626;
-        --diag-5xx-text: #f87171;
+        --diag-5xx-bg: #1a2035;
+        --diag-5xx-border: #3e5199;
+        --diag-5xx-text: #f8fafc;
       }
     }
 

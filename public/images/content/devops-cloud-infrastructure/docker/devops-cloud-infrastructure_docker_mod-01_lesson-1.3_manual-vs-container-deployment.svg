@@ -1,122 +1,181 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440" width="100%" height="auto" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
   <defs>
-    <!-- Background Gradients -->
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0f172a" />
-      <stop offset="100%" stop-color="#1e293b" />
-    </linearGradient>
-    <linearGradient id="redCard" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#450a0a" stop-opacity="0.55" />
-      <stop offset="100%" stop-color="#1e293b" stop-opacity="0.9" />
-    </linearGradient>
-    <linearGradient id="emeraldCard" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#064e3b" stop-opacity="0.55" />
-      <stop offset="100%" stop-color="#1e293b" stop-opacity="0.9" />
-    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.08" />
+    </filter>
 
-    <!-- Arrow Markers -->
-    <marker id="arrowRed" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#f87171" />
+    <marker id="arrowNavy" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#1b2d70" />
     </marker>
-    <marker id="arrowGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#34d399" />
+    <marker id="arrowTeal" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#167e6c" />
     </marker>
   </defs>
 
+  <style>
+    /* Default: Light Mode (Clean White Canvas) */
+    svg {
+      --diag-canvas: #ffffff;
+      --diag-header-title: #111a4a;
+      --diag-divider: #cbd5e1;
+
+      --diag-card-bg: #f8fafc;
+      --diag-card-inner: #ffffff;
+      --diag-card-border: #cbd5e1;
+
+      --diag-top-border: #1b2d70;
+      --diag-top-header: #111a4a;
+      --diag-top-accent: #111a4a;
+
+      --diag-bot-border: #167e6c;
+      --diag-bot-header: #167e6c;
+      --diag-bot-accent: #167e6c;
+
+      --diag-text-main: #111a4a;
+      --diag-text-dim: #64748b;
+    }
+
+    /* Dark Mode (Web Application) */
+    html.dark svg, .dark svg {
+      --diag-canvas: #12161e;
+      --diag-header-title: #788cd4;
+      --diag-divider: #243049;
+
+      --diag-card-bg: #171d2b;
+      --diag-card-inner: #131b2a;
+      --diag-card-border: #243049;
+
+      --diag-top-border: #3e5199;
+      --diag-top-header: #111a4a;
+      --diag-top-accent: #cbd5e1;
+
+      --diag-bot-border: #167e6c;
+      --diag-bot-header: #167e6c;
+      --diag-bot-accent: #2dd4bf;
+
+      --diag-text-main: #f8fafc;
+      --diag-text-dim: #94a3b8;
+    }
+
+    /* Standalone SVG Viewer */
+    @media (prefers-color-scheme: dark) {
+      :root:not(html) {
+        --diag-canvas: #12161e;
+        --diag-header-title: #788cd4;
+        --diag-divider: #243049;
+
+        --diag-card-bg: #171d2b;
+        --diag-card-inner: #131b2a;
+        --diag-card-border: #243049;
+
+        --diag-top-border: #3e5199;
+        --diag-top-header: #111a4a;
+        --diag-top-accent: #cbd5e1;
+
+        --diag-bot-border: #167e6c;
+        --diag-bot-header: #167e6c;
+        --diag-bot-accent: #2dd4bf;
+
+        --diag-text-main: #f8fafc;
+        --diag-text-dim: #94a3b8;
+      }
+    }
+  </style>
+
   <!-- Main Canvas -->
-  <rect width="960" height="440" rx="14" fill="url(#bgGrad)" stroke="#334155" stroke-width="1.5" />
+  <rect width="960" height="440" rx="12" fill="var(--diag-canvas)" />
 
   <!-- Header Title -->
-  <text x="480" y="36" text-anchor="middle" fill="#f8fafc" font-size="18" font-weight="700" letter-spacing="0.4">
+  <text x="480" y="36" text-anchor="middle" fill="var(--diag-header-title)" font-size="16" font-weight="700" letter-spacing="0.4">
     THE PARADIGM SHIFT: MANUAL VM DEPLOYMENT VS. DOCKERFILE BLUEPRINT
   </text>
-  <line x1="60" y1="52" x2="900" y2="52" stroke="#334155" stroke-width="1" />
+  <line x1="60" y1="52" x2="900" y2="52" stroke="var(--diag-divider)" stroke-width="1" />
 
   <!-- ========================================================= -->
   <!-- TOP LANE: BEFORE DOCKER (FRAGILE MANUAL WORKFLOW)         -->
   <!-- ========================================================= -->
   <g transform="translate(28, 68)">
-    <rect width="904" height="162" rx="10" fill="url(#redCard)" stroke="#ef4444" stroke-width="1.2" stroke-dasharray="5,4" />
+    <rect width="904" height="162" rx="10" fill="var(--diag-card-bg)" stroke="var(--diag-top-border)" stroke-width="1.2" stroke-dasharray="5,4" filter="url(#shadow)" />
     
     <!-- Lane Badge -->
-    <rect x="16" y="12" width="290" height="24" rx="5" fill="#7f1d1d" />
-    <text x="28" y="28" fill="#fecaca" font-size="11.5" font-weight="700" letter-spacing="0.6">
+    <rect x="16" y="12" width="290" height="24" rx="5" fill="var(--diag-top-header)" />
+    <text x="28" y="28" fill="#ffffff" font-size="11" font-weight="700" letter-spacing="0.6">
       BEFORE DOCKER: IMPERATIVE &amp; FRAGILE ("SNOWFLAKE VM")
     </text>
 
     <!-- Node 1: Dev Workstation -->
-    <rect x="20" y="50" width="190" height="92" rx="8" fill="#0f172a" stroke="#64748b" stroke-width="1.2" />
-    <text x="115" y="72" text-anchor="middle" fill="#e2e8f0" font-size="13" font-weight="700">1. Local Workstation</text>
-    <text x="115" y="92" text-anchor="middle" fill="#38bdf8" font-family="monospace" font-size="11">Java 21.0.2 (Windows)</text>
-    <rect x="40" y="103" width="150" height="24" rx="4" fill="#1e293b" stroke="#475569" />
-    <text x="115" y="119" text-anchor="middle" fill="#cbd5e1" font-family="monospace" font-size="11">mvn package -&gt; app.jar</text>
+    <rect x="20" y="50" width="190" height="92" rx="8" fill="var(--diag-card-inner)" stroke="var(--diag-card-border)" stroke-width="1.2" />
+    <text x="115" y="72" text-anchor="middle" fill="var(--diag-text-main)" font-size="12.5" font-weight="700">1. Local Workstation</text>
+    <text x="115" y="92" text-anchor="middle" fill="#3e5199" font-family="monospace" font-size="11">Java 21.0.2 (Windows)</text>
+    <rect x="40" y="103" width="150" height="24" rx="4" fill="var(--diag-card-bg)" stroke="var(--diag-card-border)" />
+    <text x="115" y="119" text-anchor="middle" fill="var(--diag-text-main)" font-family="monospace" font-size="10.5">mvn package -&gt; app.jar</text>
 
     <!-- Arrow 1 -->
-    <line x1="215" y1="96" x2="295" y2="96" stroke="#f87171" stroke-width="2" marker-end="url(#arrowRed)" />
-    <text x="255" y="86" text-anchor="middle" fill="#fca5a5" font-family="monospace" font-size="10.5">scp app.jar</text>
-    <text x="255" y="114" text-anchor="middle" fill="#94a3b8" font-size="10">Manual SSH</text>
+    <line x1="215" y1="96" x2="295" y2="96" stroke="#1b2d70" stroke-width="2" marker-end="url(#arrowNavy)" />
+    <text x="255" y="86" text-anchor="middle" fill="#1b2d70" font-family="monospace" font-size="10">scp app.jar</text>
+    <text x="255" y="114" text-anchor="middle" fill="var(--diag-text-dim)" font-size="9.5">Manual SSH</text>
 
     <!-- Node 2: Production Linux VM -->
-    <rect x="305" y="50" width="275" height="92" rx="8" fill="#0f172a" stroke="#ef4444" stroke-width="1.5" />
-    <text x="442" y="72" text-anchor="middle" fill="#fecaca" font-size="13" font-weight="700">2. Production Host VM (Ubuntu)</text>
-    <text x="442" y="92" text-anchor="middle" fill="#f87171" font-family="monospace" font-size="11">Host OS has OpenJDK 17 installed!</text>
-    <text x="442" y="110" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="10.5">Manual apt install + systemd scripts</text>
-    <text x="442" y="128" text-anchor="middle" fill="#fca5a5" font-size="10.5" font-weight="600">Shared OS libs collide across apps</text>
+    <rect x="305" y="50" width="275" height="92" rx="8" fill="var(--diag-card-inner)" stroke="#1b2d70" stroke-width="1.2" />
+    <text x="442" y="72" text-anchor="middle" fill="var(--diag-text-main)" font-size="12.5" font-weight="700">2. Production Host VM (Ubuntu)</text>
+    <text x="442" y="92" text-anchor="middle" fill="#1b2d70" font-family="monospace" font-size="10.5">Host OS has OpenJDK 17 installed!</text>
+    <text x="442" y="110" text-anchor="middle" fill="var(--diag-text-dim)" font-family="monospace" font-size="10">Manual apt install + systemd scripts</text>
+    <text x="442" y="128" text-anchor="middle" fill="var(--diag-text-dim)" font-size="10">Shared OS libs collide across apps</text>
 
     <!-- Arrow 2 -->
-    <line x1="585" y1="96" x2="655" y2="96" stroke="#f87171" stroke-width="2" marker-end="url(#arrowRed)" />
-    <text x="620" y="86" text-anchor="middle" fill="#fca5a5" font-family="monospace" font-size="10.5">java -jar</text>
+    <line x1="585" y1="96" x2="655" y2="96" stroke="#1b2d70" stroke-width="2" marker-end="url(#arrowNavy)" />
+    <text x="620" y="86" text-anchor="middle" fill="#1b2d70" font-family="monospace" font-size="10">java -jar</text>
 
     <!-- Node 3: Failure Outcome -->
-    <rect x="665" y="50" width="218" height="92" rx="8" fill="#450a0a" stroke="#f87171" stroke-width="1.5" />
-    <text x="774" y="74" text-anchor="middle" fill="#fef2f2" font-size="13" font-weight="700">3. Runtime Failure</text>
-    <text x="774" y="95" text-anchor="middle" fill="#fca5a5" font-family="monospace" font-size="10.5">UnsupportedClassVersionError</text>
-    <text x="774" y="114" text-anchor="middle" fill="#fecaca" font-size="11">"Works on my machine"</text>
-    <text x="774" y="130" text-anchor="middle" fill="#f87171" font-size="10.5" font-weight="600">Painful manual rollback</text>
+    <rect x="665" y="50" width="218" height="92" rx="8" fill="var(--diag-card-inner)" stroke="#111a4a" stroke-width="1.5" />
+    <text x="774" y="74" text-anchor="middle" fill="#111a4a" font-size="12.5" font-weight="700">3. Runtime Failure</text>
+    <text x="774" y="95" text-anchor="middle" fill="#111a4a" font-family="monospace" font-size="10">UnsupportedClassVersionError</text>
+    <text x="774" y="114" text-anchor="middle" fill="var(--diag-text-dim)" font-size="10.5">"Works on my machine"</text>
+    <text x="774" y="130" text-anchor="middle" fill="#111a4a" font-size="10" font-weight="600">Painful manual rollback</text>
   </g>
 
   <!-- ========================================================= -->
   <!-- BOTTOM LANE: WITH A DOCKERFILE (IMMUTABLE PIPELINE)       -->
   <!-- ========================================================= -->
   <g transform="translate(28, 250)">
-    <rect width="904" height="162" rx="10" fill="url(#emeraldCard)" stroke="#10b981" stroke-width="1.5" />
+    <rect width="904" height="162" rx="10" fill="var(--diag-card-bg)" stroke="var(--diag-bot-border)" stroke-width="1.5" filter="url(#shadow)" />
 
     <!-- Lane Badge -->
-    <rect x="16" y="12" width="320" height="24" rx="5" fill="#065f46" />
-    <text x="28" y="28" fill="#a7f3d0" font-size="11.5" font-weight="700" letter-spacing="0.6">
+    <rect x="16" y="12" width="320" height="24" rx="5" fill="var(--diag-bot-header)" />
+    <text x="28" y="28" fill="#ffffff" font-size="11" font-weight="700" letter-spacing="0.6">
       WITH A DOCKERFILE: DECLARATIVE &amp; IMMUTABLE PIPELINE
     </text>
 
     <!-- Node 1: Git Repo + Dockerfile -->
-    <rect x="20" y="50" width="190" height="92" rx="8" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5" />
-    <text x="115" y="72" text-anchor="middle" fill="#e2e8f0" font-size="13" font-weight="700">1. Code + Dockerfile</text>
-    <text x="115" y="92" text-anchor="middle" fill="#38bdf8" font-family="monospace" font-size="11">FROM temurin:21-jre</text>
-    <text x="115" y="109" text-anchor="middle" fill="#38bdf8" font-family="monospace" font-size="11">COPY app.jar /app/</text>
-    <text x="115" y="128" text-anchor="middle" fill="#94a3b8" font-size="10.5">Versioned in Git repo</text>
+    <rect x="20" y="50" width="190" height="92" rx="8" fill="var(--diag-card-inner)" stroke="#3e5199" stroke-width="1.2" />
+    <text x="115" y="72" text-anchor="middle" fill="var(--diag-text-main)" font-size="12.5" font-weight="700">1. Code + Dockerfile</text>
+    <text x="115" y="92" text-anchor="middle" fill="#3e5199" font-family="monospace" font-size="10.5">FROM temurin:21-jre</text>
+    <text x="115" y="109" text-anchor="middle" fill="#3e5199" font-family="monospace" font-size="10.5">COPY app.jar /app/</text>
+    <text x="115" y="128" text-anchor="middle" fill="var(--diag-text-dim)" font-size="10">Versioned in Git repo</text>
 
     <!-- Arrow 1 -->
-    <line x1="215" y1="96" x2="295" y2="96" stroke="#34d399" stroke-width="2" marker-end="url(#arrowGreen)" />
-    <text x="255" y="86" text-anchor="middle" fill="#6ee7b7" font-family="monospace" font-size="10.5">docker build</text>
-    <text x="255" y="114" text-anchor="middle" fill="#94a3b8" font-size="10">Layered Snapshot</text>
+    <line x1="215" y1="96" x2="295" y2="96" stroke="#167e6c" stroke-width="2" marker-end="url(#arrowTeal)" />
+    <text x="255" y="86" text-anchor="middle" fill="#167e6c" font-family="monospace" font-size="10">docker build</text>
+    <text x="255" y="114" text-anchor="middle" fill="var(--diag-text-dim)" font-size="9.5">Layered Snapshot</text>
 
     <!-- Node 2: Immutable Docker Image -->
-    <rect x="305" y="50" width="275" height="92" rx="8" fill="#0f172a" stroke="#10b981" stroke-width="1.5" />
-    <text x="442" y="72" text-anchor="middle" fill="#d1fae5" font-size="13" font-weight="700">2. Immutable Docker Image</text>
-    <rect x="325" y="82" width="235" height="22" rx="4" fill="#064e3b" />
-    <text x="442" y="97" text-anchor="middle" fill="#6ee7b7" font-family="monospace" font-size="11">App.jar + JRE 21 + Alpine Linux</text>
-    <text x="442" y="122" text-anchor="middle" fill="#cbd5e1" font-size="11">Self-contained &amp; SHA-256 verified</text>
-    <text x="442" y="136" text-anchor="middle" fill="#94a3b8" font-size="10">Zero dependency on Host Java version</text>
+    <rect x="305" y="50" width="275" height="92" rx="8" fill="var(--diag-card-inner)" stroke="var(--diag-bot-border)" stroke-width="1.2" />
+    <text x="442" y="72" text-anchor="middle" fill="#167e6c" font-size="12.5" font-weight="700">2. Immutable Docker Image</text>
+    <rect x="325" y="82" width="235" height="22" rx="4" fill="var(--diag-card-bg)" stroke="#167e6c" stroke-width="0.8" />
+    <text x="442" y="97" text-anchor="middle" fill="#167e6c" font-family="monospace" font-size="10.5">App.jar + JRE 21 + Alpine</text>
+    <text x="442" y="122" text-anchor="middle" fill="var(--diag-text-main)" font-size="10.5">Self-contained &amp; SHA-256 verified</text>
+    <text x="442" y="136" text-anchor="middle" fill="var(--diag-text-dim)" font-size="9.5">Zero dependency on Host Java version</text>
 
     <!-- Arrow 2 -->
-    <line x1="585" y1="96" x2="655" y2="96" stroke="#34d399" stroke-width="2" marker-end="url(#arrowGreen)" />
-    <text x="620" y="86" text-anchor="middle" fill="#6ee7b7" font-family="monospace" font-size="10.5">docker run</text>
-    <text x="620" y="114" text-anchor="middle" fill="#94a3b8" font-size="10">Any Host OS</text>
+    <line x1="585" y1="96" x2="655" y2="96" stroke="#167e6c" stroke-width="2" marker-end="url(#arrowTeal)" />
+    <text x="620" y="86" text-anchor="middle" fill="#167e6c" font-family="monospace" font-size="10">docker run</text>
+    <text x="620" y="114" text-anchor="middle" fill="var(--diag-text-dim)" font-size="9.5">Any Host OS</text>
 
     <!-- Node 3: Identical Execution -->
-    <rect x="665" y="50" width="218" height="92" rx="8" fill="#064e3b" stroke="#34d399" stroke-width="1.5" />
-    <text x="774" y="74" text-anchor="middle" fill="#ecfdf5" font-size="13" font-weight="700">3. Isolated Container</text>
-    <text x="774" y="95" text-anchor="middle" fill="#6ee7b7" font-family="monospace" font-size="11">Status: 200 OK (Healthy)</text>
-    <text x="774" y="114" text-anchor="middle" fill="#d1fae5" font-size="11">Identical on Dev, CI &amp; Prod</text>
-    <text x="774" y="130" text-anchor="middle" fill="#34d399" font-size="10.5" font-weight="600">Boots in milliseconds</text>
+    <rect x="665" y="50" width="218" height="92" rx="8" fill="var(--diag-card-inner)" stroke="#167e6c" stroke-width="1.5" />
+    <text x="774" y="74" text-anchor="middle" fill="#167e6c" font-size="12.5" font-weight="700">3. Isolated Container</text>
+    <text x="774" y="95" text-anchor="middle" fill="#167e6c" font-family="monospace" font-size="10.5">Status: 200 OK (Healthy)</text>
+    <text x="774" y="114" text-anchor="middle" fill="var(--diag-text-main)" font-size="10.5">Identical on Dev, CI &amp; Prod</text>
+    <text x="774" y="130" text-anchor="middle" fill="#167e6c" font-size="10" font-weight="600">Boots in milliseconds</text>
   </g>
 </svg>

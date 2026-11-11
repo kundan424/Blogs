@@ -1,133 +1,133 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" width="100%" height="auto" preserveAspectRatio="xMidYMid meet">
   <defs>
     <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
-      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.08" />
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.06" />
     </filter>
-    <marker id="arrowRed" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#dc2626" />
+    <marker id="arrowNavy" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#1b2d70" />
     </marker>
     <marker id="arrowGreen" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#16a34a" />
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#167e6c" />
     </marker>
   </defs>
 
   <style>
     /* Default: Light Mode */
-    svg {
+    :root {
       --diag-canvas: #ffffff;
-      --diag-header-main: #0284c7;
-      --diag-header-sub: #64748b;
+      --diag-header-main: #111a4a;
+      --diag-header-sub: #1b2d70;
       --diag-panel-bg: #f8fafc;
-      --diag-panel-border: #e2e8f0;
-      --diag-panel-name: #0f172a;
+      --diag-panel-border: #3e5199;
+      --diag-panel-name: #111a4a;
 
       --diag-thread-bg: #ffffff;
-      --diag-thread-border: #cbd5e1;
-      --diag-box-title: #0f172a;
-      --diag-box-sub: #64748b;
+      --diag-thread-border: #3e5199;
+      --diag-box-title: #111a4a;
+      --diag-box-sub: #1b2d70;
 
-      --diag-single-lock-bg: #fef2f2;
-      --diag-single-lock-border: #ef4444;
-      --diag-single-lock-text: #b91c1c;
+      --diag-single-lock-bg: #f8fafc;
+      --diag-single-lock-border: #1b2d70;
+      --diag-single-lock-text: #111a4a;
       --diag-single-inner: #ffffff;
-      --diag-single-inner-border: #fca5a5;
+      --diag-single-inner-border: #3e5199;
 
-      --diag-dual-lock-bg: #f0fdf4;
-      --diag-dual-lock-border: #16a34a;
-      --diag-dual-lock-text: #15803d;
+      --diag-dual-lock-bg: #f8fafc;
+      --diag-dual-lock-border: #167e6c;
+      --diag-dual-lock-text: #167e6c;
       --diag-dual-inner: #ffffff;
-      --diag-dual-inner-border: #86efac;
+      --diag-dual-inner-border: #167e6c;
 
-      --diag-atomic-bg: #f0f9ff;
-      --diag-atomic-border: #0284c7;
-      --diag-atomic-text: #0369a1;
+      --diag-atomic-bg: #f8fafc;
+      --diag-atomic-border: #3e5199;
+      --diag-atomic-text: #111a4a;
 
-      --diag-badge-warn-bg: #fee2e2;
-      --diag-badge-warn-border: #ef4444;
-      --diag-badge-warn-text: #b91c1c;
+      --diag-badge-warn-bg: #1b2d70;
+      --diag-badge-warn-border: #1b2d70;
+      --diag-badge-warn-text: #ffffff;
 
-      --diag-badge-pass-bg: #dcfce7;
-      --diag-badge-pass-border: #16a34a;
-      --diag-badge-pass-text: #15803d;
+      --diag-badge-pass-bg: #167e6c;
+      --diag-badge-pass-border: #167e6c;
+      --diag-badge-pass-text: #ffffff;
     }
 
     /* Dark Mode (Web Application) */
     html.dark svg, .dark svg {
-      --diag-canvas: #0c1017;
-      --diag-header-main: #38bdf8;
-      --diag-header-sub: #94a3b8;
-      --diag-panel-bg: #0d1424;
-      --diag-panel-border: #1e293b;
-      --diag-panel-name: #f8fafc;
+      --diag-canvas: #12161e;
+      --diag-header-main: #3e5199;
+      --diag-header-sub: #5568ad;
+      --diag-panel-bg: #111a4a15;
+      --diag-panel-border: #3e5199;
+      --diag-panel-name: #ffffff;
 
-      --diag-thread-bg: #1e293b;
-      --diag-thread-border: #475569;
-      --diag-box-title: #f1f5f9;
-      --diag-box-sub: #94a3b8;
+      --diag-thread-bg: #0c1017;
+      --diag-thread-border: #3e5199;
+      --diag-box-title: #ffffff;
+      --diag-box-sub: #cbd5e1;
 
-      --diag-single-lock-bg: #451a1a;
-      --diag-single-lock-border: #ef4444;
-      --diag-single-lock-text: #fca5a5;
-      --diag-single-inner: #1f0a0a;
-      --diag-single-inner-border: #7f1d1d;
+      --diag-single-lock-bg: #111a4a15;
+      --diag-single-lock-border: #1b2d70;
+      --diag-single-lock-text: #5568ad;
+      --diag-single-inner: #0c1017;
+      --diag-single-inner-border: #3e5199;
 
-      --diag-dual-lock-bg: #142823;
-      --diag-dual-lock-border: #34d399;
-      --diag-dual-lock-text: #a7f3d0;
-      --diag-dual-inner: #0c1f1b;
-      --diag-dual-inner-border: #059669;
+      --diag-dual-lock-bg: #167e6c15;
+      --diag-dual-lock-border: #167e6c;
+      --diag-dual-lock-text: #167e6c;
+      --diag-dual-inner: #0c1017;
+      --diag-dual-inner-border: #167e6c;
 
-      --diag-atomic-bg: #131b2e;
-      --diag-atomic-border: #38bdf8;
-      --diag-atomic-text: #38bdf8;
+      --diag-atomic-bg: #0c1017;
+      --diag-atomic-border: #3e5199;
+      --diag-atomic-text: #ffffff;
 
-      --diag-badge-warn-bg: #3b1115;
-      --diag-badge-warn-border: #ef4444;
-      --diag-badge-warn-text: #f87171;
+      --diag-badge-warn-bg: #1b2d70;
+      --diag-badge-warn-border: #1b2d70;
+      --diag-badge-warn-text: #ffffff;
 
-      --diag-badge-pass-bg: #062e24;
-      --diag-badge-pass-border: #059669;
-      --diag-badge-pass-text: #34d399;
+      --diag-badge-pass-bg: #167e6c;
+      --diag-badge-pass-border: #167e6c;
+      --diag-badge-pass-text: #ffffff;
     }
 
     /* Standalone SVG Viewer */
     @media (prefers-color-scheme: dark) {
-      svg:root {
-        --diag-canvas: #0c1017;
-        --diag-header-main: #38bdf8;
-        --diag-header-sub: #94a3b8;
-        --diag-panel-bg: #0d1424;
-        --diag-panel-border: #1e293b;
-        --diag-panel-name: #f8fafc;
+      :root:not(html) {
+        --diag-canvas: #12161e;
+        --diag-header-main: #3e5199;
+        --diag-header-sub: #5568ad;
+        --diag-panel-bg: #111a4a15;
+        --diag-panel-border: #3e5199;
+        --diag-panel-name: #ffffff;
 
-        --diag-thread-bg: #1e293b;
-        --diag-thread-border: #475569;
-        --diag-box-title: #f1f5f9;
-        --diag-box-sub: #94a3b8;
+        --diag-thread-bg: #0c1017;
+        --diag-thread-border: #3e5199;
+        --diag-box-title: #ffffff;
+        --diag-box-sub: #cbd5e1;
 
-        --diag-single-lock-bg: #451a1a;
-        --diag-single-lock-border: #ef4444;
-        --diag-single-lock-text: #fca5a5;
-        --diag-single-inner: #1f0a0a;
-        --diag-single-inner-border: #7f1d1d;
+        --diag-single-lock-bg: #111a4a15;
+        --diag-single-lock-border: #1b2d70;
+        --diag-single-lock-text: #5568ad;
+        --diag-single-inner: #0c1017;
+        --diag-single-inner-border: #3e5199;
 
-        --diag-dual-lock-bg: #142823;
-        --diag-dual-lock-border: #34d399;
-        --diag-dual-lock-text: #a7f3d0;
-        --diag-dual-inner: #0c1f1b;
-        --diag-dual-inner-border: #059669;
+        --diag-dual-lock-bg: #167e6c15;
+        --diag-dual-lock-border: #167e6c;
+        --diag-dual-lock-text: #167e6c;
+        --diag-dual-inner: #0c1017;
+        --diag-dual-inner-border: #167e6c;
 
-        --diag-atomic-bg: #131b2e;
-        --diag-atomic-border: #38bdf8;
-        --diag-atomic-text: #38bdf8;
+        --diag-atomic-bg: #0c1017;
+        --diag-atomic-border: #3e5199;
+        --diag-atomic-text: #ffffff;
 
-        --diag-badge-warn-bg: #3b1115;
-        --diag-badge-warn-border: #ef4444;
-        --diag-badge-warn-text: #f87171;
+        --diag-badge-warn-bg: #1b2d70;
+        --diag-badge-warn-border: #1b2d70;
+        --diag-badge-warn-text: #ffffff;
 
-        --diag-badge-pass-bg: #062e24;
-        --diag-badge-pass-border: #059669;
-        --diag-badge-pass-text: #34d399;
+        --diag-badge-pass-bg: #167e6c;
+        --diag-badge-pass-border: #167e6c;
+        --diag-badge-pass-text: #ffffff;
       }
     }
 
@@ -164,7 +164,7 @@
       <rect width="180" height="74" rx="7" fill="var(--diag-thread-bg)" stroke="var(--diag-thread-border)" stroke-width="1.2" />
       <text x="14" y="22" class="box-title">Producer Threads</text>
       <text x="14" y="40" class="box-sub">put(E) / offer(E, timeout)</text>
-      <text x="14" y="58" class="box-sub" fill="#0284c7">Waits on: <tspan font-family="monospace">notFull</tspan></text>
+      <text x="14" y="58" class="box-sub" fill="#1b2d70">Waits on: <tspan font-family="monospace">notFull</tspan></text>
     </g>
 
     <!-- Contention Lock Box in Center -->
@@ -183,16 +183,16 @@
       <rect width="180" height="74" rx="7" fill="var(--diag-thread-bg)" stroke="var(--diag-thread-border)" stroke-width="1.2" />
       <text x="14" y="22" class="box-title">Consumer Threads</text>
       <text x="14" y="40" class="box-sub">take() / poll(timeout)</text>
-      <text x="14" y="58" class="box-sub" fill="#0284c7">Waits on: <tspan font-family="monospace">notEmpty</tspan></text>
+      <text x="14" y="58" class="box-sub" fill="#1b2d70">Waits on: <tspan font-family="monospace">notEmpty</tspan></text>
     </g>
 
     <!-- Contention Arrows pointing to the same single lock -->
-    <path d="M 210 89 L 325 89" stroke="#dc2626" stroke-width="2" fill="none" marker-end="url(#arrowRed)" />
-    <path d="M 680 89 L 565 89" stroke="#dc2626" stroke-width="2" fill="none" marker-end="url(#arrowRed)" />
+    <path d="M 210 89 L 325 89" stroke="#1b2d70" stroke-width="2" fill="none" marker-end="url(#arrowNavy)" />
+    <path d="M 680 89 L 565 89" stroke="#1b2d70" stroke-width="2" fill="none" marker-end="url(#arrowNavy)" />
 
     <!-- Explanatory footer -->
     <text x="20" y="165" class="desc-text">
-      <tspan fill="#dc2626" font-weight="600">Bottleneck:</tspan> Both producers and consumers must acquire the same lock. An ongoing take() holds the lock, stalling concurrent put() calls even when the array has abundant spare capacity.
+      <tspan fill="#111a4a" font-weight="600">Bottleneck:</tspan> Both producers and consumers must acquire the same lock. An ongoing take() holds the lock, stalling concurrent put() calls even when the array has abundant spare capacity.
     </text>
   </g>
 
@@ -212,17 +212,17 @@
       <rect width="160" height="68" rx="6" fill="var(--diag-thread-bg)" stroke="var(--diag-thread-border)" />
       <text x="12" y="22" class="box-title">Producer Threads</text>
       <text x="12" y="38" class="box-sub">put(E) / offer(E)</text>
-      <text x="12" y="54" class="box-sub" fill="#16a34a">Signal: notEmpty</text>
+      <text x="12" y="54" class="box-sub" fill="#167e6c">Signal: notEmpty</text>
     </g>
 
     <!-- Dedicated putLock -->
-    <path d="M 190 84 L 225 84" stroke="#16a34a" stroke-width="2" fill="none" marker-end="url(#arrowGreen)" />
+    <path d="M 190 84 L 225 84" stroke="#167e6c" stroke-width="2" fill="none" marker-end="url(#arrowGreen)" />
     <g transform="translate(225, 46)">
       <rect width="165" height="76" rx="7" fill="var(--diag-dual-lock-bg)" stroke="var(--diag-dual-lock-border)" stroke-width="1.5" />
       <text x="82" y="24" text-anchor="middle" class="box-title" fill="var(--diag-dual-lock-text)">putLock</text>
       <text x="82" y="42" text-anchor="middle" class="box-sub" fill="var(--diag-dual-lock-text)">Protects: tail node (last)</text>
       <rect x="15" y="48" width="135" height="20" rx="3" fill="var(--diag-dual-inner)" stroke="var(--diag-dual-inner-border)" />
-      <text x="82" y="62" text-anchor="middle" font-family="monospace" font-size="9" fill="#16a34a" font-weight="600">Condition: notFull</text>
+      <text x="82" y="62" text-anchor="middle" font-family="monospace" font-size="9" fill="#167e6c" font-weight="600">Condition: notFull</text>
     </g>
 
     <!-- Center Queue & Atomic Counter -->
@@ -240,25 +240,25 @@
       <text x="82" y="24" text-anchor="middle" class="box-title" fill="var(--diag-dual-lock-text)">takeLock</text>
       <text x="82" y="42" text-anchor="middle" class="box-sub" fill="var(--diag-dual-lock-text)">Protects: head node (first)</text>
       <rect x="15" y="48" width="135" height="20" rx="3" fill="var(--diag-dual-inner)" stroke="var(--diag-dual-inner-border)" />
-      <text x="82" y="62" text-anchor="middle" font-family="monospace" font-size="9" fill="#16a34a" font-weight="600">Condition: notEmpty</text>
+      <text x="82" y="62" text-anchor="middle" font-family="monospace" font-size="9" fill="#167e6c" font-weight="600">Condition: notEmpty</text>
     </g>
-    <path d="M 735 84 L 770 84" stroke="#16a34a" stroke-width="2" fill="none" marker-end="url(#arrowGreen)" />
+    <path d="M 735 84 L 770 84" stroke="#167e6c" stroke-width="2" fill="none" marker-end="url(#arrowGreen)" />
 
     <!-- Consumer Side -->
     <g transform="translate(770, 50)">
       <rect width="160" height="68" rx="6" fill="var(--diag-thread-bg)" stroke="var(--diag-thread-border)" />
       <text x="12" y="22" class="box-title">Consumer Threads</text>
       <text x="12" y="38" class="box-sub">take() / poll()</text>
-      <text x="12" y="54" class="box-sub" fill="#16a34a">Signal: notFull</text>
+      <text x="12" y="54" class="box-sub" fill="#167e6c">Signal: notFull</text>
     </g>
 
     <!-- Arrows linking locks to atomic counter -->
-    <path d="M 390 84 L 420 84" stroke="#0284c7" stroke-dasharray="3,3" stroke-width="1.2" fill="none" />
-    <path d="M 570 84 L 540 84" stroke="#0284c7" stroke-dasharray="3,3" stroke-width="1.2" fill="none" />
+    <path d="M 390 84 L 420 84" stroke="#3e5199" stroke-dasharray="3,3" stroke-width="1.2" fill="none" />
+    <path d="M 570 84 L 540 84" stroke="#3e5199" stroke-dasharray="3,3" stroke-width="1.2" fill="none" />
 
     <!-- Explanatory footer -->
     <text x="20" y="165" class="desc-text">
-      <tspan fill="#16a34a" font-weight="600">Dual-Lock Invariant:</tspan> Producers manipulate <tspan font-family="monospace">last.next</tspan> under <tspan font-family="monospace">putLock</tspan>, while consumers decouple <tspan font-family="monospace">head.next</tspan> under <tspan font-family="monospace">takeLock</tspan>.
+      <tspan fill="#167e6c" font-weight="600">Dual-Lock Invariant:</tspan> Producers manipulate <tspan font-family="monospace">last.next</tspan> under <tspan font-family="monospace">putLock</tspan>, while consumers decouple <tspan font-family="monospace">head.next</tspan> under <tspan font-family="monospace">takeLock</tspan>.
     </text>
     <text x="20" y="185" class="desc-text">
       Both streams operate concurrently with zero contention unless the queue hits total saturation (full) or complete starvation (empty).

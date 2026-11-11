@@ -1,106 +1,118 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="auto" preserveAspectRatio="xMidYMid meet">
   <defs>
     <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
-      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.08" />
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.06" />
     </filter>
     <marker id="arrowBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#0284c7" />
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#3e5199" />
     </marker>
     <marker id="arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#16a34a" />
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#167e6c" />
     </marker>
   </defs>
 
   <style>
     /* Default: Light Mode (Clean White Canvas) */
-    svg {
+    :root {
       --diag-canvas: #ffffff;
-      --diag-header-tag: #0284c7;
-      --diag-header-sub: #64748b;
+      --diag-header-tag: #111a4a;
+      --diag-header-sub: #1b2d70;
 
       --diag-step-bg: #f8fafc;
-      --diag-step-border: #cbd5e1;
-      --diag-step-title: #0f172a;
-      --diag-step-desc: #475569;
-      --diag-step-pill: #0369a1;
+      --diag-step-border: #3e5199;
+      --diag-step-title: #111a4a;
+      --diag-step-desc: #1b2d70;
+      --diag-step-pill: #3e5199;
 
-      --diag-badge-bg: #e0f2fe;
-      --diag-badge-border: #bae6fd;
-      --diag-badge-text: #0369a1;
+      --diag-badge-bg: #111a4a;
+      --diag-badge-border: #111a4a;
+      --diag-badge-text: #ffffff;
+
+      --diag-badge2-bg: #1b2d70;
+      --diag-badge2-border: #1b2d70;
+      --diag-badge2-text: #ffffff;
 
       --diag-box-inner: #ffffff;
-      --diag-box-inner-border: #e2e8f0;
-      --diag-code: #0369a1;
+      --diag-box-inner-border: #3e5199;
+      --diag-code: #1b2d70;
 
-      --diag-exec-bg: #f0fdf4;
-      --diag-exec-border: #bbf7d0;
-      --diag-exec-title: #15803d;
-      --diag-exec-desc: #166534;
-      --diag-exec-badge-bg: #dcfce7;
-      --diag-exec-badge-text: #15803d;
+      --diag-exec-bg: #f8fafc;
+      --diag-exec-border: #167e6c;
+      --diag-exec-title: #111a4a;
+      --diag-exec-desc: #167e6c;
+      --diag-exec-badge-bg: #167e6c;
+      --diag-exec-badge-text: #ffffff;
 
-      --diag-arrow: #0284c7;
+      --diag-arrow: #3e5199;
     }
 
     /* Dark Mode (Web Application) */
     html.dark svg, .dark svg {
-      --diag-canvas: #0c1017;
-      --diag-header-tag: #38bdf8;
-      --diag-header-sub: #94a3b8;
+      --diag-canvas: #12161e;
+      --diag-header-tag: #3e5199;
+      --diag-header-sub: #5568ad;
 
-      --diag-step-bg: #141a29;
-      --diag-step-border: #243049;
-      --diag-step-title: #f8fafc;
-      --diag-step-desc: #94a3b8;
-      --diag-step-pill: #38bdf8;
+      --diag-step-bg: #111a4a15;
+      --diag-step-border: #3e5199;
+      --diag-step-title: #ffffff;
+      --diag-step-desc: #cbd5e1;
+      --diag-step-pill: #5568ad;
 
-      --diag-badge-bg: #0d2438;
-      --diag-badge-border: #1d4ed8;
-      --diag-badge-text: #38bdf8;
+      --diag-badge-bg: #111a4a;
+      --diag-badge-border: #111a4a;
+      --diag-badge-text: #ffffff;
 
-      --diag-box-inner: #0e131f;
-      --diag-box-inner-border: #1e293b;
-      --diag-code: #7dd3fc;
+      --diag-badge2-bg: #1b2d70;
+      --diag-badge2-border: #1b2d70;
+      --diag-badge2-text: #ffffff;
 
-      --diag-exec-bg: #0f2319;
-      --diag-exec-border: #34d399;
-      --diag-exec-title: #34d399;
-      --diag-exec-desc: #a7f3d0;
-      --diag-exec-badge-bg: #092117;
-      --diag-exec-badge-text: #34d399;
+      --diag-box-inner: #0c1017;
+      --diag-box-inner-border: #3e5199;
+      --diag-code: #5568ad;
 
-      --diag-arrow: #38bdf8;
+      --diag-exec-bg: #167e6c15;
+      --diag-exec-border: #167e6c;
+      --diag-exec-title: #ffffff;
+      --diag-exec-desc: #167e6c;
+      --diag-exec-badge-bg: #167e6c;
+      --diag-exec-badge-text: #ffffff;
+
+      --diag-arrow: #3e5199;
     }
 
     /* Standalone SVG Viewer */
     @media (prefers-color-scheme: dark) {
-      svg:root {
-        --diag-canvas: #0c1017;
-        --diag-header-tag: #38bdf8;
-        --diag-header-sub: #94a3b8;
+      :root:not(html) {
+        --diag-canvas: #12161e;
+        --diag-header-tag: #3e5199;
+        --diag-header-sub: #5568ad;
 
-        --diag-step-bg: #141a29;
-        --diag-step-border: #243049;
-        --diag-step-title: #f8fafc;
-        --diag-step-desc: #94a3b8;
-        --diag-step-pill: #38bdf8;
+        --diag-step-bg: #111a4a15;
+        --diag-step-border: #3e5199;
+        --diag-step-title: #ffffff;
+        --diag-step-desc: #cbd5e1;
+        --diag-step-pill: #5568ad;
 
-        --diag-badge-bg: #0d2438;
-        --diag-badge-border: #1d4ed8;
-        --diag-badge-text: #38bdf8;
+        --diag-badge-bg: #111a4a;
+        --diag-badge-border: #111a4a;
+        --diag-badge-text: #ffffff;
 
-        --diag-box-inner: #0e131f;
-        --diag-box-inner-border: #1e293b;
-        --diag-code: #7dd3fc;
+        --diag-badge2-bg: #1b2d70;
+        --diag-badge2-border: #1b2d70;
+        --diag-badge2-text: #ffffff;
 
-        --diag-exec-bg: #0f2319;
-        --diag-exec-border: #34d399;
-        --diag-exec-title: #34d399;
-        --diag-exec-desc: #a7f3d0;
-        --diag-exec-badge-bg: #092117;
-        --diag-exec-badge-text: #34d399;
+        --diag-box-inner: #0c1017;
+        --diag-box-inner-border: #3e5199;
+        --diag-code: #5568ad;
 
-        --diag-arrow: #38bdf8;
+        --diag-exec-bg: #167e6c15;
+        --diag-exec-border: #167e6c;
+        --diag-exec-title: #ffffff;
+        --diag-exec-desc: #167e6c;
+        --diag-exec-badge-bg: #167e6c;
+        --diag-exec-badge-text: #ffffff;
+
+        --diag-arrow: #3e5199;
       }
     }
 
@@ -110,7 +122,6 @@
     .step-meta { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; font-weight: 700; letter-spacing: 0.5px; }
     .step-desc { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11.5px; fill: var(--diag-step-desc); }
     .code-snippet { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10.5px; fill: var(--diag-code); }
-    .divider { stroke: var(--diag-step-border); stroke-width: 1; }
   </style>
 
   <!-- Background Base Canvas -->
@@ -126,8 +137,8 @@
   <g transform="translate(35, 75)" filter="url(#shadow)">
     <rect width="265" height="375" rx="8" fill="var(--diag-step-bg)" stroke="var(--diag-step-border)" stroke-width="1.5" />
     
-    <rect x="16" y="16" width="130" height="22" rx="4" fill="var(--diag-badge-bg)" stroke="var(--diag-badge-border)" stroke-width="1" />
-    <text x="81" y="31" text-anchor="middle" class="step-meta" fill="var(--diag-badge-text)">1. DISCOVERY PHASE</text>
+    <rect x="16" y="16" width="140" height="22" rx="4" fill="var(--diag-badge-bg)" stroke="var(--diag-badge-border)" stroke-width="1" />
+    <text x="86" y="31" text-anchor="middle" class="step-meta" fill="var(--diag-badge-text)">1. DISCOVERY PHASE</text>
 
     <text x="16" y="60" class="step-title">Component Scanning</text>
     <text x="16" y="78" class="step-desc">Spring inspects classpath annotations:</text>
@@ -135,7 +146,7 @@
     <!-- Scanned annotations box -->
     <g transform="translate(16, 96)">
       <rect width="233" height="135" rx="6" fill="var(--diag-box-inner)" stroke="var(--diag-box-inner-border)" stroke-width="1" />
-      <text x="12" y="24" class="code-snippet">@Component</text>
+      <text x="12" y="24" class="code-snippet" font-weight="700" fill="#111a4a">@Component</text>
       <text x="12" y="46" class="code-snippet">@Service  OrderService</text>
       <text x="12" y="68" class="code-snippet">@Repository PostgresOrderRepo</text>
       <text x="12" y="90" class="code-snippet">@Component  StripeGateway</text>
@@ -161,8 +172,8 @@
   <g transform="translate(347, 75)" filter="url(#shadow)">
     <rect width="265" height="375" rx="8" fill="var(--diag-step-bg)" stroke="var(--diag-step-border)" stroke-width="1.5" />
 
-    <rect x="16" y="16" width="130" height="22" rx="4" fill="var(--diag-badge-bg)" stroke="var(--diag-badge-border)" stroke-width="1" />
-    <text x="81" y="31" text-anchor="middle" class="step-meta" fill="var(--diag-badge-text)">2. WIRING PHASE</text>
+    <rect x="16" y="16" width="140" height="22" rx="4" fill="var(--diag-badge2-bg)" stroke="var(--diag-badge2-border)" stroke-width="1" />
+    <text x="86" y="31" text-anchor="middle" class="step-meta" fill="var(--diag-badge2-text)">2. WIRING PHASE</text>
 
     <text x="16" y="60" class="step-title">DAG Graph &amp; Injection</text>
     <text x="16" y="78" class="step-desc">Resolves dependency topology:</text>
@@ -181,8 +192,8 @@
       <path d="M 171 40 L 171 58 L 116 58" stroke="var(--diag-arrow)" stroke-width="1.5" />
 
       <!-- Node: OrderService -->
-      <rect x="52" y="62" width="130" height="26" rx="4" fill="var(--diag-badge-bg)" stroke="var(--diag-badge-border)" />
-      <text x="117" y="79" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" font-weight="700" fill="var(--diag-badge-text)">OrderService</text>
+      <rect x="52" y="62" width="130" height="26" rx="4" fill="#1b2d70" stroke="#1b2d70" />
+      <text x="117" y="79" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" font-weight="700" fill="#ffffff">OrderService</text>
 
       <path d="M 117 90 L 117 100" stroke="var(--diag-arrow)" stroke-width="1.5" marker-end="url(#arrowBlue)" />
 
@@ -202,7 +213,7 @@
   </g>
 
   <!-- Flow 2 -> 3 -->
-  <path d="M 612 262 L 657 262" stroke="var(--diag-arrow)" stroke-width="2" marker-end="url(#arrowGreen)" />
+  <path d="M 612 262 L 657 262" stroke="#167e6c" stroke-width="2" marker-end="url(#arrowGreen)" />
 
   <!-- ========================================================================= -->
   <!-- STEP 3: RUNTIME BUSINESS EXECUTION -->
@@ -210,8 +221,8 @@
   <g transform="translate(660, 75)" filter="url(#shadow)">
     <rect width="265" height="375" rx="8" fill="var(--diag-exec-bg)" stroke="var(--diag-exec-border)" stroke-width="1.5" />
 
-    <rect x="16" y="16" width="130" height="22" rx="4" fill="var(--diag-exec-badge-bg)" stroke="var(--diag-exec-border)" stroke-width="1" />
-    <text x="81" y="31" text-anchor="middle" class="step-meta" fill="var(--diag-exec-badge-text)">3. EXECUTION PHASE</text>
+    <rect x="16" y="16" width="140" height="22" rx="4" fill="var(--diag-exec-badge-bg)" stroke="var(--diag-exec-border)" stroke-width="1" />
+    <text x="86" y="31" text-anchor="middle" class="step-meta" fill="var(--diag-exec-badge-text)">3. EXECUTION PHASE</text>
 
     <text x="16" y="60" class="step-title" fill="var(--diag-exec-title)">Runtime Request Flow</text>
     <text x="16" y="78" class="step-desc" fill="var(--diag-exec-desc)">Pure zero-overhead business calls:</text>
@@ -219,7 +230,7 @@
     <!-- Request flow box -->
     <g transform="translate(16, 96)">
       <rect width="233" height="135" rx="6" fill="var(--diag-box-inner)" stroke="var(--diag-exec-border)" stroke-width="1" />
-      <text x="12" y="24" class="code-snippet" fill="var(--diag-exec-title)">POST /api/v1/orders</text>
+      <text x="12" y="24" class="code-snippet" font-weight="700" fill="#167e6c">POST /api/v1/orders</text>
       <text x="12" y="44" class="step-desc">• DispatcherServlet receives HTTP</text>
       <text x="12" y="64" class="step-desc">• Routes to cached Controller</text>
       <text x="12" y="84" class="step-desc">• Controller calls Service</text>

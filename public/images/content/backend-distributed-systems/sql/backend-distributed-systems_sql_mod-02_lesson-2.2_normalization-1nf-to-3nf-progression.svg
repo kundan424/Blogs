@@ -1,114 +1,114 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="auto" preserveAspectRatio="xMidYMid meet">
   <defs>
     <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
-      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.08" />
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.06" />
     </filter>
     <marker id="arrowBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#0284c7" />
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#3e5199" />
     </marker>
   </defs>
 
   <style>
     /* Default: Light Mode (Clean White Canvas) */
-    svg {
+    :root {
       --diag-canvas: #ffffff;
-      --diag-header-tag: #0284c7;
-      --diag-header-sub: #64748b;
-      --diag-card-title: #0f172a;
-      --diag-desc-text: #334155;
+      --diag-header-tag: #111a4a;
+      --diag-header-sub: #1b2d70;
+      --diag-card-title: #111a4a;
+      --diag-desc-text: #1b2d70;
 
-      --diag-1nf-border: #fca5a5;
-      --diag-1nf-badge-bg: #fee2e2;
-      --diag-1nf-badge-text: #b91c1c;
-      --diag-1nf-card-bg: #fff5f5;
+      --diag-1nf-border: #111a4a;
+      --diag-1nf-badge-bg: #111a4a;
+      --diag-1nf-badge-text: #ffffff;
+      --diag-1nf-card-bg: #f8fafc;
       --diag-1nf-box-bg: #ffffff;
-      --diag-1nf-box-border: #fca5a5;
+      --diag-1nf-box-border: #3e5199;
 
-      --diag-2nf-border: #fde68a;
-      --diag-2nf-badge-bg: #fef3c7;
-      --diag-2nf-badge-text: #b45309;
-      --diag-2nf-card-bg: #fffbeb;
+      --diag-2nf-border: #1b2d70;
+      --diag-2nf-badge-bg: #1b2d70;
+      --diag-2nf-badge-text: #ffffff;
+      --diag-2nf-card-bg: #f8fafc;
       --diag-2nf-box-bg: #ffffff;
-      --diag-2nf-box-border: #fde68a;
+      --diag-2nf-box-border: #3e5199;
 
-      --diag-3nf-border: #bbf7d0;
-      --diag-3nf-badge-bg: #dcfce7;
-      --diag-3nf-badge-text: #15803d;
-      --diag-3nf-card-bg: #f0fdf4;
+      --diag-3nf-border: #167e6c;
+      --diag-3nf-badge-bg: #167e6c;
+      --diag-3nf-badge-text: #ffffff;
+      --diag-3nf-card-bg: #f8fafc;
       --diag-3nf-box-bg: #ffffff;
-      --diag-3nf-box-border: #bbf7d0;
+      --diag-3nf-box-border: #167e6c;
 
       --diag-bot-box-bg: #ffffff;
-      --diag-bot-box-border: #e2e8f0;
-      --diag-bot-box-text: #475569;
+      --diag-bot-box-border: #3e5199;
+      --diag-bot-box-text: #1b2d70;
     }
 
     /* Dark Mode (Web Application) */
     html.dark svg, .dark svg {
-      --diag-canvas: #0c1017;
-      --diag-header-tag: #38bdf8;
-      --diag-header-sub: #94a3b8;
-      --diag-card-title: #f8fafc;
+      --diag-canvas: #12161e;
+      --diag-header-tag: #3e5199;
+      --diag-header-sub: #5568ad;
+      --diag-card-title: #ffffff;
       --diag-desc-text: #cbd5e1;
 
-      --diag-1nf-border: #ef4444;
-      --diag-1nf-badge-bg: #3b0f16;
-      --diag-1nf-badge-text: #f87171;
-      --diag-1nf-card-bg: #141a29;
-      --diag-1nf-box-bg: #1b080d;
-      --diag-1nf-box-border: #7f1d1d;
+      --diag-1nf-border: #111a4a;
+      --diag-1nf-badge-bg: #111a4a;
+      --diag-1nf-badge-text: #ffffff;
+      --diag-1nf-card-bg: #111a4a15;
+      --diag-1nf-box-bg: #0c1017;
+      --diag-1nf-box-border: #3e5199;
 
-      --diag-2nf-border: #f59e0b;
-      --diag-2nf-badge-bg: #3b2308;
-      --diag-2nf-badge-text: #fbbf24;
-      --diag-2nf-card-bg: #141a29;
-      --diag-2nf-box-bg: #1b1207;
-      --diag-2nf-box-border: #78350f;
+      --diag-2nf-border: #1b2d70;
+      --diag-2nf-badge-bg: #1b2d70;
+      --diag-2nf-badge-text: #ffffff;
+      --diag-2nf-card-bg: #111a4a15;
+      --diag-2nf-box-bg: #0c1017;
+      --diag-2nf-box-border: #3e5199;
 
-      --diag-3nf-border: #34d399;
-      --diag-3nf-badge-bg: #092117;
-      --diag-3nf-badge-text: #34d399;
-      --diag-3nf-card-bg: #141a29;
-      --diag-3nf-box-bg: #091b14;
-      --diag-3nf-box-border: #059669;
+      --diag-3nf-border: #167e6c;
+      --diag-3nf-badge-bg: #167e6c;
+      --diag-3nf-badge-text: #ffffff;
+      --diag-3nf-card-bg: #167e6c15;
+      --diag-3nf-box-bg: #0c1017;
+      --diag-3nf-box-border: #167e6c;
 
-      --diag-bot-box-bg: #111624;
-      --diag-bot-box-border: #24344d;
+      --diag-bot-box-bg: #0c1017;
+      --diag-bot-box-border: #3e5199;
       --diag-bot-box-text: #cbd5e1;
     }
 
     /* Standalone SVG Viewer */
     @media (prefers-color-scheme: dark) {
-      svg:root {
-        --diag-canvas: #0c1017;
-        --diag-header-tag: #38bdf8;
-        --diag-header-sub: #94a3b8;
-        --diag-card-title: #f8fafc;
+      :root:not(html) {
+        --diag-canvas: #12161e;
+        --diag-header-tag: #3e5199;
+        --diag-header-sub: #5568ad;
+        --diag-card-title: #ffffff;
         --diag-desc-text: #cbd5e1;
 
-        --diag-1nf-border: #ef4444;
-        --diag-1nf-badge-bg: #3b0f16;
-        --diag-1nf-badge-text: #f87171;
-        --diag-1nf-card-bg: #141a29;
-        --diag-1nf-box-bg: #1b080d;
-        --diag-1nf-box-border: #7f1d1d;
+        --diag-1nf-border: #111a4a;
+        --diag-1nf-badge-bg: #111a4a;
+        --diag-1nf-badge-text: #ffffff;
+        --diag-1nf-card-bg: #111a4a15;
+        --diag-1nf-box-bg: #0c1017;
+        --diag-1nf-box-border: #3e5199;
 
-        --diag-2nf-border: #f59e0b;
-        --diag-2nf-badge-bg: #3b2308;
-        --diag-2nf-badge-text: #fbbf24;
-        --diag-2nf-card-bg: #141a29;
-        --diag-2nf-box-bg: #1b1207;
-        --diag-2nf-box-border: #78350f;
+        --diag-2nf-border: #1b2d70;
+        --diag-2nf-badge-bg: #1b2d70;
+        --diag-2nf-badge-text: #ffffff;
+        --diag-2nf-card-bg: #111a4a15;
+        --diag-2nf-box-bg: #0c1017;
+        --diag-2nf-box-border: #3e5199;
 
-        --diag-3nf-border: #34d399;
-        --diag-3nf-badge-bg: #092117;
-        --diag-3nf-badge-text: #34d399;
-        --diag-3nf-card-bg: #141a29;
-        --diag-3nf-box-bg: #091b14;
-        --diag-3nf-box-border: #059669;
+        --diag-3nf-border: #167e6c;
+        --diag-3nf-badge-bg: #167e6c;
+        --diag-3nf-badge-text: #ffffff;
+        --diag-3nf-card-bg: #167e6c15;
+        --diag-3nf-box-bg: #0c1017;
+        --diag-3nf-box-border: #167e6c;
 
-        --diag-bot-box-bg: #111624;
-        --diag-bot-box-border: #24344d;
+        --diag-bot-box-bg: #0c1017;
+        --diag-bot-box-border: #3e5199;
         --diag-bot-box-text: #cbd5e1;
       }
     }
@@ -137,7 +137,7 @@
     <rect x="16" y="16" width="60" height="24" rx="4" fill="var(--diag-1nf-badge-bg)" stroke="var(--diag-1nf-border)" stroke-width="1" />
     <text x="46" y="32" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" font-weight="700" fill="var(--diag-1nf-badge-text)">1NF</text>
     <text x="88" y="27" class="step-title">Atomic Values</text>
-    <text x="88" y="42" class="step-meta" fill="var(--diag-1nf-badge-text)">NO REPEATING GROUPS</text>
+    <text x="88" y="42" class="step-meta" fill="#111a4a">NO REPEATING GROUPS</text>
 
     <line x1="16" y1="56" x2="259" y2="56" stroke="var(--diag-1nf-border)" stroke-width="1" />
 
@@ -153,22 +153,22 @@
     <!-- Code transformation box -->
     <g transform="translate(16, 195)">
       <rect width="243" height="80" rx="5" fill="var(--diag-1nf-box-bg)" stroke="var(--diag-1nf-box-border)" />
-      <text x="10" y="20" class="code-pill" fill="#dc2626">BEFORE (Unnormalized):</text>
+      <text x="10" y="20" class="code-pill" fill="#1b2d70">BEFORE (Unnormalized):</text>
       <text x="10" y="38" font-family="ui-monospace, monospace" font-size="10" fill="var(--diag-desc-text)">items: "Laptop, Mouse"</text>
-      <text x="10" y="56" class="code-pill" fill="#16a34a">AFTER (1NF):</text>
+      <text x="10" y="56" class="code-pill" fill="#167e6c">AFTER (1NF):</text>
       <text x="10" y="72" font-family="ui-monospace, monospace" font-size="10" fill="var(--diag-desc-text)">1 row per item with atomic ID</text>
     </g>
 
     <g transform="translate(16, 290)">
       <rect width="243" height="65" rx="5" fill="var(--diag-bot-box-bg)" stroke="var(--diag-bot-box-border)" />
-      <text x="10" y="20" class="code-pill" fill="#0284c7">Eliminates:</text>
+      <text x="10" y="20" class="code-pill" fill="#3e5199">Eliminates:</text>
       <text x="10" y="38" font-family="-apple-system, sans-serif" font-size="11" fill="var(--diag-bot-box-text)">Regex parsing inside SQL queries and</text>
       <text x="10" y="52" font-family="-apple-system, sans-serif" font-size="11" fill="var(--diag-bot-box-text)">index search blockage.</text>
     </g>
   </g>
 
   <!-- Connector 1NF -> 2NF -->
-  <path d="M 310 262 L 340 262" stroke="#0284c7" stroke-width="2" marker-end="url(#arrowBlue)" />
+  <path d="M 310 262 L 340 262" stroke="#3e5199" stroke-width="2" marker-end="url(#arrowBlue)" />
 
   <!-- ========================================================================= -->
   <!-- 2. SECOND NORMAL FORM (2NF) -->
@@ -179,7 +179,7 @@
     <rect x="16" y="16" width="60" height="24" rx="4" fill="var(--diag-2nf-badge-bg)" stroke="var(--diag-2nf-border)" stroke-width="1" />
     <text x="46" y="32" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" font-weight="700" fill="var(--diag-2nf-badge-text)">2NF</text>
     <text x="88" y="27" class="step-title">Full Dependency</text>
-    <text x="88" y="42" class="step-meta" fill="var(--diag-2nf-badge-text)">NO PARTIAL KEYS</text>
+    <text x="88" y="42" class="step-meta" fill="#1b2d70">NO PARTIAL KEYS</text>
 
     <line x1="16" y1="56" x2="259" y2="56" stroke="var(--diag-2nf-border)" stroke-width="1" />
 
@@ -193,22 +193,22 @@
     <!-- Code transformation box -->
     <g transform="translate(16, 195)">
       <rect width="243" height="80" rx="5" fill="var(--diag-2nf-box-bg)" stroke="var(--diag-2nf-box-border)" />
-      <text x="10" y="20" class="code-pill" fill="#d97706">PARTIAL DEPENDENCY:</text>
+      <text x="10" y="20" class="code-pill" fill="#1b2d70">PARTIAL DEPENDENCY:</text>
       <text x="10" y="38" font-family="ui-monospace, monospace" font-size="10" fill="var(--diag-desc-text)">PK: (order_id, product_id)</text>
-      <text x="10" y="54" font-family="ui-monospace, monospace" font-size="10" fill="#dc2626">product_name depends only</text>
-      <text x="10" y="70" font-family="ui-monospace, monospace" font-size="10" fill="#dc2626">on product_id (part of PK!)</text>
+      <text x="10" y="54" font-family="ui-monospace, monospace" font-size="10" fill="#3e5199">product_name depends only</text>
+      <text x="10" y="70" font-family="ui-monospace, monospace" font-size="10" fill="#3e5199">on product_id (part of PK!)</text>
     </g>
 
     <g transform="translate(16, 290)">
       <rect width="243" height="65" rx="5" fill="var(--diag-bot-box-bg)" stroke="var(--diag-bot-box-border)" />
-      <text x="10" y="20" class="code-pill" fill="#0284c7">Decomposition Solution:</text>
+      <text x="10" y="20" class="code-pill" fill="#3e5199">Decomposition Solution:</text>
       <text x="10" y="38" font-family="-apple-system, sans-serif" font-size="11" fill="var(--diag-bot-box-text)">Extract into dedicated products and</text>
       <text x="10" y="52" font-family="-apple-system, sans-serif" font-size="11" fill="var(--diag-bot-box-text)">order_items junction tables.</text>
     </g>
   </g>
 
   <!-- Connector 2NF -> 3NF -->
-  <path d="M 617 262 L 647 262" stroke="#0284c7" stroke-width="2" marker-end="url(#arrowBlue)" />
+  <path d="M 617 262 L 647 262" stroke="#3e5199" stroke-width="2" marker-end="url(#arrowBlue)" />
 
   <!-- ========================================================================= -->
   <!-- 3. THIRD NORMAL FORM (3NF) -->
@@ -219,7 +219,7 @@
     <rect x="16" y="16" width="60" height="24" rx="4" fill="var(--diag-3nf-badge-bg)" stroke="var(--diag-3nf-border)" stroke-width="1" />
     <text x="46" y="32" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" font-weight="700" fill="var(--diag-3nf-badge-text)">3NF</text>
     <text x="88" y="27" class="step-title">Direct Relation</text>
-    <text x="88" y="42" class="step-meta" fill="var(--diag-3nf-badge-text)">NO TRANSITIVE KEYS</text>
+    <text x="88" y="42" class="step-meta" fill="#167e6c">NO TRANSITIVE KEYS</text>
 
     <line x1="16" y1="56" x2="259" y2="56" stroke="var(--diag-3nf-border)" stroke-width="1" />
 
@@ -233,15 +233,15 @@
     <!-- Code transformation box -->
     <g transform="translate(16, 195)">
       <rect width="243" height="80" rx="5" fill="var(--diag-3nf-box-bg)" stroke="var(--diag-3nf-box-border)" />
-      <text x="10" y="20" class="code-pill" fill="#16a34a">TRANSITIVE CHAIN:</text>
+      <text x="10" y="20" class="code-pill" fill="#167e6c">TRANSITIVE CHAIN:</text>
       <text x="10" y="38" font-family="ui-monospace, monospace" font-size="10" fill="var(--diag-desc-text)">user_id → zip_code → city</text>
       <text x="10" y="56" font-family="-apple-system, sans-serif" font-size="10" fill="var(--diag-desc-text)">Changing city causes multi-row</text>
-      <text x="10" y="72" font-family="-apple-system, sans-serif" font-size="10" fill="#dc2626">Update Inconsistencies!</text>
+      <text x="10" y="72" font-family="-apple-system, sans-serif" font-size="10" fill="#1b2d70">Update Inconsistencies!</text>
     </g>
 
     <g transform="translate(16, 290)">
       <rect width="243" height="65" rx="5" fill="var(--diag-bot-box-bg)" stroke="var(--diag-bot-box-border)" />
-      <text x="10" y="20" class="code-pill" fill="#0284c7">Decomposition Solution:</text>
+      <text x="10" y="20" class="code-pill" fill="#167e6c">Decomposition Solution:</text>
       <text x="10" y="38" font-family="-apple-system, sans-serif" font-size="11" fill="var(--diag-bot-box-text)">Move zip_codes into a lookup table;</text>
       <text x="10" y="52" font-family="-apple-system, sans-serif" font-size="11" fill="var(--diag-bot-box-text)">link via foreign key.</text>
     </g>

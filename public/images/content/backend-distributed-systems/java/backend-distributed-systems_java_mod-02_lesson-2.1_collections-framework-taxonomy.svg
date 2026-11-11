@@ -1,115 +1,115 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 660" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 660" width="100%" height="auto" preserveAspectRatio="xMidYMid meet">
   <defs>
     <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
-      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.08" />
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.06" />
     </filter>
     <marker id="arrowIndigo" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 8 5 L 0 9 z" fill="var(--diag-link-indigo)" />
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#3e5199" />
     </marker>
     <marker id="arrowGreen" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 8 5 L 0 9 z" fill="var(--diag-link-green)" />
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#167e6c" />
     </marker>
-    <marker id="arrowPink" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 8 5 L 0 9 z" fill="var(--diag-link-pink)" />
+    <marker id="arrowNavy" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#111a4a" />
     </marker>
   </defs>
 
   <style>
     /* Default: Light Mode */
-    svg {
+    :root {
       --diag-canvas: #ffffff;
-      --diag-header-tag: #4f46e5;
-      --diag-header-sub: #64748b;
-      --diag-text-main: #0f172a;
-      --diag-text-sub: #64748b;
+      --diag-header-tag: #111a4a;
+      --diag-header-sub: #1b2d70;
+      --diag-text-main: #111a4a;
+      --diag-text-sub: #1b2d70;
 
-      --diag-interface-bg: #f5f3ff;
-      --diag-interface-border: #6366f1;
-      --diag-interface-badge: #4338ca;
+      --diag-interface-bg: #f8fafc;
+      --diag-interface-border: #3e5199;
+      --diag-interface-badge: #3e5199;
 
-      --diag-class-bg: #f0fdf4;
-      --diag-class-border: #16a34a;
-      --diag-class-badge: #15803d;
+      --diag-class-bg: #f8fafc;
+      --diag-class-border: #167e6c;
+      --diag-class-badge: #167e6c;
 
-      --diag-map-bg: #fdf2f8;
-      --diag-map-border: #ec4899;
-      --diag-map-badge: #be185d;
+      --diag-map-bg: #f8fafc;
+      --diag-map-border: #111a4a;
+      --diag-map-badge: #111a4a;
 
-      --diag-map-class-bg: #fffbeb;
-      --diag-map-class-border: #f59e0b;
-      --diag-map-class-badge: #b45309;
+      --diag-map-class-bg: #f8fafc;
+      --diag-map-class-border: #1b2d70;
+      --diag-map-class-badge: #1b2d70;
 
-      --diag-link-indigo: #6366f1;
-      --diag-link-green: #16a34a;
-      --diag-link-pink: #ec4899;
-      --diag-divider: #e2e8f0;
+      --diag-link-indigo: #3e5199;
+      --diag-link-green: #167e6c;
+      --diag-link-pink: #111a4a;
+      --diag-divider: #3e5199;
       --diag-legend-bg: #f8fafc;
-      --diag-legend-border: #cbd5e1;
+      --diag-legend-border: #3e5199;
     }
 
     /* Dark Mode (Web Application) */
     html.dark svg, .dark svg {
-      --diag-canvas: #0c1017;
-      --diag-header-tag: #818cf8;
-      --diag-header-sub: #94a3b8;
-      --diag-text-main: #f8fafc;
-      --diag-text-sub: #94a3b8;
+      --diag-canvas: #12161e;
+      --diag-header-tag: #3e5199;
+      --diag-header-sub: #5568ad;
+      --diag-text-main: #ffffff;
+      --diag-text-sub: #cbd5e1;
 
-      --diag-interface-bg: #1f2847;
-      --diag-interface-border: #818cf8;
-      --diag-interface-badge: #a5b4fc;
+      --diag-interface-bg: #111a4a15;
+      --diag-interface-border: #3e5199;
+      --diag-interface-badge: #5568ad;
 
-      --diag-class-bg: #132a24;
-      --diag-class-border: #34d399;
-      --diag-class-badge: #6ee7b7;
+      --diag-class-bg: #167e6c15;
+      --diag-class-border: #167e6c;
+      --diag-class-badge: #167e6c;
 
-      --diag-map-bg: #2d1c28;
-      --diag-map-border: #f472b6;
-      --diag-map-badge: #f472b6;
+      --diag-map-bg: #111a4a15;
+      --diag-map-border: #111a4a;
+      --diag-map-badge: #5568ad;
 
-      --diag-map-class-bg: #2c2214;
-      --diag-map-class-border: #f59e0b;
-      --diag-map-class-badge: #fcd34d;
+      --diag-map-class-bg: #111a4a15;
+      --diag-map-class-border: #1b2d70;
+      --diag-map-class-badge: #5568ad;
 
-      --diag-link-indigo: #818cf8;
-      --diag-link-green: #34d399;
-      --diag-link-pink: #f472b6;
-      --diag-divider: #1e293b;
-      --diag-legend-bg: #131929;
-      --diag-legend-border: #1e293b;
+      --diag-link-indigo: #3e5199;
+      --diag-link-green: #167e6c;
+      --diag-link-pink: #3e5199;
+      --diag-divider: #3e5199;
+      --diag-legend-bg: #0c1017;
+      --diag-legend-border: #3e5199;
     }
 
     /* Standalone SVG Viewer */
     @media (prefers-color-scheme: dark) {
-      svg:root {
-        --diag-canvas: #0c1017;
-        --diag-header-tag: #818cf8;
-        --diag-header-sub: #94a3b8;
-        --diag-text-main: #f8fafc;
-        --diag-text-sub: #94a3b8;
+      :root:not(html) {
+        --diag-canvas: #12161e;
+        --diag-header-tag: #3e5199;
+        --diag-header-sub: #5568ad;
+        --diag-text-main: #ffffff;
+        --diag-text-sub: #cbd5e1;
 
-        --diag-interface-bg: #1f2847;
-        --diag-interface-border: #818cf8;
-        --diag-interface-badge: #a5b4fc;
+        --diag-interface-bg: #111a4a15;
+        --diag-interface-border: #3e5199;
+        --diag-interface-badge: #5568ad;
 
-        --diag-class-bg: #132a24;
-        --diag-class-border: #34d399;
-        --diag-class-badge: #6ee7b7;
+        --diag-class-bg: #167e6c15;
+        --diag-class-border: #167e6c;
+        --diag-class-badge: #167e6c;
 
-        --diag-map-bg: #2d1c28;
-        --diag-map-border: #f472b6;
-        --diag-map-badge: #f472b6;
+        --diag-map-bg: #111a4a15;
+        --diag-map-border: #111a4a;
+        --diag-map-badge: #5568ad;
 
-        --diag-map-class-bg: #2c2214;
-        --diag-map-class-border: #f59e0b;
-        --diag-map-class-badge: #fcd34d;
+        --diag-map-class-bg: #111a4a15;
+        --diag-map-class-border: #1b2d70;
+        --diag-map-class-badge: #5568ad;
 
-        --diag-link-indigo: #818cf8;
-        --diag-link-green: #34d399;
-        --diag-link-pink: #f472b6;
-        --diag-divider: #1e293b;
-        --diag-legend-bg: #131929;
-        --diag-legend-border: #1e293b;
+        --diag-link-indigo: #3e5199;
+        --diag-link-green: #167e6c;
+        --diag-link-pink: #3e5199;
+        --diag-divider: #3e5199;
+        --diag-legend-bg: #0c1017;
+        --diag-legend-border: #3e5199;
       }
     }
 
@@ -271,10 +271,10 @@
   </g>
 
   <!-- Map Fan-out connectors -->
-  <path d="M 430 506 L 430 528 L 130 528 L 130 546" class="link-pink" marker-end="url(#arrowPink)" />
-  <path d="M 480 506 L 480 528 L 380 528 L 380 546" class="link-pink" marker-end="url(#arrowPink)" />
-  <path d="M 520 506 L 520 528 L 630 528 L 630 546" class="link-pink" marker-end="url(#arrowPink)" />
-  <path d="M 570 506 L 570 528 L 870 528 L 870 546" class="link-pink" marker-end="url(#arrowPink)" />
+  <path d="M 430 506 L 430 528 L 130 528 L 130 546" class="link-pink" marker-end="url(#arrowNavy)" />
+  <path d="M 480 506 L 480 528 L 380 528 L 380 546" class="link-pink" marker-end="url(#arrowNavy)" />
+  <path d="M 520 506 L 520 528 L 630 528 L 630 546" class="link-pink" marker-end="url(#arrowNavy)" />
+  <path d="M 570 506 L 570 528 L 870 528 L 870 546" class="link-pink" marker-end="url(#arrowNavy)" />
 
   <!-- HashMap -->
   <g transform="translate(35, 548)" filter="url(#shadow)">

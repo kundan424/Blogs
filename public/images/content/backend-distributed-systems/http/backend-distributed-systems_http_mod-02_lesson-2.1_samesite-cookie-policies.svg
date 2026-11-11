@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 460" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 460" width="100%" height="auto" preserveAspectRatio="xMidYMid meet">
   <defs>
     <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
       <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.08" />
@@ -9,55 +9,55 @@
     /* Default: Light Mode (Clean White Canvas) */
     svg {
       --diag-canvas: #ffffff;
-      --diag-header-tag: #0284c7;
-      --diag-header-sub: #64748b;
+      --diag-header-tag: #111a4a;
+      --diag-header-sub: #475569;
 
-      --diag-strict-bg: #fff5f5;
-      --diag-strict-border: #fca5a5;
-      --diag-strict-title: #dc2626;
-      --diag-strict-badge-bg: #fee2e2;
-      --diag-strict-meta: #b91c1c;
+      --diag-strict-bg: #f8fafc;
+      --diag-strict-border: #111a4a;
+      --diag-strict-title: #111a4a;
+      --diag-strict-badge-bg: #edf2ff;
+      --diag-strict-meta: #1b2d70;
 
-      --diag-lax-bg: #fffbeb;
-      --diag-lax-border: #fde68a;
-      --diag-lax-title: #d97706;
-      --diag-lax-badge-bg: #fef3c7;
-      --diag-lax-meta: #b45309;
+      --diag-lax-bg: #f8fafc;
+      --diag-lax-border: #167e6c;
+      --diag-lax-title: #167e6c;
+      --diag-lax-badge-bg: #e6f6f3;
+      --diag-lax-meta: #167e6c;
 
-      --diag-none-bg: #f0f9ff;
-      --diag-none-border: #bae6fd;
-      --diag-none-title: #0284c7;
-      --diag-none-badge-bg: #e0f2fe;
-      --diag-none-meta: #0369a1;
+      --diag-none-bg: #f8fafc;
+      --diag-none-border: #3e5199;
+      --diag-none-title: #3e5199;
+      --diag-none-badge-bg: #edf2ff;
+      --diag-none-meta: #1b2d70;
 
-      --diag-rule-head: #0f172a;
+      --diag-rule-head: #111a4a;
       --diag-rule-body: #334155;
       --diag-rule-usecase: #64748b;
     }
 
     /* Dark Mode (Web Application) */
     html.dark svg, .dark svg {
-      --diag-canvas: #0c1017;
-      --diag-header-tag: #38bdf8;
+      --diag-canvas: #12161e;
+      --diag-header-tag: #788cd4;
       --diag-header-sub: #94a3b8;
 
-      --diag-strict-bg: #241116;
-      --diag-strict-border: #ef4444;
-      --diag-strict-title: #f87171;
-      --diag-strict-badge-bg: #3b0f16;
-      --diag-strict-meta: #fca5a5;
+      --diag-strict-bg: #171d2b;
+      --diag-strict-border: #3e5199;
+      --diag-strict-title: #f8fafc;
+      --diag-strict-badge-bg: #131b2a;
+      --diag-strict-meta: #93a5e8;
 
-      --diag-lax-bg: #22190f;
-      --diag-lax-border: #f59e0b;
-      --diag-lax-title: #fbbf24;
-      --diag-lax-badge-bg: #3b2308;
-      --diag-lax-meta: #fde68a;
+      --diag-lax-bg: #171d2b;
+      --diag-lax-border: #167e6c;
+      --diag-lax-title: #2dd4bf;
+      --diag-lax-badge-bg: #0d2822;
+      --diag-lax-meta: #2dd4bf;
 
-      --diag-none-bg: #0f1c2b;
-      --diag-none-border: #0284c7;
-      --diag-none-title: #38bdf8;
-      --diag-none-badge-bg: #082238;
-      --diag-none-meta: #7dd3fc;
+      --diag-none-bg: #171d2b;
+      --diag-none-border: #3e5199;
+      --diag-none-title: #788cd4;
+      --diag-none-badge-bg: #131b2a;
+      --diag-none-meta: #93a5e8;
 
       --diag-rule-head: #f8fafc;
       --diag-rule-body: #cbd5e1;
@@ -66,28 +66,28 @@
 
     /* Standalone SVG Viewer */
     @media (prefers-color-scheme: dark) {
-      svg:root {
-        --diag-canvas: #0c1017;
-        --diag-header-tag: #38bdf8;
+      :root:not(html) {
+        --diag-canvas: #12161e;
+        --diag-header-tag: #788cd4;
         --diag-header-sub: #94a3b8;
 
-        --diag-strict-bg: #241116;
-        --diag-strict-border: #ef4444;
-        --diag-strict-title: #f87171;
-        --diag-strict-badge-bg: #3b0f16;
-        --diag-strict-meta: #fca5a5;
+        --diag-strict-bg: #171d2b;
+        --diag-strict-border: #3e5199;
+        --diag-strict-title: #f8fafc;
+        --diag-strict-badge-bg: #131b2a;
+        --diag-strict-meta: #93a5e8;
 
-        --diag-lax-bg: #22190f;
-        --diag-lax-border: #f59e0b;
-        --diag-lax-title: #fbbf24;
-        --diag-lax-badge-bg: #3b2308;
-        --diag-lax-meta: #fde68a;
+        --diag-lax-bg: #171d2b;
+        --diag-lax-border: #167e6c;
+        --diag-lax-title: #2dd4bf;
+        --diag-lax-badge-bg: #0d2822;
+        --diag-lax-meta: #2dd4bf;
 
-        --diag-none-bg: #0f1c2b;
-        --diag-none-border: #0284c7;
-        --diag-none-title: #38bdf8;
-        --diag-none-badge-bg: #082238;
-        --diag-none-meta: #7dd3fc;
+        --diag-none-bg: #171d2b;
+        --diag-none-border: #3e5199;
+        --diag-none-title: #788cd4;
+        --diag-none-badge-bg: #131b2a;
+        --diag-none-meta: #93a5e8;
 
         --diag-rule-head: #f8fafc;
         --diag-rule-body: #cbd5e1;

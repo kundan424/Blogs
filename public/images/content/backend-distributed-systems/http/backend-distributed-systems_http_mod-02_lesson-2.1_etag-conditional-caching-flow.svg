@@ -1,16 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 440" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 440" width="100%" height="auto" preserveAspectRatio="xMidYMid meet">
   <defs>
     <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
       <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.08" />
     </filter>
     <marker id="arrowBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#0284c7" />
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#3e5199" />
     </marker>
     <marker id="arrowGreen" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 10 1.5 L 1 5 L 10 8.5 z" fill="#16a34a" />
+      <path d="M 10 1.5 L 1 5 L 10 8.5 z" fill="#167e6c" />
     </marker>
-    <marker id="arrowAmber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#d97706" />
+    <marker id="arrowNavy" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#1b2d70" />
     </marker>
   </defs>
 
@@ -18,88 +18,88 @@
     /* Default: Light Mode (Clean White Canvas) */
     svg {
       --diag-canvas: #ffffff;
-      --diag-header-tag: #0284c7;
-      --diag-header-sub: #64748b;
+      --diag-header-tag: #111a4a;
+      --diag-header-sub: #475569;
 
       --diag-node-bg: #f8fafc;
       --diag-node-border: #cbd5e1;
-      --diag-node-title: #0f172a;
+      --diag-node-title: #111a4a;
       --diag-node-sub: #64748b;
       --diag-lifeline: #cbd5e1;
 
-      --diag-step1-main: #0284c7;
-      --diag-step2-main: #16a34a;
-      --diag-step3-main: #d97706;
-      --diag-step3-sub: #b45309;
-      --diag-step4-main: #16a34a;
-      --diag-step4-sub: #15803d;
+      --diag-step1-main: #3e5199;
+      --diag-step2-main: #167e6c;
+      --diag-step3-main: #1b2d70;
+      --diag-step3-sub: #3e5199;
+      --diag-step4-main: #167e6c;
+      --diag-step4-sub: #0f5c4f;
 
       --diag-pill-bg: #f1f5f9;
       --diag-pill-border: #cbd5e1;
-      --diag-pill-text: #334155;
+      --diag-pill-text: #1b2d70;
 
-      --diag-match-bg: #dcfce7;
-      --diag-match-border: #16a34a;
-      --diag-match-text: #15803d;
-      --diag-match-sub: #64748b;
+      --diag-match-bg: #e6f6f3;
+      --diag-match-border: #167e6c;
+      --diag-match-text: #167e6c;
+      --diag-match-sub: #475569;
     }
 
     /* Dark Mode (Web Application) */
     html.dark svg, .dark svg {
-      --diag-canvas: #0c1017;
-      --diag-header-tag: #38bdf8;
+      --diag-canvas: #12161e;
+      --diag-header-tag: #788cd4;
       --diag-header-sub: #94a3b8;
 
-      --diag-node-bg: #141c2c;
+      --diag-node-bg: #171d2b;
       --diag-node-border: #243049;
       --diag-node-title: #f8fafc;
       --diag-node-sub: #94a3b8;
       --diag-lifeline: #243049;
 
-      --diag-step1-main: #38bdf8;
-      --diag-step2-main: #34d399;
-      --diag-step3-main: #fbbf24;
-      --diag-step3-sub: #fde68a;
-      --diag-step4-main: #34d399;
-      --diag-step4-sub: #6ee7b7;
+      --diag-step1-main: #788cd4;
+      --diag-step2-main: #2dd4bf;
+      --diag-step3-main: #93a5e8;
+      --diag-step3-sub: #cbd5e1;
+      --diag-step4-main: #2dd4bf;
+      --diag-step4-sub: #5eead4;
 
-      --diag-pill-bg: #131d2e;
+      --diag-pill-bg: #131b2a;
       --diag-pill-border: #24344d;
       --diag-pill-text: #cbd5e1;
 
-      --diag-match-bg: #092117;
-      --diag-match-border: #34d399;
-      --diag-match-text: #34d399;
+      --diag-match-bg: #0d2822;
+      --diag-match-border: #167e6c;
+      --diag-match-text: #2dd4bf;
       --diag-match-sub: #94a3b8;
     }
 
     /* Standalone SVG Viewer */
     @media (prefers-color-scheme: dark) {
-      svg:root {
-        --diag-canvas: #0c1017;
-        --diag-header-tag: #38bdf8;
+      :root:not(html) {
+        --diag-canvas: #12161e;
+        --diag-header-tag: #788cd4;
         --diag-header-sub: #94a3b8;
 
-        --diag-node-bg: #141c2c;
+        --diag-node-bg: #171d2b;
         --diag-node-border: #243049;
         --diag-node-title: #f8fafc;
         --diag-node-sub: #94a3b8;
         --diag-lifeline: #243049;
 
-        --diag-step1-main: #38bdf8;
-        --diag-step2-main: #34d399;
-        --diag-step3-main: #fbbf24;
-        --diag-step3-sub: #fde68a;
-        --diag-step4-main: #34d399;
-        --diag-step4-sub: #6ee7b7;
+        --diag-step1-main: #788cd4;
+        --diag-step2-main: #2dd4bf;
+        --diag-step3-main: #93a5e8;
+        --diag-step3-sub: #cbd5e1;
+        --diag-step4-main: #2dd4bf;
+        --diag-step4-sub: #5eead4;
 
-        --diag-pill-bg: #131d2e;
+        --diag-pill-bg: #131b2a;
         --diag-pill-border: #24344d;
         --diag-pill-text: #cbd5e1;
 
-        --diag-match-bg: #092117;
-        --diag-match-border: #34d399;
-        --diag-match-text: #34d399;
+        --diag-match-bg: #0d2822;
+        --diag-match-border: #167e6c;
+        --diag-match-text: #2dd4bf;
         --diag-match-sub: #94a3b8;
       }
     }
@@ -127,14 +127,14 @@
 
   <!-- Client Node Box -->
   <g transform="translate(60, 68)" filter="url(#shadow)">
-    <rect width="160" height="50" rx="8" fill="var(--diag-node-bg)" stroke="#0284c7" stroke-width="1.5" />
+    <rect width="160" height="50" rx="8" fill="var(--diag-node-bg)" stroke="#3e5199" stroke-width="1.5" />
     <text x="80" y="27" class="node-title">Client Browser</text>
     <text x="80" y="42" class="node-sub">Private HTTP Cache</text>
   </g>
 
   <!-- Server Node Box -->
   <g transform="translate(640, 68)" filter="url(#shadow)">
-    <rect width="160" height="50" rx="8" fill="var(--diag-node-bg)" stroke="#16a34a" stroke-width="1.5" />
+    <rect width="160" height="50" rx="8" fill="var(--diag-node-bg)" stroke="#167e6c" stroke-width="1.5" />
     <text x="80" y="27" class="node-title">Origin Server</text>
     <text x="80" y="42" class="node-sub">Spring Boot REST API</text>
   </g>
@@ -142,19 +142,19 @@
   <!-- STEP 1: INITIAL GET REQUEST -->
   <g transform="translate(140, 145)">
     <text x="20" y="-8" class="step-main" fill="var(--diag-step1-main)">1. GET /products/101 (Initial Fetch)</text>
-    <path d="M 0 0 L 580 0" stroke="#0284c7" stroke-width="2" marker-end="url(#arrowBlue)" />
+    <path d="M 0 0 L 580 0" stroke="#3e5199" stroke-width="2" marker-end="url(#arrowBlue)" />
   </g>
 
   <!-- STEP 2: 200 OK RESPONSE WITH ETAG -->
   <g transform="translate(140, 200)">
     <text x="20" y="-8" class="step-main" fill="var(--diag-step2-main)">2. 200 OK  [ETag: "hash-v1", Cache-Control: max-age=3600, Payload: 50 KB]</text>
-    <path d="M 580 0 L 0 0" stroke="#16a34a" stroke-width="2" marker-start="url(#arrowGreen)" />
+    <path d="M 580 0 L 0 0" stroke="#167e6c" stroke-width="2" marker-start="url(#arrowGreen)" />
   </g>
 
   <!-- Client Cache State Pill -->
   <g transform="translate(230, 224)" filter="url(#shadow)">
     <rect width="400" height="28" rx="14" fill="var(--diag-pill-bg)" stroke="var(--diag-pill-border)" stroke-width="1" />
-    <circle cx="16" cy="14" r="4" fill="#0284c7" />
+    <circle cx="16" cy="14" r="4" fill="#3e5199" />
     <text x="28" y="18" class="pill-note">[Client caches payload locally mapped to ETag: "hash-v1"]</text>
   </g>
 
@@ -162,7 +162,7 @@
   <g transform="translate(140, 290)">
     <text x="20" y="-12" class="step-main" fill="var(--diag-step3-main)">3. GET /products/101  (Conditional Revalidation)</text>
     <text x="38" y="6" class="step-sub" fill="var(--diag-step3-sub)">Header: If-None-Match: "hash-v1"</text>
-    <path d="M 0 16 L 580 16" stroke="#d97706" stroke-width="2" marker-end="url(#arrowAmber)" />
+    <path d="M 0 16 L 580 16" stroke="#1b2d70" stroke-width="2" marker-end="url(#arrowNavy)" />
   </g>
 
   <!-- Server Comparison Annotation -->
@@ -176,6 +176,6 @@
   <g transform="translate(140, 375)">
     <text x="20" y="-12" class="step-main" fill="var(--diag-step4-main)">4. 304 Not Modified</text>
     <text x="38" y="6" class="step-sub" fill="var(--diag-step4-sub)">0 Bytes payload transferred! Client safely serves cached body</text>
-    <path d="M 580 16 L 0 16" stroke="#16a34a" stroke-width="2" marker-start="url(#arrowGreen)" />
+    <path d="M 580 16 L 0 16" stroke="#167e6c" stroke-width="2" marker-start="url(#arrowGreen)" />
   </g>
 </svg>

@@ -1,106 +1,106 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="auto" preserveAspectRatio="xMidYMid meet">
   <defs>
     <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
-      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.08" />
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.06" />
     </filter>
     <marker id="arrowBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="var(--diag-client-border)" />
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#3e5199" />
     </marker>
     <marker id="arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="var(--diag-storage-border)" />
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#167e6c" />
     </marker>
   </defs>
 
   <style>
     /* Default: Light Mode (Clean White Canvas) */
-    svg {
+    :root {
       --diag-canvas: #ffffff;
-      --diag-header-tag: #0284c7;
-      --diag-header-sub: #64748b;
+      --diag-header-tag: #111a4a;
+      --diag-header-sub: #1b2d70;
 
-      --diag-client-card: #f0f9ff;
-      --diag-client-border: #0284c7;
-      --diag-client-badge-bg: #e0f2fe;
-      --diag-client-badge-text: #0369a1;
+      --diag-client-card: #f8fafc;
+      --diag-client-border: #111a4a;
+      --diag-client-badge-bg: #111a4a;
+      --diag-client-badge-text: #ffffff;
 
       --diag-engine-card: #f8fafc;
-      --diag-engine-border: #6366f1;
-      --diag-engine-badge-bg: #e0e7ff;
-      --diag-engine-badge-text: #4338ca;
+      --diag-engine-border: #3e5199;
+      --diag-engine-badge-bg: #3e5199;
+      --diag-engine-badge-text: #ffffff;
 
-      --diag-storage-card: #f0fdf4;
-      --diag-storage-border: #16a34a;
-      --diag-storage-badge-bg: #dcfce7;
-      --diag-storage-badge-text: #15803d;
+      --diag-storage-card: #f8fafc;
+      --diag-storage-border: #167e6c;
+      --diag-storage-badge-bg: #167e6c;
+      --diag-storage-badge-text: #ffffff;
 
       --diag-inner-box-bg: #ffffff;
-      --diag-inner-box-border: #cbd5e1;
-      --diag-text-main: #0f172a;
-      --diag-text-sub: #64748b;
-      --diag-text-code: #0369a1;
-      --diag-wal-card-border: #f87171;
-      --diag-wal-text: #b91c1c;
+      --diag-inner-box-border: #3e5199;
+      --diag-text-main: #111a4a;
+      --diag-text-sub: #1b2d70;
+      --diag-text-code: #1b2d70;
+      --diag-wal-card-border: #167e6c;
+      --diag-wal-text: #167e6c;
     }
 
     /* Dark Mode (Web Application) */
     html.dark svg, .dark svg {
-      --diag-canvas: #0c1017;
-      --diag-header-tag: #38bdf8;
-      --diag-header-sub: #94a3b8;
+      --diag-canvas: #12161e;
+      --diag-header-tag: #3e5199;
+      --diag-header-sub: #5568ad;
 
-      --diag-client-card: #162238;
-      --diag-client-border: #38bdf8;
-      --diag-client-badge-bg: #082238;
-      --diag-client-badge-text: #38bdf8;
+      --diag-client-card: #111a4a15;
+      --diag-client-border: #111a4a;
+      --diag-client-badge-bg: #111a4a;
+      --diag-client-badge-text: #ffffff;
 
-      --diag-engine-card: #141c2c;
-      --diag-engine-border: #818cf8;
-      --diag-engine-badge-bg: #1b1c38;
-      --diag-engine-badge-text: #a5b4fc;
+      --diag-engine-card: #111a4a15;
+      --diag-engine-border: #3e5199;
+      --diag-engine-badge-bg: #3e5199;
+      --diag-engine-badge-text: #ffffff;
 
-      --diag-storage-card: #12261e;
-      --diag-storage-border: #34d399;
-      --diag-storage-badge-bg: #092117;
-      --diag-storage-badge-text: #34d399;
+      --diag-storage-card: #167e6c15;
+      --diag-storage-border: #167e6c;
+      --diag-storage-badge-bg: #167e6c;
+      --diag-storage-badge-text: #ffffff;
 
-      --diag-inner-box-bg: #0e131d;
-      --diag-inner-box-border: #24344d;
-      --diag-text-main: #f8fafc;
-      --diag-text-sub: #94a3b8;
-      --diag-text-code: #7dd3fc;
-      --diag-wal-card-border: #ef4444;
-      --diag-wal-text: #f87171;
+      --diag-inner-box-bg: #0c1017;
+      --diag-inner-box-border: #3e5199;
+      --diag-text-main: #ffffff;
+      --diag-text-sub: #cbd5e1;
+      --diag-text-code: #5568ad;
+      --diag-wal-card-border: #167e6c;
+      --diag-wal-text: #167e6c;
     }
 
     /* Standalone SVG Viewer */
     @media (prefers-color-scheme: dark) {
-      svg:root {
-        --diag-canvas: #0c1017;
-        --diag-header-tag: #38bdf8;
-        --diag-header-sub: #94a3b8;
+      :root:not(html) {
+        --diag-canvas: #12161e;
+        --diag-header-tag: #3e5199;
+        --diag-header-sub: #5568ad;
 
-        --diag-client-card: #162238;
-        --diag-client-border: #38bdf8;
-        --diag-client-badge-bg: #082238;
-        --diag-client-badge-text: #38bdf8;
+        --diag-client-card: #111a4a15;
+        --diag-client-border: #111a4a;
+        --diag-client-badge-bg: #111a4a;
+        --diag-client-badge-text: #ffffff;
 
-        --diag-engine-card: #141c2c;
-        --diag-engine-border: #818cf8;
-        --diag-engine-badge-bg: #1b1c38;
-        --diag-engine-badge-text: #a5b4fc;
+        --diag-engine-card: #111a4a15;
+        --diag-engine-border: #3e5199;
+        --diag-engine-badge-bg: #3e5199;
+        --diag-engine-badge-text: #ffffff;
 
-        --diag-storage-card: #12261e;
-        --diag-storage-border: #34d399;
-        --diag-storage-badge-bg: #092117;
-        --diag-storage-badge-text: #34d399;
+        --diag-storage-card: #167e6c15;
+        --diag-storage-border: #167e6c;
+        --diag-storage-badge-bg: #167e6c;
+        --diag-storage-badge-text: #ffffff;
 
-        --diag-inner-box-bg: #0e131d;
-        --diag-inner-box-border: #24344d;
-        --diag-text-main: #f8fafc;
-        --diag-text-sub: #94a3b8;
-        --diag-text-code: #7dd3fc;
-        --diag-wal-card-border: #ef4444;
-        --diag-wal-text: #f87171;
+        --diag-inner-box-bg: #0c1017;
+        --diag-inner-box-border: #3e5199;
+        --diag-text-main: #ffffff;
+        --diag-text-sub: #cbd5e1;
+        --diag-text-code: #5568ad;
+        --diag-wal-card-border: #167e6c;
+        --diag-wal-text: #167e6c;
       }
     }
 
@@ -134,11 +134,11 @@
     <!-- Query Snippet Card -->
     <g transform="translate(15, 105)">
       <rect width="180" height="130" rx="6" fill="var(--diag-inner-box-bg)" stroke="var(--diag-inner-box-border)" stroke-width="1" />
-      <text x="12" y="24" class="code-text" fill="var(--diag-client-border)">SELECT</text>
+      <text x="12" y="24" class="code-text" fill="#111a4a">SELECT</text>
       <text x="12" y="42" class="code-text" fill="var(--diag-text-main)">  u.name, o.total</text>
-      <text x="12" y="60" class="code-text" fill="var(--diag-client-border)">FROM</text>
+      <text x="12" y="60" class="code-text" fill="#111a4a">FROM</text>
       <text x="12" y="78" class="code-text" fill="var(--diag-text-main)">  users u</text>
-      <text x="12" y="96" class="code-text" fill="var(--diag-client-border)">JOIN</text>
+      <text x="12" y="96" class="code-text" fill="#111a4a">JOIN</text>
       <text x="12" y="114" class="code-text" fill="var(--diag-text-main)">  orders o ON ...</text>
     </g>
 
@@ -146,12 +146,12 @@
       <rect width="180" height="95" rx="6" fill="var(--diag-inner-box-bg)" stroke="var(--diag-inner-box-border)" stroke-width="1" />
       <text x="12" y="24" font-family="ui-monospace, monospace" font-size="11" font-weight="600" fill="var(--diag-text-sub)">Declarative SQL:</text>
       <text x="12" y="44" font-family="-apple-system, sans-serif" font-size="11" fill="var(--diag-text-main)">Tells engine WHAT data is needed, not HOW to retrieve it.</text>
-      <text x="12" y="80" class="meta-badge" fill="var(--diag-storage-border)">TCP Port :5432 / :3306</text>
+      <text x="12" y="80" class="meta-badge" fill="#167e6c">TCP Port :5432 / :3306</text>
     </g>
   </g>
 
   <!-- Arrow Client -> Parser -->
-  <path d="M 245 190 L 285 190" stroke="var(--diag-client-border)" stroke-width="2" marker-end="url(#arrowBlue)" />
+  <path d="M 245 190 L 285 190" stroke="#3e5199" stroke-width="2" marker-end="url(#arrowBlue)" />
 
   <!-- ========================================================================= -->
   <!-- STEP 2: PARSER, OPTIMIZER, EXECUTION ENGINE (RDBMS CORE) -->
@@ -159,44 +159,44 @@
   <g transform="translate(290, 75)" filter="url(#shadow)">
     <rect width="360" height="375" rx="10" fill="var(--diag-engine-card)" stroke="var(--diag-engine-border)" stroke-width="1.5" />
     
-    <rect x="20" y="16" width="130" height="22" rx="4" fill="var(--diag-engine-badge-bg)" stroke="var(--diag-engine-border)" stroke-width="1" />
-    <text x="85" y="31" text-anchor="middle" class="meta-badge" fill="var(--diag-engine-badge-text)">QUERY PROCESSOR</text>
+    <rect x="20" y="16" width="140" height="22" rx="4" fill="var(--diag-engine-badge-bg)" stroke="var(--diag-engine-border)" stroke-width="1" />
+    <text x="90" y="31" text-anchor="middle" class="meta-badge" fill="var(--diag-engine-badge-text)">QUERY PROCESSOR</text>
 
     <!-- Sub-step 2.1: Parser & Lexer -->
     <g transform="translate(18, 55)">
       <rect width="324" height="65" rx="6" fill="var(--diag-inner-box-bg)" stroke="var(--diag-inner-box-border)" stroke-width="1" />
       <text x="15" y="24" class="box-title" font-size="12.5">1. Parser &amp; Lexical Analyzer</text>
       <text x="15" y="42" class="box-sub">Validates SQL grammar, checks table/column catalog</text>
-      <text x="15" y="55" class="code-text" fill="var(--diag-engine-border)">Outputs: Abstract Syntax Tree (AST)</text>
+      <text x="15" y="55" class="code-text" fill="#3e5199">Outputs: Abstract Syntax Tree (AST)</text>
     </g>
 
     <!-- Sub-step 2.2: Cost-Based Optimizer (CBO) -->
     <g transform="translate(18, 132)">
-      <rect width="324" height="98" rx="6" fill="var(--diag-inner-box-bg)" stroke="var(--diag-client-border)" stroke-width="1" />
-      <rect x="235" y="8" width="75" height="18" rx="3" fill="var(--diag-client-badge-bg)" stroke="var(--diag-client-border)" />
-      <text x="272" y="21" text-anchor="middle" class="meta-badge" font-size="9" fill="var(--diag-client-border)">CBO CORE</text>
+      <rect width="324" height="98" rx="6" fill="var(--diag-inner-box-bg)" stroke="#1b2d70" stroke-width="1" />
+      <rect x="235" y="8" width="75" height="18" rx="3" fill="#1b2d70" />
+      <text x="272" y="21" text-anchor="middle" class="meta-badge" font-size="9" fill="#ffffff">CBO CORE</text>
       
-      <text x="15" y="24" class="box-title" font-size="12.5" fill="var(--diag-client-border)">2. Cost-Based Optimizer</text>
+      <text x="15" y="24" class="box-title" font-size="12.5" fill="#1b2d70">2. Cost-Based Optimizer</text>
       <text x="15" y="42" class="box-sub">Evaluates index vs seq scan, join algorithms:</text>
       <text x="25" y="60" class="code-text" fill="var(--diag-text-main)">• Nested Loop  • Hash Join  • Merge Join</text>
-      <text x="15" y="84" class="box-sub" fill="var(--diag-client-border)">Selects lowest mathematical I/O cost plan</text>
+      <text x="15" y="84" class="box-sub" fill="#3e5199">Selects lowest mathematical I/O cost plan</text>
     </g>
 
     <!-- Sub-step 2.3: Execution Engine -->
     <g transform="translate(18, 242)">
-      <rect width="324" height="85" rx="6" fill="var(--diag-inner-box-bg)" stroke="var(--diag-storage-border)" stroke-width="1" />
-      <text x="15" y="24" class="box-title" font-size="12.5" fill="var(--diag-storage-border)">3. Plan Execution Engine</text>
+      <rect width="324" height="85" rx="6" fill="var(--diag-inner-box-bg)" stroke="#167e6c" stroke-width="1" />
+      <text x="15" y="24" class="box-title" font-size="12.5" fill="#167e6c">3. Plan Execution Engine</text>
       <text x="15" y="42" class="box-sub">Iterates pipeline operators (Volcano Iterator Model)</text>
-      <text x="15" y="60" class="code-text" fill="var(--diag-storage-border)">Invokes open(), next(), close() on tuples</text>
+      <text x="15" y="60" class="code-text" fill="#167e6c">Invokes open(), next(), close() on tuples</text>
       <text x="15" y="74" class="box-sub" fill="var(--diag-text-sub)">Streams final result records back to client</text>
     </g>
 
     <!-- Bottom Metric -->
-    <text x="180" y="355" text-anchor="middle" class="meta-badge" fill="var(--diag-text-sub)">TRANSACTION COORDINATOR &amp; MVCC</text>
+    <text x="180" y="355" text-anchor="middle" class="meta-badge" fill="#1b2d70">TRANSACTION COORDINATOR &amp; MVCC</text>
   </g>
 
   <!-- Arrow Engine -> Storage -->
-  <path d="M 650 240 L 690 240" stroke="var(--diag-storage-border)" stroke-width="2" marker-end="url(#arrowGreen)" />
+  <path d="M 650 240 L 690 240" stroke="#167e6c" stroke-width="2" marker-end="url(#arrowGreen)" />
 
   <!-- ========================================================================= -->
   <!-- STEP 3: STORAGE ENGINE, BUFFER POOL, & DISK WAL -->
@@ -204,16 +204,16 @@
   <g transform="translate(695, 75)" filter="url(#shadow)">
     <rect width="230" height="375" rx="10" fill="var(--diag-storage-card)" stroke="var(--diag-storage-border)" stroke-width="1.5" />
     
-    <rect x="20" y="16" width="110" height="22" rx="4" fill="var(--diag-storage-badge-bg)" stroke="var(--diag-storage-border)" stroke-width="1" />
-    <text x="75" y="31" text-anchor="middle" class="meta-badge" fill="var(--diag-storage-badge-text)">STORAGE LAYER</text>
+    <rect x="20" y="16" width="120" height="22" rx="4" fill="var(--diag-storage-badge-bg)" stroke="var(--diag-storage-border)" stroke-width="1" />
+    <text x="80" y="31" text-anchor="middle" class="meta-badge" fill="var(--diag-storage-badge-text)">STORAGE LAYER</text>
 
     <!-- Buffer Pool / Shared Buffers -->
     <g transform="translate(15, 55)">
       <rect width="200" height="85" rx="6" fill="var(--diag-inner-box-bg)" stroke="var(--diag-inner-box-border)" stroke-width="1" />
-      <text x="15" y="22" class="box-title" font-size="12" fill="var(--diag-client-border)">Buffer Pool (RAM)</text>
+      <text x="15" y="22" class="box-title" font-size="12" fill="#111a4a">Buffer Pool (RAM)</text>
       <text x="15" y="40" class="box-sub">Shared memory cache</text>
       <text x="15" y="58" class="code-text" fill="var(--diag-text-main)">8KB Page Blocks</text>
-      <text x="15" y="72" class="box-sub" fill="var(--diag-storage-border)">Hit: ~10ns | Miss: Read Disk</text>
+      <text x="15" y="72" class="box-sub" fill="#167e6c">Hit: ~10ns | Miss: Read Disk</text>
     </g>
 
     <!-- Disk Heap Tables -->
@@ -227,7 +227,7 @@
 
     <!-- WAL / Redo Log -->
     <g transform="translate(15, 255)">
-      <rect width="200" height="100" rx="6" fill="var(--diag-inner-box-bg)" stroke="var(--diag-wal-card-border)" stroke-width="1" />
+      <rect width="200" height="100" rx="6" fill="var(--diag-inner-box-bg)" stroke="var(--diag-wal-card-border)" stroke-width="1.5" />
       <text x="15" y="22" class="box-title" font-size="12" fill="var(--diag-wal-text)">WAL / Redo Log</text>
       <text x="15" y="40" class="box-sub">Sequential disk append</text>
       <text x="15" y="58" class="code-text" fill="var(--diag-wal-text)">ACID Durability Anchor</text>

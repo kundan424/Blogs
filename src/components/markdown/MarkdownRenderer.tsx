@@ -208,7 +208,7 @@ export const DiagramFigure: React.FC<DiagramFigureProps> = ({ src, alt, title })
       })
       .then((text) => {
         if (isMounted) {
-          // Normalize outer svg width and height to 100% so it responsively scales to container
+          // Normalize outer svg width and height so it responsively scales to container without distortion
           let cleaned = text;
           if (/<svg\b[^>]*\bwidth="/i.test(cleaned)) {
             cleaned = cleaned.replace(/<svg\b([^>]*)\bwidth="[^"]*"/i, '<svg$1 width="100%"');
@@ -216,9 +216,12 @@ export const DiagramFigure: React.FC<DiagramFigureProps> = ({ src, alt, title })
             cleaned = cleaned.replace(/<svg\b/i, '<svg width="100%" ');
           }
           if (/<svg\b[^>]*\bheight="/i.test(cleaned)) {
-            cleaned = cleaned.replace(/<svg\b([^>]*)\bheight="[^"]*"/i, '<svg$1 height="100%"');
+            cleaned = cleaned.replace(/<svg\b([^>]*)\bheight="[^"]*"/i, '<svg$1 height="auto"');
           } else {
-            cleaned = cleaned.replace(/<svg\b/i, '<svg height="100%" ');
+            cleaned = cleaned.replace(/<svg\b/i, '<svg height="auto" ');
+          }
+          if (!/<svg\b[^>]*\bpreserveAspectRatio=/i.test(cleaned)) {
+            cleaned = cleaned.replace(/<svg\b/i, '<svg preserveAspectRatio="xMidYMid meet" ');
           }
           setSvgContent(cleaned);
         }

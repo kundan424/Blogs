@@ -1,118 +1,118 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="auto" preserveAspectRatio="xMidYMid meet">
   <defs>
     <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
-      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.08" />
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.06" />
     </filter>
-    <marker id="arrowRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#dc2626" />
+    <marker id="arrowNavy" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#1b2d70" />
     </marker>
     <marker id="arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#16a34a" />
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#167e6c" />
     </marker>
     <marker id="arrowBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#0284c7" />
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#3e5199" />
     </marker>
   </defs>
 
   <style>
     /* Default: Light Mode (Clean White Canvas) */
-    svg {
+    :root {
       --diag-canvas: #ffffff;
-      --diag-header-tag: #0284c7;
-      --diag-header-sub: #64748b;
+      --diag-header-tag: #111a4a;
+      --diag-header-sub: #1b2d70;
 
-      --diag-tight-card-bg: #fff5f5;
-      --diag-tight-card-border: #fca5a5;
-      --diag-tight-badge-bg: #fee2e2;
-      --diag-tight-badge-text: #b91c1c;
-      --diag-tight-title: #0f172a;
+      --diag-tight-card-bg: #f8fafc;
+      --diag-tight-card-border: #1b2d70;
+      --diag-tight-badge-bg: #1b2d70;
+      --diag-tight-badge-text: #ffffff;
+      --diag-tight-title: #111a4a;
       --diag-tight-box-bg: #ffffff;
-      --diag-tight-box-border: #fca5a5;
-      --diag-tight-code: #b91c1c;
+      --diag-tight-box-border: #3e5199;
+      --diag-tight-code: #1b2d70;
 
-      --diag-di-card-bg: #f0fdf4;
-      --diag-di-card-border: #bbf7d0;
-      --diag-di-badge-bg: #dcfce7;
-      --diag-di-badge-text: #15803d;
-      --diag-di-title: #0f172a;
+      --diag-di-card-bg: #f8fafc;
+      --diag-di-card-border: #167e6c;
+      --diag-di-badge-bg: #167e6c;
+      --diag-di-badge-text: #ffffff;
+      --diag-di-title: #111a4a;
       --diag-di-box-bg: #ffffff;
-      --diag-di-box-border: #86efac;
-      --diag-di-code: #15803d;
+      --diag-di-box-border: #167e6c;
+      --diag-di-code: #167e6c;
 
-      --diag-ioc-bg: #eff6ff;
-      --diag-ioc-border: #38bdf8;
-      --diag-ioc-text: #0369a1;
+      --diag-ioc-bg: #3e5199;
+      --diag-ioc-border: #111a4a;
+      --diag-ioc-text: #ffffff;
 
-      --diag-text-main: #0f172a;
-      --diag-text-sub: #475569;
-      --diag-text-meta: #64748b;
+      --diag-text-main: #111a4a;
+      --diag-text-sub: #1b2d70;
+      --diag-text-meta: #3e5199;
     }
 
     /* Dark Mode (Web Application) */
     html.dark svg, .dark svg {
-      --diag-canvas: #0c1017;
-      --diag-header-tag: #38bdf8;
-      --diag-header-sub: #94a3b8;
+      --diag-canvas: #12161e;
+      --diag-header-tag: #3e5199;
+      --diag-header-sub: #5568ad;
 
-      --diag-tight-card-bg: #241116;
-      --diag-tight-card-border: #ef4444;
-      --diag-tight-badge-bg: #3b0f16;
-      --diag-tight-badge-text: #f87171;
-      --diag-tight-title: #f8fafc;
-      --diag-tight-box-bg: #1b080d;
-      --diag-tight-box-border: #7f1d1d;
-      --diag-tight-code: #f87171;
+      --diag-tight-card-bg: #111a4a15;
+      --diag-tight-card-border: #1b2d70;
+      --diag-tight-badge-bg: #1b2d70;
+      --diag-tight-badge-text: #ffffff;
+      --diag-tight-title: #ffffff;
+      --diag-tight-box-bg: #0c1017;
+      --diag-tight-box-border: #3e5199;
+      --diag-tight-code: #5568ad;
 
-      --diag-di-card-bg: #0f2319;
-      --diag-di-card-border: #34d399;
-      --diag-di-badge-bg: #092117;
-      --diag-di-badge-text: #34d399;
-      --diag-di-title: #f8fafc;
-      --diag-di-box-bg: #091b14;
-      --diag-di-box-border: #059669;
-      --diag-di-code: #34d399;
+      --diag-di-card-bg: #167e6c15;
+      --diag-di-card-border: #167e6c;
+      --diag-di-badge-bg: #167e6c;
+      --diag-di-badge-text: #ffffff;
+      --diag-di-title: #ffffff;
+      --diag-di-box-bg: #0c1017;
+      --diag-di-box-border: #167e6c;
+      --diag-di-code: #167e6c;
 
-      --diag-ioc-bg: #0d2438;
-      --diag-ioc-border: #0284c7;
-      --diag-ioc-text: #38bdf8;
+      --diag-ioc-bg: #3e5199;
+      --diag-ioc-border: #3e5199;
+      --diag-ioc-text: #ffffff;
 
-      --diag-text-main: #f8fafc;
+      --diag-text-main: #ffffff;
       --diag-text-sub: #cbd5e1;
-      --diag-text-meta: #94a3b8;
+      --diag-text-meta: #5568ad;
     }
 
     /* Standalone SVG Viewer */
     @media (prefers-color-scheme: dark) {
-      svg:root {
-        --diag-canvas: #0c1017;
-        --diag-header-tag: #38bdf8;
-        --diag-header-sub: #94a3b8;
+      :root:not(html) {
+        --diag-canvas: #12161e;
+        --diag-header-tag: #3e5199;
+        --diag-header-sub: #5568ad;
 
-        --diag-tight-card-bg: #241116;
-        --diag-tight-card-border: #ef4444;
-        --diag-tight-badge-bg: #3b0f16;
-        --diag-tight-badge-text: #f87171;
-        --diag-tight-title: #f8fafc;
-        --diag-tight-box-bg: #1b080d;
-        --diag-tight-box-border: #7f1d1d;
-        --diag-tight-code: #f87171;
+        --diag-tight-card-bg: #111a4a15;
+        --diag-tight-card-border: #1b2d70;
+        --diag-tight-badge-bg: #1b2d70;
+        --diag-tight-badge-text: #ffffff;
+        --diag-tight-title: #ffffff;
+        --diag-tight-box-bg: #0c1017;
+        --diag-tight-box-border: #3e5199;
+        --diag-tight-code: #5568ad;
 
-        --diag-di-card-bg: #0f2319;
-        --diag-di-card-border: #34d399;
-        --diag-di-badge-bg: #092117;
-        --diag-di-badge-text: #34d399;
-        --diag-di-title: #f8fafc;
-        --diag-di-box-bg: #091b14;
-        --diag-di-box-border: #059669;
-        --diag-di-code: #34d399;
+        --diag-di-card-bg: #167e6c15;
+        --diag-di-card-border: #167e6c;
+        --diag-di-badge-bg: #167e6c;
+        --diag-di-badge-text: #ffffff;
+        --diag-di-title: #ffffff;
+        --diag-di-box-bg: #0c1017;
+        --diag-di-box-border: #167e6c;
+        --diag-di-code: #167e6c;
 
-        --diag-ioc-bg: #0d2438;
-        --diag-ioc-border: #0284c7;
-        --diag-ioc-text: #38bdf8;
+        --diag-ioc-bg: #3e5199;
+        --diag-ioc-border: #3e5199;
+        --diag-ioc-text: #ffffff;
 
-        --diag-text-main: #f8fafc;
+        --diag-text-main: #ffffff;
         --diag-text-sub: #cbd5e1;
-        --diag-text-meta: #94a3b8;
+        --diag-text-meta: #5568ad;
       }
     }
 
@@ -140,9 +140,9 @@
     <rect width="430" height="380" rx="10" fill="var(--diag-tight-card-bg)" stroke="var(--diag-tight-card-border)" stroke-width="1.5" />
 
     <!-- Badge & Header -->
-    <rect x="20" y="16" width="160" height="22" rx="4" fill="var(--diag-tight-badge-bg)" stroke="var(--diag-tight-card-border)" stroke-width="1" />
-    <text x="100" y="31" text-anchor="middle" class="badge-pill" fill="var(--diag-tight-badge-text)">ANTI-PATTERN: HARDCODED</text>
-    <text x="20" y="62" class="card-title" fill="var(--diag-tight-title)">Tightly Coupled Instantiation</text>
+    <rect x="20" y="16" width="165" height="22" rx="4" fill="var(--diag-tight-badge-bg)" stroke="var(--diag-tight-card-border)" stroke-width="1" />
+    <text x="102" y="31" text-anchor="middle" class="badge-pill" fill="var(--diag-tight-badge-text)">TIGHTLY COUPLED</text>
+    <text x="20" y="62" class="card-title" fill="var(--diag-tight-title)">Direct Instantiation (Anti-Pattern)</text>
 
     <!-- Caller Class: OrderService -->
     <g transform="translate(20, 80)">
@@ -153,8 +153,8 @@
     </g>
 
     <!-- Downward Arrows with 'Instantiates' tag -->
-    <path d="M 120 162 L 120 200" stroke="#dc2626" stroke-width="1.8" marker-end="url(#arrowRed)" />
-    <path d="M 310 162 L 310 200" stroke="#dc2626" stroke-width="1.8" marker-end="url(#arrowRed)" />
+    <path d="M 120 162 L 120 200" stroke="#1b2d70" stroke-width="1.8" marker-end="url(#arrowNavy)" />
+    <path d="M 310 162 L 310 200" stroke="#1b2d70" stroke-width="1.8" marker-end="url(#arrowNavy)" />
 
     <!-- Hardcoded Callee Dependencies -->
     <g transform="translate(20, 202)">
@@ -172,10 +172,10 @@
     <!-- Flaws Checklist -->
     <g transform="translate(20, 276)">
       <rect width="390" height="86" rx="6" fill="var(--diag-tight-box-bg)" stroke="var(--diag-tight-box-border)" stroke-width="0.8" />
-      <text x="14" y="22" class="bullet-point">• <tspan font-weight="700" fill="#dc2626">Untestable:</tspan> Unit tests hit live DB &amp; external billing APIs.</text>
-      <text x="14" y="42" class="bullet-point">• <tspan font-weight="700" fill="#dc2626">Rigid:</tspan> Cannot switch to PayPal without editing OrderService.java.</text>
-      <text x="14" y="62" class="bullet-point">• <tspan font-weight="700" fill="#dc2626">DIP Violation:</tspan> High-level logic depends directly on low-level SQL.</text>
-      <text x="14" y="78" class="bullet-point">• <tspan font-weight="700" fill="#dc2626">SRP Violation:</tspan> Manages business logic AND object lifecycle.</text>
+      <text x="14" y="22" class="bullet-point">• <tspan font-weight="700" fill="#111a4a">Untestable:</tspan> Unit tests hit live DB &amp; external billing APIs.</text>
+      <text x="14" y="42" class="bullet-point">• <tspan font-weight="700" fill="#111a4a">Rigid:</tspan> Cannot switch to PayPal without editing OrderService.java.</text>
+      <text x="14" y="62" class="bullet-point">• <tspan font-weight="700" fill="#111a4a">DIP Violation:</tspan> High-level logic depends directly on low-level SQL.</text>
+      <text x="14" y="78" class="bullet-point">• <tspan font-weight="700" fill="#111a4a">SRP Violation:</tspan> Manages business logic AND object lifecycle.</text>
     </g>
   </g>
 
@@ -187,7 +187,7 @@
 
     <!-- Badge & Header -->
     <rect x="20" y="16" width="165" height="22" rx="4" fill="var(--diag-di-badge-bg)" stroke="var(--diag-di-card-border)" stroke-width="1" />
-    <text x="102" y="31" text-anchor="middle" class="badge-pill" fill="var(--diag-di-badge-text)">BEST PRACTICE: INJECTED</text>
+    <text x="102" y="31" text-anchor="middle" class="badge-pill" fill="var(--diag-di-badge-text)">INVERSION OF CONTROL</text>
     <text x="20" y="62" class="card-title" fill="var(--diag-di-title)">Dependency Injection &amp; Inversion</text>
 
     <!-- Caller Class: OrderService (Decoupled) -->
@@ -220,10 +220,10 @@
     <!-- Benefits Checklist -->
     <g transform="translate(20, 276)">
       <rect width="390" height="86" rx="6" fill="var(--diag-di-box-bg)" stroke="var(--diag-di-box-border)" stroke-width="0.8" />
-      <text x="14" y="22" class="bullet-point">• <tspan font-weight="700" fill="#16a34a">100% Testable:</tspan> Pass Mockito mocks in 5ms unit tests.</text>
-      <text x="14" y="42" class="bullet-point">• <tspan font-weight="700" fill="#16a34a">Decoupled:</tspan> Swap Stripe with PayPal or Fake via configuration.</text>
-      <text x="14" y="62" class="bullet-point">• <tspan font-weight="700" fill="#16a34a">DIP Compliant:</tspan> High-level &amp; low-level depend on abstractions.</text>
-      <text x="14" y="78" class="bullet-point">• <tspan font-weight="700" fill="#16a34a">SRP Clean:</tspan> OrderService only executes business rules.</text>
+      <text x="14" y="22" class="bullet-point">• <tspan font-weight="700" fill="#167e6c">100% Testable:</tspan> Pass Mockito mocks in 5ms unit tests.</text>
+      <text x="14" y="42" class="bullet-point">• <tspan font-weight="700" fill="#167e6c">Decoupled:</tspan> Swap Stripe with PayPal or Fake via configuration.</text>
+      <text x="14" y="62" class="bullet-point">• <tspan font-weight="700" fill="#167e6c">DIP Compliant:</tspan> High-level &amp; low-level depend on abstractions.</text>
+      <text x="14" y="78" class="bullet-point">• <tspan font-weight="700" fill="#167e6c">SRP Clean:</tspan> OrderService only executes business rules.</text>
     </g>
   </g>
 </svg>

@@ -1,70 +1,70 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 480" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 480" width="100%" height="auto" preserveAspectRatio="xMidYMid meet">
   <defs>
     <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
-      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.08" />
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.06" />
     </filter>
-    <marker id="arrowRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#dc2626" />
+    <marker id="arrowNavy" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#1b2d70" />
     </marker>
     <marker id="arrowBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#0284c7" />
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#3e5199" />
     </marker>
   </defs>
 
   <style>
     /* Default: Light Mode (Clean White Canvas) */
-    svg {
+    :root {
       --diag-canvas: #ffffff;
-      --diag-header-tag: #dc2626;
-      --diag-header-sub: #64748b;
+      --diag-header-tag: #111a4a;
+      --diag-header-sub: #1b2d70;
 
       --diag-node-bg: #f8fafc;
-      --diag-node-border: #cbd5e1;
-      --diag-text-main: #0f172a;
-      --diag-text-sub: #64748b;
+      --diag-node-border: #3e5199;
+      --diag-text-main: #111a4a;
+      --diag-text-sub: #1b2d70;
 
-      --diag-err-bg: #fff5f5;
-      --diag-err-border: #fca5a5;
-      --diag-err-title: #b91c1c;
-      --diag-err-desc: #334155;
-      --diag-err-code: #dc2626;
+      --diag-err-bg: #f8fafc;
+      --diag-err-border: #1b2d70;
+      --diag-err-title: #111a4a;
+      --diag-err-desc: #1b2d70;
+      --diag-err-code: #3e5199;
     }
 
     /* Dark Mode (Web Application) */
     html.dark svg, .dark svg {
-      --diag-canvas: #0c1017;
-      --diag-header-tag: #f87171;
-      --diag-header-sub: #94a3b8;
+      --diag-canvas: #12161e;
+      --diag-header-tag: #3e5199;
+      --diag-header-sub: #5568ad;
 
-      --diag-node-bg: #141c2c;
-      --diag-node-border: #243049;
-      --diag-text-main: #f8fafc;
-      --diag-text-sub: #94a3b8;
+      --diag-node-bg: #111a4a15;
+      --diag-node-border: #3e5199;
+      --diag-text-main: #ffffff;
+      --diag-text-sub: #cbd5e1;
 
-      --diag-err-bg: #241014;
-      --diag-err-border: #ef4444;
-      --diag-err-title: #f87171;
+      --diag-err-bg: #111a4a15;
+      --diag-err-border: #1b2d70;
+      --diag-err-title: #ffffff;
       --diag-err-desc: #cbd5e1;
-      --diag-err-code: #fca5a5;
+      --diag-err-code: #5568ad;
     }
 
     /* Standalone SVG Viewer */
     @media (prefers-color-scheme: dark) {
-      svg:root {
-        --diag-canvas: #0c1017;
-        --diag-header-tag: #f87171;
-        --diag-header-sub: #94a3b8;
+      :root:not(html) {
+        --diag-canvas: #12161e;
+        --diag-header-tag: #3e5199;
+        --diag-header-sub: #5568ad;
 
-        --diag-node-bg: #141c2c;
-        --diag-node-border: #243049;
-        --diag-text-main: #f8fafc;
-        --diag-text-sub: #94a3b8;
+        --diag-node-bg: #111a4a15;
+        --diag-node-border: #3e5199;
+        --diag-text-main: #ffffff;
+        --diag-text-sub: #cbd5e1;
 
-        --diag-err-bg: #241014;
-        --diag-err-border: #ef4444;
-        --diag-err-title: #f87171;
+        --diag-err-bg: #111a4a15;
+        --diag-err-border: #1b2d70;
+        --diag-err-title: #ffffff;
         --diag-err-desc: #cbd5e1;
-        --diag-err-code: #fca5a5;
+        --diag-err-code: #5568ad;
       }
     }
 
@@ -88,26 +88,26 @@
   <!-- NODE 1: CLIENT REQUEST -->
   <!-- ========================================================================= -->
   <g transform="translate(190, 70)" filter="url(#shadow)">
-    <rect width="280" height="48" rx="8" fill="var(--diag-node-bg)" stroke="#0284c7" stroke-width="1.5" />
+    <rect width="280" height="48" rx="8" fill="var(--diag-node-bg)" stroke="#111a4a" stroke-width="1.5" />
     <text x="140" y="25" class="node-title">Client Request</text>
     <text x="140" y="40" class="node-sub">cURL / Browser / Mobile App</text>
   </g>
 
   <!-- Arrow Client -> Ingress -->
-  <path d="M 330 118 L 330 148" stroke="#0284c7" stroke-width="2" marker-end="url(#arrowBlue)" />
+  <path d="M 330 118 L 330 148" stroke="#3e5199" stroke-width="2" marker-end="url(#arrowBlue)" />
 
   <!-- ========================================================================= -->
   <!-- NODE 2: INGRESS GATEWAY -->
   <!-- ========================================================================= -->
   <g transform="translate(190, 150)" filter="url(#shadow)">
-    <rect width="280" height="58" rx="8" fill="var(--diag-node-bg)" stroke="#6366f1" stroke-width="1.5" />
+    <rect width="280" height="58" rx="8" fill="var(--diag-node-bg)" stroke="#3e5199" stroke-width="1.5" />
     <text x="140" y="26" class="node-title">API Gateway / Ingress</text>
     <text x="140" y="44" class="node-sub">Nginx / Envoy / AWS ALB</text>
   </g>
 
   <!-- Branch lines from Gateway to Pod and Failures -->
   <!-- Left failure flow: 502 Bad Gateway -->
-  <path d="M 230 208 L 230 250" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrowRed)" />
+  <path d="M 230 208 L 230 250" stroke="#1b2d70" stroke-width="1.8" marker-end="url(#arrowNavy)" />
   <g transform="translate(30, 252)" filter="url(#shadow)">
     <rect width="210" height="66" rx="8" fill="var(--diag-err-bg)" stroke="var(--diag-err-border)" stroke-width="1.5" />
     <text x="15" y="24" class="error-tag">502 Bad Gateway</text>
@@ -116,7 +116,7 @@
   </g>
 
   <!-- Mid failure flow: 504 Gateway Timeout -->
-  <path d="M 430 208 L 430 250" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrowRed)" />
+  <path d="M 430 208 L 430 250" stroke="#1b2d70" stroke-width="1.8" marker-end="url(#arrowNavy)" />
   <g transform="translate(420, 252)" filter="url(#shadow)">
     <rect width="210" height="66" rx="8" fill="var(--diag-err-bg)" stroke="var(--diag-err-border)" stroke-width="1.5" />
     <text x="15" y="24" class="error-tag">504 Gateway Timeout</text>
@@ -125,21 +125,21 @@
   </g>
 
   <!-- Ingress -> Spring Boot Pod -->
-  <path d="M 330 208 L 330 350" stroke="#0284c7" stroke-width="1.5" marker-end="url(#arrowBlue)" />
+  <path d="M 330 208 L 330 350" stroke="#3e5199" stroke-width="1.8" marker-end="url(#arrowBlue)" />
 
   <!-- ========================================================================= -->
   <!-- NODE 3: SPRING BOOT POD -->
   <!-- ========================================================================= -->
   <g transform="translate(190, 352)" filter="url(#shadow)">
-    <rect width="280" height="74" rx="8" fill="var(--diag-node-bg)" stroke="#16a34a" stroke-width="1.5" />
+    <rect width="280" height="74" rx="8" fill="var(--diag-node-bg)" stroke="#167e6c" stroke-width="1.5" />
     <text x="140" y="28" class="node-title">Spring Boot 3 Pod</text>
     <text x="140" y="46" class="node-sub">Tomcat / DispatcherServlet</text>
-    <text x="140" y="62" class="meta-code" fill="var(--diag-text-sub)">JVM Worker Thread Execution</text>
+    <text x="140" y="62" class="meta-code" fill="#167e6c">JVM Worker Thread Execution</text>
   </g>
 
   <!-- Horizontal error lines from Pod to Right -->
-  <path d="M 470 374 L 640 374" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrowRed)" />
-  <path d="M 470 410 L 640 410" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrowRed)" />
+  <path d="M 470 374 L 640 374" stroke="#1b2d70" stroke-width="1.8" marker-end="url(#arrowNavy)" />
+  <path d="M 470 410 L 640 410" stroke="#1b2d70" stroke-width="1.8" marker-end="url(#arrowNavy)" />
 
   <!-- ========================================================================= -->
   <!-- APPLICATION ERRORS (500 & 503) -->

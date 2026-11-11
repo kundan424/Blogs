@@ -1,90 +1,90 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 340" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 340" width="100%" height="auto" preserveAspectRatio="xMidYMid meet">
   <defs>
     <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
-      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.08" />
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.06" />
     </filter>
   </defs>
 
   <style>
     /* Default: Light Mode (Clean White Canvas) */
-    svg {
+    :root {
       --diag-canvas: #ffffff;
-      --diag-header-tag: #d97706;
-      --diag-header-sub: #64748b;
+      --diag-header-tag: #111a4a;
+      --diag-header-sub: #1b2d70;
 
-      --diag-401-bg: #fffbeb;
-      --diag-401-border: #fde68a;
-      --diag-401-title: #b45309;
-      --diag-401-meaning: #92400e;
-      --diag-401-badge-bg: #fef3c7;
+      --diag-401-bg: #f8fafc;
+      --diag-401-border: #1b2d70;
+      --diag-401-title: #111a4a;
+      --diag-401-meaning: #1b2d70;
+      --diag-401-badge-bg: #1b2d70;
       --diag-401-bot-bg: #ffffff;
-      --diag-401-bot-border: #fde68a;
+      --diag-401-bot-border: #3e5199;
 
-      --diag-403-bg: #fff5f5;
-      --diag-403-border: #fca5a5;
-      --diag-403-title: #dc2626;
-      --diag-403-meaning: #b91c1c;
-      --diag-403-badge-bg: #fee2e2;
+      --diag-403-bg: #f8fafc;
+      --diag-403-border: #167e6c;
+      --diag-403-title: #111a4a;
+      --diag-403-meaning: #167e6c;
+      --diag-403-badge-bg: #167e6c;
       --diag-403-bot-bg: #ffffff;
-      --diag-403-bot-border: #fca5a5;
+      --diag-403-bot-border: #167e6c;
 
-      --diag-meta-key: #64748b;
-      --diag-meta-val: #0f172a;
-      --diag-code-val: #334155;
+      --diag-meta-key: #1b2d70;
+      --diag-meta-val: #111a4a;
+      --diag-code-val: #3e5199;
     }
 
     /* Dark Mode (Web Application) */
     html.dark svg, .dark svg {
-      --diag-canvas: #0c1017;
-      --diag-header-tag: #fbbf24;
-      --diag-header-sub: #94a3b8;
+      --diag-canvas: #12161e;
+      --diag-header-tag: #3e5199;
+      --diag-header-sub: #5568ad;
 
-      --diag-401-bg: #211812;
-      --diag-401-border: #d97706;
-      --diag-401-title: #fbbf24;
-      --diag-401-meaning: #fde68a;
-      --diag-401-badge-bg: #3b2308;
-      --diag-401-bot-bg: #1b1208;
-      --diag-401-bot-border: #78350f;
+      --diag-401-bg: #111a4a15;
+      --diag-401-border: #1b2d70;
+      --diag-401-title: #ffffff;
+      --diag-401-meaning: #5568ad;
+      --diag-401-badge-bg: #1b2d70;
+      --diag-401-bot-bg: #0c1017;
+      --diag-401-bot-border: #3e5199;
 
-      --diag-403-bg: #241116;
-      --diag-403-border: #ef4444;
-      --diag-403-title: #f87171;
-      --diag-403-meaning: #fecaca;
-      --diag-403-badge-bg: #3b0f16;
-      --diag-403-bot-bg: #1b080d;
-      --diag-403-bot-border: #7f1d1d;
+      --diag-403-bg: #167e6c15;
+      --diag-403-border: #167e6c;
+      --diag-403-title: #ffffff;
+      --diag-403-meaning: #167e6c;
+      --diag-403-badge-bg: #167e6c;
+      --diag-403-bot-bg: #0c1017;
+      --diag-403-bot-border: #167e6c;
 
-      --diag-meta-key: #94a3b8;
-      --diag-meta-val: #e2e8f0;
+      --diag-meta-key: #5568ad;
+      --diag-meta-val: #ffffff;
       --diag-code-val: #cbd5e1;
     }
 
     /* Standalone SVG Viewer */
     @media (prefers-color-scheme: dark) {
-      svg:root {
-        --diag-canvas: #0c1017;
-        --diag-header-tag: #fbbf24;
-        --diag-header-sub: #94a3b8;
+      :root:not(html) {
+        --diag-canvas: #12161e;
+        --diag-header-tag: #3e5199;
+        --diag-header-sub: #5568ad;
 
-        --diag-401-bg: #211812;
-        --diag-401-border: #d97706;
-        --diag-401-title: #fbbf24;
-        --diag-401-meaning: #fde68a;
-        --diag-401-badge-bg: #3b2308;
-        --diag-401-bot-bg: #1b1208;
-        --diag-401-bot-border: #78350f;
+        --diag-401-bg: #111a4a15;
+        --diag-401-border: #1b2d70;
+        --diag-401-title: #ffffff;
+        --diag-401-meaning: #5568ad;
+        --diag-401-badge-bg: #1b2d70;
+        --diag-401-bot-bg: #0c1017;
+        --diag-401-bot-border: #3e5199;
 
-        --diag-403-bg: #241116;
-        --diag-403-border: #ef4444;
-        --diag-403-title: #f87171;
-        --diag-403-meaning: #fecaca;
-        --diag-403-badge-bg: #3b0f16;
-        --diag-403-bot-bg: #1b080d;
-        --diag-403-bot-border: #7f1d1d;
+        --diag-403-bg: #167e6c15;
+        --diag-403-border: #167e6c;
+        --diag-403-title: #ffffff;
+        --diag-403-meaning: #167e6c;
+        --diag-403-badge-bg: #167e6c;
+        --diag-403-bot-bg: #0c1017;
+        --diag-403-bot-border: #167e6c;
 
-        --diag-meta-key: #94a3b8;
-        --diag-meta-val: #e2e8f0;
+        --diag-meta-key: #5568ad;
+        --diag-meta-val: #ffffff;
         --diag-code-val: #cbd5e1;
       }
     }
@@ -114,7 +114,7 @@
     <!-- Title Section -->
     <g transform="translate(20, 25)">
       <rect x="0" y="-12" width="70" height="24" rx="4" fill="var(--diag-401-badge-bg)" stroke="var(--diag-401-border)" stroke-width="1" />
-      <text x="35" y="5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" font-weight="700" fill="var(--diag-401-title)">401</text>
+      <text x="35" y="5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" font-weight="700" fill="#ffffff">401</text>
       <text x="82" y="5" class="card-title" fill="var(--diag-401-title)">Unauthorized</text>
       <text x="0" y="28" class="card-meaning" fill="var(--diag-401-meaning)">Identity Missing or Invalid ("Who are you?")</text>
     </g>
@@ -127,7 +127,7 @@
       <text x="95" y="0" class="meta-val">Missing, expired, or malformed credentials</text>
 
       <text x="0" y="26" class="meta-key">HEADER REQ:</text>
-      <text x="95" y="26" class="code-val" fill="var(--diag-401-title)">WWW-Authenticate: Bearer ...</text>
+      <text x="95" y="26" class="code-val" fill="#1b2d70">WWW-Authenticate: Bearer ...</text>
 
       <text x="0" y="52" class="meta-key">SPRING BOOT:</text>
       <text x="95" y="52" class="code-val" fill="var(--diag-meta-val)">AuthenticationEntryPoint</text>
@@ -138,7 +138,7 @@
 
     <!-- Bottom Pill -->
     <rect x="20" y="195" width="355" height="26" rx="5" fill="var(--diag-401-bot-bg)" stroke="var(--diag-401-bot-border)" stroke-width="1" />
-    <text x="197" y="212" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="600" fill="var(--diag-401-title)">CLIENT CAN RETRY AFTER LOGGING IN</text>
+    <text x="197" y="212" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="600" fill="#1b2d70">CLIENT CAN RETRY AFTER LOGGING IN</text>
   </g>
 
   <!-- ========================================================================= -->
@@ -150,7 +150,7 @@
     <!-- Title Section -->
     <g transform="translate(20, 25)">
       <rect x="0" y="-12" width="70" height="24" rx="4" fill="var(--diag-403-badge-bg)" stroke="var(--diag-403-border)" stroke-width="1" />
-      <text x="35" y="5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" font-weight="700" fill="var(--diag-403-title)">403</text>
+      <text x="35" y="5" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" font-weight="700" fill="#ffffff">403</text>
       <text x="82" y="5" class="card-title" fill="var(--diag-403-title)">Forbidden</text>
       <text x="0" y="28" class="card-meaning" fill="var(--diag-403-meaning)">Permission Denied ("I know you, but NO")</text>
     </g>
@@ -163,7 +163,7 @@
       <text x="95" y="0" class="meta-val">Identity verified, lacks ROLE or permission</text>
 
       <text x="0" y="26" class="meta-key">HEADER REQ:</text>
-      <text x="95" y="26" class="code-val" fill="var(--diag-403-title)">No authentication challenge sent</text>
+      <text x="95" y="26" class="code-val" fill="#167e6c">No authentication challenge sent</text>
 
       <text x="0" y="52" class="meta-key">SPRING BOOT:</text>
       <text x="95" y="52" class="code-val" fill="var(--diag-meta-val)">AccessDeniedHandler</text>
@@ -174,6 +174,6 @@
 
     <!-- Bottom Pill -->
     <rect x="20" y="195" width="355" height="26" rx="5" fill="var(--diag-403-bot-bg)" stroke="var(--diag-403-bot-border)" stroke-width="1" />
-    <text x="197" y="212" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="600" fill="var(--diag-403-title)">RETRYING WITH SAME TOKEN WILL FAIL AGAIN</text>
+    <text x="197" y="212" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="600" fill="#167e6c">RETRYING WITH SAME TOKEN WILL FAIL AGAIN</text>
   </g>
 </svg>

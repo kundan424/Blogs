@@ -1,106 +1,106 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="auto" preserveAspectRatio="xMidYMid meet">
   <defs>
     <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
-      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.08" />
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.06" />
     </filter>
     <marker id="arrowGreen" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#16a34a" />
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#167e6c" />
     </marker>
-    <marker id="arrowRed" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#dc2626" />
+    <marker id="arrowNavy" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#1b2d70" />
     </marker>
   </defs>
 
   <style>
     /* Default: Light Mode */
-    svg {
+    :root {
       --diag-canvas: #ffffff;
-      --diag-header-tag: #0284c7;
-      --diag-header-sub: #64748b;
+      --diag-header-tag: #111a4a;
+      --diag-header-sub: #1b2d70;
       --diag-panel-bg: #f8fafc;
-      --diag-panel-border: #e2e8f0;
-      --diag-panel-title: #0f172a;
+      --diag-panel-border: #3e5199;
+      --diag-panel-title: #111a4a;
 
-      --diag-slot-bg: #f0fdf4;
-      --diag-slot-border: #16a34a;
-      --diag-slot-text: #0f172a;
-      --diag-slot-dim: #64748b;
+      --diag-slot-bg: #f8fafc;
+      --diag-slot-border: #167e6c;
+      --diag-slot-text: #111a4a;
+      --diag-slot-dim: #1b2d70;
 
-      --diag-node-bg: #fef2f2;
-      --diag-node-border: #ef4444;
+      --diag-node-bg: #f8fafc;
+      --diag-node-border: #1b2d70;
       --diag-node-inner: #ffffff;
-      --diag-node-inner-border: #fecaca;
-      --diag-node-text: #0f172a;
+      --diag-node-inner-border: #3e5199;
+      --diag-node-text: #111a4a;
 
-      --diag-bracket: #0284c7;
-      --diag-hit-bg: #dcfce7;
-      --diag-hit-border: #16a34a;
-      --diag-hit-text: #15803d;
+      --diag-bracket: #3e5199;
+      --diag-hit-bg: #167e6c;
+      --diag-hit-border: #167e6c;
+      --diag-hit-text: #ffffff;
 
-      --diag-miss-bg: #fee2e2;
-      --diag-miss-border: #ef4444;
-      --diag-miss-text: #b91c1c;
+      --diag-miss-bg: #1b2d70;
+      --diag-miss-border: #1b2d70;
+      --diag-miss-text: #ffffff;
     }
 
     /* Dark Mode (Web Application) */
     html.dark svg, .dark svg {
-      --diag-canvas: #0c1017;
-      --diag-header-tag: #38bdf8;
-      --diag-header-sub: #94a3b8;
-      --diag-panel-bg: #0d1424;
-      --diag-panel-border: #1e293b;
-      --diag-panel-title: #f8fafc;
+      --diag-canvas: #12161e;
+      --diag-header-tag: #3e5199;
+      --diag-header-sub: #5568ad;
+      --diag-panel-bg: #111a4a15;
+      --diag-panel-border: #3e5199;
+      --diag-panel-title: #ffffff;
 
-      --diag-slot-bg: #142823;
-      --diag-slot-border: #34d399;
-      --diag-slot-text: #cbd5e1;
-      --diag-slot-dim: #94a3b8;
+      --diag-slot-bg: #167e6c15;
+      --diag-slot-border: #167e6c;
+      --diag-slot-text: #ffffff;
+      --diag-slot-dim: #cbd5e1;
 
-      --diag-node-bg: #2d1d1f;
-      --diag-node-border: #f87171;
-      --diag-node-inner: #140c0e;
-      --diag-node-inner-border: #381c20;
-      --diag-node-text: #cbd5e1;
+      --diag-node-bg: #111a4a15;
+      --diag-node-border: #1b2d70;
+      --diag-node-inner: #0c1017;
+      --diag-node-inner-border: #3e5199;
+      --diag-node-text: #ffffff;
 
-      --diag-bracket: #38bdf8;
-      --diag-hit-bg: #062e24;
-      --diag-hit-border: #059669;
-      --diag-hit-text: #34d399;
+      --diag-bracket: #3e5199;
+      --diag-hit-bg: #167e6c;
+      --diag-hit-border: #167e6c;
+      --diag-hit-text: #ffffff;
 
-      --diag-miss-bg: #3b1115;
-      --diag-miss-border: #ef4444;
-      --diag-miss-text: #f87171;
+      --diag-miss-bg: #1b2d70;
+      --diag-miss-border: #1b2d70;
+      --diag-miss-text: #ffffff;
     }
 
     /* Standalone SVG Viewer */
     @media (prefers-color-scheme: dark) {
-      svg:root {
-        --diag-canvas: #0c1017;
-        --diag-header-tag: #38bdf8;
-        --diag-header-sub: #94a3b8;
-        --diag-panel-bg: #0d1424;
-        --diag-panel-border: #1e293b;
-        --diag-panel-title: #f8fafc;
+      :root:not(html) {
+        --diag-canvas: #12161e;
+        --diag-header-tag: #3e5199;
+        --diag-header-sub: #5568ad;
+        --diag-panel-bg: #111a4a15;
+        --diag-panel-border: #3e5199;
+        --diag-panel-title: #ffffff;
 
-        --diag-slot-bg: #142823;
-        --diag-slot-border: #34d399;
-        --diag-slot-text: #cbd5e1;
-        --diag-slot-dim: #94a3b8;
+        --diag-slot-bg: #167e6c15;
+        --diag-slot-border: #167e6c;
+        --diag-slot-text: #ffffff;
+        --diag-slot-dim: #cbd5e1;
 
-        --diag-node-bg: #2d1d1f;
-        --diag-node-border: #f87171;
-        --diag-node-inner: #140c0e;
-        --diag-node-inner-border: #381c20;
-        --diag-node-text: #cbd5e1;
+        --diag-node-bg: #111a4a15;
+        --diag-node-border: #1b2d70;
+        --diag-node-inner: #0c1017;
+        --diag-node-inner-border: #3e5199;
+        --diag-node-text: #ffffff;
 
-        --diag-bracket: #38bdf8;
-        --diag-hit-bg: #062e24;
-        --diag-hit-border: #059669;
-        --diag-hit-text: #34d399;
+        --diag-bracket: #3e5199;
+        --diag-hit-bg: #167e6c;
+        --diag-hit-border: #167e6c;
+        --diag-hit-text: #ffffff;
 
-        --diag-miss-bg: #3b1115;
-        --diag-miss-border: #ef4444;
-        --diag-miss-text: #f87171;
+        --diag-miss-bg: #1b2d70;
+        --diag-miss-border: #1b2d70;
+        --diag-miss-text: #ffffff;
       }
     }
 
@@ -111,7 +111,7 @@
     .badge-miss { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; font-weight: 700; fill: var(--diag-miss-text); }
     .mono-code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; fill: var(--diag-slot-text); }
     .mono-dim { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; fill: var(--diag-slot-dim); }
-    .arrow-line-red { stroke: #dc2626; stroke-width: 1.5; fill: none; }
+    .arrow-line-navy { stroke: #1b2d70; stroke-width: 1.5; fill: none; }
     .cache-bracket { stroke: var(--diag-bracket); stroke-width: 1.8; fill: none; }
   </style>
 
@@ -177,7 +177,7 @@
 
     <!-- Bottom summary line -->
     <text x="22" y="148" class="header-sub" font-size="11px">
-      Sequential access cost: <tspan fill="#16a34a" font-weight="600">O(1) direct pointer offset</tspan> [base + index × 4B]. Hardware prefetcher anticipates next stride with near zero latency.
+      Sequential access cost: <tspan fill="#167e6c" font-weight="600">O(1) direct pointer offset</tspan> [base + index × 4B]. Hardware prefetcher anticipates next stride with near zero latency.
     </text>
   </g>
 
@@ -197,41 +197,41 @@
       <rect width="210" height="92" rx="7" fill="var(--diag-node-bg)" stroke="var(--diag-node-border)" stroke-width="1.2" />
       <text x="10" y="18" class="mono-dim">Node A @ Heap Address 0x1A40</text>
       <rect x="10" y="28" width="190" height="54" rx="4" fill="var(--diag-node-inner)" stroke="var(--diag-node-inner-border)" />
-      <text x="20" y="45" class="mono-code" font-size="11px">prev: <tspan fill="#64748b">null</tspan></text>
-      <text x="20" y="60" class="mono-code" font-size="11px">item: <tspan fill="#d97706" font-weight="600">ObjRef_A</tspan></text>
-      <text x="20" y="74" class="mono-code" font-size="11px">next: <tspan fill="#0284c7" font-weight="600">0x8F20 (Node B)</tspan></text>
+      <text x="20" y="45" class="mono-code" font-size="11px">prev: <tspan fill="#1b2d70">null</tspan></text>
+      <text x="20" y="60" class="mono-code" font-size="11px">item: <tspan fill="#167e6c" font-weight="600">ObjRef_A</tspan></text>
+      <text x="20" y="74" class="mono-code" font-size="11px">next: <tspan fill="#3e5199" font-weight="600">0x8F20 (Node B)</tspan></text>
     </g>
 
     <!-- Forward & Backward Pointers Node 1 <-> Node 2 -->
-    <path d="M 240 82 L 340 82" class="arrow-line-red" marker-end="url(#arrowRed)" />
-    <text x="290" y="74" text-anchor="middle" font-family="monospace" font-size="9" fill="#dc2626">next ──►</text>
-    <path d="M 340 105 L 240 105" class="arrow-line-red" marker-end="url(#arrowRed)" />
-    <text x="290" y="120" text-anchor="middle" font-family="monospace" font-size="9" fill="#dc2626">◄── prev</text>
+    <path d="M 240 82 L 340 82" class="arrow-line-navy" marker-end="url(#arrowNavy)" />
+    <text x="290" y="74" text-anchor="middle" font-family="monospace" font-size="9" fill="#1b2d70">next ──►</text>
+    <path d="M 340 105 L 240 105" class="arrow-line-navy" marker-end="url(#arrowNavy)" />
+    <text x="290" y="120" text-anchor="middle" font-family="monospace" font-size="9" fill="#1b2d70">◄── prev</text>
 
     <!-- Node 2 -->
     <g transform="translate(340, 48)">
       <rect width="210" height="92" rx="7" fill="var(--diag-node-bg)" stroke="var(--diag-node-border)" stroke-width="1.2" />
       <text x="10" y="18" class="mono-dim">Node B @ Heap Address 0x8F20</text>
       <rect x="10" y="28" width="190" height="54" rx="4" fill="var(--diag-node-inner)" stroke="var(--diag-node-inner-border)" />
-      <text x="20" y="45" class="mono-code" font-size="11px">prev: <tspan fill="#0284c7" font-weight="600">0x1A40 (Node A)</tspan></text>
-      <text x="20" y="60" class="mono-code" font-size="11px">item: <tspan fill="#d97706" font-weight="600">ObjRef_B</tspan></text>
-      <text x="20" y="74" class="mono-code" font-size="11px">next: <tspan fill="#0284c7" font-weight="600">0x3C10 (Node C)</tspan></text>
+      <text x="20" y="45" class="mono-code" font-size="11px">prev: <tspan fill="#3e5199" font-weight="600">0x1A40 (Node A)</tspan></text>
+      <text x="20" y="60" class="mono-code" font-size="11px">item: <tspan fill="#167e6c" font-weight="600">ObjRef_B</tspan></text>
+      <text x="20" y="74" class="mono-code" font-size="11px">next: <tspan fill="#3e5199" font-weight="600">0x3C10 (Node C)</tspan></text>
     </g>
 
     <!-- Forward & Backward Pointers Node 2 <-> Node 3 -->
-    <path d="M 550 82 L 650 82" class="arrow-line-red" marker-end="url(#arrowRed)" />
-    <text x="600" y="74" text-anchor="middle" font-family="monospace" font-size="9" fill="#dc2626">next ──►</text>
-    <path d="M 650 105 L 550 105" class="arrow-line-red" marker-end="url(#arrowRed)" />
-    <text x="600" y="120" text-anchor="middle" font-family="monospace" font-size="9" fill="#dc2626">◄── prev</text>
+    <path d="M 550 82 L 650 82" class="arrow-line-navy" marker-end="url(#arrowNavy)" />
+    <text x="600" y="74" text-anchor="middle" font-family="monospace" font-size="9" fill="#1b2d70">next ──►</text>
+    <path d="M 650 105 L 550 105" class="arrow-line-navy" marker-end="url(#arrowNavy)" />
+    <text x="600" y="120" text-anchor="middle" font-family="monospace" font-size="9" fill="#1b2d70">◄── prev</text>
 
     <!-- Node 3 -->
     <g transform="translate(650, 48)">
       <rect width="210" height="92" rx="7" fill="var(--diag-node-bg)" stroke="var(--diag-node-border)" stroke-width="1.2" />
       <text x="10" y="18" class="mono-dim">Node C @ Heap Address 0x3C10</text>
       <rect x="10" y="28" width="190" height="54" rx="4" fill="var(--diag-node-inner)" stroke="var(--diag-node-inner-border)" />
-      <text x="20" y="45" class="mono-code" font-size="11px">prev: <tspan fill="#0284c7" font-weight="600">0x8F20 (Node B)</tspan></text>
-      <text x="20" y="60" class="mono-code" font-size="11px">item: <tspan fill="#d97706" font-weight="600">ObjRef_C</tspan></text>
-      <text x="20" y="74" class="mono-code" font-size="11px">next: <tspan fill="#64748b">null</tspan></text>
+      <text x="20" y="45" class="mono-code" font-size="11px">prev: <tspan fill="#3e5199" font-weight="600">0x8F20 (Node B)</tspan></text>
+      <text x="20" y="60" class="mono-code" font-size="11px">item: <tspan fill="#167e6c" font-weight="600">ObjRef_C</tspan></text>
+      <text x="20" y="74" class="mono-code" font-size="11px">next: <tspan fill="#1b2d70">null</tspan></text>
     </g>
 
     <!-- Bottom summary line -->

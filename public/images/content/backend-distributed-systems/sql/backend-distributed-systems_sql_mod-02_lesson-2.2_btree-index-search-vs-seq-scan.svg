@@ -1,175 +1,166 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="auto" preserveAspectRatio="xMidYMid meet">
   <defs>
     <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
-      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.12" />
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.08" />
     </filter>
     <marker id="arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="var(--diag-btree-link-active)" />
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#167e6c" />
     </marker>
-    <marker id="arrowRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="var(--diag-seq-arrow)" />
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#3e5199" />
     </marker>
   </defs>
 
   <style>
     /* Default: Light Mode */
-    svg {
+    :root {
       --diag-canvas: #ffffff;
-      --diag-canvas-border: #e2e8f0;
-      --diag-header-tag: #0284c7;
-      --diag-header-title: #0f172a;
-      --diag-header-sub: #64748b;
+      --diag-header-tag: #111a4a;
+      --diag-header-title: #111a4a;
+      --diag-header-sub: #1b2d70;
 
-      --diag-seq-card-bg: #fff5f5;
-      --diag-seq-card-border: #fca5a5;
-      --diag-seq-badge-bg: #fee2e2;
-      --diag-seq-badge-border: #f87171;
-      --diag-seq-badge-text: #b91c1c;
-      --diag-seq-title: #0f172a;
-      --diag-seq-meta: #64748b;
+      --diag-seq-card-bg: #f8fafc;
+      --diag-seq-card-border: #3e5199;
+      --diag-seq-badge-bg: #1b2d70;
+      --diag-seq-badge-text: #ffffff;
+      --diag-seq-title: #111a4a;
+      --diag-seq-meta: #1b2d70;
       --diag-seq-query-bg: #ffffff;
-      --diag-seq-query-border: #fecaca;
+      --diag-seq-query-border: #3e5199;
       --diag-seq-box-bg: #ffffff;
-      --diag-seq-box-border: #fca5a5;
-      --diag-seq-box-text: #0f172a;
-      --diag-seq-box-sub: #dc2626;
-      --diag-seq-hit-bg: #ecfdf5;
-      --diag-seq-hit-border: #10b981;
-      --diag-seq-hit-text: #047857;
-      --diag-seq-arrow: #dc2626;
+      --diag-seq-box-border: #3e5199;
+      --diag-seq-box-text: #111a4a;
+      --diag-seq-box-sub: #3e5199;
+      --diag-seq-hit-bg: #e8f5f1;
+      --diag-seq-hit-border: #167e6c;
+      --diag-seq-hit-text: #167e6c;
+      --diag-seq-arrow: #3e5199;
       --diag-seq-explain-bg: #ffffff;
-      --diag-seq-explain-border: #fca5a5;
-      --diag-seq-explain-text: #b91c1c;
+      --diag-seq-explain-border: #3e5199;
+      --diag-seq-explain-text: #1b2d70;
 
-      --diag-btree-card-bg: #f0f9ff;
-      --diag-btree-card-border: #bae6fd;
-      --diag-btree-badge-bg: #e0f2fe;
-      --diag-btree-badge-border: #38bdf8;
-      --diag-btree-badge-text: #0369a1;
-      --diag-btree-title: #0f172a;
+      --diag-btree-card-bg: #f8fafc;
+      --diag-btree-card-border: #1b2d70;
+      --diag-btree-badge-bg: #111a4a;
+      --diag-btree-badge-text: #ffffff;
+      --diag-btree-title: #111a4a;
       --diag-btree-node-bg: #ffffff;
-      --diag-btree-node-border: #7dd3fc;
-      --diag-btree-node-text: #0369a1;
-      --diag-btree-node-sub: #64748b;
-      --diag-btree-hi-bg: #ecfdf5;
-      --diag-btree-hi-border: #10b981;
-      --diag-btree-hi-text: #047857;
-      --diag-btree-link: #94a3b8;
-      --diag-btree-link-active: #059669;
-      --diag-btree-heap-bg: #ecfdf5;
-      --diag-btree-heap-border: #10b981;
-      --diag-btree-heap-title: #047857;
-      --diag-btree-heap-sub: #334155;
+      --diag-btree-node-border: #3e5199;
+      --diag-btree-node-text: #1b2d70;
+      --diag-btree-node-sub: #3e5199;
+      --diag-btree-hi-bg: #e8f5f1;
+      --diag-btree-hi-border: #167e6c;
+      --diag-btree-hi-text: #167e6c;
+      --diag-btree-link: #3e5199;
+      --diag-btree-link-active: #167e6c;
+      --diag-btree-heap-bg: #e8f5f1;
+      --diag-btree-heap-border: #167e6c;
+      --diag-btree-heap-title: #167e6c;
+      --diag-btree-heap-sub: #111a4a;
       --diag-btree-explain-bg: #ffffff;
-      --diag-btree-explain-border: #bae6fd;
-      --diag-btree-explain-text: #0369a1;
+      --diag-btree-explain-border: #167e6c;
+      --diag-btree-explain-text: #167e6c;
     }
 
     /* Dark Mode (Web Application) */
     html.dark svg, .dark svg {
-      --diag-canvas: #0c1017;
-      --diag-canvas-border: #1e2638;
-      --diag-header-tag: #38bdf8;
-      --diag-header-title: #f8fafc;
-      --diag-header-sub: #94a3b8;
+      --diag-canvas: #12161e;
+      --diag-header-tag: #3e5199;
+      --diag-header-title: #ffffff;
+      --diag-header-sub: #5568ad;
 
-      --diag-seq-card-bg: #241416;
-      --diag-seq-card-border: #ef4444;
-      --diag-seq-badge-bg: #3b0f16;
-      --diag-seq-badge-border: #ef4444;
-      --diag-seq-badge-text: #f87171;
-      --diag-seq-title: #f8fafc;
-      --diag-seq-meta: #94a3b8;
-      --diag-seq-query-bg: #13080a;
-      --diag-seq-query-border: #451a1e;
-      --diag-seq-box-bg: #1c1012;
-      --diag-seq-box-border: #451a1e;
-      --diag-seq-box-text: #cbd5e1;
-      --diag-seq-box-sub: #f87171;
-      --diag-seq-hit-bg: #1c1012;
-      --diag-seq-hit-border: #ef4444;
-      --diag-seq-hit-text: #34d399;
-      --diag-seq-arrow: #ef4444;
-      --diag-seq-explain-bg: #18070b;
-      --diag-seq-explain-border: #7f1d1d;
-      --diag-seq-explain-text: #f87171;
+      --diag-seq-card-bg: #111a4a15;
+      --diag-seq-card-border: #3e5199;
+      --diag-seq-badge-bg: #1b2d70;
+      --diag-seq-badge-text: #ffffff;
+      --diag-seq-title: #ffffff;
+      --diag-seq-meta: #5568ad;
+      --diag-seq-query-bg: #0c1017;
+      --diag-seq-query-border: #3e5199;
+      --diag-seq-box-bg: #0c1017;
+      --diag-seq-box-border: #3e5199;
+      --diag-seq-box-text: #ffffff;
+      --diag-seq-box-sub: #5568ad;
+      --diag-seq-hit-bg: #167e6c22;
+      --diag-seq-hit-border: #167e6c;
+      --diag-seq-hit-text: #167e6c;
+      --diag-seq-arrow: #3e5199;
+      --diag-seq-explain-bg: #0c1017;
+      --diag-seq-explain-border: #3e5199;
+      --diag-seq-explain-text: #5568ad;
 
-      --diag-btree-card-bg: #10202e;
-      --diag-btree-card-border: #38bdf8;
-      --diag-btree-badge-bg: #082238;
-      --diag-btree-badge-border: #0284c7;
-      --diag-btree-badge-text: #38bdf8;
-      --diag-btree-title: #f8fafc;
-      --diag-btree-node-bg: #0e1726;
-      --diag-btree-node-border: #2a3d5e;
-      --diag-btree-node-text: #7dd3fc;
-      --diag-btree-node-sub: #94a3b8;
-      --diag-btree-hi-bg: #0d281e;
-      --diag-btree-hi-border: #059669;
-      --diag-btree-hi-text: #34d399;
-      --diag-btree-link: #2a3d5e;
-      --diag-btree-link-active: #34d399;
-      --diag-btree-heap-bg: #091c14;
-      --diag-btree-heap-border: #059669;
-      --diag-btree-heap-title: #34d399;
-      --diag-btree-heap-sub: #cbd5e1;
-      --diag-btree-explain-bg: #0c1726;
-      --diag-btree-explain-border: #1d4ed8;
-      --diag-btree-explain-text: #38bdf8;
+      --diag-btree-card-bg: #111a4a15;
+      --diag-btree-card-border: #1b2d70;
+      --diag-btree-badge-bg: #111a4a;
+      --diag-btree-badge-text: #ffffff;
+      --diag-btree-title: #ffffff;
+      --diag-btree-node-bg: #0c1017;
+      --diag-btree-node-border: #3e5199;
+      --diag-btree-node-text: #ffffff;
+      --diag-btree-node-sub: #5568ad;
+      --diag-btree-hi-bg: #167e6c22;
+      --diag-btree-hi-border: #167e6c;
+      --diag-btree-hi-text: #167e6c;
+      --diag-btree-link: #3e5199;
+      --diag-btree-link-active: #167e6c;
+      --diag-btree-heap-bg: #167e6c22;
+      --diag-btree-heap-border: #167e6c;
+      --diag-btree-heap-title: #167e6c;
+      --diag-btree-heap-sub: #ffffff;
+      --diag-btree-explain-bg: #0c1017;
+      --diag-btree-explain-border: #167e6c;
+      --diag-btree-explain-text: #167e6c;
     }
 
     /* Standalone SVG File Viewing */
     @media (prefers-color-scheme: dark) {
-      svg:root {
-        --diag-canvas: #0c1017;
-        --diag-canvas-border: #1e2638;
-        --diag-header-tag: #38bdf8;
-        --diag-header-title: #f8fafc;
-        --diag-header-sub: #94a3b8;
+      :root:not(html) {
+        --diag-canvas: #12161e;
+        --diag-header-tag: #3e5199;
+        --diag-header-title: #ffffff;
+        --diag-header-sub: #5568ad;
 
-        --diag-seq-card-bg: #241416;
-        --diag-seq-card-border: #ef4444;
-        --diag-seq-badge-bg: #3b0f16;
-        --diag-seq-badge-border: #ef4444;
-        --diag-seq-badge-text: #f87171;
-        --diag-seq-title: #f8fafc;
-        --diag-seq-meta: #94a3b8;
-        --diag-seq-query-bg: #13080a;
-        --diag-seq-query-border: #451a1e;
-        --diag-seq-box-bg: #1c1012;
-        --diag-seq-box-border: #451a1e;
-        --diag-seq-box-text: #cbd5e1;
-        --diag-seq-box-sub: #f87171;
-        --diag-seq-hit-bg: #1c1012;
-        --diag-seq-hit-border: #ef4444;
-        --diag-seq-hit-text: #34d399;
-        --diag-seq-arrow: #ef4444;
-        --diag-seq-explain-bg: #18070b;
-        --diag-seq-explain-border: #7f1d1d;
-        --diag-seq-explain-text: #f87171;
+        --diag-seq-card-bg: #111a4a15;
+        --diag-seq-card-border: #3e5199;
+        --diag-seq-badge-bg: #1b2d70;
+        --diag-seq-badge-text: #ffffff;
+        --diag-seq-title: #ffffff;
+        --diag-seq-meta: #5568ad;
+        --diag-seq-query-bg: #0c1017;
+        --diag-seq-query-border: #3e5199;
+        --diag-seq-box-bg: #0c1017;
+        --diag-seq-box-border: #3e5199;
+        --diag-seq-box-text: #ffffff;
+        --diag-seq-box-sub: #5568ad;
+        --diag-seq-hit-bg: #167e6c22;
+        --diag-seq-hit-border: #167e6c;
+        --diag-seq-hit-text: #167e6c;
+        --diag-seq-arrow: #3e5199;
+        --diag-seq-explain-bg: #0c1017;
+        --diag-seq-explain-border: #3e5199;
+        --diag-seq-explain-text: #5568ad;
 
-        --diag-btree-card-bg: #10202e;
-        --diag-btree-card-border: #38bdf8;
-        --diag-btree-badge-bg: #082238;
-        --diag-btree-badge-border: #0284c7;
-        --diag-btree-badge-text: #38bdf8;
-        --diag-btree-title: #f8fafc;
-        --diag-btree-node-bg: #0e1726;
-        --diag-btree-node-border: #2a3d5e;
-        --diag-btree-node-text: #7dd3fc;
-        --diag-btree-node-sub: #94a3b8;
-        --diag-btree-hi-bg: #0d281e;
-        --diag-btree-hi-border: #059669;
-        --diag-btree-hi-text: #34d399;
-        --diag-btree-link: #2a3d5e;
-        --diag-btree-link-active: #34d399;
-        --diag-btree-heap-bg: #091c14;
-        --diag-btree-heap-border: #059669;
-        --diag-btree-heap-title: #34d399;
-        --diag-btree-heap-sub: #cbd5e1;
-        --diag-btree-explain-bg: #0c1726;
-        --diag-btree-explain-border: #1d4ed8;
-        --diag-btree-explain-text: #38bdf8;
+        --diag-btree-card-bg: #111a4a15;
+        --diag-btree-card-border: #1b2d70;
+        --diag-btree-badge-bg: #111a4a;
+        --diag-btree-badge-text: #ffffff;
+        --diag-btree-title: #ffffff;
+        --diag-btree-node-bg: #0c1017;
+        --diag-btree-node-border: #3e5199;
+        --diag-btree-node-text: #ffffff;
+        --diag-btree-node-sub: #5568ad;
+        --diag-btree-hi-bg: #167e6c22;
+        --diag-btree-hi-border: #167e6c;
+        --diag-btree-hi-text: #167e6c;
+        --diag-btree-link: #3e5199;
+        --diag-btree-link-active: #167e6c;
+        --diag-btree-heap-bg: #167e6c22;
+        --diag-btree-heap-border: #167e6c;
+        --diag-btree-heap-title: #167e6c;
+        --diag-btree-heap-sub: #ffffff;
+        --diag-btree-explain-bg: #0c1017;
+        --diag-btree-explain-border: #167e6c;
+        --diag-btree-explain-text: #167e6c;
       }
     }
 
@@ -182,11 +173,11 @@
     .node-highlight { fill: var(--diag-btree-hi-bg); stroke: var(--diag-btree-hi-border); stroke-width: 1.5; rx: 5; }
     .node-text-hi { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; font-weight: 700; fill: var(--diag-btree-hi-text); text-anchor: middle; }
     .seq-box { fill: var(--diag-seq-box-bg); stroke: var(--diag-seq-box-border); stroke-width: 1; rx: 4; }
-    .tree-link { stroke: var(--diag-btree-link); stroke-width: 1.2; }
-    .tree-link-active { stroke: var(--diag-btree-link-active); stroke-width: 2; }
+    .tree-link { stroke: var(--diag-btree-link); stroke-width: 1.2; stroke-dasharray: 2 2; }
+    .tree-link-active { stroke: var(--diag-btree-link-active); stroke-width: 2.2; }
   </style>
 
-  <!-- Background Base Canvas (White in Light mode, Dark in Dark mode) -->
+  <!-- Background Base Canvas (Pure White in Light mode, Dark Slate in Dark mode) -->
   <rect width="960" height="480" fill="var(--diag-canvas)" />
 
   <!-- Diagram Title Header -->
@@ -200,7 +191,7 @@
     <rect width="360" height="375" rx="8" fill="var(--diag-seq-card-bg)" stroke="var(--diag-seq-card-border)" stroke-width="1.5" />
 
     <!-- Badge -->
-    <rect x="20" y="16" width="130" height="24" rx="4" fill="var(--diag-seq-badge-bg)" stroke="var(--diag-seq-badge-border)" stroke-width="1" />
+    <rect x="20" y="16" width="130" height="24" rx="4" fill="var(--diag-seq-badge-bg)" stroke="#1b2d70" stroke-width="1" />
     <text x="85" y="32" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="700" fill="var(--diag-seq-badge-text)">SEQUENTIAL SCAN</text>
     <text x="20" y="65" class="card-title">Full Table Disk Read</text>
     <text x="20" y="82" class="card-meta">Exhaustive Heap Inspection: Complexity O(N)</text>
@@ -208,13 +199,13 @@
     <!-- Query -->
     <g transform="translate(20, 100)">
       <rect width="320" height="44" rx="5" fill="var(--diag-seq-query-bg)" stroke="var(--diag-seq-query-border)" />
-      <text x="12" y="20" font-family="ui-monospace, monospace" font-size="11" font-weight="600" fill="var(--diag-seq-badge-text)">SELECT * FROM orders</text>
+      <text x="12" y="20" font-family="ui-monospace, monospace" font-size="11" font-weight="600" fill="#111a4a">SELECT * FROM orders</text>
       <text x="12" y="36" font-family="ui-monospace, monospace" font-size="11" fill="var(--diag-seq-meta)">WHERE customer_id = 8842;</text>
     </g>
 
     <!-- Sequential Page Flow -->
     <g transform="translate(20, 160)">
-      <text x="0" y="15" font-family="ui-monospace, monospace" font-size="11" font-weight="600" fill="var(--diag-seq-badge-text)">Reading All 8KB Disk Pages:</text>
+      <text x="0" y="15" font-family="ui-monospace, monospace" font-size="11" font-weight="600" fill="#111a4a">Reading All 8KB Disk Pages:</text>
       
       <!-- Page Blocks -->
       <g transform="translate(0, 30)">
@@ -236,13 +227,13 @@
       </g>
 
       <!-- Scan Arrow -->
-      <path d="M 0 95 L 310 95" stroke="var(--diag-seq-arrow)" stroke-width="2" marker-end="url(#arrowRed)" />
-      <text x="155" y="115" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10.5" fill="var(--diag-seq-badge-text)">12,500 Pages Read from Disk (~100 MB I/O)</text>
+      <path d="M 0 95 L 310 95" stroke="var(--diag-seq-arrow)" stroke-width="2" marker-end="url(#arrowBlue)" />
+      <text x="155" y="115" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10.5" fill="#1b2d70">12,500 Pages Read from Disk (~100 MB I/O)</text>
     </g>
 
     <g transform="translate(20, 315)">
       <rect width="320" height="42" rx="4" fill="var(--diag-seq-explain-bg)" stroke="var(--diag-seq-explain-border)" />
-      <text x="10" y="18" font-family="ui-monospace, monospace" font-size="10.5" font-weight="700" fill="var(--diag-seq-explain-text)">EXPLAIN ANALYZE Cost:</text>
+      <text x="10" y="18" font-family="ui-monospace, monospace" font-size="10.5" font-weight="700" fill="#111a4a">EXPLAIN ANALYZE Cost:</text>
       <text x="10" y="32" font-family="ui-monospace, monospace" font-size="10.5" fill="var(--diag-seq-meta)">Seq Scan on orders (cost=0.00..18452.00)</text>
     </g>
   </g>
@@ -254,9 +245,9 @@
     <rect width="505" height="375" rx="8" fill="var(--diag-btree-card-bg)" stroke="var(--diag-btree-card-border)" stroke-width="1.5" />
 
     <!-- Badge -->
-    <rect x="20" y="16" width="130" height="24" rx="4" fill="var(--diag-btree-badge-bg)" stroke="var(--diag-btree-badge-border)" stroke-width="1" />
-    <text x="85" y="32" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="700" fill="var(--diag-btree-badge-text)">B-TREE INDEX SCAN</text>
-    <text x="160" y="32" class="card-title">Balanced Tree Search (log N)</text>
+    <rect x="20" y="16" width="140" height="24" rx="4" fill="var(--diag-btree-badge-bg)" stroke="#111a4a" stroke-width="1" />
+    <text x="90" y="32" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="700" fill="var(--diag-btree-badge-text)">B-TREE INDEX SCAN</text>
+    <text x="175" y="32" class="card-title">Balanced Tree Search (log N)</text>
 
     <!-- B-Tree Hierarchy Tree -->
     <!-- Level 0: Root Page -->
@@ -306,7 +297,7 @@
 
     <!-- Direct Leap to Heap Block -->
     <g transform="translate(20, 245)">
-      <path d="M 232 -10 L 232 25" stroke="var(--diag-btree-link-active)" stroke-width="2" marker-end="url(#arrowGreen)" />
+      <path d="M 232 -10 L 232 25" stroke="var(--diag-btree-link-active)" stroke-width="2.2" marker-end="url(#arrowGreen)" />
       
       <rect x="90" y="25" width="285" height="48" rx="6" fill="var(--diag-btree-heap-bg)" stroke="var(--diag-btree-heap-border)" stroke-width="1.5" />
       <text x="232" y="44" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="700" fill="var(--diag-btree-heap-title)">Table Heap Page #12,500 (Row #4)</text>

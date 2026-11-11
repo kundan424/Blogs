@@ -1,212 +1,257 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" width="100%" height="auto" preserveAspectRatio="xMidYMid meet">
   <defs>
-    <!-- Background Gradient -->
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#12100e" />
-      <stop offset="100%" stop-color="#080706" />
-    </linearGradient>
-
-    <!-- Card Gradients -->
-    <linearGradient id="cardInput" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#182330" />
-      <stop offset="100%" stop-color="#0e1620" />
-    </linearGradient>
-    <linearGradient id="cardBuildKit" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#241a2c" />
-      <stop offset="100%" stop-color="#150e1c" />
-    </linearGradient>
-    <linearGradient id="cardOutput" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#14261e" />
-      <stop offset="100%" stop-color="#0d1813" />
-    </linearGradient>
-
-    <!-- Box Shadows -->
     <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
-      <feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#000000" flood-opacity="0.5" />
+      <feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#000000" flood-opacity="0.08" />
     </filter>
 
-    <!-- Markers -->
-    <marker id="arrowCyan" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 9 5 L 0 9 z" fill="#38bdf8" />
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#3e5199" />
     </marker>
-    <marker id="arrowPurple" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 9 5 L 0 9 z" fill="#c084fc" />
+    <marker id="arrowNavy" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#1b2d70" />
     </marker>
-    <marker id="arrowGreen" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 9 5 L 0 9 z" fill="#34d399" />
+    <marker id="arrowTeal" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#167e6c" />
     </marker>
   </defs>
 
   <style>
+    /* Default: Light Mode (Clean White Canvas) */
+    svg {
+      --diag-canvas: #ffffff;
+      --diag-header-title: #111a4a;
+      --diag-header-sub: #64748b;
+
+      --diag-card-bg: #f8fafc;
+      --diag-card-inner: #ffffff;
+      --diag-card-border: #cbd5e1;
+
+      --diag-s1-border: #3e5199;
+      --diag-s1-header: #3e5199;
+      --diag-s2-border: #111a4a;
+      --diag-s2-header: #111a4a;
+      --diag-s3-border: #167e6c;
+      --diag-s3-header: #167e6c;
+
+      --diag-text-main: #111a4a;
+      --diag-text-dim: #64748b;
+      --diag-bottom-bg: #f1f5f9;
+      --diag-bottom-border: #cbd5e1;
+    }
+
+    /* Dark Mode (Web Application) */
+    html.dark svg, .dark svg {
+      --diag-canvas: #12161e;
+      --diag-header-title: #788cd4;
+      --diag-header-sub: #94a3b8;
+
+      --diag-card-bg: #171d2b;
+      --diag-card-inner: #131b2a;
+      --diag-card-border: #243049;
+
+      --diag-s1-border: #3e5199;
+      --diag-s1-header: #3e5199;
+      --diag-s2-border: #1b2d70;
+      --diag-s2-header: #111a4a;
+      --diag-s3-border: #167e6c;
+      --diag-s3-header: #167e6c;
+
+      --diag-text-main: #f8fafc;
+      --diag-text-dim: #94a3b8;
+      --diag-bottom-bg: #131b2a;
+      --diag-bottom-border: #243049;
+    }
+
+    /* Standalone SVG Viewer */
+    @media (prefers-color-scheme: dark) {
+      :root:not(html) {
+        --diag-canvas: #12161e;
+        --diag-header-title: #788cd4;
+        --diag-header-sub: #94a3b8;
+
+        --diag-card-bg: #171d2b;
+        --diag-card-inner: #131b2a;
+        --diag-card-border: #243049;
+
+        --diag-s1-border: #3e5199;
+        --diag-s1-header: #3e5199;
+        --diag-s2-border: #1b2d70;
+        --diag-s2-header: #111a4a;
+        --diag-s3-border: #167e6c;
+        --diag-s3-header: #167e6c;
+
+        --diag-text-main: #f8fafc;
+        --diag-text-dim: #94a3b8;
+        --diag-bottom-bg: #131b2a;
+        --diag-bottom-border: #243049;
+      }
+    }
+
     .font-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
     .font-sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
   </style>
 
   <!-- Canvas Frame -->
-  <rect width="1000" height="560" rx="16" fill="url(#bgGrad)" stroke="#26221d" stroke-width="1.5" />
+  <rect width="1000" height="560" rx="12" fill="var(--diag-canvas)" />
 
   <!-- HEADER TITLE -->
   <g transform="translate(40, 24)">
-    <text x="460" y="20" text-anchor="middle" class="font-mono" font-size="14" font-weight="700" fill="#38bdf8" letter-spacing="1.2">THE DOCKERFILE EXECUTION ENGINE &amp; BUILDKIT PIPELINE</text>
-    <text x="460" y="38" text-anchor="middle" class="font-sans" font-size="12" fill="#a8a29e">From declarative instructions to LLB graph evaluation, layer cache verification, and OCI image manifests</text>
+    <text x="460" y="20" text-anchor="middle" class="font-mono" font-size="14" font-weight="700" fill="var(--diag-header-title)" letter-spacing="1.2">THE DOCKERFILE EXECUTION ENGINE &amp; BUILDKIT PIPELINE</text>
+    <text x="460" y="38" text-anchor="middle" class="font-sans" font-size="12" fill="var(--diag-header-sub)">From declarative instructions to LLB graph evaluation, layer cache verification, and OCI image manifests</text>
   </g>
-
-  <!-- ========================================================================= -->
-  <!-- 3 MAIN STAGES: 1. INPUTS  ──▶  2. BUILDKIT ENGINE  ──▶  3. OCI IMAGE     -->
-  <!-- ========================================================================= -->
 
   <!-- ==================== STAGE 1: INPUTS (X: 40, Width: 260) ==================== -->
   <g transform="translate(40, 75)">
-    <rect width="260" height="395" rx="12" fill="url(#cardInput)" stroke="#0284c7" stroke-width="1.5" filter="url(#shadow)" />
+    <rect width="260" height="395" rx="10" fill="var(--diag-card-bg)" stroke="var(--diag-s1-border)" stroke-width="1.5" filter="url(#shadow)" />
     
     <!-- Header -->
-    <rect x="0" y="0" width="260" height="36" rx="12" fill="#0c4a6e" />
-    <path d="M 0 26 L 0 36 L 260 36 L 260 26 Z" fill="#0c4a6e" />
-    <text x="130" y="23" text-anchor="middle" class="font-mono" font-size="11.5" font-weight="700" fill="#e0f2fe">1. SOURCE INPUTS</text>
+    <rect x="0" y="0" width="260" height="36" rx="10" fill="var(--diag-s1-header)" />
+    <path d="M 0 26 L 0 36 L 260 36 L 260 26 Z" fill="var(--diag-s1-header)" />
+    <text x="130" y="23" text-anchor="middle" class="font-mono" font-size="11.5" font-weight="700" fill="#ffffff">1. SOURCE INPUTS</text>
 
     <!-- Sub-Box A: Dockerfile -->
     <g transform="translate(15, 48)">
-      <rect width="230" height="150" rx="8" fill="#132332" stroke="#0369a1" stroke-width="1.2" />
-      <text x="12" y="20" class="font-mono" font-size="11.5" font-weight="700" fill="#38bdf8">Dockerfile</text>
-      <text x="12" y="40" class="font-mono" font-size="10.5" fill="#f8fafc">FROM eclipse-temurin:21</text>
-      <text x="12" y="58" class="font-mono" font-size="10.5" fill="#94a3b8">WORKDIR /app</text>
-      <text x="12" y="76" class="font-mono" font-size="10.5" fill="#fde047">COPY pom.xml .</text>
-      <text x="12" y="94" class="font-mono" font-size="10.5" fill="#fde047">RUN mvn dependency:go-offline</text>
-      <text x="12" y="112" class="font-mono" font-size="10.5" fill="#38bdf8">COPY src/ ./src</text>
-      <text x="12" y="130" class="font-mono" font-size="10.5" fill="#4ade80">ENTRYPOINT ["java", "-jar"]</text>
+      <rect width="230" height="150" rx="8" fill="var(--diag-card-inner)" stroke="var(--diag-s1-border)" stroke-width="1.2" />
+      <text x="12" y="20" class="font-mono" font-size="11.5" font-weight="700" fill="#3e5199">Dockerfile</text>
+      <text x="12" y="40" class="font-mono" font-size="10.5" fill="var(--diag-text-main)">FROM eclipse-temurin:21</text>
+      <text x="12" y="58" class="font-mono" font-size="10.5" fill="var(--diag-text-dim)">WORKDIR /app</text>
+      <text x="12" y="76" class="font-mono" font-size="10.5" fill="#1b2d70">COPY pom.xml .</text>
+      <text x="12" y="94" class="font-mono" font-size="10.5" fill="#1b2d70">RUN mvn dependency:go-offline</text>
+      <text x="12" y="112" class="font-mono" font-size="10.5" fill="#3e5199">COPY src/ ./src</text>
+      <text x="12" y="130" class="font-mono" font-size="10.5" fill="#167e6c">ENTRYPOINT ["java", "-jar"]</text>
     </g>
 
     <!-- Sub-Box B: Build Context & Filter -->
     <g transform="translate(15, 212)">
-      <rect width="230" height="115" rx="8" fill="#101c27" stroke="#334155" stroke-width="1" />
-      <text x="12" y="20" class="font-mono" font-size="11" font-weight="700" fill="#94a3b8">Build Context (CLI Client)</text>
-      <text x="12" y="38" class="font-sans" font-size="10.5" fill="#cbd5e1">Local directory path (.)</text>
+      <rect width="230" height="115" rx="8" fill="var(--diag-card-inner)" stroke="var(--diag-card-border)" stroke-width="1" />
+      <text x="12" y="20" class="font-mono" font-size="11" font-weight="700" fill="var(--diag-text-main)">Build Context (CLI Client)</text>
+      <text x="12" y="38" class="font-sans" font-size="10.5" fill="var(--diag-text-dim)">Local directory path (.)</text>
       
       <!-- .dockerignore badge -->
-      <rect x="12" y="48" width="206" height="48" rx="6" fill="#1e1822" stroke="#f43f5e" stroke-width="1" />
-      <text x="20" y="66" class="font-mono" font-size="10.5" font-weight="700" fill="#fda4af">.dockerignore (Filter)</text>
-      <text x="20" y="84" class="font-sans" font-size="9.5" fill="#fecdd3">Excludes .git, target/, .env, node_modules</text>
+      <rect x="12" y="48" width="206" height="48" rx="6" fill="var(--diag-card-bg)" stroke="#111a4a" stroke-width="1" />
+      <text x="20" y="66" class="font-mono" font-size="10.5" font-weight="700" fill="#111a4a">.dockerignore (Filter)</text>
+      <text x="20" y="84" class="font-sans" font-size="9.5" fill="var(--diag-text-dim)">Excludes .git, target/, .env, node_modules</text>
     </g>
 
-    <text x="130" y="360" text-anchor="middle" class="font-sans" font-size="10" fill="#7dd3fc">Sent to daemon via Unix socket tarball</text>
+    <text x="130" y="360" text-anchor="middle" class="font-sans" font-size="10" fill="var(--diag-text-dim)">Sent to daemon via Unix socket tarball</text>
   </g>
 
   <!-- ARROW 1: Inputs ──▶ BuildKit Engine -->
   <g transform="translate(305, 255)">
-    <line x1="0" y1="0" x2="35" y2="0" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrowCyan)" />
-    <rect x="2" y="-22" width="30" height="16" rx="3" fill="#0c4a6e" />
-    <text x="17" y="-10" text-anchor="middle" class="font-mono" font-size="9" font-weight="700" fill="#e0f2fe">TAR</text>
+    <line x1="0" y1="0" x2="35" y2="0" stroke="#3e5199" stroke-width="3" marker-end="url(#arrowBlue)" />
+    <rect x="2" y="-22" width="30" height="16" rx="3" fill="#3e5199" />
+    <text x="17" y="-10" text-anchor="middle" class="font-mono" font-size="9" font-weight="700" fill="#ffffff">TAR</text>
   </g>
 
   <!-- ==================== STAGE 2: BUILDKIT ENGINE (X: 345, Width: 350) ==================== -->
   <g transform="translate(345, 75)">
-    <rect width="350" height="395" rx="12" fill="url(#cardBuildKit)" stroke="#8b5cf6" stroke-width="1.5" filter="url(#shadow)" />
+    <rect width="350" height="395" rx="10" fill="var(--diag-card-bg)" stroke="var(--diag-s2-border)" stroke-width="1.5" filter="url(#shadow)" />
     
     <!-- Header -->
-    <rect x="0" y="0" width="350" height="36" rx="12" fill="#4c1d95" />
-    <path d="M 0 26 L 0 36 L 350 36 L 350 26 Z" fill="#4c1d95" />
-    <text x="175" y="23" text-anchor="middle" class="font-mono" font-size="11.5" font-weight="700" fill="#ede9fe">2. BUILDKIT ENGINE (SOLVER &amp; CACHE)</text>
+    <rect x="0" y="0" width="350" height="36" rx="10" fill="var(--diag-s2-header)" />
+    <path d="M 0 26 L 0 36 L 350 36 L 350 26 Z" fill="var(--diag-s2-header)" />
+    <text x="175" y="23" text-anchor="middle" class="font-mono" font-size="11.5" font-weight="700" fill="#ffffff">2. BUILDKIT ENGINE (SOLVER &amp; CACHE)</text>
 
     <!-- Sub-Box 1: Low-Level Builder (LLB) DAG -->
     <g transform="translate(18, 48)">
-      <rect width="314" height="110" rx="8" fill="#1c1427" stroke="#7c3aed" stroke-width="1.2" />
-      <text x="14" y="20" class="font-mono" font-size="11" font-weight="700" fill="#c084fc">Low-Level Builder (LLB) DAG Graph</text>
-      <text x="14" y="36" class="font-sans" font-size="10" fill="#d8b4fe">Parses instructions into Directed Acyclic Graph</text>
+      <rect width="314" height="110" rx="8" fill="var(--diag-card-inner)" stroke="#1b2d70" stroke-width="1.2" />
+      <text x="14" y="20" class="font-mono" font-size="11" font-weight="700" fill="#1b2d70">Low-Level Builder (LLB) DAG Graph</text>
+      <text x="14" y="36" class="font-sans" font-size="10" fill="var(--diag-text-dim)">Parses instructions into Directed Acyclic Graph</text>
       
       <!-- Graph Nodes -->
       <g transform="translate(14, 46)">
-        <rect x="0" y="0" width="85" height="46" rx="6" fill="#2d1b46" stroke="#a855f7" stroke-width="1" />
-        <text x="42" y="18" text-anchor="middle" class="font-mono" font-size="9.5" font-weight="700" fill="#f3e8ff">STAGE 1</text>
-        <text x="42" y="34" text-anchor="middle" class="font-sans" font-size="8.5" fill="#d8b4fe">Build / Test</text>
+        <rect x="0" y="0" width="85" height="46" rx="6" fill="var(--diag-card-bg)" stroke="#1b2d70" stroke-width="1" />
+        <text x="42" y="18" text-anchor="middle" class="font-mono" font-size="9.5" font-weight="700" fill="#1b2d70">STAGE 1</text>
+        <text x="42" y="34" text-anchor="middle" class="font-sans" font-size="8.5" fill="var(--diag-text-dim)">Build / Test</text>
 
-        <line x1="88" y1="23" x2="108" y2="23" stroke="#a855f7" stroke-width="2" marker-end="url(#arrowPurple)" />
+        <line x1="88" y1="23" x2="108" y2="23" stroke="#1b2d70" stroke-width="2" marker-end="url(#arrowNavy)" />
 
-        <rect x="112" y="0" width="85" height="46" rx="6" fill="#2d1b46" stroke="#a855f7" stroke-width="1" />
-        <text x="154" y="18" text-anchor="middle" class="font-mono" font-size="9.5" font-weight="700" fill="#f3e8ff">STAGE 2</text>
-        <text x="154" y="34" text-anchor="middle" class="font-sans" font-size="8.5" fill="#d8b4fe">Runtime JRE</text>
+        <rect x="112" y="0" width="85" height="46" rx="6" fill="var(--diag-card-bg)" stroke="#1b2d70" stroke-width="1" />
+        <text x="154" y="18" text-anchor="middle" class="font-mono" font-size="9.5" font-weight="700" fill="#1b2d70">STAGE 2</text>
+        <text x="154" y="34" text-anchor="middle" class="font-sans" font-size="8.5" fill="var(--diag-text-dim)">Runtime JRE</text>
 
-        <rect x="202" y="6" width="78" height="34" rx="4" fill="#0f172a" stroke="#38bdf8" stroke-width="1" />
-        <text x="241" y="21" text-anchor="middle" class="font-mono" font-size="8.5" font-weight="700" fill="#38bdf8">PARALLEL</text>
-        <text x="241" y="32" text-anchor="middle" class="font-sans" font-size="8" fill="#94a3b8">Execution</text>
+        <rect x="202" y="6" width="78" height="34" rx="4" fill="var(--diag-card-bg)" stroke="#3e5199" stroke-width="1" />
+        <text x="241" y="21" text-anchor="middle" class="font-mono" font-size="8.5" font-weight="700" fill="#3e5199">PARALLEL</text>
+        <text x="241" y="32" text-anchor="middle" class="font-sans" font-size="8" fill="var(--diag-text-dim)">Execution</text>
       </g>
     </g>
 
     <!-- Sub-Box 2: Cache Evaluation Engine -->
     <g transform="translate(18, 170)">
-      <rect width="314" height="195" rx="8" fill="#181224" stroke="#6d28d9" stroke-width="1" />
-      <text x="14" y="22" class="font-mono" font-size="11" font-weight="700" fill="#e9d5ff">Layer Cache Evaluator (Checksums)</text>
+      <rect width="314" height="195" rx="8" fill="var(--diag-card-inner)" stroke="#111a4a" stroke-width="1" />
+      <text x="14" y="22" class="font-mono" font-size="11" font-weight="700" fill="#111a4a">Layer Cache Evaluator (Checksums)</text>
       
       <!-- Cache Hit Flow -->
       <g transform="translate(14, 34)">
-        <rect width="286" height="52" rx="6" fill="#14261d" stroke="#10b981" stroke-width="1" />
-        <text x="12" y="20" class="font-mono" font-size="10.5" font-weight="700" fill="#4ade80">✓ CACHE HIT (Zero Work)</text>
-        <text x="12" y="38" class="font-sans" font-size="10" fill="#a7f3d0">Checksum matches previous build ──▶ Reuses layer</text>
+        <rect width="286" height="52" rx="6" fill="var(--diag-card-bg)" stroke="#167e6c" stroke-width="1" />
+        <text x="12" y="20" class="font-mono" font-size="10.5" font-weight="700" fill="#167e6c">✓ CACHE HIT (Zero Work)</text>
+        <text x="12" y="38" class="font-sans" font-size="10" fill="var(--diag-text-dim)">Checksum matches previous build ──▶ Reuses layer</text>
       </g>
 
       <!-- Cache Miss Flow -->
       <g transform="translate(14, 94)">
-        <rect width="286" height="85" rx="6" fill="#2d1d13" stroke="#f59e0b" stroke-width="1" />
-        <text x="12" y="20" class="font-mono" font-size="10.5" font-weight="700" fill="#fde047">✕ CACHE MISS (Invalidation)</text>
-        <text x="12" y="38" class="font-sans" font-size="9.5" fill="#fef08a">1. File modified: pom.xml checksum changed</text>
-        <text x="12" y="54" class="font-sans" font-size="9.5" fill="#fef08a">2. Spawns ephemeral scratch container via runc</text>
-        <text x="12" y="70" class="font-sans" font-size="9.5" fill="#fef08a">3. Executes command &amp; snapshots diff to tar layer</text>
+        <rect width="286" height="85" rx="6" fill="var(--diag-card-bg)" stroke="#1b2d70" stroke-width="1" />
+        <text x="12" y="20" class="font-mono" font-size="10.5" font-weight="700" fill="#1b2d70">✕ CACHE MISS (Invalidation)</text>
+        <text x="12" y="38" class="font-sans" font-size="9.5" fill="var(--diag-text-dim)">1. File modified: pom.xml checksum changed</text>
+        <text x="12" y="54" class="font-sans" font-size="9.5" fill="var(--diag-text-dim)">2. Spawns ephemeral scratch container via runc</text>
+        <text x="12" y="70" class="font-sans" font-size="9.5" fill="var(--diag-text-dim)">3. Executes command &amp; snapshots diff to tar layer</text>
       </g>
     </g>
   </g>
 
   <!-- ARROW 2: BuildKit Engine ──▶ OCI Artifacts -->
   <g transform="translate(700, 255)">
-    <line x1="0" y1="0" x2="35" y2="0" stroke="#34d399" stroke-width="3" marker-end="url(#arrowGreen)" />
-    <rect x="2" y="-22" width="30" height="16" rx="3" fill="#064e3b" />
-    <text x="17" y="-10" text-anchor="middle" class="font-mono" font-size="9" font-weight="700" fill="#a7f3d0">OCI</text>
+    <line x1="0" y1="0" x2="35" y2="0" stroke="#167e6c" stroke-width="3" marker-end="url(#arrowTeal)" />
+    <rect x="2" y="-22" width="30" height="16" rx="3" fill="#167e6c" />
+    <text x="17" y="-10" text-anchor="middle" class="font-mono" font-size="9" font-weight="700" fill="#ffffff">OCI</text>
   </g>
 
   <!-- ==================== STAGE 3: OUTPUT ARTIFACT (X: 740, Width: 220) ==================== -->
   <g transform="translate(740, 75)">
-    <rect width="220" height="395" rx="12" fill="url(#cardOutput)" stroke="#10b981" stroke-width="1.5" filter="url(#shadow)" />
+    <rect width="220" height="395" rx="10" fill="var(--diag-card-bg)" stroke="var(--diag-s3-border)" stroke-width="1.5" filter="url(#shadow)" />
     
     <!-- Header -->
-    <rect x="0" y="0" width="220" height="36" rx="12" fill="#065f46" />
-    <path d="M 0 26 L 0 36 L 220 36 L 220 26 Z" fill="#065f46" />
-    <text x="110" y="23" text-anchor="middle" class="font-mono" font-size="11.5" font-weight="700" fill="#d1fae5">3. OCI IMAGE ARTIFACT</text>
+    <rect x="0" y="0" width="220" height="36" rx="10" fill="var(--diag-s3-header)" />
+    <path d="M 0 26 L 0 36 L 220 36 L 220 26 Z" fill="var(--diag-s3-header)" />
+    <text x="110" y="23" text-anchor="middle" class="font-mono" font-size="11.5" font-weight="700" fill="#ffffff">3. OCI IMAGE ARTIFACT</text>
 
     <!-- Artifact 1: Manifest JSON -->
     <g transform="translate(14, 48)">
-      <rect width="192" height="75" rx="6" fill="#14211a" stroke="#059669" stroke-width="1" />
-      <text x="12" y="20" class="font-mono" font-size="11" font-weight="700" fill="#34d399">Manifest JSON</text>
-      <text x="12" y="38" class="font-sans" font-size="10" fill="#a7f3d0">• Schema version 2</text>
-      <text x="12" y="54" class="font-sans" font-size="10" fill="#a7f3d0">• Config JSON digest</text>
-      <text x="12" y="70" class="font-sans" font-size="10" fill="#a7f3d0">• List of layer digests</text>
+      <rect width="192" height="75" rx="6" fill="var(--diag-card-inner)" stroke="var(--diag-s3-border)" stroke-width="1" />
+      <text x="12" y="20" class="font-mono" font-size="11" font-weight="700" fill="#167e6c">Manifest JSON</text>
+      <text x="12" y="38" class="font-sans" font-size="10" fill="var(--diag-text-dim)">• Schema version 2</text>
+      <text x="12" y="54" class="font-sans" font-size="10" fill="var(--diag-text-dim)">• Config JSON digest</text>
+      <text x="12" y="70" class="font-sans" font-size="10" fill="var(--diag-text-dim)">• List of layer digests</text>
     </g>
 
     <!-- Artifact 2: Config JSON -->
     <g transform="translate(14, 132)">
-      <rect width="192" height="75" rx="6" fill="#14211a" stroke="#059669" stroke-width="1" />
-      <text x="12" y="20" class="font-mono" font-size="11" font-weight="700" fill="#34d399">Config JSON</text>
-      <text x="12" y="38" class="font-sans" font-size="10" fill="#a7f3d0">• Architecture (arm64/amd64)</text>
-      <text x="12" y="54" class="font-sans" font-size="10" fill="#a7f3d0">• Entrypoint / CMD arrays</text>
-      <text x="12" y="70" class="font-sans" font-size="10" fill="#a7f3d0">• Environment variables</text>
+      <rect width="192" height="75" rx="6" fill="var(--diag-card-inner)" stroke="var(--diag-s3-border)" stroke-width="1" />
+      <text x="12" y="20" class="font-mono" font-size="11" font-weight="700" fill="#167e6c">Config JSON</text>
+      <text x="12" y="38" class="font-sans" font-size="10" fill="var(--diag-text-dim)">• Architecture (arm64/amd64)</text>
+      <text x="12" y="54" class="font-sans" font-size="10" fill="var(--diag-text-dim)">• Entrypoint / CMD arrays</text>
+      <text x="12" y="70" class="font-sans" font-size="10" fill="var(--diag-text-dim)">• Environment variables</text>
     </g>
 
     <!-- Artifact 3: Immutable Layer Blobs -->
     <g transform="translate(14, 216)">
-      <rect width="192" height="150" rx="6" fill="#10261e" stroke="#10b981" stroke-width="1.2" />
-      <text x="12" y="22" class="font-mono" font-size="11" font-weight="700" fill="#a7f3d0">Immutable Tar Blobs</text>
+      <rect width="192" height="150" rx="6" fill="var(--diag-card-inner)" stroke="var(--diag-s3-border)" stroke-width="1.2" />
+      <text x="12" y="22" class="font-mono" font-size="11" font-weight="700" fill="#167e6c">Immutable Tar Blobs</text>
       
       <g transform="translate(10, 32)">
-        <rect width="172" height="26" rx="4" fill="#1e3a2e" />
-        <text x="8" y="17" class="font-mono" font-size="9.5" fill="#6ee7b7">Layer 3: sha256:d4c2... (Code)</text>
+        <rect width="172" height="26" rx="4" fill="var(--diag-card-bg)" stroke="var(--diag-s3-border)" stroke-width="0.8" />
+        <text x="8" y="17" class="font-mono" font-size="9.5" fill="#167e6c">Layer 3: sha256:d4c2... (Code)</text>
       </g>
       <g transform="translate(10, 64)">
-        <rect width="172" height="26" rx="4" fill="#1e3a2e" />
-        <text x="8" y="17" class="font-mono" font-size="9.5" fill="#6ee7b7">Layer 2: sha256:a1b8... (Deps)</text>
+        <rect width="172" height="26" rx="4" fill="var(--diag-card-bg)" stroke="var(--diag-s3-border)" stroke-width="0.8" />
+        <text x="8" y="17" class="font-mono" font-size="9.5" fill="#167e6c">Layer 2: sha256:a1b8... (Deps)</text>
       </g>
       <g transform="translate(10, 96)">
-        <rect width="172" height="26" rx="4" fill="#1e3a2e" />
-        <text x="8" y="17" class="font-mono" font-size="9.5" fill="#6ee7b7">Layer 1: sha256:9f8e... (Base)</text>
+        <rect width="172" height="26" rx="4" fill="var(--diag-card-bg)" stroke="var(--diag-s3-border)" stroke-width="0.8" />
+        <text x="8" y="17" class="font-mono" font-size="9.5" fill="#167e6c">Layer 1: sha256:9f8e... (Base)</text>
       </g>
 
-      <text x="96" y="140" text-anchor="middle" class="font-sans" font-size="9.5" fill="#34d399">Ready to docker push / run</text>
+      <text x="96" y="140" text-anchor="middle" class="font-sans" font-size="9.5" fill="var(--diag-text-dim)">Ready to docker push / run</text>
     </g>
   </g>
 
@@ -214,9 +259,9 @@
   <!-- BOTTOM TAKEAWAY BAR                                                       -->
   <!-- ========================================================================= -->
   <g transform="translate(40, 485)">
-    <rect width="920" height="52" rx="8" fill="#171411" stroke="#332c25" stroke-width="1.2" />
-    <circle cx="22" cy="26" r="5" fill="#38bdf8" />
-    <text x="36" y="22" class="font-mono" font-size="11" font-weight="700" fill="#e0f2fe">BUILDKIT INVARIANT: CONTENT-ADDRESSABLE CACHING &amp; MINIMAL SURFACE</text>
-    <text x="36" y="40" class="font-sans" font-size="10.5" fill="#a8a29e">Every Dockerfile instruction either produces a filesystem diff (RUN, COPY, ADD) or mutates image metadata (ENV, WORKDIR, ENTRYPOINT, EXPOSE).</text>
+    <rect width="920" height="52" rx="8" fill="var(--diag-bottom-bg)" stroke="var(--diag-bottom-border)" stroke-width="1.2" />
+    <circle cx="22" cy="26" r="5" fill="#167e6c" />
+    <text x="36" y="22" class="font-mono" font-size="11" font-weight="700" fill="var(--diag-text-main)">BUILDKIT INVARIANT: CONTENT-ADDRESSABLE CACHING &amp; MINIMAL SURFACE</text>
+    <text x="36" y="40" class="font-sans" font-size="10.5" fill="var(--diag-text-dim)">Every Dockerfile instruction either produces a filesystem diff (RUN, COPY, ADD) or mutates image metadata (ENV, WORKDIR, ENTRYPOINT, EXPOSE).</text>
   </g>
 </svg>

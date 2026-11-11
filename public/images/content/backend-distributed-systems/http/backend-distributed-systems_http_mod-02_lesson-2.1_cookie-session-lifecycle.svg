@@ -1,109 +1,109 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 460" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 460" width="100%" height="auto" preserveAspectRatio="xMidYMid meet">
   <defs>
     <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
-      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.08" />
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.06" />
     </filter>
     <marker id="arrowBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#0284c7" />
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#3e5199" />
     </marker>
     <marker id="arrowGreen" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 10 1.5 L 1 5 L 10 8.5 z" fill="#16a34a" />
+      <path d="M 10 1.5 L 1 5 L 10 8.5 z" fill="#167e6c" />
     </marker>
   </defs>
 
   <style>
     /* Default: Light Mode (Clean White Canvas) */
-    svg {
+    :root {
       --diag-canvas: #ffffff;
-      --diag-header-tag: #0284c7;
-      --diag-header-sub: #64748b;
+      --diag-header-tag: #111a4a;
+      --diag-header-sub: #1b2d70;
 
       --diag-node-bg: #f8fafc;
-      --diag-node-border: #cbd5e1;
-      --diag-node-title: #0f172a;
-      --diag-node-sub: #64748b;
-      --diag-lifeline: #cbd5e1;
+      --diag-node-border: #3e5199;
+      --diag-node-title: #111a4a;
+      --diag-node-sub: #1b2d70;
+      --diag-lifeline: #3e5199;
 
-      --diag-text-main: #0f172a;
-      --diag-text-sub: #64748b;
-      --diag-text-data: #334155;
-      --diag-key: #0369a1;
+      --diag-text-main: #111a4a;
+      --diag-text-sub: #1b2d70;
+      --diag-text-data: #1b2d70;
+      --diag-key: #111a4a;
 
-      --diag-step1-method: #0284c7;
-      --diag-step2-ok: #16a34a;
-      --diag-step3-method: #0284c7;
-      --diag-step4-ok: #16a34a;
+      --diag-step1-method: #111a4a;
+      --diag-step2-ok: #167e6c;
+      --diag-step3-method: #1b2d70;
+      --diag-step4-ok: #167e6c;
 
-      --diag-pill-bg: #f1f5f9;
-      --diag-pill-border: #cbd5e1;
-      --diag-pill-text: #334155;
+      --diag-pill-bg: #f8fafc;
+      --diag-pill-border: #3e5199;
+      --diag-pill-text: #1b2d70;
 
-      --diag-server-note-bg: #dcfce7;
-      --diag-server-note-border: #16a34a;
-      --diag-server-note-text: #15803d;
+      --diag-server-note-bg: #e6f7f4;
+      --diag-server-note-border: #167e6c;
+      --diag-server-note-text: #167e6c;
     }
 
     /* Dark Mode (Web Application) */
     html.dark svg, .dark svg {
-      --diag-canvas: #0c1017;
-      --diag-header-tag: #38bdf8;
-      --diag-header-sub: #94a3b8;
+      --diag-canvas: #12161e;
+      --diag-header-tag: #3e5199;
+      --diag-header-sub: #5568ad;
 
-      --diag-node-bg: #141c2c;
-      --diag-node-border: #243049;
-      --diag-node-title: #f8fafc;
-      --diag-node-sub: #94a3b8;
-      --diag-lifeline: #243049;
+      --diag-node-bg: #111a4a15;
+      --diag-node-border: #3e5199;
+      --diag-node-title: #ffffff;
+      --diag-node-sub: #cbd5e1;
+      --diag-lifeline: #3e5199;
 
-      --diag-text-main: #f8fafc;
-      --diag-text-sub: #94a3b8;
+      --diag-text-main: #ffffff;
+      --diag-text-sub: #cbd5e1;
       --diag-text-data: #cbd5e1;
-      --diag-key: #7dd3fc;
+      --diag-key: #5568ad;
 
-      --diag-step1-method: #38bdf8;
-      --diag-step2-ok: #34d399;
-      --diag-step3-method: #38bdf8;
-      --diag-step4-ok: #34d399;
+      --diag-step1-method: #3e5199;
+      --diag-step2-ok: #167e6c;
+      --diag-step3-method: #3e5199;
+      --diag-step4-ok: #167e6c;
 
-      --diag-pill-bg: #131d2e;
-      --diag-pill-border: #24344d;
+      --diag-pill-bg: #0c1017;
+      --diag-pill-border: #3e5199;
       --diag-pill-text: #cbd5e1;
 
-      --diag-server-note-bg: #092117;
-      --diag-server-note-border: #34d399;
-      --diag-server-note-text: #6ee7b7;
+      --diag-server-note-bg: #167e6c15;
+      --diag-server-note-border: #167e6c;
+      --diag-server-note-text: #167e6c;
     }
 
     /* Standalone SVG Viewer */
     @media (prefers-color-scheme: dark) {
-      svg:root {
-        --diag-canvas: #0c1017;
-        --diag-header-tag: #38bdf8;
-        --diag-header-sub: #94a3b8;
+      :root:not(html) {
+        --diag-canvas: #12161e;
+        --diag-header-tag: #3e5199;
+        --diag-header-sub: #5568ad;
 
-        --diag-node-bg: #141c2c;
-        --diag-node-border: #243049;
-        --diag-node-title: #f8fafc;
-        --diag-node-sub: #94a3b8;
-        --diag-lifeline: #243049;
+        --diag-node-bg: #111a4a15;
+        --diag-node-border: #3e5199;
+        --diag-node-title: #ffffff;
+        --diag-node-sub: #cbd5e1;
+        --diag-lifeline: #3e5199;
 
-        --diag-text-main: #f8fafc;
-        --diag-text-sub: #94a3b8;
+        --diag-text-main: #ffffff;
+        --diag-text-sub: #cbd5e1;
         --diag-text-data: #cbd5e1;
-        --diag-key: #7dd3fc;
+        --diag-key: #5568ad;
 
-        --diag-step1-method: #38bdf8;
-        --diag-step2-ok: #34d399;
-        --diag-step3-method: #38bdf8;
-        --diag-step4-ok: #34d399;
+        --diag-step1-method: #3e5199;
+        --diag-step2-ok: #167e6c;
+        --diag-step3-method: #3e5199;
+        --diag-step4-ok: #167e6c;
 
-        --diag-pill-bg: #131d2e;
-        --diag-pill-border: #24344d;
+        --diag-pill-bg: #0c1017;
+        --diag-pill-border: #3e5199;
         --diag-pill-text: #cbd5e1;
 
-        --diag-server-note-bg: #092117;
-        --diag-server-note-border: #34d399;
-        --diag-server-note-text: #6ee7b7;
+        --diag-server-note-bg: #167e6c15;
+        --diag-server-note-border: #167e6c;
+        --diag-server-note-text: #167e6c;
       }
     }
 
@@ -131,14 +131,14 @@
 
   <!-- Client Node Box -->
   <g transform="translate(50, 68)" filter="url(#shadow)">
-    <rect width="160" height="50" rx="8" fill="var(--diag-node-bg)" stroke="#0284c7" stroke-width="1.5" />
+    <rect width="160" height="50" rx="8" fill="var(--diag-node-bg)" stroke="#111a4a" stroke-width="1.5" />
     <text x="80" y="27" class="node-title">Client</text>
     <text x="80" y="42" class="node-sub">(Browser Cookie Jar)</text>
   </g>
 
   <!-- Server Node Box -->
   <g transform="translate(600, 68)" filter="url(#shadow)">
-    <rect width="160" height="50" rx="8" fill="var(--diag-node-bg)" stroke="#16a34a" stroke-width="1.5" />
+    <rect width="160" height="50" rx="8" fill="var(--diag-node-bg)" stroke="#167e6c" stroke-width="1.5" />
     <text x="80" y="27" class="node-title">Server</text>
     <text x="80" y="42" class="node-sub">(Spring Boot App)</text>
   </g>
@@ -150,7 +150,7 @@
       <tspan fill="var(--diag-text-main)"> /login </tspan>
       <tspan fill="var(--diag-text-sub)">(username, password)</tspan>
     </text>
-    <path d="M 0 0 L 550 0" stroke="#0284c7" stroke-width="2" marker-end="url(#arrowBlue)" />
+    <path d="M 0 0 L 550 0" stroke="#3e5199" stroke-width="2" marker-end="url(#arrowBlue)" />
   </g>
 
   <!-- Server Processing Annotation (Step 1) -->
@@ -167,13 +167,13 @@
       <tspan fill="var(--diag-key)" font-weight="700">Set-Cookie:</tspan>
       <tspan fill="var(--diag-text-data)"> sid=abc123xyz; Path=/; Secure; HttpOnly; SameSite=Lax</tspan>
     </text>
-    <path d="M 550 16 L 0 16" stroke="#16a34a" stroke-width="2" marker-start="url(#arrowGreen)" />
+    <path d="M 550 16 L 0 16" stroke="#167e6c" stroke-width="2" marker-start="url(#arrowGreen)" />
   </g>
 
   <!-- Client-side Note: Private Cookie Jar -->
   <g transform="translate(170, 256)" filter="url(#shadow)">
     <rect width="440" height="28" rx="14" fill="var(--diag-pill-bg)" stroke="var(--diag-pill-border)" stroke-width="1" />
-    <circle cx="16" cy="14" r="4" fill="#0284c7" />
+    <circle cx="16" cy="14" r="4" fill="#111a4a" />
     <text x="28" y="18" class="pill-note">[Browser stores cookie in private cookie jar partitioned by host domain]</text>
   </g>
 
@@ -187,7 +187,7 @@
       <tspan fill="var(--diag-key)" font-weight="700">Cookie:</tspan>
       <tspan fill="var(--diag-text-data)"> sid=abc123xyz</tspan>
     </text>
-    <path d="M 0 16 L 550 16" stroke="#0284c7" stroke-width="2" marker-end="url(#arrowBlue)" />
+    <path d="M 0 16 L 550 16" stroke="#3e5199" stroke-width="2" marker-end="url(#arrowBlue)" />
   </g>
 
   <!-- Server Processing Annotation (Step 3) -->
@@ -202,6 +202,6 @@
       <tspan fill="var(--diag-step4-ok)">4. 200 OK</tspan>
       <tspan fill="var(--diag-text-sub)"> (Welcome Alice! User context resolved from Session)</tspan>
     </text>
-    <path d="M 550 0 L 0 0" stroke="#16a34a" stroke-width="2" marker-start="url(#arrowGreen)" />
+    <path d="M 550 0 L 0 0" stroke="#167e6c" stroke-width="2" marker-start="url(#arrowGreen)" />
   </g>
 </svg>

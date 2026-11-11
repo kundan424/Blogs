@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 350" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 350" width="100%" height="auto" preserveAspectRatio="xMidYMid meet">
   <style>
     /* Default: Light Mode */
     svg {
       --diag-canvas: #ffffff;
-      --diag-stroke: #232730;
+      --diag-stroke: #111a4a;
       --diag-title: #111a4a;
       --diag-label: #1b2d70;
       --diag-fill: #167e6c;
@@ -14,9 +14,9 @@
     /* Dark Mode (Web Application) */
     html.dark svg, .dark svg {
       --diag-canvas: #12161e;
-      --diag-stroke: #4575cd;
-      --diag-title: #5568ad;
-      --diag-label: #4575cd;
+      --diag-stroke: #3e5199;
+      --diag-title: #788cd4;
+      --diag-label: #cbd5e1;
       --diag-fill: #167e6c;
       --diag-fill-opacity: 0.6;
       --diag-fill-unselected: #12161e;
@@ -24,11 +24,11 @@
 
     /* Standalone SVG Viewer */
     @media (prefers-color-scheme: dark) {
-      svg:root {
+      :root:not(html) {
         --diag-canvas: #12161e;
-        --diag-stroke: #4575cd;
-        --diag-title: #5568ad;
-        --diag-label: #4575cd;
+        --diag-stroke: #3e5199;
+        --diag-title: #788cd4;
+        --diag-label: #cbd5e1;
         --diag-fill: #167e6c;
         --diag-fill-opacity: 0.6;
         --diag-fill-unselected: #12161e;

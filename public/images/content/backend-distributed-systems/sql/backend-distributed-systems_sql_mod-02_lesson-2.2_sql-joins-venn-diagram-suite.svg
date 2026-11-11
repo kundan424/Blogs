@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" width="100%" height="auto" preserveAspectRatio="xMidYMid meet">
   <defs>
     <clipPath id="clipSuiteInner">
       <circle cx="160" cy="115" r="55" />
@@ -9,10 +9,10 @@
     /* Default: Light Mode */
     svg {
       --diag-canvas: #ffffff;
-      --diag-card-bg: #ffffff;
-      --diag-card-border: #232730;
-      --diag-stroke: #232730;
-      --diag-text: #000000;
+      --diag-card-bg: #f8fafc;
+      --diag-card-border: #cbd5e1;
+      --diag-stroke: #111a4a;
+      --diag-text: #111a4a;
       --diag-title: #111a4a;
       --diag-label: #1b2d70;
       --diag-fill: #167e6c;
@@ -25,34 +25,34 @@
     /* Dark Mode (Web Application) */
     html.dark svg, .dark svg {
       --diag-canvas: #12161e;
-      --diag-card-bg: #080b32;
-      --diag-card-border: #232730;
-      --diag-stroke: #4575cd;
-      --diag-text: #5568ad;
-      --diag-title: #5568ad;
-      --diag-label: #4575cd;
+      --diag-card-bg: #171d2b;
+      --diag-card-border: #243049;
+      --diag-stroke: #3e5199;
+      --diag-text: #f8fafc;
+      --diag-title: #788cd4;
+      --diag-label: #cbd5e1;
       --diag-fill: #167e6c;
       --diag-fill-opacity: 0.6;
-      --diag-fill-unselected: #080b32;
-      --diag-header-title: #5568ad;
-      --diag-header-sub: #4575cd;
+      --diag-fill-unselected: #131b2a;
+      --diag-header-title: #788cd4;
+      --diag-header-sub: #cbd5e1;
     }
 
     /* Standalone SVG Viewer */
     @media (prefers-color-scheme: dark) {
-      svg:root {
+      :root:not(html) {
         --diag-canvas: #12161e;
-        --diag-card-bg: #080b32;
-        --diag-card-border: #232730;
-        --diag-stroke: #4575cd;
-        --diag-text: #5568ad;
-        --diag-title: #5568ad;
-        --diag-label: #4575cd;
+        --diag-card-bg: #171d2b;
+        --diag-card-border: #243049;
+        --diag-stroke: #3e5199;
+        --diag-text: #f8fafc;
+        --diag-title: #788cd4;
+        --diag-label: #cbd5e1;
         --diag-fill: #167e6c;
         --diag-fill-opacity: 0.6;
-        --diag-fill-unselected: #080b32;
-        --diag-header-title: #5568ad;
-        --diag-header-sub: #4575cd;
+        --diag-fill-unselected: #131b2a;
+        --diag-header-title: #788cd4;
+        --diag-header-sub: #cbd5e1;
       }
     }
 
@@ -93,9 +93,9 @@
   <text x="35" y="32" class="suite-header-title">SQL Joins Visual Reference</text>
   <text x="35" y="50" class="suite-header-sub">Venn diagram set operations for relational database joins</text>
 
-  <!-- ========================================================================= -->
+  <!-- ========================================================= -->
   <!-- 1. INNER JOIN (Top-Left) -->
-  <!-- ========================================================================= -->
+  <!-- ========================================================= -->
   <g transform="translate(35, 68)">
     <rect width="430" height="205" rx="8" fill="var(--diag-card-bg)" stroke="var(--diag-card-border)" stroke-width="1.2" />
     <text x="215" y="30" class="join-quad-title">Inner Join</text>
@@ -113,9 +113,9 @@
     </g>
   </g>
 
-  <!-- ========================================================================= -->
+  <!-- ========================================================= -->
   <!-- 2. LEFT JOIN (Top-Right) -->
-  <!-- ========================================================================= -->
+  <!-- ========================================================= -->
   <g transform="translate(495, 68)">
     <rect width="430" height="205" rx="8" fill="var(--diag-card-bg)" stroke="var(--diag-card-border)" stroke-width="1.2" />
     <text x="215" y="30" class="join-quad-title">Left Join</text>
@@ -132,9 +132,9 @@
     </g>
   </g>
 
-  <!-- ========================================================================= -->
+  <!-- ========================================================= -->
   <!-- 3. RIGHT JOIN (Bottom-Left) -->
-  <!-- ========================================================================= -->
+  <!-- ========================================================= -->
   <g transform="translate(35, 290)">
     <rect width="430" height="205" rx="8" fill="var(--diag-card-bg)" stroke="var(--diag-card-border)" stroke-width="1.2" />
     <text x="215" y="30" class="join-quad-title">Right Join</text>
@@ -151,9 +151,9 @@
     </g>
   </g>
 
-  <!-- ========================================================================= -->
+  <!-- ========================================================= -->
   <!-- 4. FULL OUTER JOIN (Bottom-Right) -->
-  <!-- ========================================================================= -->
+  <!-- ========================================================= -->
   <g transform="translate(495, 290)">
     <rect width="430" height="205" rx="8" fill="var(--diag-card-bg)" stroke="var(--diag-card-border)" stroke-width="1.2" />
     <text x="215" y="30" class="join-quad-title">Full Outer Join</text>

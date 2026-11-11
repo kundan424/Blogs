@@ -29,10 +29,11 @@ export const learningPaths: LearningPath[] = [
             id: 'sb-1-1',
             number: '1.1',
             title: 'Maven Architecture & Build Lifecycle (POM, Plugins, Lifecycle Phases)',
+            noteSlug: 'maven-architecture-build-lifecycle-pom-plugins-phases',
             description:
               'Coordinates (groupId, artifactId, version), dependency tree scopes, plugin execution goals, and standard lifecycle phases (compile, test, package, install).',
-            status: 'upcoming',
-            readTime: '10m read',
+            status: 'published',
+            readTime: '20m read',
             topics: ['maven', 'build-tools', 'devops'],
           },
           {

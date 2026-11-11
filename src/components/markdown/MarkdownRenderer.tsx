@@ -15,18 +15,19 @@ type ContentBlock =
   | { type: 'callout'; calloutType: string; title: string; content: string }
   | { type: 'figure'; content: string }
   | { type: 'formula'; title: string; content: string }
-  | { type: 'interactive'; widget: string };
+  | { type: 'interactive'; widget: string }
+  | { type: 'svg'; content: string };
 
 /**
  * Automatically cleans stray LaTeX notation (e.g. \text{...}, \times, $...$)
  * outside code blocks so that unparsed LaTeX math renders as clean text.
  */
 function sanitizeLatexArtifacts(raw: string): string {
-  // Only sanitize outside of triple-backtick code fences
-  const parts = raw.split(/(```[\s\S]*?```)/g);
+  // Only sanitize outside of triple-backtick code fences and raw SVG blocks
+  const parts = raw.split(/(```[\s\S]*?```|<svg[\s\S]*?<\/svg>)/gi);
   return parts
     .map((part, index) => {
-      // Odd indices are code fences: preserve completely as-is
+      // Odd indices are code fences or SVGs: preserve completely as-is
       if (index % 2 === 1) return part;
 
       let cleaned = part;
@@ -89,13 +90,14 @@ function sanitizeLatexArtifacts(raw: string): string {
  */
 function parseContentBlocks(raw: string): ContentBlock[] {
   const blocks: ContentBlock[] = [];
-  // Match :::directive{attrs} ... :::
-  const directiveRegex = /:::(callout|figure|formula|interactive)(?:\{([^}]*)\})?\r?\n([\s\S]*?)\r?\n:::/g;
+  // Match raw <svg ... </svg> OR :::directive{attrs} ... :::
+  const blockRegex =
+    /(<svg[\s\S]*?<\/svg>)|(?:::([a-z]+)(?:\{([^}]*)\})?\r?\n([\s\S]*?)\r?\n:::)/gi;
 
   let lastIndex = 0;
   let match: RegExpExecArray | null;
 
-  while ((match = directiveRegex.exec(raw)) !== null) {
+  while ((match = blockRegex.exec(raw)) !== null) {
     if (match.index > lastIndex) {
       const textBefore = raw.slice(lastIndex, match.index).trim();
       if (textBefore) {
@@ -103,9 +105,19 @@ function parseContentBlocks(raw: string): ContentBlock[] {
       }
     }
 
-    const directiveType = match[1];
-    const attrsString = match[2] || '';
-    const body = match[3];
+    // Direct SVG Block
+    if (match[1]) {
+      blocks.push({
+        type: 'svg',
+        content: match[1],
+      });
+      lastIndex = blockRegex.lastIndex;
+      continue;
+    }
+
+    const directiveType = match[2];
+    const attrsString = match[3] || '';
+    const body = match[4];
 
     const typeMatch = attrsString.match(/type="([^"]+)"/);
     const titleMatch = attrsString.match(/title="([^"]+)"/);
@@ -139,7 +151,7 @@ function parseContentBlocks(raw: string): ContentBlock[] {
       });
     }
 
-    lastIndex = directiveRegex.lastIndex;
+    lastIndex = blockRegex.lastIndex;
   }
 
   if (lastIndex < raw.length) {
@@ -166,6 +178,65 @@ function getNodeText(node: React.ReactNode): string {
   }
   return '';
 }
+
+const InlineSvgOrImg: React.FC<{ src: string; alt?: string; title?: string }> = ({
+  src,
+  alt,
+}) => {
+  const [svgContent, setSvgContent] = React.useState<string | null>(null);
+  const isSvg = src.toLowerCase().includes('.svg');
+
+  React.useEffect(() => {
+    if (!isSvg) return;
+    let isMounted = true;
+    fetch(src)
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.text();
+      })
+      .then((text) => {
+        if (isMounted) {
+          // Normalize outer svg width and height to 100% so it responsively scales to container
+          let cleaned = text;
+          if (/<svg\b[^>]*\bwidth="/i.test(cleaned)) {
+            cleaned = cleaned.replace(/<svg\b([^>]*)\bwidth="[^"]*"/i, '<svg$1 width="100%"');
+          } else {
+            cleaned = cleaned.replace(/<svg\b/i, '<svg width="100%" ');
+          }
+          if (/<svg\b[^>]*\bheight="/i.test(cleaned)) {
+            cleaned = cleaned.replace(/<svg\b([^>]*)\bheight="[^"]*"/i, '<svg$1 height="100%"');
+          } else {
+            cleaned = cleaned.replace(/<svg\b/i, '<svg height="100%" ');
+          }
+          setSvgContent(cleaned);
+        }
+      })
+      .catch((err) => {
+        console.warn('InlineSvg fetch failed, falling back to <img>:', err);
+      });
+    return () => {
+      isMounted = false;
+    };
+  }, [src, isSvg]);
+
+  if (isSvg && svgContent) {
+    return (
+      <div
+        className="w-full h-auto flex justify-center overflow-hidden [&>svg]:w-full [&>svg]:h-auto [&>svg]:max-w-full [&>svg]:block"
+        dangerouslySetInnerHTML={{ __html: svgContent }}
+      />
+    );
+  }
+
+  return (
+    <img
+      src={src}
+      alt={alt || 'Technical architectural diagram'}
+      className="w-full h-auto max-w-full object-contain block"
+      loading="lazy"
+    />
+  );
+};
 
 const markdownComponents: Components = {
   // Headings with dynamic anchor IDs matching Table of Contents
@@ -370,14 +441,9 @@ const markdownComponents: Components = {
         : rawSrc;
 
     return (
-      <figure className="my-8 rounded-[8px] overflow-hidden border border-edge bg-canvas shadow-catalog-edge">
-        <div className="p-3 sm:p-6 flex justify-center bg-canvas">
-          <img
-            src={resolvedSrc}
-            alt={alt || 'Technical architectural diagram'}
-            className="rounded-[6px] max-h-[520px] w-auto object-contain shadow-xs"
-            loading="lazy"
-          />
+      <figure className="my-8 rounded-[8px] overflow-hidden border border-edge bg-white dark:bg-panel shadow-catalog-edge">
+        <div className="w-full flex justify-center bg-white dark:bg-panel p-0 overflow-hidden">
+          <InlineSvgOrImg src={resolvedSrc} alt={alt} title={title} />
         </div>
         {(alt || title) && (
           <figcaption className="p-3 text-center font-mono text-[11px] text-muted-ink border-t border-edge bg-white dark:bg-panel">
@@ -486,7 +552,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
           return (
             <div
               key={idx}
-              className="my-8 rounded-[8px] border border-edge bg-canvas p-4 text-center shadow-catalog-edge"
+              className="my-8 rounded-[8px] border border-edge bg-white dark:bg-panel p-0 text-center shadow-catalog-edge overflow-hidden"
             >
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
@@ -516,6 +582,16 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
                 </ReactMarkdown>
               </div>
             </div>
+          );
+        }
+
+        if (block.type === 'svg') {
+          return (
+            <div
+              key={idx}
+              className="my-8 rounded-[8px] border border-edge bg-white dark:bg-panel p-0 flex justify-center shadow-catalog-edge overflow-hidden [&>svg]:w-full [&>svg]:h-auto [&>svg]:block"
+              dangerouslySetInnerHTML={{ __html: block.content }}
+            />
           );
         }
 

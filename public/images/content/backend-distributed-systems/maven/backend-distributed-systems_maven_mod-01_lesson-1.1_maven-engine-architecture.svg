@@ -1,0 +1,385 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 880" width="100%" height="100%">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.08" />
+    </filter>
+    <marker id="arrowDown" viewBox="0 0 10 10" refX="5" refY="8" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 1.5 0 L 5 9 L 8.5 0 z" fill="var(--diag-arrow)" />
+    </marker>
+    <marker id="arrowRight" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="var(--diag-arrow)" />
+    </marker>
+    <marker id="arrowLeft" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 10 1.5 L 1 5 L 10 8.5 z" fill="var(--diag-arrow)" />
+    </marker>
+    <marker id="miniArrow" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M 0 1 L 6 4 L 0 7 z" fill="var(--diag-phase-arrow)" />
+    </marker>
+  </defs>
+
+  <style>
+    /* Default: Light Mode (Clean White Canvas) */
+    svg {
+      --diag-canvas: #ffffff;
+      --diag-header-tag: #0284c7;
+      --diag-header-sub: #64748b;
+      --diag-arrow: #0284c7;
+      --diag-line: #cbd5e1;
+
+      --diag-top-bg: #f8fafc;
+      --diag-top-border: #0284c7;
+      --diag-top-text: #0f172a;
+
+      --diag-box-bg: #f8fafc;
+      --diag-box-border: #cbd5e1;
+      --diag-box-title: #0f172a;
+      --diag-box-sub: #475569;
+
+      --diag-badge-bg: #e0f2fe;
+      --diag-badge-border: #bae6fd;
+      --diag-badge-text: #0369a1;
+
+      --diag-local-bg: #f0fdf4;
+      --diag-local-border: #16a34a;
+      --diag-local-badge-bg: #dcfce7;
+      --diag-local-badge-text: #15803d;
+
+      --diag-remote-bg: #faf5ff;
+      --diag-remote-border: #9333ea;
+      --diag-remote-badge-bg: #f3e8ff;
+      --diag-remote-badge-text: #7e22ce;
+
+      --diag-phase-bg: #ffffff;
+      --diag-phase-border: #cbd5e1;
+      --diag-phase-text: #0f172a;
+      --diag-phase-arrow: #0284c7;
+
+      --diag-tbl-hdr-bg: #f1f5f9;
+      --diag-tbl-hdr-text: #475569;
+      --diag-tbl-border: #e2e8f0;
+      --diag-tbl-phase: #0369a1;
+      --diag-tbl-goal: #047857;
+      --diag-tbl-desc: #334155;
+      --diag-tbl-row-alt: #f8fafc;
+    }
+
+    /* Dark Mode (Web Application) */
+    html.dark svg, .dark svg {
+      --diag-canvas: #0c1017;
+      --diag-header-tag: #38bdf8;
+      --diag-header-sub: #94a3b8;
+      --diag-arrow: #38bdf8;
+      --diag-line: #243049;
+
+      --diag-top-bg: #141c2c;
+      --diag-top-border: #38bdf8;
+      --diag-top-text: #f8fafc;
+
+      --diag-box-bg: #141a29;
+      --diag-box-border: #243049;
+      --diag-box-title: #f8fafc;
+      --diag-box-sub: #94a3b8;
+
+      --diag-badge-bg: #0d2438;
+      --diag-badge-border: #1d4ed8;
+      --diag-badge-text: #38bdf8;
+
+      --diag-local-bg: #0f2319;
+      --diag-local-border: #34d399;
+      --diag-local-badge-bg: #092117;
+      --diag-local-badge-text: #34d399;
+
+      --diag-remote-bg: #1c1429;
+      --diag-remote-border: #c084fc;
+      --diag-remote-badge-bg: #2b143d;
+      --diag-remote-badge-text: #c084fc;
+
+      --diag-phase-bg: #0e1422;
+      --diag-phase-border: #2a3d5e;
+      --diag-phase-text: #f8fafc;
+      --diag-phase-arrow: #38bdf8;
+
+      --diag-tbl-hdr-bg: #101726;
+      --diag-tbl-hdr-text: #94a3b8;
+      --diag-tbl-border: #1e293b;
+      --diag-tbl-phase: #7dd3fc;
+      --diag-tbl-goal: #6ee7b7;
+      --diag-tbl-desc: #cbd5e1;
+      --diag-tbl-row-alt: #0e131f;
+    }
+
+    /* Standalone SVG Viewer */
+    @media (prefers-color-scheme: dark) {
+      svg:root {
+        --diag-canvas: #0c1017;
+        --diag-header-tag: #38bdf8;
+        --diag-header-sub: #94a3b8;
+        --diag-arrow: #38bdf8;
+        --diag-line: #243049;
+
+        --diag-top-bg: #141c2c;
+        --diag-top-border: #38bdf8;
+        --diag-top-text: #f8fafc;
+
+        --diag-box-bg: #141a29;
+        --diag-box-border: #243049;
+        --diag-box-title: #f8fafc;
+        --diag-box-sub: #94a3b8;
+
+        --diag-badge-bg: #0d2438;
+        --diag-badge-border: #1d4ed8;
+        --diag-badge-text: #38bdf8;
+
+        --diag-local-bg: #0f2319;
+        --diag-local-border: #34d399;
+        --diag-local-badge-bg: #092117;
+        --diag-local-badge-text: #34d399;
+
+        --diag-remote-bg: #1c1429;
+        --diag-remote-border: #c084fc;
+        --diag-remote-badge-bg: #2b143d;
+        --diag-remote-badge-text: #c084fc;
+
+        --diag-phase-bg: #0e1422;
+        --diag-phase-border: #2a3d5e;
+        --diag-phase-text: #f8fafc;
+        --diag-phase-arrow: #38bdf8;
+
+        --diag-tbl-hdr-bg: #101726;
+        --diag-tbl-hdr-text: #94a3b8;
+        --diag-tbl-border: #1e293b;
+        --diag-tbl-phase: #7dd3fc;
+        --diag-tbl-goal: #6ee7b7;
+        --diag-tbl-desc: #cbd5e1;
+        --diag-tbl-row-alt: #0e131f;
+      }
+    }
+
+    .header-tag { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; font-weight: 700; fill: var(--diag-header-tag); letter-spacing: 1.5px; text-transform: uppercase; }
+    .header-sub { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 12px; fill: var(--diag-header-sub); }
+    .top-title { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 14.5px; font-weight: 800; fill: var(--diag-top-text); letter-spacing: 1px; text-anchor: middle; }
+    .box-title { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13.5px; font-weight: 700; fill: var(--diag-box-title); }
+    .box-sub { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11.5px; fill: var(--diag-box-sub); }
+    .badge-pill { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9.5px; font-weight: 700; letter-spacing: 0.5px; }
+    .phase-pill-text { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; font-weight: 700; fill: var(--diag-phase-text); text-anchor: middle; }
+    .th-cell { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; font-weight: 700; fill: var(--diag-tbl-hdr-text); text-transform: uppercase; letter-spacing: 0.5px; }
+    .td-phase { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; font-weight: 600; fill: var(--diag-tbl-phase); }
+    .td-goal { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; font-weight: 600; fill: var(--diag-tbl-goal); }
+    .td-desc { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11.5px; fill: var(--diag-tbl-desc); }
+    .sync-note { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; font-weight: 600; fill: var(--diag-header-tag); text-anchor: middle; }
+  </style>
+
+  <!-- Background Base Canvas -->
+  <rect width="960" height="880" fill="var(--diag-canvas)" />
+
+  <!-- Diagram Title Header -->
+  <text x="35" y="32" class="header-tag">APACHE MAVEN CORE ARCHITECTURE</text>
+  <text x="35" y="48" class="header-sub">Declarative Orchestration Engine: POM Parsing, Dependency Graph Mediation, and Plugin Goal Binding</text>
+
+  <!-- ========================================================================= -->
+  <!-- TOP BANNER: MAVEN ENGINE ARCHITECTURE -->
+  <!-- ========================================================================= -->
+  <g transform="translate(230, 70)" filter="url(#shadow)">
+    <rect width="500" height="42" rx="7" fill="var(--diag-top-bg)" stroke="var(--diag-top-border)" stroke-width="1.5" />
+    <text x="250" y="26" class="top-title">MAVEN ENGINE ARCHITECTURE</text>
+  </g>
+
+  <!-- Flow 1: Top -> Step 1 -->
+  <line x1="480" y1="112" x2="480" y2="136" stroke="var(--diag-arrow)" stroke-width="2" marker-end="url(#arrowDown)" />
+
+  <!-- ========================================================================= -->
+  <!-- STEP 1: PARSE POM.XML & MERGE SUPER POM -->
+  <!-- ========================================================================= -->
+  <g transform="translate(240, 140)" filter="url(#shadow)">
+    <rect width="480" height="74" rx="8" fill="var(--diag-box-bg)" stroke="var(--diag-box-border)" stroke-width="1.5" />
+    
+    <rect x="18" y="14" width="165" height="20" rx="4" fill="var(--diag-badge-bg)" stroke="var(--diag-badge-border)" stroke-width="1" />
+    <text x="100" y="27" text-anchor="middle" class="badge-pill" fill="var(--diag-badge-text)">EFFECTIVE POM BUILDER</text>
+
+    <text x="195" y="28" class="box-title">Parse pom.xml &amp; Merge with Super POM</text>
+    <text x="18" y="54" class="box-sub">Inherits default directories (src/main/java), Super POM repositories, and core plugin versions.</text>
+  </g>
+
+  <!-- Flow 2: Step 1 -> Step 2 -->
+  <line x1="480" y1="214" x2="480" y2="238" stroke="var(--diag-arrow)" stroke-width="2" marker-end="url(#arrowDown)" />
+
+  <!-- ========================================================================= -->
+  <!-- STEP 2: DEPENDENCY RESOLUTION GRAPH -->
+  <!-- ========================================================================= -->
+  <g transform="translate(240, 242)" filter="url(#shadow)">
+    <rect width="480" height="74" rx="8" fill="var(--diag-box-bg)" stroke="var(--diag-box-border)" stroke-width="1.5" />
+    
+    <rect x="18" y="14" width="165" height="20" rx="4" fill="var(--diag-badge-bg)" stroke="var(--diag-badge-border)" stroke-width="1" />
+    <text x="100" y="27" text-anchor="middle" class="badge-pill" fill="var(--diag-badge-text)">CONFLICT MEDIATION</text>
+
+    <text x="195" y="28" class="box-title">Dependency Resolution Graph (DAG)</text>
+    <text x="18" y="54" class="box-sub">Constructs transitive dependency tree; mediates version conflicts ("Nearest Definition First").</text>
+  </g>
+
+  <!-- Flow 3: Step 2 -> Repositories (Split Branch) -->
+  <path d="M 480 316 L 480 334 M 260 334 L 700 334 M 260 334 L 260 350 M 700 334 L 700 350" stroke="var(--diag-arrow)" stroke-width="1.8" fill="none" />
+  <circle cx="480" cy="334" r="3" fill="var(--diag-arrow)" />
+  <circle cx="260" cy="350" r="3" fill="var(--diag-arrow)" />
+  <circle cx="700" cy="350" r="3" fill="var(--diag-arrow)" />
+
+  <!-- ========================================================================= -->
+  <!-- STEP 3: DUAL REPOSITORY LAYER -->
+  <!-- ========================================================================= -->
+
+  <!-- Left: Local Repository -->
+  <g transform="translate(90, 355)" filter="url(#shadow)">
+    <rect width="340" height="84" rx="8" fill="var(--diag-local-bg)" stroke="var(--diag-local-border)" stroke-width="1.5" />
+    
+    <rect x="16" y="14" width="130" height="20" rx="4" fill="var(--diag-local-badge-bg)" stroke="var(--diag-local-border)" stroke-width="1" />
+    <text x="81" y="27" text-anchor="middle" class="badge-pill" fill="var(--diag-local-badge-text)">LOCAL CACHE (~/.m2)</text>
+
+    <text x="156" y="28" class="box-title">Local Repository</text>
+    <text x="16" y="52" class="box-sub">Cached JAR artifacts on disk (~/.m2/repository).</text>
+    <text x="16" y="68" class="box-sub">Fast lookup for subsequent builds &amp; local installs.</text>
+  </g>
+
+  <!-- Bi-Directional Sync Flow Between Local & Remote -->
+  <g transform="translate(434, 385)">
+    <line x1="12" y1="12" x2="84" y2="12" stroke="var(--diag-arrow)" stroke-width="2" marker-start="url(#arrowLeft)" marker-end="url(#arrowRight)" />
+    <rect x="6" y="-8" width="84" height="16" rx="3" fill="var(--diag-canvas)" />
+    <text x="48" y="4" class="sync-note">FETCH / SYNC</text>
+  </g>
+
+  <!-- Right: Remote Repository -->
+  <g transform="translate(530, 355)" filter="url(#shadow)">
+    <rect width="340" height="84" rx="8" fill="var(--diag-remote-bg)" stroke="var(--diag-remote-border)" stroke-width="1.5" />
+    
+    <rect x="16" y="14" width="130" height="20" rx="4" fill="var(--diag-remote-badge-bg)" stroke="var(--diag-remote-border)" stroke-width="1" />
+    <text x="81" y="27" text-anchor="middle" class="badge-pill" fill="var(--diag-remote-badge-text)">REMOTE REGISTRY</text>
+
+    <text x="156" y="28" class="box-title">Remote Repository</text>
+    <text x="16" y="52" class="box-sub">Maven Central / Nexus / Artifactory server.</text>
+    <text x="16" y="68" class="box-sub">Upstream source of truth for dependencies &amp; plugins.</text>
+  </g>
+
+  <!-- Flow 4: Converge from Repositories -> Lifecycle Engine -->
+  <path d="M 260 439 L 260 460 L 480 460 M 700 439 L 700 460 L 480 460 M 480 460 L 480 488" stroke="var(--diag-arrow)" stroke-width="1.8" fill="none" marker-end="url(#arrowDown)" />
+  <circle cx="480" cy="460" r="3" fill="var(--diag-arrow)" />
+
+  <!-- ========================================================================= -->
+  <!-- STEP 4: LIFECYCLE EXECUTION ENGINE -->
+  <!-- ========================================================================= -->
+  <g transform="translate(75, 492)" filter="url(#shadow)">
+    <rect width="810" height="98" rx="8" fill="var(--diag-box-bg)" stroke="var(--diag-box-border)" stroke-width="1.5" />
+    
+    <rect x="18" y="14" width="170" height="20" rx="4" fill="var(--diag-badge-bg)" stroke="var(--diag-badge-border)" stroke-width="1" />
+    <text x="103" y="27" text-anchor="middle" class="badge-pill" fill="var(--diag-badge-text)">ORDERED PHASE PIPELINE</text>
+
+    <text x="200" y="28" class="box-title">Lifecycle Execution Engine (Default Lifecycle Pipeline)</text>
+
+    <!-- Phase progression pills -->
+    <g transform="translate(20, 48)">
+      <!-- validate -->
+      <rect x="0" y="0" width="85" height="30" rx="5" fill="var(--diag-phase-bg)" stroke="var(--diag-phase-border)" stroke-width="1.2" />
+      <text x="42" y="19" class="phase-pill-text">validate</text>
+      <line x1="88" y1="15" x2="104" y2="15" stroke="var(--diag-phase-arrow)" stroke-width="1.5" marker-end="url(#miniArrow)" />
+
+      <!-- compile -->
+      <rect x="110" y="0" width="85" height="30" rx="5" fill="var(--diag-phase-bg)" stroke="var(--diag-phase-border)" stroke-width="1.2" />
+      <text x="152" y="19" class="phase-pill-text">compile</text>
+      <line x1="198" y1="15" x2="214" y2="15" stroke="var(--diag-phase-arrow)" stroke-width="1.5" marker-end="url(#miniArrow)" />
+
+      <!-- test -->
+      <rect x="220" y="0" width="85" height="30" rx="5" fill="var(--diag-phase-bg)" stroke="var(--diag-phase-border)" stroke-width="1.2" />
+      <text x="262" y="19" class="phase-pill-text">test</text>
+      <line x1="308" y1="15" x2="324" y2="15" stroke="var(--diag-phase-arrow)" stroke-width="1.5" marker-end="url(#miniArrow)" />
+
+      <!-- package -->
+      <rect x="330" y="0" width="90" height="30" rx="5" fill="var(--diag-phase-bg)" stroke="var(--diag-phase-border)" stroke-width="1.2" />
+      <text x="375" y="19" class="phase-pill-text">package</text>
+      <line x1="423" y1="15" x2="439" y2="15" stroke="var(--diag-phase-arrow)" stroke-width="1.5" marker-end="url(#miniArrow)" />
+
+      <!-- verify -->
+      <rect x="445" y="0" width="85" height="30" rx="5" fill="var(--diag-phase-bg)" stroke="var(--diag-phase-border)" stroke-width="1.2" />
+      <text x="487" y="19" class="phase-pill-text">verify</text>
+      <line x1="533" y1="15" x2="549" y2="15" stroke="var(--diag-phase-arrow)" stroke-width="1.5" marker-end="url(#miniArrow)" />
+
+      <!-- install -->
+      <rect x="555" y="0" width="85" height="30" rx="5" fill="var(--diag-phase-bg)" stroke="var(--diag-phase-border)" stroke-width="1.2" />
+      <text x="597" y="19" class="phase-pill-text">install</text>
+      <line x1="643" y1="15" x2="659" y2="15" stroke="var(--diag-phase-arrow)" stroke-width="1.5" marker-end="url(#miniArrow)" />
+
+      <!-- deploy -->
+      <rect x="665" y="0" width="85" height="30" rx="5" fill="var(--diag-phase-bg)" stroke="var(--diag-phase-border)" stroke-width="1.2" />
+      <text x="707" y="19" class="phase-pill-text">deploy</text>
+    </g>
+  </g>
+
+  <!-- Flow 5: Lifecycle Engine -> Plugin Binding Manager -->
+  <line x1="480" y1="590" x2="480" y2="618" stroke="var(--diag-arrow)" stroke-width="2" marker-end="url(#arrowDown)" />
+
+  <!-- ========================================================================= -->
+  <!-- STEP 5: PLUGIN BINDING MANAGER (TABLE) -->
+  <!-- ========================================================================= -->
+  <g transform="translate(75, 622)" filter="url(#shadow)">
+    <rect width="810" height="236" rx="8" fill="var(--diag-box-bg)" stroke="var(--diag-box-border)" stroke-width="1.5" />
+    
+    <!-- Table Header Background -->
+    <path d="M 0 8 Q 0 0 8 0 L 802 0 Q 810 0 810 8 L 810 36 L 0 36 Z" fill="var(--diag-tbl-hdr-bg)" />
+    <line x1="0" y1="36" x2="810" y2="36" stroke="var(--diag-tbl-border)" stroke-width="1.2" />
+
+    <!-- Column Dividers -->
+    <line x1="190" y1="0" x2="190" y2="236" stroke="var(--diag-tbl-border)" stroke-width="1" />
+    <line x1="470" y1="0" x2="470" y2="236" stroke="var(--diag-tbl-border)" stroke-width="1" />
+
+    <!-- Table Column Headers -->
+    <text x="20" y="23" class="th-cell">LIFECYCLE PHASE</text>
+    <text x="205" y="23" class="th-cell">EXECUTING PLUGIN GOAL</text>
+    <text x="485" y="23" class="th-cell">CORE ACTION PERFORMED</text>
+
+    <!-- Row 1: process-resources -->
+    <g transform="translate(0, 36)">
+      <text x="20" y="22" class="td-phase">process-resources</text>
+      <text x="205" y="22" class="td-goal">maven-resources:resources</text>
+      <text x="485" y="22" class="td-desc">Copies &amp; filters resource files into target/classes</text>
+      <line x1="0" y1="33" x2="810" y2="33" stroke="var(--diag-tbl-border)" stroke-width="1" />
+    </g>
+
+    <!-- Row 2: compile -->
+    <g transform="translate(0, 69)">
+      <rect width="810" height="33" fill="var(--diag-tbl-row-alt)" />
+      <text x="20" y="22" class="td-phase">compile</text>
+      <text x="205" y="22" class="td-goal">maven-compiler:compile</text>
+      <text x="485" y="22" class="td-desc">Compiles production source code using JDK javac</text>
+      <line x1="0" y1="33" x2="810" y2="33" stroke="var(--diag-tbl-border)" stroke-width="1" />
+    </g>
+
+    <!-- Row 3: test-compile -->
+    <g transform="translate(0, 102)">
+      <text x="20" y="22" class="td-phase">test-compile</text>
+      <text x="205" y="22" class="td-goal">maven-compiler:testCompile</text>
+      <text x="485" y="22" class="td-desc">Compiles test source classes (src/test/java)</text>
+      <line x1="0" y1="33" x2="810" y2="33" stroke="var(--diag-tbl-border)" stroke-width="1" />
+    </g>
+
+    <!-- Row 4: test -->
+    <g transform="translate(0, 135)">
+      <rect width="810" height="33" fill="var(--diag-tbl-row-alt)" />
+      <text x="20" y="22" class="td-phase">test</text>
+      <text x="205" y="22" class="td-goal">maven-surefire:test</text>
+      <text x="485" y="22" class="td-desc">Executes unit tests in isolated forked JVM (JUnit / TestNG)</text>
+      <line x1="0" y1="33" x2="810" y2="33" stroke="var(--diag-tbl-border)" stroke-width="1" />
+    </g>
+
+    <!-- Row 5: package -->
+    <g transform="translate(0, 168)">
+      <text x="20" y="22" class="td-phase">package</text>
+      <text x="205" y="22" class="td-goal">maven-jar:jar</text>
+      <text x="485" y="22" class="td-desc">Packages compiled class files and MANIFEST.MF into .jar file</text>
+      <line x1="0" y1="33" x2="810" y2="33" stroke="var(--diag-tbl-border)" stroke-width="1" />
+    </g>
+
+    <!-- Row 6: install -->
+    <g transform="translate(0, 201)">
+      <rect width="810" height="35" rx="0" fill="var(--diag-tbl-row-alt)" />
+      <text x="20" y="22" class="td-phase">install</text>
+      <text x="205" y="22" class="td-goal">maven-install:install</text>
+      <text x="485" y="22" class="td-desc">Installs packaged artifact into ~/.m2/repository for local reuse</text>
+    </g>
+  </g>
+</svg>

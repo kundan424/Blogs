@@ -1,0 +1,244 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" width="100%" height="100%">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.08" />
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="var(--diag-arrow-indigo)" />
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="var(--diag-arrow-green)" />
+    </marker>
+  </defs>
+
+  <style>
+    /* Default: Light Mode */
+    svg {
+      --diag-canvas: #ffffff;
+      --diag-header-tag: #ea580c;
+      --diag-header-sub: #64748b;
+      --diag-text-title: #0f172a;
+      --diag-text-sub: #64748b;
+      --diag-text-badge: #4338ca;
+
+      --diag-box-bg: #f8fafc;
+      --diag-box-border: #cbd5e1;
+      --diag-box-inner: #ffffff;
+      --diag-box-inner-border: #e2e8f0;
+
+      --diag-front-bg: #fff7ed;
+      --diag-front-border: #ea580c;
+      --diag-front-inner: #ffffff;
+
+      --diag-app-bg: #f0fdf4;
+      --diag-app-border: #16a34a;
+      --diag-app-inner: #ffffff;
+      --diag-app-text: #15803d;
+
+      --diag-ioc-bg: #faf5ff;
+      --diag-ioc-border: #8b5cf6;
+      --diag-ioc-inner: #ffffff;
+      --diag-ioc-hdr-bg: #ede9fe;
+      --diag-ioc-hdr-text: #6d28d9;
+
+      --diag-arrow-indigo: #6366f1;
+      --diag-arrow-green: #16a34a;
+    }
+
+    /* Dark Mode (Web Application) */
+    html.dark svg, .dark svg {
+      --diag-canvas: #0c1017;
+      --diag-header-tag: #fb923c;
+      --diag-header-sub: #94a3b8;
+      --diag-text-title: #f8fafc;
+      --diag-text-sub: #94a3b8;
+      --diag-text-badge: #a5b4fc;
+
+      --diag-box-bg: #141a29;
+      --diag-box-border: #1e293b;
+      --diag-box-inner: #0f1523;
+      --diag-box-inner-border: #24344d;
+
+      --diag-front-bg: #2a1810;
+      --diag-front-border: #ea580c;
+      --diag-front-inner: #1c100a;
+
+      --diag-app-bg: #0e2017;
+      --diag-app-border: #22c55e;
+      --diag-app-inner: #0a1710;
+      --diag-app-text: #4ade80;
+
+      --diag-ioc-bg: #1c142b;
+      --diag-ioc-border: #8b5cf6;
+      --diag-ioc-inner: #130d20;
+      --diag-ioc-hdr-bg: #271a3d;
+      --diag-ioc-hdr-text: #c4b5fd;
+
+      --diag-arrow-indigo: #818cf8;
+      --diag-arrow-green: #4ade80;
+    }
+
+    /* Standalone SVG Viewer */
+    @media (prefers-color-scheme: dark) {
+      svg:root {
+        --diag-canvas: #0c1017;
+        --diag-header-tag: #fb923c;
+        --diag-header-sub: #94a3b8;
+        --diag-text-title: #f8fafc;
+        --diag-text-sub: #94a3b8;
+        --diag-text-badge: #a5b4fc;
+
+        --diag-box-bg: #141a29;
+        --diag-box-border: #1e293b;
+        --diag-box-inner: #0f1523;
+        --diag-box-inner-border: #24344d;
+
+        --diag-front-bg: #2a1810;
+        --diag-front-border: #ea580c;
+        --diag-front-inner: #1c100a;
+
+        --diag-app-bg: #0e2017;
+        --diag-app-border: #22c55e;
+        --diag-app-inner: #0a1710;
+        --diag-app-text: #4ade80;
+
+        --diag-ioc-bg: #1c142b;
+        --diag-ioc-border: #8b5cf6;
+        --diag-ioc-inner: #130d20;
+        --diag-ioc-hdr-bg: #271a3d;
+        --diag-ioc-hdr-text: #c4b5fd;
+
+        --diag-arrow-indigo: #818cf8;
+        --diag-arrow-green: #4ade80;
+      }
+    }
+
+    .title { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; font-weight: 600; fill: var(--diag-text-title); letter-spacing: 0.5px; }
+    .subtitle { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11.5px; fill: var(--diag-text-sub); }
+    .header { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; font-weight: 700; fill: var(--diag-header-tag); text-transform: uppercase; letter-spacing: 1.5px; }
+    .solid-arrow { stroke: var(--diag-arrow-indigo); stroke-width: 2; fill: none; marker-end: url(#arrow); }
+    .badge { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; font-weight: 600; fill: var(--diag-text-badge); }
+  </style>
+
+  <!-- Background Canvas -->
+  <rect width="960" height="520" fill="var(--diag-canvas)" />
+
+  <!-- Diagram Title Header -->
+  <text x="40" y="38" class="header">ANATOMY OF SPRING BOOT RUNTIME EXECUTION</text>
+  <text x="40" y="58" class="subtitle" font-size="13px">End-to-end request lifecycle through embedded Tomcat, DispatcherServlet, and IoC Container</text>
+
+  <!-- Step 01: Client Request Ingress -->
+  <g transform="translate(40, 85)" filter="url(#shadow)">
+    <rect width="130" height="135" rx="10" fill="var(--diag-box-bg)" stroke="var(--diag-box-border)" stroke-width="1.5" />
+    <circle cx="65" cy="40" r="18" fill="var(--diag-box-inner)" stroke="#ea580c" stroke-width="1.5" />
+    <text x="65" y="45" text-anchor="middle" font-family="monospace" font-size="13" font-weight="700" fill="#ea580c">HTTP</text>
+    <text x="65" y="80" text-anchor="middle" class="title">Client Request</text>
+    <text x="65" y="98" text-anchor="middle" class="subtitle">REST / JSON</text>
+    <text x="65" y="116" text-anchor="middle" class="badge">:8080</text>
+  </g>
+
+  <!-- Arrow 1 -> 2 -->
+  <path d="M 170 152 L 210 152" class="solid-arrow" />
+
+  <!-- Step 02: Embedded Web Container (Tomcat / Netty) -->
+  <g transform="translate(210, 78)" filter="url(#shadow)">
+    <rect width="170" height="150" rx="10" fill="var(--diag-box-bg)" stroke="var(--diag-box-border)" stroke-width="1.5" />
+    <rect x="12" y="12" width="146" height="24" rx="6" fill="var(--diag-box-inner)" stroke="var(--diag-box-inner-border)" stroke-width="1" />
+    <text x="85" y="28" text-anchor="middle" class="header" fill="#ea580c">01. Web Server</text>
+    <text x="85" y="65" text-anchor="middle" class="title">Embedded Tomcat</text>
+    <text x="85" y="85" text-anchor="middle" class="subtitle">Worker Thread Pool</text>
+    <rect x="25" y="104" width="120" height="26" rx="6" fill="var(--diag-box-inner)" stroke="var(--diag-box-inner-border)" stroke-width="1" />
+    <text x="85" y="121" text-anchor="middle" class="subtitle" font-weight="600">FilterChainProxy</text>
+  </g>
+
+  <!-- Arrow 2 -> 3 -->
+  <path d="M 380 152 L 420 152" class="solid-arrow" />
+
+  <!-- Step 03: Core DispatcherServlet -->
+  <g transform="translate(420, 70)" filter="url(#shadow)">
+    <rect width="230" height="168" rx="10" fill="var(--diag-front-bg)" stroke="var(--diag-front-border)" stroke-width="1.5" />
+    <rect x="12" y="12" width="206" height="24" rx="6" fill="var(--diag-front-inner)" />
+    <text x="115" y="28" text-anchor="middle" class="header" fill="#ea580c">02. Front Controller</text>
+    <text x="115" y="63" text-anchor="middle" class="title" font-size="14px">DispatcherServlet</text>
+    <text x="115" y="82" text-anchor="middle" class="subtitle">Central Request Orchestration</text>
+    
+    <g transform="translate(18, 98)">
+      <rect width="92" height="52" rx="6" fill="var(--diag-front-inner)" stroke="var(--diag-front-border)" stroke-width="1" />
+      <text x="46" y="22" text-anchor="middle" class="title" font-size="11px">Handler</text>
+      <text x="46" y="38" text-anchor="middle" class="subtitle" font-size="10px">Mapping</text>
+    </g>
+    <g transform="translate(120, 98)">
+      <rect width="92" height="52" rx="6" fill="var(--diag-front-inner)" stroke="var(--diag-front-border)" stroke-width="1" />
+      <text x="46" y="22" text-anchor="middle" class="title" font-size="11px">Handler</text>
+      <text x="46" y="38" text-anchor="middle" class="subtitle" font-size="10px">Adapter</text>
+    </g>
+  </g>
+
+  <!-- Arrow 3 -> 4 -->
+  <path d="M 650 152 L 690 152" class="solid-arrow" />
+
+  <!-- Step 04: Controllers & Business Layer -->
+  <g transform="translate(690, 70)" filter="url(#shadow)">
+    <rect width="230" height="168" rx="10" fill="var(--diag-app-bg)" stroke="var(--diag-app-border)" stroke-width="1.5" />
+    <rect x="12" y="12" width="206" height="24" rx="6" fill="var(--diag-app-inner)" />
+    <text x="115" y="28" text-anchor="middle" class="header" fill="var(--diag-app-text)">03. Application Beans</text>
+    
+    <g transform="translate(15, 46)">
+      <rect width="200" height="30" rx="6" fill="var(--diag-app-inner)" stroke="var(--diag-app-border)" stroke-width="1" />
+      <text x="100" y="66" text-anchor="middle" class="title" font-size="12px">@RestController</text>
+    </g>
+    <g transform="translate(15, 84)">
+      <rect width="200" height="30" rx="6" fill="var(--diag-app-inner)" stroke="var(--diag-app-border)" stroke-width="0.8" />
+      <text x="100" y="104" text-anchor="middle" class="title" font-size="12px">@Service (Business Logic)</text>
+    </g>
+    <g transform="translate(15, 122)">
+      <rect width="200" height="30" rx="6" fill="var(--diag-app-inner)" stroke="var(--diag-app-border)" stroke-width="0.8" />
+      <text x="100" y="142" text-anchor="middle" class="title" font-size="12px">@Repository (Spring Data)</text>
+    </g>
+  </g>
+
+  <!-- Downward Arrow from Dispatcher to IoC Container -->
+  <path d="M 535 238 L 535 295" class="solid-arrow" />
+
+  <!-- BOTTOM SECTION: SPRING APPLICATION CONTEXT & AUTO-CONFIGURATION ENGINE -->
+  <g transform="translate(40, 298)" filter="url(#shadow)">
+    <rect width="880" height="185" rx="12" fill="var(--diag-ioc-bg)" stroke="var(--diag-ioc-border)" stroke-width="1.5" />
+    
+    <!-- Context Header -->
+    <rect x="16" y="14" width="848" height="26" rx="6" fill="var(--diag-ioc-hdr-bg)" />
+    <text x="440" y="31" text-anchor="middle" class="header" fill="var(--diag-ioc-hdr-text)">
+      SPRING APPLICATIONCONTEXT (IoC &amp; AUTO-CONFIGURATION ENGINE)
+    </text>
+
+    <!-- Sub-Box 1: Auto-Configuration Engine -->
+    <g transform="translate(24, 52)">
+      <rect width="260" height="115" rx="8" fill="var(--diag-ioc-inner)" stroke="var(--diag-ioc-border)" stroke-width="1" />
+      <text x="130" y="24" text-anchor="middle" class="title" font-size="12px">Auto-Configuration Imports</text>
+      <text x="130" y="46" text-anchor="middle" class="subtitle">AutoConfiguration.imports</text>
+      <text x="130" y="66" text-anchor="middle" class="subtitle">@ConditionalOnClass</text>
+      <text x="130" y="86" text-anchor="middle" class="subtitle">@ConditionalOnMissingBean</text>
+      <rect x="50" y="94" width="160" height="14" rx="3" fill="var(--diag-ioc-hdr-bg)" />
+      <text x="130" y="105" text-anchor="middle" class="badge" fill="var(--diag-ioc-hdr-text)" font-size="9px">ConditionEvaluationReport</text>
+    </g>
+
+    <!-- Sub-Box 2: Bean Lifecycle & DI -->
+    <g transform="translate(310, 52)">
+      <rect width="260" height="115" rx="8" fill="var(--diag-ioc-inner)" stroke="var(--diag-ioc-border)" stroke-width="1" />
+      <text x="130" y="24" text-anchor="middle" class="title" font-size="12px">BeanFactory &amp; Lifecycle</text>
+      <text x="130" y="46" text-anchor="middle" class="subtitle">1. BeanDefinitionRegistry</text>
+      <text x="130" y="66" text-anchor="middle" class="subtitle">2. BeanPostProcessor (BPP)</text>
+      <text x="130" y="86" text-anchor="middle" class="subtitle">3. @PostConstruct / InitializingBean</text>
+      <text x="130" y="105" text-anchor="middle" class="badge">Singleton Scope Cache</text>
+    </g>
+
+    <!-- Sub-Box 3: Actuator & Observability -->
+    <g transform="translate(596, 52)">
+      <rect width="260" height="115" rx="8" fill="var(--diag-ioc-inner)" stroke="var(--diag-ioc-border)" stroke-width="1" />
+      <text x="130" y="24" text-anchor="middle" class="title" font-size="12px">Production Observability</text>
+      <text x="130" y="46" text-anchor="middle" class="subtitle">Micrometer &amp; Actuator Endpoints</text>
+      <text x="130" y="66" text-anchor="middle" class="subtitle">/actuator/health (Liveness/Readiness)</text>
+      <text x="130" y="86" text-anchor="middle" class="subtitle">/actuator/metrics &amp; Prometheus</text>
+      <text x="130" y="105" text-anchor="middle" class="badge">HikariPool &amp; JVM Telemetry</text>
+    </g>
+  </g>
+</svg>

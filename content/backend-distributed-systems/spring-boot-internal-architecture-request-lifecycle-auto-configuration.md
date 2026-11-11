@@ -65,7 +65,7 @@ public class TomcatServerConfiguration {
 Once Tomcat accepts a socket request, execution is routed directly into Spring MVC's central front controller: the `DispatcherServlet`.
 
 :::figure
-![Spring Boot Runtime Execution Architecture](/images/content/spring-boot-architecture.svg)
+![Spring Boot Runtime Execution Architecture](/images/content/backend-distributed-systems/spring-boot/backend-distributed-systems_spring-boot_mod-08_lesson-8.1_runtime-execution-architecture.svg)
 *Figure 01: Complete architectural flow from embedded Tomcat worker threads through DispatcherServlet, HandlerAdapter, and the Spring IoC ApplicationContext.*
 :::
 

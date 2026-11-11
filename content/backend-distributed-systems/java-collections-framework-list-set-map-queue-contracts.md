@@ -31,7 +31,7 @@ An engineering reference manual dissecting the internal algorithms, CPU cache lo
 
 The Java Collections Framework (JCF) is organized into two distinct interface hierarchies rooted in `java.lang.Iterable` and `java.util.Map`.
 
-![Java Collections Framework Type Hierarchy](/images/content/java-collections-framework-taxonomy.svg)
+![Java Collections Framework Type Hierarchy](/images/content/backend-distributed-systems/java/backend-distributed-systems_java_mod-02_lesson-2.1_collections-framework-taxonomy.svg)
 
 ### Fail-Fast vs. Fail-Safe Iteration Mechanics
 
@@ -58,7 +58,7 @@ final class Itr implements Iterator<E> {
 
 ## 02. The List Hierarchy: Memory Locality vs. Pointer Indirection
 
-![ArrayList Contiguous Memory Locality vs. LinkedList Pointer Chasing](/images/content/java-collections-memory-locality-arraylist-vs-linkedlist.svg)
+![ArrayList Contiguous Memory Locality vs. LinkedList Pointer Chasing](/images/content/backend-distributed-systems/java/backend-distributed-systems_java_mod-02_lesson-2.1_memory-locality-arraylist-vs-linkedlist.svg)
 
 ### 1. `ArrayList` Mechanics & Resizing Algorithm
 
@@ -121,7 +121,7 @@ public boolean add(E e) {
 
 The `Map` interface represents key-value associations. `HashMap` is the bedrock of Java backend data processing.
 
-![HashMap Table Structure, Collision Chaining and Bucket Treeification](/images/content/java-collections-hashmap-treeification-internals.svg)
+![HashMap Table Structure, Collision Chaining and Bucket Treeification](/images/content/backend-distributed-systems/java/backend-distributed-systems_java_mod-02_lesson-2.1_hashmap-treeification-internals.svg)
 
 ### 1. Hash Perturbation Function & Bitwise Indexing
 
@@ -300,7 +300,7 @@ Mathematical Index Navigation:
 
 ### 3. Concurrent Queue Architectures
 
-![ArrayBlockingQueue Single Lock vs. LinkedBlockingQueue Dual Lock Topologies](/images/content/java-collections-queue-lock-topologies.svg)
+![ArrayBlockingQueue Single Lock vs. LinkedBlockingQueue Dual Lock Topologies](/images/content/backend-distributed-systems/java/backend-distributed-systems_java_mod-02_lesson-2.1_queue-lock-topologies.svg)
 
 1. **`ArrayBlockingQueue`:** Bounded array buffer protected by a **single shared `ReentrantLock`** with two condition variables (`notEmpty`, `notFull`). Produces lock contention between consumers and producers.
 2. **`LinkedBlockingQueue`:** Uses **two distinct locks**: `putLock` for insertions and `takeLock` for removals. Producers and consumers operate simultaneously without contention until the queue is completely full or empty.

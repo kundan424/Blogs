@@ -29,9 +29,33 @@ When writing technical notes inside your editor, type `/` to trigger the in-line
 4. Press `Tab` $\rightarrow$ Your cursor lands on the body text. Type `Under 5k req/sec surges, exceeding 64 connections exhausts kernel page cache.`.
 5. Press `Tab` $\rightarrow$ Your cursor exits the block, ready for your next paragraph.
 
-### Example: `/code`
-1. Type `/code` and press `Enter`.
-2. Select **`sql`** from the language choices.
-3. Press `Tab` $\rightarrow$ Type `pg_stat_activity.sql`.
-4. Press `Tab` $\rightarrow$ Specify line highlights (e.g. `1-3`) or delete.
-5. Press `Tab` $\rightarrow$ Paste your SQL query.
+### Example: `/image`
+1. Type `/image` and press `Enter`.
+2. Enter the Alt Text describing the diagram.
+3. Path follows the standardized asset organization:
+   `/images/content/<subject>/<topic>/<subject>_<topic>_mod-<module>_lesson-<article>_<description>.svg`
+4. Enter Figure number and descriptive caption.
+
+---
+
+## Architectural Diagram & SVG Organization Standard
+
+All vector SVG diagrams and illustrations live under `/public/images/content/` organized by subject, topic, module, and lesson number:
+
+```text
+public/images/content/
+└── <subject-slug>/
+    └── <topic-slug>/
+        └── <subject>_<topic>_mod-<XX>_lesson-<Y.Z>_<what-it-is>.svg
+```
+
+### Hierarchy Breakdown
+
+| Token | Description | Example |
+| :--- | :--- | :--- |
+| `<subject>` | Knowledge domain directory | `backend-distributed-systems`, `devops-cloud-infrastructure` |
+| `<topic>` | Engineering topic directory | `java`, `spring-boot`, `http`, `docker` |
+| `mod-<XX>` | Two-digit learning path module | `mod-01`, `mod-02`, `mod-08` |
+| `lesson-<Y.Z>` | Exact lesson / article coordinate | `lesson-1.1`, `lesson-1.2`, `lesson-2.1`, `lesson-8.1` |
+| `<what-it-is>` | Kebab-case semantic diagram summary | `collections-framework-taxonomy`, `container-vs-vm-architecture` |
+

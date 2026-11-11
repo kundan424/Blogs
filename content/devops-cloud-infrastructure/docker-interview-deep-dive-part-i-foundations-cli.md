@@ -32,7 +32,7 @@ An enterprise DevOps and systems engineering interview manual analyzing the Linu
 **Question:** How do containers differ from hypervisor-based Virtual Machines at the OS kernel, hypervisor, and hardware levels?
 :::
 
-![Container vs. Virtual Machine Architectural Topology](/images/content/container-vs-vm-architecture.svg)
+![Container vs. Virtual Machine Architectural Topology](/images/content/devops-cloud-infrastructure/docker/devops-cloud-infrastructure_docker_mod-01_lesson-1.1_container-vs-vm-architecture.svg)
 
 ### Mechanical Breakdown
 - **Virtual Machines (Hardware-Level Virtualization)**:
@@ -96,7 +96,7 @@ A **Container** is a live, dynamic instance of an image. At the kernel level, cr
 **Question:** Explain the roles of the Docker Client (CLI), Docker Daemon (`dockerd`), and Docker Registries.
 :::
 
-![Docker Engine Client-Daemon-Registry Architecture](/images/content/docker-architecture-client-daemon-registry.svg)
+![Docker Engine Client-Daemon-Registry Architecture](/images/content/devops-cloud-infrastructure/docker/devops-cloud-infrastructure_docker_mod-01_lesson-1.1_architecture-client-daemon-registry.svg)
 
 1. **Docker Client (`docker`)**:
    A lightweight command-line interface and REST client. It does **no container execution or image building itself**. When you type `docker run`, it serializes the parameters into an HTTP REST request and dispatches it to the daemon over a local Unix domain socket (`/var/run/docker.sock`) or secure remote mutual-TLS TCP socket (`tcp://0.0.0.0:2376`).
@@ -118,7 +118,7 @@ A **Container** is a live, dynamic instance of an image. At the kernel level, cr
 **Question:** What happens to the underlying filesystem when a container writes to a file that belongs to an immutable base image?
 :::
 
-![Overlay2 UnionFS & Copy-on-Write Mechanics](/images/content/docker-image-layers-copy-on-write.svg)
+![Overlay2 UnionFS & Copy-on-Write Mechanics](/images/content/devops-cloud-infrastructure/docker/devops-cloud-infrastructure_docker_mod-01_lesson-1.1_image-layers-copy-on-write.svg)
 
 Docker uses the Linux kernel's **Overlay2** union filesystem driver to merge multiple directory trees into a single coherent view.
 
@@ -319,7 +319,7 @@ docker run --rm --env-file .env -e APP_ENV=development alpine printenv APP_ENV
 **Question:** What is the difference between Volumes, Bind Mounts, and `tmpfs` mounts?
 :::
 
-![Docker Storage Mount Topologies](/images/content/docker-storage-mount-types.svg)
+![Docker Storage Mount Topologies](/images/content/devops-cloud-infrastructure/docker/devops-cloud-infrastructure_docker_mod-01_lesson-1.1_storage-mount-types.svg)
 
 | Storage Type | Host Storage Location | Host Dependency | Ideal Use Case |
 | :--- | :--- | :--- | :--- |

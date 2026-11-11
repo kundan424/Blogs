@@ -46,7 +46,7 @@ Before containerization became the standard operating model across software engi
 
 Over months of hotfixes, security patches, and emergency configuration edits, these servers inevitably transformed into **"Snowflake Servers"**—unique, fragile environments that could not be reliably reproduced. If traffic surged during a product launch and you needed five new instances behind your cloud load balancer, nobody on the team could guarantee that the new VMs would match the first one byte-for-byte.
 
-![The Paradigm Shift: Manual VM Deployment vs. Declarative Dockerfile](/images/content/dockerfile-manual-vs-container-deployment.svg)
+![The Paradigm Shift: Manual VM Deployment vs. Declarative Dockerfile](/images/content/devops-cloud-infrastructure/docker/devops-cloud-infrastructure_docker_mod-01_lesson-1.3_manual-vs-container-deployment.svg)
 
 ---
 
@@ -91,7 +91,7 @@ If you come from an Object-Oriented Programming (OOP) background, this mental mo
 * **`Docker Image` = The Compiled `.class` / `.jar` Bytecode Artifact:** When you pass your `Dockerfile` to the `docker build` engine, it executes your instructions sequentially and produces a **read-only, immutable snapshot**. This snapshot contains the minimal Linux OS root filesystem, the Java Virtual Machine runtime, third-party libraries, and your compiled application JAR. It is packaged with a cryptographic SHA-256 digest.
 * **`Docker Container` = An Instantiated Object in RAM (`new App()`):** When you pass that image to `docker run`, the Docker Engine creates an active Linux process. It places a thin **read-write layer** on top of the immutable image, assigns an isolated PID namespace and virtual IP address, and boots your Spring Boot application in memory. Just as you can instantiate ten separate objects from a single Java class, you can run ten isolated containers simultaneously from a single Docker Image.
 
-![The Docker Lifecycle: From Blueprint to Running Containers](/images/content/dockerfile-lifecycle-mental-model.svg)
+![The Docker Lifecycle: From Blueprint to Running Containers](/images/content/devops-cloud-infrastructure/docker/devops-cloud-infrastructure_docker_mod-01_lesson-1.3_lifecycle-mental-model.svg)
 
 ---
 
@@ -106,7 +106,7 @@ The second mental hurdle is understanding **when** each line in your Dockerfile 
 Never place database migration scripts (Flyway or Liquibase) or remote API queries inside a `RUN` command! During `docker build`, the container builder runs in an isolated sandbox that should not have access to production network VPCs or live PostgreSQL instances. Database migrations must always run at **Run-Time** when the container boots via `ENTRYPOINT`.
 :::
 
-![Execution Timeline: Build-Time vs. Run-Time Instructions](/images/content/dockerfile-buildtime-vs-runtime.svg)
+![Execution Timeline: Build-Time vs. Run-Time Instructions](/images/content/devops-cloud-infrastructure/docker/devops-cloud-infrastructure_docker_mod-01_lesson-1.3_buildtime-vs-runtime.svg)
 
 ---
 
@@ -239,7 +239,7 @@ To transform our naive script into a production-grade container, we must underst
 
 When you execute `docker build`, Docker does not create a single monolithic disk image. Instead, it stacks read-only filesystem diffs on top of each other using the Linux kernel's **OverlayFS** storage driver.
 
-![Docker Image Layers and OverlayFS Architecture](/images/content/dockerfile-overlayfs-layers.svg)
+![Docker Image Layers and OverlayFS Architecture](/images/content/devops-cloud-infrastructure/docker/devops-cloud-infrastructure_docker_mod-01_lesson-1.3_overlayfs-layers.svg)
 
 ---
 
@@ -317,7 +317,7 @@ If the cache key matches an existing layer on disk, Docker prints `CACHED` and s
 
 Here is the golden rule that trips up backend engineers: **Layer cache invalidation is sequential. The moment one instruction triggers a cache miss, Docker permanently invalidates the cache for EVERY instruction that follows it!**
 
-![Layer Cache Invalidation: Bad vs. Good Ordering](/images/content/dockerfile-cache-invalidation.svg)
+![Layer Cache Invalidation: Bad vs. Good Ordering](/images/content/devops-cloud-infrastructure/docker/devops-cloud-infrastructure_docker_mod-01_lesson-1.3_cache-invalidation.svg)
 
 Let's look at why naive ordering cripples productivity:
 

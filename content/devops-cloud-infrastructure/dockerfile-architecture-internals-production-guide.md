@@ -74,7 +74,7 @@ When a Dockerfile is built, the compiler outputs three distinct elements:
 
 Modern container builds are powered by **Docker BuildKit**, a next-generation container build engine that replaces the legacy Docker daemon builder.
 
-![Dockerfile BuildKit DAG Architecture](/images/content/dockerfile-buildkit-dag-architecture.svg)
+![Dockerfile BuildKit DAG Architecture](/images/content/devops-cloud-infrastructure/docker/devops-cloud-infrastructure_docker_mod-01_lesson-1.2_buildkit-dag-architecture.svg)
 
 ### The Build Execution Pipeline
 

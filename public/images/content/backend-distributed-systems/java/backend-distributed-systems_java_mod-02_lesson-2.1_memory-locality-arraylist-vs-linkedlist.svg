@@ -1,0 +1,242 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="100%">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.08" />
+    </filter>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#16a34a" />
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#dc2626" />
+    </marker>
+  </defs>
+
+  <style>
+    /* Default: Light Mode */
+    svg {
+      --diag-canvas: #ffffff;
+      --diag-header-tag: #0284c7;
+      --diag-header-sub: #64748b;
+      --diag-panel-bg: #f8fafc;
+      --diag-panel-border: #e2e8f0;
+      --diag-panel-title: #0f172a;
+
+      --diag-slot-bg: #f0fdf4;
+      --diag-slot-border: #16a34a;
+      --diag-slot-text: #0f172a;
+      --diag-slot-dim: #64748b;
+
+      --diag-node-bg: #fef2f2;
+      --diag-node-border: #ef4444;
+      --diag-node-inner: #ffffff;
+      --diag-node-inner-border: #fecaca;
+      --diag-node-text: #0f172a;
+
+      --diag-bracket: #0284c7;
+      --diag-hit-bg: #dcfce7;
+      --diag-hit-border: #16a34a;
+      --diag-hit-text: #15803d;
+
+      --diag-miss-bg: #fee2e2;
+      --diag-miss-border: #ef4444;
+      --diag-miss-text: #b91c1c;
+    }
+
+    /* Dark Mode (Web Application) */
+    html.dark svg, .dark svg {
+      --diag-canvas: #0c1017;
+      --diag-header-tag: #38bdf8;
+      --diag-header-sub: #94a3b8;
+      --diag-panel-bg: #0d1424;
+      --diag-panel-border: #1e293b;
+      --diag-panel-title: #f8fafc;
+
+      --diag-slot-bg: #142823;
+      --diag-slot-border: #34d399;
+      --diag-slot-text: #cbd5e1;
+      --diag-slot-dim: #94a3b8;
+
+      --diag-node-bg: #2d1d1f;
+      --diag-node-border: #f87171;
+      --diag-node-inner: #140c0e;
+      --diag-node-inner-border: #381c20;
+      --diag-node-text: #cbd5e1;
+
+      --diag-bracket: #38bdf8;
+      --diag-hit-bg: #062e24;
+      --diag-hit-border: #059669;
+      --diag-hit-text: #34d399;
+
+      --diag-miss-bg: #3b1115;
+      --diag-miss-border: #ef4444;
+      --diag-miss-text: #f87171;
+    }
+
+    /* Standalone SVG Viewer */
+    @media (prefers-color-scheme: dark) {
+      svg:root {
+        --diag-canvas: #0c1017;
+        --diag-header-tag: #38bdf8;
+        --diag-header-sub: #94a3b8;
+        --diag-panel-bg: #0d1424;
+        --diag-panel-border: #1e293b;
+        --diag-panel-title: #f8fafc;
+
+        --diag-slot-bg: #142823;
+        --diag-slot-border: #34d399;
+        --diag-slot-text: #cbd5e1;
+        --diag-slot-dim: #94a3b8;
+
+        --diag-node-bg: #2d1d1f;
+        --diag-node-border: #f87171;
+        --diag-node-inner: #140c0e;
+        --diag-node-inner-border: #381c20;
+        --diag-node-text: #cbd5e1;
+
+        --diag-bracket: #38bdf8;
+        --diag-hit-bg: #062e24;
+        --diag-hit-border: #059669;
+        --diag-hit-text: #34d399;
+
+        --diag-miss-bg: #3b1115;
+        --diag-miss-border: #ef4444;
+        --diag-miss-text: #f87171;
+      }
+    }
+
+    .header-tag { font-family: ui-monospace, SFMono-Regular, "IBM Plex Mono", Menlo, monospace; font-size: 11px; font-weight: 700; fill: var(--diag-header-tag); letter-spacing: 1.5px; text-transform: uppercase; }
+    .header-sub { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 12px; fill: var(--diag-header-sub); }
+    .panel-title { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13.5px; font-weight: 600; fill: var(--diag-panel-title); }
+    .badge-hit { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; font-weight: 700; fill: var(--diag-hit-text); }
+    .badge-miss { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; font-weight: 700; fill: var(--diag-miss-text); }
+    .mono-code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; fill: var(--diag-slot-text); }
+    .mono-dim { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; fill: var(--diag-slot-dim); }
+    .arrow-line-red { stroke: #dc2626; stroke-width: 1.5; fill: none; }
+    .cache-bracket { stroke: var(--diag-bracket); stroke-width: 1.8; fill: none; }
+  </style>
+
+  <!-- Background Base Canvas -->
+  <rect width="960" height="480" fill="var(--diag-canvas)" />
+
+  <!-- Diagram Title Header -->
+  <text x="35" y="34" class="header-tag">HARDWARE MEMORY LAYOUT &amp; CPU CACHE TRAVERSAL</text>
+  <text x="35" y="52" class="header-sub">ArrayList Contiguous Memory Locality vs. LinkedList Pointer Chasing</text>
+
+  <!-- ========================================================================= -->
+  <!-- PANEL A: ARRAYLIST (CONTIGUOUS 64-BYTE CACHE LINE) -->
+  <!-- ========================================================================= -->
+  <g transform="translate(35, 75)" filter="url(#shadow)">
+    <rect width="890" height="165" rx="10" fill="var(--diag-panel-bg)" stroke="var(--diag-panel-border)" stroke-width="1.5" />
+    
+    <!-- Header row -->
+    <text x="20" y="28" class="panel-title">ArrayList: Contiguous Memory Buffer (Object[] elementData)</text>
+    <rect x="670" y="14" width="200" height="22" rx="4" fill="var(--diag-hit-bg)" stroke="var(--diag-hit-border)" stroke-width="1" />
+    <text x="770" y="29" text-anchor="middle" class="badge-hit">99% L1/L2 CACHE HIT RATE</text>
+
+    <!-- Cache Line Bracket -->
+    <path d="M 20 54 L 870 54" class="cache-bracket" stroke-dasharray="3,3" />
+    <path d="M 20 48 L 20 60" class="cache-bracket" />
+    <path d="M 870 48 L 870 60" class="cache-bracket" />
+    <text x="445" y="48" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10.5" fill="var(--diag-bracket)" font-weight="600">
+      ◄─── Single 64-Byte CPU Cache Line (Prefetches multiple elements concurrently into L1 Cache) ───►
+    </text>
+
+    <!-- Contiguous Slots -->
+    <g transform="translate(20, 70)">
+      <!-- Slot 0 -->
+      <g transform="translate(0, 0)">
+        <rect width="160" height="54" rx="6" fill="var(--diag-slot-bg)" stroke="var(--diag-slot-border)" stroke-width="1.2" />
+        <text x="12" y="22" class="mono-dim">Index [0] • 4B Ref</text>
+        <text x="12" y="40" class="mono-code" font-weight="600">ObjRef_A ──►</text>
+      </g>
+      <!-- Slot 1 -->
+      <g transform="translate(170, 0)">
+        <rect width="160" height="54" rx="6" fill="var(--diag-slot-bg)" stroke="var(--diag-slot-border)" stroke-width="1.2" />
+        <text x="12" y="22" class="mono-dim">Index [1] • 4B Ref</text>
+        <text x="12" y="40" class="mono-code" font-weight="600">ObjRef_B ──►</text>
+      </g>
+      <!-- Slot 2 -->
+      <g transform="translate(340, 0)">
+        <rect width="160" height="54" rx="6" fill="var(--diag-slot-bg)" stroke="var(--diag-slot-border)" stroke-width="1.2" />
+        <text x="12" y="22" class="mono-dim">Index [2] • 4B Ref</text>
+        <text x="12" y="40" class="mono-code" font-weight="600">ObjRef_C ──►</text>
+      </g>
+      <!-- Slot 3 -->
+      <g transform="translate(510, 0)">
+        <rect width="160" height="54" rx="6" fill="var(--diag-slot-bg)" stroke="var(--diag-slot-border)" stroke-width="1.2" />
+        <text x="12" y="22" class="mono-dim">Index [3] • 4B Ref</text>
+        <text x="12" y="40" class="mono-code" font-weight="600">ObjRef_D ──►</text>
+      </g>
+      <!-- Slot 4 (Empty slot) -->
+      <g transform="translate(680, 0)">
+        <rect width="170" height="54" rx="6" fill="var(--diag-canvas)" stroke="var(--diag-panel-border)" stroke-dasharray="4,4" />
+        <text x="12" y="22" class="mono-dim">Index [4] • Unused</text>
+        <text x="12" y="40" class="mono-dim">null (Amortized 1.5×)</text>
+      </g>
+    </g>
+
+    <!-- Bottom summary line -->
+    <text x="22" y="148" class="header-sub" font-size="11px">
+      Sequential access cost: <tspan fill="#16a34a" font-weight="600">O(1) direct pointer offset</tspan> [base + index × 4B]. Hardware prefetcher anticipates next stride with near zero latency.
+    </text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- PANEL B: LINKEDLIST (SCATTERED HEAP NODES & POINTER CHASING) -->
+  <!-- ========================================================================= -->
+  <g transform="translate(35, 260)" filter="url(#shadow)">
+    <rect width="890" height="195" rx="10" fill="var(--diag-panel-bg)" stroke="var(--diag-panel-border)" stroke-width="1.5" />
+    
+    <!-- Header row -->
+    <text x="20" y="28" class="panel-title">LinkedList: Dispersed Heap Nodes (24 Bytes Metadata Overhead per Node)</text>
+    <rect x="670" y="14" width="200" height="22" rx="4" fill="var(--diag-miss-bg)" stroke="var(--diag-miss-border)" stroke-width="1" />
+    <text x="770" y="29" text-anchor="middle" class="badge-miss">FREQUENT CPU CACHE MISSES</text>
+
+    <!-- Node 1 -->
+    <g transform="translate(30, 48)">
+      <rect width="210" height="92" rx="7" fill="var(--diag-node-bg)" stroke="var(--diag-node-border)" stroke-width="1.2" />
+      <text x="10" y="18" class="mono-dim">Node A @ Heap Address 0x1A40</text>
+      <rect x="10" y="28" width="190" height="54" rx="4" fill="var(--diag-node-inner)" stroke="var(--diag-node-inner-border)" />
+      <text x="20" y="45" class="mono-code" font-size="11px">prev: <tspan fill="#64748b">null</tspan></text>
+      <text x="20" y="60" class="mono-code" font-size="11px">item: <tspan fill="#d97706" font-weight="600">ObjRef_A</tspan></text>
+      <text x="20" y="74" class="mono-code" font-size="11px">next: <tspan fill="#0284c7" font-weight="600">0x8F20 (Node B)</tspan></text>
+    </g>
+
+    <!-- Forward & Backward Pointers Node 1 <-> Node 2 -->
+    <path d="M 240 82 L 340 82" class="arrow-line-red" marker-end="url(#arrowRed)" />
+    <text x="290" y="74" text-anchor="middle" font-family="monospace" font-size="9" fill="#dc2626">next ──►</text>
+    <path d="M 340 105 L 240 105" class="arrow-line-red" marker-end="url(#arrowRed)" />
+    <text x="290" y="120" text-anchor="middle" font-family="monospace" font-size="9" fill="#dc2626">◄── prev</text>
+
+    <!-- Node 2 -->
+    <g transform="translate(340, 48)">
+      <rect width="210" height="92" rx="7" fill="var(--diag-node-bg)" stroke="var(--diag-node-border)" stroke-width="1.2" />
+      <text x="10" y="18" class="mono-dim">Node B @ Heap Address 0x8F20</text>
+      <rect x="10" y="28" width="190" height="54" rx="4" fill="var(--diag-node-inner)" stroke="var(--diag-node-inner-border)" />
+      <text x="20" y="45" class="mono-code" font-size="11px">prev: <tspan fill="#0284c7" font-weight="600">0x1A40 (Node A)</tspan></text>
+      <text x="20" y="60" class="mono-code" font-size="11px">item: <tspan fill="#d97706" font-weight="600">ObjRef_B</tspan></text>
+      <text x="20" y="74" class="mono-code" font-size="11px">next: <tspan fill="#0284c7" font-weight="600">0x3C10 (Node C)</tspan></text>
+    </g>
+
+    <!-- Forward & Backward Pointers Node 2 <-> Node 3 -->
+    <path d="M 550 82 L 650 82" class="arrow-line-red" marker-end="url(#arrowRed)" />
+    <text x="600" y="74" text-anchor="middle" font-family="monospace" font-size="9" fill="#dc2626">next ──►</text>
+    <path d="M 650 105 L 550 105" class="arrow-line-red" marker-end="url(#arrowRed)" />
+    <text x="600" y="120" text-anchor="middle" font-family="monospace" font-size="9" fill="#dc2626">◄── prev</text>
+
+    <!-- Node 3 -->
+    <g transform="translate(650, 48)">
+      <rect width="210" height="92" rx="7" fill="var(--diag-node-bg)" stroke="var(--diag-node-border)" stroke-width="1.2" />
+      <text x="10" y="18" class="mono-dim">Node C @ Heap Address 0x3C10</text>
+      <rect x="10" y="28" width="190" height="54" rx="4" fill="var(--diag-node-inner)" stroke="var(--diag-node-inner-border)" />
+      <text x="20" y="45" class="mono-code" font-size="11px">prev: <tspan fill="#0284c7" font-weight="600">0x8F20 (Node B)</tspan></text>
+      <text x="20" y="60" class="mono-code" font-size="11px">item: <tspan fill="#d97706" font-weight="600">ObjRef_C</tspan></text>
+      <text x="20" y="74" class="mono-code" font-size="11px">next: <tspan fill="#64748b">null</tspan></text>
+    </g>
+
+    <!-- Bottom summary line -->
+    <text x="22" y="174" class="header-sub" font-size="11px">
+      Traversal penalty: Every step incurs pointer dereferencing across non-contiguous heap regions, stalling CPU execution on main memory fetches.
+    </text>
+  </g>
+</svg>

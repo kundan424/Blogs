@@ -1,56 +1,133 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 660" width="100%" height="100%">
   <defs>
-    <linearGradient id="canvasGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0f131f" />
-      <stop offset="100%" stop-color="#090c15" />
-    </linearGradient>
-    <linearGradient id="interfaceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1f2847" />
-      <stop offset="100%" stop-color="#141a30" />
-    </linearGradient>
-    <linearGradient id="classGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#132a24" />
-      <stop offset="100%" stop-color="#0c1c18" />
-    </linearGradient>
-    <linearGradient id="mapGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#2d1c28" />
-      <stop offset="100%" stop-color="#1d121a" />
-    </linearGradient>
-    <linearGradient id="mapClassGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#2c2214" />
-      <stop offset="100%" stop-color="#1c160c" />
-    </linearGradient>
     <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
-      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.5" />
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.08" />
     </filter>
     <marker id="arrowIndigo" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 8 5 L 0 9 z" fill="#818cf8" />
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="var(--diag-link-indigo)" />
     </marker>
     <marker id="arrowGreen" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 8 5 L 0 9 z" fill="#34d399" />
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="var(--diag-link-green)" />
     </marker>
     <marker id="arrowPink" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 1 L 8 5 L 0 9 z" fill="#f472b6" />
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="var(--diag-link-pink)" />
     </marker>
   </defs>
 
   <style>
-    .title-header { font-family: ui-monospace, SFMono-Regular, "IBM Plex Mono", Menlo, monospace; font-size: 11px; font-weight: 700; fill: #6366f1; letter-spacing: 1.5px; }
-    .subtitle-header { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 12px; fill: #94a3b8; }
-    .node-title { font-family: ui-monospace, SFMono-Regular, "IBM Plex Mono", Menlo, monospace; font-size: 13px; font-weight: 600; fill: #f8fafc; }
-    .node-desc { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 10.5px; fill: #94a3b8; }
-    .badge-interface { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9.5px; font-weight: 600; fill: #a5b4fc; letter-spacing: 0.5px; }
-    .badge-class { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9.5px; font-weight: 600; fill: #6ee7b7; letter-spacing: 0.5px; }
-    .badge-map-class { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9.5px; font-weight: 600; fill: #fcd34d; letter-spacing: 0.5px; }
-    .link-line { stroke: #818cf8; stroke-width: 1.5; fill: none; }
-    .link-dash { stroke: #475569; stroke-width: 1.5; stroke-dasharray: 4,4; fill: none; }
-    .link-green { stroke: #34d399; stroke-width: 1.5; fill: none; }
-    .link-pink { stroke: #f472b6; stroke-width: 1.5; fill: none; }
-    .legend-text { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10.5px; fill: #cbd5e1; }
+    /* Default: Light Mode */
+    svg {
+      --diag-canvas: #ffffff;
+      --diag-header-tag: #4f46e5;
+      --diag-header-sub: #64748b;
+      --diag-text-main: #0f172a;
+      --diag-text-sub: #64748b;
+
+      --diag-interface-bg: #f5f3ff;
+      --diag-interface-border: #6366f1;
+      --diag-interface-badge: #4338ca;
+
+      --diag-class-bg: #f0fdf4;
+      --diag-class-border: #16a34a;
+      --diag-class-badge: #15803d;
+
+      --diag-map-bg: #fdf2f8;
+      --diag-map-border: #ec4899;
+      --diag-map-badge: #be185d;
+
+      --diag-map-class-bg: #fffbeb;
+      --diag-map-class-border: #f59e0b;
+      --diag-map-class-badge: #b45309;
+
+      --diag-link-indigo: #6366f1;
+      --diag-link-green: #16a34a;
+      --diag-link-pink: #ec4899;
+      --diag-divider: #e2e8f0;
+      --diag-legend-bg: #f8fafc;
+      --diag-legend-border: #cbd5e1;
+    }
+
+    /* Dark Mode (Web Application) */
+    html.dark svg, .dark svg {
+      --diag-canvas: #0c1017;
+      --diag-header-tag: #818cf8;
+      --diag-header-sub: #94a3b8;
+      --diag-text-main: #f8fafc;
+      --diag-text-sub: #94a3b8;
+
+      --diag-interface-bg: #1f2847;
+      --diag-interface-border: #818cf8;
+      --diag-interface-badge: #a5b4fc;
+
+      --diag-class-bg: #132a24;
+      --diag-class-border: #34d399;
+      --diag-class-badge: #6ee7b7;
+
+      --diag-map-bg: #2d1c28;
+      --diag-map-border: #f472b6;
+      --diag-map-badge: #f472b6;
+
+      --diag-map-class-bg: #2c2214;
+      --diag-map-class-border: #f59e0b;
+      --diag-map-class-badge: #fcd34d;
+
+      --diag-link-indigo: #818cf8;
+      --diag-link-green: #34d399;
+      --diag-link-pink: #f472b6;
+      --diag-divider: #1e293b;
+      --diag-legend-bg: #131929;
+      --diag-legend-border: #1e293b;
+    }
+
+    /* Standalone SVG Viewer */
+    @media (prefers-color-scheme: dark) {
+      svg:root {
+        --diag-canvas: #0c1017;
+        --diag-header-tag: #818cf8;
+        --diag-header-sub: #94a3b8;
+        --diag-text-main: #f8fafc;
+        --diag-text-sub: #94a3b8;
+
+        --diag-interface-bg: #1f2847;
+        --diag-interface-border: #818cf8;
+        --diag-interface-badge: #a5b4fc;
+
+        --diag-class-bg: #132a24;
+        --diag-class-border: #34d399;
+        --diag-class-badge: #6ee7b7;
+
+        --diag-map-bg: #2d1c28;
+        --diag-map-border: #f472b6;
+        --diag-map-badge: #f472b6;
+
+        --diag-map-class-bg: #2c2214;
+        --diag-map-class-border: #f59e0b;
+        --diag-map-class-badge: #fcd34d;
+
+        --diag-link-indigo: #818cf8;
+        --diag-link-green: #34d399;
+        --diag-link-pink: #f472b6;
+        --diag-divider: #1e293b;
+        --diag-legend-bg: #131929;
+        --diag-legend-border: #1e293b;
+      }
+    }
+
+    .title-header { font-family: ui-monospace, SFMono-Regular, "IBM Plex Mono", Menlo, monospace; font-size: 11px; font-weight: 700; fill: var(--diag-header-tag); letter-spacing: 1.5px; }
+    .subtitle-header { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 12px; fill: var(--diag-header-sub); }
+    .node-title { font-family: ui-monospace, SFMono-Regular, "IBM Plex Mono", Menlo, monospace; font-size: 13px; font-weight: 600; fill: var(--diag-text-main); }
+    .node-desc { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 10.5px; fill: var(--diag-text-sub); }
+    .badge-interface { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9.5px; font-weight: 600; fill: var(--diag-interface-badge); letter-spacing: 0.5px; }
+    .badge-class { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9.5px; font-weight: 600; fill: var(--diag-class-badge); letter-spacing: 0.5px; }
+    .badge-map-class { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9.5px; font-weight: 600; fill: var(--diag-map-class-badge); letter-spacing: 0.5px; }
+    .link-line { stroke: var(--diag-link-indigo); stroke-width: 1.5; fill: none; }
+    .link-green { stroke: var(--diag-link-green); stroke-width: 1.5; fill: none; }
+    .link-pink { stroke: var(--diag-link-pink); stroke-width: 1.5; fill: none; }
+    .legend-text { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10.5px; fill: var(--diag-text-sub); }
   </style>
 
   <!-- Background Base Canvas -->
-  <rect width="1000" height="660" rx="14" fill="url(#canvasGrad)" stroke="#1e293b" stroke-width="1.5" />
+  <rect width="1000" height="660" fill="var(--diag-canvas)" />
 
   <!-- Diagram Title Header -->
   <text x="35" y="36" class="title-header">JAVA COLLECTIONS FRAMEWORK TAXONOMY</text>
@@ -58,10 +135,10 @@
 
   <!-- Legend in top-right -->
   <g transform="translate(680, 22)">
-    <rect width="285" height="34" rx="6" fill="#131929" stroke="#1e293b" />
-    <rect x="12" y="11" width="12" height="12" rx="3" fill="#1f2847" stroke="#818cf8" stroke-width="1.5" />
+    <rect width="285" height="34" rx="6" fill="var(--diag-legend-bg)" stroke="var(--diag-legend-border)" stroke-width="1" />
+    <rect x="12" y="11" width="12" height="12" rx="3" fill="var(--diag-interface-bg)" stroke="var(--diag-interface-border)" stroke-width="1.5" />
     <text x="30" y="21" class="legend-text">Interface (Contract)</text>
-    <rect x="155" y="11" width="12" height="12" rx="3" fill="#132a24" stroke="#34d399" stroke-width="1.5" />
+    <rect x="155" y="11" width="12" height="12" rx="3" fill="var(--diag-class-bg)" stroke="var(--diag-class-border)" stroke-width="1.5" />
     <text x="173" y="21" class="legend-text">Concrete Class</text>
   </g>
 
@@ -71,7 +148,7 @@
 
   <!-- Top Root: java.lang.Iterable -->
   <g transform="translate(385, 75)" filter="url(#shadow)">
-    <rect width="230" height="42" rx="8" fill="url(#interfaceGrad)" stroke="#818cf8" stroke-width="1.5" />
+    <rect width="230" height="42" rx="8" fill="var(--diag-interface-bg)" stroke="var(--diag-interface-border)" stroke-width="1.5" />
     <text x="115" y="18" text-anchor="middle" class="badge-interface">«interface»</text>
     <text x="115" y="33" text-anchor="middle" class="node-title">java.lang.Iterable&lt;T&gt;</text>
   </g>
@@ -81,7 +158,7 @@
 
   <!-- Root: java.util.Collection -->
   <g transform="translate(370, 140)" filter="url(#shadow)">
-    <rect width="260" height="44" rx="8" fill="url(#interfaceGrad)" stroke="#818cf8" stroke-width="1.8" />
+    <rect width="260" height="44" rx="8" fill="var(--diag-interface-bg)" stroke="var(--diag-interface-border)" stroke-width="1.8" />
     <text x="130" y="18" text-anchor="middle" class="badge-interface">«interface»</text>
     <text x="130" y="34" text-anchor="middle" class="node-title">java.util.Collection&lt;E&gt;</text>
   </g>
@@ -93,7 +170,7 @@
 
   <!-- BRANCH 1: List Interface & Implementations -->
   <g transform="translate(55, 218)" filter="url(#shadow)">
-    <rect width="210" height="44" rx="8" fill="url(#interfaceGrad)" stroke="#818cf8" stroke-width="1.5" />
+    <rect width="210" height="44" rx="8" fill="var(--diag-interface-bg)" stroke="var(--diag-interface-border)" stroke-width="1.5" />
     <text x="105" y="18" text-anchor="middle" class="badge-interface">«interface»</text>
     <text x="105" y="34" text-anchor="middle" class="node-title">java.util.List&lt;E&gt;</text>
   </g>
@@ -104,7 +181,7 @@
 
   <!-- ArrayList -->
   <g transform="translate(35, 294)" filter="url(#shadow)">
-    <rect width="140" height="52" rx="7" fill="url(#classGrad)" stroke="#34d399" stroke-width="1.2" />
+    <rect width="140" height="52" rx="7" fill="var(--diag-class-bg)" stroke="var(--diag-class-border)" stroke-width="1.2" />
     <text x="10" y="18" class="badge-class">class</text>
     <text x="10" y="33" class="node-title" font-size="12.5px">ArrayList</text>
     <text x="10" y="46" class="node-desc">Contiguous 1.5× Array</text>
@@ -112,16 +189,15 @@
 
   <!-- LinkedList (List + Deque) -->
   <g transform="translate(185, 294)" filter="url(#shadow)">
-    <rect width="140" height="52" rx="7" fill="url(#classGrad)" stroke="#34d399" stroke-width="1.2" />
+    <rect width="140" height="52" rx="7" fill="var(--diag-class-bg)" stroke="var(--diag-class-border)" stroke-width="1.2" />
     <text x="10" y="18" class="badge-class">class</text>
     <text x="10" y="33" class="node-title" font-size="12.5px">LinkedList</text>
     <text x="10" y="46" class="node-desc">Doubly-Linked Nodes</text>
   </g>
 
-
   <!-- BRANCH 2: Set Hierarchy -->
   <g transform="translate(395, 218)" filter="url(#shadow)">
-    <rect width="210" height="44" rx="8" fill="url(#interfaceGrad)" stroke="#818cf8" stroke-width="1.5" />
+    <rect width="210" height="44" rx="8" fill="var(--diag-interface-bg)" stroke="var(--diag-interface-border)" stroke-width="1.5" />
     <text x="105" y="18" text-anchor="middle" class="badge-interface">«interface»</text>
     <text x="105" y="34" text-anchor="middle" class="node-title">java.util.Set&lt;E&gt;</text>
   </g>
@@ -132,7 +208,7 @@
 
   <!-- HashSet -->
   <g transform="translate(365, 294)" filter="url(#shadow)">
-    <rect width="150" height="52" rx="7" fill="url(#classGrad)" stroke="#34d399" stroke-width="1.2" />
+    <rect width="150" height="52" rx="7" fill="var(--diag-class-bg)" stroke="var(--diag-class-border)" stroke-width="1.2" />
     <text x="10" y="18" class="badge-class">class</text>
     <text x="10" y="33" class="node-title" font-size="12.5px">HashSet</text>
     <text x="10" y="46" class="node-desc">Backed by HashMap</text>
@@ -140,7 +216,7 @@
 
   <!-- SortedSet / NavigableSet -->
   <g transform="translate(525, 294)" filter="url(#shadow)">
-    <rect width="150" height="52" rx="7" fill="url(#interfaceGrad)" stroke="#818cf8" stroke-width="1.2" />
+    <rect width="150" height="52" rx="7" fill="var(--diag-interface-bg)" stroke="var(--diag-interface-border)" stroke-width="1.2" />
     <text x="10" y="18" class="badge-interface">«interface»</text>
     <text x="10" y="33" class="node-title" font-size="12.5px">NavigableSet&lt;E&gt;</text>
     <text x="10" y="46" class="node-desc">Sorted / Range Views</text>
@@ -150,15 +226,14 @@
 
   <!-- TreeSet -->
   <g transform="translate(525, 370)" filter="url(#shadow)">
-    <rect width="150" height="42" rx="7" fill="url(#classGrad)" stroke="#34d399" stroke-width="1.2" />
+    <rect width="150" height="42" rx="7" fill="var(--diag-class-bg)" stroke="var(--diag-class-border)" stroke-width="1.2" />
     <text x="10" y="16" class="badge-class">class</text>
     <text x="10" y="30" class="node-title" font-size="12px">TreeSet (Red-Black)</text>
   </g>
 
-
   <!-- BRANCH 3: Queue & Deque -->
   <g transform="translate(735, 218)" filter="url(#shadow)">
-    <rect width="210" height="44" rx="8" fill="url(#interfaceGrad)" stroke="#818cf8" stroke-width="1.5" />
+    <rect width="210" height="44" rx="8" fill="var(--diag-interface-bg)" stroke="var(--diag-interface-border)" stroke-width="1.5" />
     <text x="105" y="18" text-anchor="middle" class="badge-interface">«interface»</text>
     <text x="105" y="34" text-anchor="middle" class="node-title">java.util.Queue&lt;E&gt;</text>
   </g>
@@ -169,7 +244,7 @@
 
   <!-- ArrayDeque -->
   <g transform="translate(710, 294)" filter="url(#shadow)">
-    <rect width="135" height="52" rx="7" fill="url(#classGrad)" stroke="#34d399" stroke-width="1.2" />
+    <rect width="135" height="52" rx="7" fill="var(--diag-class-bg)" stroke="var(--diag-class-border)" stroke-width="1.2" />
     <text x="10" y="18" class="badge-class">class</text>
     <text x="10" y="33" class="node-title" font-size="12.5px">ArrayDeque</text>
     <text x="10" y="46" class="node-desc">Circular Ring Buffer</text>
@@ -177,23 +252,22 @@
 
   <!-- PriorityQueue -->
   <g transform="translate(855, 294)" filter="url(#shadow)">
-    <rect width="135" height="52" rx="7" fill="url(#classGrad)" stroke="#34d399" stroke-width="1.2" />
+    <rect width="135" height="52" rx="7" fill="var(--diag-class-bg)" stroke="var(--diag-class-border)" stroke-width="1.2" />
     <text x="10" y="18" class="badge-class">class</text>
     <text x="10" y="33" class="node-title" font-size="12.5px">PriorityQueue</text>
     <text x="10" y="46" class="node-desc">Binary Min-Heap</text>
   </g>
 
-
   <!-- ========================================================================= -->
   <!-- ZONE 2: MAP HIERARCHY (INDEPENDENT KEY-VALUE ROOT) -->
   <!-- ========================================================================= -->
-  <line x1="35" y1="440" x2="965" y2="440" stroke="#1e293b" stroke-dasharray="6,6" stroke-width="1.5" />
+  <line x1="35" y1="440" x2="965" y2="440" stroke="var(--diag-divider)" stroke-dasharray="6,6" stroke-width="1.5" />
 
   <!-- Root: java.util.Map -->
   <g transform="translate(370, 460)" filter="url(#shadow)">
-    <rect width="260" height="46" rx="8" fill="url(#mapGrad)" stroke="#f472b6" stroke-width="1.8" />
-    <text x="130" y="18" text-anchor="middle" class="badge-interface" fill="#f472b6">«interface - independent root»</text>
-    <text x="130" y="35" text-anchor="middle" class="node-title" fill="#fbcfe8">java.util.Map&lt;K, V&gt;</text>
+    <rect width="260" height="46" rx="8" fill="var(--diag-map-bg)" stroke="var(--diag-map-border)" stroke-width="1.8" />
+    <text x="130" y="18" text-anchor="middle" class="badge-interface" fill="var(--diag-map-badge)">«interface - independent root»</text>
+    <text x="130" y="35" text-anchor="middle" class="node-title" fill="var(--diag-map-badge)">java.util.Map&lt;K, V&gt;</text>
   </g>
 
   <!-- Map Fan-out connectors -->
@@ -204,7 +278,7 @@
 
   <!-- HashMap -->
   <g transform="translate(35, 548)" filter="url(#shadow)">
-    <rect width="190" height="58" rx="8" fill="url(#mapClassGrad)" stroke="#f59e0b" stroke-width="1.2" />
+    <rect width="190" height="58" rx="8" fill="var(--diag-map-class-bg)" stroke="var(--diag-map-class-border)" stroke-width="1.2" />
     <text x="12" y="19" class="badge-map-class">class</text>
     <text x="12" y="35" class="node-title" font-size="13px">HashMap</text>
     <text x="12" y="50" class="node-desc">Array + Treeification Bin</text>
@@ -212,7 +286,7 @@
 
   <!-- LinkedHashMap -->
   <g transform="translate(245, 548)" filter="url(#shadow)">
-    <rect width="210" height="58" rx="8" fill="url(#mapClassGrad)" stroke="#f59e0b" stroke-width="1.2" />
+    <rect width="210" height="58" rx="8" fill="var(--diag-map-class-bg)" stroke="var(--diag-map-class-border)" stroke-width="1.2" />
     <text x="12" y="19" class="badge-map-class">class (extends HashMap)</text>
     <text x="12" y="35" class="node-title" font-size="13px">LinkedHashMap</text>
     <text x="12" y="50" class="node-desc">LRU Eviction / Doubly-Linked</text>
@@ -220,7 +294,7 @@
 
   <!-- ConcurrentHashMap -->
   <g transform="translate(475, 548)" filter="url(#shadow)">
-    <rect width="240" height="58" rx="8" fill="url(#mapClassGrad)" stroke="#f59e0b" stroke-width="1.2" />
+    <rect width="240" height="58" rx="8" fill="var(--diag-map-class-bg)" stroke="var(--diag-map-class-border)" stroke-width="1.2" />
     <text x="12" y="19" class="badge-map-class">class (concurrent)</text>
     <text x="12" y="35" class="node-title" font-size="13px">ConcurrentHashMap</text>
     <text x="12" y="50" class="node-desc">Lock-Free CAS + Bucket Sync</text>
@@ -228,7 +302,7 @@
 
   <!-- NavigableMap -> TreeMap -->
   <g transform="translate(735, 548)" filter="url(#shadow)">
-    <rect width="230" height="58" rx="8" fill="url(#mapClassGrad)" stroke="#f59e0b" stroke-width="1.2" />
+    <rect width="230" height="58" rx="8" fill="var(--diag-map-class-bg)" stroke="var(--diag-map-class-border)" stroke-width="1.2" />
     <text x="12" y="19" class="badge-map-class">class (NavigableMap)</text>
     <text x="12" y="35" class="node-title" font-size="13px">TreeMap</text>
     <text x="12" y="50" class="node-desc">Red-Black Self-Balancing Tree</text>

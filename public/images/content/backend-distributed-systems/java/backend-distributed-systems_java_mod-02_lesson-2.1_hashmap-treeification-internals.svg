@@ -1,0 +1,293 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" width="100%" height="100%">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.08" />
+    </filter>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--diag-arrow-amber)" />
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--diag-arrow-red)" />
+    </marker>
+    <marker id="arrowIndigo" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--diag-arrow-indigo)" />
+    </marker>
+  </defs>
+
+  <style>
+    /* Default: Light Mode */
+    svg {
+      --diag-canvas: #ffffff;
+      --diag-header-main: #d97706;
+      --diag-header-sub: #64748b;
+      --diag-rule-box-bg: #fffbeb;
+      --diag-rule-box-border: #fcd34d;
+      --diag-rule-title: #b45309;
+      --diag-rule-desc: #334155;
+
+      --diag-table-label: #4338ca;
+      --diag-bucket-bg: #f8fafc;
+      --diag-bucket-border: #818cf8;
+      --diag-dim: #64748b;
+
+      --diag-chain-card-bg: #fffdf5;
+      --diag-chain-card-border: #fde68a;
+      --diag-node-bg: #ffffff;
+      --diag-node-border: #f59e0b;
+      --diag-node-text: #0f172a;
+
+      --diag-tree-card-bg: #fef2f2;
+      --diag-tree-card-border: #fecaca;
+      --diag-tree-black-bg: #ffffff;
+      --diag-tree-black-border: #475569;
+      --diag-tree-black-text: #0f172a;
+      --diag-tree-red-bg: #fee2e2;
+      --diag-tree-red-border: #ef4444;
+      --diag-tree-red-text: #b91c1c;
+
+      --diag-arrow-amber: #d97706;
+      --diag-arrow-red: #ef4444;
+      --diag-arrow-indigo: #64748b;
+    }
+
+    /* Dark Mode (Web Application) */
+    html.dark svg, .dark svg {
+      --diag-canvas: #0c1017;
+      --diag-header-main: #fbbf24;
+      --diag-header-sub: #94a3b8;
+      --diag-rule-box-bg: #14192b;
+      --diag-rule-box-border: #253254;
+      --diag-rule-title: #fbbf24;
+      --diag-rule-desc: #e2e8f0;
+
+      --diag-table-label: #818cf8;
+      --diag-bucket-bg: #141a29;
+      --diag-bucket-border: #818cf8;
+      --diag-dim: #94a3b8;
+
+      --diag-chain-card-bg: #121829;
+      --diag-chain-card-border: #1e293b;
+      --diag-node-bg: #1c1917;
+      --diag-node-border: #f59e0b;
+      --diag-node-text: #f8fafc;
+
+      --diag-tree-card-bg: #181115;
+      --diag-tree-card-border: #2d1e26;
+      --diag-tree-black-bg: #18181b;
+      --diag-tree-black-border: #71717a;
+      --diag-tree-black-text: #f8fafc;
+      --diag-tree-red-bg: #450a0a;
+      --diag-tree-red-border: #ef4444;
+      --diag-tree-red-text: #fecaca;
+
+      --diag-arrow-amber: #f59e0b;
+      --diag-arrow-red: #ef4444;
+      --diag-arrow-indigo: #71717a;
+    }
+
+    /* Standalone SVG Viewer */
+    @media (prefers-color-scheme: dark) {
+      svg:root {
+        --diag-canvas: #0c1017;
+        --diag-header-main: #fbbf24;
+        --diag-header-sub: #94a3b8;
+        --diag-rule-box-bg: #14192b;
+        --diag-rule-box-border: #253254;
+        --diag-rule-title: #fbbf24;
+        --diag-rule-desc: #e2e8f0;
+
+        --diag-table-label: #818cf8;
+        --diag-bucket-bg: #141a29;
+        --diag-bucket-border: #818cf8;
+        --diag-dim: #94a3b8;
+
+        --diag-chain-card-bg: #121829;
+        --diag-chain-card-border: #1e293b;
+        --diag-node-bg: #1c1917;
+        --diag-node-border: #f59e0b;
+        --diag-node-text: #f8fafc;
+
+        --diag-tree-card-bg: #181115;
+        --diag-tree-card-border: #2d1e26;
+        --diag-tree-black-bg: #18181b;
+        --diag-tree-black-border: #71717a;
+        --diag-tree-black-text: #f8fafc;
+        --diag-tree-red-bg: #450a0a;
+        --diag-tree-red-border: #ef4444;
+        --diag-tree-red-text: #fecaca;
+
+        --diag-arrow-amber: #f59e0b;
+        --diag-arrow-red: #ef4444;
+        --diag-arrow-indigo: #71717a;
+      }
+    }
+
+    .header-main { font-family: ui-monospace, SFMono-Regular, "IBM Plex Mono", Menlo, monospace; font-size: 11px; font-weight: 700; fill: var(--diag-header-main); letter-spacing: 1.5px; text-transform: uppercase; }
+    .header-sub { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 12px; fill: var(--diag-header-sub); }
+    .table-label { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; font-weight: 600; fill: var(--diag-table-label); }
+    .node-text { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; fill: var(--diag-node-text); }
+    .node-dim { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; fill: var(--diag-dim); }
+    .rule-title { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; font-weight: 600; fill: var(--diag-rule-title); }
+    .rule-desc { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: var(--diag-rule-desc); }
+    .tree-node-text { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10.5px; font-weight: 600; }
+  </style>
+
+  <!-- Background Base Canvas -->
+  <rect width="960" height="520" fill="var(--diag-canvas)" />
+
+  <!-- Diagram Title Header -->
+  <text x="35" y="34" class="header-main">HASHMAP TABLE STRUCTURE &amp; BUCKET TREEIFICATION</text>
+  <text x="35" y="52" class="header-sub">Dynamic Chaining Collision Resolution: Singly Linked List vs. Balanced Red-Black Tree (Java 8+)</text>
+
+  <!-- Top Informational Rules Badges -->
+  <g transform="translate(480, 20)">
+    <rect width="445" height="42" rx="6" fill="var(--diag-rule-box-bg)" stroke="var(--diag-rule-box-border)" stroke-width="1" />
+    <text x="14" y="17" class="rule-title">Bitmask Indexing:</text>
+    <text x="135" y="17" class="rule-desc"><tspan font-family="monospace">index = (n - 1) &amp; [h ^ (h &gt;&gt;&gt; 16)]</tspan></text>
+    <text x="14" y="32" class="rule-title">Treeify Invariants:</text>
+    <text x="135" y="32" class="rule-desc"><tspan font-family="monospace">bin &gt;= 8</tspan> AND <tspan font-family="monospace">table.length &gt;= 64</tspan> (Untreeify at 6)</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- BUCKET ARRAY COLUMN -->
+  <!-- ========================================================================= -->
+  <g transform="translate(35, 80)">
+    <text x="0" y="0" class="table-label" font-size="11.5px">Node&lt;K,V&gt;[] table (Bucket Array)</text>
+    
+    <!-- Table[0] -->
+    <g transform="translate(0, 16)" filter="url(#shadow)">
+      <rect width="130" height="48" rx="6" fill="var(--diag-bucket-bg)" stroke="var(--diag-bucket-border)" stroke-width="1.2" />
+      <text x="12" y="22" class="table-label">Table[0]</text>
+      <text x="12" y="38" class="node-dim">null (empty bin)</text>
+    </g>
+
+    <!-- Table[1] -->
+    <g transform="translate(0, 80)" filter="url(#shadow)">
+      <rect width="130" height="48" rx="6" fill="var(--diag-bucket-bg)" stroke="var(--diag-bucket-border)" stroke-width="1.2" />
+      <text x="12" y="22" class="table-label">Table[1]</text>
+      <text x="12" y="38" class="node-dim" fill="#16a34a">head pointer ──►</text>
+    </g>
+
+    <!-- Table[2] -->
+    <g transform="translate(0, 144)" filter="url(#shadow)">
+      <rect width="130" height="48" rx="6" fill="var(--diag-bucket-bg)" stroke="var(--diag-bucket-border)" stroke-width="1.2" />
+      <text x="12" y="22" class="table-label">Table[2]</text>
+      <text x="12" y="38" class="node-dim">null (empty bin)</text>
+    </g>
+
+    <!-- Table[3] (Treeified) -->
+    <g transform="translate(0, 208)" filter="url(#shadow)">
+      <rect width="130" height="64" rx="6" fill="var(--diag-bucket-bg)" stroke="#d97706" stroke-width="1.6" />
+      <text x="12" y="24" class="table-label" fill="#d97706">Table[3]</text>
+      <text x="12" y="42" class="node-dim" fill="#d97706" font-weight="600">Treeified Root ──►</text>
+      <text x="12" y="55" class="node-dim" font-size="9px">bin &gt;= 8</text>
+    </g>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- BUCKET 1: LINKED LIST CHAIN (THRESHOLD < 8) -->
+  <!-- ========================================================================= -->
+  <!-- Arrow from Table[1] -->
+  <path d="M 170 184 L 210 184" stroke="var(--diag-arrow-amber)" stroke-width="1.8" fill="none" marker-end="url(#arrowAmber)" />
+
+  <g transform="translate(210, 155)" filter="url(#shadow)">
+    <rect width="715" height="60" rx="8" fill="var(--diag-chain-card-bg)" stroke="var(--diag-chain-card-border)" stroke-width="1" />
+    <text x="16" y="20" class="rule-title" font-size="10.5px">Singly Linked Chain (Linear Traversal • O(k) Search)</text>
+    
+    <!-- Node 1 -->
+    <g transform="translate(16, 26)">
+      <rect width="185" height="26" rx="4" fill="var(--diag-node-bg)" stroke="var(--diag-node-border)" stroke-width="1" />
+      <text x="8" y="17" class="node-text" font-size="10.5px">Node("user_id", 104) ──►</text>
+    </g>
+
+    <!-- Arrow 1 -> 2 -->
+    <path d="M 205 39 L 235 39" stroke="var(--diag-arrow-amber)" stroke-width="1.5" fill="none" marker-end="url(#arrowAmber)" />
+
+    <!-- Node 2 -->
+    <g transform="translate(235, 26)">
+      <rect width="195" height="26" rx="4" fill="var(--diag-node-bg)" stroke="var(--diag-node-border)" stroke-width="1" />
+      <text x="8" y="17" class="node-text" font-size="10.5px">Node("session_token", 92) ──►</text>
+    </g>
+
+    <!-- Arrow 2 -> 3 -->
+    <path d="M 435 39 L 465 39" stroke="var(--diag-arrow-amber)" stroke-width="1.5" fill="none" marker-end="url(#arrowAmber)" />
+
+    <!-- Node 3 -->
+    <g transform="translate(465, 26)">
+      <rect width="165" height="26" rx="4" fill="var(--diag-node-bg)" stroke="var(--diag-node-border)" stroke-width="1" />
+      <text x="8" y="17" class="node-text" font-size="10.5px">Node("org_key", 44)</text>
+    </g>
+
+    <text x="645" y="42" class="node-dim">──► null</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- BUCKET 3: TREEIFIED RED-BLACK TREE (THRESHOLD >= 8 & CAP >= 64) -->
+  <!-- ========================================================================= -->
+  <!-- Arrow from Table[3] -->
+  <path d="M 170 320 L 210 320" stroke="var(--diag-arrow-red)" stroke-width="1.8" fill="none" marker-end="url(#arrowRed)" />
+
+  <g transform="translate(210, 235)" filter="url(#shadow)">
+    <rect width="715" height="255" rx="8" fill="var(--diag-tree-card-bg)" stroke="var(--diag-tree-card-border)" stroke-width="1" />
+    <text x="16" y="24" class="rule-title" fill="#dc2626" font-size="11px">Treeified Bucket: Red-Black Tree Hierarchy (Logarithmic Traversal • O(log k) Search)</text>
+    <text x="690" y="24" text-anchor="end" class="node-dim" fill="#b91c1c">Worst-case O(n) DOS Protection</text>
+
+    <!-- ROOT NODE (Black) -->
+    <g transform="translate(320, 42)">
+      <rect width="180" height="34" rx="6" fill="var(--diag-tree-black-bg)" stroke="var(--diag-tree-black-border)" stroke-width="1.5" />
+      <circle cx="18" cy="17" r="6" fill="#18181b" stroke="#475569" stroke-width="1.5" />
+      <text x="32" y="21" class="tree-node-text" fill="var(--diag-tree-black-text)">Root: Hash #104 (B)</text>
+    </g>
+
+    <!-- Branch left & right from Root -->
+    <path d="M 370 76 L 250 115" stroke="var(--diag-arrow-indigo)" stroke-width="1.5" fill="none" marker-end="url(#arrowIndigo)" />
+    <path d="M 450 76 L 570 115" stroke="var(--diag-arrow-indigo)" stroke-width="1.5" fill="none" marker-end="url(#arrowIndigo)" />
+
+    <!-- LEFT CHILD 1 (Black) -->
+    <g transform="translate(160, 115)">
+      <rect width="170" height="34" rx="6" fill="var(--diag-tree-black-bg)" stroke="var(--diag-tree-black-border)" stroke-width="1.5" />
+      <circle cx="18" cy="17" r="6" fill="#18181b" stroke="#475569" stroke-width="1.5" />
+      <text x="32" y="21" class="tree-node-text" fill="var(--diag-tree-black-text)">Left: Hash #42 (B)</text>
+    </g>
+
+    <!-- RIGHT CHILD 1 (Red) -->
+    <g transform="translate(490, 115)">
+      <rect width="170" height="34" rx="6" fill="var(--diag-tree-red-bg)" stroke="var(--diag-tree-red-border)" stroke-width="1.5" />
+      <circle cx="18" cy="17" r="6" fill="#dc2626" />
+      <text x="32" y="21" class="tree-node-text" fill="var(--diag-tree-red-text)">Right: Hash #188 (R)</text>
+    </g>
+
+    <!-- Sub-branches -->
+    <path d="M 210 149 L 140 185" stroke="var(--diag-arrow-indigo)" stroke-width="1.2" fill="none" marker-end="url(#arrowIndigo)" />
+    <path d="M 280 149 L 320 185" stroke="var(--diag-arrow-indigo)" stroke-width="1.2" fill="none" marker-end="url(#arrowIndigo)" />
+    <path d="M 540 149 L 480 185" stroke="var(--diag-arrow-indigo)" stroke-width="1.2" fill="none" marker-end="url(#arrowIndigo)" />
+    <path d="M 610 149 L 660 185" stroke="var(--diag-arrow-indigo)" stroke-width="1.2" fill="none" marker-end="url(#arrowIndigo)" />
+
+    <!-- Sub-children -->
+    <g transform="translate(60, 185)">
+      <rect width="140" height="28" rx="5" fill="var(--diag-tree-red-bg)" stroke="var(--diag-tree-red-border)" stroke-width="1" />
+      <circle cx="14" cy="14" r="5" fill="#dc2626" />
+      <text x="26" y="18" class="tree-node-text" font-size="9.5px" fill="var(--diag-tree-red-text)">Hash #18 (R)</text>
+    </g>
+    <g transform="translate(240, 185)">
+      <rect width="140" height="28" rx="5" fill="var(--diag-tree-red-bg)" stroke="var(--diag-tree-red-border)" stroke-width="1" />
+      <circle cx="14" cy="14" r="5" fill="#dc2626" />
+      <text x="26" y="18" class="tree-node-text" font-size="9.5px" fill="var(--diag-tree-red-text)">Hash #78 (R)</text>
+    </g>
+    <g transform="translate(420, 185)">
+      <rect width="140" height="28" rx="5" fill="var(--diag-tree-black-bg)" stroke="var(--diag-tree-black-border)" stroke-width="1" />
+      <circle cx="14" cy="14" r="5" fill="#18181b" stroke="#475569" />
+      <text x="26" y="18" class="tree-node-text" font-size="9.5px" fill="var(--diag-tree-black-text)">Hash #140 (B)</text>
+    </g>
+    <g transform="translate(590, 185)">
+      <rect width="140" height="28" rx="5" fill="var(--diag-tree-black-bg)" stroke="var(--diag-tree-black-border)" stroke-width="1" />
+      <circle cx="14" cy="14" r="5" fill="#18181b" stroke="#475569" />
+      <text x="26" y="18" class="tree-node-text" font-size="9.5px" fill="var(--diag-tree-black-text)">Hash #240 (B)</text>
+    </g>
+
+    <!-- Bottom invariant note -->
+    <text x="16" y="238" class="node-dim" fill="var(--diag-dim)">
+      • Self-balancing tree guarantees black-height consistency. If node count falls to <tspan fill="#d97706" font-weight="600">6 (UNTREEIFY_THRESHOLD)</tspan> during resize/delete, converts back to linked list.
+    </text>
+  </g>
+</svg>

@@ -61,35 +61,36 @@ export const HomePage: React.FC = () => {
 
       {/* =========================================================================
           SECTION 1: FIRST SCREEN — COLUMN ATMOSPHERIC OPENING
-          Streamlined hero scene with mint-blue halftone dot artwork,
-          display headline, 36px physical buttons, and a floating telemetry card.
+          880px-tall scene, pale #f6f6f8 canvas, mint-blue halftone dot artwork,
+          52px/1.1 display headline (two-line left lockup), 36px physical buttons,
+          and a floating translucent interface card on the right.
           ========================================================================= */}
-      <section className="relative w-full py-12 sm:py-16 lg:py-20 overflow-hidden flex items-center border-b border-edge/80 dark:border-edge/40">
+      <section className="relative w-full min-h-[500px] lg:min-h-[540px] overflow-hidden flex items-center border-b border-edge/80 dark:border-edge/40">
         {/* Mint-Blue Halftone Dot Atmosphere */}
         <div className="halftone-atmosphere" />
 
-        <div className="max-w-column w-full mx-auto px-5 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+        <div className="max-w-column w-full mx-auto px-5 py-16 sm:py-24 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             
-            {/* Left Column: Display & Actions (7 cols) */}
-            <div className="lg:col-span-7 space-y-5 max-w-xl">
+            {/* Left Column: 52px Display & Actions (7 cols) */}
+            <div className="lg:col-span-7 space-y-6 max-w-xl">
               {/* Monospace Eyebrow with terminal cursor */}
               <div className="column-eyebrow">
                 INFRASTRUCTURE IN SOFT FOCUS
               </div>
 
-              {/* Display Headline with tighter tracking */}
-              <h1 className="font-sans text-[36px] sm:text-[44px] md:text-[48px] font-semibold text-navy dark:text-white leading-[1.1] tracking-tightest">
+              {/* 52px/1.1 SuisseIntl 600 Heading with -0.03em tracking */}
+              <h1 className="font-sans text-[40px] sm:text-[48px] md:text-[52px] font-semibold text-navy dark:text-white leading-[1.1] tracking-tightest">
                 Deconstruct infrastructure at scale.
               </h1>
 
-              {/* Hero Support */}
-              <p className="font-sans text-[15.5px] sm:text-[17px] text-secondary-ink dark:text-muted-ink leading-[1.45] font-light max-w-[460px]">
+              {/* 20px/1.4 Weight 300 Hero Support */}
+              <p className="font-sans text-[17px] sm:text-[19px] text-secondary-ink dark:text-muted-ink leading-[1.45] font-light max-w-[460px]">
                 Practical capabilities, concrete runtime mechanisms, and production runbooks synthesized for software engineers.
               </p>
 
               {/* Paired 36px Physical Key Controls */}
-              <div className="pt-1 flex flex-wrap items-center gap-3">
+              <div className="pt-2 flex flex-wrap items-center gap-3">
                 <Link to="/subjects" className="btn-primary">
                   <span>Explore Subjects</span>
                   <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
@@ -106,7 +107,7 @@ export const HomePage: React.FC = () => {
               </div>
 
               {/* Subtle Trust Line */}
-              <div className="pt-2 flex items-center gap-3 text-[12px] font-mono text-muted-ink flex-wrap">
+              <div className="pt-4 flex items-center gap-4 text-[12.5px] font-mono text-muted-ink">
                 <div className="flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-proof-green" />
                   <span>100% Technical Depth</span>
@@ -120,9 +121,9 @@ export const HomePage: React.FC = () => {
 
             {/* Right Column: Floating Glass Card (5 cols) */}
             <div className="lg:col-span-5 flex justify-center lg:justify-end">
-              <div className="floating-glass w-full max-w-[360px] p-5 text-body-ink">
+              <div className="floating-glass w-full max-w-[360px] p-6 text-body-ink">
                 {/* Header Row */}
-                <div className="flex items-center justify-between pb-3 border-b border-edge/60 dark:border-edge/30">
+                <div className="flex items-center justify-between pb-3.5 border-b border-edge/60 dark:border-edge/30">
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-proof-green animate-pulse" />
                     <span className="font-mono text-[11px] font-semibold text-navy dark:text-white uppercase tracking-wider">
@@ -135,7 +136,7 @@ export const HomePage: React.FC = () => {
                 </div>
 
                 {/* Metric Bars inside card */}
-                <div className="mt-3.5 space-y-2.5 font-mono text-[11.5px]">
+                <div className="mt-4 space-y-3 font-mono text-[12px]">
                   <div className="flex justify-between items-center p-2.5 rounded-[6px] bg-canvas/60 dark:bg-canvas/20 border border-edge/60">
                     <span className="text-secondary-ink dark:text-muted-ink">Ingress Port</span>
                     <span className="font-medium text-navy dark:text-ice">:8080 • HTTP/2</span>
@@ -153,7 +154,7 @@ export const HomePage: React.FC = () => {
                 </div>
 
                 {/* Tail status */}
-                <div className="mt-3.5 pt-2.5 border-t border-edge/60 dark:border-edge/30 flex items-center justify-between text-[11px] font-mono text-muted-ink">
+                <div className="mt-4 pt-3 border-t border-edge/60 dark:border-edge/30 flex items-center justify-between text-[11px] font-mono text-muted-ink">
                   <span>GC Pause: 0.18ms</span>
                   <span>Heap: 512MB / 4GB</span>
                 </div>
@@ -168,14 +169,14 @@ export const HomePage: React.FC = () => {
           SECTION 2: LIGHT QUANTIFIED PROOF
           Marked lead, 28px heading, and four 24px green metrics with 12px captions
           ========================================================================= */}
-      <section className="w-full py-10 sm:py-14 border-b border-edge/80 dark:border-edge/40">
+      <section className="w-full py-16 sm:py-24 border-b border-edge/80 dark:border-edge/40">
         <div className="max-w-column mx-auto px-5">
-          <div className="max-w-xl mb-8">
+          <div className="max-w-xl mb-12">
             <div className="column-eyebrow mb-2">VERIFIED EVIDENCE</div>
-            <h2 className="font-sans text-[24px] sm:text-[26px] font-medium text-navy dark:text-white leading-[1.1] tracking-tight">
+            <h2 className="font-sans text-[26px] sm:text-[28px] font-medium text-navy dark:text-white leading-[1.1] tracking-tight">
               Defensible proof from production systems.
             </h2>
-            <p className="mt-2 text-[13.5px] text-secondary-ink dark:text-muted-ink">
+            <p className="mt-2 text-[14px] text-secondary-ink dark:text-muted-ink">
               Concrete measurements and validated architectural parameters derived from real failure investigations.
             </p>
           </div>
@@ -246,7 +247,7 @@ export const HomePage: React.FC = () => {
             <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
               {/* Pathway 1: Spring Boot */}
               <Link
-                to="/learning-paths/spring-boot-production-mastery"
+                to="/subjects/backend-distributed-systems?view=curriculum&path=spring-boot-production-mastery"
                 className="group p-6 rounded-[8px] bg-white/5 border border-white/10 hover:border-ice/50 hover:bg-white/10 backdrop-blur-md space-y-3 transition-all block text-left"
               >
                 <div className="flex items-center justify-between">
@@ -270,7 +271,7 @@ export const HomePage: React.FC = () => {
 
               {/* Pathway 2: Microservices */}
               <Link
-                to="/learning-paths/production-microservices-distributed-architecture"
+                to="/subjects/backend-distributed-systems?view=curriculum&path=production-microservices-distributed-architecture"
                 className="group p-6 rounded-[8px] bg-white/5 border border-white/10 hover:border-ice/50 hover:bg-white/10 backdrop-blur-md space-y-3 transition-all block text-left"
               >
                 <div className="flex items-center justify-between">
@@ -386,33 +387,39 @@ export const HomePage: React.FC = () => {
                 onClick={() => setSortBy('recent')}
                 className={`h-[36px] px-3.5 rounded-[8px] text-[13px] font-mono transition-all border cursor-pointer select-none inline-flex items-center justify-center ${
                   sortBy === 'recent'
-                    ? 'bg-gradient-to-r from-[#3e5199] to-[#5568ad] text-white border-[#3e5199] shadow-sm font-semibold'
-                    : 'bg-white dark:bg-panel text-body-ink border-edge hover:border-[#3e5199] hover:text-[#3e5199] hover:bg-[#3e5199]/5 shadow-xs'
+                    ? 'bg-navy text-white border-navy dark:bg-white dark:text-navy dark:border-white shadow-primary-btn font-medium'
+                    : 'bg-white dark:bg-panel text-body-ink border-edge hover:border-navy hover:text-navy hover:bg-navy/[0.04] dark:hover:bg-white/5 dark:hover:text-white shadow-xs'
                 }`}
               >
-                <span>Most Recent</span>
+                <span className={sortBy === 'recent' ? 'text-white dark:text-navy font-medium' : 'text-body-ink'}>
+                  Most Recent
+                </span>
               </button>
               <button
                 type="button"
                 onClick={() => setSortBy('popular')}
                 className={`h-[36px] px-3.5 rounded-[8px] text-[13px] font-mono transition-all border cursor-pointer select-none inline-flex items-center justify-center ${
                   sortBy === 'popular'
-                    ? 'bg-gradient-to-r from-[#3e5199] to-[#5568ad] text-white border-[#3e5199] shadow-sm font-semibold'
-                    : 'bg-white dark:bg-panel text-body-ink border-edge hover:border-[#3e5199] hover:text-[#3e5199] hover:bg-[#3e5199]/5 shadow-xs'
+                    ? 'bg-navy text-white border-navy dark:bg-white dark:text-navy dark:border-white shadow-primary-btn font-medium'
+                    : 'bg-white dark:bg-panel text-body-ink border-edge hover:border-navy hover:text-navy hover:bg-navy/[0.04] dark:hover:bg-white/5 dark:hover:text-white shadow-xs'
                 }`}
               >
-                <span>Most Notes</span>
+                <span className={sortBy === 'popular' ? 'text-white dark:text-navy font-medium' : 'text-body-ink'}>
+                  Most Notes
+                </span>
               </button>
               <button
                 type="button"
                 onClick={() => setSortBy('alpha')}
                 className={`h-[36px] px-3.5 rounded-[8px] text-[13px] font-mono transition-all border cursor-pointer select-none inline-flex items-center justify-center ${
                   sortBy === 'alpha'
-                    ? 'bg-gradient-to-r from-[#3e5199] to-[#5568ad] text-white border-[#3e5199] shadow-sm font-semibold'
-                    : 'bg-white dark:bg-panel text-body-ink border-edge hover:border-[#3e5199] hover:text-[#3e5199] hover:bg-[#3e5199]/5 shadow-xs'
+                    ? 'bg-navy text-white border-navy dark:bg-white dark:text-navy dark:border-white shadow-primary-btn font-medium'
+                    : 'bg-white dark:bg-panel text-body-ink border-edge hover:border-navy hover:text-navy hover:bg-navy/[0.04] dark:hover:bg-white/5 dark:hover:text-white shadow-xs'
                 }`}
               >
-                <span>Alphabetical</span>
+                <span className={sortBy === 'alpha' ? 'text-white dark:text-navy font-medium' : 'text-body-ink'}>
+                  Alphabetical
+                </span>
               </button>
             </div>
           </div>

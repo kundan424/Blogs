@@ -1,0 +1,239 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="100%">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.08" />
+    </filter>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#0284c7" />
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#16a34a" />
+    </marker>
+  </defs>
+
+  <style>
+    /* Default: Light Mode (Clean White Canvas) */
+    svg {
+      --diag-canvas: #ffffff;
+      --diag-header-tag: #0284c7;
+      --diag-header-sub: #64748b;
+
+      --diag-step-bg: #f8fafc;
+      --diag-step-border: #cbd5e1;
+      --diag-step-title: #0f172a;
+      --diag-step-desc: #475569;
+      --diag-step-pill: #0369a1;
+
+      --diag-badge-bg: #e0f2fe;
+      --diag-badge-border: #bae6fd;
+      --diag-badge-text: #0369a1;
+
+      --diag-box-inner: #ffffff;
+      --diag-box-inner-border: #e2e8f0;
+      --diag-code: #0369a1;
+
+      --diag-exec-bg: #f0fdf4;
+      --diag-exec-border: #bbf7d0;
+      --diag-exec-title: #15803d;
+      --diag-exec-desc: #166534;
+      --diag-exec-badge-bg: #dcfce7;
+      --diag-exec-badge-text: #15803d;
+
+      --diag-arrow: #0284c7;
+    }
+
+    /* Dark Mode (Web Application) */
+    html.dark svg, .dark svg {
+      --diag-canvas: #0c1017;
+      --diag-header-tag: #38bdf8;
+      --diag-header-sub: #94a3b8;
+
+      --diag-step-bg: #141a29;
+      --diag-step-border: #243049;
+      --diag-step-title: #f8fafc;
+      --diag-step-desc: #94a3b8;
+      --diag-step-pill: #38bdf8;
+
+      --diag-badge-bg: #0d2438;
+      --diag-badge-border: #1d4ed8;
+      --diag-badge-text: #38bdf8;
+
+      --diag-box-inner: #0e131f;
+      --diag-box-inner-border: #1e293b;
+      --diag-code: #7dd3fc;
+
+      --diag-exec-bg: #0f2319;
+      --diag-exec-border: #34d399;
+      --diag-exec-title: #34d399;
+      --diag-exec-desc: #a7f3d0;
+      --diag-exec-badge-bg: #092117;
+      --diag-exec-badge-text: #34d399;
+
+      --diag-arrow: #38bdf8;
+    }
+
+    /* Standalone SVG Viewer */
+    @media (prefers-color-scheme: dark) {
+      svg:root {
+        --diag-canvas: #0c1017;
+        --diag-header-tag: #38bdf8;
+        --diag-header-sub: #94a3b8;
+
+        --diag-step-bg: #141a29;
+        --diag-step-border: #243049;
+        --diag-step-title: #f8fafc;
+        --diag-step-desc: #94a3b8;
+        --diag-step-pill: #38bdf8;
+
+        --diag-badge-bg: #0d2438;
+        --diag-badge-border: #1d4ed8;
+        --diag-badge-text: #38bdf8;
+
+        --diag-box-inner: #0e131f;
+        --diag-box-inner-border: #1e293b;
+        --diag-code: #7dd3fc;
+
+        --diag-exec-bg: #0f2319;
+        --diag-exec-border: #34d399;
+        --diag-exec-title: #34d399;
+        --diag-exec-desc: #a7f3d0;
+        --diag-exec-badge-bg: #092117;
+        --diag-exec-badge-text: #34d399;
+
+        --diag-arrow: #38bdf8;
+      }
+    }
+
+    .header-tag { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; font-weight: 700; fill: var(--diag-header-tag); letter-spacing: 1.5px; text-transform: uppercase; }
+    .header-sub { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 12px; fill: var(--diag-header-sub); }
+    .step-title { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13.5px; font-weight: 700; fill: var(--diag-step-title); }
+    .step-meta { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; font-weight: 700; letter-spacing: 0.5px; }
+    .step-desc { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11.5px; fill: var(--diag-step-desc); }
+    .code-snippet { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10.5px; fill: var(--diag-code); }
+    .divider { stroke: var(--diag-step-border); stroke-width: 1; }
+  </style>
+
+  <!-- Background Base Canvas -->
+  <rect width="960" height="480" fill="var(--diag-canvas)" />
+
+  <!-- Diagram Title Header -->
+  <text x="35" y="32" class="header-tag">INVERSION OF CONTROL (IOC) CONTAINER ASSEMBLY LIFECYCLE</text>
+  <text x="35" y="48" class="header-sub">Separation of Concerns: Component Scanning, DAG Topological Dependency Resolution, and Runtime Request Execution</text>
+
+  <!-- ========================================================================= -->
+  <!-- STEP 1: COMPONENT SCANNING -->
+  <!-- ========================================================================= -->
+  <g transform="translate(35, 75)" filter="url(#shadow)">
+    <rect width="265" height="375" rx="8" fill="var(--diag-step-bg)" stroke="var(--diag-step-border)" stroke-width="1.5" />
+    
+    <rect x="16" y="16" width="130" height="22" rx="4" fill="var(--diag-badge-bg)" stroke="var(--diag-badge-border)" stroke-width="1" />
+    <text x="81" y="31" text-anchor="middle" class="step-meta" fill="var(--diag-badge-text)">1. DISCOVERY PHASE</text>
+
+    <text x="16" y="60" class="step-title">Component Scanning</text>
+    <text x="16" y="78" class="step-desc">Spring inspects classpath annotations:</text>
+
+    <!-- Scanned annotations box -->
+    <g transform="translate(16, 96)">
+      <rect width="233" height="135" rx="6" fill="var(--diag-box-inner)" stroke="var(--diag-box-inner-border)" stroke-width="1" />
+      <text x="12" y="24" class="code-snippet">@Component</text>
+      <text x="12" y="46" class="code-snippet">@Service  OrderService</text>
+      <text x="12" y="68" class="code-snippet">@Repository PostgresOrderRepo</text>
+      <text x="12" y="90" class="code-snippet">@Component  StripeGateway</text>
+      <text x="12" y="112" class="code-snippet">@RestController OrderController</text>
+    </g>
+
+    <g transform="translate(16, 245)">
+      <rect width="233" height="110" rx="6" fill="var(--diag-box-inner)" stroke="var(--diag-box-inner-border)" stroke-width="1" />
+      <text x="12" y="22" font-family="ui-monospace, monospace" font-size="10.5" font-weight="700" fill="var(--diag-step-title)">BeanDefinition Creation:</text>
+      <text x="12" y="42" class="step-desc">• Records class metadata</text>
+      <text x="12" y="62" class="step-desc">• Discovers constructor parameters</text>
+      <text x="12" y="82" class="step-desc">• Configures scope (Singleton)</text>
+      <text x="12" y="100" class="step-desc">• Zero reflection invocation yet!</text>
+    </g>
+  </g>
+
+  <!-- Flow 1 -> 2 -->
+  <path d="M 300 262 L 345 262" stroke="var(--diag-arrow)" stroke-width="2" marker-end="url(#arrowBlue)" />
+
+  <!-- ========================================================================= -->
+  <!-- STEP 2: DEPENDENCY DAG & WIRING -->
+  <!-- ========================================================================= -->
+  <g transform="translate(347, 75)" filter="url(#shadow)">
+    <rect width="265" height="375" rx="8" fill="var(--diag-step-bg)" stroke="var(--diag-step-border)" stroke-width="1.5" />
+
+    <rect x="16" y="16" width="130" height="22" rx="4" fill="var(--diag-badge-bg)" stroke="var(--diag-badge-border)" stroke-width="1" />
+    <text x="81" y="31" text-anchor="middle" class="step-meta" fill="var(--diag-badge-text)">2. WIRING PHASE</text>
+
+    <text x="16" y="60" class="step-title">DAG Graph &amp; Injection</text>
+    <text x="16" y="78" class="step-desc">Resolves dependency topology:</text>
+
+    <!-- Graph visualization box -->
+    <g transform="translate(16, 96)">
+      <rect width="233" height="135" rx="6" fill="var(--diag-box-inner)" stroke="var(--diag-box-inner-border)" stroke-width="1" />
+      <!-- Node: Leaf repos -->
+      <rect x="12" y="12" width="98" height="26" rx="4" fill="var(--diag-step-bg)" stroke="var(--diag-step-border)" />
+      <text x="61" y="29" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9.5" font-weight="600" fill="var(--diag-step-title)">PostgresRepo</text>
+
+      <rect x="122" y="12" width="98" height="26" rx="4" fill="var(--diag-step-bg)" stroke="var(--diag-step-border)" />
+      <text x="171" y="29" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9.5" font-weight="600" fill="var(--diag-step-title)">StripeGateway</text>
+
+      <path d="M 61 40 L 61 58 L 116 58" stroke="var(--diag-arrow)" stroke-width="1.5" />
+      <path d="M 171 40 L 171 58 L 116 58" stroke="var(--diag-arrow)" stroke-width="1.5" />
+
+      <!-- Node: OrderService -->
+      <rect x="52" y="62" width="130" height="26" rx="4" fill="var(--diag-badge-bg)" stroke="var(--diag-badge-border)" />
+      <text x="117" y="79" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" font-weight="700" fill="var(--diag-badge-text)">OrderService</text>
+
+      <path d="M 117 90 L 117 100" stroke="var(--diag-arrow)" stroke-width="1.5" marker-end="url(#arrowBlue)" />
+
+      <!-- Node: OrderController -->
+      <rect x="42" y="102" width="150" height="24" rx="4" fill="var(--diag-step-bg)" stroke="var(--diag-step-border)" />
+      <text x="117" y="118" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9.5" font-weight="600" fill="var(--diag-step-title)">OrderController</text>
+    </g>
+
+    <g transform="translate(16, 245)">
+      <rect width="233" height="110" rx="6" fill="var(--diag-box-inner)" stroke="var(--diag-box-inner-border)" stroke-width="1" />
+      <text x="12" y="22" font-family="ui-monospace, monospace" font-size="10.5" font-weight="700" fill="var(--diag-step-title)">Constructor Resolution:</text>
+      <text x="12" y="42" class="step-desc">• Instantiates leaves first (Postgres)</text>
+      <text x="12" y="62" class="step-desc">• Injects dependencies upwards</text>
+      <text x="12" y="82" class="step-desc">• Detects circular loops at startup</text>
+      <text x="12" y="100" class="step-desc">• Stores ready singletons in cache</text>
+    </g>
+  </g>
+
+  <!-- Flow 2 -> 3 -->
+  <path d="M 612 262 L 657 262" stroke="var(--diag-arrow)" stroke-width="2" marker-end="url(#arrowGreen)" />
+
+  <!-- ========================================================================= -->
+  <!-- STEP 3: RUNTIME BUSINESS EXECUTION -->
+  <!-- ========================================================================= -->
+  <g transform="translate(660, 75)" filter="url(#shadow)">
+    <rect width="265" height="375" rx="8" fill="var(--diag-exec-bg)" stroke="var(--diag-exec-border)" stroke-width="1.5" />
+
+    <rect x="16" y="16" width="130" height="22" rx="4" fill="var(--diag-exec-badge-bg)" stroke="var(--diag-exec-border)" stroke-width="1" />
+    <text x="81" y="31" text-anchor="middle" class="step-meta" fill="var(--diag-exec-badge-text)">3. EXECUTION PHASE</text>
+
+    <text x="16" y="60" class="step-title" fill="var(--diag-exec-title)">Runtime Request Flow</text>
+    <text x="16" y="78" class="step-desc" fill="var(--diag-exec-desc)">Pure zero-overhead business calls:</text>
+
+    <!-- Request flow box -->
+    <g transform="translate(16, 96)">
+      <rect width="233" height="135" rx="6" fill="var(--diag-box-inner)" stroke="var(--diag-exec-border)" stroke-width="1" />
+      <text x="12" y="24" class="code-snippet" fill="var(--diag-exec-title)">POST /api/v1/orders</text>
+      <text x="12" y="44" class="step-desc">• DispatcherServlet receives HTTP</text>
+      <text x="12" y="64" class="step-desc">• Routes to cached Controller</text>
+      <text x="12" y="84" class="step-desc">• Controller calls Service</text>
+      <text x="12" y="104" class="step-desc">• Zero "new" calls during execution</text>
+      <text x="12" y="122" class="step-desc">• Sub-millisecond latency</text>
+    </g>
+
+    <g transform="translate(16, 245)">
+      <rect width="233" height="110" rx="6" fill="var(--diag-box-inner)" stroke="var(--diag-exec-border)" stroke-width="1" />
+      <text x="12" y="22" font-family="ui-monospace, monospace" font-size="10.5" font-weight="700" fill="var(--diag-exec-title)">Architectural Separation:</text>
+      <text x="12" y="42" class="step-desc" fill="var(--diag-exec-desc)">Creation: Handled once at startup</text>
+      <text x="12" y="62" class="step-desc" fill="var(--diag-exec-desc)">Execution: Scalable stateless requests</text>
+      <text x="12" y="82" class="step-desc" fill="var(--diag-exec-desc)">Garbage Collection: Near-zero churn</text>
+      <text x="12" y="100" class="step-desc" fill="var(--diag-exec-desc)">Complete separation of concerns!</text>
+    </g>
+  </g>
+</svg>

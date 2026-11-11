@@ -13,7 +13,7 @@ export const learningPaths: LearningPath[] = [
     subjectSlug: 'backend-distributed-systems',
     icon: 'developer_mode',
     level: 'Production Scale',
-    estimatedDuration: '35 Modules • 76 Lessons',
+    estimatedDuration: '35 Modules • 75 Lessons',
     modules: [
       // -----------------------------------------------------------------------
       // PHASE 0: PREREQUISITES (BUILD TOOLS & NETWORK/DB)
@@ -21,9 +21,9 @@ export const learningPaths: LearningPath[] = [
       {
         id: 'sb-mod-01',
         number: '01',
-        title: 'Build Tools (Maven & Gradle)',
+        title: 'Build Tools (Apache Maven)',
         description:
-          'Build lifecycle management, POM coordinates, dependency resolution graphs, plugins, and modern Gradle DSL.',
+          'Build lifecycle management, POM coordinates, dependency resolution graphs, plugins, and production packaging.',
         lessons: [
           {
             id: 'sb-1-1',
@@ -35,16 +35,6 @@ export const learningPaths: LearningPath[] = [
             status: 'published',
             readTime: '20m read',
             topics: ['maven', 'build-tools', 'devops'],
-          },
-          {
-            id: 'sb-1-2',
-            number: '1.2',
-            title: 'Gradle Build Automation & Modern Dependency Scopes',
-            description:
-              'build.gradle scripts, configuration vs execution phase, incremental builds, and modern dependency scopes (implementation vs api vs testImplementation).',
-            status: 'upcoming',
-            readTime: '09m read',
-            topics: ['gradle', 'build-tools', 'automation'],
           },
         ],
       },
@@ -59,20 +49,22 @@ export const learningPaths: LearningPath[] = [
             id: 'sb-2-1',
             number: '2.1',
             title: 'HTTP Protocol Internals: Methods, Status Codes, Headers & Cookies',
+            noteSlug: 'http-protocol-methods-status-codes-headers-cookies',
             description:
               'HTTP request/response framing, idempotency across GET/PUT/DELETE/PATCH, cache headers, cookies, and 2xx/3xx/4xx/5xx status code taxonomy.',
-            status: 'upcoming',
-            readTime: '11m read',
-            topics: ['http', 'networking', 'api-design'],
+            status: 'published',
+            readTime: '22m read',
+            topics: ['http', 'networking', 'rest-api', 'spring-boot'],
           },
           {
             id: 'sb-2-2',
             number: '2.2',
             title: 'Relational Database Fundamentals: SQL Joins, Indexes, ACID & Normalization',
+            noteSlug: 'relational-database-fundamentals-sql-joins-indexes-acid-normalization',
             description:
               'Relational modeling, inner/outer joins, B-Tree index scan vs sequential scan, normalization forms, and ACID transaction guarantees under load.',
-            status: 'upcoming',
-            readTime: '13m read',
+            status: 'published',
+            readTime: '24m read',
             topics: ['sql', 'database', 'rdbms', 'acid'],
           },
         ],
@@ -91,11 +83,12 @@ export const learningPaths: LearningPath[] = [
           {
             id: 'sb-3-1',
             number: '3.1',
-            title: 'Inversion of Control & Dependency Injection Architecture',
+            title: 'Why Dependency Injection? Decoupling, Testability & Separation of Concerns',
+            noteSlug: 'why-dependency-injection-decoupling-testability-separation-of-concerns',
             description:
               'Why DI? Decoupling class coupling, testability through test doubles, and separation of creation concerns from business execution.',
-            status: 'upcoming',
-            readTime: '08m read',
+            status: 'published',
+            readTime: '18m read',
             topics: ['spring-core', 'ioc', 'dependency-injection'],
           },
           {

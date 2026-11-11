@@ -12,9 +12,10 @@ interface CodeBlockProps {
 // Tokenizer for code block syntax highlighting matching the modern IDE screenshot
 function highlightCode(code: string, language: string): React.ReactNode {
   const lang = (language || '').toLowerCase().trim();
+  const isBoxArt = /[\u2500-\u257F\u2580-\u259F┌─┐│└┘├┤┬┴┼═║╔╗╚╝╠╣╦╩╬]/.test(code);
 
-  // If text, ascii, or unsupported raw diagram, return plain text
-  if (['text', 'txt', 'ascii', 'none', 'plain'].includes(lang)) {
+  // If text, ascii, raw diagram, or contains box drawing characters, return plain text
+  if (['text', 'txt', 'ascii', 'none', 'plain', 'diagram'].includes(lang) || isBoxArt) {
     return code;
   }
 
@@ -111,13 +112,18 @@ function highlightCode(code: string, language: string): React.ReactNode {
 }
 
 export const CodeBlock: React.FC<CodeBlockProps> = ({
-  code,
+  code: rawCode,
   language = 'java',
   filename,
   className,
 }) => {
   const [copied, setCopied] = useState(false);
   const { showToast } = useToast();
+
+  // Normalize non-breaking spaces (\u00A0) and zero-width characters to standard spaces
+  const code = useMemo(() => {
+    return (rawCode || '').replace(/\u00a0/g, ' ').replace(/[\u200B-\u200D\uFEFF]/g, '');
+  }, [rawCode]);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(code);
@@ -130,6 +136,15 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
     () => highlightCode(code, language),
     [code, language]
   );
+
+  const isAsciiDiagram = useMemo(() => {
+    const lang = (language || '').toLowerCase().trim();
+    const isBoxArt = /[\u2500-\u257F\u2580-\u259F┌─┐│└┘├┤┬┴┼═║╔╗╚╝╠╣╦╩╬]/.test(code);
+    const isAsciiTable =
+      ['text', 'txt', 'ascii', 'diagram', 'plain'].includes(lang) &&
+      /(\+[–\-=_]{2,}\+|\|[\s\S]*?\|)/.test(code);
+    return isBoxArt || isAsciiTable;
+  }, [code, language]);
 
   return (
     <div
@@ -174,13 +189,29 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
         </button>
       )}
 
-      {/* Code Text Area with JetBrains Mono */}
+      {/* Code Text Area: switches to monospace box-drawing font with tight line height for ASCII art */}
       <pre
-        className="p-5 overflow-x-auto text-[13.5px] font-mono leading-[1.75] tracking-[-0.01em] text-[#e2e8f0] selection:bg-[#3b2d54] selection:text-[#f5f3ff]"
-        style={{
-          fontFamily: "'JetBrains Mono', 'Fira Code', 'Geist Mono', ui-monospace, monospace",
-          fontFeatureSettings: "'liga' 1, 'calt' 1",
-        }}
+        className={cn(
+          'p-5 overflow-x-auto text-[#e2e8f0] selection:bg-[#3b2d54] selection:text-[#f5f3ff]',
+          isAsciiDiagram
+            ? 'text-[12.5px] sm:text-[13px] leading-[1.18] tracking-normal'
+            : 'text-[13.5px] font-mono leading-[1.75] tracking-[-0.01em]'
+        )}
+        style={
+          isAsciiDiagram
+            ? {
+                fontFamily:
+                  "'Cascadia Code', 'Consolas', 'Menlo', 'Monaco', 'Courier New', 'DejaVu Sans Mono', monospace",
+                lineHeight: '1.18',
+                letterSpacing: '0px',
+                fontFeatureSettings: 'normal',
+                fontVariantLigatures: 'none',
+              }
+            : {
+                fontFamily: "'JetBrains Mono', 'Fira Code', 'Geist Mono', ui-monospace, monospace",
+                fontFeatureSettings: "'liga' 1, 'calt' 1",
+              }
+        }
       >
         <code>{highlightedContent}</code>
       </pre>

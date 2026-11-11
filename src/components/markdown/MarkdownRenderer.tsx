@@ -290,7 +290,8 @@ const markdownComponents: Components = {
     }
 
     const rawCode = String(children).replace(/\n$/, '');
-    const lang = match ? match[1] : 'bash';
+    const isBoxArt = /[\u2500-\u257F\u2580-\u259F┌─┐│└┘├┤┬┴┼═║╔╗╚╝╠╣╦╩╬]/.test(rawCode);
+    const lang = match ? match[1] : (isBoxArt ? 'text' : 'bash');
     const meta = (node?.data as any)?.meta || '';
     const titleMatch = meta.match(/title="([^"]+)"/);
     const filename = titleMatch ? titleMatch[1] : undefined;

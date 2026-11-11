@@ -241,49 +241,50 @@ Maven Core is simply an **orchestration engine**. Its sole responsibilities are:
 4. Calling **Plugins** to do the actual heavy lifting.
 
 ```text
-+------------------------------------------------------------------------+
-|                       MAVEN ENGINE ARCHITECTURE                        |
-+-----------------------------------+------------------------------------+
-                                    |
-                                    v
-                     +-----------------------------+
-                     |      Parse pom.xml &        |
-                     |    Merge with Super POM     |
-                     +--------------+--------------+
-                                    |
-                                    v
-                     +-----------------------------+
-                     | Dependency Resolution Graph |
-                     |    (Conflict Mediation)     |
-                     +--------------+--------------+
-                                    |
-                    +---------------+---------------+
-                    v                               v
-       +------------------------+      +------------------------+
-       |    Local Repository    |      |   Remote Repository    |
-       |   (~/.m2/repository)   |<---->|    (Maven Central /    |
-       |                        |      |   Artifactory/Nexus)   |
-       +------------------------+      +------------------------+
-                    |
-                    v
-       +--------------------------------------------------------+
-       |               Lifecycle Execution Engine               |
-       |   [validate -> compile -> test -> package -> install]  |
-       +----------------------------+---------------------------+
-                                    |
-                                    v
-       +--------------------------------------------------------+
-       |                 Plugin Binding Manager                 |
-       +----------------------------+---------------------------+
-       | Lifecycle Phase            | Executing Plugin Goal     |
-       +----------------------------+---------------------------+
-       | process-resources          | maven-resources:resources |
-       | compile                    | maven-compiler:compile    |
-       | test-compile               | maven-compiler:testCompile|
-       | test                       | maven-surefire:test       |
-       | package                    | maven-jar:jar             |
-       | install                    | maven-install:install     |
-       +----------------------------+---------------------------+
+┌────────────────────────────────────────────────────────────────────────┐
+│                       MAVEN ENGINE ARCHITECTURE                        │
+└───────────────────────────────────┬────────────────────────────────────┘
+                                    │
+                                    ▼
+                     ┌─────────────────────────────┐
+                     │     Parse pom.xml &         │
+                     │   Merge with Super POM      │
+                     └──────────────┬──────────────┘
+                                    │
+                                    ▼
+                     ┌─────────────────────────────┐
+                     │ Dependency Resolution Graph │
+                     │   (Conflict Mediation)      │
+                     └──────────────┬──────────────┘
+                                    │
+                    ┌───────────────┴───────────────┐
+                    ▼                               ▼
+       ┌────────────────────────┐      ┌────────────────────────┐
+       │   Local Repository     │      │   Remote Repository    │
+       │     (~/.m2/repository) │◄────►│   (Maven Central /     │
+       │                        │      │    Artifactory/Nexus)  │
+       └────────────────────────┘      └────────────────────────┘
+                    │
+                    ▼
+       ┌────────────────────────────────────────────────────────┐
+       │              Lifecycle Execution Engine                │
+       │   [validate -> compile -> test -> package -> install]  │
+       └────────────────────────────┬───────────────────────────┘
+                                    │
+                                    ▼
+       ┌────────────────────────────────────────────────────────┐
+       │                 Plugin Binding Manager                 │
+       ├────────────────────────────┬───────────────────────────┤
+       │ Lifecycle Phase            │ Executing Plugin Goal     │
+       ├────────────────────────────┼───────────────────────────┤
+       │ process-resources          │ maven-resources:resources │
+       │ compile                    │ maven-compiler:compile    │
+       │ test-compile               │ maven-compiler:testCompile│
+       │ test                       │ maven-surefire:test       │
+       │ package                    │ maven-jar:jar             │
+       │ install                    │ maven-install:install     │
+       └────────────────────────────┴───────────────────────────┘
+
 ```
 
 Notice the flow: when you trigger a phase, Maven's Lifecycle Engine checks its internal registry, looks up which plugin goals are bound to that phase, downloads the plugins if needed, and executes them.
@@ -332,6 +333,8 @@ Think of Maven's default lifecycle as an **automobile assembly line**. Each step
   [deploy]
           Copies the final JAR to a remote shared repository (Nexus/Artifactory).
 ```
+
+
 
 ### The Golden Rule of Lifecycles
 

@@ -179,27 +179,37 @@ export const CuratedPathCard: React.FC<CuratedPathCardProps> = ({
         </p>
 
         {/* Module Outline Roadmap Preview */}
-        <div className="p-3 rounded-[8px] bg-white/60 dark:bg-panel/50 border border-edge/60 space-y-1.5 font-mono text-[11.5px]">
+        <div className="p-3 rounded-[8px] bg-white/60 dark:bg-panel/50 border border-edge/60 space-y-2 font-mono text-[11.5px]">
           <div className="text-[10.5px] uppercase tracking-wider text-muted-ink font-semibold flex items-center justify-between pb-1 border-b border-edge/40">
             <span>CURRICULUM MODULES</span>
-            <span>{path.modules.length} Modules</span>
+            <span className="flex items-center gap-1.5">
+              <span>{path.modules.length} Modules</span>
+              {path.modules.length > 5 && (
+                <span className="text-[9.5px] text-muted-ink/80 font-normal lowercase">(scroll)</span>
+              )}
+            </span>
           </div>
-          {path.modules.map((mod) => (
-            <div
-              key={mod.id}
-              className="flex items-center justify-between text-body-ink dark:text-muted-ink truncate"
-            >
-              <span className="truncate pr-2">
-                <span className={cn('font-semibold mr-1.5', theme.accentText)}>
-                  {mod.number}.
+          <div
+            className="max-h-[145px] overflow-y-auto custom-scrollbar pr-1.5 space-y-1.5 focus:outline-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {path.modules.map((mod) => (
+              <div
+                key={mod.id}
+                className="flex items-center justify-between text-body-ink dark:text-muted-ink hover:text-navy dark:hover:text-white transition-colors truncate py-0.5"
+              >
+                <span className="truncate pr-2">
+                  <span className={cn('font-semibold mr-1.5', theme.accentText)}>
+                    {mod.number}.
+                  </span>
+                  {mod.title}
                 </span>
-                {mod.title}
-              </span>
-              <span className="text-muted-ink shrink-0 text-[10.5px]">
-                {mod.lessons.length} {mod.lessons.length === 1 ? 'lesson' : 'lessons'}
-              </span>
-            </div>
-          ))}
+                <span className="text-muted-ink shrink-0 text-[10.5px]">
+                  {mod.lessons.length} {mod.lessons.length === 1 ? 'lesson' : 'lessons'}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 

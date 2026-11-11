@@ -150,22 +150,13 @@ Let's dissect this piece by piece.
 
 In Maven, every single library, framework, and project in the global Java ecosystem is uniquely identified by three coordinates known as **GAV**:
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                        THE "GAV" COORDINATES                           │
-├─────────────┬───────────────────────────┬──────────────────────────────┤
-│ Coordinate  │ Meaning                   │ Real-World Example           │
-├─────────────┼───────────────────────────┼──────────────────────────────┤
-│ groupId     │ The organization, company,│ com.fasterxml.jackson.core   │
-│             │ or reversed domain name   │ org.springframework.boot     │
-├─────────────┼───────────────────────────┼──────────────────────────────┤
-│ artifactId  │ The specific project or   │ jackson-databind             │
-│             │ module name               │ spring-boot-starter-web      │
-├─────────────┼───────────────────────────┼──────────────────────────────┤
-│ version     │ The specific release or   │ 2.17.0                       │
-│             │ development iteration     │ 3.2.4                        │
-└─────────────┴───────────────────────────┴──────────────────────────────┘
-```
+### The "GAV" Coordinates
+
+| Coordinate | Meaning | Real-World Example |
+| :--- | :--- | :--- |
+| `groupId` | The organization, company, or reversed domain name | `com.fasterxml.jackson.core`<br>`org.springframework.boot` |
+| `artifactId` | The specific project or module name | `jackson-databind`<br>`spring-boot-starter-web` |
+| `version` | The specific release or development iteration | `2.17.0`<br>`3.2.4` |
 
 When you publish this project, Maven builds an artifact named:
 ```text
@@ -200,32 +191,16 @@ Maven will print hundreds of lines of XML. You will discover default directories
 
 When you declare a dependency, you must specify *when* and *where* that JAR should be visible. Maven controls this through **dependency scopes**.
 
-```text
-┌─────────────────────────────────────────────────────────────────────────┐
-│                     MAVEN DEPENDENCY SCOPES MATRIX                      │
-├───────────┬─────────────┬──────────┬──────────┬───────────┬─────────────┤
-│ Scope     │ Compile CP  │ Test CP  │ Runtime  │ Packaged  │ Example     │
-│           │ (src/main)  │(src/test)│ (JVM Run)│ into JAR? │ Library     │
-├───────────┼─────────────┼──────────┼──────────┼───────────┼─────────────┤
-│ compile   │     YES     │   YES    │   YES    │    YES    │ Jackson,    │
-│ (default) │             │          │          │           │ Guava       │
-├───────────┼─────────────┼──────────┼──────────┼───────────┼─────────────┤
-│ provided  │     YES     │   YES    │    NO    │    NO     │ Servlet API,│
-│           │             │          │          │           │ Lombok      │
-├───────────┼─────────────┼──────────┼──────────┼───────────┼─────────────┤
-│ runtime   │     NO      │   YES    │   YES    │    YES    │ PostgreSQL  │
-│           │             │          │          │           │ JDBC Driver │
-├───────────┼─────────────┼──────────┼──────────┼───────────┼─────────────┤
-│ test      │     NO      │   YES    │    NO    │    NO     │ JUnit 5,    │
-│           │             │          │          │           │ Mockito     │
-├───────────┼─────────────┼──────────┼──────────┼───────────┼─────────────┤
-│ system    │     YES     │   YES    │    NO    │    NO     │ Local JAR   │
-│           │ (Rarely used; requires absolute filesystem path)│ (Legacy)    │
-├───────────┼─────────────┼──────────┼──────────┼───────────┼─────────────┤
-│ import    │     N/A     │   N/A    │   N/A    │    NO     │ Spring BOM  │
-│           │ (Only inside <dependencyManagement> to import BOMs)          │
-└───────────┴─────────────┴──────────┴──────────┴───────────┴─────────────┘
-```
+### Maven Dependency Scopes Matrix
+
+| Scope | Compile CP (`src/main`) | Test CP (`src/test`) | Runtime (JVM Run) | Packaged into JAR? | Example Library |
+| :--- | :---: | :---: | :---: | :---: | :--- |
+| **`compile`** *(default)* | YES | YES | YES | YES | Jackson, Guava |
+| **`provided`** | YES | YES | NO | NO | Servlet API, Lombok |
+| **`runtime`** | NO | YES | YES | YES | PostgreSQL JDBC Driver |
+| **`test`** | NO | YES | NO | NO | JUnit 5, Mockito |
+| **`system`** | YES | YES | NO | NO | Local JAR *(Legacy, requires absolute filesystem path)* |
+| **`import`** | N/A | N/A | N/A | NO | Spring BOM *(Only inside `<dependencyManagement>`)* |
 
 Let's understand why this matters through real scenarios:
 
@@ -266,49 +241,49 @@ Maven Core is simply an **orchestration engine**. Its sole responsibilities are:
 4. Calling **Plugins** to do the actual heavy lifting.
 
 ```text
-┌────────────────────────────────────────────────────────────────────────┐
-│                       MAVEN ENGINE ARCHITECTURE                        │
-└───────────────────────────────────┬────────────────────────────────────┘
-                                    │
-                                    ▼
-                     ┌─────────────────────────────┐
-                     │     Parse pom.xml &         │
-                     │   Merge with Super POM      │
-                     └──────────────┬──────────────┘
-                                    │
-                                    ▼
-                     ┌─────────────────────────────┐
-                     │ Dependency Resolution Graph │
-                     │   (Conflict Mediation)      │
-                     └──────────────┬──────────────┘
-                                    │
-                    ┌───────────────┴───────────────┐
-                    ▼                               ▼
-       ┌────────────────────────┐      ┌────────────────────────┐
-       │   Local Repository     │      │   Remote Repository    │
-       │     (~/.m2/repository) │◄────►│   (Maven Central /     │
-       │                        │      │    Artifactory/Nexus)  │
-       └────────────────────────┘      └────────────────────────┘
-                    │
-                    ▼
-       ┌────────────────────────────────────────────────────────┐
-       │              Lifecycle Execution Engine                │
-       │   [validate -> compile -> test -> package -> install]  │
-       └────────────────────────────┬───────────────────────────┘
-                                    │
-                                    ▼
-       ┌────────────────────────────────────────────────────────┐
-       │                 Plugin Binding Manager                 │
-       ├────────────────────────────┬───────────────────────────┤
-       │ Lifecycle Phase            │ Executing Plugin Goal     │
-       ├────────────────────────────┼───────────────────────────┤
-       │ process-resources          │ maven-resources:resources │
-       │ compile                    │ maven-compiler:compile    │
-       │ test-compile               │ maven-compiler:testCompile│
-       │ test                       │ maven-surefire:test       │
-       │ package                    │ maven-jar:jar             │
-       │ install                    │ maven-install:install     │
-       └────────────────────────────┴───────────────────────────┘
++------------------------------------------------------------------------+
+|                       MAVEN ENGINE ARCHITECTURE                        |
++-----------------------------------+------------------------------------+
+                                    |
+                                    v
+                     +-----------------------------+
+                     |      Parse pom.xml &        |
+                     |    Merge with Super POM     |
+                     +--------------+--------------+
+                                    |
+                                    v
+                     +-----------------------------+
+                     | Dependency Resolution Graph |
+                     |    (Conflict Mediation)     |
+                     +--------------+--------------+
+                                    |
+                    +---------------+---------------+
+                    v                               v
+       +------------------------+      +------------------------+
+       |    Local Repository    |      |   Remote Repository    |
+       |   (~/.m2/repository)   |<---->|    (Maven Central /    |
+       |                        |      |   Artifactory/Nexus)   |
+       +------------------------+      +------------------------+
+                    |
+                    v
+       +--------------------------------------------------------+
+       |               Lifecycle Execution Engine               |
+       |   [validate -> compile -> test -> package -> install]  |
+       +----------------------------+---------------------------+
+                                    |
+                                    v
+       +--------------------------------------------------------+
+       |                 Plugin Binding Manager                 |
+       +----------------------------+---------------------------+
+       | Lifecycle Phase            | Executing Plugin Goal     |
+       +----------------------------+---------------------------+
+       | process-resources          | maven-resources:resources |
+       | compile                    | maven-compiler:compile    |
+       | test-compile               | maven-compiler:testCompile|
+       | test                       | maven-surefire:test       |
+       | package                    | maven-jar:jar             |
+       | install                    | maven-install:install     |
+       +----------------------------+---------------------------+
 ```
 
 Notice the flow: when you trigger a phase, Maven's Lifecycle Engine checks its internal registry, looks up which plugin goals are bound to that phase, downloads the plugins if needed, and executes them.
@@ -398,10 +373,10 @@ We mentioned earlier that plugins do the actual work. But what is a plugin, tech
 The notation used by Maven is `pluginPrefix:goalName`.
 
 For example:
-- `compiler:compile` $\rightarrow$ Goal `compile` inside the `maven-compiler-plugin`.
-- `surefire:test` $\rightarrow$ Goal `test` inside the `maven-surefire-plugin`.
-- `jar:jar` $\rightarrow$ Goal `jar` inside the `maven-jar-plugin`.
-- `dependency:tree` $\rightarrow$ Goal `tree` inside the `maven-dependency-plugin`.
+- `compiler:compile` → Goal `compile` inside the `maven-compiler-plugin`.
+- `surefire:test` → Goal `test` inside the `maven-surefire-plugin`.
+- `jar:jar` → Goal `jar` inside the `maven-jar-plugin`.
+- `dependency:tree` → Goal `tree` inside the `maven-dependency-plugin`.
 
 ### Invoking Goals Directly vs. Triggering Lifecycles
 
@@ -559,8 +534,8 @@ Maven uses a simple, deterministic rule:
 ### Rule: "Nearest Definition Wins"
 
 Maven measures the distance (depth) of each dependency from the root of your project:
-- `Shared-Lib:1.2` has a depth of **2** (Your Project $\rightarrow$ Library-A $\rightarrow$ Shared-Lib).
-- `Shared-Lib:1.0` has a depth of **3** (Your Project $\rightarrow$ Library-B $\rightarrow$ Intermediate-Lib $\rightarrow$ Shared-Lib).
+- `Shared-Lib:1.2` has a depth of **2** (Your Project → Library-A → Shared-Lib).
+- `Shared-Lib:1.0` has a depth of **3** (Your Project → Library-B → Intermediate-Lib → Shared-Lib).
 
 Because version `1.2` is closer to the root, **Maven selects `Shared-Lib:1.2`** and completely ignores `1.0`.
 
@@ -628,7 +603,7 @@ Let's recap what we have deconstructed:
 1. **Convention over Configuration:** Keep code in `src/main/java` and tests in `src/test/java`. Let Maven handle the paths.
 2. **The GAV Coordinates:** `groupId`, `artifactId`, and `version` uniquely identify every library in existence.
 3. **The 3 Lifecycles:** `clean`, `default`, and `site` are completely distinct.
-4. **Phased Assembly Line:** Calling `mvn package` runs every prior phase in sequence (`validate` $\rightarrow$ `compile` $\rightarrow$ `test` $\rightarrow$ `package`).
+4. **Phased Assembly Line:** Calling `mvn package` runs every prior phase in sequence (`validate` → `compile` → `test` → `package`).
 5. **Plugins are the Workers:** Maven core only orchestrates; plugin goals do the compiling, testing, and packaging.
 6. **Nearest Wins:** In dependency conflicts, the dependency closest to your `pom.xml` in the tree wins.
 

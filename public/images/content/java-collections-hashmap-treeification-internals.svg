@@ -1,0 +1,206 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" width="100%" height="100%">
+  <defs>
+    <linearGradient id="canvasBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f131f" />
+      <stop offset="100%" stop-color="#090c15" />
+    </linearGradient>
+    <linearGradient id="bucketGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1f2847" />
+      <stop offset="100%" stop-color="#141a30" />
+    </linearGradient>
+    <linearGradient id="nodeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2c2214" />
+      <stop offset="100%" stop-color="#1c160c" />
+    </linearGradient>
+    <linearGradient id="treeBlackGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#27272a" />
+      <stop offset="100%" stop-color="#18181b" />
+    </linearGradient>
+    <linearGradient id="treeRedGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7f1d1d" />
+      <stop offset="100%" stop-color="#450a0a" />
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.5" />
+    </filter>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#f59e0b" />
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#ef4444" />
+    </marker>
+    <marker id="arrowIndigo" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#818cf8" />
+    </marker>
+  </defs>
+
+  <style>
+    .header-main { font-family: ui-monospace, SFMono-Regular, "IBM Plex Mono", Menlo, monospace; font-size: 11px; font-weight: 700; fill: #f59e0b; letter-spacing: 1.5px; text-transform: uppercase; }
+    .header-sub { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 12px; fill: #94a3b8; }
+    .table-label { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; font-weight: 600; fill: #818cf8; }
+    .node-text { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; fill: #f8fafc; }
+    .node-dim { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; fill: #a1a1aa; }
+    .rule-title { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; font-weight: 600; fill: #fbbf24; }
+    .rule-desc { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: #94a3b8; }
+    .tree-node-text { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10.5px; font-weight: 600; }
+  </style>
+
+  <!-- Background Base Canvas -->
+  <rect width="960" height="520" rx="14" fill="url(#canvasBg)" stroke="#1e293b" stroke-width="1.5" />
+
+  <!-- Diagram Title Header -->
+  <text x="35" y="34" class="header-main">HASHMAP TABLE STRUCTURE &amp; BUCKET TREEIFICATION</text>
+  <text x="35" y="52" class="header-sub">Dynamic Chaining Collision Resolution: Singly Linked List vs. Balanced Red-Black Tree (Java 8+)</text>
+
+  <!-- Top Informational Rules Badges -->
+  <g transform="translate(480, 20)">
+    <rect width="445" height="42" rx="6" fill="#14192b" stroke="#253254" />
+    <text x="14" y="17" class="rule-title">Bitmask Indexing:</text>
+    <text x="135" y="17" class="rule-desc" fill="#e2e8f0"><tspan font-family="monospace">index = (n - 1) &amp; [h ^ (h &gt;&gt;&gt; 16)]</tspan></text>
+    <text x="14" y="32" class="rule-title">Treeify Invariants:</text>
+    <text x="135" y="32" class="rule-desc"><tspan font-family="monospace">bin &gt;= 8</tspan> AND <tspan font-family="monospace">table.length &gt;= 64</tspan> (Untreeify at 6)</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- BUCKET ARRAY COLUMN -->
+  <!-- ========================================================================= -->
+  <g transform="translate(35, 80)">
+    <text x="0" y="0" class="table-label" font-size="11.5px">Node&lt;K,V&gt;[] table (Bucket Array)</text>
+    
+    <!-- Table[0] -->
+    <g transform="translate(0, 16)">
+      <rect width="130" height="48" rx="6" fill="url(#bucketGrad)" stroke="#818cf8" stroke-width="1.2" />
+      <text x="12" y="22" class="table-label">Table[0]</text>
+      <text x="12" y="38" class="node-dim" fill="#64748b">null (empty bin)</text>
+    </g>
+
+    <!-- Table[1] -->
+    <g transform="translate(0, 80)">
+      <rect width="130" height="48" rx="6" fill="url(#bucketGrad)" stroke="#818cf8" stroke-width="1.2" />
+      <text x="12" y="22" class="table-label">Table[1]</text>
+      <text x="12" y="38" class="node-dim" fill="#34d399">head pointer ──►</text>
+    </g>
+
+    <!-- Table[2] -->
+    <g transform="translate(0, 144)">
+      <rect width="130" height="48" rx="6" fill="url(#bucketGrad)" stroke="#818cf8" stroke-width="1.2" />
+      <text x="12" y="22" class="table-label">Table[2]</text>
+      <text x="12" y="38" class="node-dim" fill="#64748b">null (empty bin)</text>
+    </g>
+
+    <!-- Table[3] (Treeified) -->
+    <g transform="translate(0, 208)">
+      <rect width="130" height="64" rx="6" fill="url(#bucketGrad)" stroke="#f59e0b" stroke-width="1.6" />
+      <text x="12" y="24" class="table-label" fill="#f59e0b">Table[3]</text>
+      <text x="12" y="42" class="node-dim" fill="#fcd34d">Treeified Root ──►</text>
+      <text x="12" y="55" class="node-dim" font-size="9px">bin &gt;= 8</text>
+    </g>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- BUCKET 1: LINKED LIST CHAIN (THRESHOLD < 8) -->
+  <!-- ========================================================================= -->
+  <!-- Arrow from Table[1] -->
+  <path d="M 170 184 L 210 184" stroke="#f59e0b" stroke-width="1.8" fill="none" marker-end="url(#arrowAmber)" />
+
+  <g transform="translate(210, 155)">
+    <rect width="715" height="60" rx="8" fill="#121829" stroke="#1e293b" />
+    <text x="16" y="20" class="rule-title" font-size="10px">Singly Linked Chain (Linear Traversal • O(k) Search)</text>
+    
+    <!-- Node 1 -->
+    <g transform="translate(16, 26)">
+      <rect width="185" height="26" rx="4" fill="url(#nodeGrad)" stroke="#f59e0b" />
+      <text x="8" y="17" class="node-text" font-size="10.5px">Node("user_id", 104) ──►</text>
+    </g>
+
+    <!-- Arrow 1 -> 2 -->
+    <path d="M 205 39 L 235 39" stroke="#f59e0b" stroke-width="1.5" fill="none" marker-end="url(#arrowAmber)" />
+
+    <!-- Node 2 -->
+    <g transform="translate(235, 26)">
+      <rect width="195" height="26" rx="4" fill="url(#nodeGrad)" stroke="#f59e0b" />
+      <text x="8" y="17" class="node-text" font-size="10.5px">Node("session_token", 92) ──►</text>
+    </g>
+
+    <!-- Arrow 2 -> 3 -->
+    <path d="M 435 39 L 465 39" stroke="#f59e0b" stroke-width="1.5" fill="none" marker-end="url(#arrowAmber)" />
+
+    <!-- Node 3 -->
+    <g transform="translate(465, 26)">
+      <rect width="165" height="26" rx="4" fill="url(#nodeGrad)" stroke="#f59e0b" />
+      <text x="8" y="17" class="node-text" font-size="10.5px">Node("org_key", 44)</text>
+    </g>
+
+    <text x="645" y="42" class="node-dim">──► null</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- BUCKET 3: TREEIFIED RED-BLACK TREE (THRESHOLD >= 8 & CAP >= 64) -->
+  <!-- ========================================================================= -->
+  <!-- Arrow from Table[3] -->
+  <path d="M 170 320 L 210 320" stroke="#ef4444" stroke-width="1.8" fill="none" marker-end="url(#arrowRed)" />
+
+  <g transform="translate(210, 235)">
+    <rect width="715" height="255" rx="8" fill="#14121a" stroke="#2d1e26" />
+    <text x="16" y="24" class="rule-title" fill="#f87171" font-size="11px">Treeified Bucket: Red-Black Tree Hierarchy (Logarithmic Traversal • O(log k) Search)</text>
+    <text x="690" y="24" text-anchor="end" class="node-dim" fill="#fca5a5">Worst-case O(n) DOS Protection</text>
+
+    <!-- ROOT NODE (Black) -->
+    <g transform="translate(320, 42)">
+      <rect width="180" height="34" rx="6" fill="url(#treeBlackGrad)" stroke="#a1a1aa" stroke-width="1.5" filter="url(#shadow)" />
+      <circle cx="18" cy="17" r="6" fill="#18181b" stroke="#71717a" stroke-width="1.5" />
+      <text x="32" y="21" class="tree-node-text" fill="#f8fafc">Root: Hash #104 (B)</text>
+    </g>
+
+    <!-- Branch left & right from Root -->
+    <path d="M 370 76 L 250 115" stroke="#71717a" stroke-width="1.5" fill="none" marker-end="url(#arrowIndigo)" />
+    <path d="M 450 76 L 570 115" stroke="#71717a" stroke-width="1.5" fill="none" marker-end="url(#arrowIndigo)" />
+
+    <!-- LEFT CHILD 1 (Black) -->
+    <g transform="translate(160, 115)">
+      <rect width="170" height="34" rx="6" fill="url(#treeBlackGrad)" stroke="#a1a1aa" stroke-width="1.5" filter="url(#shadow)" />
+      <circle cx="18" cy="17" r="6" fill="#18181b" stroke="#71717a" stroke-width="1.5" />
+      <text x="32" y="21" class="tree-node-text" fill="#f8fafc">Left: Hash #42 (B)</text>
+    </g>
+
+    <!-- RIGHT CHILD 1 (Red) -->
+    <g transform="translate(490, 115)">
+      <rect width="170" height="34" rx="6" fill="url(#treeRedGrad)" stroke="#ef4444" stroke-width="1.5" filter="url(#shadow)" />
+      <circle cx="18" cy="17" r="6" fill="#dc2626" />
+      <text x="32" y="21" class="tree-node-text" fill="#fecaca">Right: Hash #188 (R)</text>
+    </g>
+
+    <!-- Sub-branches -->
+    <path d="M 210 149 L 140 185" stroke="#71717a" stroke-width="1.2" fill="none" marker-end="url(#arrowIndigo)" />
+    <path d="M 280 149 L 320 185" stroke="#71717a" stroke-width="1.2" fill="none" marker-end="url(#arrowIndigo)" />
+    <path d="M 540 149 L 480 185" stroke="#71717a" stroke-width="1.2" fill="none" marker-end="url(#arrowIndigo)" />
+    <path d="M 610 149 L 660 185" stroke="#71717a" stroke-width="1.2" fill="none" marker-end="url(#arrowIndigo)" />
+
+    <!-- Sub-children -->
+    <g transform="translate(60, 185)">
+      <rect width="140" height="28" rx="5" fill="url(#treeRedGrad)" stroke="#ef4444" />
+      <circle cx="14" cy="14" r="5" fill="#dc2626" />
+      <text x="26" y="18" class="tree-node-text" font-size="9.5px" fill="#fecaca">Hash #18 (R)</text>
+    </g>
+    <g transform="translate(240, 185)">
+      <rect width="140" height="28" rx="5" fill="url(#treeRedGrad)" stroke="#ef4444" />
+      <circle cx="14" cy="14" r="5" fill="#dc2626" />
+      <text x="26" y="18" class="tree-node-text" font-size="9.5px" fill="#fecaca">Hash #78 (R)</text>
+    </g>
+    <g transform="translate(420, 185)">
+      <rect width="140" height="28" rx="5" fill="url(#treeBlackGrad)" stroke="#a1a1aa" />
+      <circle cx="14" cy="14" r="5" fill="#18181b" stroke="#71717a" />
+      <text x="26" y="18" class="tree-node-text" font-size="9.5px" fill="#f8fafc">Hash #140 (B)</text>
+    </g>
+    <g transform="translate(590, 185)">
+      <rect width="140" height="28" rx="5" fill="url(#treeBlackGrad)" stroke="#a1a1aa" />
+      <circle cx="14" cy="14" r="5" fill="#18181b" stroke="#71717a" />
+      <text x="26" y="18" class="tree-node-text" font-size="9.5px" fill="#f8fafc">Hash #240 (B)</text>
+    </g>
+
+    <!-- Bottom invariant note -->
+    <text x="16" y="238" class="node-dim" fill="#cbd5e1">
+      • Self-balancing tree guarantees black-height consistency. If node count falls to <tspan fill="#f59e0b" font-weight="600">6 (UNTREEIFY_THRESHOLD)</tspan> during resize/delete, converts back to linked list.
+    </text>
+  </g>
+</svg>

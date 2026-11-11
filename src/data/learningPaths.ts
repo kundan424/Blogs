@@ -7,115 +7,1101 @@ export const learningPaths: LearningPath[] = [
   {
     id: 'spring-boot-production-mastery',
     slug: 'spring-boot-production-mastery',
-    title: 'Spring Boot Production Mastery',
+    title: 'Spring Boot 3 & Microservices Architecture',
     description:
-      'A rigorous sequential engineering roadmap through Spring Boot runtime mechanics, auto-configuration conditions, HikariCP transaction pooling, web filter dispatchers, and native GraalVM deployment.',
+      'A comprehensive, step-by-step staircase roadmap from foundational build tools and networking to Spring Framework core, Spring Boot 3 REST APIs, JPA persistence, cloud-native infrastructure, distributed messaging, and Kubernetes orchestration.',
     subjectSlug: 'backend-distributed-systems',
     icon: 'developer_mode',
     level: 'Production Scale',
-    estimatedDuration: '3 Modules • 7 Lessons',
+    estimatedDuration: '35 Modules • 76 Lessons',
     modules: [
+      // -----------------------------------------------------------------------
+      // PHASE 0: PREREQUISITES (BUILD TOOLS & NETWORK/DB)
+      // -----------------------------------------------------------------------
       {
         id: 'sb-mod-01',
         number: '01',
-        title: 'Core Architecture & Runtime Mechanics',
+        title: 'Build Tools (Maven & Gradle)',
         description:
-          'Bootstrap sequence, auto-configuration heuristics, and executable packaging.',
+          'Build lifecycle management, POM coordinates, dependency resolution graphs, plugins, and modern Gradle DSL.',
         lessons: [
           {
             id: 'sb-1-1',
             number: '1.1',
-            title: 'Request Lifecycle & Auto-Configuration Mechanics',
+            title: 'Maven Architecture & Build Lifecycle (POM, Plugins, Lifecycle Phases)',
             description:
-              'Deep mechanical breakdown of SpringApplication.run(), ConditionEvaluationReport, and embedded container initialization.',
-            status: 'published',
-            noteSlug: 'spring-boot-internal-architecture-request-lifecycle-auto-configuration',
-            readTime: '12m read',
-            topics: ['spring-boot', 'architecture', 'jvm-internals'],
+              'Coordinates (groupId, artifactId, version), dependency tree scopes, plugin execution goals, and standard lifecycle phases (compile, test, package, install).',
+            status: 'upcoming',
+            readTime: '10m read',
+            topics: ['maven', 'build-tools', 'devops'],
           },
           {
             id: 'sb-1-2',
             number: '1.2',
-            title: 'Build, Packaging & Deployment Mechanics',
+            title: 'Gradle Build Automation & Modern Dependency Scopes',
             description:
-              'Fat JAR layout, PropertiesLauncher, CDS class data sharing, and multi-stage container optimization.',
-            status: 'published',
-            noteSlug: 'spring-boot-architecture-build-packaging-deployment-interview-guide',
-            readTime: '10m read',
-            topics: ['spring-boot', 'devops', 'containers'],
-          },
-          {
-            id: 'sb-1-3',
-            number: '1.3',
-            title: 'IoC Container, Bean Lifecycle & Post-Processors',
-            description:
-              'BeanFactory vs ApplicationContext, BeanPostProcessor execution order, circular dependency resolution, and proxy generation.',
+              'build.gradle scripts, configuration vs execution phase, incremental builds, and modern dependency scopes (implementation vs api vs testImplementation).',
             status: 'upcoming',
-            readTime: '08m read',
-            topics: ['spring-boot', 'ioc', 'dependency-injection'],
+            readTime: '09m read',
+            topics: ['gradle', 'build-tools', 'automation'],
           },
         ],
       },
       {
         id: 'sb-mod-02',
         number: '02',
-        title: 'Persistence, Pooling & Transaction Management',
+        title: 'Basic Networking & Relational Databases',
         description:
-          'HikariCP connection pool dynamics, Spring @Transactional semantics, and lock contention.',
+          'HTTP wire protocol, status code semantics, header negotiation, SQL query mechanics, and ACID guarantees.',
         lessons: [
           {
             id: 'sb-2-1',
             number: '2.1',
-            title: 'HikariCP Connection Pool Sizing & Spike Contention',
+            title: 'HTTP Protocol Internals: Methods, Status Codes, Headers & Cookies',
             description:
-              'Pool sizing mathematics (Pool = 2 * CPU_cores + effective_spindle_count), leak detection thresholds, and P99 latency isolation.',
+              'HTTP request/response framing, idempotency across GET/PUT/DELETE/PATCH, cache headers, cookies, and 2xx/3xx/4xx/5xx status code taxonomy.',
             status: 'upcoming',
             readTime: '11m read',
-            topics: ['hikaricp', 'database', 'postgresql'],
+            topics: ['http', 'networking', 'api-design'],
           },
           {
             id: 'sb-2-2',
             number: '2.2',
-            title: 'Spring @Transactional Propagation & Dynamic Proxies',
+            title: 'Relational Database Fundamentals: SQL Joins, Indexes, ACID & Normalization',
             description:
-              'CGLIB proxy bypass pitfalls, physical vs logical transactions, and rollback rule mechanics.',
+              'Relational modeling, inner/outer joins, B-Tree index scan vs sequential scan, normalization forms, and ACID transaction guarantees under load.',
             status: 'upcoming',
-            readTime: '09m read',
-            topics: ['spring-boot', 'transactions', 'database'],
+            readTime: '13m read',
+            topics: ['sql', 'database', 'rdbms', 'acid'],
           },
         ],
       },
+
+      // -----------------------------------------------------------------------
+      // PHASE 1: SPRING FRAMEWORK CORE
+      // -----------------------------------------------------------------------
       {
         id: 'sb-mod-03',
         number: '03',
-        title: 'REST Dispatcher, Security & Native Compilation',
+        title: 'Inversion of Control (IoC) & Dependency Injection (DI)',
         description:
-          'Servlet vs reactive pipelines, production actuator endpoints, and GraalVM AOT images.',
+          'Decoupling component lifecycles, inversion of control architecture, and comparing injection strategies.',
         lessons: [
           {
             id: 'sb-3-1',
             number: '3.1',
-            title: 'Servlet Filter Chain vs WebFlux Reactive Pipeline',
+            title: 'Inversion of Control & Dependency Injection Architecture',
             description:
-              'Thread-per-request Tomcat model vs Netty EventLoop architecture and backpressure handling.',
+              'Why DI? Decoupling class coupling, testability through test doubles, and separation of creation concerns from business execution.',
             status: 'upcoming',
-            readTime: '10m read',
-            topics: ['spring-boot', 'reactive', 'webflux'],
+            readTime: '08m read',
+            topics: ['spring-core', 'ioc', 'dependency-injection'],
           },
           {
             id: 'sb-3-2',
             number: '3.2',
-            title: 'Production Actuator Observability & GraalVM AOT Native Images',
+            title: 'Dependency Injection Variants: Constructor, Setter & Field Injection',
             description:
-              'Micrometer metrics exporter, health check probes, and GraalVM reachability metadata generation.',
+              'Why constructor injection is the gold standard (immutability, fail-fast null safety), setter injection for optional dependencies, and why field injection is an anti-pattern.',
+            status: 'upcoming',
+            readTime: '09m read',
+            topics: ['spring-core', 'dependency-injection', 'best-practices'],
+          },
+        ],
+      },
+      {
+        id: 'sb-mod-04',
+        number: '04',
+        title: 'Spring ApplicationContext & Bean Lifecycle',
+        description:
+          'Container instantiation, bean definition registries, scoping semantics, and lifecycle callback execution.',
+        lessons: [
+          {
+            id: 'sb-4-1',
+            number: '4.1',
+            title: 'BeanFactory vs ApplicationContext & Bean Scopes (Singleton, Prototype, Web)',
+            description:
+              'BeanFactory lazy initialization vs ApplicationContext pre-instantiation, bean naming, and thread safety across singleton, prototype, request, and session scopes.',
+            status: 'upcoming',
+            readTime: '10m read',
+            topics: ['spring-core', 'application-context', 'bean-scopes'],
+          },
+          {
+            id: 'sb-4-2',
+            number: '4.2',
+            title: 'Bean Lifecycle Callbacks: Initialization, Destruction & Post-Processors',
+            description:
+              'Complete lifecycle traversal: @PostConstruct, @PreDestroy, InitializingBean, DisposableBean, and BeanPostProcessor hook mechanics.',
             status: 'upcoming',
             readTime: '12m read',
-            topics: ['spring-boot', 'graalvm', 'observability'],
+            topics: ['spring-core', 'bean-lifecycle', 'post-processors'],
+          },
+        ],
+      },
+      {
+        id: 'sb-mod-05',
+        number: '05',
+        title: 'Spring Configuration Approaches',
+        description:
+          'Stereotype annotations, Java-based configuration, component scanning, and dependency resolution disambiguation.',
+        lessons: [
+          {
+            id: 'sb-5-1',
+            number: '5.1',
+            title: 'Annotation-Driven Configuration: @Configuration, @Bean & Component Scanning',
+            description:
+              '@Configuration CGLIB proxy semantics, @Bean factory methods, and stereotype discovery (@Component, @Service, @Repository, @ComponentScan).',
+            status: 'upcoming',
+            readTime: '09m read',
+            topics: ['spring-core', 'configuration', 'annotations'],
+          },
+          {
+            id: 'sb-5-2',
+            number: '5.2',
+            title: 'Bean Disambiguation: @Autowired, @Qualifier & @Primary Resolution',
+            description:
+              'Resolving NoUniqueBeanDefinitionException using @Qualifier, setting default fallbacks with @Primary, and collection injection patterns.',
+            status: 'upcoming',
+            readTime: '08m read',
+            topics: ['spring-core', 'autowired', 'qualifier'],
+          },
+        ],
+      },
+      {
+        id: 'sb-mod-06',
+        number: '06',
+        title: 'Spring Expression Language (SpEL) & Environment',
+        description:
+          'Runtime expression parsing, dynamic property evaluation, and external configuration loading.',
+        lessons: [
+          {
+            id: 'sb-6-1',
+            number: '6.1',
+            title: 'Reading Properties with @Value, Profiles & SpEL Evaluation',
+            description:
+              'Injecting properties with @Value, SpEL syntax (#{...}), Environment property sources, and dynamic @Profile activation.',
+            status: 'upcoming',
+            readTime: '08m read',
+            topics: ['spring-core', 'spel', 'configuration'],
+          },
+        ],
+      },
+      {
+        id: 'sb-mod-07',
+        number: '07',
+        title: 'Aspect-Oriented Programming (Spring AOP)',
+        description:
+          'Decoupling cross-cutting concerns, pointcut expression languages, and runtime proxy interception.',
+        lessons: [
+          {
+            id: 'sb-7-1',
+            number: '7.1',
+            title: 'AOP Core Primitives: Cross-Cutting Concerns, Pointcuts & JoinPoints',
+            description:
+              'Decomposing cross-cutting concerns: Aspects, JoinPoints, Pointcut expression syntax (execution, within, @annotation), and JDK Dynamic Proxy vs CGLIB.',
+            status: 'upcoming',
+            readTime: '11m read',
+            topics: ['spring-aop', 'pointcuts', 'proxies'],
+          },
+          {
+            id: 'sb-7-2',
+            number: '7.2',
+            title: 'Practical Advices: Intercepting Logging, Performance Timing & Transactions',
+            description:
+              'Writing production advices: @Before input validation, @AfterReturning audits, and @Around ProceedingJoinPoint for method execution telemetry.',
+            status: 'upcoming',
+            readTime: '10m read',
+            topics: ['spring-aop', 'telemetry', 'observability'],
+          },
+        ],
+      },
+
+      // -----------------------------------------------------------------------
+      // PHASE 2: SPRING BOOT 3 CORE & REST APIS
+      // -----------------------------------------------------------------------
+      {
+        id: 'sb-mod-08',
+        number: '08',
+        title: 'Spring Boot 3 Fundamentals',
+        description:
+          'Conventions over configuration, bootstrap sequences, auto-configuration conditions, and container runtimes.',
+        lessons: [
+          {
+            id: 'sb-8-1',
+            number: '8.1',
+            title: 'Opinionated Conventions & Spring Initializr Anatomy',
+            description:
+              'Starter dependencies, dependency management BOMs, and the anatomy of @SpringBootApplication (@Configuration + @EnableAutoConfiguration + @ComponentScan).',
+            status: 'published',
+            noteSlug: 'spring-boot-internal-architecture-request-lifecycle-auto-configuration',
+            readTime: '12m read',
+            topics: ['spring-boot', 'auto-configuration', 'architecture'],
+          },
+          {
+            id: 'sb-8-2',
+            number: '8.2',
+            title: 'Embedded Servlet Containers: Tomcat, Jetty, Undertow & Thread Models',
+            description:
+              'How Spring Boot configures embedded web servers, comparing Tomcat blocking worker pools with Undertow XNIO non-blocking architectures.',
+            status: 'upcoming',
+            readTime: '10m read',
+            topics: ['tomcat', 'undertow', 'servlet-containers'],
+          },
+          {
+            id: 'sb-8-3',
+            number: '8.3',
+            title: 'External Configuration: YAML Hierarchy, Profiles & @ConfigurationProperties',
+            description:
+              'application.properties vs application.yml, property precedence order, profile-specific files (application-prod.yml), and type-safe @ConfigurationProperties validation.',
+            status: 'upcoming',
+            readTime: '11m read',
+            topics: ['spring-boot', 'yaml', 'configuration-properties'],
+          },
+          {
+            id: 'sb-8-4',
+            number: '8.4',
+            title: 'Executable Packaging & CDS Optimization',
+            description:
+              'Fat JAR layout, BOOT-INF classes, layered container builds, and Class Data Sharing (CDS) to cut startup latency.',
+            status: 'published',
+            noteSlug: 'spring-boot-architecture-build-packaging-deployment-interview-guide',
+            readTime: '10m read',
+            topics: ['spring-boot', 'packaging', 'docker', 'devops'],
+          },
+        ],
+      },
+      {
+        id: 'sb-mod-09',
+        number: '09',
+        title: 'Building RESTful APIs with Spring MVC',
+        description:
+          'DispatcherServlet pipeline, request mapping mechanics, parameter binding, and response envelope structuring.',
+        lessons: [
+          {
+            id: 'sb-9-1',
+            number: '9.1',
+            title: 'Spring MVC Architecture: DispatcherServlet, HandlerMappings & HttpMessageConverters',
+            description:
+              'The anatomy of an incoming HTTP request: DispatcherServlet dispatch loop, HandlerMapping resolution, HandlerAdapter invocation, and Jackson JSON serialization.',
+            status: 'upcoming',
+            readTime: '12m read',
+            topics: ['spring-mvc', 'dispatcher-servlet', 'jackson'],
+          },
+          {
+            id: 'sb-9-2',
+            number: '9.2',
+            title: 'REST Controllers: @RestController, Path Variables, Request Bodies & Headers',
+            description:
+              'Developing clean REST endpoints: @GetMapping, @PostMapping, @PutMapping, @DeleteMapping, @PatchMapping, @PathVariable, @RequestParam, @RequestBody, and @RequestHeader.',
+            status: 'upcoming',
+            readTime: '10m read',
+            topics: ['spring-mvc', 'rest-api', 'controllers'],
+          },
+          {
+            id: 'sb-9-3',
+            number: '9.3',
+            title: 'Response Handling: ResponseEntity, Status Codes & Custom Response Envelopes',
+            description:
+              'Crafting consistent API contracts: ResponseEntity<T>, setting Location headers on 201 Created, 204 No Content, and unified enterprise response envelopes.',
+            status: 'upcoming',
+            readTime: '08m read',
+            topics: ['rest-api', 'api-design', 'spring-mvc'],
+          },
+        ],
+      },
+      {
+        id: 'sb-mod-10',
+        number: '10',
+        title: 'Input Validation (Jakarta Validation)',
+        description:
+          'Declarative request validation, constraint enforcement, and custom validator implementation.',
+        lessons: [
+          {
+            id: 'sb-10-1',
+            number: '10.1',
+            title: 'Declarative Request Validation: Constraints, @Valid & @Validated',
+            description:
+              'Applying standard constraints: @NotNull, @NotBlank, @Size, @Min, @Max, @Email, @Pattern, and distinguishing method-level @Validated from parameter @Valid.',
+            status: 'upcoming',
+            readTime: '09m read',
+            topics: ['validation', 'jakarta', 'spring-boot'],
+          },
+          {
+            id: 'sb-10-2',
+            number: '10.2',
+            title: 'Custom Constraint Annotations & Custom Validator Implementation',
+            description:
+              'Authoring custom validation logic: creating ConstraintValidator<A, T> implementations, composing constraints, and dynamic error payload messages.',
+            status: 'upcoming',
+            readTime: '10m read',
+            topics: ['validation', 'custom-validators', 'clean-code'],
+          },
+        ],
+      },
+      {
+        id: 'sb-mod-11',
+        number: '11',
+        title: 'Global Exception Handling',
+        description:
+          'Centralized controller advisories, HTTP status mapping, and the RFC 7807 ProblemDetail standard.',
+        lessons: [
+          {
+            id: 'sb-11-1',
+            number: '11.1',
+            title: 'Controller Advisories: @RestControllerAdvice & @ExceptionHandler Mechanics',
+            description:
+              'Intercepting controller exceptions globally, mapping domain exceptions to HTTP statuses, and handling MethodArgumentNotValidException payloads.',
+            status: 'upcoming',
+            readTime: '09m read',
+            topics: ['exception-handling', 'rest-api', 'spring-mvc'],
+          },
+          {
+            id: 'sb-11-2',
+            number: '11.2',
+            title: 'Modern RFC 7807 Standard: ProblemDetail API in Spring Boot 3',
+            description:
+              'Implementing RFC 7807 problem details: using Spring Boot 3 ProblemDetail class, custom properties, URI instance identifiers, and standardized error schemas.',
+            status: 'upcoming',
+            readTime: '08m read',
+            topics: ['spring-boot-3', 'rfc-7807', 'api-standards'],
+          },
+        ],
+      },
+      {
+        id: 'sb-mod-12',
+        number: '12',
+        title: 'Layered Architecture & DTO Mapping',
+        description:
+          'Controller-Service-Repository boundaries, entity encapsulation, and compile-time DTO transformation.',
+        lessons: [
+          {
+            id: 'sb-12-1',
+            number: '12.1',
+            title: 'Strict Layered Boundaries: Controller to Service to Repository Isolation',
+            description:
+              'Why entities must never escape the service layer, single responsibility across web, service, and persistence tiers, and circular dependency avoidance.',
+            status: 'upcoming',
+            readTime: '10m read',
+            topics: ['software-architecture', 'clean-code', 'layering'],
+          },
+          {
+            id: 'sb-12-2',
+            number: '12.2',
+            title: 'DTO Pattern with Java Records & Compile-Time MapStruct Mapping',
+            description:
+              'Data Transfer Objects using modern Java records, eliminating reflection overhead via compile-time MapStruct code generation, and comparing with ModelMapper.',
+            status: 'upcoming',
+            readTime: '11m read',
+            topics: ['mapstruct', 'java-records', 'dto-pattern'],
+          },
+        ],
+      },
+
+      // -----------------------------------------------------------------------
+      // PHASE 3: DATA PERSISTENCE WITH SPRING DATA JPA & HIBERNATE
+      // -----------------------------------------------------------------------
+      {
+        id: 'sb-mod-13',
+        number: '13',
+        title: 'ORM Fundamentals & Hibernate Entity Mapping',
+        description:
+          'Object-relational impedance mismatch, JPA specification vs Hibernate provider, and core entity mapping.',
+        lessons: [
+          {
+            id: 'sb-13-1',
+            number: '13.1',
+            title: 'Object-Relational Impedance Mismatch & JPA vs Hibernate Specifications',
+            description:
+              'The five dimensions of impedance mismatch (granularity, subtypes, identity, associations, navigation), JPA standards, and Hibernate Session / EntityManager mechanics.',
+            status: 'upcoming',
+            readTime: '11m read',
+            topics: ['jpa', 'hibernate', 'orm', 'database'],
+          },
+          {
+            id: 'sb-13-2',
+            number: '13.2',
+            title: 'Domain Entity Mapping: @Entity, Identifiers, Columns & Value Types',
+            description:
+              'Mapping relational tables: @Entity, @Table, @Id strategies (IDENTITY, SEQUENCE, TABLE), @Column attributes, @Enumerated (STRING vs ORDINAL), and @Embedded value objects.',
+            status: 'upcoming',
+            readTime: '10m read',
+            topics: ['jpa', 'hibernate', 'entity-mapping'],
+          },
+        ],
+      },
+      {
+        id: 'sb-mod-14',
+        number: '14',
+        title: 'Entity Relationships & Performance Tuning',
+        description:
+          'Bidirectional associations, cascade propagation, fetch strategies, and resolving N+1 select queries.',
+        lessons: [
+          {
+            id: 'sb-14-1',
+            number: '14.1',
+            title: 'Associations & Cascade Strategies: @OneToMany, @ManyToOne, @ManyToMany',
+            description:
+              'Owning vs inverse side (mappedBy), bidirectional sync helper methods, CascadeType semantics (PERSIST, MERGE, REMOVE), and orphanRemoval.',
+            status: 'upcoming',
+            readTime: '13m read',
+            topics: ['jpa', 'hibernate', 'relationships'],
+          },
+          {
+            id: 'sb-14-2',
+            number: '14.2',
+            title: 'Eliminating the N+1 Query Problem: JOIN FETCH & Dynamic @EntityGraph',
+            description:
+              'Why FetchType.EAGER is a production hazard, lazy loading mechanics, bytecode enhancement, and solving N+1 query storms using JOIN FETCH queries and JPA @EntityGraph.',
+            status: 'upcoming',
+            readTime: '14m read',
+            topics: ['performance', 'hibernate', 'query-optimization'],
+          },
+        ],
+      },
+      {
+        id: 'sb-mod-15',
+        number: '15',
+        title: 'Spring Data JPA Repositories',
+        description:
+          'Repository abstraction layers, derived queries, JPQL vs native SQL, and server-side pagination.',
+        lessons: [
+          {
+            id: 'sb-15-1',
+            number: '15.1',
+            title: 'Repository Hierarchy: CrudRepository to JpaRepository Abstractions',
+            description:
+              'Repository $\rightarrow$ CrudRepository $\rightarrow$ PagingAndSortingRepository $\rightarrow$ JpaRepository contract hierarchy and query method proxy generation.',
+            status: 'upcoming',
+            readTime: '08m read',
+            topics: ['spring-data-jpa', 'repositories'],
+          },
+          {
+            id: 'sb-15-2',
+            number: '15.2',
+            title: 'Derived Queries & Custom JPQL / Native Queries with @Query',
+            description:
+              'Method name query derivation heuristics (findByEmailAndStatus), type-safe JPQL vs database-specific Native SQL, and bulk updates with @Modifying.',
+            status: 'upcoming',
+            readTime: '11m read',
+            topics: ['spring-data-jpa', 'jpql', 'sql'],
+          },
+          {
+            id: 'sb-15-3',
+            number: '15.3',
+            title: 'Pagination, Sorting & Slice Query Execution',
+            description:
+              'High-volume query pagination: Pageable, Sort orders, comparing Page<T> (executes count(*) query) vs Slice<T> (infinite scrolling with zero count overhead).',
+            status: 'upcoming',
+            readTime: '09m read',
+            topics: ['pagination', 'performance', 'spring-data-jpa'],
+          },
+        ],
+      },
+      {
+        id: 'sb-mod-16',
+        number: '16',
+        title: 'Transaction Management with @Transactional',
+        description:
+          'ACID transactional boundaries, propagation levels, isolation mechanics, and dynamic proxy bypass traps.',
+        lessons: [
+          {
+            id: 'sb-16-1',
+            number: '16.1',
+            title: 'Transaction Boundaries: Propagation, Isolation Levels, readOnly & Rollback Semantics',
+            description:
+              'REQUIRED vs REQUIRES_NEW, isolation levels (READ_COMMITTED, REPEATABLE_READ, SERIALIZABLE), readOnly = true dirty-checking bypass, and self-invocation proxy bypass pitfalls.',
+            status: 'upcoming',
+            readTime: '13m read',
+            topics: ['transactions', 'acid', 'spring-boot', 'database'],
+          },
+        ],
+      },
+      {
+        id: 'sb-mod-17',
+        number: '17',
+        title: 'Database Migrations with Flyway & Liquibase',
+        description:
+          'Deterministic database versioning, zero-downtime schema evolution, and production migration best practices.',
+        lessons: [
+          {
+            id: 'sb-17-1',
+            number: '17.1',
+            title: 'Automated Schema Evolution: Versioned Migrations with Flyway in Production',
+            description:
+              'Why ddl-auto: update destroys production data, SQL migration naming conventions (V1__init.sql, R__views.sql), schema baseline tables, and backward-compatible schema changes.',
+            status: 'upcoming',
+            readTime: '10m read',
+            topics: ['flyway', 'database-migrations', 'devops'],
+          },
+        ],
+      },
+
+      // -----------------------------------------------------------------------
+      // PHASE 4: PRODUCTION-GRADE ESSENTIALS (SECURITY, TESTING & OBSERVABILITY)
+      // -----------------------------------------------------------------------
+      {
+        id: 'sb-mod-18',
+        number: '18',
+        title: 'Spring Security 6 & Modern Stateless Authentication',
+        description:
+          'Security filter chain lifecycle, lambda DSL configuration, stateless JWT authentication, and method security.',
+        lessons: [
+          {
+            id: 'sb-18-1',
+            number: '18.1',
+            title: 'SecurityFilterChain Architecture & Non-Deprecated Lambda DSL Configuration',
+            description:
+              'Replacing legacy WebSecurityConfigurerAdapter: configuring SecurityFilterChain bean, authorizeHttpRequests lambda DSL, AuthenticationManager, and BCryptPasswordEncoder.',
+            status: 'upcoming',
+            readTime: '12m read',
+            topics: ['spring-security', 'security', 'authentication'],
+          },
+          {
+            id: 'sb-18-2',
+            number: '18.2',
+            title: 'Stateless Authentication with JWT: Issuance, Signature Verification & Claims',
+            description:
+              'Building a stateless JWT filter: token generation (HMAC/RSA), extracting claims, signature verification, and populating SecurityContextHolder without server sessions.',
+            status: 'upcoming',
+            readTime: '14m read',
+            topics: ['jwt', 'stateless-auth', 'spring-security'],
+          },
+          {
+            id: 'sb-18-3',
+            number: '18.3',
+            title: 'Role-Based Access Control (RBAC) & Method Security with @PreAuthorize',
+            description:
+              'Enabling method security with @EnableMethodSecurity: hasRole vs hasAuthority, SpEL expressions in @PreAuthorize, and securing service methods.',
+            status: 'upcoming',
+            readTime: '09m read',
+            topics: ['rbac', 'authorization', 'spring-security'],
+          },
+        ],
+      },
+      {
+        id: 'sb-mod-19',
+        number: '19',
+        title: 'Testing Spring Boot Applications',
+        description:
+          'Testing pyramid, unit tests with Mockito, web and JPA slice tests, and containerized integration tests.',
+        lessons: [
+          {
+            id: 'sb-19-1',
+            number: '19.1',
+            title: 'Unit Testing with JUnit 5 & Mockito: Strict Isolation & Stubs',
+            description:
+              'Fast isolated unit tests: JUnit 5 lifecycle (@Test, @ParameterizedTest), Mockito annotations (@Mock, @InjectMocks), stubbing with when(), and asserting invocations with verify().',
+            status: 'upcoming',
+            readTime: '10m read',
+            topics: ['junit5', 'mockito', 'unit-testing'],
+          },
+          {
+            id: 'sb-19-2',
+            number: '19.2',
+            title: 'Slice Testing: Web Layer (@WebMvcTest) & Persistence Layer (@DataJpaTest)',
+            description:
+              'Targeted slice testing: MockMvc controller assertions with @WebMvcTest, in-memory repository tests with @DataJpaTest, and TestEntityManager.',
+            status: 'upcoming',
+            readTime: '11m read',
+            topics: ['slice-testing', 'spring-test', 'mockmvc'],
+          },
+          {
+            id: 'sb-19-3',
+            number: '19.3',
+            title: 'Integration Testing with Testcontainers: Real PostgreSQL & MySQL Containers',
+            description:
+              'Eliminating H2 in-memory divergence: running disposable Docker database containers during maven test via Testcontainers and @DynamicPropertySource.',
+            status: 'upcoming',
+            readTime: '13m read',
+            topics: ['testcontainers', 'docker', 'integration-testing'],
+          },
+        ],
+      },
+      {
+        id: 'sb-mod-20',
+        number: '20',
+        title: 'Observability, Actuator & Health Checks',
+        description:
+          'Production metrics telemetry, custom health indicators, structured logging, and OpenAPI documentation.',
+        lessons: [
+          {
+            id: 'sb-20-1',
+            number: '20.1',
+            title: 'Spring Boot Actuator Production Endpoints, Metrics & Custom HealthIndicators',
+            description:
+              'Exposing /actuator/health, /actuator/metrics, /actuator/info, securing actuator management ports, and authoring custom HealthIndicator classes for downstream probes.',
+            status: 'upcoming',
+            readTime: '10m read',
+            topics: ['actuator', 'observability', 'monitoring'],
+          },
+          {
+            id: 'sb-20-2',
+            number: '20.2',
+            title: 'Structured Logging with SLF4J/Logback & OpenAPI Spec Generation with Springdoc',
+            description:
+              'JSON-formatted logstash encoders for log aggregators, MDC correlation IDs, and automated Swagger UI generation via springdoc-openapi-starter-webmvc-ui.',
+            status: 'upcoming',
+            readTime: '09m read',
+            topics: ['logging', 'swagger', 'openapi', 'springdoc'],
+          },
+        ],
+      },
+
+      // -----------------------------------------------------------------------
+      // PHASE 5: TRANSITIONING TO MICROSERVICES & DOMAIN DESIGN
+      // -----------------------------------------------------------------------
+      {
+        id: 'sb-mod-21',
+        number: '21',
+        title: 'Monolith vs. Microservices Architectural Trade-offs',
+        description:
+          'Modular monolith design, distributed computing fallacies, organizational coupling, and service extraction criteria.',
+        lessons: [
+          {
+            id: 'sb-21-1',
+            number: '21.1',
+            title: 'Modular Monoliths vs Microservices & The Fallacies of Distributed Computing',
+            description:
+              'When microservices are the wrong choice, modular boundaries with Spring Modulith, and the 8 Fallacies of Distributed Computing (latency is not zero, network is unreliable).',
+            status: 'upcoming',
+            readTime: '11m read',
+            topics: ['architecture', 'microservices', 'modular-monolith'],
+          },
+        ],
+      },
+      {
+        id: 'sb-mod-22',
+        number: '22',
+        title: 'Domain-Driven Design (DDD) Fundamentals',
+        description:
+          'Strategic domain modeling, ubiquitous language, bounded contexts, and preventing distributed monoliths.',
+        lessons: [
+          {
+            id: 'sb-22-1',
+            number: '22.1',
+            title: 'Strategic DDD: Bounded Contexts, Ubiquitous Language & Context Mapping',
+            description:
+              'Decomposing enterprise domains: identifying core, supporting, and generic subdomains, establishing context boundaries, and defining upstream/downstream context maps.',
+            status: 'upcoming',
+            readTime: '12m read',
+            topics: ['ddd', 'domain-driven-design', 'system-design'],
+          },
+          {
+            id: 'sb-22-2',
+            number: '22.2',
+            title: 'Subdomain Classification & Preventing the Distributed Monolith Anti-Pattern',
+            description:
+              'Identifying anti-patterns: shared domain models, synchronized lockstep deployments, and chatty inter-service synchronous dependency webs.',
+            status: 'upcoming',
+            readTime: '10m read',
+            topics: ['anti-patterns', 'microservices', 'architecture'],
+          },
+        ],
+      },
+      {
+        id: 'sb-mod-23',
+        number: '23',
+        title: 'Database per Microservice & Data Boundaries',
+        description:
+          'Service data isolation, multi-tenancy models, and eventual consistency across distributed boundaries.',
+        lessons: [
+          {
+            id: 'sb-23-1',
+            number: '23.1',
+            title: 'Service Autonomy & Multi-Tenant Database Isolation Strategies',
+            description:
+              'Why microservices must never share a database, comparative analysis of Database-per-tenant, Schema-per-tenant, and Column Discriminator models.',
+            status: 'published',
+            noteSlug: 'designing-multi-tenant-database-isolation-saas',
+            readTime: '12m read',
+            topics: ['microservices', 'database', 'multi-tenancy', 'saas'],
+          },
+          {
+            id: 'sb-23-2',
+            number: '23.2',
+            title: 'Distributed Data Synchronization & Consistency Challenges',
+            description:
+              'Embracing eventual consistency: eliminating distributed database foreign keys, asynchronous replication streams, and event-driven data hydration.',
+            status: 'upcoming',
+            readTime: '11m read',
+            topics: ['distributed-systems', 'eventual-consistency', 'database'],
+          },
+        ],
+      },
+
+      // -----------------------------------------------------------------------
+      // PHASE 6: CORE SPRING CLOUD INFRASTRUCTURE
+      // -----------------------------------------------------------------------
+      {
+        id: 'sb-mod-24',
+        number: '24',
+        title: 'Centralized Configuration (Spring Cloud Config)',
+        description:
+          'Centralized repository configuration, Git and Vault backends, and dynamic property refresh with Spring Cloud Bus.',
+        lessons: [
+          {
+            id: 'sb-24-1',
+            number: '24.1',
+            title: 'Centralized Configuration Server with Git & HashiCorp Vault Backends',
+            description:
+              'Setting up Spring Cloud Config Server: externalizing application.yml to Git, secret encryption with Vault, and bootstrap configuration injection.',
+            status: 'upcoming',
+            readTime: '11m read',
+            topics: ['spring-cloud', 'config-server', 'devops'],
+          },
+          {
+            id: 'sb-24-2',
+            number: '24.2',
+            title: 'Dynamic Runtime Refresh with @RefreshScope & Spring Cloud Bus',
+            description:
+              'Runtime property reloads without application restarts: @RefreshScope bean re-instantiation, actuator /actuator/refresh, and broadcast webhooks via Kafka/RabbitMQ Bus.',
+            status: 'upcoming',
+            readTime: '10m read',
+            topics: ['spring-cloud', 'refresh-scope', 'dynamic-config'],
+          },
+        ],
+      },
+      {
+        id: 'sb-mod-25',
+        number: '25',
+        title: 'Service Registration & Discovery',
+        description:
+          'Service registry topologies, dynamic ephemeral IP address resolution, and client-side load balancing.',
+        lessons: [
+          {
+            id: 'sb-25-1',
+            number: '25.1',
+            title: 'Eureka Server Registry Topology, Heartbeats & Client-Side Load Balancing',
+            description:
+              'Netflix Eureka server and client integration, heartbeat renewal leases, self-preservation mode, and client-side load balancing with Spring Cloud LoadBalancer.',
+            status: 'upcoming',
+            readTime: '12m read',
+            topics: ['eureka', 'service-discovery', 'load-balancing'],
+          },
+        ],
+      },
+      {
+        id: 'sb-mod-26',
+        number: '26',
+        title: 'Inter-Service Synchronous Communication',
+        description:
+          'Synchronous RPC communication, modern WebClient, Spring 6 HTTP Interfaces, and declarative OpenFeign clients.',
+        lessons: [
+          {
+            id: 'sb-26-1',
+            number: '26.1',
+            title: 'RestTemplate vs WebClient vs Spring 6 Declarative HTTP Interfaces',
+            description:
+              'Deprecating RestTemplate: non-blocking reactive WebClient calls, and Spring 6 @HttpExchange declarative client interfaces with auto-generated proxies.',
+            status: 'upcoming',
+            readTime: '11m read',
+            topics: ['webclient', 'http-interfaces', 'rest-rpc'],
+          },
+          {
+            id: 'sb-26-2',
+            number: '26.2',
+            title: 'Declarative Inter-Service RPC with Spring Cloud OpenFeign',
+            description:
+              'Declaring typed interfaces with @FeignClient, request interceptors for auth headers, custom error decoders, and integrating client-side load balancers.',
+            status: 'upcoming',
+            readTime: '10m read',
+            topics: ['feign', 'openfeign', 'spring-cloud'],
+          },
+        ],
+      },
+      {
+        id: 'sb-mod-27',
+        number: '27',
+        title: 'API Gateway (Spring Cloud Gateway)',
+        description:
+          'Reactive Netty edge proxying, route predicates, filter transformation pipelines, and centralized rate limiting.',
+        lessons: [
+          {
+            id: 'sb-27-1',
+            number: '27.1',
+            title: 'Reactive Netty Ingress Architecture: Routes, Predicates & Filter Pipelines',
+            description:
+              'Spring Cloud Gateway built on Project Reactor & Netty: route mapping, Path/Method/Header predicates, and pre/post GatewayFilter factories.',
+            status: 'upcoming',
+            readTime: '12m read',
+            topics: ['api-gateway', 'spring-cloud-gateway', 'reactive'],
+          },
+          {
+            id: 'sb-27-2',
+            number: '27.2',
+            title: 'Edge Concerns: Token Bucket Rate Limiting, CORS & JWT Header Forwarding',
+            description:
+              'Production edge enforcement: Redis-backed token bucket rate limiting (RequestRateLimiter), cross-origin resource sharing, and token relay to internal microservices.',
+            status: 'upcoming',
+            readTime: '13m read',
+            topics: ['rate-limiting', 'redis', 'api-gateway', 'cors'],
+          },
+        ],
+      },
+
+      // -----------------------------------------------------------------------
+      // PHASE 7: DISTRIBUTED PATTERNS & ASYNCHRONOUS MESSAGING
+      // -----------------------------------------------------------------------
+      {
+        id: 'sb-mod-28',
+        number: '28',
+        title: 'Resiliency & Fault Tolerance (Resilience4j)',
+        description:
+          'Circuit breakers, retry mechanisms with exponential backoff, rate limiters, and thread pool bulkheads.',
+        lessons: [
+          {
+            id: 'sb-28-1',
+            number: '28.1',
+            title: 'Circuit Breaker State Machine: Closed, Open, Half-Open & Fallback Recovery',
+            description:
+              'Resilience4j circuit breaker mechanics: sliding window metrics (count-based vs time-based), failure rate thresholds, state transitions, and graceful degradation via fallbackMethod.',
+            status: 'upcoming',
+            readTime: '13m read',
+            topics: ['circuit-breaker', 'resilience4j', 'fault-tolerance'],
+          },
+          {
+            id: 'sb-28-2',
+            number: '28.2',
+            title: 'Retry with Exponential Backoff, Rate Limiter & Thread Pool Bulkheads',
+            description:
+              'Preventing thundering herds: exponential backoff with randomized jitter, bulkhead thread pool isolation to prevent cascading resource starvation.',
+            status: 'upcoming',
+            readTime: '11m read',
+            topics: ['resilience4j', 'bulkhead', 'rate-limiter'],
+          },
+        ],
+      },
+      {
+        id: 'sb-mod-29',
+        number: '29',
+        title: 'Asynchronous Messaging with Apache Kafka & RabbitMQ',
+        description:
+          'Event-driven communication, message broker topologies, Kafka partition mechanics, and consumer groups.',
+        lessons: [
+          {
+            id: 'sb-29-1',
+            number: '29.1',
+            title: 'Message Broker Selection: Apache Kafka vs RabbitMQ Architectural Trade-offs',
+            description:
+              'AMQP smart broker/dumb consumer model (RabbitMQ) vs distributed append-only commit log (Kafka): throughput, message ordering, and retention semantics.',
+            status: 'upcoming',
+            readTime: '11m read',
+            topics: ['kafka', 'rabbitmq', 'messaging', 'event-driven'],
+          },
+          {
+            id: 'sb-29-2',
+            number: '29.2',
+            title: 'Kafka Fundamentals: Topics, Partitions, Offsets & Consumer Groups',
+            description:
+              'Kafka internal layout: log segments, partition rebalances, consumer offset commit strategies (at-most-once, at-least-once, effectively-once), and producer partition keys.',
+            status: 'upcoming',
+            readTime: '14m read',
+            topics: ['kafka', 'partitions', 'distributed-systems'],
+          },
+          {
+            id: 'sb-29-3',
+            number: '29.3',
+            title: 'Event-Driven Microservices with Spring for Apache Kafka & Spring Cloud Stream',
+            description:
+              'Writing resilient Kafka producers with KafkaTemplate, concurrent message listeners with @KafkaListener, error handler Dead Letter Topics (DLT), and Spring Cloud Stream functional binders.',
+            status: 'upcoming',
+            readTime: '13m read',
+            topics: ['spring-kafka', 'spring-cloud-stream', 'dead-letter-queue'],
+          },
+        ],
+      },
+      {
+        id: 'sb-mod-30',
+        number: '30',
+        title: 'Distributed Transactions & Data Consistency',
+        description:
+          'The 2PC dilemma, Saga pattern orchestration vs choreography, Transactional Outbox, and CQRS.',
+        lessons: [
+          {
+            id: 'sb-30-1',
+            number: '30.1',
+            title: 'The 2PC Dilemma & Saga Pattern: Orchestration vs Choreography',
+            description:
+              'Why Two-Phase Commit fails in microservices, implementing Saga transactions via Choreography (event-driven reactions) vs Orchestration (central state coordinator), and compensating actions.',
+            status: 'upcoming',
+            readTime: '15m read',
+            topics: ['saga-pattern', 'distributed-transactions', 'consistency'],
+          },
+          {
+            id: 'sb-30-2',
+            number: '30.2',
+            title: 'Transactional Outbox Pattern & CDC Streaming with Debezium',
+            description:
+              'Eliminating dual-write inconsistencies between RDBMS and Kafka: local outbox table transactions, PostgreSQL WAL tailing with Debezium CDC for guaranteed at-least-once delivery.',
+            status: 'upcoming',
+            readTime: '14m read',
+            topics: ['outbox-pattern', 'cdc', 'debezium', 'kafka'],
+          },
+          {
+            id: 'sb-30-3',
+            number: '30.3',
+            title: 'Command Query Responsibility Segregation (CQRS) Architecture',
+            description:
+              'Separating write models (relational transactional stores) from read models (Elasticsearch / Redis query projections) via asynchronous materialized view streams.',
+            status: 'upcoming',
+            readTime: '12m read',
+            topics: ['cqrs', 'event-sourcing', 'architecture'],
+          },
+        ],
+      },
+      {
+        id: 'sb-mod-31',
+        number: '31',
+        title: 'Distributed Tracing & Centralized Observability',
+        description:
+          'Correlation ID propagation, Micrometer Tracing with Zipkin/Tempo, Prometheus metrics, and centralized logs.',
+        lessons: [
+          {
+            id: 'sb-31-1',
+            number: '31.1',
+            title: 'Distributed Tracing with Micrometer Tracing & Zipkin / Grafana Tempo',
+            description:
+              'End-to-end request tracing in Spring Boot 3: replacing Sleuth with Micrometer Tracing, traceId and spanId propagation across HTTP and Kafka headers, and visualizing spans in Zipkin/Tempo.',
+            status: 'upcoming',
+            readTime: '12m read',
+            topics: ['tracing', 'micrometer', 'zipkin', 'observability'],
+          },
+          {
+            id: 'sb-31-2',
+            number: '31.2',
+            title: 'Prometheus Metrics Scraping & Centralized Logging with Loki / ELK Stack',
+            description:
+              'Scraping Actuator metrics via Prometheus, building Grafana telemetry dashboards (P99 latency, JVM heap, thread count), and aggregating structured JSON logs via Grafana Loki or ELK.',
+            status: 'upcoming',
+            readTime: '11m read',
+            topics: ['prometheus', 'grafana', 'loki', 'elk-stack'],
+          },
+        ],
+      },
+      {
+        id: 'sb-mod-32',
+        number: '32',
+        title: 'Distributed Security & OAuth2 Token Relay',
+        description:
+          'Centralized Identity Providers, Keycloak integration, OAuth2/OIDC PKCE flows, and token relay architectures.',
+        lessons: [
+          {
+            id: 'sb-32-1',
+            number: '32.1',
+            title: 'Centralized Identity Provider Integration (Keycloak / Auth0) & OIDC PKCE Flow',
+            description:
+              'Setting up Keycloak realm clients, authorization code flow with Proof Key for Code Exchange (PKCE), user credential delegation, and SSO token issuance.',
+            status: 'upcoming',
+            readTime: '13m read',
+            topics: ['keycloak', 'oauth2', 'oidc', 'security'],
+          },
+          {
+            id: 'sb-32-2',
+            number: '32.2',
+            title: 'API Gateway Token Relay & Microservice Downstream JWT Verification',
+            description:
+              'Securing the perimeter: API Gateway validates incoming bearer tokens, extracts user claims, and relays verified JWT headers down to internal services without internal re-authentication.',
+            status: 'upcoming',
+            readTime: '11m read',
+            topics: ['token-relay', 'api-gateway', 'jwt', 'security'],
+          },
+        ],
+      },
+
+      // -----------------------------------------------------------------------
+      // PHASE 8: CONTAINERIZATION, KUBERNETES & CLOUD-NATIVE DEPLOYMENT
+      // -----------------------------------------------------------------------
+      {
+        id: 'sb-mod-33',
+        number: '33',
+        title: 'Containerization with Docker & Buildpacks',
+        description:
+          'Multi-stage Docker builds, layered JAR caching, Cloud-Native Buildpacks, and Docker Compose environments.',
+        lessons: [
+          {
+            id: 'sb-33-1',
+            number: '33.1',
+            title: 'Containerizing Spring Boot: Multi-Stage Builds, Layertools & Cloud-Native Buildpacks',
+            description:
+              'Optimizing container images: extracting Spring Boot layertools JAR layers, multi-stage Docker caching, and generating container images without Dockerfiles via Cloud-Native Buildpacks.',
+            status: 'published',
+            noteSlug: 'spring-boot-architecture-build-packaging-deployment-interview-guide',
+            readTime: '10m read',
+            topics: ['docker', 'buildpacks', 'containers', 'devops'],
+          },
+          {
+            id: 'sb-33-2',
+            number: '33.2',
+            title: 'Local Multi-Service Orchestration with Docker Compose',
+            description:
+              'Orchestrating microservices locally: defining docker-compose.yml for microservice containers, PostgreSQL, Apache Kafka, Redis, Zipkin, and Keycloak with healthcheck dependencies.',
+            status: 'upcoming',
+            readTime: '12m read',
+            topics: ['docker-compose', 'orchestration', 'devops'],
+          },
+        ],
+      },
+      {
+        id: 'sb-mod-34',
+        number: '34',
+        title: 'Kubernetes (K8s) Fundamentals for Spring Boot',
+        description:
+          'Kubernetes primitives, Actuator health probes, ConfigMaps, Secrets, Ingress, and cloud-native service discovery.',
+        lessons: [
+          {
+            id: 'sb-34-1',
+            number: '34.1',
+            title: 'K8s Architecture: Pods, Deployments, ReplicaSets & Cluster Services',
+            description:
+              'Container orchestration primitives: Pod lifecycles, Deployments with rolling updates, ReplicaSets, and ClusterIP / NodePort / LoadBalancer service topologies.',
+            status: 'upcoming',
+            readTime: '14m read',
+            topics: ['kubernetes', 'k8s', 'containers', 'devops'],
+          },
+          {
+            id: 'sb-34-2',
+            number: '34.2',
+            title: 'ConfigMaps, Secrets, Ingress Routing & Actuator Liveness/Readiness Probes',
+            description:
+              'Production K8s configurations: injecting ConfigMaps & Secrets, configuring Ingress controllers, and binding Spring Boot Actuator probes to K8s livenessProbe and readinessProbe.',
+            status: 'upcoming',
+            readTime: '13m read',
+            topics: ['kubernetes', 'configmap', 'probes', 'ingress'],
+          },
+          {
+            id: 'sb-34-3',
+            number: '34.3',
+            title: 'Kubernetes Native Service Discovery vs Eureka Replacement',
+            description:
+              'Why cloud-native deployments discard Eureka: leveraging Kubernetes CoreDNS and native K8s Service abstractions for transparent internal service discovery and load balancing.',
+            status: 'upcoming',
+            readTime: '11m read',
+            topics: ['kubernetes', 'service-discovery', 'eureka-vs-k8s'],
+          },
+        ],
+      },
+      {
+        id: 'sb-mod-35',
+        number: '35',
+        title: 'CI/CD Automation Pipelines',
+        description:
+          'Automated verification pipelines, linting, Testcontainers integration testing, and production registry publishing.',
+        lessons: [
+          {
+            id: 'sb-35-1',
+            number: '35.1',
+            title: 'Automated Delivery Pipelines: GitHub Actions, Testcontainers & Registry Publishing',
+            description:
+              'Building enterprise CI/CD pipelines with GitHub Actions: automated linting, unit tests, Docker-in-Docker Testcontainers execution, image building, vulnerability scanning, and container registry publishing.',
+            status: 'upcoming',
+            readTime: '12m read',
+            topics: ['ci-cd', 'github-actions', 'devops', 'automation'],
           },
         ],
       },
     ],
   },
+
   {
     id: 'production-microservices-distributed-architecture',
     slug: 'production-microservices-distributed-architecture',
@@ -198,16 +1184,17 @@ export const learningPaths: LearningPath[] = [
       },
     ],
   },
+
   {
     id: 'java-core-oop-deep-dives',
     slug: 'java-core-oop-deep-dives',
     title: 'Java Core & Object-Oriented Deep Dives',
     description:
-      'From virtual method tables and JVM memory layouts to robust SOLID enterprise architecture and clean code mechanics.',
+      'From virtual method tables and JVM memory layouts to the Java Collections Framework, lambda functional mechanics, and clean code architecture.',
     subjectSlug: 'backend-distributed-systems',
     icon: 'terminal',
     level: 'Intermediate',
-    estimatedDuration: '1 Module • 4 Lessons',
+    estimatedDuration: '2 Modules • 8 Lessons',
     modules: [
       {
         id: 'java-mod-01',
@@ -259,6 +1246,56 @@ export const learningPaths: LearningPath[] = [
             noteSlug: 'java-object-oriented-programming-interview-deep-dive-part-iv',
             readTime: '12m read',
             topics: ['java', 'solid-principles', 'architecture'],
+          },
+        ],
+      },
+      {
+        id: 'java-mod-02',
+        number: '02',
+        title: 'Core Java (Java 17+ or 21 LTS)',
+        description:
+          'The foundational engine: Java Collections Framework internals, lambda functional mechanics, modern LTS language features, and multithreading foundations.',
+        lessons: [
+          {
+            id: 'java-2-1',
+            number: '2.1',
+            title: 'Collections Framework (List, Set, Map, Queue, equals/hashCode contracts)',
+            description:
+              'In-depth architectural analysis of ArrayList, LinkedList, HashSet, HashMap, ConcurrentHashMap, PriorityQueue, ArrayDeque, and equals/hashCode contracts.',
+            status: 'published',
+            noteSlug: 'java-collections-framework-list-set-map-queue-contracts',
+            readTime: '24m read',
+            topics: ['java', 'collections', 'hashmap', 'jvm-internals', 'data-structures'],
+          },
+          {
+            id: 'java-2-2',
+            number: '2.2',
+            title: 'Java 8+ Features: Lambdas, Stream API, Optional & Functional Interfaces',
+            description:
+              'invokedynamic translation of lambdas, stream pipeline fusion, short-circuiting operations, Spliterator mechanics, and idiomatic Optional usage.',
+            status: 'upcoming',
+            readTime: '14m read',
+            topics: ['java', 'streams', 'functional-programming', 'lambdas'],
+          },
+          {
+            id: 'java-2-3',
+            number: '2.3',
+            title: 'Modern Java Features: Records, Sealed Classes, Pattern Matching & Text Blocks',
+            description:
+              'Data-oriented programming in Java 17 and 21: canonical record constructors, exhaustive switch pattern matching, algebraic data types with sealed hierarchies, and text block formatting.',
+            status: 'upcoming',
+            readTime: '12m read',
+            topics: ['java', 'java-21', 'records', 'sealed-classes'],
+          },
+          {
+            id: 'java-2-4',
+            number: '2.4',
+            title: 'Multithreading & Concurrency Basics: CompletableFuture & Thread Pools',
+            description:
+              'Java Memory Model (JMM), happens-before guarantees, ThreadPoolExecutor tuning, ForkJoinPool, and asynchronous pipeline composition with CompletableFuture.',
+            status: 'upcoming',
+            readTime: '16m read',
+            topics: ['java', 'concurrency', 'multithreading', 'completable-future'],
           },
         ],
       },

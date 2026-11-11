@@ -1,0 +1,164 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" width="100%" height="100%">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.08" />
+    </filter>
+  </defs>
+
+  <style>
+    /* Default: Light Mode (Clean White Canvas) */
+    svg {
+      --diag-canvas: #ffffff;
+      --diag-header-tag: #16a34a;
+      --diag-header-sub: #64748b;
+      --diag-card-bg: #f8fafc;
+      --diag-card-border: #cbd5e1;
+      --diag-divider: #e2e8f0;
+
+      --diag-badge-bg: #dcfce7;
+      --diag-badge-border: #bbf7d0;
+      --diag-badge-text: #15803d;
+
+      --diag-code-main: #0f172a;
+      --diag-code-code: #16a34a;
+      --diag-code-reason: #15803d;
+      --diag-code-key: #0369a1;
+      --diag-code-val: #334155;
+      --diag-code-meta: #64748b;
+      --diag-crlf: #d97706;
+    }
+
+    /* Dark Mode (Web Application) */
+    html.dark svg, .dark svg {
+      --diag-canvas: #0c1017;
+      --diag-header-tag: #34d399;
+      --diag-header-sub: #94a3b8;
+      --diag-card-bg: #141a29;
+      --diag-card-border: #243049;
+      --diag-divider: #1e293b;
+
+      --diag-badge-bg: #0d241c;
+      --diag-badge-border: #059669;
+      --diag-badge-text: #34d399;
+
+      --diag-code-main: #f8fafc;
+      --diag-code-code: #34d399;
+      --diag-code-reason: #6ee7b7;
+      --diag-code-key: #7dd3fc;
+      --diag-code-val: #cbd5e1;
+      --diag-code-meta: #94a3b8;
+      --diag-crlf: #f59e0b;
+    }
+
+    /* Standalone SVG Viewer */
+    @media (prefers-color-scheme: dark) {
+      svg:root {
+        --diag-canvas: #0c1017;
+        --diag-header-tag: #34d399;
+        --diag-header-sub: #94a3b8;
+        --diag-card-bg: #141a29;
+        --diag-card-border: #243049;
+        --diag-divider: #1e293b;
+
+        --diag-badge-bg: #0d241c;
+        --diag-badge-border: #059669;
+        --diag-badge-text: #34d399;
+
+        --diag-code-main: #f8fafc;
+        --diag-code-code: #34d399;
+        --diag-code-reason: #6ee7b7;
+        --diag-code-key: #7dd3fc;
+        --diag-code-val: #cbd5e1;
+        --diag-code-meta: #94a3b8;
+        --diag-crlf: #f59e0b;
+      }
+    }
+
+    .header-tag { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; font-weight: 700; fill: var(--diag-header-tag); letter-spacing: 1.5px; text-transform: uppercase; }
+    .header-sub { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 12px; fill: var(--diag-header-sub); }
+    .code-val { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; font-weight: 500; fill: var(--diag-code-main); }
+    .code-ver { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; font-weight: 500; fill: var(--diag-code-meta); }
+    .code-code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; font-weight: 700; fill: var(--diag-code-code); }
+    .code-reason { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; font-weight: 600; fill: var(--diag-code-reason); }
+    .code-key { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px; font-weight: 600; fill: var(--diag-code-key); }
+    .code-data { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px; font-weight: 400; fill: var(--diag-code-val); }
+    .meta-sub { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; font-weight: 500; fill: var(--diag-code-meta); }
+    .divider-line { stroke: var(--diag-divider); stroke-width: 1.5; }
+    .badge-pill { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; font-weight: 700; fill: var(--diag-badge-text); }
+  </style>
+
+  <!-- Background Base Canvas -->
+  <rect width="800" height="440" fill="var(--diag-canvas)" />
+
+  <!-- Diagram Title Header -->
+  <text x="35" y="32" class="header-tag">HTTP/1.1 RESPONSE WIRE ANATOMY</text>
+  <text x="35" y="48" class="header-sub">RFC 9112 Framing: Status Line, Response Headers, CRLF Delimiter, and JSON Payload</text>
+
+  <!-- Inner Terminal Container Box -->
+  <g transform="translate(30, 68)" filter="url(#shadow)">
+    <rect width="740" height="346" rx="10" fill="var(--diag-card-bg)" stroke="var(--diag-card-border)" stroke-width="1.5" />
+
+    <!-- SECTION 1: STATUS LINE -->
+    <g transform="translate(25, 26)">
+      <rect x="0" y="-14" width="135" height="20" rx="4" fill="var(--diag-badge-bg)" stroke="var(--diag-badge-border)" stroke-width="1" />
+      <text x="8" y="0" class="badge-pill">1. STATUS LINE</text>
+      
+      <text x="155" y="1" class="code-val">
+        <tspan class="code-ver">HTTP/1.1 </tspan>
+        <tspan class="code-code">200 </tspan>
+        <tspan class="code-reason">OK</tspan>
+      </text>
+      <text x="155" y="22" class="meta-sub">[HTTP-VERSION]  [STATUS-CODE]  [REASON-PHRASE]</text>
+    </g>
+
+    <!-- Divider 1 -->
+    <line x1="0" y1="68" x2="740" y2="68" class="divider-line" />
+
+    <!-- SECTION 2: HEADERS -->
+    <g transform="translate(25, 96)">
+      <rect x="0" y="-14" width="135" height="20" rx="4" fill="var(--diag-badge-bg)" stroke="var(--diag-badge-border)" stroke-width="1" />
+      <text x="8" y="0" class="badge-pill">2. HEADERS</text>
+
+      <text x="155" y="1" class="code-val">
+        <tspan class="code-key">Content-Type:</tspan> <tspan class="code-data">application/json; charset=utf-8</tspan>
+      </text>
+      <text x="155" y="24" class="code-val">
+        <tspan class="code-key">Content-Length:</tspan> <tspan class="code-data">68</tspan>
+      </text>
+      <text x="155" y="47" class="code-val">
+        <tspan class="code-key">ETag:</tspan> <tspan class="code-data">W/"a82-f5c719"</tspan>
+      </text>
+      <text x="155" y="70" class="code-val">
+        <tspan class="code-key">Server:</tspan> <tspan class="code-data">Apache-Tomcat/10.1.18 (Spring Boot 3)</tspan>
+      </text>
+    </g>
+
+    <!-- Divider 2 -->
+    <line x1="0" y1="195" x2="740" y2="195" class="divider-line" />
+
+    <!-- SECTION 3: EMPTY LINE -->
+    <g transform="translate(25, 222)">
+      <rect x="0" y="-14" width="135" height="20" rx="4" fill="var(--diag-badge-bg)" stroke="var(--diag-badge-border)" stroke-width="1" />
+      <text x="8" y="0" class="badge-pill">3. EMPTY LINE</text>
+
+      <text x="155" y="0" class="code-val">
+        <tspan fill="var(--diag-crlf)" font-weight="700">\r\n</tspan>
+        <tspan fill="var(--diag-code-meta)"> (CRLF delimiter separating metadata headers from payload)</tspan>
+      </text>
+    </g>
+
+    <!-- Divider 3 -->
+    <line x1="0" y1="250" x2="740" y2="250" class="divider-line" />
+
+    <!-- SECTION 4: MESSAGE BODY -->
+    <g transform="translate(25, 278)">
+      <rect x="0" y="-14" width="135" height="20" rx="4" fill="var(--diag-badge-bg)" stroke="var(--diag-badge-border)" stroke-width="1" />
+      <text x="8" y="0" class="badge-pill">4. MESSAGE BODY</text>
+
+      <text x="155" y="0" class="code-val">
+        <tspan fill="var(--diag-code-main)">{ "orderId": 8842, "status": "CONFIRMED", "totalAmount": 149.99 }</tspan>
+      </text>
+      <text x="155" y="22" class="meta-sub">[Serialized JSON payload matching Content-Type header]</text>
+    </g>
+  </g>
+</svg>

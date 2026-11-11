@@ -1,0 +1,207 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 460" width="100%" height="100%">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.08" />
+    </filter>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#0284c7" />
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 10 1.5 L 1 5 L 10 8.5 z" fill="#16a34a" />
+    </marker>
+  </defs>
+
+  <style>
+    /* Default: Light Mode (Clean White Canvas) */
+    svg {
+      --diag-canvas: #ffffff;
+      --diag-header-tag: #0284c7;
+      --diag-header-sub: #64748b;
+
+      --diag-node-bg: #f8fafc;
+      --diag-node-border: #cbd5e1;
+      --diag-node-title: #0f172a;
+      --diag-node-sub: #64748b;
+      --diag-lifeline: #cbd5e1;
+
+      --diag-text-main: #0f172a;
+      --diag-text-sub: #64748b;
+      --diag-text-data: #334155;
+      --diag-key: #0369a1;
+
+      --diag-step1-method: #0284c7;
+      --diag-step2-ok: #16a34a;
+      --diag-step3-method: #0284c7;
+      --diag-step4-ok: #16a34a;
+
+      --diag-pill-bg: #f1f5f9;
+      --diag-pill-border: #cbd5e1;
+      --diag-pill-text: #334155;
+
+      --diag-server-note-bg: #dcfce7;
+      --diag-server-note-border: #16a34a;
+      --diag-server-note-text: #15803d;
+    }
+
+    /* Dark Mode (Web Application) */
+    html.dark svg, .dark svg {
+      --diag-canvas: #0c1017;
+      --diag-header-tag: #38bdf8;
+      --diag-header-sub: #94a3b8;
+
+      --diag-node-bg: #141c2c;
+      --diag-node-border: #243049;
+      --diag-node-title: #f8fafc;
+      --diag-node-sub: #94a3b8;
+      --diag-lifeline: #243049;
+
+      --diag-text-main: #f8fafc;
+      --diag-text-sub: #94a3b8;
+      --diag-text-data: #cbd5e1;
+      --diag-key: #7dd3fc;
+
+      --diag-step1-method: #38bdf8;
+      --diag-step2-ok: #34d399;
+      --diag-step3-method: #38bdf8;
+      --diag-step4-ok: #34d399;
+
+      --diag-pill-bg: #131d2e;
+      --diag-pill-border: #24344d;
+      --diag-pill-text: #cbd5e1;
+
+      --diag-server-note-bg: #092117;
+      --diag-server-note-border: #34d399;
+      --diag-server-note-text: #6ee7b7;
+    }
+
+    /* Standalone SVG Viewer */
+    @media (prefers-color-scheme: dark) {
+      svg:root {
+        --diag-canvas: #0c1017;
+        --diag-header-tag: #38bdf8;
+        --diag-header-sub: #94a3b8;
+
+        --diag-node-bg: #141c2c;
+        --diag-node-border: #243049;
+        --diag-node-title: #f8fafc;
+        --diag-node-sub: #94a3b8;
+        --diag-lifeline: #243049;
+
+        --diag-text-main: #f8fafc;
+        --diag-text-sub: #94a3b8;
+        --diag-text-data: #cbd5e1;
+        --diag-key: #7dd3fc;
+
+        --diag-step1-method: #38bdf8;
+        --diag-step2-ok: #34d399;
+        --diag-step3-method: #38bdf8;
+        --diag-step4-ok: #34d399;
+
+        --diag-pill-bg: #131d2e;
+        --diag-pill-border: #24344d;
+        --diag-pill-text: #cbd5e1;
+
+        --diag-server-note-bg: #092117;
+        --diag-server-note-border: #34d399;
+        --diag-server-note-text: #6ee7b7;
+      }
+    }
+
+    .header-tag { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; font-weight: 700; fill: var(--diag-header-tag); letter-spacing: 1.5px; text-transform: uppercase; }
+    .header-sub { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 12px; fill: var(--diag-header-sub); }
+    .node-title { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 14.5px; font-weight: 700; fill: var(--diag-node-title); text-anchor: middle; }
+    .node-sub { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: var(--diag-node-sub); text-anchor: middle; }
+    .step-main { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; font-weight: 700; }
+    .step-sub { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; font-weight: 500; }
+    .lifeline { stroke: var(--diag-lifeline); stroke-width: 1.5; stroke-dasharray: 6 5; }
+    .pill-note { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; fill: var(--diag-pill-text); }
+    .server-pill { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10.5px; font-weight: 600; fill: var(--diag-server-note-text); }
+  </style>
+
+  <!-- Background Base Canvas -->
+  <rect width="940" height="460" fill="var(--diag-canvas)" />
+
+  <!-- Diagram Title Header -->
+  <text x="35" y="32" class="header-tag">STATEFUL HTTP COOKIE &amp; SESSION LIFECYCLE</text>
+  <text x="35" y="48" class="header-sub">Credential Authentication, Set-Cookie Directives, and Automated Cookie Jar Transmission</text>
+
+  <!-- Lifelines -->
+  <line x1="130" y1="115" x2="130" y2="435" class="lifeline" />
+  <line x1="680" y1="115" x2="680" y2="435" class="lifeline" />
+
+  <!-- Client Node Box -->
+  <g transform="translate(50, 68)" filter="url(#shadow)">
+    <rect width="160" height="50" rx="8" fill="var(--diag-node-bg)" stroke="#0284c7" stroke-width="1.5" />
+    <text x="80" y="27" class="node-title">Client</text>
+    <text x="80" y="42" class="node-sub">(Browser Cookie Jar)</text>
+  </g>
+
+  <!-- Server Node Box -->
+  <g transform="translate(600, 68)" filter="url(#shadow)">
+    <rect width="160" height="50" rx="8" fill="var(--diag-node-bg)" stroke="#16a34a" stroke-width="1.5" />
+    <text x="80" y="27" class="node-title">Server</text>
+    <text x="80" y="42" class="node-sub">(Spring Boot App)</text>
+  </g>
+
+  <!-- STEP 1: POST /login -->
+  <g transform="translate(130, 145)">
+    <text x="20" y="-8" class="step-main">
+      <tspan fill="var(--diag-step1-method)">1. POST</tspan>
+      <tspan fill="var(--diag-text-main)"> /login </tspan>
+      <tspan fill="var(--diag-text-sub)">(username, password)</tspan>
+    </text>
+    <path d="M 0 0 L 550 0" stroke="#0284c7" stroke-width="2" marker-end="url(#arrowBlue)" />
+  </g>
+
+  <!-- Server Processing Annotation (Step 1) -->
+  <g transform="translate(700, 132)">
+    <rect x="0" y="0" width="195" height="36" rx="5" fill="var(--diag-server-note-bg)" stroke="var(--diag-server-note-border)" stroke-width="1" />
+    <text x="10" y="15" class="server-pill">• Authenticate Credentials</text>
+    <text x="10" y="28" class="server-pill">• Generate Session ID</text>
+  </g>
+
+  <!-- STEP 2: 200 OK + Set-Cookie -->
+  <g transform="translate(130, 205)">
+    <text x="20" y="-12" class="step-main" fill="var(--diag-step2-ok)">2. 200 OK</text>
+    <text x="35" y="6" class="step-sub">
+      <tspan fill="var(--diag-key)" font-weight="700">Set-Cookie:</tspan>
+      <tspan fill="var(--diag-text-data)"> sid=abc123xyz; Path=/; Secure; HttpOnly; SameSite=Lax</tspan>
+    </text>
+    <path d="M 550 16 L 0 16" stroke="#16a34a" stroke-width="2" marker-start="url(#arrowGreen)" />
+  </g>
+
+  <!-- Client-side Note: Private Cookie Jar -->
+  <g transform="translate(170, 256)" filter="url(#shadow)">
+    <rect width="440" height="28" rx="14" fill="var(--diag-pill-bg)" stroke="var(--diag-pill-border)" stroke-width="1" />
+    <circle cx="16" cy="14" r="4" fill="#0284c7" />
+    <text x="28" y="18" class="pill-note">[Browser stores cookie in private cookie jar partitioned by host domain]</text>
+  </g>
+
+  <!-- STEP 3: GET /account/dashboard + Cookie -->
+  <g transform="translate(130, 320)">
+    <text x="20" y="-12" class="step-main">
+      <tspan fill="var(--diag-step3-method)">3. GET</tspan>
+      <tspan fill="var(--diag-text-main)"> /account/dashboard</tspan>
+    </text>
+    <text x="35" y="6" class="step-sub">
+      <tspan fill="var(--diag-key)" font-weight="700">Cookie:</tspan>
+      <tspan fill="var(--diag-text-data)"> sid=abc123xyz</tspan>
+    </text>
+    <path d="M 0 16 L 550 16" stroke="#0284c7" stroke-width="2" marker-end="url(#arrowBlue)" />
+  </g>
+
+  <!-- Server Processing Annotation (Step 3) -->
+  <g transform="translate(700, 324)">
+    <rect x="0" y="0" width="195" height="24" rx="5" fill="var(--diag-server-note-bg)" stroke="var(--diag-server-note-border)" stroke-width="1" />
+    <text x="10" y="16" class="server-pill">• Look up session in store</text>
+  </g>
+
+  <!-- STEP 4: 200 OK (Welcome Alice!) -->
+  <g transform="translate(130, 395)">
+    <text x="20" y="-8" class="step-main">
+      <tspan fill="var(--diag-step4-ok)">4. 200 OK</tspan>
+      <tspan fill="var(--diag-text-sub)"> (Welcome Alice! User context resolved from Session)</tspan>
+    </text>
+    <path d="M 550 0 L 0 0" stroke="#16a34a" stroke-width="2" marker-start="url(#arrowGreen)" />
+  </g>
+</svg>

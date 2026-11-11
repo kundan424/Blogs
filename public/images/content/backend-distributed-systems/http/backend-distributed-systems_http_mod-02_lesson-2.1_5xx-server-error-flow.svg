@@ -1,0 +1,161 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 480" width="100%" height="100%">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.08" />
+    </filter>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#dc2626" />
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#0284c7" />
+    </marker>
+  </defs>
+
+  <style>
+    /* Default: Light Mode (Clean White Canvas) */
+    svg {
+      --diag-canvas: #ffffff;
+      --diag-header-tag: #dc2626;
+      --diag-header-sub: #64748b;
+
+      --diag-node-bg: #f8fafc;
+      --diag-node-border: #cbd5e1;
+      --diag-text-main: #0f172a;
+      --diag-text-sub: #64748b;
+
+      --diag-err-bg: #fff5f5;
+      --diag-err-border: #fca5a5;
+      --diag-err-title: #b91c1c;
+      --diag-err-desc: #334155;
+      --diag-err-code: #dc2626;
+    }
+
+    /* Dark Mode (Web Application) */
+    html.dark svg, .dark svg {
+      --diag-canvas: #0c1017;
+      --diag-header-tag: #f87171;
+      --diag-header-sub: #94a3b8;
+
+      --diag-node-bg: #141c2c;
+      --diag-node-border: #243049;
+      --diag-text-main: #f8fafc;
+      --diag-text-sub: #94a3b8;
+
+      --diag-err-bg: #241014;
+      --diag-err-border: #ef4444;
+      --diag-err-title: #f87171;
+      --diag-err-desc: #cbd5e1;
+      --diag-err-code: #fca5a5;
+    }
+
+    /* Standalone SVG Viewer */
+    @media (prefers-color-scheme: dark) {
+      svg:root {
+        --diag-canvas: #0c1017;
+        --diag-header-tag: #f87171;
+        --diag-header-sub: #94a3b8;
+
+        --diag-node-bg: #141c2c;
+        --diag-node-border: #243049;
+        --diag-text-main: #f8fafc;
+        --diag-text-sub: #94a3b8;
+
+        --diag-err-bg: #241014;
+        --diag-err-border: #ef4444;
+        --diag-err-title: #f87171;
+        --diag-err-desc: #cbd5e1;
+        --diag-err-code: #fca5a5;
+      }
+    }
+
+    .header-tag { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; font-weight: 700; fill: var(--diag-header-tag); letter-spacing: 1.5px; text-transform: uppercase; }
+    .header-sub { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 12px; fill: var(--diag-header-sub); }
+    .node-title { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 14px; font-weight: 700; fill: var(--diag-text-main); text-anchor: middle; }
+    .node-sub { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11.5px; fill: var(--diag-text-sub); text-anchor: middle; }
+    .error-tag { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; font-weight: 700; fill: var(--diag-err-title); }
+    .cond-text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11.5px; fill: var(--diag-err-desc); }
+    .meta-code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; fill: var(--diag-err-code); }
+  </style>
+
+  <!-- Background Base Canvas -->
+  <rect width="940" height="480" fill="var(--diag-canvas)" />
+
+  <!-- Diagram Title Header -->
+  <text x="35" y="32" class="header-tag">5xx SERVER FAULT TOPOLOGY</text>
+  <text x="35" y="48" class="header-sub">Root Cause Attribution Across Gateway, Network Boundaries, and Application Runtime</text>
+
+  <!-- ========================================================================= -->
+  <!-- NODE 1: CLIENT REQUEST -->
+  <!-- ========================================================================= -->
+  <g transform="translate(190, 70)" filter="url(#shadow)">
+    <rect width="280" height="48" rx="8" fill="var(--diag-node-bg)" stroke="#0284c7" stroke-width="1.5" />
+    <text x="140" y="25" class="node-title">Client Request</text>
+    <text x="140" y="40" class="node-sub">cURL / Browser / Mobile App</text>
+  </g>
+
+  <!-- Arrow Client -> Ingress -->
+  <path d="M 330 118 L 330 148" stroke="#0284c7" stroke-width="2" marker-end="url(#arrowBlue)" />
+
+  <!-- ========================================================================= -->
+  <!-- NODE 2: INGRESS GATEWAY -->
+  <!-- ========================================================================= -->
+  <g transform="translate(190, 150)" filter="url(#shadow)">
+    <rect width="280" height="58" rx="8" fill="var(--diag-node-bg)" stroke="#6366f1" stroke-width="1.5" />
+    <text x="140" y="26" class="node-title">API Gateway / Ingress</text>
+    <text x="140" y="44" class="node-sub">Nginx / Envoy / AWS ALB</text>
+  </g>
+
+  <!-- Branch lines from Gateway to Pod and Failures -->
+  <!-- Left failure flow: 502 Bad Gateway -->
+  <path d="M 230 208 L 230 250" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrowRed)" />
+  <g transform="translate(30, 252)" filter="url(#shadow)">
+    <rect width="210" height="66" rx="8" fill="var(--diag-err-bg)" stroke="var(--diag-err-border)" stroke-width="1.5" />
+    <text x="15" y="24" class="error-tag">502 Bad Gateway</text>
+    <text x="15" y="42" class="cond-text">Upstream TCP Refused / Crash</text>
+    <text x="15" y="58" class="meta-code">No backend socket available</text>
+  </g>
+
+  <!-- Mid failure flow: 504 Gateway Timeout -->
+  <path d="M 430 208 L 430 250" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrowRed)" />
+  <g transform="translate(420, 252)" filter="url(#shadow)">
+    <rect width="210" height="66" rx="8" fill="var(--diag-err-bg)" stroke="var(--diag-err-border)" stroke-width="1.5" />
+    <text x="15" y="24" class="error-tag">504 Gateway Timeout</text>
+    <text x="15" y="42" class="cond-text">Upstream Latency &gt; Deadline</text>
+    <text x="15" y="58" class="meta-code">Server did not reply in time</text>
+  </g>
+
+  <!-- Ingress -> Spring Boot Pod -->
+  <path d="M 330 208 L 330 350" stroke="#0284c7" stroke-width="1.5" marker-end="url(#arrowBlue)" />
+
+  <!-- ========================================================================= -->
+  <!-- NODE 3: SPRING BOOT POD -->
+  <!-- ========================================================================= -->
+  <g transform="translate(190, 352)" filter="url(#shadow)">
+    <rect width="280" height="74" rx="8" fill="var(--diag-node-bg)" stroke="#16a34a" stroke-width="1.5" />
+    <text x="140" y="28" class="node-title">Spring Boot 3 Pod</text>
+    <text x="140" y="46" class="node-sub">Tomcat / DispatcherServlet</text>
+    <text x="140" y="62" class="meta-code" fill="var(--diag-text-sub)">JVM Worker Thread Execution</text>
+  </g>
+
+  <!-- Horizontal error lines from Pod to Right -->
+  <path d="M 470 374 L 640 374" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrowRed)" />
+  <path d="M 470 410 L 640 410" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrowRed)" />
+
+  <!-- ========================================================================= -->
+  <!-- APPLICATION ERRORS (500 & 503) -->
+  <!-- ========================================================================= -->
+
+  <!-- 500 Internal Server Error -->
+  <g transform="translate(642, 345)" filter="url(#shadow)">
+    <rect width="265" height="52" rx="8" fill="var(--diag-err-bg)" stroke="var(--diag-err-border)" stroke-width="1.5" />
+    <text x="15" y="22" class="error-tag">500 Internal Server Error</text>
+    <text x="15" y="40" class="cond-text">Unhandled Java Exception / NPE</text>
+  </g>
+
+  <!-- 503 Service Unavailable -->
+  <g transform="translate(642, 405)" filter="url(#shadow)">
+    <rect width="265" height="52" rx="8" fill="var(--diag-err-bg)" stroke="var(--diag-err-border)" stroke-width="1.5" />
+    <text x="15" y="22" class="error-tag">503 Service Unavailable</text>
+    <text x="15" y="40" class="cond-text">Tomcat Threadpool Full / Pod Draining</text>
+  </g>
+</svg>

@@ -1,0 +1,177 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 460" width="100%" height="100%">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.08" />
+    </filter>
+  </defs>
+
+  <style>
+    /* Default: Light Mode (Clean White Canvas) */
+    svg {
+      --diag-canvas: #ffffff;
+      --diag-header-tag: #0284c7;
+      --diag-header-sub: #64748b;
+
+      --diag-strict-bg: #fff5f5;
+      --diag-strict-border: #fca5a5;
+      --diag-strict-title: #dc2626;
+      --diag-strict-badge-bg: #fee2e2;
+      --diag-strict-meta: #b91c1c;
+
+      --diag-lax-bg: #fffbeb;
+      --diag-lax-border: #fde68a;
+      --diag-lax-title: #d97706;
+      --diag-lax-badge-bg: #fef3c7;
+      --diag-lax-meta: #b45309;
+
+      --diag-none-bg: #f0f9ff;
+      --diag-none-border: #bae6fd;
+      --diag-none-title: #0284c7;
+      --diag-none-badge-bg: #e0f2fe;
+      --diag-none-meta: #0369a1;
+
+      --diag-rule-head: #0f172a;
+      --diag-rule-body: #334155;
+      --diag-rule-usecase: #64748b;
+    }
+
+    /* Dark Mode (Web Application) */
+    html.dark svg, .dark svg {
+      --diag-canvas: #0c1017;
+      --diag-header-tag: #38bdf8;
+      --diag-header-sub: #94a3b8;
+
+      --diag-strict-bg: #241116;
+      --diag-strict-border: #ef4444;
+      --diag-strict-title: #f87171;
+      --diag-strict-badge-bg: #3b0f16;
+      --diag-strict-meta: #fca5a5;
+
+      --diag-lax-bg: #22190f;
+      --diag-lax-border: #f59e0b;
+      --diag-lax-title: #fbbf24;
+      --diag-lax-badge-bg: #3b2308;
+      --diag-lax-meta: #fde68a;
+
+      --diag-none-bg: #0f1c2b;
+      --diag-none-border: #0284c7;
+      --diag-none-title: #38bdf8;
+      --diag-none-badge-bg: #082238;
+      --diag-none-meta: #7dd3fc;
+
+      --diag-rule-head: #f8fafc;
+      --diag-rule-body: #cbd5e1;
+      --diag-rule-usecase: #94a3b8;
+    }
+
+    /* Standalone SVG Viewer */
+    @media (prefers-color-scheme: dark) {
+      svg:root {
+        --diag-canvas: #0c1017;
+        --diag-header-tag: #38bdf8;
+        --diag-header-sub: #94a3b8;
+
+        --diag-strict-bg: #241116;
+        --diag-strict-border: #ef4444;
+        --diag-strict-title: #f87171;
+        --diag-strict-badge-bg: #3b0f16;
+        --diag-strict-meta: #fca5a5;
+
+        --diag-lax-bg: #22190f;
+        --diag-lax-border: #f59e0b;
+        --diag-lax-title: #fbbf24;
+        --diag-lax-badge-bg: #3b2308;
+        --diag-lax-meta: #fde68a;
+
+        --diag-none-bg: #0f1c2b;
+        --diag-none-border: #0284c7;
+        --diag-none-title: #38bdf8;
+        --diag-none-badge-bg: #082238;
+        --diag-none-meta: #7dd3fc;
+
+        --diag-rule-head: #f8fafc;
+        --diag-rule-body: #cbd5e1;
+        --diag-rule-usecase: #94a3b8;
+      }
+    }
+
+    .header-tag { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; font-weight: 700; fill: var(--diag-header-tag); letter-spacing: 1.5px; text-transform: uppercase; }
+    .header-sub { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 12px; fill: var(--diag-header-sub); }
+    .pill-title { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; font-weight: 700; }
+    .tier-meta { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10.5px; font-weight: 700; letter-spacing: 0.5px; }
+    .tag-badge { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9.5px; font-weight: 700; letter-spacing: 0.5px; }
+    .rule-headline { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px; font-weight: 600; fill: var(--diag-rule-head); }
+    .rule-body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11.5px; fill: var(--diag-rule-body); }
+    .rule-usecase { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; font-style: italic; fill: var(--diag-rule-usecase); }
+  </style>
+
+  <!-- Background Base Canvas -->
+  <rect width="920" height="460" fill="var(--diag-canvas)" />
+
+  <!-- Diagram Title Header -->
+  <text x="35" y="32" class="header-tag">COOKIE SECURITY DIRECTIVES</text>
+  <text x="35" y="48" class="header-sub">RFC 6265bis: The Three SameSite Policies &amp; Cross-Site Request Boundary Protection</text>
+
+  <!-- ========================================================================= -->
+  <!-- 1. SAMESITE = STRICT -->
+  <!-- ========================================================================= -->
+  <g transform="translate(35, 72)" filter="url(#shadow)">
+    <rect width="850" height="110" rx="8" fill="var(--diag-strict-bg)" stroke="var(--diag-strict-border)" stroke-width="1.5" />
+
+    <!-- Left Policy Badge -->
+    <rect x="18" y="14" width="160" height="26" rx="5" fill="var(--diag-strict-badge-bg)" stroke="var(--diag-strict-border)" stroke-width="1" />
+    <text x="98" y="31" text-anchor="middle" class="pill-title" fill="var(--diag-strict-title)">SameSite=Strict</text>
+
+    <!-- Subtitle & Right Tag -->
+    <text x="190" y="31" class="tier-meta" fill="var(--diag-strict-meta)">HIGHEST DEFENSE  •  ZERO CROSS-SITE LEAKAGE</text>
+    <rect x="705" y="14" width="128" height="24" rx="4" fill="var(--diag-strict-badge-bg)" stroke="var(--diag-strict-border)" stroke-width="1" />
+    <text x="769" y="30" text-anchor="middle" class="tag-badge" fill="var(--diag-strict-title)">100% CSRF IMMUNE</text>
+
+    <!-- Details -->
+    <text x="20" y="60" class="rule-headline">Cookie is NEVER sent in any cross-site request context.</text>
+    <text x="20" y="78" class="rule-body">Even when following an external link from an email or social media site, the cookie is withheld on the initial navigation request.</text>
+    <text x="20" y="96" class="rule-usecase">Target Scope: High-value financial transactions, banking operations, account security, and admin consoles.</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- 2. SAMESITE = LAX -->
+  <!-- ========================================================================= -->
+  <g transform="translate(35, 196)" filter="url(#shadow)">
+    <rect width="850" height="110" rx="8" fill="var(--diag-lax-bg)" stroke="var(--diag-lax-border)" stroke-width="1.5" />
+
+    <!-- Left Policy Badge -->
+    <rect x="18" y="14" width="160" height="26" rx="5" fill="var(--diag-lax-badge-bg)" stroke="var(--diag-lax-border)" stroke-width="1" />
+    <text x="98" y="31" text-anchor="middle" class="pill-title" fill="var(--diag-lax-title)">SameSite=Lax</text>
+
+    <!-- Subtitle & Right Tag -->
+    <text x="190" y="31" class="tier-meta" fill="var(--diag-lax-meta)">RECOMMENDED DEFAULT  •  BALANCED USABILITY</text>
+    <rect x="705" y="14" width="128" height="24" rx="4" fill="var(--diag-lax-badge-bg)" stroke="var(--diag-lax-border)" stroke-width="1" />
+    <text x="769" y="30" text-anchor="middle" class="tag-badge" fill="var(--diag-lax-title)">BROWSER DEFAULT</text>
+
+    <!-- Details -->
+    <text x="20" y="60" class="rule-headline">Withheld on cross-site subrequests, but sent on top-level safe GET navigations.</text>
+    <text x="20" y="78" class="rule-body">Withheld for images, iframes, and AJAX POST/PUT/DELETE calls, but sent when a user clicks a regular link (&lt;a href&gt;) to your site.</text>
+    <text x="20" y="96" class="rule-usecase">Target Scope: General consumer web applications, SaaS dashboards, and content platforms maintaining active user sessions.</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- 3. SAMESITE = NONE -->
+  <!-- ========================================================================= -->
+  <g transform="translate(35, 320)" filter="url(#shadow)">
+    <rect width="850" height="110" rx="8" fill="var(--diag-none-bg)" stroke="var(--diag-none-border)" stroke-width="1.5" />
+
+    <!-- Left Policy Badge -->
+    <rect x="18" y="14" width="160" height="26" rx="5" fill="var(--diag-none-badge-bg)" stroke="var(--diag-none-border)" stroke-width="1" />
+    <text x="98" y="31" text-anchor="middle" class="pill-title" fill="var(--diag-none-title)">SameSite=None</text>
+
+    <!-- Subtitle & Right Tag -->
+    <text x="190" y="31" class="tier-meta" fill="var(--diag-none-meta)">CROSS-SITE CONTEXT  •  REQUIRES SECURE (HTTPS)</text>
+    <rect x="705" y="14" width="128" height="24" rx="4" fill="var(--diag-none-badge-bg)" stroke="var(--diag-none-border)" stroke-width="1" />
+    <text x="769" y="30" text-anchor="middle" class="tag-badge" fill="var(--diag-none-title)">STRICT HTTPS REQ</text>
+
+    <!-- Details -->
+    <text x="20" y="60" class="rule-headline">Cookie is sent in all cross-site contexts across third-party origin domains.</text>
+    <text x="20" y="78" class="rule-body">Enables cross-domain embeds and API calls. MUST be paired with the Secure attribute; rejected by modern browsers over HTTP.</text>
+    <text x="20" y="96" class="rule-usecase">Target Scope: Third-party widgets, embedded payment frames (Stripe/PayPal), and cross-origin SSO federations.</text>
+  </g>
+</svg>

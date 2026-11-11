@@ -1,0 +1,204 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 370" width="100%" height="100%">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.08" />
+    </filter>
+  </defs>
+
+  <style>
+    /* Default: Light Mode (Clean White Canvas) */
+    svg {
+      --diag-canvas: #ffffff;
+      --diag-header-tag: #0284c7;
+      --diag-header-sub: #64748b;
+      --diag-card-bg: #f8fafc;
+      --diag-card-border: #cbd5e1;
+      --diag-th-bg: #f1f5f9;
+      --diag-th-text: #475569;
+      --diag-grid-line: #e2e8f0;
+
+      --diag-row-title: #0f172a;
+      --diag-row-desc: #334155;
+      --diag-row-eg: #64748b;
+
+      --diag-1xx-bg: #e0f2fe;
+      --diag-1xx-border: #0284c7;
+      --diag-1xx-text: #0369a1;
+
+      --diag-2xx-bg: #dcfce7;
+      --diag-2xx-border: #16a34a;
+      --diag-2xx-text: #15803d;
+
+      --diag-3xx-bg: #fef3c7;
+      --diag-3xx-border: #d97706;
+      --diag-3xx-text: #b45309;
+
+      --diag-4xx-bg: #ffedd5;
+      --diag-4xx-border: #ea580c;
+      --diag-4xx-text: #c2410c;
+
+      --diag-5xx-bg: #fee2e2;
+      --diag-5xx-border: #dc2626;
+      --diag-5xx-text: #b91c1c;
+    }
+
+    /* Dark Mode (Web Application) */
+    html.dark svg, .dark svg {
+      --diag-canvas: #0c1017;
+      --diag-header-tag: #38bdf8;
+      --diag-header-sub: #94a3b8;
+      --diag-card-bg: #141a29;
+      --diag-card-border: #243049;
+      --diag-th-bg: #131b2e;
+      --diag-th-text: #94a3b8;
+      --diag-grid-line: #1e293b;
+
+      --diag-row-title: #f8fafc;
+      --diag-row-desc: #cbd5e1;
+      --diag-row-eg: #94a3b8;
+
+      --diag-1xx-bg: #0d2438;
+      --diag-1xx-border: #0284c7;
+      --diag-1xx-text: #38bdf8;
+
+      --diag-2xx-bg: #0d261e;
+      --diag-2xx-border: #059669;
+      --diag-2xx-text: #34d399;
+
+      --diag-3xx-bg: #2b2014;
+      --diag-3xx-border: #d97706;
+      --diag-3xx-text: #fbbf24;
+
+      --diag-4xx-bg: #301c18;
+      --diag-4xx-border: #ea580c;
+      --diag-4xx-text: #fb923c;
+
+      --diag-5xx-bg: #2e1419;
+      --diag-5xx-border: #dc2626;
+      --diag-5xx-text: #f87171;
+    }
+
+    /* Standalone SVG Viewer */
+    @media (prefers-color-scheme: dark) {
+      svg:root {
+        --diag-canvas: #0c1017;
+        --diag-header-tag: #38bdf8;
+        --diag-header-sub: #94a3b8;
+        --diag-card-bg: #141a29;
+        --diag-card-border: #243049;
+        --diag-th-bg: #131b2e;
+        --diag-th-text: #94a3b8;
+        --diag-grid-line: #1e293b;
+
+        --diag-row-title: #f8fafc;
+        --diag-row-desc: #cbd5e1;
+        --diag-row-eg: #94a3b8;
+
+        --diag-1xx-bg: #0d2438;
+        --diag-1xx-border: #0284c7;
+        --diag-1xx-text: #38bdf8;
+
+        --diag-2xx-bg: #0d261e;
+        --diag-2xx-border: #059669;
+        --diag-2xx-text: #34d399;
+
+        --diag-3xx-bg: #2b2014;
+        --diag-3xx-border: #d97706;
+        --diag-3xx-text: #fbbf24;
+
+        --diag-4xx-bg: #301c18;
+        --diag-4xx-border: #ea580c;
+        --diag-4xx-text: #fb923c;
+
+        --diag-5xx-bg: #2e1419;
+        --diag-5xx-border: #dc2626;
+        --diag-5xx-text: #f87171;
+      }
+    }
+
+    .header-tag { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; font-weight: 700; fill: var(--diag-header-tag); letter-spacing: 1.5px; text-transform: uppercase; }
+    .header-sub { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 12px; fill: var(--diag-header-sub); }
+    .th-text { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; font-weight: 700; fill: var(--diag-th-text); letter-spacing: 0.5px; text-transform: uppercase; }
+    .code-badge { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; font-weight: 700; }
+    .row-title { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; font-weight: 600; fill: var(--diag-row-title); }
+    .row-desc { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 12px; fill: var(--diag-row-desc); }
+    .row-eg { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; fill: var(--diag-row-eg); }
+    .grid-line { stroke: var(--diag-grid-line); stroke-width: 1.2; }
+  </style>
+
+  <!-- Background Base Canvas -->
+  <rect width="880" height="370" fill="var(--diag-canvas)" />
+
+  <!-- Diagram Title Header -->
+  <text x="35" y="32" class="header-tag">HTTP STATUS CODE TAXONOMY</text>
+  <text x="35" y="48" class="header-sub">RFC 9110 Five-Class Classification &amp; Distributed Fault Domains</text>
+
+  <!-- Table Container Box -->
+  <g transform="translate(30, 68)" filter="url(#shadow)">
+    <rect width="820" height="272" rx="10" fill="var(--diag-card-bg)" stroke="var(--diag-card-border)" stroke-width="1.5" />
+
+    <!-- Table Header Background -->
+    <path d="M 0 10 Q 0 0 10 0 L 810 0 Q 820 0 820 10 L 820 40 L 0 40 Z" fill="var(--diag-th-bg)" />
+    <line x1="0" y1="40" x2="820" y2="40" stroke="var(--diag-card-border)" stroke-width="1.5" />
+
+    <!-- Column Dividers -->
+    <line x1="100" y1="0" x2="100" y2="272" class="grid-line" />
+    <line x1="240" y1="0" x2="240" y2="272" class="grid-line" />
+    <line x1="620" y1="0" x2="620" y2="272" class="grid-line" />
+
+    <!-- Table Column Headers -->
+    <text x="25" y="25" class="th-text">CLASS</text>
+    <text x="120" y="25" class="th-text">CATEGORY</text>
+    <text x="260" y="25" class="th-text">ARCHITECTURAL MEANING</text>
+    <text x="635" y="25" class="th-text">COMMON CODES</text>
+
+    <!-- Row 1: 1xx -->
+    <g transform="translate(0, 40)">
+      <rect x="20" y="9" width="60" height="24" rx="4" fill="var(--diag-1xx-bg)" stroke="var(--diag-1xx-border)" stroke-width="1" />
+      <text x="50" y="26" text-anchor="middle" class="code-badge" fill="var(--diag-1xx-text)">1xx</text>
+      <text x="120" y="27" class="row-title">Informational</text>
+      <text x="260" y="27" class="row-desc">Request received; protocol handshake / switching in progress</text>
+      <text x="635" y="27" class="row-eg">100 Continue, 101 Switching</text>
+      <line x1="0" y1="46" x2="820" y2="46" class="grid-line" />
+    </g>
+
+    <!-- Row 2: 2xx -->
+    <g transform="translate(0, 86)">
+      <rect x="20" y="9" width="60" height="24" rx="4" fill="var(--diag-2xx-bg)" stroke="var(--diag-2xx-border)" stroke-width="1" />
+      <text x="50" y="26" text-anchor="middle" class="code-badge" fill="var(--diag-2xx-text)">2xx</text>
+      <text x="120" y="27" class="row-title">Success</text>
+      <text x="260" y="27" class="row-desc">Action was successfully received, understood, and processed</text>
+      <text x="635" y="27" class="row-eg">200 OK, 201 Created, 204 No Content</text>
+      <line x1="0" y1="46" x2="820" y2="46" class="grid-line" />
+    </g>
+
+    <!-- Row 3: 3xx -->
+    <g transform="translate(0, 132)">
+      <rect x="20" y="9" width="60" height="24" rx="4" fill="var(--diag-3xx-bg)" stroke="var(--diag-3xx-border)" stroke-width="1" />
+      <text x="50" y="26" text-anchor="middle" class="code-badge" fill="var(--diag-3xx-text)">3xx</text>
+      <text x="120" y="27" class="row-title">Redirection</text>
+      <text x="260" y="27" class="row-desc">Further client action required; URI moved or conditional cache hit</text>
+      <text x="635" y="27" class="row-eg">301 Moved, 302 Found, 304 Not Mod</text>
+      <line x1="0" y1="46" x2="820" y2="46" class="grid-line" />
+    </g>
+
+    <!-- Row 4: 4xx -->
+    <g transform="translate(0, 178)">
+      <rect x="20" y="9" width="60" height="24" rx="4" fill="var(--diag-4xx-bg)" stroke="var(--diag-4xx-border)" stroke-width="1" />
+      <text x="50" y="26" text-anchor="middle" class="code-badge" fill="var(--diag-4xx-text)">4xx</text>
+      <text x="120" y="27" class="row-title">Client Error</text>
+      <text x="260" y="27" class="row-desc">Client payload syntax error, missing auth token, or forbidden access</text>
+      <text x="635" y="27" class="row-eg">400 Bad Req, 401 Unauth, 403, 404</text>
+      <line x1="0" y1="46" x2="820" y2="46" class="grid-line" />
+    </g>
+
+    <!-- Row 5: 5xx -->
+    <g transform="translate(0, 224)">
+      <rect x="20" y="9" width="60" height="24" rx="4" fill="var(--diag-5xx-bg)" stroke="var(--diag-5xx-border)" stroke-width="1" />
+      <text x="50" y="26" text-anchor="middle" class="code-badge" fill="var(--diag-5xx-text)">5xx</text>
+      <text x="120" y="27" class="row-title">Server Error</text>
+      <text x="260" y="27" class="row-desc">Server failed to fulfill valid request; backend down or timeout</text>
+      <text x="635" y="27" class="row-eg">500 Internal, 502 Bad GW, 503, 504</text>
+    </g>
+  </g>
+</svg>

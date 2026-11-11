@@ -1,0 +1,181 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 440" width="100%" height="100%">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.08" />
+    </filter>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#0284c7" />
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 10 1.5 L 1 5 L 10 8.5 z" fill="#16a34a" />
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#d97706" />
+    </marker>
+  </defs>
+
+  <style>
+    /* Default: Light Mode (Clean White Canvas) */
+    svg {
+      --diag-canvas: #ffffff;
+      --diag-header-tag: #0284c7;
+      --diag-header-sub: #64748b;
+
+      --diag-node-bg: #f8fafc;
+      --diag-node-border: #cbd5e1;
+      --diag-node-title: #0f172a;
+      --diag-node-sub: #64748b;
+      --diag-lifeline: #cbd5e1;
+
+      --diag-step1-main: #0284c7;
+      --diag-step2-main: #16a34a;
+      --diag-step3-main: #d97706;
+      --diag-step3-sub: #b45309;
+      --diag-step4-main: #16a34a;
+      --diag-step4-sub: #15803d;
+
+      --diag-pill-bg: #f1f5f9;
+      --diag-pill-border: #cbd5e1;
+      --diag-pill-text: #334155;
+
+      --diag-match-bg: #dcfce7;
+      --diag-match-border: #16a34a;
+      --diag-match-text: #15803d;
+      --diag-match-sub: #64748b;
+    }
+
+    /* Dark Mode (Web Application) */
+    html.dark svg, .dark svg {
+      --diag-canvas: #0c1017;
+      --diag-header-tag: #38bdf8;
+      --diag-header-sub: #94a3b8;
+
+      --diag-node-bg: #141c2c;
+      --diag-node-border: #243049;
+      --diag-node-title: #f8fafc;
+      --diag-node-sub: #94a3b8;
+      --diag-lifeline: #243049;
+
+      --diag-step1-main: #38bdf8;
+      --diag-step2-main: #34d399;
+      --diag-step3-main: #fbbf24;
+      --diag-step3-sub: #fde68a;
+      --diag-step4-main: #34d399;
+      --diag-step4-sub: #6ee7b7;
+
+      --diag-pill-bg: #131d2e;
+      --diag-pill-border: #24344d;
+      --diag-pill-text: #cbd5e1;
+
+      --diag-match-bg: #092117;
+      --diag-match-border: #34d399;
+      --diag-match-text: #34d399;
+      --diag-match-sub: #94a3b8;
+    }
+
+    /* Standalone SVG Viewer */
+    @media (prefers-color-scheme: dark) {
+      svg:root {
+        --diag-canvas: #0c1017;
+        --diag-header-tag: #38bdf8;
+        --diag-header-sub: #94a3b8;
+
+        --diag-node-bg: #141c2c;
+        --diag-node-border: #243049;
+        --diag-node-title: #f8fafc;
+        --diag-node-sub: #94a3b8;
+        --diag-lifeline: #243049;
+
+        --diag-step1-main: #38bdf8;
+        --diag-step2-main: #34d399;
+        --diag-step3-main: #fbbf24;
+        --diag-step3-sub: #fde68a;
+        --diag-step4-main: #34d399;
+        --diag-step4-sub: #6ee7b7;
+
+        --diag-pill-bg: #131d2e;
+        --diag-pill-border: #24344d;
+        --diag-pill-text: #cbd5e1;
+
+        --diag-match-bg: #092117;
+        --diag-match-border: #34d399;
+        --diag-match-text: #34d399;
+        --diag-match-sub: #94a3b8;
+      }
+    }
+
+    .header-tag { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; font-weight: 700; fill: var(--diag-header-tag); letter-spacing: 1.5px; text-transform: uppercase; }
+    .header-sub { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 12px; fill: var(--diag-header-sub); }
+    .node-title { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 14.5px; font-weight: 700; fill: var(--diag-node-title); text-anchor: middle; }
+    .node-sub { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11px; fill: var(--diag-node-sub); text-anchor: middle; }
+    .step-main { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; font-weight: 700; }
+    .step-sub { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; font-weight: 500; }
+    .lifeline { stroke: var(--diag-lifeline); stroke-width: 1.5; stroke-dasharray: 6 5; }
+    .pill-note { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; fill: var(--diag-pill-text); }
+  </style>
+
+  <!-- Background Base Canvas -->
+  <rect width="860" height="440" fill="var(--diag-canvas)" />
+
+  <!-- Diagram Title Header -->
+  <text x="35" y="32" class="header-tag">CONDITIONAL HTTP CACHING LIFECYCLE</text>
+  <text x="35" y="48" class="header-sub">Bandwidth Optimization via ETag Validation, If-None-Match, and 304 Not Modified Responses</text>
+
+  <!-- Lifelines -->
+  <line x1="140" y1="115" x2="140" y2="415" class="lifeline" />
+  <line x1="720" y1="115" x2="720" y2="415" class="lifeline" />
+
+  <!-- Client Node Box -->
+  <g transform="translate(60, 68)" filter="url(#shadow)">
+    <rect width="160" height="50" rx="8" fill="var(--diag-node-bg)" stroke="#0284c7" stroke-width="1.5" />
+    <text x="80" y="27" class="node-title">Client Browser</text>
+    <text x="80" y="42" class="node-sub">Private HTTP Cache</text>
+  </g>
+
+  <!-- Server Node Box -->
+  <g transform="translate(640, 68)" filter="url(#shadow)">
+    <rect width="160" height="50" rx="8" fill="var(--diag-node-bg)" stroke="#16a34a" stroke-width="1.5" />
+    <text x="80" y="27" class="node-title">Origin Server</text>
+    <text x="80" y="42" class="node-sub">Spring Boot REST API</text>
+  </g>
+
+  <!-- STEP 1: INITIAL GET REQUEST -->
+  <g transform="translate(140, 145)">
+    <text x="20" y="-8" class="step-main" fill="var(--diag-step1-main)">1. GET /products/101 (Initial Fetch)</text>
+    <path d="M 0 0 L 580 0" stroke="#0284c7" stroke-width="2" marker-end="url(#arrowBlue)" />
+  </g>
+
+  <!-- STEP 2: 200 OK RESPONSE WITH ETAG -->
+  <g transform="translate(140, 200)">
+    <text x="20" y="-8" class="step-main" fill="var(--diag-step2-main)">2. 200 OK  [ETag: "hash-v1", Cache-Control: max-age=3600, Payload: 50 KB]</text>
+    <path d="M 580 0 L 0 0" stroke="#16a34a" stroke-width="2" marker-start="url(#arrowGreen)" />
+  </g>
+
+  <!-- Client Cache State Pill -->
+  <g transform="translate(230, 224)" filter="url(#shadow)">
+    <rect width="400" height="28" rx="14" fill="var(--diag-pill-bg)" stroke="var(--diag-pill-border)" stroke-width="1" />
+    <circle cx="16" cy="14" r="4" fill="#0284c7" />
+    <text x="28" y="18" class="pill-note">[Client caches payload locally mapped to ETag: "hash-v1"]</text>
+  </g>
+
+  <!-- STEP 3: CONDITIONAL GET REQUEST WITH IF-NONE-MATCH -->
+  <g transform="translate(140, 290)">
+    <text x="20" y="-12" class="step-main" fill="var(--diag-step3-main)">3. GET /products/101  (Conditional Revalidation)</text>
+    <text x="38" y="6" class="step-sub" fill="var(--diag-step3-sub)">Header: If-None-Match: "hash-v1"</text>
+    <path d="M 0 16 L 580 16" stroke="#d97706" stroke-width="2" marker-end="url(#arrowAmber)" />
+  </g>
+
+  <!-- Server Comparison Annotation -->
+  <g transform="translate(735, 305)">
+    <rect x="0" y="0" width="110" height="36" rx="4" fill="var(--diag-match-bg)" stroke="var(--diag-match-border)" stroke-width="1" />
+    <text x="55" y="15" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" font-weight="700" fill="var(--diag-match-text)">HASH MATCHES</text>
+    <text x="55" y="28" text-anchor="middle" font-family="ui-monospace, monospace" font-size="9" fill="var(--diag-match-sub)">Resource Unchanged</text>
+  </g>
+
+  <!-- STEP 4: 304 NOT MODIFIED RESPONSE -->
+  <g transform="translate(140, 375)">
+    <text x="20" y="-12" class="step-main" fill="var(--diag-step4-main)">4. 304 Not Modified</text>
+    <text x="38" y="6" class="step-sub" fill="var(--diag-step4-sub)">0 Bytes payload transferred! Client safely serves cached body</text>
+    <path d="M 580 16 L 0 16" stroke="#16a34a" stroke-width="2" marker-start="url(#arrowGreen)" />
+  </g>
+</svg>

@@ -3,29 +3,35 @@
     /* Default: Light Mode */
     svg {
       --diag-canvas: #ffffff;
-      --diag-stroke: #18181b;
-      --diag-text: #09090b;
-      --diag-fill: #c5e8c7;
+      --diag-stroke: #232730;
+      --diag-title: #111a4a;
+      --diag-label: #1b2d70;
+      --diag-fill: #167e6c;
+      --diag-fill-opacity: 0.35;
       --diag-fill-unselected: #ffffff;
     }
 
     /* Dark Mode (Web Application) */
     html.dark svg, .dark svg {
-      --diag-canvas: #0c1017;
-      --diag-stroke: #94a3b8;
-      --diag-text: #f8fafc;
-      --diag-fill: #065f46;
-      --diag-fill-unselected: #0c1017;
+      --diag-canvas: #12161e;
+      --diag-stroke: #4575cd;
+      --diag-title: #5568ad;
+      --diag-label: #4575cd;
+      --diag-fill: #167e6c;
+      --diag-fill-opacity: 0.6;
+      --diag-fill-unselected: #12161e;
     }
 
     /* Standalone SVG Viewer */
     @media (prefers-color-scheme: dark) {
       svg:root {
-        --diag-canvas: #0c1017;
-        --diag-stroke: #94a3b8;
-        --diag-text: #f8fafc;
-        --diag-fill: #065f46;
-        --diag-fill-unselected: #0c1017;
+        --diag-canvas: #12161e;
+        --diag-stroke: #4575cd;
+        --diag-title: #5568ad;
+        --diag-label: #4575cd;
+        --diag-fill: #167e6c;
+        --diag-fill-opacity: 0.6;
+        --diag-fill-unselected: #12161e;
       }
     }
 
@@ -33,15 +39,15 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       font-size: 30px;
       font-weight: 700;
-      fill: var(--diag-text);
+      fill: var(--diag-title);
       text-anchor: middle;
     }
 
     .table-label {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       font-size: 24px;
-      font-weight: 500;
-      fill: var(--diag-text);
+      font-weight: 600;
+      fill: var(--diag-label);
       text-anchor: middle;
     }
   </style>
@@ -53,7 +59,7 @@
   <text x="350" y="52" class="join-title">Left Anti-Join</text>
 
   <!-- Circle 1 (Table 1 - filled with green) -->
-  <circle cx="275" cy="190" r="115" fill="var(--diag-fill)" stroke="none" />
+  <circle cx="275" cy="190" r="115" fill="var(--diag-fill)" fill-opacity="var(--diag-fill-opacity)" stroke="none" />
 
   <!-- Circle 2 (Table 2 - unselected background covers intersection) -->
   <circle cx="425" cy="190" r="115" fill="var(--diag-fill-unselected)" stroke="none" />

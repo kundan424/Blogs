@@ -1,0 +1,249 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="100%">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.08" />
+    </filter>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 9 5 L 0 8.5 z" fill="#0284c7" />
+    </marker>
+  </defs>
+
+  <style>
+    /* Default: Light Mode (Clean White Canvas) */
+    svg {
+      --diag-canvas: #ffffff;
+      --diag-header-tag: #0284c7;
+      --diag-header-sub: #64748b;
+      --diag-card-title: #0f172a;
+      --diag-desc-text: #334155;
+
+      --diag-1nf-border: #fca5a5;
+      --diag-1nf-badge-bg: #fee2e2;
+      --diag-1nf-badge-text: #b91c1c;
+      --diag-1nf-card-bg: #fff5f5;
+      --diag-1nf-box-bg: #ffffff;
+      --diag-1nf-box-border: #fca5a5;
+
+      --diag-2nf-border: #fde68a;
+      --diag-2nf-badge-bg: #fef3c7;
+      --diag-2nf-badge-text: #b45309;
+      --diag-2nf-card-bg: #fffbeb;
+      --diag-2nf-box-bg: #ffffff;
+      --diag-2nf-box-border: #fde68a;
+
+      --diag-3nf-border: #bbf7d0;
+      --diag-3nf-badge-bg: #dcfce7;
+      --diag-3nf-badge-text: #15803d;
+      --diag-3nf-card-bg: #f0fdf4;
+      --diag-3nf-box-bg: #ffffff;
+      --diag-3nf-box-border: #bbf7d0;
+
+      --diag-bot-box-bg: #ffffff;
+      --diag-bot-box-border: #e2e8f0;
+      --diag-bot-box-text: #475569;
+    }
+
+    /* Dark Mode (Web Application) */
+    html.dark svg, .dark svg {
+      --diag-canvas: #0c1017;
+      --diag-header-tag: #38bdf8;
+      --diag-header-sub: #94a3b8;
+      --diag-card-title: #f8fafc;
+      --diag-desc-text: #cbd5e1;
+
+      --diag-1nf-border: #ef4444;
+      --diag-1nf-badge-bg: #3b0f16;
+      --diag-1nf-badge-text: #f87171;
+      --diag-1nf-card-bg: #141a29;
+      --diag-1nf-box-bg: #1b080d;
+      --diag-1nf-box-border: #7f1d1d;
+
+      --diag-2nf-border: #f59e0b;
+      --diag-2nf-badge-bg: #3b2308;
+      --diag-2nf-badge-text: #fbbf24;
+      --diag-2nf-card-bg: #141a29;
+      --diag-2nf-box-bg: #1b1207;
+      --diag-2nf-box-border: #78350f;
+
+      --diag-3nf-border: #34d399;
+      --diag-3nf-badge-bg: #092117;
+      --diag-3nf-badge-text: #34d399;
+      --diag-3nf-card-bg: #141a29;
+      --diag-3nf-box-bg: #091b14;
+      --diag-3nf-box-border: #059669;
+
+      --diag-bot-box-bg: #111624;
+      --diag-bot-box-border: #24344d;
+      --diag-bot-box-text: #cbd5e1;
+    }
+
+    /* Standalone SVG Viewer */
+    @media (prefers-color-scheme: dark) {
+      svg:root {
+        --diag-canvas: #0c1017;
+        --diag-header-tag: #38bdf8;
+        --diag-header-sub: #94a3b8;
+        --diag-card-title: #f8fafc;
+        --diag-desc-text: #cbd5e1;
+
+        --diag-1nf-border: #ef4444;
+        --diag-1nf-badge-bg: #3b0f16;
+        --diag-1nf-badge-text: #f87171;
+        --diag-1nf-card-bg: #141a29;
+        --diag-1nf-box-bg: #1b080d;
+        --diag-1nf-box-border: #7f1d1d;
+
+        --diag-2nf-border: #f59e0b;
+        --diag-2nf-badge-bg: #3b2308;
+        --diag-2nf-badge-text: #fbbf24;
+        --diag-2nf-card-bg: #141a29;
+        --diag-2nf-box-bg: #1b1207;
+        --diag-2nf-box-border: #78350f;
+
+        --diag-3nf-border: #34d399;
+        --diag-3nf-badge-bg: #092117;
+        --diag-3nf-badge-text: #34d399;
+        --diag-3nf-card-bg: #141a29;
+        --diag-3nf-box-bg: #091b14;
+        --diag-3nf-box-border: #059669;
+
+        --diag-bot-box-bg: #111624;
+        --diag-bot-box-border: #24344d;
+        --diag-bot-box-text: #cbd5e1;
+      }
+    }
+
+    .header-tag { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; font-weight: 700; fill: var(--diag-header-tag); letter-spacing: 1.5px; text-transform: uppercase; }
+    .header-sub { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 12px; fill: var(--diag-header-sub); }
+    .step-title { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 14px; font-weight: 700; fill: var(--diag-card-title); }
+    .step-meta { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10.5px; font-weight: 600; letter-spacing: 0.5px; }
+    .desc-text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11.5px; fill: var(--diag-desc-text); }
+    .code-pill { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10.5px; font-weight: 600; }
+  </style>
+
+  <!-- Background Base Canvas -->
+  <rect width="960" height="480" fill="var(--diag-canvas)" />
+
+  <!-- Diagram Title Header -->
+  <text x="35" y="32" class="header-tag">DATABASE NORMALIZATION PROGRESSION</text>
+  <text x="35" y="48" class="header-sub">Systematic Entity Decomposition: Eliminating Redundancy, Update Anomalies, and Transitive Dependencies</text>
+
+  <!-- ========================================================================= -->
+  <!-- 1. FIRST NORMAL FORM (1NF) -->
+  <!-- ========================================================================= -->
+  <g transform="translate(35, 75)" filter="url(#shadow)">
+    <rect width="275" height="375" rx="8" fill="var(--diag-1nf-card-bg)" stroke="var(--diag-1nf-border)" stroke-width="1.5" />
+
+    <rect x="16" y="16" width="60" height="24" rx="4" fill="var(--diag-1nf-badge-bg)" stroke="var(--diag-1nf-border)" stroke-width="1" />
+    <text x="46" y="32" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" font-weight="700" fill="var(--diag-1nf-badge-text)">1NF</text>
+    <text x="88" y="27" class="step-title">Atomic Values</text>
+    <text x="88" y="42" class="step-meta" fill="var(--diag-1nf-badge-text)">NO REPEATING GROUPS</text>
+
+    <line x1="16" y1="56" x2="259" y2="56" stroke="var(--diag-1nf-border)" stroke-width="1" />
+
+    <text x="16" y="80" class="desc-text">• Every attribute contains only atomic</text>
+    <text x="25" y="96" class="desc-text">(indivisible) values.</text>
+    
+    <text x="16" y="120" class="desc-text">• No comma-separated lists, arrays, or</text>
+    <text x="25" y="136" class="desc-text">nested objects in a single column cell.</text>
+    
+    <text x="16" y="162" class="desc-text">• Every row must be uniquely identifiable</text>
+    <text x="25" y="178" class="desc-text">via a Primary Key.</text>
+
+    <!-- Code transformation box -->
+    <g transform="translate(16, 195)">
+      <rect width="243" height="80" rx="5" fill="var(--diag-1nf-box-bg)" stroke="var(--diag-1nf-box-border)" />
+      <text x="10" y="20" class="code-pill" fill="#dc2626">BEFORE (Unnormalized):</text>
+      <text x="10" y="38" font-family="ui-monospace, monospace" font-size="10" fill="var(--diag-desc-text)">items: "Laptop, Mouse"</text>
+      <text x="10" y="56" class="code-pill" fill="#16a34a">AFTER (1NF):</text>
+      <text x="10" y="72" font-family="ui-monospace, monospace" font-size="10" fill="var(--diag-desc-text)">1 row per item with atomic ID</text>
+    </g>
+
+    <g transform="translate(16, 290)">
+      <rect width="243" height="65" rx="5" fill="var(--diag-bot-box-bg)" stroke="var(--diag-bot-box-border)" />
+      <text x="10" y="20" class="code-pill" fill="#0284c7">Eliminates:</text>
+      <text x="10" y="38" font-family="-apple-system, sans-serif" font-size="11" fill="var(--diag-bot-box-text)">Regex parsing inside SQL queries and</text>
+      <text x="10" y="52" font-family="-apple-system, sans-serif" font-size="11" fill="var(--diag-bot-box-text)">index search blockage.</text>
+    </g>
+  </g>
+
+  <!-- Connector 1NF -> 2NF -->
+  <path d="M 310 262 L 340 262" stroke="#0284c7" stroke-width="2" marker-end="url(#arrowBlue)" />
+
+  <!-- ========================================================================= -->
+  <!-- 2. SECOND NORMAL FORM (2NF) -->
+  <!-- ========================================================================= -->
+  <g transform="translate(342, 75)" filter="url(#shadow)">
+    <rect width="275" height="375" rx="8" fill="var(--diag-2nf-card-bg)" stroke="var(--diag-2nf-border)" stroke-width="1.5" />
+
+    <rect x="16" y="16" width="60" height="24" rx="4" fill="var(--diag-2nf-badge-bg)" stroke="var(--diag-2nf-border)" stroke-width="1" />
+    <text x="46" y="32" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" font-weight="700" fill="var(--diag-2nf-badge-text)">2NF</text>
+    <text x="88" y="27" class="step-title">Full Dependency</text>
+    <text x="88" y="42" class="step-meta" fill="var(--diag-2nf-badge-text)">NO PARTIAL KEYS</text>
+
+    <line x1="16" y1="56" x2="259" y2="56" stroke="var(--diag-2nf-border)" stroke-width="1" />
+
+    <text x="16" y="80" class="desc-text">• Must satisfy 1NF.</text>
+    <text x="16" y="105" class="desc-text">• Every non-key column must depend on</text>
+    <text x="25" y="121" class="desc-text">the FULL composite Primary Key.</text>
+    
+    <text x="16" y="146" class="desc-text">• Eliminates partial dependencies on</text>
+    <text x="25" y="162" class="desc-text">candidate keys.</text>
+
+    <!-- Code transformation box -->
+    <g transform="translate(16, 195)">
+      <rect width="243" height="80" rx="5" fill="var(--diag-2nf-box-bg)" stroke="var(--diag-2nf-box-border)" />
+      <text x="10" y="20" class="code-pill" fill="#d97706">PARTIAL DEPENDENCY:</text>
+      <text x="10" y="38" font-family="ui-monospace, monospace" font-size="10" fill="var(--diag-desc-text)">PK: (order_id, product_id)</text>
+      <text x="10" y="54" font-family="ui-monospace, monospace" font-size="10" fill="#dc2626">product_name depends only</text>
+      <text x="10" y="70" font-family="ui-monospace, monospace" font-size="10" fill="#dc2626">on product_id (part of PK!)</text>
+    </g>
+
+    <g transform="translate(16, 290)">
+      <rect width="243" height="65" rx="5" fill="var(--diag-bot-box-bg)" stroke="var(--diag-bot-box-border)" />
+      <text x="10" y="20" class="code-pill" fill="#0284c7">Decomposition Solution:</text>
+      <text x="10" y="38" font-family="-apple-system, sans-serif" font-size="11" fill="var(--diag-bot-box-text)">Extract into dedicated products and</text>
+      <text x="10" y="52" font-family="-apple-system, sans-serif" font-size="11" fill="var(--diag-bot-box-text)">order_items junction tables.</text>
+    </g>
+  </g>
+
+  <!-- Connector 2NF -> 3NF -->
+  <path d="M 617 262 L 647 262" stroke="#0284c7" stroke-width="2" marker-end="url(#arrowBlue)" />
+
+  <!-- ========================================================================= -->
+  <!-- 3. THIRD NORMAL FORM (3NF) -->
+  <!-- ========================================================================= -->
+  <g transform="translate(650, 75)" filter="url(#shadow)">
+    <rect width="275" height="375" rx="8" fill="var(--diag-3nf-card-bg)" stroke="var(--diag-3nf-border)" stroke-width="1.5" />
+
+    <rect x="16" y="16" width="60" height="24" rx="4" fill="var(--diag-3nf-badge-bg)" stroke="var(--diag-3nf-border)" stroke-width="1" />
+    <text x="46" y="32" text-anchor="middle" font-family="ui-monospace, monospace" font-size="12" font-weight="700" fill="var(--diag-3nf-badge-text)">3NF</text>
+    <text x="88" y="27" class="step-title">Direct Relation</text>
+    <text x="88" y="42" class="step-meta" fill="var(--diag-3nf-badge-text)">NO TRANSITIVE KEYS</text>
+
+    <line x1="16" y1="56" x2="259" y2="56" stroke="var(--diag-3nf-border)" stroke-width="1" />
+
+    <text x="16" y="80" class="desc-text">• Must satisfy 2NF.</text>
+    <text x="16" y="105" class="desc-text">• Non-key columns must NOT depend on</text>
+    <text x="25" y="121" class="desc-text">other non-key columns.</text>
+    
+    <text x="16" y="145" class="desc-text">• "Every attribute depends on the key,</text>
+    <text x="25" y="161" class="desc-text">the whole key, and nothing but the key."</text>
+
+    <!-- Code transformation box -->
+    <g transform="translate(16, 195)">
+      <rect width="243" height="80" rx="5" fill="var(--diag-3nf-box-bg)" stroke="var(--diag-3nf-box-border)" />
+      <text x="10" y="20" class="code-pill" fill="#16a34a">TRANSITIVE CHAIN:</text>
+      <text x="10" y="38" font-family="ui-monospace, monospace" font-size="10" fill="var(--diag-desc-text)">user_id → zip_code → city</text>
+      <text x="10" y="56" font-family="-apple-system, sans-serif" font-size="10" fill="var(--diag-desc-text)">Changing city causes multi-row</text>
+      <text x="10" y="72" font-family="-apple-system, sans-serif" font-size="10" fill="#dc2626">Update Inconsistencies!</text>
+    </g>
+
+    <g transform="translate(16, 290)">
+      <rect width="243" height="65" rx="5" fill="var(--diag-bot-box-bg)" stroke="var(--diag-bot-box-border)" />
+      <text x="10" y="20" class="code-pill" fill="#0284c7">Decomposition Solution:</text>
+      <text x="10" y="38" font-family="-apple-system, sans-serif" font-size="11" fill="var(--diag-bot-box-text)">Move zip_codes into a lookup table;</text>
+      <text x="10" y="52" font-family="-apple-system, sans-serif" font-size="11" fill="var(--diag-bot-box-text)">link via foreign key.</text>
+    </g>
+  </g>
+</svg>

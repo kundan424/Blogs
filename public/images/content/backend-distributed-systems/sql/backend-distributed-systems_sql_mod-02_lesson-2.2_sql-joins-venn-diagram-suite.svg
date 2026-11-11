@@ -1,0 +1,163 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" width="100%" height="100%">
+  <defs>
+    <clipPath id="clipSuiteInner">
+      <circle cx="160" cy="115" r="55" />
+    </clipPath>
+  </defs>
+
+  <style>
+    /* Default: Light Mode */
+    svg {
+      --diag-canvas: #ffffff;
+      --diag-card-bg: #f8fafc;
+      --diag-card-border: #e2e8f0;
+      --diag-stroke: #18181b;
+      --diag-text: #09090b;
+      --diag-fill: #c5e8c7;
+      --diag-fill-unselected: #ffffff;
+      --diag-header-title: #09090b;
+      --diag-header-sub: #64748b;
+    }
+
+    /* Dark Mode (Web Application) */
+    html.dark svg, .dark svg {
+      --diag-canvas: #0c1017;
+      --diag-card-bg: #111827;
+      --diag-card-border: #1f2937;
+      --diag-stroke: #94a3b8;
+      --diag-text: #f8fafc;
+      --diag-fill: #065f46;
+      --diag-fill-unselected: #111827;
+      --diag-header-title: #f8fafc;
+      --diag-header-sub: #94a3b8;
+    }
+
+    /* Standalone SVG Viewer */
+    @media (prefers-color-scheme: dark) {
+      svg:root {
+        --diag-canvas: #0c1017;
+        --diag-card-bg: #111827;
+        --diag-card-border: #1f2937;
+        --diag-stroke: #94a3b8;
+        --diag-text: #f8fafc;
+        --diag-fill: #065f46;
+        --diag-fill-unselected: #111827;
+        --diag-header-title: #f8fafc;
+        --diag-header-sub: #94a3b8;
+      }
+    }
+
+    .suite-header-title {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      fill: var(--diag-header-title);
+    }
+
+    .suite-header-sub {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 13px;
+      fill: var(--diag-header-sub);
+    }
+
+    .join-quad-title {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      fill: var(--diag-text);
+      text-anchor: middle;
+    }
+
+    .quad-label {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      fill: var(--diag-text);
+      text-anchor: middle;
+    }
+  </style>
+
+  <!-- Background Base Canvas -->
+  <rect width="960" height="520" fill="var(--diag-canvas)" />
+
+  <!-- Diagram Header -->
+  <text x="35" y="32" class="suite-header-title">SQL Joins Visual Reference</text>
+  <text x="35" y="50" class="suite-header-sub">Venn diagram set operations for relational database joins</text>
+
+  <!-- ========================================================================= -->
+  <!-- 1. INNER JOIN (Top-Left) -->
+  <!-- ========================================================================= -->
+  <g transform="translate(35, 68)">
+    <rect width="430" height="205" rx="8" fill="var(--diag-card-bg)" stroke="var(--diag-card-border)" stroke-width="1.5" />
+    <text x="215" y="30" class="join-quad-title">Inner Join</text>
+
+    <g transform="translate(20, 5)">
+      <circle cx="160" cy="115" r="55" fill="var(--diag-fill-unselected)" stroke="none" />
+      <circle cx="230" cy="115" r="55" fill="var(--diag-fill-unselected)" stroke="none" />
+      <!-- Intersection -->
+      <circle cx="230" cy="115" r="55" clip-path="url(#clipSuiteInner)" fill="var(--diag-fill)" stroke="none" />
+      <!-- Outlines -->
+      <circle cx="160" cy="115" r="55" fill="none" stroke="var(--diag-stroke)" stroke-width="2" />
+      <circle cx="230" cy="115" r="55" fill="none" stroke="var(--diag-stroke)" stroke-width="2" />
+      <text x="130" y="120" class="quad-label">table 1</text>
+      <text x="260" y="120" class="quad-label">table 2</text>
+    </g>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- 2. LEFT JOIN (Top-Right) -->
+  <!-- ========================================================================= -->
+  <g transform="translate(495, 68)">
+    <rect width="430" height="205" rx="8" fill="var(--diag-card-bg)" stroke="var(--diag-card-border)" stroke-width="1.5" />
+    <text x="215" y="30" class="join-quad-title">Left Join</text>
+
+    <g transform="translate(20, 5)">
+      <!-- Circle 2 Base -->
+      <circle cx="230" cy="115" r="55" fill="var(--diag-fill-unselected)" stroke="none" />
+      <!-- Circle 1 Filled (covers intersection) -->
+      <circle cx="160" cy="115" r="55" fill="var(--diag-fill)" stroke="var(--diag-stroke)" stroke-width="2" />
+      <!-- Circle 2 Outline -->
+      <circle cx="230" cy="115" r="55" fill="none" stroke="var(--diag-stroke)" stroke-width="2" />
+      <text x="130" y="120" class="quad-label">table 1</text>
+      <text x="260" y="120" class="quad-label">table 2</text>
+    </g>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- 3. RIGHT JOIN (Bottom-Left) -->
+  <!-- ========================================================================= -->
+  <g transform="translate(35, 290)">
+    <rect width="430" height="205" rx="8" fill="var(--diag-card-bg)" stroke="var(--diag-card-border)" stroke-width="1.5" />
+    <text x="215" y="30" class="join-quad-title">Right Join</text>
+
+    <g transform="translate(20, 5)">
+      <!-- Circle 1 Base -->
+      <circle cx="160" cy="115" r="55" fill="var(--diag-fill-unselected)" stroke="none" />
+      <!-- Circle 2 Filled (covers intersection) -->
+      <circle cx="230" cy="115" r="55" fill="var(--diag-fill)" stroke="var(--diag-stroke)" stroke-width="2" />
+      <!-- Circle 1 Outline -->
+      <circle cx="160" cy="115" r="55" fill="none" stroke="var(--diag-stroke)" stroke-width="2" />
+      <text x="130" y="120" class="quad-label">table 1</text>
+      <text x="260" y="120" class="quad-label">table 2</text>
+    </g>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- 4. FULL OUTER JOIN (Bottom-Right) -->
+  <!-- ========================================================================= -->
+  <g transform="translate(495, 290)">
+    <rect width="430" height="205" rx="8" fill="var(--diag-card-bg)" stroke="var(--diag-card-border)" stroke-width="1.5" />
+    <text x="215" y="30" class="join-quad-title">Full Outer Join</text>
+
+    <g transform="translate(20, 5)">
+      <!-- Both Filled -->
+      <circle cx="160" cy="115" r="55" fill="var(--diag-fill)" stroke="none" />
+      <circle cx="230" cy="115" r="55" fill="var(--diag-fill)" stroke="none" />
+      <!-- Both Outlines -->
+      <circle cx="160" cy="115" r="55" fill="none" stroke="var(--diag-stroke)" stroke-width="2" />
+      <circle cx="230" cy="115" r="55" fill="none" stroke="var(--diag-stroke)" stroke-width="2" />
+      <text x="130" y="120" class="quad-label">table 1</text>
+      <text x="260" y="120" class="quad-label">table 2</text>
+    </g>
+  </g>
+</svg>

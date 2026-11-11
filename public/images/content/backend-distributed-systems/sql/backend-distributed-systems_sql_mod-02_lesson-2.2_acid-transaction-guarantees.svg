@@ -1,0 +1,226 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="100%" height="100%">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000000" flood-opacity="0.08" />
+    </filter>
+  </defs>
+
+  <style>
+    /* Default: Light Mode (Clean White Canvas) */
+    svg {
+      --diag-canvas: #ffffff;
+      --diag-header-tag: #0284c7;
+      --diag-header-sub: #64748b;
+      --diag-text-title: #0f172a;
+      --diag-text-rule: #334155;
+
+      --diag-card-a-bg: #fff5f5;
+      --diag-card-a-border: #fca5a5;
+      --diag-card-a-letter: #dc2626;
+      --diag-card-a-quote: #b91c1c;
+      --diag-card-a-box-bg: #ffffff;
+      --diag-card-a-box-border: #fca5a5;
+
+      --diag-card-c-bg: #fffbeb;
+      --diag-card-c-border: #fde68a;
+      --diag-card-c-letter: #d97706;
+      --diag-card-c-quote: #b45309;
+      --diag-card-c-box-bg: #ffffff;
+      --diag-card-c-box-border: #fde68a;
+
+      --diag-card-i-bg: #f0f9ff;
+      --diag-card-i-border: #bae6fd;
+      --diag-card-i-letter: #0284c7;
+      --diag-card-i-quote: #0369a1;
+      --diag-card-i-box-bg: #ffffff;
+      --diag-card-i-box-border: #bae6fd;
+
+      --diag-card-d-bg: #f0fdf4;
+      --diag-card-d-border: #bbf7d0;
+      --diag-card-d-letter: #16a34a;
+      --diag-card-d-quote: #15803d;
+      --diag-card-d-box-bg: #ffffff;
+      --diag-card-d-box-border: #bbf7d0;
+    }
+
+    /* Dark Mode (Web Application) */
+    html.dark svg, .dark svg {
+      --diag-canvas: #0c1017;
+      --diag-header-tag: #38bdf8;
+      --diag-header-sub: #94a3b8;
+      --diag-text-title: #f8fafc;
+      --diag-text-rule: #cbd5e1;
+
+      --diag-card-a-bg: #241116;
+      --diag-card-a-border: #ef4444;
+      --diag-card-a-letter: #f87171;
+      --diag-card-a-quote: #fca5a5;
+      --diag-card-a-box-bg: #1b080d;
+      --diag-card-a-box-border: #7f1d1d;
+
+      --diag-card-c-bg: #221b0f;
+      --diag-card-c-border: #f59e0b;
+      --diag-card-c-letter: #fbbf24;
+      --diag-card-c-quote: #fde68a;
+      --diag-card-c-box-bg: #1b1207;
+      --diag-card-c-box-border: #78350f;
+
+      --diag-card-i-bg: #10202e;
+      --diag-card-i-border: #38bdf8;
+      --diag-card-i-letter: #38bdf8;
+      --diag-card-i-quote: #7dd3fc;
+      --diag-card-i-box-bg: #081829;
+      --diag-card-i-box-border: #0284c7;
+
+      --diag-card-d-bg: #10261e;
+      --diag-card-d-border: #34d399;
+      --diag-card-d-letter: #34d399;
+      --diag-card-d-quote: #6ee7b7;
+      --diag-card-d-box-bg: #091b14;
+      --diag-card-d-box-border: #059669;
+    }
+
+    /* Standalone SVG Viewer */
+    @media (prefers-color-scheme: dark) {
+      svg:root {
+        --diag-canvas: #0c1017;
+        --diag-header-tag: #38bdf8;
+        --diag-header-sub: #94a3b8;
+        --diag-text-title: #f8fafc;
+        --diag-text-rule: #cbd5e1;
+
+        --diag-card-a-bg: #241116;
+        --diag-card-a-border: #ef4444;
+        --diag-card-a-letter: #f87171;
+        --diag-card-a-quote: #fca5a5;
+        --diag-card-a-box-bg: #1b080d;
+        --diag-card-a-box-border: #7f1d1d;
+
+        --diag-card-c-bg: #221b0f;
+        --diag-card-c-border: #f59e0b;
+        --diag-card-c-letter: #fbbf24;
+        --diag-card-c-quote: #fde68a;
+        --diag-card-c-box-bg: #1b1207;
+        --diag-card-c-box-border: #78350f;
+
+        --diag-card-i-bg: #10202e;
+        --diag-card-i-border: #38bdf8;
+        --diag-card-i-letter: #38bdf8;
+        --diag-card-i-quote: #7dd3fc;
+        --diag-card-i-box-bg: #081829;
+        --diag-card-i-box-border: #0284c7;
+
+        --diag-card-d-bg: #10261e;
+        --diag-card-d-border: #34d399;
+        --diag-card-d-letter: #34d399;
+        --diag-card-d-quote: #6ee7b7;
+        --diag-card-d-box-bg: #091b14;
+        --diag-card-d-box-border: #059669;
+      }
+    }
+
+    .header-tag { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; font-weight: 700; fill: var(--diag-header-tag); letter-spacing: 1.5px; text-transform: uppercase; }
+    .header-sub { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 12px; fill: var(--diag-header-sub); }
+    .card-letter { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 26px; font-weight: 800; }
+    .card-title { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 15px; font-weight: 700; fill: var(--diag-text-title); }
+    .card-quote { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11.5px; font-weight: 600; }
+    .rule-item { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 11.5px; fill: var(--diag-text-rule); }
+    .code-term { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10.5px; font-weight: 600; }
+    .div-line { stroke: var(--diag-card-border); stroke-width: 1; }
+  </style>
+
+  <!-- Background Base Canvas -->
+  <rect width="960" height="480" fill="var(--diag-canvas)" />
+
+  <!-- Diagram Title Header -->
+  <text x="35" y="32" class="header-tag">TRANSACTIONAL RELIABILITY SPECIFICATION</text>
+  <text x="35" y="48" class="header-sub">The Four ACID Guarantees in Enterprise Relational Storage Engines</text>
+
+  <!-- ========================================================================= -->
+  <!-- 1. ATOMICITY -->
+  <!-- ========================================================================= -->
+  <g transform="translate(35, 75)" filter="url(#shadow)">
+    <rect width="430" height="180" rx="8" fill="var(--diag-card-a-bg)" stroke="var(--diag-card-a-border)" stroke-width="1.5" />
+    
+    <text x="20" y="38" class="card-letter" fill="var(--diag-card-a-letter)">A</text>
+    <text x="50" y="27" class="card-title">Atomicity</text>
+    <text x="50" y="43" class="card-quote" fill="var(--diag-card-a-quote)">"All or Nothing" Execution Boundary</text>
+
+    <line x1="20" y1="58" x2="410" y2="58" stroke="var(--diag-card-a-border)" stroke-width="1" />
+
+    <text x="20" y="80" class="rule-item">• A transaction cannot be partially committed.</text>
+    <text x="20" y="98" class="rule-item">• If Step 4 of 5 fails, the engine rolls back Steps 1, 2, and 3.</text>
+    <text x="20" y="116" class="rule-item">• Leaves the database in the exact pristine state prior to execution.</text>
+
+    <g transform="translate(20, 134)">
+      <rect width="390" height="26" rx="4" fill="var(--diag-card-a-box-bg)" stroke="var(--diag-card-a-box-border)" />
+      <text x="12" y="17" class="code-term" fill="var(--diag-card-a-letter)">Engine Mechanics: Undo Logs / Shadow Pages / Rollback WAL</text>
+    </g>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- 2. CONSISTENCY -->
+  <!-- ========================================================================= -->
+  <g transform="translate(495, 75)" filter="url(#shadow)">
+    <rect width="430" height="180" rx="8" fill="var(--diag-card-c-bg)" stroke="var(--diag-card-c-border)" stroke-width="1.5" />
+
+    <text x="20" y="38" class="card-letter" fill="var(--diag-card-c-letter)">C</text>
+    <text x="50" y="27" class="card-title">Consistency</text>
+    <text x="50" y="43" class="card-quote" fill="var(--diag-card-c-quote)">Invariant &amp; Constraint Preservation</text>
+
+    <line x1="20" y1="58" x2="410" y2="58" stroke="var(--diag-card-c-border)" stroke-width="1" />
+
+    <text x="20" y="80" class="rule-item">• Data must transition from one valid state to another valid state.</text>
+    <text x="20" y="98" class="rule-item">• Violating any schema invariant immediately aborts the transaction.</text>
+    <text x="20" y="116" class="rule-item">• Protects relational links: no orphaned foreign key records.</text>
+
+    <g transform="translate(20, 134)">
+      <rect width="390" height="26" rx="4" fill="var(--diag-card-c-box-bg)" stroke="var(--diag-card-c-box-border)" />
+      <text x="12" y="17" class="code-term" fill="var(--diag-card-c-letter)">Engine Mechanics: CHECK, FOREIGN KEY, UNIQUE, NOT NULL</text>
+    </g>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- 3. ISOLATION -->
+  <!-- ========================================================================= -->
+  <g transform="translate(35, 275)" filter="url(#shadow)">
+    <rect width="430" height="180" rx="8" fill="var(--diag-card-i-bg)" stroke="var(--diag-card-i-border)" stroke-width="1.5" />
+
+    <text x="20" y="38" class="card-letter" fill="var(--diag-card-i-letter)">I</text>
+    <text x="50" y="27" class="card-title">Isolation</text>
+    <text x="50" y="43" class="card-quote" fill="var(--diag-card-i-quote)">Concurrent Execution Shield</text>
+
+    <line x1="20" y1="58" x2="410" y2="58" stroke="var(--diag-card-i-border)" stroke-width="1" />
+
+    <text x="20" y="80" class="rule-item">• Concurrent transactions execute without cross-contamination.</text>
+    <text x="20" y="98" class="rule-item">• Uncommitted mutations are invisible to other client connections.</text>
+    <text x="20" y="116" class="rule-item">• Defends against dirty reads, non-repeatable reads, and phantoms.</text>
+
+    <g transform="translate(20, 134)">
+      <rect width="390" height="26" rx="4" fill="var(--diag-card-i-box-bg)" stroke="var(--diag-card-i-box-border)" />
+      <text x="12" y="17" class="code-term" fill="var(--diag-card-i-letter)">Engine Mechanics: MVCC Snapshot Isolation, Row Locks, SSI</text>
+    </g>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- 4. DURABILITY -->
+  <!-- ========================================================================= -->
+  <g transform="translate(495, 275)" filter="url(#shadow)">
+    <rect width="430" height="180" rx="8" fill="var(--diag-card-d-bg)" stroke="var(--diag-card-d-border)" stroke-width="1.5" />
+
+    <text x="20" y="38" class="card-letter" fill="var(--diag-card-d-letter)">D</text>
+    <text x="50" y="27" class="card-title">Durability</text>
+    <text x="50" y="43" class="card-quote" fill="var(--diag-card-d-quote)">Permanent Non-Volatile Persistence</text>
+
+    <line x1="20" y1="58" x2="410" y2="58" stroke="var(--diag-card-d-border)" stroke-width="1" />
+
+    <text x="20" y="80" class="rule-item">• Once COMMIT returns success, mutations are permanent.</text>
+    <text x="20" y="98" class="rule-item">• Guaranteed to survive sudden power outages, server crashes, reboots.</text>
+    <text x="20" y="116" class="rule-item">• Committed changes never roll back due to later external failures.</text>
+
+    <g transform="translate(20, 134)">
+      <rect width="390" height="26" rx="4" fill="var(--diag-card-d-box-bg)" stroke="var(--diag-card-d-box-border)" />
+      <text x="12" y="17" class="code-term" fill="var(--diag-card-d-letter)">Engine Mechanics: fsync() System Call to Write-Ahead Log (WAL)</text>
+    </g>
+  </g>
+</svg>

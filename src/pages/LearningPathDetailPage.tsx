@@ -11,6 +11,7 @@ export const LearningPathDetailPage: React.FC = () => {
 
   // Track open/collapsed state of each module. By default all are collapsed (empty object)
   const [expandedModules, setExpandedModules] = useState<Record<string, boolean>>({});
+  const [milestonesExpanded, setMilestonesExpanded] = useState(false);
 
   // Dynamic height synchronization with right-side cards
   const modulesScrollContainerRef = useRef<HTMLDivElement>(null);
@@ -304,7 +305,7 @@ export const LearningPathDetailPage: React.FC = () => {
                       className="relative pl-12"
                     >
                       {/* Timeline Node Badge on spine */}
-                      <div className="absolute left-2.5 top-0 -translate-x-1/2 w-7 h-7 rounded-full bg-navy text-white dark:bg-white dark:text-navy flex items-center justify-center font-mono text-[11px] font-semibold shadow-xs ring-4 ring-canvas">
+                      <div className="absolute left-3.5 top-0 -translate-x-1/2 w-7 h-7 rounded-full bg-navy text-white dark:bg-white dark:text-navy flex items-center justify-center font-mono text-[11px] font-semibold shadow-xs ring-4 ring-canvas">
                         {module.number}
                       </div>
 
@@ -513,13 +514,18 @@ export const LearningPathDetailPage: React.FC = () => {
                   </span>
                 </div>
 
-                <div className="space-y-1.5 font-mono text-[12px]">
+                <div
+                  className={cn(
+                    'space-y-1.5 font-mono text-[12px] overflow-y-auto custom-scrollbar pr-1.5 transition-all duration-200',
+                    milestonesExpanded ? 'max-h-[560px]' : 'max-h-[280px]'
+                  )}
+                >
                   {learningPath.modules.map((m) => (
                     <button
                       key={m.id}
                       type="button"
                       onClick={() => handleJumpToModule(m.id, m.number)}
-                      className="w-full flex items-center justify-between p-2 rounded-[6px] hover:bg-canvas dark:hover:bg-canvas/40 text-body-ink hover:text-navy dark:hover:text-white transition-colors cursor-pointer text-left"
+                      className="w-full flex items-center justify-between p-2 rounded-[6px] hover:bg-canvas dark:hover:bg-canvas/40 text-body-ink hover:text-navy dark:hover:text-white transition-colors cursor-pointer text-left group"
                     >
                       <span className="truncate pr-2">
                         <strong className="text-navy dark:text-ice mr-1">
@@ -533,6 +539,28 @@ export const LearningPathDetailPage: React.FC = () => {
                     </button>
                   ))}
                 </div>
+
+                {learningPath.modules.length > 7 && (
+                  <div className="pt-2 border-t border-edge/60 flex items-center justify-between">
+                    <button
+                      type="button"
+                      onClick={() => setMilestonesExpanded(!milestonesExpanded)}
+                      className="inline-flex items-center gap-1 font-mono text-[11px] text-[#3e5199] dark:text-ice hover:underline cursor-pointer"
+                    >
+                      <span className="material-symbols-outlined text-[14px]">
+                        {milestonesExpanded ? 'unfold_less' : 'unfold_more'}
+                      </span>
+                      <span>
+                        {milestonesExpanded
+                          ? 'Show Less'
+                          : `Show All (${learningPath.modules.length})`}
+                      </span>
+                    </button>
+                    <span className="font-mono text-[10px] text-muted-ink">
+                      Scroll to view
+                    </span>
+                  </div>
+                )}
               </div>
 
               {/* Sibling Pathways in this Subject */}
@@ -574,7 +602,7 @@ export const LearningPathDetailPage: React.FC = () => {
                 <span className="material-symbols-outlined text-[15px]">
                   arrow_back
                 </span>
-                <span>All {subjectName} Articles</span>
+                <span className='text-[11px]'>All {subjectName} Articles</span>
               </Link>
             </div>
           </aside>

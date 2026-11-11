@@ -62,6 +62,7 @@ export const SubjectHubPage: React.FC = () => {
   }, [searchParams]);
 
   const [selectedTag, setSelectedTag] = useState('all');
+  const [subTopicsExpanded, setSubTopicsExpanded] = useState(false);
 
   const allNotes = useMemo(() => {
     return getAllNotes();
@@ -387,16 +388,21 @@ export const SubjectHubPage: React.FC = () => {
               )}
 
               {/* Sub-Topics Breakdown List */}
-              <div className="p-5 rounded-[8px] bg-white dark:bg-panel border border-edge shadow-catalog-edge">
-                <div className="flex items-center justify-between mb-3">
-                  <h4 className="font-mono text-[11px] uppercase tracking-wider text-muted-ink">
+              <div className="p-5 rounded-[8px] bg-white dark:bg-panel border border-edge shadow-catalog-edge space-y-3">
+                <div className="flex items-center justify-between pb-2 border-b border-edge">
+                  <h4 className="font-mono text-[11px] uppercase tracking-wider text-muted-ink font-semibold">
                     SUB-TOPICS BREAKDOWN
                   </h4>
                   <span className="font-mono text-[11px] text-muted-ink">
                     {subTopicsBreakdown.length} Topics
                   </span>
                 </div>
-                <div className="space-y-2">
+                <div
+                  className={cn(
+                    'space-y-2 overflow-y-auto custom-scrollbar pr-1.5 transition-all duration-200',
+                    subTopicsExpanded ? 'max-h-[500px]' : 'max-h-[250px]'
+                  )}
+                >
                   {subTopicsBreakdown.map(({ topic, count }) => (
                     <Link
                       key={topic}
@@ -417,6 +423,28 @@ export const SubjectHubPage: React.FC = () => {
                     </p>
                   )}
                 </div>
+
+                {subTopicsBreakdown.length > 5 && (
+                  <div className="pt-2 border-t border-edge/60 flex items-center justify-between">
+                    <button
+                      type="button"
+                      onClick={() => setSubTopicsExpanded(!subTopicsExpanded)}
+                      className="inline-flex items-center gap-1 font-mono text-[11px] text-[#3e5199] dark:text-ice hover:underline cursor-pointer"
+                    >
+                      <span className="material-symbols-outlined text-[14px]">
+                        {subTopicsExpanded ? 'unfold_less' : 'unfold_more'}
+                      </span>
+                      <span>
+                        {subTopicsExpanded
+                          ? 'Show Less'
+                          : `Show All (${subTopicsBreakdown.length})`}
+                      </span>
+                    </button>
+                    <span className="font-mono text-[10px] text-muted-ink">
+                      Scroll to view
+                    </span>
+                  </div>
+                )}
               </div>
 
               {/* Subject References Links */}

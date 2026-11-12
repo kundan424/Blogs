@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import ReactMarkdown, { Components } from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { CodeBlock } from '../interactive/CodeBlock';
@@ -718,6 +719,41 @@ const markdownComponents: Components = {
       {children}
     </p>
   ),
+
+  a: ({ href, children, ...props }) => {
+    const isInternal = typeof href === 'string' && href.startsWith('/') && !href.startsWith('//');
+    const isExternal = typeof href === 'string' && (href.startsWith('http://') || href.startsWith('https://'));
+
+    const linkClasses = cn(
+      "font-medium text-[#3e5199] dark:text-focus-blue transition-colors duration-150 cursor-pointer",
+      "hover:text-[#111a4a] dark:hover:text-white hover:underline decoration-[#3e5199]/70 dark:decoration-focus-blue/70 underline-offset-2"
+    );
+
+    if (isInternal) {
+      return (
+        <Link to={href} className={linkClasses} {...props}>
+          {children}
+        </Link>
+      );
+    }
+
+    return (
+      <a
+        href={href}
+        target={isExternal ? '_blank' : undefined}
+        rel={isExternal ? 'noopener noreferrer' : undefined}
+        className={linkClasses}
+        {...props}
+      >
+        <span>{children}</span>
+        {isExternal && (
+          <span className="inline-block ml-0.5 align-middle material-symbols-outlined text-[13px] opacity-75 select-none">
+            open_in_new
+          </span>
+        )}
+      </a>
+    );
+  },
 
   code: ({ className: codeClassName, children, node, ...props }) => {
     const match = /language-(\w+)/.exec(codeClassName || '');

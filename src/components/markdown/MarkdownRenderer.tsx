@@ -873,12 +873,12 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
           return (
             <div
               key={idx}
-              className="my-6 p-5 rounded-[8px] border border-edge bg-canvas shadow-catalog-edge"
+              className="my-3.5 px-4 py-2.5 rounded-[6px] border border-edge bg-canvas shadow-catalog-edge w-fit min-w-[220px] max-w-full mx-auto"
             >
-              <div className="font-mono text-[11px] uppercase tracking-wider text-muted-ink mb-3 font-medium">
+              <div className="font-mono text-[10px] uppercase tracking-wider text-muted-ink mb-1 font-medium">
                 {block.title}
               </div>
-              <div className="text-center font-mono text-[14px] text-navy dark:text-white py-2">
+              <div className="text-center font-mono text-[13.5px] text-navy dark:text-white py-0.5">
                 <ReactMarkdown
                   remarkPlugins={[remarkGfm]}
                   components={markdownComponents}

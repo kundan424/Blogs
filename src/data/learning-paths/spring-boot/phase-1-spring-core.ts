@@ -45,12 +45,13 @@ export const phase1Modules: LearningModule[] = [
       {
         id: 'sb-4-1',
         number: '4.1',
-        title: 'BeanFactory vs ApplicationContext & Bean Scopes (Singleton, Prototype, Web)',
+        title: 'Spring Bean Definitions, Naming & Scopes',
+        noteSlug: 'spring-bean-definitions-naming-scopes',
         description:
-          'BeanFactory lazy initialization vs ApplicationContext pre-instantiation, bean naming, and thread safety across singleton, prototype, request, and session scopes.',
-        status: 'upcoming',
-        readTime: '10m read',
-        topics: ['spring-core', 'application-context', 'bean-scopes'],
+          'Core architecture of Bean Definitions, container naming conventions, and scoping mechanics across singleton, prototype, request, and session scopes.',
+        status: 'published',
+        readTime: '22m read',
+        topics: ['spring-core', 'beans', 'bean-scopes', 'architecture', 'concurrency'],
       },
       {
         id: 'sb-4-2',

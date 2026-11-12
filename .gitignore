@@ -29,5 +29,6 @@ dist-ssr/
 .DS_Store
 Thumbs.db
 
-# Superpowers agent workspaces
+# Superpowers agent workspaces & design specs
 .superpowers/
+docs/superpowers/

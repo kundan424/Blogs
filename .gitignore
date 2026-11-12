@@ -28,3 +28,6 @@ dist-ssr/
 # Operating system files
 .DS_Store
 Thumbs.db
+
+# Superpowers agent workspaces
+.superpowers/

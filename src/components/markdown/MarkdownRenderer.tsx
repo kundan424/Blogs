@@ -585,16 +585,37 @@ const markdownComponents: Components = {
       .replace(/[^a-z0-9\s-]/g, '')
       .trim()
       .replace(/\s+/g, '-');
+    const isReference = /reference/i.test(text);
 
     return (
       <h2
         id={id}
-        className="scroll-mt-24 mt-10 mb-3 text-[18px] sm:text-[21px] text-navy dark:text-white font-medium tracking-tight border-b border-edge pb-2 flex items-center justify-between group"
+        className={cn(
+          "scroll-mt-24 mt-10 mb-3 text-[18px] sm:text-[21px] font-medium tracking-tight border-b pb-2 flex items-center justify-between group transition-all",
+          isReference
+            ? "border-[#3e5199] dark:border-focus-blue/60 bg-gradient-to-r from-[#3e5199]/10 via-[#5568ad]/5 to-transparent dark:from-[#3e5199]/25 dark:via-[#5568ad]/10 dark:to-transparent px-3 py-2.5 rounded-t-[8px] border-l-[3.5px] border-l-[#3e5199] dark:border-l-focus-blue"
+            : "text-navy dark:text-white border-edge"
+        )}
       >
-        <span>{children}</span>
         <a
           href={`#${id}`}
-          className="opacity-0 group-hover:opacity-100 text-muted-ink hover:text-navy dark:hover:text-white transition-opacity text-[14px] font-mono"
+          className={cn(
+            "flex items-center gap-2 transition-colors duration-200 cursor-pointer",
+            isReference
+              ? "text-[#1b2d70] dark:text-ice font-semibold hover:text-[#3e5199] dark:hover:text-focus-blue hover:underline decoration-[#3e5199]/60 dark:decoration-focus-blue/60 underline-offset-4"
+              : "text-navy dark:text-white hover:text-[#3e5199] dark:hover:text-focus-blue hover:underline underline-offset-4"
+          )}
+        >
+          {isReference && (
+            <span className="material-symbols-outlined text-[20px] text-[#3e5199] dark:text-focus-blue select-none">
+              menu_book
+            </span>
+          )}
+          <span>{children}</span>
+        </a>
+        <a
+          href={`#${id}`}
+          className="opacity-0 group-hover:opacity-100 text-muted-ink hover:text-navy dark:hover:text-white transition-opacity text-[14px] font-mono ml-2 shrink-0"
           aria-label="Link to section"
         >
           #
@@ -610,16 +631,37 @@ const markdownComponents: Components = {
       .replace(/[^a-z0-9\s-]/g, '')
       .trim()
       .replace(/\s+/g, '-');
+    const isReference = /reference/i.test(text);
 
     return (
       <h3
         id={id}
-        className="scroll-mt-24 mt-7 mb-2.5 text-[15px] sm:text-[17px] text-navy dark:text-white font-medium flex items-center justify-between group"
+        className={cn(
+          "scroll-mt-24 mt-7 mb-2.5 text-[15px] sm:text-[17px] font-medium flex items-center justify-between group transition-all",
+          isReference
+            ? "text-[#1b2d70] dark:text-ice bg-[#3e5199]/10 dark:bg-[#3e5199]/20 px-2.5 py-1.5 rounded-[6px] border-l-[3px] border-l-[#3e5199] dark:border-l-focus-blue"
+            : "text-navy dark:text-white"
+        )}
       >
-        <span>{children}</span>
         <a
           href={`#${id}`}
-          className="opacity-0 group-hover:opacity-100 text-muted-ink hover:text-navy dark:hover:text-white transition-opacity text-[13px] font-mono"
+          className={cn(
+            "flex items-center gap-1.5 transition-colors duration-200 cursor-pointer",
+            isReference
+              ? "text-[#1b2d70] dark:text-ice hover:text-[#3e5199] dark:hover:text-focus-blue hover:underline decoration-[#3e5199]/60 dark:decoration-focus-blue/60 underline-offset-4"
+              : "text-navy dark:text-white hover:text-[#3e5199] dark:hover:text-focus-blue hover:underline underline-offset-4"
+          )}
+        >
+          {isReference && (
+            <span className="material-symbols-outlined text-[17px] text-[#3e5199] dark:text-focus-blue select-none">
+              menu_book
+            </span>
+          )}
+          <span>{children}</span>
+        </a>
+        <a
+          href={`#${id}`}
+          className="opacity-0 group-hover:opacity-100 text-muted-ink hover:text-navy dark:hover:text-white transition-opacity text-[13px] font-mono ml-2 shrink-0"
           aria-label="Link to subsection"
         >
           #
@@ -663,6 +705,27 @@ const markdownComponents: Components = {
       {children}
     </p>
   ),
+
+  a: ({ href, children, ...props }) => {
+    const isExternal = href?.startsWith('http://') || href?.startsWith('https://');
+
+    return (
+      <a
+        href={href}
+        target={isExternal ? '_blank' : undefined}
+        rel={isExternal ? 'noopener noreferrer' : undefined}
+        className="font-medium text-[#3e5199] dark:text-focus-blue hover:text-[#111a4a] dark:hover:text-white hover:underline decoration-[#3e5199]/60 dark:decoration-focus-blue/60 underline-offset-2 transition-colors inline-flex items-center gap-1"
+        {...props}
+      >
+        <span>{children}</span>
+        {isExternal && (
+          <span className="material-symbols-outlined text-[13px] opacity-75 shrink-0 select-none">
+            open_in_new
+          </span>
+        )}
+      </a>
+    );
+  },
 
   code: ({ className: codeClassName, children, node, ...props }) => {
     const match = /language-(\w+)/.exec(codeClassName || '');

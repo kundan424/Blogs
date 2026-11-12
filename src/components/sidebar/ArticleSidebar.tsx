@@ -156,6 +156,7 @@ export const EmbeddedArticleSidebar: React.FC<EmbeddedArticleSidebarProps> = ({
           const isDirectActive = activeId === section.id;
           const isSubActive = section.subsections?.some((sub) => sub.id === activeId);
           const isCurrentSection = isDirectActive || isSubActive;
+          const isReference = /reference/i.test(section.cleanTitle);
 
           return (
             <div key={section.id} className="space-y-0.5">
@@ -168,7 +169,9 @@ export const EmbeddedArticleSidebar: React.FC<EmbeddedArticleSidebarProps> = ({
                 className={`group flex items-center w-full text-left px-2.5 py-1.5 rounded-[6px] transition-all duration-150 cursor-pointer ${
                   isCurrentSection
                     ? 'bg-[#3e5199]/10 dark:bg-[#3e5199]/25 text-[#1b2d70] dark:text-ice font-medium shadow-2xs'
-                    : 'text-secondary-ink hover:text-navy dark:hover:text-white hover:bg-canvas/80'
+                    : isReference
+                      ? 'text-[#3e5199] dark:text-focus-blue hover:text-[#1b2d70] dark:hover:text-white hover:bg-canvas/80'
+                      : 'text-secondary-ink hover:text-navy dark:hover:text-white hover:bg-canvas/80'
                 }`}
               >
                 {/* 2-Digit Section Number Badge */}
@@ -176,7 +179,9 @@ export const EmbeddedArticleSidebar: React.FC<EmbeddedArticleSidebarProps> = ({
                   className={`font-mono text-[10px] w-5 shrink-0 transition-colors ${
                     isCurrentSection
                       ? 'text-[#3e5199] dark:text-focus-blue font-semibold'
-                      : 'text-muted-ink group-hover:text-navy dark:group-hover:text-white'
+                      : isReference
+                        ? 'text-[#3e5199] dark:text-focus-blue font-medium'
+                        : 'text-muted-ink group-hover:text-navy dark:group-hover:text-white'
                   }`}
                 >
                   {section.displayNumber}
@@ -187,7 +192,9 @@ export const EmbeddedArticleSidebar: React.FC<EmbeddedArticleSidebarProps> = ({
                   className={`text-[11.5px] leading-snug flex-1 line-clamp-1 transition-colors ${
                     isCurrentSection
                       ? 'font-medium text-[#1b2d70] dark:text-ice'
-                      : 'font-normal text-secondary-ink group-hover:text-navy dark:group-hover:text-white'
+                      : isReference
+                        ? 'font-medium text-[#3e5199] dark:text-focus-blue group-hover:underline'
+                        : 'font-normal text-secondary-ink group-hover:text-navy dark:group-hover:text-white'
                   }`}
                 >
                   {section.cleanTitle}

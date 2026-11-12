@@ -41,26 +41,29 @@ export function verifyLearningPaths(paths = learningPaths, benchmarkPath?: strin
   console.log(`✓ Total Lessons: ${totalLessons}`);
 
   if (benchmarkPath && fs.existsSync(benchmarkPath)) {
-    const snap = JSON.parse(fs.readFileSync(benchmarkPath, 'utf8'));
-    const curr = JSON.parse(JSON.stringify(paths));
+    const benchmarkRaw = fs.readFileSync(benchmarkPath, 'utf8');
+    const currentRaw = JSON.stringify(paths, null, 2);
 
-    let diffCount = 0;
-    for (let p = 0; p < snap.length; p++) {
-      if (JSON.stringify(snap[p]) !== JSON.stringify(curr[p])) {
-        console.log(`\nPath diff at index ${p} (${snap[p].slug}):`);
-        for (let m = 0; m < snap[p].modules.length; m++) {
-          if (JSON.stringify(snap[p].modules[m]) !== JSON.stringify(curr[p].modules[m])) {
-            console.log(`  Module diff at index ${m} (${snap[p].modules[m]?.id}):`);
-            console.log(`    Expected: ${JSON.stringify(snap[p].modules[m])}`);
-            console.log(`    Actual  : ${JSON.stringify(curr[p].modules[m])}`);
-            diffCount++;
+    if (benchmarkRaw !== currentRaw) {
+      const snap = JSON.parse(benchmarkRaw);
+      const curr = JSON.parse(currentRaw);
+
+      let diffCount = 0;
+      for (let p = 0; p < snap.length; p++) {
+        if (JSON.stringify(snap[p]) !== JSON.stringify(curr[p])) {
+          console.log(`\nPath diff at index ${p} (${snap[p]?.slug}):`);
+          diffCount++;
+          for (let m = 0; m < (snap[p]?.modules?.length || 0); m++) {
+            if (JSON.stringify(snap[p]?.modules[m]) !== JSON.stringify(curr[p]?.modules[m])) {
+              console.log(`  Module diff at index ${m} (${snap[p]?.modules[m]?.id}):`);
+              console.log(`    Expected: ${JSON.stringify(snap[p]?.modules[m])}`);
+              console.log(`    Actual  : ${JSON.stringify(curr[p]?.modules[m])}`);
+            }
           }
         }
       }
-    }
 
-    if (diffCount > 0) {
-      throw new Error(`Deep JSON equality check failed: found ${diffCount} module differences!`);
+      throw new Error(`Deep JSON equality check failed: found ${diffCount} path/module differences!`);
     }
 
     console.log('✓ Deep JSON equality matched baseline snapshot perfectly!');

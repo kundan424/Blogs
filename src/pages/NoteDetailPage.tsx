@@ -235,7 +235,7 @@ export const NoteDetailPage: React.FC = () => {
                   >
                     {String(idx + 1).padStart(2, '0')}
                   </span>
-                  <span className={`truncate ${activeSection === sec.id ? 'text-[#1b2d70] dark:text-ice font-semibold' : /reference/i.test(sec.title) ? 'text-[#3e5199] dark:text-focus-blue font-medium hover:underline' : ''}`}>
+                  <span className={`truncate ${activeSection === sec.id ? 'text-[#1b2d70] dark:text-ice font-semibold' : ''}`}>
                     {sec.title.replace(/^\d+\.\s*/, '')}
                   </span>
                 </button>

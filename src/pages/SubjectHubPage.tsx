@@ -449,9 +449,8 @@ export const SubjectHubPage: React.FC = () => {
 
               {/* Subject References Links */}
               <div className="p-5 rounded-[8px] bg-white dark:bg-panel border border-edge shadow-catalog-edge">
-                <div className="font-mono text-[11px] uppercase tracking-wider text-[#3e5199] dark:text-focus-blue mb-3 font-semibold flex items-center gap-1.5 hover:text-[#111a4a] dark:hover:text-white hover:underline cursor-pointer transition-colors">
-                  <span className="material-symbols-outlined text-[15px]">menu_book</span>
-                  <span>CANONICAL REFERENCES</span>
+                <div className="font-mono text-[11px] uppercase tracking-wider text-muted-ink mb-3">
+                  CANONICAL REFERENCES
                 </div>
                 <div className="space-y-2 font-mono text-[12px]">
                   <a

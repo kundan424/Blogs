@@ -26,10 +26,11 @@ export const phase1Modules: LearningModule[] = [
         id: 'sb-3-2',
         number: '3.2',
         title: 'Dependency Injection Variants: Constructor, Setter & Field Injection',
+        noteSlug: 'dependency-injection-constructor-setter-field',
         description:
           'Why constructor injection is the gold standard (immutability, fail-fast null safety), setter injection for optional dependencies, and why field injection is an anti-pattern.',
-        status: 'upcoming',
-        readTime: '09m read',
+        status: 'published',
+        readTime: '20m read',
         topics: ['spring-core', 'dependency-injection', 'best-practices'],
       },
     ],

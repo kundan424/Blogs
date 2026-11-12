@@ -24,7 +24,7 @@ blueprint: deep-dive
 
 # Types of Dependency Injection in Spring
 
-Pull up a chair. In [Lesson 3.1: Why Dependency Injection?](file:///e:/projects/Blog/content/backend-distributed-systems/why-dependency-injection-decoupling-testability-separation-of-concerns.md), we established the foundational *why*: hardcoding object instantiation with the `new` keyword couples high-level business rules to low-level infrastructure, destroys unit testability, and violates the Dependency Inversion Principle (DIP).
+Pull up a chair. In [Lesson 3.1: Why Dependency Injection?](/notes/why-dependency-injection-decoupling-testability-separation-of-concerns), we established the foundational *why*: hardcoding object instantiation with the `new` keyword couples high-level business rules to low-level infrastructure, destroys unit testability, and violates the Dependency Inversion Principle (DIP).
 
 Now comes the practical, day-to-day engineering question:
 

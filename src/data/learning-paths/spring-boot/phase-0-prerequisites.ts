@@ -7,9 +7,9 @@ export const phase0Modules: LearningModule[] = [
   {
     id: 'sb-mod-01',
     number: '01',
-    title: 'Build Tools (Apache Maven)',
+    title: 'Build Tools & Version Control (Maven & Git)',
     description:
-      'Build lifecycle management, POM coordinates, dependency resolution graphs, plugins, and production packaging.',
+      'Build lifecycle management, POM coordinates, dependency resolution graphs, plugins, and production Git version control workflows from first principles.',
     lessons: [
       {
         id: 'sb-1-1',
@@ -21,6 +21,17 @@ export const phase0Modules: LearningModule[] = [
         status: 'published',
         readTime: '20m read',
         topics: ['maven', 'build-tools', 'devops'],
+      },
+      {
+        id: 'sb-1-2',
+        number: '1.2',
+        title: 'Git Architecture & Production Workflows: Under the Hood, DAG & Branching',
+        noteSlug: 'git-architecture-advanced-workflows-branching-merging-rebase',
+        description:
+          'Understand Git from first principles: object store internals (Blobs, Trees, Commits), DAG graphs, branch pointers, fast-forward vs 3-way merges, rebasing, and emergency recovery with reflog.',
+        status: 'published',
+        readTime: '24m read',
+        topics: ['git', 'version-control', 'devops', 'backend'],
       },
     ],
   },

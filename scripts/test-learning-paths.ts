@@ -32,8 +32,8 @@ export function verifyLearningPaths(paths = learningPaths, benchmarkPath?: strin
     (acc, p) => acc + p.modules.reduce((mAcc, m) => mAcc + m.lessons.length, 0),
     0
   );
-  if (totalLessons !== 88) {
-    throw new Error(`Expected 88 total lessons, found: ${totalLessons}`);
+  if (totalLessons !== 89) {
+    throw new Error(`Expected 89 total lessons, found: ${totalLessons}`);
   }
 
   console.log(`✓ Total Paths: ${paths.length}`);

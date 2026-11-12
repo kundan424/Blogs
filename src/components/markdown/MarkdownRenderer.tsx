@@ -585,6 +585,33 @@ const markdownComponents: Components = {
       .replace(/[^a-z0-9\s-]/g, '')
       .trim()
       .replace(/\s+/g, '-');
+    const isReferenceHeading = /^(?:authoritative\s+|canonical\s+|official\s+)?references(?:\s+(?:&|and).*)?$/i.test(cleanTitle);
+
+    if (isReferenceHeading) {
+      return (
+        <h2
+          id={id}
+          className="scroll-mt-24 mt-10 mb-3 text-[18px] sm:text-[21px] font-medium tracking-tight border-b border-[#3e5199]/40 dark:border-focus-blue/40 pb-2 flex items-center justify-between group bg-gradient-to-r from-[#3e5199]/10 via-[#5568ad]/5 to-transparent dark:from-[#3e5199]/25 dark:via-[#5568ad]/10 dark:to-transparent px-3 py-2.5 rounded-t-[8px] border-l-[3.5px] border-l-[#3e5199] dark:border-l-focus-blue transition-all"
+        >
+          <a
+            href={`#${id}`}
+            className="flex items-center gap-2 text-[#3e5199] dark:text-ice font-semibold hover:text-navy dark:hover:text-white hover:underline decoration-[#3e5199]/70 dark:decoration-focus-blue/70 underline-offset-4 transition-colors cursor-pointer"
+          >
+            <span className="material-symbols-outlined text-[20px] text-[#3e5199] dark:text-focus-blue select-none">
+              menu_book
+            </span>
+            <span>{children}</span>
+          </a>
+          <a
+            href={`#${id}`}
+            className="opacity-0 group-hover:opacity-100 text-muted-ink hover:text-navy dark:hover:text-white transition-opacity text-[14px] font-mono"
+            aria-label="Link to section"
+          >
+            #
+          </a>
+        </h2>
+      );
+    }
 
     return (
       <h2
@@ -605,11 +632,39 @@ const markdownComponents: Components = {
 
   h3: ({ children }) => {
     const text = getNodeText(children).trim();
-    const id = text
+    const cleanTitle = text.replace(/^\d+\.\s*/, '').trim();
+    const id = cleanTitle
       .toLowerCase()
       .replace(/[^a-z0-9\s-]/g, '')
       .trim()
       .replace(/\s+/g, '-');
+    const isReferenceHeading = /^(?:authoritative\s+|canonical\s+|official\s+)?references(?:\s+(?:&|and).*)?$/i.test(cleanTitle);
+
+    if (isReferenceHeading) {
+      return (
+        <h3
+          id={id}
+          className="scroll-mt-24 mt-7 mb-2.5 text-[15px] sm:text-[17px] font-medium flex items-center justify-between group bg-[#3e5199]/10 dark:bg-[#3e5199]/20 px-2.5 py-1.5 rounded-[6px] border-l-[3px] border-l-[#3e5199] dark:border-l-focus-blue transition-all"
+        >
+          <a
+            href={`#${id}`}
+            className="flex items-center gap-1.5 text-[#3e5199] dark:text-ice font-semibold hover:text-navy dark:hover:text-white hover:underline decoration-[#3e5199]/70 dark:decoration-focus-blue/70 underline-offset-4 transition-colors cursor-pointer"
+          >
+            <span className="material-symbols-outlined text-[17px] text-[#3e5199] dark:text-focus-blue select-none">
+              menu_book
+            </span>
+            <span>{children}</span>
+          </a>
+          <a
+            href={`#${id}`}
+            className="opacity-0 group-hover:opacity-100 text-muted-ink hover:text-navy dark:hover:text-white transition-opacity text-[13px] font-mono"
+            aria-label="Link to subsection"
+          >
+            #
+          </a>
+        </h3>
+      );
+    }
 
     return (
       <h3

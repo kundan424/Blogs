@@ -119,48 +119,6 @@ export const HomePage: React.FC = () => {
               </div>
             </div>
 
-            {/* Right Column: Floating Glass Card (5 cols) */}
-            <div className="lg:col-span-5 flex justify-center lg:justify-end">
-              <div className="floating-glass w-full max-w-[360px] p-6 text-body-ink">
-                {/* Header Row */}
-                <div className="flex items-center justify-between pb-3.5 border-b border-edge/60 dark:border-edge/30">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-proof-green animate-pulse" />
-                    <span className="font-mono text-[11px] font-semibold text-navy dark:text-white uppercase tracking-wider">
-                      Runtime Telemetry
-                    </span>
-                  </div>
-                  <span className="font-mono text-[10.5px] text-proof-green bg-proof-green/10 px-2 py-0.5 rounded-[4px] font-medium">
-                    ACTIVE
-                  </span>
-                </div>
-
-                {/* Metric Bars inside card */}
-                <div className="mt-4 space-y-3 font-mono text-[12px]">
-                  <div className="flex justify-between items-center p-2.5 rounded-[6px] bg-canvas/60 dark:bg-canvas/20 border border-edge/60">
-                    <span className="text-secondary-ink dark:text-muted-ink">Ingress Port</span>
-                    <span className="font-medium text-navy dark:text-ice">:8080 • HTTP/2</span>
-                  </div>
-
-                  <div className="flex justify-between items-center p-2.5 rounded-[6px] bg-canvas/60 dark:bg-canvas/20 border border-edge/60">
-                    <span className="text-secondary-ink dark:text-muted-ink">HikariCP Pool</span>
-                    <span className="font-medium text-navy dark:text-ice">24/32 conns (P99 4.2ms)</span>
-                  </div>
-
-                  <div className="flex justify-between items-center p-2.5 rounded-[6px] bg-canvas/60 dark:bg-canvas/20 border border-edge/60">
-                    <span className="text-secondary-ink dark:text-muted-ink">Virtual Threads</span>
-                    <span className="font-medium text-proof-green">52,400 req/sec</span>
-                  </div>
-                </div>
-
-                {/* Tail status */}
-                <div className="mt-4 pt-3 border-t border-edge/60 dark:border-edge/30 flex items-center justify-between text-[11px] font-mono text-muted-ink">
-                  <span>GC Pause: 0.18ms</span>
-                  <span>Heap: 512MB / 4GB</span>
-                </div>
-              </div>
-            </div>
-
           </div>
         </div>
       </section>

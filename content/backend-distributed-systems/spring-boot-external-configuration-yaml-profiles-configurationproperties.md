@@ -817,19 +817,15 @@ YAML prohibits literal tab characters (`\t`) for indentation; it requires space 
 
 ## 09. Authoritative References & Further Reading
 
-To explore configuration internals, binding hooks, and environmental abstractions at the source, consult these canonical resources:
+For deeper study and official architectural specifications, explore these standard documentation links:
 
-- **[Spring Boot Official Documentation — Externalized Configuration](https://docs.spring.io/spring-boot/reference/features/external-config.html)**  
-  The definitive guide to the 17-level property order, relaxed binding mechanics, and configuration file locations.
-
-- **[Spring Boot Official Documentation — Type-safe Configuration Properties](https://docs.spring.io/spring-boot/reference/features/external-config.html#features.external-config.typesafe-configuration-properties)**  
-  In-depth architectural overview of constructor binding, `@ConfigurationPropertiesScan`, and Jakarta validation.
-
-- **[Spring Framework Core Documentation — The Environment Abstraction](https://docs.spring.io/spring-framework/reference/core/beans/environment.html)**  
-  Architectural breakdown of `Environment`, `PropertySource`, and `PropertySourcesPropertyResolver`.
-
-- **[The Twelve-Factor App — Factor III: Config](https://12factor.net/config)**  
-  The foundational cloud-native methodology on storing configuration in the environment and separating code from config.
-
-- **[Spring Boot Configuration Annotation Processor Documentation](https://docs.spring.io/spring-boot/reference/configuration-metadata/annotation-processor.html)**  
-  Detailed instructions on generating custom configuration metadata JSON for IDE tooling.
+- [Spring Boot Official Documentation: Externalized Configuration](https://docs.spring.io/spring-boot/reference/features/external-config.html)  
+  *The authoritative guide on the 17-level property order, relaxed binding mechanics, and configuration file locations.*
+- [Spring Boot Official Documentation: Type-safe Configuration Properties](https://docs.spring.io/spring-boot/reference/features/external-config.html#features.external-config.typesafe-configuration-properties)  
+  *In-depth architectural overview of constructor binding, @ConfigurationPropertiesScan, and Jakarta validation.*
+- [Spring Framework Official Documentation: The Environment Abstraction](https://docs.spring.io/spring-framework/reference/core/beans/environment.html)  
+  *Architectural breakdown of Environment, PropertySource, and PropertySourcesPropertyResolver.*
+- [The Twelve-Factor App: Factor III — Config](https://12factor.net/config)  
+  *The foundational cloud-native methodology on storing configuration in the environment and separating code from config.*
+- [Spring Boot Configuration Annotation Processor Documentation](https://docs.spring.io/spring-boot/reference/configuration-metadata/annotation-processor.html)  
+  *Detailed instructions on generating custom configuration metadata JSON for IDE tooling.*

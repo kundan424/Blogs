@@ -801,7 +801,7 @@ const markdownComponents: Components = {
       <ul
         className={cn(
           'my-4 space-y-2 text-body-ink text-[15px]',
-          isTaskList ? 'list-none pl-0' : 'list-disc list-inside'
+          isTaskList ? 'list-none pl-0' : 'list-disc list-outside pl-5'
         )}
       >
         {children}
@@ -809,7 +809,7 @@ const markdownComponents: Components = {
     );
   },
   ol: ({ children }) => (
-    <ol className="my-4 space-y-2 list-decimal list-inside text-body-ink text-[15px]">
+    <ol className="my-4 space-y-2 list-decimal list-outside pl-5 text-body-ink text-[15px]">
       {children}
     </ol>
   ),
@@ -822,7 +822,7 @@ const markdownComponents: Components = {
         </li>
       );
     }
-    return <li className="leading-relaxed">{children}</li>;
+    return <li className="leading-relaxed [&>p]:inline [&>p]:my-0">{children}</li>;
   },
   input: ({ type, checked, disabled, ...props }) => {
     if (type === 'checkbox') {

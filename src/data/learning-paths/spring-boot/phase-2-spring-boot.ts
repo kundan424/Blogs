@@ -14,22 +14,23 @@ export const phase2Modules: LearningModule[] = [
       {
         id: 'sb-8-1',
         number: '8.1',
-        title: 'Opinionated Conventions & Spring Initializr Anatomy',
+        title: 'What is Spring Boot? Opinionated Conventions & Initializr Anatomy',
+        noteSlug: 'what-is-spring-boot-opinionated-conventions-initializr-anatomy',
         description:
-          'Starter dependencies, dependency management BOMs, and the anatomy of @SpringBootApplication (@Configuration + @EnableAutoConfiguration + @ComponentScan).',
+          'The philosophy of opinionated conventions over configuration, starter dependencies, dependency management BOMs, and the anatomy of a generated Spring Initializr project.',
         status: 'published',
-        noteSlug: 'spring-boot-internal-architecture-request-lifecycle-auto-configuration',
-        readTime: '12m read',
-        topics: ['spring-boot', 'auto-configuration', 'architecture'],
+        readTime: '20m read',
+        topics: ['spring-boot', 'conventions', 'starters', 'initializr', 'maven'],
       },
       {
         id: 'sb-8-2',
         number: '8.2',
         title: 'Embedded Servlet Containers: Tomcat, Jetty, Undertow & Thread Models',
+        noteSlug: 'spring-boot-internal-architecture-request-lifecycle-auto-configuration',
         description:
           'How Spring Boot configures embedded web servers, comparing Tomcat blocking worker pools with Undertow XNIO non-blocking architectures.',
-        status: 'upcoming',
-        readTime: '10m read',
+        status: 'published',
+        readTime: '12m read',
         topics: ['tomcat', 'undertow', 'servlet-containers'],
       },
       {

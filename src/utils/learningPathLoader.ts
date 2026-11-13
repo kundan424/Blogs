@@ -99,5 +99,7 @@ export function getLearningPathsBySubject(subjectSlug: string): EnrichedLearning
  */
 export function getLearningPathBySlug(slug: string): EnrichedLearningPath | undefined {
   const paths = getAllLearningPaths();
-  return paths.find((p) => p.slug === slug);
+  return paths.find(
+    (p) => p.slug === slug || (slug === 'system-design-roadmap-scale' && p.slug === 'system-design')
+  );
 }

@@ -23,11 +23,11 @@ author:
   handle: '@kundan'
 blueprint: deep-dive
 learningPath:
-  slug: system-design-roadmap-scale
-  name: "System Design: From 1 User to 100 Million Users"
-  module: "sd-mod-01"
-  moduleName: "Ingress & Network Protocol Mechanics"
-  lesson: "1.3"
+  slug: system-design
+  name: "System Design"
+  module: "sd-mod-0-1"
+  moduleName: "Operating System Essentials for System Design"
+  lesson: "0.1.8"
 ---
 
 # Server OS Network Ingress: Kernel Sockets, Network Buffers & Epoll

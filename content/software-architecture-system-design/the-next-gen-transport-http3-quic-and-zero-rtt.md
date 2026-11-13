@@ -22,11 +22,11 @@ author:
   handle: '@kundan'
 blueprint: deep-dive
 learningPath:
-  slug: system-design-roadmap-scale
-  name: "System Design: From 1 User to 100 Million Users"
-  module: "sd-mod-01"
-  moduleName: "Ingress & Network Protocol Mechanics"
-  lesson: "1.5"
+  slug: system-design
+  name: "System Design"
+  module: "sd-mod-0-0"
+  moduleName: "Networking Fundamentals for System Design"
+  lesson: "0.0.5"
 ---
 
 # The Next-Gen Transport: HTTP/3, QUIC & Zero Round-Trip Time (0-RTT)

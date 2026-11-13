@@ -11,7 +11,7 @@ export function verifyLearningPaths(paths = learningPaths, benchmarkPath?: strin
 
   const expectedSlugs = [
     'spring-boot-production-mastery',
-    'system-design-roadmap-scale',
+    'system-design',
     'production-microservices-distributed-architecture',
     'java-core-oop-deep-dives',
     'docker-container-runtime-mastery',
@@ -25,16 +25,16 @@ export function verifyLearningPaths(paths = learningPaths, benchmarkPath?: strin
   }
 
   const totalModules = paths.reduce((acc, p) => acc + p.modules.length, 0);
-  if (totalModules !== 63) {
-    throw new Error(`Expected 63 total modules, found: ${totalModules}`);
+  if (totalModules !== 124) {
+    throw new Error(`Expected 124 total modules, found: ${totalModules}`);
   }
 
   const totalLessons = paths.reduce(
     (acc, p) => acc + p.modules.reduce((mAcc, m) => mAcc + m.lessons.length, 0),
     0
   );
-  if (totalLessons !== 162) {
-    throw new Error(`Expected 162 total lessons, found: ${totalLessons}`);
+  if (totalLessons !== 367) {
+    throw new Error(`Expected 367 total lessons, found: ${totalLessons}`);
   }
 
   console.log(`✓ Total Paths: ${paths.length}`);

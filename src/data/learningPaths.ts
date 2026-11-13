@@ -1,1 +1,1 @@
-export { learningPaths } from './learning-paths';
+export { learningPaths } from './learning-paths/index';

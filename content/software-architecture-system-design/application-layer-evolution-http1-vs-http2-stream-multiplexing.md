@@ -22,11 +22,11 @@ author:
   handle: '@kundan'
 blueprint: deep-dive
 learningPath:
-  slug: system-design-roadmap-scale
-  name: "System Design: From 1 User to 100 Million Users"
-  module: "sd-mod-01"
-  moduleName: "Ingress & Network Protocol Mechanics"
-  lesson: "1.4"
+  slug: system-design
+  name: "System Design"
+  module: "sd-mod-0-0"
+  moduleName: "Networking Fundamentals for System Design"
+  lesson: "0.0.6"
 ---
 
 # Application Layer Evolution: HTTP/1.1 vs HTTP/2 Stream Multiplexing

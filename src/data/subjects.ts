@@ -114,7 +114,7 @@ export const subjects: Subject[] = [
   {
     id: 'architecture',
     slug: 'software-architecture-system-design',
-    name: 'Software Architecture & System Design',
+    name: 'System Design',
     hubNumber: 'Domain Hub #05',
     icon: 'architecture',
     description: 'Event-driven orchestrations, domain-driven design aggregates, CQRS and Event Sourcing, data mesh, and high-volume billing engines.',

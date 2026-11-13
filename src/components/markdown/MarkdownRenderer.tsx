@@ -41,6 +41,14 @@ function sanitizeLatexArtifacts(raw: string): string {
         }
         cleanEq = cleanEq
           .replace(/\\times/g, '×')
+          .replace(/\\longrightarrow/g, '⟶')
+          .replace(/\\rightarrow/g, '→')
+          .replace(/\\leftarrow/g, '←')
+          .replace(/\\Rightarrow/g, '⇒')
+          .replace(/\\Leftarrow/g, '⇐')
+          .replace(/\\leftrightarrow/g, '↔')
+          .replace(/\\iff/g, '⟺')
+          .replace(/\\implies/g, '⟹')
           .replace(/\\le(?![a-zA-Z])/g, '≤')
           .replace(/\\ge(?![a-zA-Z])/g, '≥')
           .replace(/\\ne(?![a-zA-Z])/g, '≠')
@@ -59,9 +67,17 @@ function sanitizeLatexArtifacts(raw: string): string {
         cleaned = cleaned.replace(/\\text(?:tt)?\{([^{}]+)\}/g, '$1');
       }
 
-      // 3. Replace common LaTeX math symbols
+      // 3. Replace common LaTeX math symbols and arrows
       cleaned = cleaned
         .replace(/\\times/g, '×')
+        .replace(/\\longrightarrow/g, '⟶')
+        .replace(/\\rightarrow/g, '→')
+        .replace(/\\leftarrow/g, '←')
+        .replace(/\\Rightarrow/g, '⇒')
+        .replace(/\\Leftarrow/g, '⇐')
+        .replace(/\\leftrightarrow/g, '↔')
+        .replace(/\\iff/g, '⟺')
+        .replace(/\\implies/g, '⟹')
         .replace(/\\le(?![a-zA-Z])/g, '≤')
         .replace(/\\ge(?![a-zA-Z])/g, '≥')
         .replace(/\\ne(?![a-zA-Z])/g, '≠')

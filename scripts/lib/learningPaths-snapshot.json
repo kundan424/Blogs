@@ -1299,6 +1299,1311 @@
     ]
   },
   {
+    "id": "system-design-zero-to-hundred-million",
+    "slug": "system-design-roadmap-scale",
+    "title": "System Design: From 1 User to 100 Million Users",
+    "description": "A comprehensive, first-principles staircase roadmap from single-box network anatomy to multi-tier caching, consistent hashing, distributed consensus, event-driven sagas, global active-active multi-region topologies, and planet-scale case studies.",
+    "subjectSlug": "software-architecture-system-design",
+    "icon": "architecture",
+    "level": "Production Scale",
+    "estimatedDuration": "23 Modules • 72 Lessons",
+    "modules": [
+      {
+        "id": "sd-mod-01",
+        "number": "01",
+        "title": "Ingress & Network Protocol Mechanics",
+        "description": "DNS recursive resolution, TCP three-way handshake, TLS 1.3 cryptographic negotiation, OS kernel socket buffers, and the evolution from HTTP/1.1 to HTTP/3 QUIC.",
+        "lessons": [
+          {
+            "id": "sd-1-1",
+            "number": "1.1",
+            "title": "The Journey of a Packet: DNS Recursive Resolution to IP Discovery",
+            "noteSlug": "the-journey-of-a-packet-dns-recursive-resolution-to-ip-discovery",
+            "description": "Browser and OS caching, recursive resolvers, root and TLD hierarchies, authoritative name servers, DNS record taxonomy, and TTL caching dynamics.",
+            "status": "upcoming",
+            "readTime": "18m read",
+            "topics": [
+              "dns",
+              "networking",
+              "system-design",
+              "internet"
+            ]
+          },
+          {
+            "id": "sd-1-2",
+            "number": "1.2",
+            "title": "The Transport Handshake: TCP 3-Way Handshake & TLS 1.3 Cryptography",
+            "noteSlug": "the-transport-handshake-tcp-three-way-and-tls-negotiation",
+            "description": "SYN/ACK sequence synchronization, sliding windows, TLS 1.3 cipher negotiation, Diffie-Hellman key exchange, session resumption, and 0-RTT handshakes.",
+            "status": "upcoming",
+            "readTime": "20m read",
+            "topics": [
+              "tcp",
+              "tls",
+              "security",
+              "cryptography",
+              "networking"
+            ]
+          },
+          {
+            "id": "sd-1-3",
+            "number": "1.3",
+            "title": "Server OS Network Ingress: Kernel Sockets, Network Buffers & Epoll",
+            "noteSlug": "server-os-network-ingress-kernel-sockets-buffers-and-epoll",
+            "description": "NIC ring buffers, softirqs, OS kernel receive/send buffers, socket file descriptors, epoll/kqueue event loops, and non-blocking I/O multiplexing.",
+            "status": "upcoming",
+            "readTime": "22m read",
+            "topics": [
+              "linux",
+              "kernel",
+              "sockets",
+              "epoll",
+              "os-internals"
+            ]
+          },
+          {
+            "id": "sd-1-4",
+            "number": "1.4",
+            "title": "Application Layer Evolution: HTTP/1.1 vs HTTP/2 Stream Multiplexing",
+            "noteSlug": "application-layer-evolution-http1-vs-http2-stream-multiplexing",
+            "description": "ASCII framing vs binary framing, persistent keep-alive connections, HTTP-level Head-of-Line (HoL) blocking, HPACK compression, and stream multiplexing.",
+            "status": "upcoming",
+            "readTime": "22m read",
+            "topics": [
+              "http",
+              "http2",
+              "multiplexing",
+              "protocols"
+            ]
+          },
+          {
+            "id": "sd-1-5",
+            "number": "1.5",
+            "title": "The Next-Gen Transport: HTTP/3, QUIC & Zero Round-Trip Time (0-RTT)",
+            "noteSlug": "the-next-gen-transport-http3-quic-and-zero-rtt",
+            "description": "Replacing TCP with QUIC over UDP, eliminating transport-level Head-of-Line blocking, connection migration across Wi-Fi/cellular, and 0-RTT reconnection.",
+            "status": "upcoming",
+            "readTime": "24m read",
+            "topics": [
+              "http3",
+              "quic",
+              "udp",
+              "performance",
+              "networking"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sd-mod-02",
+        "number": "02",
+        "title": "Single-Box Architecture & Hardware Latency Limits",
+        "description": "Co-locating reverse proxy, application runtime, and database on one server, the physical hardware latency hierarchy, and vertical scaling ceilings.",
+        "lessons": [
+          {
+            "id": "sd-2-1",
+            "number": "2.1",
+            "title": "The Single-Box Architecture: Co-locating Nginx, App Runtime & Database",
+            "noteSlug": "the-single-box-architecture-nginx-app-database-co-location",
+            "description": "Day-1 monolithic deployment on a single VPS, Unix domain sockets vs loopback TCP, memory sharing, context switching overhead, and thread starvation.",
+            "status": "upcoming",
+            "readTime": "18m read",
+            "topics": [
+              "nginx",
+              "single-server",
+              "architecture",
+              "databases"
+            ]
+          },
+          {
+            "id": "sd-2-2",
+            "number": "2.2",
+            "title": "Latency Numbers Every Systems Engineer Must Know: Memory vs Disk vs Network",
+            "noteSlug": "latency-numbers-every-systems-engineer-must-know-memory-vs-disk-vs-network",
+            "description": "Jeff Dean rules of thumb: L1/L2 CPU cache, RAM, sequential vs random SSD I/O, cross-datacenter round-trips, and the logarithmic scale of physical delays.",
+            "status": "upcoming",
+            "readTime": "20m read",
+            "topics": [
+              "hardware",
+              "latency",
+              "performance",
+              "jeff-dean"
+            ]
+          },
+          {
+            "id": "sd-2-3",
+            "number": "2.3",
+            "title": "The Breaking Point: Single Point of Failure (SPOF) & Vertical Scaling Ceilings",
+            "noteSlug": "the-breaking-point-spof-and-vertical-scaling-ceilings",
+            "description": "Why upgrading to 64 cores/256 GB RAM hits an exponential cost wall, Linux OOM killer invocations, file descriptor exhaustion, and total disaster on hardware failure.",
+            "status": "upcoming",
+            "readTime": "20m read",
+            "topics": [
+              "spof",
+              "vertical-scaling",
+              "reliability",
+              "system-failure"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sd-mod-03",
+        "number": "03",
+        "title": "Compute Tier — Statelessness & Session Decoupling",
+        "description": "Transitioning from vertical to horizontal scaling, decoupling compute from state, and choosing between distributed Redis sessions and stateless JWTs.",
+        "lessons": [
+          {
+            "id": "sd-3-1",
+            "number": "3.1",
+            "title": "Scaling Out vs Scaling Up: Decoupling State from Application Compute",
+            "noteSlug": "scaling-out-vs-scaling-up-decoupling-state-from-compute",
+            "description": "The golden rule of horizontal scaling: app servers must be stateless; why sticky sessions break dynamic auto-scaling and failover.",
+            "status": "upcoming",
+            "readTime": "20m read",
+            "topics": [
+              "horizontal-scaling",
+              "stateless",
+              "cloud-architecture",
+              "compute"
+            ]
+          },
+          {
+            "id": "sd-3-2",
+            "number": "3.2",
+            "title": "Session Management at Scale: Distributed Redis Sessions vs Stateless JWTs",
+            "noteSlug": "session-management-at-scale-distributed-redis-vs-stateless-jwts",
+            "description": "Centralized session caching in Redis clusters vs cryptographically signed JWTs, token revocation challenges, blacklist caching, and bandwidth overhead.",
+            "status": "upcoming",
+            "readTime": "22m read",
+            "topics": [
+              "sessions",
+              "redis",
+              "jwt",
+              "auth",
+              "security"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sd-mod-04",
+        "number": "04",
+        "title": "Compute Tier — Load Balancing Topologies & Layer Mechanics",
+        "description": "L4 transport routing vs L7 application routing, traffic distribution algorithms, health check polling, and active-passive load balancer high availability.",
+        "lessons": [
+          {
+            "id": "sd-4-1",
+            "number": "4.1",
+            "title": "Load Balancing Topologies: L4 Transport (NLB/IPVS) vs L7 Application (ALB/Nginx)",
+            "noteSlug": "load-balancing-topologies-l4-transport-vs-l7-application",
+            "description": "OSI layer mechanics: IP and TCP port routing with Linux IPVS and AWS NLB vs HTTP header inspection, path routing, and SSL termination with Nginx and AWS ALB.",
+            "status": "upcoming",
+            "readTime": "22m read",
+            "topics": [
+              "load-balancing",
+              "networking",
+              "l4-l7",
+              "nginx",
+              "haproxy"
+            ]
+          },
+          {
+            "id": "sd-4-2",
+            "number": "4.2",
+            "title": "Traffic Distribution Algorithms: Round Robin, Least Connections & Consistent Hashing",
+            "noteSlug": "traffic-distribution-algorithms-round-robin-least-connections-hash",
+            "description": "Evaluating Round Robin, Weighted Round Robin, Least Connections, Peak EWMA, and IP Hash algorithms across heterogeneous server fleets.",
+            "status": "upcoming",
+            "readTime": "20m read",
+            "topics": [
+              "algorithms",
+              "load-balancing",
+              "traffic-shaping",
+              "routing"
+            ]
+          },
+          {
+            "id": "sd-4-3",
+            "number": "4.3",
+            "title": "Health Checks, Fast Eviction & High-Availability Load Balancers (VRRP & Keepalived)",
+            "noteSlug": "health-checks-fast-eviction-and-ha-load-balancers-vrrp",
+            "description": "Active heartbeat probes, sub-second dead node eviction under OOM crashes, redundant Active-Passive load balancer pairs, and Virtual IP (VIP) failover with VRRP.",
+            "status": "upcoming",
+            "readTime": "22m read",
+            "topics": [
+              "high-availability",
+              "health-checks",
+              "failover",
+              "vrrp",
+              "devops"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sd-mod-05",
+        "number": "05",
+        "title": "Read Path — Multi-Tier Caching & Invalidation Patterns",
+        "description": "The multi-tier caching hierarchy from browser to database buffer pools, Cache-Aside vs Write-Through vs Write-Back, and memory eviction policies.",
+        "lessons": [
+          {
+            "id": "sd-5-1",
+            "number": "5.1",
+            "title": "The Multi-Tier Caching Hierarchy: From Browser to Database Buffer Pools",
+            "noteSlug": "the-multi-tier-caching-hierarchy-browser-to-db-buffer-pools",
+            "description": "Browser caching, CDN edge points of presence, distributed application memory (Redis/Memcached), and DBMS internal buffer pools.",
+            "status": "upcoming",
+            "readTime": "20m read",
+            "topics": [
+              "caching",
+              "redis",
+              "cdn",
+              "performance",
+              "architecture"
+            ]
+          },
+          {
+            "id": "sd-5-2",
+            "number": "5.2",
+            "title": "Cache Access Patterns: Cache-Aside (Lazy Loading) vs Write-Through",
+            "noteSlug": "cache-access-patterns-cache-aside-vs-write-through",
+            "description": "Lazy loading trade-offs, cold-start query penalties, synchronous dual-write overhead, and maintaining consistency between cache and primary datastores.",
+            "status": "upcoming",
+            "readTime": "22m read",
+            "topics": [
+              "cache-aside",
+              "write-through",
+              "caching-patterns",
+              "redis"
+            ]
+          },
+          {
+            "id": "sd-5-3",
+            "number": "5.3",
+            "title": "Asynchronous Cache Writes: Write-Back (Write-Behind) and Durability Risks",
+            "noteSlug": "asynchronous-cache-writes-write-back-and-durability-risks",
+            "description": "In-memory mutation speed, asynchronous batch database flushing, handling cache node power failures, and write durability guarantees.",
+            "status": "upcoming",
+            "readTime": "20m read",
+            "topics": [
+              "write-behind",
+              "durability",
+              "performance",
+              "caching"
+            ]
+          },
+          {
+            "id": "sd-5-4",
+            "number": "5.4",
+            "title": "Memory Reclamation & Eviction Policies: LRU, LFU, FIFO & Sliding TTL",
+            "noteSlug": "memory-reclamation-and-eviction-policies-lru-lfu-ttl",
+            "description": "Doubly-linked list + hash map mechanics in LRU, frequency counters in LFU, active vs passive TTL expiration passes, and Redis memory management.",
+            "status": "upcoming",
+            "readTime": "22m read",
+            "topics": [
+              "lru",
+              "lfu",
+              "eviction",
+              "redis-internals",
+              "memory"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sd-mod-06",
+        "number": "06",
+        "title": "Read Path — Edge Delivery & The Three Classic Cache Disasters",
+        "description": "Edge CDN acceleration and surviving the three fatal cache failure modes: Cache Penetration, Cache Breakdown (Thundering Herd), and Cache Avalanche.",
+        "lessons": [
+          {
+            "id": "sd-6-1",
+            "number": "6.1",
+            "title": "Edge Delivery & CDNs: Geographically Distributed Static & Dynamic Delivery",
+            "noteSlug": "edge-delivery-and-cdns-static-and-dynamic-acceleration",
+            "description": "Anycast edge points of presence, Origin Shielding, surrogate-key cache invalidation, and achieving >99% cache hit ratios for static and dynamic media.",
+            "status": "upcoming",
+            "readTime": "22m read",
+            "topics": [
+              "cdn",
+              "edge",
+              "cloudflare",
+              "caching",
+              "networking"
+            ]
+          },
+          {
+            "id": "sd-6-2",
+            "number": "6.2",
+            "title": "Cache Disaster 1: Cache Penetration & Space-Efficient Bloom Filters in RAM",
+            "noteSlug": "cache-penetration-and-space-efficient-bloom-filters",
+            "description": "Attackers querying non-existent keys to bypass cache and hammer databases; bit-array hashing math, zero false negatives, and O(1) RAM pre-checks.",
+            "status": "upcoming",
+            "readTime": "24m read",
+            "topics": [
+              "bloom-filters",
+              "cache-penetration",
+              "data-structures",
+              "security"
+            ]
+          },
+          {
+            "id": "sd-6-3",
+            "number": "6.3",
+            "title": "Cache Disaster 2: Cache Breakdown (The Thundering Herd) & Single-Flight Mutexes",
+            "noteSlug": "cache-breakdown-thundering-herd-and-single-flight-mutexes",
+            "description": "Sudden expiration of ultra-hot keys causing 50,000 concurrent database queries; distributed mutex locking (SETNX) and probabilistic early expiration (XFetch).",
+            "status": "upcoming",
+            "readTime": "22m read",
+            "topics": [
+              "thundering-herd",
+              "cache-breakdown",
+              "concurrency",
+              "distributed-locks"
+            ]
+          },
+          {
+            "id": "sd-6-4",
+            "number": "6.4",
+            "title": "Cache Disaster 3: Cache Avalanche & TTL Jitter Engineering",
+            "noteSlug": "cache-avalanche-and-ttl-jitter-engineering",
+            "description": "Simultaneous expiration of thousands of keys crashing downstream datastores; implementing randomized TTL jitter and resilient cache-warming strategies.",
+            "status": "upcoming",
+            "readTime": "20m read",
+            "topics": [
+              "cache-avalanche",
+              "ttl",
+              "resilience",
+              "reliability"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sd-mod-07",
+        "number": "07",
+        "title": "Data Tier — Storage Paradigms & Database Replication",
+        "description": "The polyglot persistence spectrum, Relational ACID vs NoSQL storage engines, Primary-Replica replication, WAL streaming, and the Read-Your-Own-Writes pattern.",
+        "lessons": [
+          {
+            "id": "sd-7-1",
+            "number": "7.1",
+            "title": "The Polyglot Persistence Spectrum: Relational ACID vs NoSQL Engines",
+            "noteSlug": "polyglot-persistence-spectrum-relational-acid-vs-nosql",
+            "description": "ACID transactional guarantees, B-Trees, relational normalization, and why modern architectures trade away SQL joins for horizontal scale.",
+            "status": "upcoming",
+            "readTime": "22m read",
+            "topics": [
+              "rdbms",
+              "acid",
+              "nosql",
+              "databases",
+              "system-design"
+            ]
+          },
+          {
+            "id": "sd-7-2",
+            "number": "7.2",
+            "title": "Specialized NoSQL Paradigms: Key-Value, Document & Wide-Column (Cassandra)",
+            "noteSlug": "specialized-nosql-paradigms-key-value-document-wide-column",
+            "description": "In-memory key-value lookups, document BSON trees, and wide-column SSTable/LSM-tree append-only logs for massive write workloads.",
+            "status": "upcoming",
+            "readTime": "24m read",
+            "topics": [
+              "cassandra",
+              "mongodb",
+              "dynamodb",
+              "nosql",
+              "storage-engines"
+            ]
+          },
+          {
+            "id": "sd-7-3",
+            "number": "7.3",
+            "title": "Scaling Read Throughput: Primary-Replica Architecture & WAL Streaming",
+            "noteSlug": "scaling-read-throughput-primary-replica-and-wal-streaming",
+            "description": "Primary master handling 100% of mutations, asynchronous Write-Ahead Log (WAL) streaming, read replicas, and consensus-driven automated failover.",
+            "status": "upcoming",
+            "readTime": "20m read",
+            "topics": [
+              "replication",
+              "postgresql",
+              "wal",
+              "high-availability",
+              "databases"
+            ]
+          },
+          {
+            "id": "sd-7-4",
+            "number": "7.4",
+            "title": "The Replication Lag Dilemma: Eventual Consistency & Read-Your-Own-Writes",
+            "noteSlug": "replication-lag-eventual-consistency-and-read-your-own-writes",
+            "description": "Asynchronous network propagation delays, stale replica reads, and routing active user mutations to the primary via the Read-Your-Own-Writes pattern.",
+            "status": "upcoming",
+            "readTime": "22m read",
+            "topics": [
+              "eventual-consistency",
+              "replication-lag",
+              "patterns",
+              "distributed-data"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sd-mod-08",
+        "number": "08",
+        "title": "Data Tier — Horizontal Partitioning & Consistent Hashing",
+        "description": "Database sharding keys, consistent hashing rings, virtual nodes for hotspot mitigation, and resolving cross-shard joins and distributed transactions.",
+        "lessons": [
+          {
+            "id": "sd-8-1",
+            "number": "8.1",
+            "title": "Database Sharding Strategies: Range-Based vs Hash-Based Partitioning",
+            "noteSlug": "database-sharding-strategies-range-vs-hash-partitioning",
+            "description": "Horizontal vs vertical partitioning, choosing effective sharding keys, range-based skew pitfalls, and why modulo hashing causes catastrophic resharding.",
+            "status": "upcoming",
+            "readTime": "22m read",
+            "topics": [
+              "sharding",
+              "partitioning",
+              "database-scaling",
+              "architecture"
+            ]
+          },
+          {
+            "id": "sd-8-2",
+            "number": "8.2",
+            "title": "Consistent Hashing: The 2^32 - 1 Virtual Ring & Key Remapping Math",
+            "noteSlug": "consistent-hashing-the-virtual-ring-and-key-remapping",
+            "description": "Mapping servers and keys onto a circular keyspace, clockwise traversal, and the mathematical proof that node changes only remap K/N keys.",
+            "status": "upcoming",
+            "readTime": "24m read",
+            "topics": [
+              "consistent-hashing",
+              "algorithms",
+              "distributed-systems",
+              "hash-ring"
+            ]
+          },
+          {
+            "id": "sd-8-3",
+            "number": "8.3",
+            "title": "Virtual Nodes in Consistent Hashing: Eliminating Hotspots & Data Skew",
+            "noteSlug": "virtual-nodes-in-consistent-hashing-eliminating-hotspots",
+            "description": "Why small clusters produce unbalanced hash ring segments, implementing virtual token assignments, and accommodating heterogeneous server capacities.",
+            "status": "upcoming",
+            "readTime": "20m read",
+            "topics": [
+              "virtual-nodes",
+              "consistent-hashing",
+              "load-balancing",
+              "algorithms"
+            ]
+          },
+          {
+            "id": "sd-8-4",
+            "number": "8.4",
+            "title": "The Hidden Costs of Sharding: Cross-Shard Joins & Distributed Transactions",
+            "noteSlug": "the-hidden-costs-of-sharding-cross-shard-joins-and-transactions",
+            "description": "Scatter-gather network queries, application-layer joins, Two-Phase Commit penalties, and Instagram entity co-location patterns.",
+            "status": "upcoming",
+            "readTime": "22m read",
+            "topics": [
+              "sharding-tradeoffs",
+              "cross-shard-joins",
+              "distributed-transactions",
+              "databases"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sd-mod-09",
+        "number": "09",
+        "title": "Distributed Theory — The Fallacies & The Trade-Off Theorems",
+        "description": "The 8 Fallacies of Distributed Computing, deconstructing the CAP Theorem, and the PACELC trade-off theorem during normal vs partitioned operating states.",
+        "lessons": [
+          {
+            "id": "sd-9-1",
+            "number": "9.1",
+            "title": "The 8 Fallacies of Distributed Computing: Designing for Partial Failure",
+            "noteSlug": "the-eight-fallacies-of-distributed-computing-and-partial-failure",
+            "description": "Why the network is not reliable, latency is not zero, and bandwidth is not infinite; handling packet drops, jitter, and GC stop-the-world pauses.",
+            "status": "upcoming",
+            "readTime": "20m read",
+            "topics": [
+              "fallacies",
+              "distributed-systems",
+              "partial-failure",
+              "networking"
+            ]
+          },
+          {
+            "id": "sd-9-2",
+            "number": "9.2",
+            "title": "The CAP Theorem Deconstructed: Why Network Partitions Make \"CA\" Impossible",
+            "noteSlug": "the-cap-theorem-deconstructed-why-ca-is-impossible",
+            "description": "Consistency vs Availability vs Partition Tolerance; why network splits are physical realities, and how systems choose between CP and AP guarantees.",
+            "status": "upcoming",
+            "readTime": "22m read",
+            "topics": [
+              "cap-theorem",
+              "theory",
+              "consistency",
+              "availability",
+              "partitions"
+            ]
+          },
+          {
+            "id": "sd-9-3",
+            "number": "9.3",
+            "title": "The PACELC Theorem: Trade-Offs in Normal vs Partitioned Operating States",
+            "noteSlug": "the-pacelc-theorem-normal-vs-partitioned-trade-offs",
+            "description": "Extending CAP to normal operations: evaluating Latency vs Consistency when no partition exists; contrasting DynamoDB (PA/EL) with Spanner (PC/EC).",
+            "status": "upcoming",
+            "readTime": "22m read",
+            "topics": [
+              "pacelc",
+              "distributed-storage",
+              "tradeoffs",
+              "system-design"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sd-mod-10",
+        "number": "10",
+        "title": "Distributed Theory — Consistency Models & Distributed Consensus",
+        "description": "The spectrum of distributed consistency models, the split-brain dilemma, quorum intersection math, and consensus via Paxos and Raft.",
+        "lessons": [
+          {
+            "id": "sd-10-1",
+            "number": "10.1",
+            "title": "The Spectrum of Distributed Consistency: Strong, Linearizable, Causal & Eventual",
+            "noteSlug": "the-spectrum-of-distributed-consistency-linearizable-to-eventual",
+            "description": "Linearizability, Sequential Consistency, Causal Consistency, Monotonic Reads, and Eventual Consistency across distributed storage nodes.",
+            "status": "upcoming",
+            "readTime": "24m read",
+            "topics": [
+              "consistency-models",
+              "linearizability",
+              "causality",
+              "distributed-systems"
+            ]
+          },
+          {
+            "id": "sd-10-2",
+            "number": "10.2",
+            "title": "The Split-Brain Dilemma & Quorum Mathematics (floor(N/2) + 1)",
+            "noteSlug": "the-split-brain-dilemma-and-quorum-mathematics",
+            "description": "Preventing split-brain dual leaders during network partitions; quorum intersection equations (R + W > N) and why odd-numbered clusters are mandatory.",
+            "status": "upcoming",
+            "readTime": "20m read",
+            "topics": [
+              "split-brain",
+              "quorum",
+              "consensus",
+              "fault-tolerance"
+            ]
+          },
+          {
+            "id": "sd-10-3",
+            "number": "10.3",
+            "title": "Distributed Consensus Protocols: Paxos and The Raft State Machine",
+            "noteSlug": "distributed-consensus-protocols-paxos-and-the-raft-state-machine",
+            "description": "The Raft consensus protocol: Leader election terms, replicated state machine logs, heartbeat leases, and commit index progression.",
+            "status": "upcoming",
+            "readTime": "26m read",
+            "topics": [
+              "raft",
+              "paxos",
+              "consensus",
+              "state-machine-replication"
+            ]
+          },
+          {
+            "id": "sd-10-4",
+            "number": "10.4",
+            "title": "Production Consensus Engines: etcd, ZooKeeper & HashiCorp Consul",
+            "noteSlug": "production-consensus-engines-etcd-zookeeper-consul",
+            "description": "How production systems apply consensus: etcd for Kubernetes state leases, ZooKeeper for Kafka broker metadata, and Consul for service mesh coordination.",
+            "status": "upcoming",
+            "readTime": "22m read",
+            "topics": [
+              "etcd",
+              "zookeeper",
+              "consul",
+              "kubernetes",
+              "infrastructure"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sd-mod-11",
+        "number": "11",
+        "title": "Async Tier — Queues vs Distributed Event Streams",
+        "description": "Eliminating fragile synchronous HTTP chains, point-to-point worker queues with RabbitMQ/SQS, and distributed commit logs with Apache Kafka.",
+        "lessons": [
+          {
+            "id": "sd-11-1",
+            "number": "11.1",
+            "title": "The Fragility of Synchronous Chains: Decoupling Systems in Time and Space",
+            "noteSlug": "the-fragility-of-synchronous-chains-decoupling-in-time-and-space",
+            "description": "Cascading latency in synchronous HTTP chains, temporal and spatial coupling, and returning HTTP 200 in 5ms via asynchronous event emission.",
+            "status": "upcoming",
+            "readTime": "20m read",
+            "topics": [
+              "async",
+              "event-driven",
+              "microservices",
+              "architecture"
+            ]
+          },
+          {
+            "id": "sd-11-2",
+            "number": "11.2",
+            "title": "Point-to-Point Work Queues: RabbitMQ / SQS Message Lifecycle & Acks",
+            "noteSlug": "point-to-point-work-queues-rabbitmq-and-sqs-message-lifecycle",
+            "description": "Work queue topology, producer-consumer semantics, message ACKs and NACKs, competing consumers, and message destruction upon consumption.",
+            "status": "upcoming",
+            "readTime": "22m read",
+            "topics": [
+              "rabbitmq",
+              "sqs",
+              "message-queues",
+              "amqp",
+              "worker-threads"
+            ]
+          },
+          {
+            "id": "sd-11-3",
+            "number": "11.3",
+            "title": "Distributed Event Streams: Apache Kafka Append-Only Commit Log Architecture",
+            "noteSlug": "distributed-event-streams-apache-kafka-append-only-commit-log",
+            "description": "Why event streaming differs from queues: immutable append-only commit logs on disk, multi-subscriber fan-out, and replaying events from offset zero.",
+            "status": "upcoming",
+            "readTime": "24m read",
+            "topics": [
+              "kafka",
+              "event-streaming",
+              "pub-sub",
+              "commit-log"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sd-mod-12",
+        "number": "12",
+        "title": "Async Tier — Kafka Deep Dive, Delivery Guarantees & Idempotency",
+        "description": "Apache Kafka topic partitions, consumer group rebalancing, message delivery guarantees, consumer idempotency, and Dead Letter Queues (DLQ).",
+        "lessons": [
+          {
+            "id": "sd-12-1",
+            "number": "12.1",
+            "title": "Apache Kafka Internals: Topics, Partitions, Offsets & OS Page Cache Sequential I/O",
+            "noteSlug": "apache-kafka-internals-topics-partitions-offsets-and-sequential-io",
+            "description": "Horizontal stream scaling via partitions, sequential disk I/O performance, Linux page cache utilization, and zero-copy network transfer with sendfile.",
+            "status": "upcoming",
+            "readTime": "24m read",
+            "topics": [
+              "kafka-internals",
+              "partitions",
+              "offsets",
+              "disk-io",
+              "zero-copy"
+            ]
+          },
+          {
+            "id": "sd-12-2",
+            "number": "12.2",
+            "title": "Scaling Consumers: Consumer Groups, Rebalancing & Partition Assignment",
+            "noteSlug": "scaling-consumers-consumer-groups-rebalancing-and-partition-assignment",
+            "description": "Consumer group scaling rules, eager vs cooperative sticky rebalancing, partition re-assignment protocols, and consumer lag telemetry.",
+            "status": "upcoming",
+            "readTime": "22m read",
+            "topics": [
+              "consumer-groups",
+              "rebalancing",
+              "kafka-scaling",
+              "monitoring"
+            ]
+          },
+          {
+            "id": "sd-12-3",
+            "number": "12.3",
+            "title": "Message Delivery Guarantees & Consumer Idempotency (f(f(x)) = f(x))",
+            "noteSlug": "message-delivery-guarantees-and-consumer-idempotency",
+            "description": "At-most-once vs at-least-once vs exactly-once semantics, duplicate message risks, and implementing idempotent consumers using client keys and DB constraints.",
+            "status": "upcoming",
+            "readTime": "24m read",
+            "topics": [
+              "idempotency",
+              "delivery-guarantees",
+              "data-integrity",
+              "kafka"
+            ]
+          },
+          {
+            "id": "sd-12-4",
+            "number": "12.4",
+            "title": "Poison-Pill Handling: Dead Letter Queues (DLQ) & Exponential Backoff Retries",
+            "noteSlug": "poison-pill-handling-dead-letter-queues-and-exponential-backoff",
+            "description": "Isolating poisoned payloads that cause infinite worker crash loops, retry topics with graduated backoff, and DLQ operational recovery pipelines.",
+            "status": "upcoming",
+            "readTime": "20m read",
+            "topics": [
+              "dlq",
+              "dead-letter-queue",
+              "error-handling",
+              "resilience"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sd-mod-13",
+        "number": "13",
+        "title": "Coordination Tier — Distributed Transactions & Sagas",
+        "description": "Why Two-Phase Commit fails at scale, compensating transactions in the Saga pattern, and decentralized choreography vs centralized orchestration.",
+        "lessons": [
+          {
+            "id": "sd-13-1",
+            "number": "13.1",
+            "title": "The Death of Two-Phase Commit (2PC) at Scale: Blocking Latency & Resource Starvation",
+            "noteSlug": "the-death-of-two-phase-commit-at-scale-blocking-latency",
+            "description": "Phase 1 prepare and Phase 2 commit mechanics, coordinator crash vulnerabilities, and why long-held distributed locks freeze entire clusters.",
+            "status": "upcoming",
+            "readTime": "22m read",
+            "topics": [
+              "two-phase-commit",
+              "2pc",
+              "distributed-transactions",
+              "concurrency"
+            ]
+          },
+          {
+            "id": "sd-13-2",
+            "number": "13.2",
+            "title": "The Saga Pattern: Distributed Transactions via Local Commits & Compensating Actions",
+            "noteSlug": "the-saga-pattern-local-commits-and-compensating-actions",
+            "description": "Decomposing distributed workflows into local database transactions, forward vs backward recovery, and designing compensating undo actions.",
+            "status": "upcoming",
+            "readTime": "24m read",
+            "topics": [
+              "saga-pattern",
+              "eventual-consistency",
+              "compensation",
+              "microservices"
+            ]
+          },
+          {
+            "id": "sd-13-3",
+            "number": "13.3",
+            "title": "Saga Architectures: Decentralized Choreography vs Centralized Orchestration",
+            "noteSlug": "saga-architectures-decentralized-choreography-vs-centralized-orchestration",
+            "description": "Event-driven reactive choreography vs centralized state machines with Temporal and AWS Step Functions; avoiding event spaghetti at enterprise scale.",
+            "status": "upcoming",
+            "readTime": "24m read",
+            "topics": [
+              "orchestration",
+              "choreography",
+              "temporal",
+              "step-functions",
+              "workflow-engine"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sd-mod-14",
+        "number": "14",
+        "title": "Coordination Tier — The Dual-Write Problem, Outbox & CQRS",
+        "description": "The dual-write race condition, atomic outbox persistence with Change Data Capture (Debezium), and splitting command and query models via CQRS.",
+        "lessons": [
+          {
+            "id": "sd-14-1",
+            "number": "14.1",
+            "title": "The Dual-Write Problem: Why Database Updates and Message Publishes Diverge",
+            "noteSlug": "the-dual-write-problem-why-database-and-broker-diverge",
+            "description": "The fatal race condition between database commit and message broker publish; analyzing split-brain scenarios where events are lost or phantom data is emitted.",
+            "status": "upcoming",
+            "readTime": "22m read",
+            "topics": [
+              "dual-write",
+              "distributed-systems",
+              "race-conditions",
+              "data-integrity"
+            ]
+          },
+          {
+            "id": "sd-14-2",
+            "number": "14.2",
+            "title": "The Transactional Outbox Pattern & Change Data Capture (CDC with Debezium)",
+            "noteSlug": "the-transactional-outbox-pattern-and-change-data-capture",
+            "description": "Inserting outbound events into an outbox table in the same local ACID transaction; tailing the database WAL with Debezium for guaranteed delivery.",
+            "status": "upcoming",
+            "readTime": "26m read",
+            "topics": [
+              "transactional-outbox",
+              "cdc",
+              "debezium",
+              "wal",
+              "kafka"
+            ]
+          },
+          {
+            "id": "sd-14-3",
+            "number": "14.3",
+            "title": "Command Query Responsibility Segregation (CQRS): Splitting Write & Read Models",
+            "noteSlug": "command-query-responsibility-segregation-cqrs-splitting-models",
+            "description": "Optimizing normalized relational write models for transactional integrity while syncing denormalized query stores (Elasticsearch/Redis) for sub-5ms lookups.",
+            "status": "upcoming",
+            "readTime": "24m read",
+            "topics": [
+              "cqrs",
+              "read-models",
+              "write-models",
+              "elasticsearch",
+              "redis"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sd-mod-15",
+        "number": "15",
+        "title": "Planet-Scale Tier — Global Ingress & Edge Compute",
+        "description": "The speed of light physical barrier, GeoDNS vs BGP Anycast routing, and running serverless V8 workers directly at CDN edge Points of Presence.",
+        "lessons": [
+          {
+            "id": "sd-15-1",
+            "number": "15.1",
+            "title": "The Physical Speed of Light: Global Latency Constraints & Fiber Delays",
+            "noteSlug": "the-physical-speed-of-light-global-latency-constraints",
+            "description": "Photon propagation speed through fiber glass (~200,000 km/s), transatlantic RTT boundaries, and why software optimization cannot beat physics.",
+            "status": "upcoming",
+            "readTime": "18m read",
+            "topics": [
+              "speed-of-light",
+              "physics",
+              "latency",
+              "networking",
+              "global-systems"
+            ]
+          },
+          {
+            "id": "sd-15-2",
+            "number": "15.2",
+            "title": "Global Traffic Routing: GeoDNS Resolution vs BGP Anycast Single-IP Convergence",
+            "noteSlug": "global-traffic-routing-geodns-vs-bgp-anycast",
+            "description": "GeoDNS resolution mechanics and TTL failover delays vs Border Gateway Protocol (BGP) Anycast announcing identical IPs for instant edge convergence.",
+            "status": "upcoming",
+            "readTime": "22m read",
+            "topics": [
+              "geodns",
+              "anycast",
+              "bgp",
+              "routing",
+              "dns"
+            ]
+          },
+          {
+            "id": "sd-15-3",
+            "number": "15.3",
+            "title": "Edge Computing: Running V8 Serverless Workers at CDN Points of Presence",
+            "noteSlug": "edge-computing-running-v8-workers-at-cdn-pops",
+            "description": "V8 isolate runtimes with Cloudflare Workers and AWS Lambda@Edge; moving auth validation, bot protection, and A/B experiments to the 20ms boundary.",
+            "status": "upcoming",
+            "readTime": "22m read",
+            "topics": [
+              "edge-compute",
+              "cloudflare-workers",
+              "serverless",
+              "cdn"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sd-mod-16",
+        "number": "16",
+        "title": "Planet-Scale Tier — Multi-Region Active-Active Databases & Consensus",
+        "description": "Active-Passive DR vs Active-Active multi-master database topologies, Last-Write-Wins clock skew traps, CRDT deterministic merging, and Google Spanner TrueTime.",
+        "lessons": [
+          {
+            "id": "sd-16-1",
+            "number": "16.1",
+            "title": "Multi-Region Database Topologies: Active-Passive (DR) vs Active-Active Multi-Master",
+            "noteSlug": "multi-region-database-topologies-active-passive-vs-active-active",
+            "description": "RPO and RTO in Active-Passive failover vs Active-Active multi-region writes, local write latency reduction, and concurrent update collision hazards.",
+            "status": "upcoming",
+            "readTime": "22m read",
+            "topics": [
+              "multi-region",
+              "active-active",
+              "disaster-recovery",
+              "rpo-rto"
+            ]
+          },
+          {
+            "id": "sd-16-2",
+            "number": "16.2",
+            "title": "Multi-Master Conflict Resolution: The Fatal Clock Skew Trap of Last-Write-Wins (LWW)",
+            "noteSlug": "multi-master-conflict-resolution-the-fatal-clock-skew-trap-of-lww",
+            "description": "Why server wall-clock timestamps cannot be trusted, NTP clock drift errors, and how a 50ms skew silently destroys newer, valid production writes.",
+            "status": "upcoming",
+            "readTime": "22m read",
+            "topics": [
+              "clock-skew",
+              "last-write-wins",
+              "ntp",
+              "distributed-clocks"
+            ]
+          },
+          {
+            "id": "sd-16-3",
+            "number": "16.3",
+            "title": "Conflict-Free Replicated Data Types (CRDTs): Mathematical Deterministic Merging",
+            "noteSlug": "conflict-free-replicated-data-types-crdts-deterministic-merging",
+            "description": "Semilattice mathematics (Associative, Commutative, Idempotent operations); CvRDT state vs CmRDT op models; G-Counter, PN-Counter, and real-world collaborative apps.",
+            "status": "upcoming",
+            "readTime": "26m read",
+            "topics": [
+              "crdts",
+              "distributed-math",
+              "collaborative-apps",
+              "conflict-resolution"
+            ]
+          },
+          {
+            "id": "sd-16-4",
+            "number": "16.4",
+            "title": "Planet-Scale External Consistency: Google Cloud Spanner & The TrueTime Atomic Clock API",
+            "noteSlug": "planet-scale-external-consistency-google-spanner-truetime",
+            "description": "Atomic clocks and GPS receivers in every Google datacenter; bounding clock uncertainty (epsilon ~7ms) to achieve global serializable ACID transactions.",
+            "status": "upcoming",
+            "readTime": "26m read",
+            "topics": [
+              "google-spanner",
+              "truetime",
+              "atomic-clocks",
+              "linearizability",
+              "acid"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sd-mod-17",
+        "number": "17",
+        "title": "Resilience Tier — Rate Limiting & Traffic Shaping",
+        "description": "Rate limiting algorithms: Token Bucket, Leaky Bucket, and Sliding Window Counter; and distributed atomic rate limiting in Redis with Lua scripts.",
+        "lessons": [
+          {
+            "id": "sd-17-1",
+            "number": "17.1",
+            "title": "Rate Limiting Algorithms: Token Bucket vs Leaky Bucket vs Sliding Window Counter",
+            "noteSlug": "rate-limiting-algorithms-token-bucket-leaky-bucket-sliding-window",
+            "description": "Burst tolerance in Token Bucket, constant-rate traffic smoothing in Leaky Bucket, and preventing double-limit abuse at window boundaries with sliding counters.",
+            "status": "upcoming",
+            "readTime": "22m read",
+            "topics": [
+              "rate-limiting",
+              "token-bucket",
+              "leaky-bucket",
+              "traffic-shaping"
+            ]
+          },
+          {
+            "id": "sd-17-2",
+            "number": "17.2",
+            "title": "Distributed Rate Limiting: Atomic Lua Scripts in Redis for Single Round-Trip Enforcement",
+            "noteSlug": "distributed-rate-limiting-atomic-lua-scripts-in-redis",
+            "description": "Eliminating race conditions in multi-server fleets; executing atomic Lua scripts on Redis single-threaded loops; evaluating tokens and setting TTLs in 1 RTT.",
+            "status": "upcoming",
+            "readTime": "24m read",
+            "topics": [
+              "redis-lua",
+              "distributed-rate-limiting",
+              "concurrency",
+              "redis"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sd-mod-18",
+        "number": "18",
+        "title": "Resilience Tier — Fault Isolation & Graceful Degradation",
+        "description": "Circuit breakers, timeouts and distributed deadlines, exponential backoff with full jitter against retry stampedes, bulkheads, and graceful degradation.",
+        "lessons": [
+          {
+            "id": "sd-18-1",
+            "number": "18.1",
+            "title": "The Circuit Breaker Pattern: Closed, Open & Half-Open State Machines",
+            "noteSlug": "the-circuit-breaker-pattern-states-thresholds-and-resilience4j",
+            "description": "Preventing thread starvation and cascading failures; state transitions in Resilience4j and Envoy; error rate thresholds and fallback responses.",
+            "status": "upcoming",
+            "readTime": "24m read",
+            "topics": [
+              "circuit-breaker",
+              "resilience4j",
+              "fault-tolerance",
+              "microservices"
+            ]
+          },
+          {
+            "id": "sd-18-2",
+            "number": "18.2",
+            "title": "Call Resilience: Strict Timeouts, Distributed Deadlines & Context Propagation",
+            "noteSlug": "call-resilience-strict-timeouts-distributed-deadlines-propagation",
+            "description": "Setting P99-based connection and read timeouts; propagating remaining execution deadlines across gRPC/HTTP headers to abort abandoned downstream processing.",
+            "status": "upcoming",
+            "readTime": "20m read",
+            "topics": [
+              "timeouts",
+              "deadlines",
+              "context-propagation",
+              "grpc",
+              "resilience"
+            ]
+          },
+          {
+            "id": "sd-18-3",
+            "number": "18.3",
+            "title": "Retrying Safely: Exponential Backoff with Full Jitter against Stampeding Herds",
+            "noteSlug": "retrying-safely-exponential-backoff-with-full-jitter",
+            "description": "Why naive retries crush recovering downstream services into infinite re-collapse; implementing Full Jitter equations to decorrelate retry bursts.",
+            "status": "upcoming",
+            "readTime": "22m read",
+            "topics": [
+              "exponential-backoff",
+              "jitter",
+              "thundering-herd",
+              "retry-patterns"
+            ]
+          },
+          {
+            "id": "sd-18-4",
+            "number": "18.4",
+            "title": "Resource Isolation: The Bulkhead Pattern & Graceful Feature Degradation",
+            "noteSlug": "resource-isolation-the-bulkhead-pattern-and-graceful-degradation",
+            "description": "Isolating thread pools and socket connections by business domain; sacrificing secondary recommendation features to protect revenue-critical checkout paths.",
+            "status": "upcoming",
+            "readTime": "20m read",
+            "topics": [
+              "bulkhead",
+              "graceful-degradation",
+              "chaos-engineering",
+              "netflix"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sd-mod-19",
+        "number": "19",
+        "title": "The 4-Step System Design Blueprint",
+        "description": "The repeatable 4-step framework: scoping requirements, back-of-the-envelope capacity estimations, high-level component topologies, and deep-dive bottleneck resolution.",
+        "lessons": [
+          {
+            "id": "sd-19-1",
+            "number": "19.1",
+            "title": "Step 1 & 2: Clarifying Scope, SLAs & Back-of-the-Envelope Capacity Estimations",
+            "noteSlug": "step-1-and-2-clarifying-scope-and-back-of-the-envelope-calculations",
+            "description": "Scoping functional vs non-functional requirements, availability SLAs, calculating average and peak QPS, 5-year storage growth, and network bandwidth in MB/s.",
+            "status": "upcoming",
+            "readTime": "22m read",
+            "topics": [
+              "interview-prep",
+              "framework",
+              "capacity-estimation",
+              "math"
+            ]
+          },
+          {
+            "id": "sd-19-2",
+            "number": "19.2",
+            "title": "Step 3 & 4: High-Level Component Topology, API Contracts & Bottleneck Deep Dives",
+            "noteSlug": "step-3-and-4-high-level-topology-api-contracts-and-bottlenecks",
+            "description": "Drafting API contracts (REST/gRPC), drawing end-to-end component data flows, modeling schemas, and systematically resolving single points of failure.",
+            "status": "upcoming",
+            "readTime": "22m read",
+            "topics": [
+              "high-level-design",
+              "api-contracts",
+              "bottlenecks",
+              "system-design"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sd-mod-20",
+        "number": "20",
+        "title": "Iconic Case Study 1 — Planet-Scale URL Shortener (TinyURL / Bitly)",
+        "description": "Designing a sub-10ms URL shortening system: Base62 encoding, distributed 64-bit ID generators, 301 vs 302 redirects, and partitioned key-value storage.",
+        "lessons": [
+          {
+            "id": "sd-20-1",
+            "number": "20.1",
+            "title": "URL Shortener Architecture: Base62 Encoding, Distributed ID Generation & 301 vs 302",
+            "noteSlug": "url-shortener-architecture-base62-distributed-ids-and-redirects",
+            "description": "Base62 encoding across 7 characters (3.5 trillion URLs), collision-free 64-bit IDs using Twitter Snowflake and ZooKeeper ranges, and 301 vs 302 redirect analytics.",
+            "status": "upcoming",
+            "readTime": "22m read",
+            "topics": [
+              "tinyurl",
+              "base62",
+              "snowflake-ids",
+              "http-redirects",
+              "case-study"
+            ]
+          },
+          {
+            "id": "sd-20-2",
+            "number": "20.2",
+            "title": "URL Shortener Scaling: Partitioned Key-Value Stores, Hot Key Caching & Analytics",
+            "noteSlug": "url-shortener-scaling-partitioned-kv-stores-and-analytics",
+            "description": "Partitioning DynamoDB/Cassandra by hash of alias, multi-tiered Redis caching for viral links, and asynchronous clickstream tracking via Kafka.",
+            "status": "upcoming",
+            "readTime": "22m read",
+            "topics": [
+              "nosql",
+              "dynamodb",
+              "caching",
+              "clickstream-analytics",
+              "case-study"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sd-mod-21",
+        "number": "21",
+        "title": "Iconic Case Study 2 — High-Throughput Social Timeline (Twitter / Instagram)",
+        "description": "Designing a dynamic social media timeline: Fan-out on write (push) vs Fan-out on read (pull), in-memory Redis feed storage, and solving the Celebrity Problem.",
+        "lessons": [
+          {
+            "id": "sd-21-1",
+            "number": "21.1",
+            "title": "Social Feed Fundamentals: Fan-Out-on-Write (Push) vs Fan-Out-on-Read (Pull)",
+            "noteSlug": "social-feed-fundamentals-fan-out-on-write-vs-fan-out-on-read",
+            "description": "Pre-computing follower inboxes in Redis lists for O(1) instant reads vs querying and merge-sorting tweets on the fly at read time.",
+            "status": "upcoming",
+            "readTime": "24m read",
+            "topics": [
+              "feed-design",
+              "fan-out",
+              "twitter-architecture",
+              "redis",
+              "case-study"
+            ]
+          },
+          {
+            "id": "sd-21-2",
+            "number": "21.2",
+            "title": "Solving the Celebrity Problem: Hybrid Dynamic Feed Generation & In-Memory Redis Inboxes",
+            "noteSlug": "solving-the-celebrity-problem-hybrid-dynamic-feed-generation",
+            "description": "Why the push model collapses when a user with 180M followers posts; the hybrid architecture: push for regular users and dynamic query merge for celebrities.",
+            "status": "upcoming",
+            "readTime": "24m read",
+            "topics": [
+              "celebrity-problem",
+              "hybrid-feed",
+              "redis-inbox",
+              "performance",
+              "case-study"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sd-mod-22",
+        "number": "22",
+        "title": "Iconic Case Study 3 — Real-Time Geospatial Dispatch (Uber / Lyft)",
+        "description": "Real-time geospatial matching: Geohash vs Google S2 vs Uber H3 hexagonal spatial indexing, persistent WebSockets, and sub-second ride dispatch engines.",
+        "lessons": [
+          {
+            "id": "sd-22-1",
+            "number": "22.1",
+            "title": "Geospatial Partitioning: Geohashes vs Google S2 & Uber H3 Hexagonal Hierarchies",
+            "noteSlug": "geospatial-partitioning-geohash-vs-google-s2-and-uber-h3",
+            "description": "Why SQL radius queries choke under 1M driver pings; base32 Geohash prefixes vs Uber H3 discrete global hexagonal grid decomposition.",
+            "status": "upcoming",
+            "readTime": "24m read",
+            "topics": [
+              "geospatial",
+              "geohash",
+              "uber-h3",
+              "google-s2",
+              "case-study"
+            ]
+          },
+          {
+            "id": "sd-22-2",
+            "number": "22.2",
+            "title": "Real-Time Ride Matching: WebSocket Location Ingress, Redis GEO & Sub-Second Dispatch",
+            "noteSlug": "real-time-ride-matching-websocket-ingress-and-redis-geo",
+            "description": "Persistent bi-directional WebSocket location streaming, Redis GEO sorted set radius queries, and distributed state machines matching riders to nearby drivers.",
+            "status": "upcoming",
+            "readTime": "24m read",
+            "topics": [
+              "websockets",
+              "redis-geo",
+              "uber-dispatch",
+              "real-time",
+              "case-study"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sd-mod-23",
+        "number": "23",
+        "title": "Master Reference, Trade-off Matrix & The Hall of Fame",
+        "description": "The 0-to-100M Scale Milestone Matrix, production readiness architectural checklist, and curated Hall of Fame engineering resources and blogs.",
+        "lessons": [
+          {
+            "id": "sd-23-1",
+            "number": "23.1",
+            "title": "The 0-to-100M Scale Milestone Matrix & Production Architecture Checklist",
+            "noteSlug": "the-zero-to-100m-scale-milestone-matrix-and-checklist",
+            "description": "The master reference matrix mapping Stages 0 through 9 by user scale, core architectural questions, and the production readiness verification checklist.",
+            "status": "upcoming",
+            "readTime": "20m read",
+            "topics": [
+              "reference-matrix",
+              "scale-roadmap",
+              "production-checklist",
+              "cheatsheet"
+            ]
+          },
+          {
+            "id": "sd-23-2",
+            "number": "23.2",
+            "title": "The Hall of Fame: Essential Books, Interactive Sandboxes & Planet-Scale Engineering Blogs",
+            "noteSlug": "system-design-hall-of-fame-books-sandboxes-and-blogs",
+            "description": "The definitive library of distributed systems classics: DDIA, System Design Primer, visual consensus sandboxes, and engineering blogs from Uber, Netflix, and Discord.",
+            "status": "upcoming",
+            "readTime": "18m read",
+            "topics": [
+              "resources",
+              "books",
+              "engineering-blogs",
+              "learning-path"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "production-microservices-distributed-architecture",
     "slug": "production-microservices-distributed-architecture",
     "title": "Production Microservices & Distributed Architecture",

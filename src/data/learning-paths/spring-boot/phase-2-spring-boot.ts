@@ -25,6 +25,17 @@ export const phase2Modules: LearningModule[] = [
       {
         id: 'sb-8-2',
         number: '8.2',
+        title: 'Anatomy of @SpringBootApplication: Configuration, Auto-Configuration & Component Scanning',
+        noteSlug: 'anatomy-spring-boot-application-configuration-autoconfiguration-componentscan',
+        description:
+          'Deep breakdown of the composite meta-annotation: @SpringBootConfiguration and CGLIB proxyBeanMethods, @EnableAutoConfiguration and Spring Boot 3 AutoConfiguration.imports, and @ComponentScan package scanning invariants.',
+        status: 'published',
+        readTime: '20m read',
+        topics: ['spring-boot', 'auto-configuration', 'component-scan', 'configuration', 'architecture'],
+      },
+      {
+        id: 'sb-8-3',
+        number: '8.3',
         title: 'Embedded Servlet Containers: Tomcat, Jetty, Undertow & Thread Models',
         noteSlug: 'spring-boot-internal-architecture-request-lifecycle-auto-configuration',
         description:
@@ -34,8 +45,8 @@ export const phase2Modules: LearningModule[] = [
         topics: ['tomcat', 'undertow', 'servlet-containers'],
       },
       {
-        id: 'sb-8-3',
-        number: '8.3',
+        id: 'sb-8-4',
+        number: '8.4',
         title: 'External Configuration: YAML Hierarchy, Profiles & @ConfigurationProperties',
         description:
           'application.properties vs application.yml, property precedence order, profile-specific files (application-prod.yml), and type-safe @ConfigurationProperties validation.',
@@ -44,8 +55,8 @@ export const phase2Modules: LearningModule[] = [
         topics: ['spring-boot', 'yaml', 'configuration-properties'],
       },
       {
-        id: 'sb-8-4',
-        number: '8.4',
+        id: 'sb-8-5',
+        number: '8.5',
         title: 'Executable Packaging & CDS Optimization',
         description:
           'Fat JAR layout, BOOT-INF classes, layered container builds, and Class Data Sharing (CDS) to cut startup latency.',

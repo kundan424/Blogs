@@ -48,11 +48,12 @@ export const phase2Modules: LearningModule[] = [
         id: 'sb-8-4',
         number: '8.4',
         title: 'External Configuration: YAML Hierarchy, Profiles & @ConfigurationProperties',
+        noteSlug: 'spring-boot-external-configuration-yaml-profiles-configurationproperties',
         description:
-          'application.properties vs application.yml, property precedence order, profile-specific files (application-prod.yml), and type-safe @ConfigurationProperties validation.',
-        status: 'upcoming',
-        readTime: '11m read',
-        topics: ['spring-boot', 'yaml', 'configuration-properties'],
+          'Property precedence order, application.properties vs YAML hierarchy, environment profiles, and type-safe @ConfigurationProperties validation using Java 21 records.',
+        status: 'published',
+        readTime: '22m read',
+        topics: ['spring-boot', 'configuration', 'yaml', 'profiles', 'configuration-properties', 'architecture'],
       },
       {
         id: 'sb-8-5',

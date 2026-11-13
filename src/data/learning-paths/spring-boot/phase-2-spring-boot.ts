@@ -36,13 +36,13 @@ export const phase2Modules: LearningModule[] = [
       {
         id: 'sb-8-3',
         number: '8.3',
-        title: 'Embedded Servlet Containers: Tomcat, Jetty, Undertow & Thread Models',
-        noteSlug: 'spring-boot-internal-architecture-request-lifecycle-auto-configuration',
+        title: 'Embedded Servlet Containers: Tomcat, Jetty & Undertow (Web vs App Servers)',
+        noteSlug: 'embedded-servlet-containers-tomcat-jetty-undertow-web-vs-app-servers',
         description:
-          'How Spring Boot configures embedded web servers, comparing Tomcat blocking worker pools with Undertow XNIO non-blocking architectures.',
+          'Architectural paradigms of Web Servers, Servlet Containers, and Application Servers, embedded container mechanics, and thread models across Tomcat, Jetty, and Undertow with Java 21 Virtual Threads.',
         status: 'published',
-        readTime: '12m read',
-        topics: ['tomcat', 'undertow', 'servlet-containers'],
+        readTime: '22m read',
+        topics: ['tomcat', 'jetty', 'undertow', 'servlet-containers', 'architecture', 'virtual-threads'],
       },
       {
         id: 'sb-8-4',
@@ -78,9 +78,10 @@ export const phase2Modules: LearningModule[] = [
         id: 'sb-9-1',
         number: '9.1',
         title: 'Spring MVC Architecture: DispatcherServlet, HandlerMappings & HttpMessageConverters',
+        noteSlug: 'spring-boot-internal-architecture-request-lifecycle-auto-configuration',
         description:
           'The anatomy of an incoming HTTP request: DispatcherServlet dispatch loop, HandlerMapping resolution, HandlerAdapter invocation, and Jackson JSON serialization.',
-        status: 'upcoming',
+        status: 'published',
         readTime: '12m read',
         topics: ['spring-mvc', 'dispatcher-servlet', 'jackson'],
       },

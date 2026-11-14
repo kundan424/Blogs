@@ -799,7 +799,7 @@ By adhering to this rule, your backend codebase remains resilient against infras
 
 ## Related Guides & Deep Dives
 
-- [Spring Boot Internal Architecture: Request Lifecycle & Auto-Configuration](/notes/spring-boot-internal-architecture-request-lifecycle-auto-configuration)
+- [Spring MVC Architecture: DispatcherServlet, HandlerMappings & HttpMessageConverters](/notes/spring-mvc-architecture-dispatcherservlet-handlermappings-httpmessageconverters)
 - [Relational Database Fundamentals: SQL Joins, Indexes, ACID & Normalization](/notes/relational-database-fundamentals-sql-joins-indexes-acid-normalization)
 - [HTTP Protocol Internals: Methods, Status Codes, Headers & Cookies](/notes/http-protocol-methods-status-codes-headers-cookies)
 - [Maven Architecture & Build Lifecycle: POM Anatomy, Plugins & Phased Execution](/notes/maven-architecture-build-lifecycle-pom-plugins-phases)

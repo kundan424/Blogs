@@ -345,14 +345,17 @@
             "id": "sb-9-1",
             "number": "9.1",
             "title": "Spring MVC Architecture: DispatcherServlet, HandlerMappings & HttpMessageConverters",
-            "noteSlug": "spring-boot-internal-architecture-request-lifecycle-auto-configuration",
-            "description": "The anatomy of an incoming HTTP request: DispatcherServlet dispatch loop, HandlerMapping resolution, HandlerAdapter invocation, and Jackson JSON serialization.",
+            "noteSlug": "spring-mvc-architecture-dispatcherservlet-handlermappings-httpmessageconverters",
+            "description": "The anatomy of an incoming HTTP request: Front Controller pattern, DispatcherServlet doDispatch loop, HandlerMapping resolution, HandlerAdapter argument binding, and Jackson HttpMessageConverters.",
             "status": "published",
-            "readTime": "12m read",
+            "readTime": "24m read",
             "topics": [
               "spring-mvc",
               "dispatcher-servlet",
-              "jackson"
+              "handler-mapping",
+              "http-message-converters",
+              "architecture",
+              "rest-api"
             ]
           },
           {

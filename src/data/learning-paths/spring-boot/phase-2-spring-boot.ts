@@ -94,7 +94,7 @@ export const phase2Modules: LearningModule[] = [
         description:
           'Developing production REST endpoints: @RestController semantics, HTTP verb contracts, @PathVariable, @RequestParam, @RequestBody with Jakarta validation, and @RequestHeader.',
         status: 'published',
-        readTime: '22m read',
+        readTime: '25m read',
         topics: ['rest-controllers', 'spring-mvc', 'rest-api', 'spring-boot', 'architecture', 'api-design'],
       },
       {

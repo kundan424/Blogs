@@ -142,29 +142,50 @@ export const phase2Modules: LearningModule[] = [
   {
     id: 'sb-mod-11',
     number: '11',
-    title: 'Global Exception Handling',
+    title: 'Global Exception Handling & Error Observability',
     description:
-      'Centralized controller advisories, HTTP status mapping, and the RFC 7807 ProblemDetail standard.',
+      'JVM exception mechanics, stack trace diagnosis, centralized controller advisories, and RFC 7807 ProblemDetail standards.',
     lessons: [
       {
         id: 'sb-11-1',
         number: '11.1',
-        title: 'Controller Advisories: @RestControllerAdvice & @ExceptionHandler Mechanics',
+        title: 'Java & Spring Exception Foundations: JVM Stack Frames, Checked Exception Traps & Domain Hierarchy',
+        noteSlug: 'spring-boot-java-spring-exception-foundations-jvm-hierarchy-domain-architecture',
         description:
-          'Intercepting controller exceptions globally, mapping domain exceptions to HTTP statuses, and handling MethodArgumentNotValidException payloads.',
-        status: 'upcoming',
-        readTime: '09m read',
-        topics: ['exception-handling', 'rest-api', 'spring-mvc'],
+          'The first principles of JVM exceptions: stack frame unwinding, the cost of fillInStackTrace, the Throwable hierarchy, why modern frameworks abandon checked exceptions, and architecting domain exception hierarchies.',
+        status: 'published',
+        readTime: '22m read',
+        topics: ['java-exceptions', 'jvm-internals', 'domain-exceptions', 'spring-boot', 'architecture'],
       },
       {
         id: 'sb-11-2',
         number: '11.2',
-        title: 'Modern RFC 7807 Standard: ProblemDetail API in Spring Boot 3',
+        title: 'Diagnosing & Tracing Spring Boot Errors: Stack Trace Anatomy, "Caused By" Chains & MDC Distributed Tracing',
         description:
-          'Implementing RFC 7807 problem details: using Spring Boot 3 ProblemDetail class, custom properties, URI instance identifiers, and standardized error schemas.',
+          'How to dissect complex Spring Boot stack traces, isolate root causes from framework proxy noise, and trace errors across distributed systems using SLF4J MDC and traceId correlation.',
         status: 'upcoming',
-        readTime: '08m read',
-        topics: ['spring-boot-3', 'rfc-7807', 'api-standards'],
+        readTime: '20m read',
+        topics: ['stack-traces', 'debugging', 'distributed-tracing', 'observability', 'spring-boot'],
+      },
+      {
+        id: 'sb-11-3',
+        number: '11.3',
+        title: 'Centralized Exception Handling: @RestControllerAdvice, @ExceptionHandler & ResponseEntityExceptionHandler',
+        description:
+          'The Spring MVC exception resolution pipeline, HandlerExceptionResolver mechanics, building centralized controller advisories, and extending ResponseEntityExceptionHandler for standard framework failures.',
+        status: 'upcoming',
+        readTime: '22m read',
+        topics: ['rest-controller-advice', 'exception-handler', 'response-entity-exception-handler', 'spring-mvc', 'spring-boot'],
+      },
+      {
+        id: 'sb-11-4',
+        number: '11.4',
+        title: 'Modern RFC 7807 Standard, ProblemDetail API & Production Security Hardening',
+        description:
+          'Standardizing API error schemas with RFC 7807/RFC 9457 ProblemDetail, resolving filter-chain security exceptions, and preventing CWE-209 stack trace leakage in production.',
+        status: 'upcoming',
+        readTime: '20m read',
+        topics: ['problem-detail', 'rfc-7807', 'rfc-9457', 'api-security', 'spring-boot-3'],
       },
     ],
   },

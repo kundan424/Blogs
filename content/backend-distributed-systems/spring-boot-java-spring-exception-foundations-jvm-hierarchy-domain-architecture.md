@@ -98,14 +98,43 @@ Every thread in a Java application (such as a Tomcat worker thread `http-nio-808
 
 When code executes `throw new InsufficientFundsException("Balance too low")`, the JVM performs three distinct operations:
 
-```mermaid
-flowchart TD
-    A["Instruction: throw new MyException()"] --> B["Phase 1: Object Instantiation on the Heap<br/>(Normal memory allocation)"]
-    B --> C["Phase 2: Native fillInStackTrace() Call<br/>(JVM walks stack frames and copies metadata)"]
-    C --> D["Phase 3: Stack Unwinding<br/>(JVM pops frames until a matching catch block is found)"]
-    D --> E{Matching catch found?}
-    E -- Yes --> F["Transfer control to catch block<br/>(Resume execution)"]
-    E -- No --> G["Thread UncaughtExceptionHandler<br/>(Thread terminates / Container logs 500)"]
+```
++-----------------------------------------------------------------------------------------+
+|                  THE THREE PHASES OF AN EXCEPTION EVENT IN THE JVM                      |
++-----------------------------------------------------------------------------------------+
+|                                                                                         |
+|   [ Bytecode: throw new InsufficientFundsException() ]                                  |
+|                           │                                                             |
+|                           ▼                                                             |
+|   +─────────────────────────────────────────────────────────────────────────────────+   |
+|   | PHASE 1: Heap Allocation                                                        |   |
+|   | Instantiates exception object in Young Gen (Eden Space) as a normal Java object |   |
+|   +───────────────────────────────────────┬─────────────────────────────────────────+   |
+|                                           │                                             |
+|                                           ▼                                             |
+|   +─────────────────────────────────────────────────────────────────────────────────+   |
+|   | PHASE 2: Native fillInStackTrace() Call                                         |   |
+|   | Pauses thread, transitions into C++, walks stack frames backwards to extract    |   |
+|   | class names, method names, file names, and Program Counter (PC) line numbers    |   |
+|   +───────────────────────────────────────┬─────────────────────────────────────────+   |
+|                                           │                                             |
+|                                           ▼                                             |
+|   +─────────────────────────────────────────────────────────────────────────────────+   |
+|   | PHASE 3: Stack Unwinding                                                        |   |
+|   | Inspects method's Exception Table. Pops frames until a matching catch is found  |   |
+|   +───────────────────────────────────────┬─────────────────────────────────────────+   |
+|                                           │                                             |
+|                         Matching try-catch found?                                       |
+|                                ┌──────────┴──────────┐                                  |
+|                                │                     │                                  |
+|                                ▼ (YES)               ▼ (NO)                             |
+|               +──────────────────────────+  +──────────────────────────────────────+    |
+|               | Transfer execution to    |  | Unwinds to thread root               |    |
+|               | matching catch block     |  | Invokes UncaughtExceptionHandler     |    |
+|               | (Resume normal execution)|  | Logs stack trace, returns HTTP 500   |    |
+|               +──────────────────────────+  +──────────────────────────────────────+    |
+|                                                                                         |
++-----------------------------------------------------------------------------------------+
 ```
 
 #### Phase 1: Heap Allocation

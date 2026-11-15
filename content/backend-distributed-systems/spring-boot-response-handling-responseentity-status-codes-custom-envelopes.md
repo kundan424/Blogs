@@ -75,27 +75,36 @@ You are essentially throwing an unpackaged item onto the customer's lawn with a 
 
 Recall from [Spring MVC Architecture](/notes/spring-mvc-architecture-dispatcherservlet-handlermappings-httpmessageconverters) that after a handler method executes, the `RequestMappingHandlerAdapter` delegates the return value to a chain of `HandlerMethodReturnValueHandler` implementations:
 
-```mermaid
-sequenceDiagram
-    autonumber
-    participant Client as HTTP Client
-    participant DS as DispatcherServlet
-    participant HA as HandlerAdapter
-    participant Ctrl as UserController
-    participant Processor as HttpEntityMethodProcessor
-    participant HMC as HttpMessageConverter (Jackson)
-    participant Socket as HttpServletResponse Socket
-
-    Client->>DS: POST /api/v1/orders
-    DS->>HA: handle(request, response, handler)
-    HA->>Ctrl: createOrder(request)
-    Ctrl-->>HA: return ResponseEntity<OrderResponse>
-    HA->>Processor: handleReturnValue(responseEntity, returnType, ...)
-    Processor->>Socket: setStatus(201)
-    Processor->>Socket: addHeader("Location", "/api/v1/orders/ORD-98421")
-    Processor->>HMC: write(orderResponse, MediaType.APPLICATION_JSON, socket)
-    HMC->>Socket: serialize JSON payload to OutputStream
-    Socket-->>Client: HTTP/1.1 201 Created (Headers + JSON Body)
+```
++--------------------------------------------------------------------------------------------------------------------+
+|                         SPRING MVC EGRESS LIFECYCLE: THE RESPONSEENTITY PIPELINE                                   |
++--------------------------------------------------------------------------------------------------------------------+
+|                                                                                                                    |
+|   Client            DispatcherServlet      HandlerAdapter       OrderController     HttpEntityProcessor    Socket  |
+|     │                      │                      │                    │                     │                │    |
+|   1 │ POST /v1/orders      │                      │                    │                     │                │    |
+|     ├─────────────────────►│                      │                    │                     │                │    |
+|     │                      │ 2. handle(request)   │                    │                     │                │    |
+|     │                      ├─────────────────────►│                    │                     │                │    |
+|     │                      │                      │ 3. createOrder()   │                     │                │    |
+|     │                      │                      ├───────────────────►│                     │                │    |
+|     │                      │                      │                    │                     │                │    |
+|     │                      │                      │ 4. ResponseEntity  │                     │                │    |
+|     │                      │                      │◄───────────────────┤                     │                │    |
+|     │                      │                      │                                          │                │    |
+|     │                      │                      │ 5. handleReturnValue(ResponseEntity)    │                │    |
+|     │                      │                      ├─────────────────────────────────────────►│                │    |
+|     │                      │                      │                                          │ 6. setStatus() │    |
+|     │                      │                      │                                          ├───────────────►│    |
+|     │                      │                      │                                          │ 7. addHeader() │    |
+|     │                      │                      │                                          ├───────────────►│    |
+|     │                      │                      │                                          │ 8. write(JSON) │    |
+|     │                      │                      │                                          ├───────────────►│    |
+|     │                      │                      │                                          │                │    |
+|   9 │ HTTP/1.1 201 Created (Headers + Body)       │                                          │                │    |
+|     │◄────────────────────────────────────────────────────────────────────────────────────────────────────────┤    |
+|                                                                                                                    |
++--------------------------------------------------------------------------------------------------------------------+
 ```
 
 For controller methods returning `ResponseEntity<T>`, the designated handler is **`HttpEntityMethodProcessor`**:
@@ -239,41 +248,36 @@ The 5xx family indicates that the client request was completely valid, but the s
 
 Use this decision tree to select the exact HTTP status code for any controller operation:
 
-```mermaid
-flowchart TD
-    Start([Incoming Controller Request]) --> HasError{Did an error occur?}
-    
-    %% Error Path
-    HasError -- Yes --> IsClientError{Is the error caused<br/>by client input/state?}
-    IsClientError -- No --> ServerError{Is it upstream<br/>or internal?}
-    ServerError -- Internal Crash --> S500["500 Internal Server Error"]
-    ServerError -- Circuit Open / Load --> S503["503 Service Unavailable"]
-    ServerError -- Upstream Timeout --> S504["504 Gateway Timeout"]
-    
-    IsClientError -- Yes --> AuthCheck{Authentication issue?}
-    AuthCheck -- No Credentials / Expired --> S401["401 Unauthorized"]
-    AuthCheck -- Logged In, No Role --> S403["403 Forbidden"]
-    AuthCheck -- No --> ExistsCheck{Does target resource exist?}
-    
-    ExistsCheck -- No --> S404["404 Not Found"]
-    ExistsCheck -- Yes --> ConflictCheck{Business conflict or<br/>duplicate state?}
-    ConflictCheck -- Yes --> S409["409 Conflict"]
-    ConflictCheck -- No --> SyntaxCheck{Is payload syntax broken<br/>or semantic rule failed?}
-    SyntaxCheck -- Malformed JSON --> S400["400 Bad Request"]
-    SyntaxCheck -- Validation Failed --> S422["422 Unprocessable Content"]
-
-    %% Success Path
-    HasError -- No --> MethodCheck{HTTP Verb?}
-    MethodCheck -- POST --> CreatedCheck{Did request create a<br/>new identifiable resource?}
-    CreatedCheck -- Yes --> S201["201 Created<br/>(Must set Location header)"]
-    CreatedCheck -- No / Async Job --> AsyncCheck{Is task long-running<br/>and enqueued?}
-    AsyncCheck -- Yes --> S202["202 Accepted<br/>(Return job tracking URI)"]
-    AsyncCheck -- No --> S200["200 OK"]
-    
-    MethodCheck -- DELETE --> S204["204 No Content"]
-    MethodCheck -- GET / PUT / PATCH --> HasBody{Does response<br/>contain body?}
-    HasBody -- Yes --> S200["200 OK"]
-    HasBody -- No --> S204["204 No Content"]
+```
++---------------------------------------------------------------------------------------------------+
+|                        HTTP STATUS CODE ARCHITECTURAL DECISION TREE                               |
++---------------------------------------------------------------------------------------------------+
+|                                                                                                   |
+|                           [ Incoming Controller Request ]                                         |
+|                                          │                                                        |
+|                                          ▼                                                        |
+|                                   Did an error occur?                                             |
+|                                     /          \                                                  |
+|                              (YES) /            \ (NO)                                            |
+|                                   /              \                                                |
+|            Is it a Client or Server Error?        What is the HTTP Verb?                          |
+|             /                          \            /          |           \                      |
+|       (CLIENT)                        (SERVER)    [POST]     [DELETE]   [GET/PUT/PATCH]           |
+|          │                                │         │          │              │                   |
+|          ├─► Unauthenticated?             ├─► 500   │          └─► 204        ├─► Has Body?       |
+|          │   └─► 401 Unauthorized         │   Crash ├─► Created Resource?         ├─► YES: 200 OK |
+|          ├─► Authenticated, No Role?      ├─► 503   │   └─► 201 Created (+Loc)    └─► NO:  204    |
+|          │   └─► 403 Forbidden            │   Load  └─► Async Background Job?                         |
+|          ├─► Resource Missing?            └─► 504       └─► 202 Accepted (Job URI)                    |
+|          │   └─► 404 Not Found                Timeout                                             |
+|          ├─► Duplicate / Conflict State?                                                          |
+|          │   └─► 409 Conflict                                                                     |
+|          ├─► Malformed Syntax?                                                                    |
+|          │   └─► 400 Bad Request                                                                  |
+|          └─► Semantic Validation Failed?                                                          |
+|              └─► 422 Unprocessable Content                                                        |
+|                                                                                                   |
++---------------------------------------------------------------------------------------------------+
 ```
 
 ---
@@ -497,12 +501,29 @@ This pollutes controller method signatures with three levels of generics (`Respo
 
 Spring MVC provides `ResponseBodyAdvice<T>`, an interceptor hook that executes inside `RequestResponseBodyMethodProcessor`. It intercepts controller return values **after** the handler method finishes, but **before** Jackson serializes the data to the HTTP socket:
 
-```mermaid
-flowchart LR
-    Ctrl["OrderController<br/>returns OrderResponse"] --> Processor["RequestResponseBody<br/>MethodProcessor"]
-    Processor --> Advice["ResponseBodyAdvice<br/>(Wraps in ApiResponse)"]
-    Advice --> Jackson["MappingJackson2<br/>HttpMessageConverter"]
-    Jackson --> Socket["HttpServletResponse<br/>Output Stream"]
+```
++-----------------------------------------------------------------------------------------+
+|                  THE RESPONSEBODYADVICE AUTOMATION CONVEYOR BELT                        |
++-----------------------------------------------------------------------------------------+
+|                                                                                         |
+|   [ OrderController ] ──► Returns raw domain object (e.g., OrderResponse)              |
+|          │                                                                              |
+|          ▼                                                                              |
+|   [ RequestResponseBodyMethodProcessor ]                                                |
+|          │                                                                              |
+|          ▼                                                                              |
+|   [ ResponseBodyAdvice (GlobalEnvelopeAdvice) ]                                         |
+|          │                                                                              |
+|          ├─► Injects distributed traceId from request header / context                  |
+|          ├─► Wraps domain record into ApiResponse.success(data, message, traceId)       |
+|          │                                                                              |
+|          ▼                                                                              |
+|   [ MappingJackson2HttpMessageConverter ]                                               |
+|          │                                                                              |
+|          ▼                                                                              |
+|   [ HttpServletResponse Socket Stream ] ──► Emits serialized JSON envelope             |
+|                                                                                         |
++-----------------------------------------------------------------------------------------+
 ```
 
 ### Production Implementation

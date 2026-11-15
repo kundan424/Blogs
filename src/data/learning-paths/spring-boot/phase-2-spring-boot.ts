@@ -90,11 +90,12 @@ export const phase2Modules: LearningModule[] = [
         id: 'sb-9-2',
         number: '9.2',
         title: 'REST Controllers: @RestController, Path Variables, Request Bodies & Headers',
+        noteSlug: 'spring-boot-rest-controllers-path-variables-request-bodies-headers',
         description:
-          'Developing clean REST endpoints: @GetMapping, @PostMapping, @PutMapping, @DeleteMapping, @PatchMapping, @PathVariable, @RequestParam, @RequestBody, and @RequestHeader.',
-        status: 'upcoming',
-        readTime: '10m read',
-        topics: ['spring-mvc', 'rest-api', 'controllers'],
+          'Developing production REST endpoints: @RestController semantics, HTTP verb contracts, @PathVariable, @RequestParam, @RequestBody with Jakarta validation, and @RequestHeader.',
+        status: 'published',
+        readTime: '22m read',
+        topics: ['rest-controllers', 'spring-mvc', 'rest-api', 'spring-boot', 'architecture', 'api-design'],
       },
       {
         id: 'sb-9-3',

@@ -112,7 +112,7 @@ Understanding the internal pipeline allows you to diagnose latency, secure endpo
 
 ## 02. The Request Lifecycle & The Front Controller Pattern
 
-Historically, web architectures used the **Page Controller** pattern, where each incoming URL mapped directly to a separate file or servlet (e.g., `/orders` $\rightarrow$ `OrderServlet`, `/billing` $\rightarrow$ `BillingServlet`). As enterprise applications grew to hundreds of endpoints, duplicating cross-cutting logic—such as security checks, audit logging, character encoding, and error pages—across individual servlets became unmanageable.
+Historically, web architectures used the **Page Controller** pattern, where each incoming URL mapped directly to a separate file or servlet (e.g., `/orders` → `OrderServlet`, `/billing` → `BillingServlet`). As enterprise applications grew to hundreds of endpoints, duplicating cross-cutting logic—such as security checks, audit logging, character encoding, and error pages—across individual servlets became unmanageable.
 
 Spring MVC solves this by implementing the Gang-of-Four **Front Controller** pattern via a single centralized servlet: **`DispatcherServlet`**.
 
@@ -374,10 +374,10 @@ Inside `RequestMappingHandlerAdapter`, Spring manages a composite list of **`Han
 $$\text{Incoming Request} \longrightarrow \text{Inspect Parameters} \longrightarrow \text{Query Matching Resolver} \longrightarrow \text{Inject Value}$$
 
 Spring ships with dozens of built-in resolvers:
-- `@RequestParam` $\rightarrow$ `RequestParamMethodArgumentResolver` (parses query parameters).
-- `@PathVariable` $\rightarrow$ `PathVariableMethodArgumentResolver` (extracts URI path tokens).
-- `@RequestBody` $\rightarrow$ `RequestResponseBodyMethodProcessor` (invokes Jackson to deserialize JSON).
-- `@RequestHeader` $\rightarrow$ `RequestHeaderMethodArgumentResolver` (extracts specific HTTP headers).
+- `@RequestParam` → `RequestParamMethodArgumentResolver` (parses query parameters).
+- `@PathVariable` → `PathVariableMethodArgumentResolver` (extracts URI path tokens).
+- `@RequestBody` → `RequestResponseBodyMethodProcessor` (invokes Jackson to deserialize JSON).
+- `@RequestHeader` → `RequestHeaderMethodArgumentResolver` (extracts specific HTTP headers).
 
 ---
 

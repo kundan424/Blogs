@@ -24,11 +24,11 @@ type ContentBlock =
  * outside code blocks so that unparsed LaTeX math renders as clean text.
  */
 function sanitizeLatexArtifacts(raw: string): string {
-  // Only sanitize outside of triple-backtick code fences and raw SVG blocks
-  const parts = raw.split(/(```[\s\S]*?```|<svg[\s\S]*?<\/svg>)/gi);
+  // Only sanitize outside of triple-backtick code fences, single-backtick inline code, and raw SVG blocks
+  const parts = raw.split(/(```[\s\S]*?```|`[^`\r\n]+`|<svg[\s\S]*?<\/svg>)/gi);
   return parts
     .map((part, index) => {
-      // Odd indices are code fences or SVGs: preserve completely as-is
+      // Odd indices are code fences, inline code, or SVGs: preserve completely as-is
       if (index % 2 === 1) return part;
 
       let cleaned = part;
@@ -88,12 +88,9 @@ function sanitizeLatexArtifacts(raw: string): string {
         .replace(/\\qquad/g, '  ')
         .replace(/\\&/g, '&');
 
-      // 4. Strip stray $...$ around inline expressions with units or text (e.g. $0 bytes$, $850MB$)
-      cleaned = cleaned.replace(/(?<!\\)\$([^$\n\r]+?)\$/g, (match, inner) => {
-        if (/[a-zA-Z×=+\-*/]/.test(inner)) {
-          return inner.trim();
-        }
-        return match;
+      // 4. Strip stray $...$ around inline math expressions and arrows (e.g. $O(1)$, $\rightarrow$, $850MB$)
+      cleaned = cleaned.replace(/(?<!\\)\$([^$\n\r]+?)\$/g, (_match, inner) => {
+        return inner.trim();
       });
 
       return cleaned;

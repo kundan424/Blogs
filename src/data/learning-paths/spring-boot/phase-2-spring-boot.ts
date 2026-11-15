@@ -161,10 +161,11 @@ export const phase2Modules: LearningModule[] = [
         id: 'sb-11-2',
         number: '11.2',
         title: 'Diagnosing & Tracing Spring Boot Errors: Stack Trace Anatomy, "Caused By" Chains & MDC Distributed Tracing',
+        noteSlug: 'spring-boot-diagnosing-tracing-errors-stack-trace-anatomy-caused-by-mdc',
         description:
           'How to dissect complex Spring Boot stack traces, isolate root causes from framework proxy noise, and trace errors across distributed systems using SLF4J MDC and traceId correlation.',
-        status: 'upcoming',
-        readTime: '20m read',
+        status: 'published',
+        readTime: '22m read',
         topics: ['stack-traces', 'debugging', 'distributed-tracing', 'observability', 'spring-boot'],
       },
       {

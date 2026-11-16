@@ -509,27 +509,62 @@
           {
             "id": "sb-12-1",
             "number": "12.1",
-            "title": "Strict Layered Boundaries: Controller to Service to Repository Isolation",
-            "description": "Why entities must never escape the service layer, single responsibility across web, service, and persistence tiers, and circular dependency avoidance.",
-            "status": "upcoming",
-            "readTime": "10m read",
+            "title": "Strict Layered Architecture: Controller, Service & Repository Isolation",
+            "noteSlug": "spring-boot-strict-layered-architecture-controller-service-repository-isolation",
+            "description": "Separation of concerns across Web, Service, and Persistence tiers, directional dependency invariants, why controllers must never call repositories, and decoupling circular bean dependencies.",
+            "status": "published",
+            "readTime": "22m read",
             "topics": [
-              "software-architecture",
-              "clean-code",
-              "layering"
+              "layered-architecture",
+              "spring-boot",
+              "clean-architecture",
+              "dependency-inversion",
+              "software-design"
             ]
           },
           {
             "id": "sb-12-2",
             "number": "12.2",
-            "title": "DTO Pattern with Java Records & Compile-Time MapStruct Mapping",
-            "description": "Data Transfer Objects using modern Java records, eliminating reflection overhead via compile-time MapStruct code generation, and comparing with ModelMapper.",
+            "title": "The Entity Leak Anti-Pattern: Encapsulation, Mass Assignment & DTO Design",
+            "description": "Why JPA entities must never escape the service layer: preventing the GitHub 2012 mass assignment vulnerability, resolving Jackson infinite recursion, and modeling DTOs with Java 21 Records.",
             "status": "upcoming",
-            "readTime": "11m read",
+            "readTime": "22m read",
+            "topics": [
+              "dto-pattern",
+              "java-records",
+              "entity-encapsulation",
+              "spring-boot",
+              "api-security"
+            ]
+          },
+          {
+            "id": "sb-12-3",
+            "number": "12.3",
+            "title": "Object Mapping Strategies: Manual Mapping, Reflection Pitfalls & MapStruct Foundations",
+            "description": "Comparing manual mapping with runtime reflection mappers (ModelMapper/Dozer), why reflection fails in production, and how MapStruct achieves zero-overhead compile-time code generation.",
+            "status": "upcoming",
+            "readTime": "22m read",
             "topics": [
               "mapstruct",
-              "java-records",
-              "dto-pattern"
+              "object-mapping",
+              "compile-time",
+              "performance",
+              "spring-boot"
+            ]
+          },
+          {
+            "id": "sb-12-4",
+            "number": "12.4",
+            "title": "Advanced MapStruct in Spring Boot: Nested Mappings, Partial Updates & Lifecycle Hooks",
+            "description": "Spring dependency injection, complex and nested object mapping, PATCH partial updates with @MappingTarget, and custom @AfterMapping lifecycle hooks.",
+            "status": "upcoming",
+            "readTime": "22m read",
+            "topics": [
+              "mapstruct",
+              "patch-mapping",
+              "nested-objects",
+              "spring-boot-3",
+              "clean-code"
             ]
           }
         ]

@@ -172,10 +172,11 @@ export const phase2Modules: LearningModule[] = [
         id: 'sb-11-3',
         number: '11.3',
         title: 'Centralized Exception Handling: @RestControllerAdvice, @ExceptionHandler & ResponseEntityExceptionHandler',
+        noteSlug: 'spring-boot-centralized-exception-handling-restcontrolleradvice-exceptionhandler-responseentityexceptionhandler',
         description:
           'The Spring MVC exception resolution pipeline, HandlerExceptionResolver mechanics, building centralized controller advisories, and extending ResponseEntityExceptionHandler for standard framework failures.',
-        status: 'upcoming',
-        readTime: '22m read',
+        status: 'published',
+        readTime: '24m read',
         topics: ['rest-controller-advice', 'exception-handler', 'response-entity-exception-handler', 'spring-mvc', 'spring-boot'],
       },
       {

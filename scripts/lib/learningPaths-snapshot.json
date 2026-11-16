@@ -597,9 +597,10 @@
             "id": "sb-13-2",
             "number": "13.2",
             "title": "JDBC vs. JPA vs. Hibernate: How the Stack Fits Together",
+            "noteSlug": "spring-boot-jdbc-jpa-hibernate-spring-data-persistence-stack-architecture",
             "description": "Clarifying the exact architectural boundary between the JDBC API (driver layer), Jakarta Persistence / JPA (specification), Hibernate (implementation provider), and Spring Data JPA (repository abstraction layer).",
-            "status": "upcoming",
-            "readTime": "15m read",
+            "status": "published",
+            "readTime": "22m read",
             "topics": [
               "jdbc",
               "jpa",

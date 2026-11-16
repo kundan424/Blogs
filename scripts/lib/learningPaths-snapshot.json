@@ -581,9 +581,10 @@
             "id": "sb-13-1",
             "number": "13.1",
             "title": "The Object-Relational Impedance Mismatch",
+            "noteSlug": "spring-boot-object-relational-impedance-mismatch-raw-jdbc-orm-foundations",
             "description": "First principles of why Java objects and relational database tables clash (granularity, inheritance, identity vs. equality, associations, and data navigation), why raw JDBC becomes boilerplate-heavy at scale, and what problem an ORM actually solves.",
-            "status": "upcoming",
-            "readTime": "15m read",
+            "status": "published",
+            "readTime": "20m read",
             "topics": [
               "impedance-mismatch",
               "orm",

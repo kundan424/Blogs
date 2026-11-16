@@ -9,27 +9,77 @@ export const phase3Modules: LearningModule[] = [
     number: '13',
     title: 'ORM Fundamentals & Hibernate Entity Mapping',
     description:
-      'Object-relational impedance mismatch, JPA specification vs Hibernate provider, and core entity mapping.',
+      'Object-relational impedance mismatch, JDBC vs JPA vs Hibernate architecture, entity lifecycle, primary keys, schema constraints, and value types.',
     lessons: [
       {
         id: 'sb-13-1',
         number: '13.1',
-        title: 'Object-Relational Impedance Mismatch & JPA vs Hibernate Specifications',
+        title: 'The Object-Relational Impedance Mismatch',
         description:
-          'The five dimensions of impedance mismatch (granularity, subtypes, identity, associations, navigation), JPA standards, and Hibernate Session / EntityManager mechanics.',
+          'First principles of why Java objects and relational database tables clash (granularity, inheritance, identity vs. equality, associations, and data navigation), why raw JDBC becomes boilerplate-heavy at scale, and what problem an ORM actually solves.',
         status: 'upcoming',
-        readTime: '11m read',
-        topics: ['jpa', 'hibernate', 'orm', 'database'],
+        readTime: '15m read',
+        topics: ['impedance-mismatch', 'orm', 'jdbc', 'jpa', 'database-design'],
       },
       {
         id: 'sb-13-2',
         number: '13.2',
-        title: 'Domain Entity Mapping: @Entity, Identifiers, Columns & Value Types',
+        title: 'JDBC vs. JPA vs. Hibernate: How the Stack Fits Together',
         description:
-          'Mapping relational tables: @Entity, @Table, @Id strategies (IDENTITY, SEQUENCE, TABLE), @Column attributes, @Enumerated (STRING vs ORDINAL), and @Embedded value objects.',
+          'Clarifying the exact architectural boundary between the JDBC API (driver layer), Jakarta Persistence / JPA (specification), Hibernate (implementation provider), and Spring Data JPA (repository abstraction layer).',
         status: 'upcoming',
-        readTime: '10m read',
-        topics: ['jpa', 'hibernate', 'entity-mapping'],
+        readTime: '15m read',
+        topics: ['jdbc', 'jpa', 'hibernate', 'spring-data-jpa', 'architecture'],
+      },
+      {
+        id: 'sb-13-3',
+        number: '13.3',
+        title: 'Anatomy of a JPA Entity & Lifecycle Rules',
+        description:
+          'Writing a clean @Entity and @Table class from scratch: the mandatory no-arg constructor (protected vs. public), why entities must not be final, and safely implementing equals() and hashCode() without breaking Hibernate proxies or Set collections.',
+        status: 'upcoming',
+        readTime: '18m read',
+        topics: ['jpa', 'hibernate', 'entity-lifecycle', 'equals-hashcode', 'clean-code'],
+      },
+      {
+        id: 'sb-13-4',
+        number: '13.4',
+        title: 'Primary Key Strategies & ID Generation in Production',
+        description:
+          '@Id and @GeneratedValue mechanics: deep dive into production strategies: SEQUENCE (Hibernate pooled optimizer for PostgreSQL/Oracle), IDENTITY (MySQL mechanics and why it disables JDBC batch inserts), and UUID (UUIDv4 vs time-ordered UUIDv7 for B-Tree index performance).',
+        status: 'upcoming',
+        readTime: '20m read',
+        topics: ['primary-keys', 'sequence-generator', 'uuidv7', 'hibernate-performance', 'postgresql'],
+      },
+      {
+        id: 'sb-13-5',
+        number: '13.5',
+        title: 'Column Mapping, Nullability & Schema Constraints',
+        description:
+          'Mapping Java fields to database columns with @Column (nullable, unique, length, precision, scale, columnDefinition), the critical difference between Java-side validation (@NotNull) and database-level DDL constraints (nullable = false), and @Transient non-persisted fields.',
+        status: 'upcoming',
+        readTime: '18m read',
+        topics: ['column-mapping', 'schema-constraints', 'validation', 'ddl', 'jpa'],
+      },
+      {
+        id: 'sb-13-6',
+        number: '13.6',
+        title: 'Enums, Dates & Auditing Timestamps',
+        description:
+          'Mapping non-primitive standard types safely: why @Enumerated(EnumType.STRING) is mandatory over ORDINAL, mapping java.time (Instant, LocalDate, OffsetDateTime) without timezone bugs, and automating createdAt / updatedAt with @CreationTimestamp and @UpdateTimestamp.',
+        status: 'upcoming',
+        readTime: '16m read',
+        topics: ['enums', 'java-time', 'auditing', 'timestamps', 'hibernate'],
+      },
+      {
+        id: 'sb-13-7',
+        number: '13.7',
+        title: 'Value Objects, Embeddables & JSON Columns',
+        description:
+          'Modeling rich domain concepts without extra tables: @Embeddable and @Embedded value objects (Address, Money), @AttributeOverrides for multiple embeddables in one entity, and Hibernate 6 native @JdbcTypeCode(SqlTypes.JSON) for flexible JSONB payloads.',
+        status: 'upcoming',
+        readTime: '18m read',
+        topics: ['embeddables', 'value-objects', 'jsonb', 'postgresql', 'hibernate-6'],
       },
     ],
   },
@@ -74,7 +124,7 @@ export const phase3Modules: LearningModule[] = [
         number: '15.1',
         title: 'Repository Hierarchy: CrudRepository to JpaRepository Abstractions',
         description:
-          'Repository $\rightarrow$ CrudRepository $\rightarrow$ PagingAndSortingRepository $\rightarrow$ JpaRepository contract hierarchy and query method proxy generation.',
+          'Repository → CrudRepository → PagingAndSortingRepository → JpaRepository contract hierarchy and query method proxy generation.',
         status: 'upcoming',
         readTime: '08m read',
         topics: ['spring-data-jpa', 'repositories'],

@@ -214,9 +214,10 @@ export const phase2Modules: LearningModule[] = [
         id: 'sb-12-2',
         number: '12.2',
         title: 'The Entity Leak Anti-Pattern: Encapsulation, Mass Assignment & DTO Design',
+        noteSlug: 'spring-boot-entity-leak-anti-pattern-mass-assignment-dto-java-records',
         description:
           'Why JPA entities must never escape the service layer: preventing the GitHub 2012 mass assignment vulnerability, resolving Jackson infinite recursion, and modeling DTOs with Java 21 Records.',
-        status: 'upcoming',
+        status: 'published',
         readTime: '22m read',
         topics: ['dto-pattern', 'java-records', 'entity-encapsulation', 'spring-boot', 'api-security'],
       },

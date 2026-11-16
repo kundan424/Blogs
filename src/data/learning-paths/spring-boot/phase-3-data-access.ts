@@ -37,10 +37,11 @@ export const phase3Modules: LearningModule[] = [
         id: 'sb-13-3',
         number: '13.3',
         title: 'Anatomy of a JPA Entity & Lifecycle Rules',
+        noteSlug: 'spring-boot-anatomy-jpa-entity-lifecycle-rules-equals-hashcode',
         description:
           'Writing a clean @Entity and @Table class from scratch: the mandatory no-arg constructor (protected vs. public), why entities must not be final, and safely implementing equals() and hashCode() without breaking Hibernate proxies or Set collections.',
-        status: 'upcoming',
-        readTime: '18m read',
+        status: 'published',
+        readTime: '22m read',
         topics: ['jpa', 'hibernate', 'entity-lifecycle', 'equals-hashcode', 'clean-code'],
       },
       {

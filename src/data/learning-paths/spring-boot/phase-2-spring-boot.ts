@@ -183,10 +183,11 @@ export const phase2Modules: LearningModule[] = [
         id: 'sb-11-4',
         number: '11.4',
         title: 'Modern RFC 7807 Standard, ProblemDetail API & Production Security Hardening',
+        noteSlug: 'spring-boot-rfc-7807-problemdetail-api-filter-chain-error-security',
         description:
           'Standardizing API error schemas with RFC 7807/RFC 9457 ProblemDetail, resolving filter-chain security exceptions, and preventing CWE-209 stack trace leakage in production.',
-        status: 'upcoming',
-        readTime: '20m read',
+        status: 'published',
+        readTime: '24m read',
         topics: ['problem-detail', 'rfc-7807', 'rfc-9457', 'api-security', 'spring-boot-3'],
       },
     ],

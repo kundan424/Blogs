@@ -225,10 +225,11 @@ export const phase2Modules: LearningModule[] = [
         id: 'sb-12-3',
         number: '12.3',
         title: 'Object Mapping Strategies: Manual Mapping, Reflection Pitfalls & MapStruct Foundations',
+        noteSlug: 'spring-boot-object-mapping-manual-reflection-mapstruct-foundations',
         description:
           'Comparing manual mapping with runtime reflection mappers (ModelMapper/Dozer), why reflection fails in production, and how MapStruct achieves zero-overhead compile-time code generation.',
-        status: 'upcoming',
-        readTime: '22m read',
+        status: 'published',
+        readTime: '24m read',
         topics: ['mapstruct', 'object-mapping', 'compile-time', 'performance', 'spring-boot'],
       },
       {

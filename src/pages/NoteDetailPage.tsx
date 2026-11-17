@@ -459,6 +459,18 @@ export const NoteDetailPage: React.FC = () => {
                     </span>
                   </Link>
                 )}
+                
+                {/* // full Curriculum */}
+                {linkedCurriculum && (
+                  <Link
+                    to={`/learning-paths/${linkedCurriculum.path.slug}`}
+                    className="inline-flex items-center gap-1 text-proof-green hover:underline font-medium text-[11.5px]"
+                  >
+                    <span>Full Curriculum</span>
+                    <span className="material-symbols-outlined text-[13px]">arrow_forward</span>
+                  </Link>
+                )}
+
               </div>
 
               {/* Discussion / Responses Section */}

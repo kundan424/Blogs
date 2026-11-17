@@ -59,10 +59,11 @@ export const phase3Modules: LearningModule[] = [
         id: 'sb-13-5',
         number: '13.5',
         title: 'Column Mapping, Nullability & Schema Constraints',
+        noteSlug: 'spring-boot-column-mapping-nullability-schema-constraints-transient',
         description:
           'Mapping Java fields to database columns with @Column (nullable, unique, length, precision, scale, columnDefinition), the critical difference between Java-side validation (@NotNull) and database-level DDL constraints (nullable = false), and @Transient non-persisted fields.',
-        status: 'upcoming',
-        readTime: '18m read',
+        status: 'published',
+        readTime: '22m read',
         topics: ['column-mapping', 'schema-constraints', 'validation', 'ddl', 'jpa'],
       },
       {

@@ -100,10 +100,11 @@ export const phase3Modules: LearningModule[] = [
         id: 'sb-14-1',
         number: '14.1',
         title: '@ManyToOne & @OneToMany: Owning Sides and Bidirectional Sync',
+        noteSlug: 'spring-boot-many-to-one-one-to-many-owning-side-bidirectional-sync',
         description:
           'Foreign key ownership in relational schemas, why FetchType.LAZY is mandatory on all associations, and implementing synchronized addChild() / removeChild() helper methods.',
-        status: 'upcoming',
-        readTime: '18m read',
+        status: 'published',
+        readTime: '22m read',
         topics: ['many-to-one', 'one-to-many', 'jpa-relationships', 'lazy-loading', 'hibernate'],
       },
       {

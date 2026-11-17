@@ -111,10 +111,11 @@ export const phase3Modules: LearningModule[] = [
         id: 'sb-14-2',
         number: '14.2',
         title: '@OneToOne with @MapsId & Join Entities vs. @ManyToMany',
+        noteSlug: 'spring-boot-one-to-one-maps-id-join-entities-vs-many-to-many',
         description:
           'Shared primary key @OneToOne with @MapsId to eliminate eager proxy traps and extra indexes, and replacing naive @ManyToMany with an explicit Join Entity for real-world domain models.',
-        status: 'upcoming',
-        readTime: '18m read',
+        status: 'published',
+        readTime: '20m read',
         topics: ['one-to-one', 'maps-id', 'join-entity', 'many-to-many', 'database-design'],
       },
       {

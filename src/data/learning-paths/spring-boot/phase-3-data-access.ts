@@ -48,10 +48,11 @@ export const phase3Modules: LearningModule[] = [
         id: 'sb-13-4',
         number: '13.4',
         title: 'Primary Key Strategies & ID Generation in Production',
+        noteSlug: 'spring-boot-primary-key-strategies-id-generation-sequence-identity-uuidv7',
         description:
           '@Id and @GeneratedValue mechanics: deep dive into production strategies: SEQUENCE (Hibernate pooled optimizer for PostgreSQL/Oracle), IDENTITY (MySQL mechanics and why it disables JDBC batch inserts), and UUID (UUIDv4 vs time-ordered UUIDv7 for B-Tree index performance).',
-        status: 'upcoming',
-        readTime: '20m read',
+        status: 'published',
+        readTime: '24m read',
         topics: ['primary-keys', 'sequence-generator', 'uuidv7', 'hibernate-performance', 'postgresql'],
       },
       {

@@ -41,7 +41,7 @@ export const PoolCalculator: React.FC = () => {
             step="2"
             value={cores}
             onChange={(e) => setCores(Number(e.target.value))}
-            className="w-full accent-navy cursor-pointer"
+            className="w-full accent-[#2F6BFF] cursor-pointer"
           />
           <div className="flex justify-between text-[11px] font-mono text-muted-ink mt-1">
             <span>2 Cores</span>
@@ -60,7 +60,7 @@ export const PoolCalculator: React.FC = () => {
             step="1"
             value={spindles}
             onChange={(e) => setSpindles(Number(e.target.value))}
-            className="w-full accent-navy cursor-pointer"
+            className="w-full accent-[#2F6BFF] cursor-pointer"
           />
           <div className="flex justify-between text-[11px] font-mono text-muted-ink mt-1">
             <span>1 (NVMe SSD)</span>
@@ -79,7 +79,7 @@ export const PoolCalculator: React.FC = () => {
             step="500"
             value={trafficSurge}
             onChange={(e) => setTrafficSurge(Number(e.target.value))}
-            className="w-full accent-navy cursor-pointer"
+            className="w-full accent-[#2F6BFF] cursor-pointer"
           />
           <div className="flex justify-between text-[11px] font-mono text-muted-ink mt-1">
             <span>500 req/s</span>

@@ -53,7 +53,7 @@ export const HomeSidebar: React.FC<HomeSidebarProps> = ({
                   className={`group flex items-center gap-1.5 rounded-[8px] px-3 py-1.5 text-left transition-all border cursor-pointer ${
                     isActive
                       ? 'bg-navy text-white border-navy dark:bg-white dark:text-navy shadow-primary-btn'
-                      : 'bg-canvas dark:bg-[#121620] border-edge text-secondary-ink hover:border-navy hover:text-navy dark:hover:text-white shadow-secondary-btn'
+                      : 'bg-canvas border-edge text-secondary-ink hover:border-navy hover:text-navy dark:hover:text-white shadow-secondary-btn'
                   }`}
                 >
                   <span className="font-mono text-[12px] font-medium">
@@ -93,7 +93,7 @@ export const HomeSidebar: React.FC<HomeSidebarProps> = ({
               onChange={(e) => setEmail(e.target.value)}
               placeholder="engineer@domain.com"
               required
-              className="h-[36px] w-full rounded-[8px] bg-canvas dark:bg-[#121620] px-3.5 font-mono text-[13px] text-body-ink placeholder:text-muted-ink focus:outline-none focus:border-navy border border-edge"
+              className="h-[36px] w-full rounded-[8px] bg-canvas px-3.5 font-mono text-[13px] text-body-ink placeholder:text-muted-ink focus:outline-none focus:border-navy border border-edge"
             />
             <button
               type="submit"

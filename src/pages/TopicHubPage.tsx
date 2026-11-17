@@ -196,12 +196,12 @@ export const TopicHubPage: React.FC = () => {
                     <Link
                       key={item.name}
                       to={`/topics/${item.name}`}
-                      className="group inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[8px] bg-canvas dark:bg-[#121620] border border-edge hover:border-navy hover:text-navy dark:hover:text-white transition-all"
+                      className="group inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[8px] bg-canvas border border-edge hover:border-[#2F6BFF] hover:text-[#2F6BFF] dark:hover:text-[#fffffc] transition-all"
                     >
-                      <span className="font-mono text-[12px] text-body-ink group-hover:text-navy dark:group-hover:text-white">
+                      <span className="font-mono text-[12px] text-body-ink group-hover:text-[#2F6BFF] dark:group-hover:text-[#fffffc]">
                         #{item.name}
                       </span>
-                      <span className="font-mono text-[11px] text-muted-ink group-hover:text-navy/80 dark:group-hover:text-white/80">
+                      <span className="font-mono text-[11px] text-muted-ink group-hover:text-[#2F6BFF]/80 dark:group-hover:text-[#fffffc]/80">
                         {item.count}
                       </span>
                     </Link>
@@ -219,7 +219,7 @@ export const TopicHubPage: React.FC = () => {
                     <Link
                       key={sub.id}
                       to={`/subjects/${sub.slug}`}
-                      className="block p-3 rounded-[8px] bg-canvas dark:bg-[#121620] border border-edge hover:border-navy hover:text-navy dark:hover:text-white transition-all group"
+                      className="block p-3 rounded-[8px] bg-canvas border border-edge hover:border-[#2F6BFF] hover:text-[#2F6BFF] dark:hover:text-[#fffffc] transition-all group"
                     >
                       <div className="flex items-center gap-2">
                         <span className="material-symbols-outlined text-[18px] text-navy dark:text-ice">

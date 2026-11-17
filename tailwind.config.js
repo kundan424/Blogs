@@ -9,30 +9,29 @@ export default {
     extend: {
       colors: {
         /* =====================================================================
-           COLUMN BRAND TOKENS
+           BRAND PALETTE (#2F6BFF, #fffffc, #beb7a4)
            ===================================================================== */
-        // Default headings, main buttons and directory labels; supporting copy can use this ink at 60% opacity
-        "navy": "#111a4a",
-        "navy-ink": "#111a4a",
+        // Default headings, main buttons, brand badges: ELECTRIC BLUE #2F6BFF
+        "navy": "#2F6BFF",
+        "navy-ink": "#2F6BFF",
+        "electric-blue": "#2F6BFF",
 
-        // Left side of the narrow announcement gradient
-        "announcement-indigo": "#3e5199",
-        "banner-start": "#3e5199",
-
-        // Right side of the announcement gradient
-        "announcement-periwinkle": "#5568ad",
-        "banner-end": "#5568ad",
+        // Left & right sides of the announcement gradient
+        "announcement-indigo": "#2F6BFF",
+        "banner-start": "#2F6BFF",
+        "announcement-periwinkle": "#2456cc",
+        "banner-end": "#2456cc",
 
         // Bounded infrastructure chapters
-        "deep-teal": "#011821",
+        "deep-teal": "#090d1f",
 
-        // Darker blue controls and closing headings in the warm theme (editorial product launches)
-        "launch-midnight": "#080b32",
+        // Darker blue controls and closing headings
+        "launch-midnight": "#060919",
 
         /* =====================================================================
-           COLUMN NEUTRAL TOKENS
+           NEUTRAL PALETTE (#fffffc Canvas & Surfaces, #beb7a4 Borders & Stone)
            ===================================================================== */
-        // Compact customer quotations; alpha versions supply fine shadows
+        // Compact customer quotations
         "quote-black": "#000000",
 
         // Navigation and product-detail headings
@@ -40,7 +39,7 @@ export default {
         "near-black-ink": "#12161e",
         "heading-ink": "#12161e",
 
-        // Secondary button labels
+        // Secondary button labels & controls
         "control-charcoal": "#232730",
         "control-ink": "#232730",
 
@@ -56,87 +55,69 @@ export default {
         "muted-gray": "#7c7f88",
         "muted-ink": "#7c7f88",
 
-        // Warm panel's outline (editorial product launches)
-        "warm-hairline": "#e7e4e0",
+        // Borders, hairlines and dividing rules: #beb7a4 (sand/taupe)
+        "warm-hairline": "#beb7a4",
+        "cool-hairline": "#beb7a4",
+        "edge": "#beb7a4",
+        "filter-edge": "#beb7a4",
 
-        // Section rules and the closing panel's 1px outline
-        "cool-hairline": "#e3e4e8",
-        "edge": "#e3e4e8",
+        // Stone / Taupe neutral
+        "warm-stone": "#beb7a4",
+        "sand": "#beb7a4",
+        "taupe": "#beb7a4",
 
-        // Warm launch theme canvas (editorial product launches)
-        "warm-stone": "#eceae7",
-
-        // Closing panel and technical response backing
-        "closing-gray": "#eeeff2",
-        "panel": "#eeeff2",
-
-        // Warm launch closing panel (editorial product launches)
-        "warm-milk": "#f5f3f1",
-
-        // Default marketing canvas
-        "cool-canvas": "#f6f6f8",
-        "canvas": "#f6f6f8",
-
-        // Slightly cooler canvas for product-detail pages
-        "product-frost": "#f6f7fa",
-
-        // White surfaces, reversed text and glass edges
-        "milk-white": "#ffffff",
-        "milk": "#ffffff",
+        // Canvas & Surfaces: #fffffc (ivory / off-white)
+        "closing-gray": "#faf9f5",
+        "panel": "#faf9f5",
+        "warm-milk": "#fffffc",
+        "cool-canvas": "#fffffc",
+        "canvas": "#fffffc",
+        "product-frost": "#fffffc",
+        "milk-white": "#fffffc",
+        "milk": "#fffffc",
+        "ivory": "#fffffc",
 
         /* =====================================================================
-           COLUMN ACCENT TOKENS
+           ACCENT TOKENS (Unified with #2F6BFF and #beb7a4)
            ===================================================================== */
-        // Active customer tab and compact proof objects; not the default conversion color
-        "customer-ember": "#ec652b",
-        "ember": "#ec652b",
-
-        // Metrics, proof labels and small graph endpoints
-        "proof-green": "#167e6c",
-
-        // Closing matrix icons, with inactive dots at 20% opacity
-        "dot-blue": "#4575cd",
-
-        // Emphasized narrative statements (company and culture narratives)
-        "editorial-blue": "#1b2d70",
-
-        // 2px navigation focus ring and editorial quote rules
-        "focus-blue": "#a2c1ed",
-
-        // Headlines on deep teal
-        "icy-cyan": "#c1e8ef",
-        "ice": "#c1e8ef",
+        "customer-ember": "#2F6BFF",
+        "ember": "#2F6BFF",
+        "proof-green": "#2F6BFF",
+        "dot-blue": "#2F6BFF",
+        "editorial-blue": "#2F6BFF",
+        "focus-blue": "#2F6BFF",
+        "icy-cyan": "#2F6BFF",
+        "ice": "#2F6BFF",
 
         /* =====================================================================
            SEMANTIC & SYSTEM SURFACE ALIASES (BACKWARDS COMPATIBLE)
            ===================================================================== */
-        "primary": "#111a4a",
-        "on-primary": "#ffffff",
+        "primary": "#2F6BFF",
+        "on-primary": "#fffffc",
         "secondary": "#232730",
-        "accent": "#111a4a",
-        "accent-orange": "#ec652b",
-        "ink": "#111a4a",
-        "stone": "#e3e4e8",
+        "accent": "#2F6BFF",
+        "accent-orange": "#2F6BFF",
+        "ink": "#2F6BFF",
+        "stone": "#beb7a4",
         "strong": "#12161e",
         "muted": "#7c7f88",
         "smoke": "#575a64",
         "ash": "#7c7f88",
-        "eggshell": "#f6f6f8",
-        "warm-taupe": "#ffffff",
+        "eggshell": "#fffffc",
+        "warm-taupe": "#beb7a4",
         "graphite": "#3b3e47",
-        "gallery": "#eeeff2",
-        "footer": "#eeeff2",
-        "footer-heading": "#111a4a",
+        "gallery": "#faf9f5",
+        "footer": "#faf9f5",
+        "footer-heading": "#2F6BFF",
         "footer-text": "#7c7f88",
-        "cool-card": "#ffffff",
-        "filter-edge": "#e3e4e8",
-        "preview": "#ffffff",
-        "surface": "#ffffff",
-        "on-surface": "#111a4a",
-        "surface-container-lowest": "#ffffff",
-        "surface-container-low": "#f6f6f8",
-        "surface-container": "#eeeff2",
-        "surface-container-high": "#e3e4e8",
+        "cool-card": "#fffffc",
+        "preview": "#fffffc",
+        "surface": "#fffffc",
+        "on-surface": "#2F6BFF",
+        "surface-container-lowest": "#fffffc",
+        "surface-container-low": "#faf9f5",
+        "surface-container": "#faf9f5",
+        "surface-container-high": "#beb7a4",
       },
       borderRadius: {
         DEFAULT: "8px",
@@ -187,11 +168,11 @@ export default {
         footer: "1112px",
       },
       boxShadow: {
-        "catalog-edge": "0px 0px 0px 1px rgba(0,0,0,0.05), 0px 1px 3px 0px rgba(0,0,0,0.05)",
-        "floating-glass": "24px 48px 64px 0px rgba(30,30,44,0.15), 0px 0px 0px 1px #ffffff inset",
-        "closing-card": "0px 1px 2px 0px rgba(0,0,0,0.1)",
-        "primary-btn": "0px 0px 0px 1px #111a4a, 0px 2px 4px 0px rgba(0,0,0,0.25), 0px 1px 2px 0px rgba(0,0,0,0.25)",
-        "secondary-btn": "0px 0px 0px 1px rgba(87,90,100,0.12)",
+        "catalog-edge": "0px 0px 0px 1px rgba(190, 183, 164, 0.45), 0px 1px 3px 0px rgba(0,0,0,0.04)",
+        "floating-glass": "24px 48px 64px 0px rgba(30,30,44,0.1), 0px 0px 0px 1px #fffffc inset",
+        "closing-card": "0px 1px 2px 0px rgba(0,0,0,0.06)",
+        "primary-btn": "0px 0px 0px 1px #2F6BFF, 0px 2px 4px 0px rgba(47,107,255,0.28), 0px 1px 2px 0px rgba(47,107,255,0.2)",
+        "secondary-btn": "0px 0px 0px 1px #beb7a4",
       },
     },
   },

@@ -23,7 +23,7 @@ const DotMatrixIcon: React.FC<DotMatrixIconProps> = ({ activeCoords }) => {
           cx={c * 6 + 3}
           cy={r * 6 + 3}
           r={isActive ? 2 : 1}
-          fill="#4575cd"
+          fill="#2F6BFF"
           opacity={isActive ? 1 : 0.2}
         />
       );

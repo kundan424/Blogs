@@ -193,7 +193,7 @@ export const NoteDetailPage: React.FC = () => {
   };
 
   return (
-    <div className="w-full bg-product-frost dark:bg-[#0c0f17] text-body-ink min-h-screen flex flex-col transition-colors selection:bg-ice/50 selection:text-navy">
+    <div className="w-full bg-product-frost text-body-ink min-h-screen flex flex-col transition-colors">
       {/* MOBILE ON-THIS-PAGE ACCORDION BAR (< 1024px) */}
       {sections.length > 0 && (
         <div className="block lg:hidden border-b border-edge bg-white dark:bg-panel px-4 py-3 sticky top-16 z-30 shadow-xs">
@@ -222,20 +222,20 @@ export const NoteDetailPage: React.FC = () => {
                   }}
                   className={`flex items-center gap-2.5 w-full text-left py-2 px-3 rounded-[6px] transition-colors cursor-pointer ${
                     activeSection === sec.id
-                      ? 'bg-gradient-to-r from-[#3e5199]/15 to-[#5568ad]/10 dark:from-[#3e5199]/35 dark:to-[#5568ad]/20 text-[#1b2d70] dark:text-ice font-semibold border-l-[3.5px] border-[#3e5199] dark:border-focus-blue'
-                      : 'text-secondary-ink hover:text-navy dark:hover:text-white hover:bg-canvas'
+                      ? 'bg-gradient-to-r from-[#2F6BFF]/15 to-[#2F6BFF]/5 text-[#2F6BFF] dark:text-[#fffffc] font-semibold border-l-[3.5px] border-[#2F6BFF]'
+                      : 'text-secondary-ink hover:text-[#2F6BFF] dark:hover:text-white hover:bg-canvas'
                   }`}
                 >
                   <span
                     className={`font-mono text-[11px] font-bold ${
                       activeSection === sec.id
-                        ? 'text-[#3e5199] dark:text-focus-blue'
+                        ? 'text-[#2F6BFF] dark:text-[#fffffc]'
                         : 'text-proof-green'
                     }`}
                   >
                     {String(idx + 1).padStart(2, '0')}
                   </span>
-                  <span className={`truncate ${activeSection === sec.id ? 'text-[#1b2d70] dark:text-ice font-semibold' : ''}`}>
+                  <span className={`truncate ${activeSection === sec.id ? 'text-[#2F6BFF] dark:text-[#fffffc] font-semibold' : ''}`}>
                     {sec.title.replace(/^\d+\.\s*/, '')}
                   </span>
                 </button>
@@ -249,7 +249,7 @@ export const NoteDetailPage: React.FC = () => {
       <div className="w-full flex flex-1 items-start">
         {/* LEFT COLUMN: DEDICATED NAVIGATION SIDEBAR PANE (NO GAP, 1PX RIGHT BORDER) */}
         {!sidebarHidden && sections.length > 0 && (
-          <aside className="hidden lg:block w-[280px] xl:w-[300px] shrink-0 sticky top-16 h-[calc(100vh-64px)] border-r border-edge bg-canvas/40 dark:bg-[#0e111a] overflow-hidden self-start">
+          <aside className="hidden lg:block w-[280px] xl:w-[300px] shrink-0 sticky top-16 h-[calc(100vh-64px)] border-r border-edge bg-canvas/40 dark:bg-panel overflow-hidden self-start">
             <EmbeddedArticleSidebar
               sections={sections}
               activeId={activeSection}
@@ -276,7 +276,7 @@ export const NoteDetailPage: React.FC = () => {
               <button
                 type="button"
                 onClick={toggleSidebar}
-                className="hidden lg:inline-flex items-center gap-1.5 px-3 py-1 rounded-[6px] bg-white dark:bg-panel border border-edge text-secondary-ink hover:text-navy dark:hover:text-white hover:border-[#3e5199] dark:hover:border-focus-blue transition-all shadow-2xs cursor-pointer font-mono text-[11.5px]"
+                className="hidden lg:inline-flex items-center gap-1.5 px-3 py-1 rounded-[6px] bg-white dark:bg-panel border border-edge text-secondary-ink hover:text-[#2F6BFF] dark:hover:text-[#fffffc] hover:border-[#2F6BFF] transition-all shadow-2xs cursor-pointer font-mono text-[11.5px]"
                 title={sidebarHidden ? 'Show menu' : 'Hide menu'}
               >
                 <span className="material-symbols-outlined text-[15px]">
@@ -358,7 +358,7 @@ export const NoteDetailPage: React.FC = () => {
                 <div className="flex flex-wrap items-center gap-2">
                   <Link
                     to={`/subjects/${note.subjectSlug}`}
-                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[8px] bg-canvas dark:bg-[#121620] text-navy dark:text-ice font-mono text-[12px] hover:border-navy transition-colors border border-edge"
+                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[8px] bg-canvas text-navy dark:text-ice font-mono text-[12px] hover:border-[#2F6BFF] transition-colors border border-edge"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-proof-green" />
                     {note.subjectName}
@@ -397,7 +397,7 @@ export const NoteDetailPage: React.FC = () => {
                   <Link
                     key={tag}
                     to={`/topics/${tag}`}
-                    className="px-3 py-1 rounded-[8px] bg-canvas dark:bg-[#121620] font-mono text-[11.5px] text-secondary-ink hover:text-navy dark:hover:text-white hover:border-navy transition-colors border border-edge"
+                    className="px-3 py-1 rounded-[8px] bg-canvas font-mono text-[11.5px] text-secondary-ink hover:text-[#2F6BFF] dark:hover:text-[#fffffc] hover:border-[#2F6BFF] transition-colors border border-edge"
                   >
                     #{tag}
                   </Link>
@@ -423,15 +423,15 @@ export const NoteDetailPage: React.FC = () => {
                 {prevNote && (
                   <Link
                     to={`/notes/${prevNote.slug}`}
-                    className="group flex flex-col justify-between p-4 rounded-[8px] bg-canvas dark:bg-[#121620] border border-edge hover:border-navy transition-all text-left shadow-secondary-btn"
+                    className="group flex flex-col justify-between p-4 rounded-[8px] bg-canvas border border-edge hover:border-[#2F6BFF] transition-all text-left shadow-secondary-btn"
                   >
-                    <div className="flex items-center gap-1.5 font-mono text-[11px] text-muted-ink uppercase tracking-wider mb-2 group-hover:text-navy dark:group-hover:text-ice transition-colors">
+                    <div className="flex items-center gap-1.5 font-mono text-[11px] text-muted-ink uppercase tracking-wider mb-2 group-hover:text-[#2F6BFF] dark:group-hover:text-[#fffffc] transition-colors">
                       <span className="material-symbols-outlined text-[14px] transition-transform group-hover:-translate-x-1">
                         arrow_back
                       </span>
                       <span>PREVIOUS NOTE</span>
                     </div>
-                    <span className="text-[14px] text-navy hover:underline hover:text-blue-500 dark:text-white font-medium line-clamp-1">
+                    <span className="text-[14px] text-navy hover:underline hover:text-[#2F6BFF] dark:text-white font-medium line-clamp-1">
                       {prevNote.title}
                     </span>
                     <span className="font-mono text-[11px] text-muted-ink mt-1.5">
@@ -443,15 +443,15 @@ export const NoteDetailPage: React.FC = () => {
                 {nextNote && (
                   <Link
                     to={`/notes/${nextNote.slug}`}
-                    className="group flex flex-col justify-between p-4 rounded-[8px] bg-canvas dark:bg-[#121620] border border-edge hover:border-navy transition-all sm:text-right shadow-secondary-btn"
+                    className="group flex flex-col justify-between p-4 rounded-[8px] bg-canvas border border-edge hover:border-[#2F6BFF] transition-all sm:text-right shadow-secondary-btn"
                   >
-                    <div className="flex items-center sm:justify-end gap-1.5 font-mono text-[11px] text-muted-ink uppercase tracking-wider mb-2 group-hover:text-navy dark:group-hover:text-ice transition-colors">
+                    <div className="flex items-center sm:justify-end gap-1.5 font-mono text-[11px] text-muted-ink uppercase tracking-wider mb-2 group-hover:text-[#2F6BFF] dark:group-hover:text-[#fffffc] transition-colors">
                       <span>NEXT NOTE</span>
                       <span className="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">
                         arrow_forward
                       </span>
                     </div>
-                    <span className="text-[14px] text-navy hover:underline hover:text-blue-500 dark:text-white font-medium line-clamp-1">
+                    <span className="text-[14px] text-navy hover:underline hover:text-[#2F6BFF] dark:text-white font-medium line-clamp-1">
                       {nextNote.title}
                     </span>
                     <span className="font-mono text-[11px] text-muted-ink mt-1.5">
@@ -491,7 +491,7 @@ export const NoteDetailPage: React.FC = () => {
                     value={commentText}
                     onChange={(e) => setCommentText(e.target.value)}
                     placeholder="Share production war stories, benchmark findings, or ask technical questions..."
-                    className="w-full p-3.5 rounded-[8px] bg-canvas dark:bg-[#121620] border border-edge text-body-ink placeholder:text-muted-ink focus:outline-none focus:border-navy dark:focus:border-focus-blue transition-colors text-[13.5px]"
+                    className="w-full p-3.5 rounded-[8px] bg-canvas border border-edge text-body-ink placeholder:text-muted-ink focus:outline-none focus:border-[#2F6BFF] transition-colors text-[13.5px]"
                   />
                   <div className="flex justify-end">
                     <button
@@ -508,7 +508,7 @@ export const NoteDetailPage: React.FC = () => {
                   {comments.map((c) => (
                     <div
                       key={c.id}
-                      className="p-4 rounded-[8px] bg-canvas dark:bg-[#121620] border border-edge space-y-2"
+                      className="p-4 rounded-[8px] bg-canvas border border-edge space-y-2"
                     >
                       <div className="flex items-center justify-between font-mono text-[12px]">
                         <div className="flex items-center gap-2">

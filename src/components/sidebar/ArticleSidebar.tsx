@@ -133,13 +133,13 @@ export const EmbeddedArticleSidebar: React.FC<EmbeddedArticleSidebarProps> = ({
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={`Search ${sections.length} topics...`}
-            className="w-full pl-8 pr-6 py-1.5 rounded-[8px] bg-canvas dark:bg-[#121620] border border-edge text-[11px] text-body-ink placeholder:text-muted-ink focus:outline-none focus:border-navy dark:focus:border-focus-blue transition-colors font-mono"
+            className="w-full pl-8 pr-6 py-1.5 rounded-[8px] bg-canvas border border-edge text-[11px] text-body-ink placeholder:text-muted-ink focus:outline-none focus:border-[#2F6BFF] transition-colors font-mono"
           />
           {searchQuery && (
             <button
               type="button"
               onClick={() => setSearchQuery('')}
-              className="absolute right-2 top-2 text-muted-ink hover:text-navy dark:hover:text-white cursor-pointer"
+              className="absolute right-2 top-2 text-muted-ink hover:text-[#2F6BFF] dark:hover:text-[#fffffc] cursor-pointer"
             >
               <span className="material-symbols-outlined text-[13px]">close</span>
             </button>
@@ -167,16 +167,16 @@ export const EmbeddedArticleSidebar: React.FC<EmbeddedArticleSidebarProps> = ({
                 onClick={() => onSelect(section.id)}
                 className={`group flex items-center w-full text-left px-2.5 py-1.5 rounded-[6px] transition-all duration-150 cursor-pointer ${
                   isCurrentSection
-                    ? 'bg-[#3e5199]/10 dark:bg-[#3e5199]/25 text-[#1b2d70] dark:text-ice font-medium shadow-2xs'
-                    : 'text-secondary-ink hover:text-navy dark:hover:text-white hover:bg-canvas/80'
+                    ? 'bg-[#2F6BFF]/10 dark:bg-[#2F6BFF]/25 text-[#2F6BFF] dark:text-[#fffffc] font-medium shadow-2xs'
+                    : 'text-secondary-ink hover:text-[#2F6BFF] dark:hover:text-[#fffffc] hover:bg-canvas/80'
                 }`}
               >
                 {/* 2-Digit Section Number Badge */}
                 <span
                   className={`font-mono text-[10px] w-5 shrink-0 transition-colors ${
                     isCurrentSection
-                      ? 'text-[#3e5199] dark:text-focus-blue font-semibold'
-                      : 'text-muted-ink group-hover:text-navy dark:group-hover:text-white'
+                      ? 'text-[#2F6BFF] dark:text-[#fffffc] font-semibold'
+                      : 'text-muted-ink group-hover:text-[#2F6BFF] dark:group-hover:text-[#fffffc]'
                   }`}
                 >
                   {section.displayNumber}
@@ -186,8 +186,8 @@ export const EmbeddedArticleSidebar: React.FC<EmbeddedArticleSidebarProps> = ({
                 <span
                   className={`text-[11.5px] leading-snug flex-1 line-clamp-1 transition-colors ${
                     isCurrentSection
-                      ? 'font-medium text-[#1b2d70] dark:text-ice'
-                      : 'font-normal text-secondary-ink group-hover:text-navy dark:group-hover:text-white'
+                      ? 'font-medium text-[#2F6BFF] dark:text-[#fffffc]'
+                      : 'font-normal text-secondary-ink group-hover:text-[#2F6BFF] dark:group-hover:text-[#fffffc]'
                   }`}
                 >
                   {section.cleanTitle}
@@ -198,8 +198,8 @@ export const EmbeddedArticleSidebar: React.FC<EmbeddedArticleSidebarProps> = ({
                   <span
                     className={`material-symbols-outlined text-[13px] shrink-0 ml-1 transition-transform duration-200 ${
                       isCurrentSection
-                        ? 'text-[#3e5199] dark:text-focus-blue rotate-180'
-                        : 'text-muted-ink group-hover:text-navy dark:group-hover:text-white'
+                        ? 'text-[#2F6BFF] dark:text-[#fffffc] rotate-180'
+                        : 'text-muted-ink group-hover:text-[#2F6BFF] dark:group-hover:text-[#fffffc]'
                     }`}
                   >
                     expand_more
@@ -209,7 +209,7 @@ export const EmbeddedArticleSidebar: React.FC<EmbeddedArticleSidebarProps> = ({
 
               {/* Expanded Nested Subsections when Section is Active */}
               {isCurrentSection && (
-                <div className="mt-0.5 ml-2.5 pl-2 border-l border-[#3e5199]/25 dark:border-focus-blue/25 space-y-0.5 py-0.5 animate-in fade-in slide-in-from-top-1 duration-150">
+                <div className="mt-0.5 ml-2.5 pl-2 border-l border-[#2F6BFF]/30 space-y-0.5 py-0.5 animate-in fade-in slide-in-from-top-1 duration-150">
                   {/* Module Overview link */}
                   <button
                     type="button"
@@ -217,12 +217,12 @@ export const EmbeddedArticleSidebar: React.FC<EmbeddedArticleSidebarProps> = ({
                     onClick={() => onSelect(section.id)}
                     className={`flex items-center gap-1.5 w-full text-left px-2 py-0.5 rounded-[5px] text-[10.5px] transition-colors cursor-pointer ${
                       isDirectActive
-                        ? 'bg-[#3e5199]/10 dark:bg-[#3e5199]/25 text-[#1b2d70] dark:text-ice font-medium'
-                        : 'text-secondary-ink hover:text-navy dark:hover:text-white hover:bg-canvas'
+                        ? 'bg-[#2F6BFF]/10 dark:bg-[#2F6BFF]/25 text-[#2F6BFF] dark:text-[#fffffc] font-medium'
+                        : 'text-secondary-ink hover:text-[#2F6BFF] dark:hover:text-[#fffffc] hover:bg-canvas'
                     }`}
                   >
-                    <span className={`w-1 h-1 rounded-full ${isDirectActive ? 'bg-[#3e5199] dark:bg-focus-blue' : 'bg-proof-green'}`} />
-                    <span className={isDirectActive ? 'text-[#1b2d70] dark:text-ice font-medium' : ''}>
+                    <span className={`w-1 h-1 rounded-full ${isDirectActive ? 'bg-[#2F6BFF]' : 'bg-[#beb7a4]'}`} />
+                    <span className={isDirectActive ? 'text-[#2F6BFF] dark:text-[#fffffc] font-medium' : ''}>
                       Topic Overview
                     </span>
                   </button>
@@ -239,20 +239,20 @@ export const EmbeddedArticleSidebar: React.FC<EmbeddedArticleSidebarProps> = ({
                           onClick={() => onSelect(sub.id)}
                           className={`group flex items-start gap-1.5 w-full text-left px-2 py-1 rounded-[5px] text-[11px] leading-snug transition-colors cursor-pointer ${
                             isSubCurrent
-                              ? 'bg-[#3e5199]/10 dark:bg-[#3e5199]/25 text-[#1b2d70] dark:text-ice font-medium'
-                              : 'text-secondary-ink hover:text-navy dark:hover:text-white hover:bg-canvas'
+                              ? 'bg-[#2F6BFF]/10 dark:bg-[#2F6BFF]/25 text-[#2F6BFF] dark:text-[#fffffc] font-medium'
+                              : 'text-secondary-ink hover:text-[#2F6BFF] dark:hover:text-[#fffffc] hover:bg-canvas'
                           }`}
                         >
                           <span
                             className={`material-symbols-outlined text-[12px] shrink-0 mt-0.5 ${
                               isSubCurrent
-                                ? 'text-[#3e5199] dark:text-focus-blue'
-                                : 'text-muted-ink group-hover:text-navy dark:group-hover:text-white'
+                                ? 'text-[#2F6BFF] dark:text-[#fffffc]'
+                                : 'text-muted-ink group-hover:text-[#2F6BFF] dark:group-hover:text-[#fffffc]'
                             }`}
                           >
                             menu_book
                           </span>
-                          <span className={`line-clamp-2 ${isSubCurrent ? 'text-[#1b2d70] dark:text-ice font-medium' : ''}`}>
+                          <span className={`line-clamp-2 ${isSubCurrent ? 'text-[#2F6BFF] dark:text-[#fffffc] font-medium' : ''}`}>
                             {sub.title}
                           </span>
                         </button>

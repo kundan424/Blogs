@@ -60,8 +60,8 @@ export const HomePage: React.FC = () => {
     <div className="flex flex-col w-full bg-canvas text-body-ink transition-colors">
 
       {/* =========================================================================
-          SECTION 1: FIRST SCREEN — COLUMN ATMOSPHERIC OPENING
-          880px-tall scene, pale #f6f6f8 canvas, mint-blue halftone dot artwork,
+          SECTION 1: FIRST SCREEN — ATMOSPHERIC OPENING
+          Pale #fffffc canvas, Electric Blue #2F6BFF halftone dot artwork,
           52px/1.1 display headline (two-line left lockup), 36px physical buttons,
           and a floating translucent interface card on the right.
           ========================================================================= */}
@@ -181,9 +181,9 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* =========================================================================
-          SECTION 3: BOUNDED DEEP TEAL PLATFORM CHAPTER
-          #011821 background, 16px dot lattice, 12px corners, 12px outer margin,
-          48px/1.1 icy cyan headline, and translucent technical trays.
+          SECTION 3: BOUNDED DEEP PLATFORM CHAPTER
+          #090d1f background, 16px dot lattice, 12px corners, 12px outer margin,
+          Electric Blue & #fffffc headlines, and translucent technical trays.
           ========================================================================= */}
       <section className="py-12">
         <div className="deep-platform-chapter py-16 sm:py-24 px-6 sm:px-12 text-white overflow-hidden">

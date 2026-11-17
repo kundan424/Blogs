@@ -19,26 +19,26 @@ export const Navbar: React.FC = () => {
   return (
     <>
       {/* =========================================================================
-          COLUMN ANNOUNCEMENT STRIP
-          40px height, gradient #3e5199 to #5568ad, 14px/1.1 weight 500
+          ANNOUNCEMENT STRIP
+          40px height, Electric Blue #2F6BFF background, #fffffc text
           ========================================================================= */}
       <aside
         aria-label="Announcement"
-        style={{ background: 'linear-gradient(90deg, #3e5199 0%, #5568ad 100%)' }}
-        className="w-full h-10 px-4 sm:px-5 flex items-center justify-center gap-2 text-white text-[12.5px] sm:text-[14px] font-medium leading-none hover:brightness-105 transition-all shadow-xs"
+        style={{ background: 'linear-gradient(90deg, #2F6BFF 0%, #2055dd 100%)' }}
+        className="w-full h-10 px-4 sm:px-5 flex items-center justify-center gap-2 text-[#fffffc] text-[12.5px] sm:text-[14px] font-medium leading-none hover:brightness-105 transition-all shadow-xs"
       >
         <Link
           to="/subjects"
-          className="inline-flex items-center gap-1.5 sm:gap-2 hover:underline text-white font-medium truncate max-w-full"
-          style={{ color: '#ffffff' }}
+          className="inline-flex items-center gap-1.5 sm:gap-2 hover:underline text-[#fffffc] font-medium truncate max-w-full"
+          style={{ color: '#fffffc' }}
         >
-          <span className="font-semibold tracking-wide text-white shrink-0" style={{ color: '#ffffff' }}>
+          <span className="font-semibold tracking-wide text-[#fffffc] shrink-0" style={{ color: '#fffffc' }}>
             Infrastructure Knowledge Base
           </span>
-          <span className="text-white/90 inline truncate" style={{ color: 'rgba(255, 255, 255, 0.92)' }}>
+          <span className="text-[#fffffc]/90 inline truncate" style={{ color: 'rgba(255, 255, 252, 0.92)' }}>
             — Deep systems, concurrency &amp; database internals
           </span>
-          <span className="material-symbols-outlined text-[15px] translate-y-0.5 text-white shrink-0" style={{ color: '#ffffff' }}>
+          <span className="material-symbols-outlined text-[15px] translate-y-0.5 text-[#fffffc] shrink-0" style={{ color: '#fffffc' }}>
             arrow_forward
           </span>
         </Link>
@@ -48,7 +48,7 @@ export const Navbar: React.FC = () => {
           COLUMN NAVIGATION HEADER
           Transparent / cool canvas header aligned to 1112px shell with 20px padding
           ========================================================================= */}
-      <header className="sticky top-0 w-full z-[1002] bg-canvas/90 dark:bg-[#0c0f17]/90 backdrop-blur-md border-b border-edge/80 dark:border-edge/40 transition-colors">
+      <header className="sticky top-0 w-full z-[1002] bg-canvas/90 dark:bg-canvas/90 backdrop-blur-md border-b border-edge/80 dark:border-edge/40 transition-colors">
         <div className="h-16 max-w-column mx-auto px-5 flex items-center justify-between gap-4">
           {/* Left: Brand Wordmark */}
           <div className="flex items-center gap-8">
@@ -137,7 +137,7 @@ export const Navbar: React.FC = () => {
 
         {/* Mobile Menu Drawer */}
         {mobileMenuOpen && (
-          <div className="md:hidden px-5 py-4 bg-canvas dark:bg-[#0c0f17] border-t border-edge space-y-2">
+          <div className="md:hidden px-5 py-4 bg-canvas border-t border-edge space-y-2">
             {navLinks.map((link) => (
               <Link
                 key={link.path}

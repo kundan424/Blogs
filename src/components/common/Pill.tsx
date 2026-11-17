@@ -30,27 +30,27 @@ export const Pill: React.FC<PillProps> = ({
   switch (variant) {
     case 'filter':
       variantClasses = active
-        ? 'h-[36px] px-3.5 bg-gradient-to-r from-[#3e5199] to-[#5568ad] text-white border border-[#3e5199] font-medium shadow-sm'
-        : 'h-[36px] px-3.5 bg-white dark:bg-panel border border-edge text-body-ink hover:text-[#3e5199] dark:hover:text-white hover:border-[#3e5199] hover:bg-[#3e5199]/5 dark:hover:bg-white/5 shadow-xs';
+        ? 'h-[36px] px-3.5 bg-[#2F6BFF] text-[#fffffc] border border-[#2F6BFF] font-medium shadow-sm'
+        : 'h-[36px] px-3.5 bg-white dark:bg-panel border border-edge text-body-ink hover:text-[#2F6BFF] dark:hover:text-white hover:border-[#2F6BFF] hover:bg-[#2F6BFF]/5 dark:hover:bg-white/5 shadow-xs';
       break;
     case 'hash':
       variantClasses = active
-        ? 'h-[32px] px-3 bg-gradient-to-r from-[#3e5199] to-[#5568ad] text-white border border-[#3e5199] font-medium shadow-sm'
-        : 'h-[32px] px-3 bg-white dark:bg-panel border border-edge text-body-ink hover:text-[#3e5199] dark:hover:text-white hover:border-[#3e5199] hover:bg-[#3e5199]/5 shadow-xs';
+        ? 'h-[32px] px-3 bg-[#2F6BFF] text-[#fffffc] border border-[#2F6BFF] font-medium shadow-sm'
+        : 'h-[32px] px-3 bg-white dark:bg-panel border border-edge text-body-ink hover:text-[#2F6BFF] dark:hover:text-white hover:border-[#2F6BFF] hover:bg-[#2F6BFF]/5 shadow-xs';
       break;
     case 'status':
       variantClasses =
-        'bg-ice/40 text-deep-teal border border-ice font-medium px-2.5 py-0.5 text-[12px]';
+        'bg-[#2F6BFF]/10 text-[#2F6BFF] border border-[#beb7a4] font-medium px-2.5 py-0.5 text-[12px]';
       break;
     case 'outline':
       variantClasses =
-        'h-[36px] px-3.5 bg-white dark:bg-panel text-[#3e5199] dark:text-white border border-edge hover:border-[#3e5199] shadow-xs';
+        'h-[36px] px-3.5 bg-white dark:bg-panel text-[#2F6BFF] dark:text-white border border-edge hover:border-[#2F6BFF] shadow-xs';
       break;
     case 'tag':
     default:
       variantClasses = active
-        ? 'h-[30px] px-2.5 bg-gradient-to-r from-[#3e5199] to-[#5568ad] text-white border border-[#3e5199] font-medium shadow-sm text-[12px]'
-        : 'h-[30px] px-2.5 bg-white dark:bg-panel border border-edge text-body-ink hover:border-[#3e5199] hover:text-[#3e5199] hover:bg-[#3e5199]/5 dark:hover:text-white text-[12px] shadow-2xs';
+        ? 'h-[30px] px-2.5 bg-[#2F6BFF] text-[#fffffc] border border-[#2F6BFF] font-medium shadow-sm text-[12px]'
+        : 'h-[30px] px-2.5 bg-white dark:bg-panel border border-edge text-body-ink hover:border-[#2F6BFF] hover:text-[#2F6BFF] hover:bg-[#2F6BFF]/5 dark:hover:text-white text-[12px] shadow-2xs';
       break;
   }
 

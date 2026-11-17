@@ -331,7 +331,7 @@ export const DiagramFigure: React.FC<DiagramFigureProps> = ({ src, alt, title })
           }
 
           const isDark = document.documentElement.classList.contains('dark');
-          ctx.fillStyle = isDark ? '#12161e' : '#ffffff';
+          ctx.fillStyle = isDark ? '#090c15' : '#fffffc';
           ctx.fillRect(0, 0, canvas.width, canvas.height);
 
           ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
@@ -370,8 +370,8 @@ export const DiagramFigure: React.FC<DiagramFigureProps> = ({ src, alt, title })
 
   return (
     <>
-      <figure className="my-8 rounded-[8px] overflow-hidden border border-[#232730]/30 dark:border-[#232730] bg-white dark:bg-[#12161e] shadow-catalog-edge group">
-        <div className="w-full flex justify-center bg-white dark:bg-[#12161e] p-0 overflow-hidden">
+      <figure className="my-8 rounded-[8px] overflow-hidden border border-edge bg-white dark:bg-panel shadow-catalog-edge group">
+        <div className="w-full flex justify-center bg-white dark:bg-panel p-0 overflow-hidden">
           {isSvg && svgContent ? (
             <div
               className="w-full h-auto flex justify-center overflow-hidden [&>svg]:w-full [&>svg]:h-auto [&>svg]:max-w-full [&>svg]:block"
@@ -387,13 +387,13 @@ export const DiagramFigure: React.FC<DiagramFigureProps> = ({ src, alt, title })
           )}
         </div>
 
-        <figcaption className="px-3.5 py-2.5 flex flex-wrap items-center justify-between gap-2 font-mono text-[11px] border-t border-[#232730]/20 dark:border-[#232730] bg-white dark:bg-[#12161e]">
-          <div className="flex items-center gap-1.5 text-[#3e5199] dark:text-[#5568ad] min-w-0">
-            <span className="material-symbols-outlined text-[15px] shrink-0 text-[#167e6c]">schema</span>
-            <span className="font-semibold uppercase tracking-wider text-[10.5px] shrink-0 text-[#1b2d70] dark:text-[#5568ad]">
+        <figcaption className="px-3.5 py-2.5 flex flex-wrap items-center justify-between gap-2 font-mono text-[11px] border-t border-edge bg-white dark:bg-panel">
+          <div className="flex items-center gap-1.5 text-[#2F6BFF] dark:text-[#fffffc] min-w-0">
+            <span className="material-symbols-outlined text-[15px] shrink-0 text-[#2F6BFF]">schema</span>
+            <span className="font-semibold uppercase tracking-wider text-[10.5px] shrink-0 text-[#2F6BFF] dark:text-[#fffffc]">
               DIAGRAM:
             </span>
-            <span className="text-[#000000] dark:text-[#f8fafc] truncate font-sans text-[12px] font-medium">
+            <span className="text-body-ink dark:text-[#fffffc] truncate font-sans text-[12px] font-medium">
               {alt || title || 'Architecture Blueprint'}
             </span>
           </div>
@@ -408,8 +408,8 @@ export const DiagramFigure: React.FC<DiagramFigureProps> = ({ src, alt, title })
                   className={cn(
                     'inline-flex items-center gap-1 px-2 py-1 rounded-[5px] text-[11px] font-mono transition-all cursor-pointer border',
                     copied
-                      ? 'border-[#167e6c] bg-[#167e6c]/15 text-[#167e6c]'
-                      : 'border-[#232730]/30 dark:border-[#232730] text-[#3e5199] dark:text-[#5568ad] hover:text-white hover:bg-[#3e5199] dark:hover:bg-[#1b2d70]'
+                      ? 'border-[#2F6BFF] bg-[#2F6BFF]/15 text-[#2F6BFF]'
+                      : 'border-edge text-[#2F6BFF] hover:text-[#fffffc] hover:bg-[#2F6BFF]'
                   )}
                   title="Copy raw SVG code to clipboard"
                 >
@@ -421,7 +421,7 @@ export const DiagramFigure: React.FC<DiagramFigureProps> = ({ src, alt, title })
                 <button
                   type="button"
                   onClick={handleDownloadSvg}
-                  className="inline-flex items-center gap-1 px-2 py-1 rounded-[5px] text-[11px] font-mono border border-[#232730]/30 dark:border-[#232730] text-[#3e5199] dark:text-[#5568ad] hover:text-white hover:bg-[#3e5199] dark:hover:bg-[#1b2d70] transition-colors cursor-pointer"
+                  className="inline-flex items-center gap-1 px-2 py-1 rounded-[5px] text-[11px] font-mono border border-edge text-[#2F6BFF] hover:text-[#fffffc] hover:bg-[#2F6BFF] transition-colors cursor-pointer"
                   title="Download vector SVG file"
                 >
                   <span className="material-symbols-outlined text-[13px]">file_download</span>
@@ -433,7 +433,7 @@ export const DiagramFigure: React.FC<DiagramFigureProps> = ({ src, alt, title })
                   type="button"
                   onClick={handleDownloadPng}
                   disabled={isPngDownloading}
-                  className="inline-flex items-center gap-1 px-2 py-1 rounded-[5px] text-[11px] font-mono border border-[#232730]/30 dark:border-[#232730] text-[#3e5199] dark:text-[#5568ad] hover:text-white hover:bg-[#3e5199] dark:hover:bg-[#1b2d70] transition-colors cursor-pointer disabled:opacity-50"
+                  className="inline-flex items-center gap-1 px-2 py-1 rounded-[5px] text-[11px] font-mono border border-edge text-[#2F6BFF] hover:text-[#fffffc] hover:bg-[#2F6BFF] transition-colors cursor-pointer disabled:opacity-50"
                   title="Export 2x high-resolution PNG"
                 >
                   <span className="material-symbols-outlined text-[13px]">{isPngDownloading ? 'hourglass_top' : 'image'}</span>
@@ -447,7 +447,7 @@ export const DiagramFigure: React.FC<DiagramFigureProps> = ({ src, alt, title })
                     setZoom(1);
                     setIsFullscreen(true);
                   }}
-                  className="inline-flex items-center gap-1 px-1.5 py-1 rounded-[5px] text-[11px] font-mono border border-[#232730]/30 dark:border-[#232730] text-[#3e5199] dark:text-[#5568ad] hover:text-white hover:bg-[#3e5199] dark:hover:bg-[#1b2d70] transition-colors cursor-pointer"
+                  className="inline-flex items-center gap-1 px-1.5 py-1 rounded-[5px] text-[11px] font-mono border border-edge text-[#2F6BFF] hover:text-[#fffffc] hover:bg-[#2F6BFF] transition-colors cursor-pointer"
                   title="Fullscreen zoom view"
                 >
                   <span className="material-symbols-outlined text-[14px]">fullscreen</span>
@@ -461,15 +461,15 @@ export const DiagramFigure: React.FC<DiagramFigureProps> = ({ src, alt, title })
       {/* Fullscreen Lightbox Modal */}
       {isFullscreen && svgContent && (
         <div
-          className="fixed inset-0 z-50 flex flex-col bg-[#080b32]/95 backdrop-blur-md p-3 sm:p-6 animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 flex flex-col bg-[#090c15]/95 backdrop-blur-md p-3 sm:p-6 animate-in fade-in duration-200"
           role="dialog"
           aria-modal="true"
         >
           {/* Modal Header */}
-          <div className="flex items-center justify-between pb-3 border-b border-[#232730] shrink-0">
+          <div className="flex items-center justify-between pb-3 border-b border-edge shrink-0">
             <div className="flex items-center gap-2 min-w-0 pr-4">
-              <span className="material-symbols-outlined text-[20px] text-[#167e6c] shrink-0">schema</span>
-              <h3 className="font-mono text-[13.5px] font-semibold text-white tracking-tight truncate">
+              <span className="material-symbols-outlined text-[20px] text-[#2F6BFF] shrink-0">schema</span>
+              <h3 className="font-mono text-[13.5px] font-semibold text-[#fffffc] tracking-tight truncate">
                 {alt || title || 'Architectural Diagram'}
               </h3>
             </div>
@@ -479,19 +479,19 @@ export const DiagramFigure: React.FC<DiagramFigureProps> = ({ src, alt, title })
               <button
                 type="button"
                 onClick={() => setZoom((z) => Math.max(0.4, Number((z - 0.2).toFixed(1))))}
-                className="p-1.5 rounded-[6px] text-[#5568ad] hover:text-white hover:bg-[#1b2d70] border border-[#232730] transition-colors"
+                className="p-1.5 rounded-[6px] text-[#beb7a4] hover:text-[#fffffc] hover:bg-[#2F6BFF] border border-edge transition-colors cursor-pointer"
                 title="Zoom Out"
               >
                 <span className="material-symbols-outlined text-[18px]">zoom_out</span>
               </button>
-              <span className="font-mono text-[11px] text-[#5568ad] w-12 text-center select-none">
+              <span className="font-mono text-[11px] text-[#beb7a4] w-12 text-center select-none">
                 {Math.round(zoom * 100)}%
               </span>
               {/* Zoom In */}
               <button
                 type="button"
                 onClick={() => setZoom((z) => Math.min(3, Number((z + 0.2).toFixed(1))))}
-                className="p-1.5 rounded-[6px] text-[#5568ad] hover:text-white hover:bg-[#1b2d70] border border-[#232730] transition-colors"
+                className="p-1.5 rounded-[6px] text-[#beb7a4] hover:text-[#fffffc] hover:bg-[#2F6BFF] border border-edge transition-colors cursor-pointer"
                 title="Zoom In"
               >
                 <span className="material-symbols-outlined text-[18px]">zoom_in</span>
@@ -499,23 +499,23 @@ export const DiagramFigure: React.FC<DiagramFigureProps> = ({ src, alt, title })
               <button
                 type="button"
                 onClick={() => setZoom(1)}
-                className="px-2 py-1 rounded-[6px] text-[#5568ad] hover:text-white hover:bg-[#1b2d70] border border-[#232730] transition-colors font-mono text-[11px]"
+                className="px-2 py-1 rounded-[6px] text-[#beb7a4] hover:text-[#fffffc] hover:bg-[#2F6BFF] border border-edge transition-colors font-mono text-[11px] cursor-pointer"
                 title="Reset Zoom"
               >
                 Reset
               </button>
 
-              <div className="h-4 w-px bg-[#232730] mx-1 hidden sm:block" />
+              <div className="h-4 w-px bg-edge mx-1 hidden sm:block" />
 
               {/* Action Buttons in Modal */}
               <button
                 type="button"
                 onClick={handleCopy}
                 className={cn(
-                  'hidden sm:inline-flex items-center gap-1 px-2.5 py-1.5 rounded-[6px] font-mono text-[11.5px] transition-colors border',
+                  'hidden sm:inline-flex items-center gap-1 px-2.5 py-1.5 rounded-[6px] font-mono text-[11.5px] transition-colors border cursor-pointer',
                   copied
-                    ? 'border-[#167e6c] bg-[#167e6c]/20 text-[#167e6c]'
-                    : 'border-[#232730] text-[#5568ad] hover:text-white hover:bg-[#3e5199]'
+                    ? 'border-[#2F6BFF] bg-[#2F6BFF]/20 text-[#2F6BFF]'
+                    : 'border-edge text-[#beb7a4] hover:text-[#fffffc] hover:bg-[#2F6BFF]'
                 )}
               >
                 <span className="material-symbols-outlined text-[15px]">{copied ? 'check' : 'content_copy'}</span>
@@ -524,7 +524,7 @@ export const DiagramFigure: React.FC<DiagramFigureProps> = ({ src, alt, title })
               <button
                 type="button"
                 onClick={handleDownloadSvg}
-                className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1.5 rounded-[6px] font-mono text-[11.5px] text-[#5568ad] hover:text-white hover:bg-[#3e5199] border border-[#232730] transition-colors"
+                className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1.5 rounded-[6px] font-mono text-[11.5px] text-[#beb7a4] hover:text-[#fffffc] hover:bg-[#2F6BFF] border border-edge transition-colors cursor-pointer"
               >
                 <span className="material-symbols-outlined text-[15px]">file_download</span>
                 <span>SVG</span>
@@ -533,19 +533,19 @@ export const DiagramFigure: React.FC<DiagramFigureProps> = ({ src, alt, title })
                 type="button"
                 onClick={handleDownloadPng}
                 disabled={isPngDownloading}
-                className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1.5 rounded-[6px] font-mono text-[11.5px] text-[#5568ad] hover:text-white hover:bg-[#3e5199] border border-[#232730] transition-colors"
+                className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1.5 rounded-[6px] font-mono text-[11.5px] text-[#beb7a4] hover:text-[#fffffc] hover:bg-[#2F6BFF] border border-edge transition-colors cursor-pointer"
               >
                 <span className="material-symbols-outlined text-[15px]">image</span>
                 <span>PNG</span>
               </button>
 
-              <div className="h-4 w-px bg-[#232730] mx-1" />
+              <div className="h-4 w-px bg-edge mx-1" />
 
               {/* Close Button */}
               <button
                 type="button"
                 onClick={() => setIsFullscreen(false)}
-                className="p-1.5 rounded-[6px] text-white/70 hover:text-white hover:bg-[#111a4a] border border-[#232730] transition-colors"
+                className="p-1.5 rounded-[6px] text-[#fffffc]/70 hover:text-[#fffffc] hover:bg-[#2F6BFF] border border-edge transition-colors cursor-pointer"
                 title="Close (Esc)"
               >
                 <span className="material-symbols-outlined text-[20px]">close</span>
@@ -605,20 +605,20 @@ const markdownComponents: Components = {
       return (
         <h2
           id={id}
-          className="scroll-mt-24 mt-10 mb-3 text-[18px] sm:text-[21px] font-medium tracking-tight border-b border-[#3e5199]/40 dark:border-focus-blue/40 pb-2 flex items-center justify-between group bg-gradient-to-r from-[#3e5199]/10 via-[#5568ad]/5 to-transparent dark:from-[#3e5199]/25 dark:via-[#5568ad]/10 dark:to-transparent px-3 py-2.5 rounded-t-[8px] border-l-[3.5px] border-l-[#3e5199] dark:border-l-focus-blue transition-all"
+          className="scroll-mt-24 mt-10 mb-3 text-[18px] sm:text-[21px] font-medium tracking-tight border-b border-[#2F6BFF]/30 pb-2 flex items-center justify-between group bg-gradient-to-r from-[#2F6BFF]/10 via-[#2F6BFF]/5 to-transparent px-3 py-2.5 rounded-t-[8px] border-l-[3.5px] border-l-[#2F6BFF] transition-all"
         >
           <a
             href={`#${id}`}
-            className="flex items-center gap-2 text-[#3e5199] dark:text-ice font-semibold hover:text-navy dark:hover:text-white hover:underline decoration-[#3e5199]/70 dark:decoration-focus-blue/70 underline-offset-4 transition-colors cursor-pointer"
+            className="flex items-center gap-2 text-[#2F6BFF] dark:text-[#fffffc] font-semibold hover:underline decoration-[#2F6BFF]/70 underline-offset-4 transition-colors cursor-pointer"
           >
-            <span className="material-symbols-outlined text-[20px] text-[#3e5199] dark:text-focus-blue select-none">
+            <span className="material-symbols-outlined text-[20px] text-[#2F6BFF] select-none">
               menu_book
             </span>
             <span>{children}</span>
           </a>
           <a
             href={`#${id}`}
-            className="opacity-0 group-hover:opacity-100 text-muted-ink hover:text-navy dark:hover:text-white transition-opacity text-[14px] font-mono"
+            className="opacity-0 group-hover:opacity-100 text-muted-ink hover:text-[#2F6BFF] dark:hover:text-[#fffffc] transition-opacity text-[14px] font-mono"
             aria-label="Link to section"
           >
             #
@@ -658,20 +658,20 @@ const markdownComponents: Components = {
       return (
         <h3
           id={id}
-          className="scroll-mt-24 mt-7 mb-2.5 text-[15px] sm:text-[17px] font-medium flex items-center justify-between group bg-[#3e5199]/10 dark:bg-[#3e5199]/20 px-2.5 py-1.5 rounded-[6px] border-l-[3px] border-l-[#3e5199] dark:border-l-focus-blue transition-all"
+          className="scroll-mt-24 mt-7 mb-2.5 text-[15px] sm:text-[17px] font-medium flex items-center justify-between group bg-[#2F6BFF]/10 dark:bg-[#2F6BFF]/20 px-2.5 py-1.5 rounded-[6px] border-l-[3px] border-l-[#2F6BFF] transition-all"
         >
           <a
             href={`#${id}`}
-            className="flex items-center gap-1.5 text-[#3e5199] dark:text-ice font-semibold hover:text-navy dark:hover:text-white hover:underline decoration-[#3e5199]/70 dark:decoration-focus-blue/70 underline-offset-4 transition-colors cursor-pointer"
+            className="flex items-center gap-1.5 text-[#2F6BFF] dark:text-[#fffffc] font-semibold hover:underline decoration-[#2F6BFF]/70 underline-offset-4 transition-colors cursor-pointer"
           >
-            <span className="material-symbols-outlined text-[17px] text-[#3e5199] dark:text-focus-blue select-none">
+            <span className="material-symbols-outlined text-[17px] text-[#2F6BFF] select-none">
               menu_book
             </span>
             <span>{children}</span>
           </a>
           <a
             href={`#${id}`}
-            className="opacity-0 group-hover:opacity-100 text-muted-ink hover:text-navy dark:hover:text-white transition-opacity text-[13px] font-mono"
+            className="opacity-0 group-hover:opacity-100 text-muted-ink hover:text-[#2F6BFF] dark:hover:text-[#fffffc] transition-opacity text-[13px] font-mono"
             aria-label="Link to subsection"
           >
             #
@@ -738,8 +738,7 @@ const markdownComponents: Components = {
     const isExternal = typeof href === 'string' && (href.startsWith('http://') || href.startsWith('https://'));
 
     const linkClasses = cn(
-      "font-medium text-[#3e5199] dark:text-focus-blue transition-colors duration-150 cursor-pointer",
-      "hover:text-[#111a4a] dark:hover:text-white hover:underline decoration-[#3e5199]/70 dark:decoration-focus-blue/70 underline-offset-2"
+      "font-medium text-[#2F6BFF] hover:text-[#2055dd] dark:text-[#2F6BFF] dark:hover:text-[#fffffc] hover:underline decoration-[#2F6BFF]/70 underline-offset-2 transition-colors duration-150 cursor-pointer"
     );
 
     if (isInternal) {
@@ -775,7 +774,7 @@ const markdownComponents: Components = {
     if (isInline) {
       return (
         <code
-          className="rounded-[4px] bg-canvas dark:bg-[#121620] border border-edge px-1.5 py-0.5 font-mono text-[12px] text-navy dark:text-ice"
+          className="rounded-[4px] bg-canvas border border-edge px-1.5 py-0.5 font-mono text-[12px] text-[#2F6BFF] dark:text-[#fffffc]"
           {...props}
         >
           {children}
@@ -830,7 +829,7 @@ const markdownComponents: Components = {
     const isTaskItem = className?.includes('task-list-item');
     if (isTaskItem) {
       return (
-        <li className="flex items-start gap-3 p-3.5 rounded-[8px] bg-canvas dark:bg-[#121620] border border-edge leading-relaxed my-2">
+        <li className="flex items-start gap-3 p-3.5 rounded-[8px] bg-canvas dark:bg-panel border border-edge leading-relaxed my-2">
           {children}
         </li>
       );

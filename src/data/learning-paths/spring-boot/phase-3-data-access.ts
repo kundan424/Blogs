@@ -94,27 +94,67 @@ export const phase3Modules: LearningModule[] = [
     number: '14',
     title: 'Entity Relationships & Performance Tuning',
     description:
-      'Bidirectional associations, cascade propagation, fetch strategies, and resolving N+1 select queries.',
+      'Associations, owning sides, cascading, solving N+1 query storms, disabling OSIV, and high-performance DTO projections.',
     lessons: [
       {
         id: 'sb-14-1',
         number: '14.1',
-        title: 'Associations & Cascade Strategies: @OneToMany, @ManyToOne, @ManyToMany',
+        title: '@ManyToOne & @OneToMany: Owning Sides and Bidirectional Sync',
         description:
-          'Owning vs inverse side (mappedBy), bidirectional sync helper methods, CascadeType semantics (PERSIST, MERGE, REMOVE), and orphanRemoval.',
+          'Foreign key ownership in relational schemas, why FetchType.LAZY is mandatory on all associations, and implementing synchronized addChild() / removeChild() helper methods.',
         status: 'upcoming',
-        readTime: '13m read',
-        topics: ['jpa', 'hibernate', 'relationships'],
+        readTime: '18m read',
+        topics: ['many-to-one', 'one-to-many', 'jpa-relationships', 'lazy-loading', 'hibernate'],
       },
       {
         id: 'sb-14-2',
         number: '14.2',
-        title: 'Eliminating the N+1 Query Problem: JOIN FETCH & Dynamic @EntityGraph',
+        title: '@OneToOne with @MapsId & Join Entities vs. @ManyToMany',
         description:
-          'Why FetchType.EAGER is a production hazard, lazy loading mechanics, bytecode enhancement, and solving N+1 query storms using JOIN FETCH queries and JPA @EntityGraph.',
+          'Shared primary key @OneToOne with @MapsId to eliminate eager proxy traps and extra indexes, and replacing naive @ManyToMany with an explicit Join Entity for real-world domain models.',
         status: 'upcoming',
-        readTime: '14m read',
-        topics: ['performance', 'hibernate', 'query-optimization'],
+        readTime: '18m read',
+        topics: ['one-to-one', 'maps-id', 'join-entity', 'many-to-many', 'database-design'],
+      },
+      {
+        id: 'sb-14-3',
+        number: '14.3',
+        title: 'Cascade Types, orphanRemoval & Reference Proxies',
+        description:
+          'CascadeType.PERSIST and MERGE semantics, why CascadeType.REMOVE on child sides is dangerous, orphanRemoval = true for aggregate roots, and getReferenceById() to avoid redundant SELECTs.',
+        status: 'upcoming',
+        readTime: '18m read',
+        topics: ['cascade-types', 'orphan-removal', 'entity-proxies', 'get-reference-by-id', 'clean-code'],
+      },
+      {
+        id: 'sb-14-4',
+        number: '14.4',
+        title: 'Persistence Context, Dirty Checking & Disabling OSIV',
+        description:
+          'Entity state transitions in the persistence context, why calling save() inside @Transactional is redundant, and disabling Spring Boot Open Session in View (OSIV) to prevent connection leaks.',
+        status: 'upcoming',
+        readTime: '20m read',
+        topics: ['persistence-context', 'dirty-checking', 'osiv', 'open-session-in-view', 'connection-management'],
+      },
+      {
+        id: 'sb-14-5',
+        number: '14.5',
+        title: 'Solving the N+1 Problem: JOIN FETCH, @EntityGraph & Batch Fetching',
+        description:
+          'Diagnosing SQL query storms in logs, resolving single-collection N+1s with JPQL JOIN FETCH and @EntityGraph, and using default_batch_fetch_size for safe multi-collection fetching.',
+        status: 'upcoming',
+        readTime: '22m read',
+        topics: ['n-plus-one', 'join-fetch', 'entity-graph', 'batch-fetching', 'performance-tuning'],
+      },
+      {
+        id: 'sb-14-6',
+        number: '14.6',
+        title: 'Pagination Pitfalls & DTO Projections (Records & Interfaces)',
+        description:
+          'Why combining JOIN FETCH with Pageable triggers fatal in-memory pagination warnings (HHH90003004), and how Spring Data JPA Record and Interface DTO Projections eliminate entity overhead.',
+        status: 'upcoming',
+        readTime: '20m read',
+        topics: ['pagination', 'dto-projections', 'java-records', 'query-optimization', 'spring-data-jpa'],
       },
     ],
   },

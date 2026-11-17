@@ -70,10 +70,11 @@ export const phase3Modules: LearningModule[] = [
         id: 'sb-13-6',
         number: '13.6',
         title: 'Enums, Dates & Auditing Timestamps',
+        noteSlug: 'spring-boot-enums-dates-auditing-timestamps-hibernate-mapping',
         description:
           'Mapping non-primitive standard types safely: why @Enumerated(EnumType.STRING) is mandatory over ORDINAL, mapping java.time (Instant, LocalDate, OffsetDateTime) without timezone bugs, and automating createdAt / updatedAt with @CreationTimestamp and @UpdateTimestamp.',
-        status: 'upcoming',
-        readTime: '16m read',
+        status: 'published',
+        readTime: '22m read',
         topics: ['enums', 'java-time', 'auditing', 'timestamps', 'hibernate'],
       },
       {

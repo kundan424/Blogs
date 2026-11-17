@@ -122,10 +122,11 @@ export const phase3Modules: LearningModule[] = [
         id: 'sb-14-3',
         number: '14.3',
         title: 'Cascade Types, orphanRemoval & Reference Proxies',
+        noteSlug: 'spring-boot-cascade-types-orphan-removal-reference-proxies',
         description:
           'CascadeType.PERSIST and MERGE semantics, why CascadeType.REMOVE on child sides is dangerous, orphanRemoval = true for aggregate roots, and getReferenceById() to avoid redundant SELECTs.',
-        status: 'upcoming',
-        readTime: '18m read',
+        status: 'published',
+        readTime: '20m read',
         topics: ['cascade-types', 'orphan-removal', 'entity-proxies', 'get-reference-by-id', 'clean-code'],
       },
       {

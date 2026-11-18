@@ -830,12 +830,16 @@
             "id": "sb-15-3",
             "number": "15.3",
             "title": "Pagination, Sorting & Slice Query Execution",
+            "noteSlug": "spring-boot-pagination-sorting-slice-query-execution",
             "description": "High-volume query pagination: Pageable, Sort orders, comparing Page<T> (executes count(*) query) vs Slice<T> (infinite scrolling with zero count overhead).",
-            "status": "upcoming",
-            "readTime": "09m read",
+            "status": "published",
+            "readTime": "20m read",
             "topics": [
               "pagination",
-              "performance",
+              "sorting",
+              "slice",
+              "keyset-pagination",
+              "performance-tuning",
               "spring-data-jpa"
             ]
           }

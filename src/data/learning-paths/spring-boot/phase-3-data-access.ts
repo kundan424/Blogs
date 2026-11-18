@@ -172,10 +172,11 @@ export const phase3Modules: LearningModule[] = [
         id: 'sb-15-1',
         number: '15.1',
         title: 'Repository Hierarchy: CrudRepository to JpaRepository Abstractions',
+        noteSlug: 'spring-boot-repository-hierarchy-crud-repository-jpa-repository',
         description:
           'Repository → CrudRepository → PagingAndSortingRepository → JpaRepository contract hierarchy and query method proxy generation.',
-        status: 'upcoming',
-        readTime: '08m read',
+        status: 'published',
+        readTime: '20m read',
         topics: ['spring-data-jpa', 'repositories'],
       },
       {

@@ -183,11 +183,12 @@ export const phase3Modules: LearningModule[] = [
         id: 'sb-15-2',
         number: '15.2',
         title: 'Derived Queries & Custom JPQL / Native Queries with @Query',
+        noteSlug: 'spring-boot-derived-queries-custom-jpql-native-sql-modifying',
         description:
           'Method name query derivation heuristics (findByEmailAndStatus), type-safe JPQL vs database-specific Native SQL, and bulk updates with @Modifying.',
-        status: 'upcoming',
-        readTime: '11m read',
-        topics: ['spring-data-jpa', 'jpql', 'sql'],
+        status: 'published',
+        readTime: '20m read',
+        topics: ['spring-data-jpa', 'jpql', 'native-sql', 'derived-queries', 'query-optimization'],
       },
       {
         id: 'sb-15-3',

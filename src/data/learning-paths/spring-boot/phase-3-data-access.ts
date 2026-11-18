@@ -214,10 +214,11 @@ export const phase3Modules: LearningModule[] = [
         id: 'sb-16-1',
         number: '16.1',
         title: 'ACID Fundamentals & The Spring PlatformTransactionManager Abstraction',
+        noteSlug: 'spring-boot-acid-fundamentals-platform-transaction-manager',
         description:
           'First principles of transactions, why raw JDBC transaction management fails at scale, and how Spring abstracts persistence engines via PlatformTransactionManager.',
-        status: 'upcoming',
-        readTime: '18m read',
+        status: 'published',
+        readTime: '20m read',
         topics: ['transactions', 'acid', 'jdbc', 'platform-transaction-manager', 'spring-boot'],
       },
       {

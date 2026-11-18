@@ -208,17 +208,67 @@ export const phase3Modules: LearningModule[] = [
     number: '16',
     title: 'Transaction Management with @Transactional',
     description:
-      'ACID transactional boundaries, propagation levels, isolation mechanics, and dynamic proxy bypass traps.',
+      'ACID transactional boundaries, AOP proxies, propagation levels, isolation mechanics, locking strategies, and programmatic synchronization.',
     lessons: [
       {
         id: 'sb-16-1',
         number: '16.1',
-        title: 'Transaction Boundaries: Propagation, Isolation Levels, readOnly & Rollback Semantics',
+        title: 'ACID Fundamentals & The Spring PlatformTransactionManager Abstraction',
         description:
-          'REQUIRED vs REQUIRES_NEW, isolation levels (READ_COMMITTED, REPEATABLE_READ, SERIALIZABLE), readOnly = true dirty-checking bypass, and self-invocation proxy bypass pitfalls.',
+          'First principles of transactions, why raw JDBC transaction management fails at scale, and how Spring abstracts persistence engines via PlatformTransactionManager.',
         status: 'upcoming',
-        readTime: '13m read',
-        topics: ['transactions', 'acid', 'spring-boot', 'database'],
+        readTime: '18m read',
+        topics: ['transactions', 'acid', 'jdbc', 'platform-transaction-manager', 'spring-boot'],
+      },
+      {
+        id: 'sb-16-2',
+        number: '16.2',
+        title: 'How @Transactional Works: AOP Proxies, ThreadLocal & The Self-Invocation Trap',
+        description:
+          'Deconstructing Spring AOP transaction interception, ThreadLocal connection binding, why private methods fail silently, and solving the self-invocation proxy bypass trap.',
+        status: 'upcoming',
+        readTime: '18m read',
+        topics: ['transactional', 'aop-proxies', 'self-invocation', 'thread-local', 'clean-code'],
+      },
+      {
+        id: 'sb-16-3',
+        number: '16.3',
+        title: 'Transaction Propagation: REQUIRED, REQUIRES_NEW & Connection Pool Deadlocks',
+        description:
+          'Deep dive into all 7 propagation behaviors, transaction suspension, and avoiding the catastrophic HikariCP connection pool starvation deadlock with REQUIRES_NEW.',
+        status: 'upcoming',
+        readTime: '20m read',
+        topics: ['propagation', 'requires-new', 'hikaricp', 'connection-pool', 'deadlock-prevention'],
+      },
+      {
+        id: 'sb-16-4',
+        number: '16.4',
+        title: 'Isolation Levels, Concurrency Anomalies & Locking Strategies',
+        description:
+          'Dirty reads, non-repeatable reads, phantom reads, comparing READ_COMMITTED vs REPEATABLE_READ, and choosing between @Version optimistic locking and PESSIMISTIC_WRITE.',
+        status: 'upcoming',
+        readTime: '22m read',
+        topics: ['isolation-levels', 'optimistic-locking', 'pessimistic-locking', 'concurrency', 'acid'],
+      },
+      {
+        id: 'sb-16-5',
+        number: '16.5',
+        title: 'Rollback Mechanics, Checked Exceptions & The readOnly = true Optimization',
+        description:
+          'Why checked exceptions do not trigger rollbacks by default, configuring rollbackFor, how readOnly = true bypasses Hibernate dirty-checking, and routing to read replicas.',
+        status: 'upcoming',
+        readTime: '18m read',
+        topics: ['rollback-rules', 'checked-exceptions', 'readonly-transactions', 'performance-tuning', 'hibernate'],
+      },
+      {
+        id: 'sb-16-6',
+        number: '16.6',
+        title: 'Programmatic Transactions with TransactionTemplate & After-Commit Events',
+        description:
+          'Why long-running @Transactional methods wrapping HTTP calls are an anti-pattern, using TransactionTemplate for micro-transactions, and @TransactionalEventListener for outbox patterns.',
+        status: 'upcoming',
+        readTime: '20m read',
+        topics: ['transaction-template', 'transactional-event-listener', 'transactional-outbox', 'microservices', 'clean-architecture'],
       },
     ],
   },

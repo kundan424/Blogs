@@ -33,6 +33,17 @@ export const phase0Modules: LearningModule[] = [
         readTime: '24m read',
         topics: ['git', 'version-control', 'devops', 'backend'],
       },
+      {
+        id: 'sb-1-3',
+        number: '1.3',
+        title: 'Spring Boot CLI & Command-Line Operations: Maven Wrapper, Launch Arguments & Layertools',
+        noteSlug: 'spring-boot-cli-command-line-operations-maven-wrapper-launch-arguments-layertools',
+        description:
+          'Terminal-first project bootstrapping via cURL, running with profiles and JVM flags via ./mvnw spring-boot:run, OCI container building with Buildpacks, and Layertools multi-stage Docker optimization.',
+        status: 'published',
+        readTime: '22m read',
+        topics: ['spring-boot', 'cli', 'maven-wrapper', 'layertools', 'devops', 'terminal'],
+      },
     ],
   },
   {

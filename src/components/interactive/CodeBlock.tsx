@@ -149,23 +149,23 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
   return (
     <div
       className={cn(
-        'group relative my-6 rounded-[8px] overflow-hidden bg-[#090c15] border border-[#beb7a4]/30 text-[#e2e8f0] shadow-catalog-edge selection:bg-white/25',
+        'group relative my-6 rounded-[8px] overflow-hidden bg-[#0c0d12] border border-[#1b1c28] text-[#e2e8f0] shadow-catalog-edge',
         className
       )}
     >
       {/* Show header bar ONLY when an explicit filename is provided */}
       {filename ? (
-        <div className="flex items-center justify-between px-5 py-2.5 bg-[#0e1424] border-b border-[#beb7a4]/20 font-mono text-[12px] text-[#2F6BFF]">
+        <div className="flex items-center justify-between px-5 py-2.5 bg-[#0e1017] border-b border-[#1b1d28] font-mono text-[12px] text-[#818cf8]">
           <div className="flex items-center gap-2">
-            <span className="material-symbols-outlined text-[15px] text-[#2F6BFF]">
+            <span className="material-symbols-outlined text-[15px] text-[#a78bfa]">
               code
             </span>
-            <span className="text-[#fffffc] font-medium tracking-tight">{filename}</span>
+            <span className="text-[#cbd5e1] font-medium tracking-tight">{filename}</span>
           </div>
           <button
             type="button"
             onClick={handleCopy}
-            className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[#beb7a4] hover:text-[#fffffc] hover:bg-[#2F6BFF]/20 transition-all cursor-pointer"
+            className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[#94a3b8] hover:text-[#f8fafc] hover:bg-[#1a1c28] transition-all"
             title="Copy code snippet"
           >
             <span className="material-symbols-outlined text-[15px]">
@@ -175,11 +175,11 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
           </button>
         </div>
       ) : (
-        /* Floating hover copy button when no header bar is present */
+        /* Floating hover copy button when no header bar is present (matches modern developer IDE screenshot) */
         <button
           type="button"
           onClick={handleCopy}
-          className="absolute right-3 top-3 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#0e1424]/90 backdrop-blur-md border border-[#beb7a4]/30 text-[#beb7a4] hover:text-[#fffffc] hover:bg-[#2F6BFF] opacity-0 group-hover:opacity-100 transition-all text-[11px] font-mono shadow-md cursor-pointer"
+          className="absolute right-3 top-3 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#141520]/85 backdrop-blur-md border border-[#23263b] text-[#94a3b8] hover:text-white hover:bg-[#1f2235] opacity-0 group-hover:opacity-100 transition-all text-[11px] font-mono shadow-md"
           title="Copy code snippet"
         >
           <span className="material-symbols-outlined text-[14px]">
@@ -189,10 +189,10 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
         </button>
       )}
 
-      {/* Code Text Area */}
+      {/* Code Text Area: switches to monospace box-drawing font with tight line height for ASCII art */}
       <pre
         className={cn(
-          'p-5 overflow-x-auto text-[#e2e8f0] selection:bg-white/25',
+          'p-5 overflow-x-auto text-[#e2e8f0] selection:bg-[#3b2d54] selection:text-[#f5f3ff]',
           isAsciiDiagram
             ? 'text-[12.5px] sm:text-[13px] leading-[1.18] tracking-normal'
             : 'text-[13.5px] font-mono leading-[1.75] tracking-[-0.01em]'

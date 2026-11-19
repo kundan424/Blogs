@@ -56,7 +56,7 @@ export const AboutPage: React.FC = () => {
             Design Philosophy
           </h2>
           <p className="text-[15px] sm:text-[16px] text-secondary-ink dark:text-ash leading-relaxed">
-            Designed with a minimalist precision palette: Electric Blue (<code>#2F6BFF</code>), warm ivory canvas (<code>#fffffc</code>), and muted sand borders (<code>#beb7a4</code>).
+            Inspired by technical infrastructure aesthetics: navy ink (<code>#111a4a</code>), cool gray canvas (<code>#f6f6f8</code>), mint-blue halftone dot artwork, precise proof green metrics (<code>#167e6c</code>), 36px physical key controls, and bounded deep teal chapters (<code>#011821</code>).
           </p>
         </section>
       </div>

@@ -270,14 +270,14 @@ export const LearningPathDetailPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setAllExpanded(true)}
-                  className="px-2.5 py-1 rounded-[6px] bg-white dark:bg-panel border border-edge text-body-ink hover:text-[#2F6BFF] hover:border-[#2F6BFF] hover:bg-[#2F6BFF]/5 transition-all cursor-pointer shadow-2xs"
+                  className="px-2.5 py-1 rounded-[6px] bg-white dark:bg-panel border border-edge text-body-ink hover:text-[#3e5199] hover:border-[#3e5199] hover:bg-[#3e5199]/5 transition-all cursor-pointer shadow-2xs"
                 >
                   Expand All
                 </button>
                 <button
                   type="button"
                   onClick={() => setAllExpanded(false)}
-                  className="px-2.5 py-1 rounded-[6px] bg-white dark:bg-panel border border-edge text-body-ink hover:text-[#2F6BFF] hover:border-[#2F6BFF] hover:bg-[#2F6BFF]/5 transition-all cursor-pointer shadow-2xs"
+                  className="px-2.5 py-1 rounded-[6px] bg-white dark:bg-panel border border-edge text-body-ink hover:text-[#3e5199] hover:border-[#3e5199] hover:bg-[#3e5199]/5 transition-all cursor-pointer shadow-2xs"
                 >
                   Collapse All
                 </button>
@@ -314,8 +314,8 @@ export const LearningPathDetailPage: React.FC = () => {
                         className={cn(
                           'rounded-[10px] border overflow-hidden transition-all duration-200 shadow-catalog-edge',
                           isExpanded
-                            ? 'border-[#2F6BFF]/50 bg-white dark:bg-panel'
-                            : 'border-edge hover:border-[#2F6BFF]/40 bg-white/80 dark:bg-panel/80'
+                            ? 'border-[#3e5199]/40 dark:border-focus-blue/40 bg-white dark:bg-[#121622]'
+                            : 'border-edge hover:border-[#3e5199]/40 bg-white/80 dark:bg-panel/80'
                         )}
                       >
                         {/* Interactive Collapsible Module Header */}
@@ -330,8 +330,8 @@ export const LearningPathDetailPage: React.FC = () => {
                                 className={cn(
                                   'px-2 py-0.5 rounded-[4px] font-mono text-[10px] font-semibold tracking-wider',
                                   isExpanded
-                                    ? 'bg-[#2F6BFF]/15 text-[#2F6BFF] dark:text-[#fffffc] border border-[#2F6BFF]/30'
-                                    : 'bg-canvas dark:bg-canvas/50 text-secondary-ink dark:text-[#fffffc] border border-edge/60'
+                                    ? 'bg-[#3e5199]/15 text-[#3e5199] dark:bg-[#3e5199]/30 dark:text-ice border border-[#3e5199]/30'
+                                    : 'bg-canvas dark:bg-canvas/50 text-secondary-ink dark:text-ice border border-edge/60'
                                 )}
                               >
                                 MODULE {module.number}
@@ -359,7 +359,7 @@ export const LearningPathDetailPage: React.FC = () => {
                           </div>
 
                           <div className="flex items-center justify-between gap-4">
-                            <h3 className="text-[15px] sm:text-[16.5px] font-medium text-navy dark:text-white tracking-tight group-hover:text-[#2F6BFF] dark:group-hover:text-[#fffffc] transition-colors">
+                            <h3 className="text-[15px] sm:text-[16.5px] font-medium text-navy dark:text-white tracking-tight group-hover:text-[#3e5199] dark:group-hover:text-ice transition-colors">
                               {module.title}
                             </h3>
                             <span className="font-mono text-[10.5px] text-muted-ink shrink-0 hidden sm:inline">
@@ -376,7 +376,7 @@ export const LearningPathDetailPage: React.FC = () => {
 
                         {/* Attached Lessons in this Module (Embedded directly with a subtle light background) */}
                         {isExpanded && (
-                          <div className="border-t border-edge/60 dark:border-edge/30 bg-[#fffffc] dark:bg-panel/40 divide-y divide-edge/40 dark:divide-edge/20">
+                          <div className="border-t border-edge/60 dark:border-edge/30 bg-[#fbfbfd]/70 dark:bg-[#0c0e16]/30 divide-y divide-edge/40 dark:divide-edge/20">
                             {module.lessons.map((lesson) => {
                               const isPublished = lesson.status === 'published';
 
@@ -391,20 +391,20 @@ export const LearningPathDetailPage: React.FC = () => {
                                   className={cn(
                                     'py-2.5 sm:py-3 px-3.5 sm:px-4.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 transition-colors',
                                     isPublished
-                                      ? 'hover:bg-canvas dark:hover:bg-panel cursor-pointer group'
+                                      ? 'hover:bg-white dark:hover:bg-[#161b28] cursor-pointer group'
                                       : 'opacity-65 bg-canvas/30'
                                   )}
                                 >
                                   {/* Left: Sequence + Title + Status + Read Time */}
                                   <div className="space-y-1 min-w-0 flex-1">
                                     <div className="flex items-center gap-2 flex-wrap">
-                                      <span className="font-mono text-[10px] font-medium px-1.5 py-0.5 rounded bg-canvas border border-edge/60 text-[#2F6BFF] dark:text-[#fffffc]">
+                                      <span className="font-mono text-[10px] font-medium px-1.5 py-0.5 rounded bg-canvas dark:bg-[#161a26] text-navy dark:text-ice border border-edge/60">
                                         LESSON {lesson.number}
                                       </span>
 
                                       {isPublished ? (
-                                        <span className="inline-flex items-center gap-1 font-mono text-[9.5px] text-[#2F6BFF] bg-[#2F6BFF]/10 border border-[#2F6BFF]/20 px-1.5 py-0.5 rounded-[4px] font-medium">
-                                          <span className="w-1 h-1 rounded-full bg-[#2F6BFF]" />
+                                        <span className="inline-flex items-center gap-1 font-mono text-[9.5px] text-proof-green bg-proof-green/10 border border-proof-green/20 px-1.5 py-0.5 rounded-[4px] font-medium">
+                                          <span className="w-1 h-1 rounded-full bg-proof-green" />
                                           <span>Published Article</span>
                                         </span>
                                       ) : (
@@ -424,7 +424,7 @@ export const LearningPathDetailPage: React.FC = () => {
                                       className={cn(
                                         'text-[13px] sm:text-[14px] font-medium leading-snug tracking-tight',
                                         isPublished
-                                          ? 'text-navy dark:text-white group-hover:text-[#2F6BFF] dark:group-hover:text-[#fffffc] transition-colors'
+                                          ? 'text-navy dark:text-white group-hover:text-[#3e5199] dark:group-hover:text-ice transition-colors'
                                           : 'text-secondary-ink dark:text-muted-ink'
                                       )}
                                     >
@@ -480,22 +480,23 @@ export const LearningPathDetailPage: React.FC = () => {
               
               {/* "Start Here" Action Card */}
               {firstPublishedLesson && (
-                <div className="p-5 rounded-[12px] bg-gradient-to-br from-[#2F6BFF] to-[#1e52db] text-[#fffffc] shadow-md space-y-3">
-                  <span className="font-mono text-[10.5px] uppercase tracking-wider text-[#fffffc]/90 font-semibold">
+                <div className="p-5 rounded-[12px] bg-gradient-to-br from-[#111a4a] to-[#1b2d70] text-white shadow-md space-y-3">
+                  <span className="font-mono text-[10.5px] uppercase tracking-wider text-ice font-semibold">
                     RECOMMENDED STARTING POINT
                   </span>
                   <h4 className="text-[16px] font-semibold leading-snug">
                     {firstPublishedLesson.lesson.title}
                   </h4>
-                  <p className="text-[12.5px] text-[#fffffc]/80 leading-relaxed font-light">
+                  <p className="text-[12.5px] text-white/80 leading-relaxed font-light">
                     Begin this learning path with the architectural foundations and request lifecycle mechanics.
                   </p>
                   <Link
                     to={`/notes/${firstPublishedLesson.lesson.noteSlug}`}
-                    className="inline-flex items-center justify-center gap-2 w-full h-10 rounded-[8px] bg-[#fffffc] text-[#2F6BFF] hover:bg-[#beb7a4] hover:text-[#12161e] font-sans text-[13.5px] font-semibold transition-all shadow-sm cursor-pointer"
+                    className="inline-flex items-center justify-center gap-2 w-full h-10 rounded-[8px] bg-white text-[#111a4a] hover:bg-[#c1e8ef] hover:text-[#011821] font-sans text-[13.5px] font-semibold transition-all shadow-sm cursor-pointer"
+                    style={{ color: '#111a4a' }}
                   >
-                    <span>Read Inaugural Lesson</span>
-                    <span className="material-symbols-outlined text-[16px]">
+                    <span style={{ color: '#111a4a' }}>Read Inaugural Lesson</span>
+                    <span className="material-symbols-outlined text-[16px]" style={{ color: '#111a4a' }}>
                       arrow_forward
                     </span>
                   </Link>
@@ -544,7 +545,7 @@ export const LearningPathDetailPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setMilestonesExpanded(!milestonesExpanded)}
-                      className="inline-flex items-center gap-1 font-mono text-[11px] text-[#2F6BFF] hover:underline cursor-pointer"
+                      className="inline-flex items-center gap-1 font-mono text-[11px] text-[#3e5199] dark:text-ice hover:underline cursor-pointer"
                     >
                       <span className="material-symbols-outlined text-[14px]">
                         {milestonesExpanded ? 'unfold_less' : 'unfold_more'}
@@ -574,7 +575,7 @@ export const LearningPathDetailPage: React.FC = () => {
                       <Link
                         key={sibling.id}
                         to={`/learning-paths/${sibling.slug}`}
-                        className="p-3 rounded-[8px] bg-canvas border border-edge hover:border-navy group block transition-all"
+                        className="p-3 rounded-[8px] bg-canvas dark:bg-[#121620] border border-edge hover:border-navy group block transition-all"
                       >
                         <div className="flex items-center justify-between">
                           <h5 className="font-sans text-[13.5px] font-medium text-navy dark:text-white group-hover:text-dot-blue transition-colors">

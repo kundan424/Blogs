@@ -60,8 +60,8 @@ export const HomePage: React.FC = () => {
     <div className="flex flex-col w-full bg-canvas text-body-ink transition-colors">
 
       {/* =========================================================================
-          SECTION 1: FIRST SCREEN — ATMOSPHERIC OPENING
-          Pale #fffffc canvas, Electric Blue #2F6BFF halftone dot artwork,
+          SECTION 1: FIRST SCREEN — COLUMN ATMOSPHERIC OPENING
+          880px-tall scene, pale #f6f6f8 canvas, mint-blue halftone dot artwork,
           52px/1.1 display headline (two-line left lockup), 36px physical buttons,
           and a floating translucent interface card on the right.
           ========================================================================= */}
@@ -181,22 +181,20 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* =========================================================================
-          SECTION 3: BOUNDED DEEP PLATFORM CHAPTER
-          #090d1f background, 16px dot lattice, 12px corners, 12px outer margin,
-          Electric Blue & #fffffc headlines, and translucent technical trays.
+          SECTION 3: BOUNDED PLATFORM CHAPTER (WHITE CANVAS)
+          #ffffff background, 12px corners, 12px outer margin, border-edge,
+          Navy headline, and structured capability trays.
           ========================================================================= */}
       <section className="py-12">
-        <div className="deep-platform-chapter py-16 sm:py-24 px-6 sm:px-12 text-white overflow-hidden">
+        <div className="bg-white dark:bg-panel border border-edge shadow-catalog-edge rounded-[12px] mx-3 py-16 sm:py-24 px-6 sm:px-12 text-body-ink overflow-hidden transition-colors">
           <div className="max-w-column mx-auto">
             {/* Header */}
             <div className="max-w-2xl">
-              <span className="font-mono text-[11px] font-medium uppercase tracking-wider text-ice/80 block mb-2">
-                STRUCTURED LEARNING PATHWAYS
-              </span>
-              <h2 className="font-sans text-[36px] sm:text-[44px] md:text-[48px] font-medium text-ice leading-[1.1] tracking-tighter">
+              <div className="column-eyebrow mb-2">STRUCTURED LEARNING PATHWAYS</div>
+              <h2 className="font-sans text-[36px] sm:text-[44px] md:text-[48px] font-semibold text-navy dark:text-white leading-[1.1] tracking-tight">
                 Curated learning paths from core to production scale.
               </h2>
-              <p className="mt-3 text-[15px] sm:text-[16px] text-ice/70 font-light leading-relaxed max-w-xl">
+              <p className="mt-3 text-[15px] sm:text-[16px] text-secondary-ink dark:text-ash font-normal leading-relaxed max-w-xl">
                 Master backend architecture and distributed engineering through modular curricula — organized by subject, learning roadmap, and lesson.
               </p>
             </div>
@@ -206,23 +204,23 @@ export const HomePage: React.FC = () => {
               {/* Pathway 1: Spring Boot */}
               <Link
                 to="/subjects/backend-distributed-systems?view=curriculum&path=spring-boot-production-mastery"
-                className="group p-6 rounded-[8px] bg-white/5 border border-white/10 hover:border-ice/50 hover:bg-white/10 backdrop-blur-md space-y-3 transition-all block text-left"
+                className="group p-6 rounded-[8px] bg-canvas/70 dark:bg-canvas/20 border border-edge hover:border-navy dark:hover:border-ice/50 hover:bg-canvas dark:hover:bg-canvas/40 shadow-xs hover:shadow-catalog-edge transition-all space-y-3 block text-left"
               >
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-[11px] text-proof-green uppercase font-semibold">
                     01 • CORE RUNTIME &amp; ARCHITECTURE
                   </span>
-                  <span className="material-symbols-outlined text-[16px] text-ice/60 group-hover:text-ice group-hover:translate-x-1 transition-all">
+                  <span className="material-symbols-outlined text-[16px] text-muted-ink group-hover:text-navy dark:group-hover:text-white group-hover:translate-x-1 transition-all">
                     arrow_forward
                   </span>
                 </div>
-                <h3 className="font-sans text-[18px] font-medium text-white group-hover:text-ice transition-colors">
+                <h3 className="font-sans text-[18px] font-semibold text-navy dark:text-white group-hover:text-[#2F6BFF] transition-colors">
                   Spring Boot Production Mastery
                 </h3>
-                <p className="text-[13.5px] text-white/70 leading-relaxed font-light">
+                <p className="text-[13.5px] text-secondary-ink dark:text-ash leading-relaxed font-normal">
                   Bootstrap lifecycle, auto-configuration heuristics, embedded container tuning, actuator observability, and GraalVM native compilation.
                 </p>
-                <span className="inline-flex items-center gap-1 font-mono text-[11.5px] text-ice/80 pt-1">
+                <span className="inline-flex items-center gap-1 font-mono text-[11.5px] text-muted-ink pt-1">
                   Active Learning Path • 3 Modules • 7 Lessons
                 </span>
               </Link>
@@ -230,23 +228,23 @@ export const HomePage: React.FC = () => {
               {/* Pathway 2: Microservices */}
               <Link
                 to="/subjects/backend-distributed-systems?view=curriculum&path=production-microservices-distributed-architecture"
-                className="group p-6 rounded-[8px] bg-white/5 border border-white/10 hover:border-ice/50 hover:bg-white/10 backdrop-blur-md space-y-3 transition-all block text-left"
+                className="group p-6 rounded-[8px] bg-canvas/70 dark:bg-canvas/20 border border-edge hover:border-navy dark:hover:border-ice/50 hover:bg-canvas dark:hover:bg-canvas/40 shadow-xs hover:shadow-catalog-edge transition-all space-y-3 block text-left"
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-[11px] text-ice uppercase font-semibold">
+                  <span className="font-mono text-[11px] text-navy dark:text-ice uppercase font-semibold">
                     02 • CLOUD &amp; DISTRIBUTED SCALE
                   </span>
-                  <span className="material-symbols-outlined text-[16px] text-ice/60 group-hover:text-ice group-hover:translate-x-1 transition-all">
+                  <span className="material-symbols-outlined text-[16px] text-muted-ink group-hover:text-navy dark:group-hover:text-white group-hover:translate-x-1 transition-all">
                     arrow_forward
                   </span>
                 </div>
-                <h3 className="font-sans text-[18px] font-medium text-white group-hover:text-ice transition-colors">
+                <h3 className="font-sans text-[18px] font-semibold text-navy dark:text-white group-hover:text-[#2F6BFF] transition-colors">
                   Production Microservices &amp; Architecture
                 </h3>
-                <p className="text-[13.5px] text-white/70 leading-relaxed font-light">
+                <p className="text-[13.5px] text-secondary-ink dark:text-ash leading-relaxed font-normal">
                   Service discovery, API gateways, multi-tenant DB isolation, transactional outbox with Kafka CDC, and distributed sagas.
                 </p>
-                <span className="inline-flex items-center gap-1 font-mono text-[11.5px] text-ice/80 pt-1">
+                <span className="inline-flex items-center gap-1 font-mono text-[11.5px] text-muted-ink pt-1">
                   Active Learning Path • 2 Modules • 5 Lessons
                 </span>
               </Link>
@@ -254,23 +252,23 @@ export const HomePage: React.FC = () => {
               {/* Pathway 3: Database Internals */}
               <Link
                 to="/subjects/database-internals-storage"
-                className="group p-6 rounded-[8px] bg-white/5 border border-white/10 hover:border-ice/50 hover:bg-white/10 backdrop-blur-md space-y-3 transition-all block text-left"
+                className="group p-6 rounded-[8px] bg-canvas/70 dark:bg-canvas/20 border border-edge hover:border-navy dark:hover:border-ice/50 hover:bg-canvas dark:hover:bg-canvas/40 shadow-xs hover:shadow-catalog-edge transition-all space-y-3 block text-left"
               >
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-[11px] text-dot-blue uppercase font-semibold">
                     03 • LOW-LATENCY STORAGE
                   </span>
-                  <span className="material-symbols-outlined text-[16px] text-ice/60 group-hover:text-ice group-hover:translate-x-1 transition-all">
+                  <span className="material-symbols-outlined text-[16px] text-muted-ink group-hover:text-navy dark:group-hover:text-white group-hover:translate-x-1 transition-all">
                     arrow_forward
                   </span>
                 </div>
-                <h3 className="font-sans text-[18px] font-medium text-white group-hover:text-ice transition-colors">
+                <h3 className="font-sans text-[18px] font-semibold text-navy dark:text-white group-hover:text-[#2F6BFF] transition-colors">
                   Database Internals &amp; Concurrency
                 </h3>
-                <p className="text-[13.5px] text-white/70 leading-relaxed font-light">
+                <p className="text-[13.5px] text-secondary-ink dark:text-ash leading-relaxed font-normal">
                   HikariCP pool sizing, PostgreSQL MVCC locking internals, Redis distributed caching, and zero thread-thrashing concurrency.
                 </p>
-                <span className="inline-flex items-center gap-1 font-mono text-[11.5px] text-ice/80 pt-1">
+                <span className="inline-flex items-center gap-1 font-mono text-[11.5px] text-muted-ink pt-1">
                   Active Learning Path • 6 Modules
                 </span>
               </Link>

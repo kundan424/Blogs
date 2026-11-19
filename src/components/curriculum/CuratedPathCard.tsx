@@ -22,75 +22,75 @@ interface ThemeConfig {
 }
 
 const THEMES: Record<string, ThemeConfig> = {
-  // 1. Spring Boot
+  // 1. Spring Boot (Indigo / Periwinkle theme)
   'spring-boot-production-mastery': {
     bgGradient:
-      'bg-gradient-to-br from-[#fffffc] via-[#faf8f4] to-[#fffffc] dark:from-[#0d1222] dark:via-[#11172a] dark:to-[#090c15]',
-    borderColor: 'border-[#beb7a4]/50 dark:border-[#beb7a4]/30',
-    hoverBorder: 'hover:border-[#2F6BFF] dark:hover:border-[#2F6BFF]',
-    hoverShadow: 'hover:shadow-[0_12px_28px_rgba(47,107,255,0.14)]',
-    iconGradient: 'bg-gradient-to-br from-[#2F6BFF] to-[#2055dd]',
+      'bg-gradient-to-br from-[#f0f3ff] via-[#f7f9ff] to-[#ffffff] dark:from-[#11162b] dark:via-[#141829] dark:to-[#0c0f17]',
+    borderColor: 'border-[#c7d2fe] dark:border-[#273256]',
+    hoverBorder: 'hover:border-[#3e5199] dark:hover:border-[#6366f1]',
+    hoverShadow: 'hover:shadow-[0_12px_28px_rgba(62,81,153,0.12)]',
+    iconGradient: 'bg-gradient-to-br from-[#3e5199] to-[#5568ad]',
     badgeBg:
-      'bg-[#2F6BFF]/10 text-[#2F6BFF] dark:text-[#fffffc] border-[#beb7a4]/50',
-    progressBarGradient: 'from-[#2F6BFF] via-[#5286ff] to-[#beb7a4]',
-    btnBg: 'bg-[#2F6BFF] text-[#fffffc] hover:bg-[#2055dd]',
-    accentText: 'text-[#2F6BFF] dark:text-[#fffffc]',
+      'bg-[#3e5199]/10 text-[#3e5199] dark:text-[#a5b4fc] border-[#3e5199]/20',
+    progressBarGradient: 'from-[#3e5199] via-[#5568ad] to-[#818cf8]',
+    btnBg: 'bg-[#111a4a] text-white hover:bg-[#1f2963]',
+    accentText: 'text-[#3e5199] dark:text-[#a5b4fc]',
   },
-  // 2. Microservices
+  // 2. Microservices (Teal / Proof Green theme)
   'production-microservices-distributed-architecture': {
     bgGradient:
-      'bg-gradient-to-br from-[#fffffc] via-[#f7f5f0] to-[#fffffc] dark:from-[#0b101c] dark:via-[#0e1424] dark:to-[#090c15]',
-    borderColor: 'border-[#beb7a4]/50 dark:border-[#beb7a4]/30',
-    hoverBorder: 'hover:border-[#2F6BFF] dark:hover:border-[#2F6BFF]',
-    hoverShadow: 'hover:shadow-[0_12px_28px_rgba(47,107,255,0.14)]',
-    iconGradient: 'bg-gradient-to-br from-[#2F6BFF] to-[#1a4bc7]',
+      'bg-gradient-to-br from-[#ecfdf5] via-[#f2faf7] to-[#ffffff] dark:from-[#0a1f1d] dark:via-[#0e2421] dark:to-[#0c0f17]',
+    borderColor: 'border-[#a7f3d0] dark:border-[#1b3d39]',
+    hoverBorder: 'hover:border-[#167e6c] dark:hover:border-[#2dd4bf]',
+    hoverShadow: 'hover:shadow-[0_12px_28px_rgba(22,126,108,0.14)]',
+    iconGradient: 'bg-gradient-to-br from-[#167e6c] to-[#0d9488]',
     badgeBg:
-      'bg-[#2F6BFF]/10 text-[#2F6BFF] dark:text-[#fffffc] border-[#beb7a4]/50',
-    progressBarGradient: 'from-[#2F6BFF] via-[#5286ff] to-[#beb7a4]',
-    btnBg: 'bg-[#2F6BFF] text-[#fffffc] hover:bg-[#1a4bc7]',
-    accentText: 'text-[#2F6BFF] dark:text-[#fffffc]',
+      'bg-[#167e6c]/10 text-[#167e6c] dark:text-[#6ee7b7] border-[#167e6c]/20',
+    progressBarGradient: 'from-[#167e6c] via-[#0d9488] to-[#2dd4bf]',
+    btnBg: 'bg-[#167e6c] text-white hover:bg-[#126859]',
+    accentText: 'text-[#167e6c] dark:text-[#6ee7b7]',
   },
-  // 3. Java Core & OOP
+  // 3. Java Core & OOP (Customer Ember / Amber theme)
   'java-core-oop-deep-dives': {
     bgGradient:
-      'bg-gradient-to-br from-[#fffffc] via-[#faf8f4] to-[#fffffc] dark:from-[#0d1222] dark:via-[#11172a] dark:to-[#090c15]',
-    borderColor: 'border-[#beb7a4]/50 dark:border-[#beb7a4]/30',
-    hoverBorder: 'hover:border-[#2F6BFF] dark:hover:border-[#2F6BFF]',
-    hoverShadow: 'hover:shadow-[0_12px_28px_rgba(47,107,255,0.14)]',
-    iconGradient: 'bg-gradient-to-br from-[#2F6BFF] to-[#2055dd]',
+      'bg-gradient-to-br from-[#fff7ed] via-[#fefaf6] to-[#ffffff] dark:from-[#211510] dark:via-[#221813] dark:to-[#0c0f17]',
+    borderColor: 'border-[#fed7aa] dark:border-[#3d291e]',
+    hoverBorder: 'hover:border-[#ec652b] dark:hover:border-[#fb923c]',
+    hoverShadow: 'hover:shadow-[0_12px_28px_rgba(236,101,43,0.12)]',
+    iconGradient: 'bg-gradient-to-br from-[#ec652b] to-[#f97316]',
     badgeBg:
-      'bg-[#2F6BFF]/10 text-[#2F6BFF] dark:text-[#fffffc] border-[#beb7a4]/50',
-    progressBarGradient: 'from-[#2F6BFF] via-[#5286ff] to-[#beb7a4]',
-    btnBg: 'bg-[#2F6BFF] text-[#fffffc] hover:bg-[#2055dd]',
-    accentText: 'text-[#2F6BFF] dark:text-[#fffffc]',
+      'bg-[#ec652b]/10 text-[#ec652b] dark:text-[#fdba74] border-[#ec652b]/20',
+    progressBarGradient: 'from-[#ec652b] via-[#f97316] to-[#fbbf24]',
+    btnBg: 'bg-[#ec652b] text-white hover:bg-[#d4541e]',
+    accentText: 'text-[#ec652b] dark:text-[#fdba74]',
   },
-  // 4. Docker / Container
+  // 4. Docker / Container (Dot Blue / Cyan theme)
   'docker-container-runtime-mastery': {
     bgGradient:
-      'bg-gradient-to-br from-[#fffffc] via-[#f7f5f0] to-[#fffffc] dark:from-[#0b101c] dark:via-[#0e1424] dark:to-[#090c15]',
-    borderColor: 'border-[#beb7a4]/50 dark:border-[#beb7a4]/30',
-    hoverBorder: 'hover:border-[#2F6BFF] dark:hover:border-[#2F6BFF]',
-    hoverShadow: 'hover:shadow-[0_12px_28px_rgba(47,107,255,0.14)]',
-    iconGradient: 'bg-gradient-to-br from-[#2F6BFF] to-[#1a4bc7]',
+      'bg-gradient-to-br from-[#f0f9ff] via-[#f5fbff] to-[#ffffff] dark:from-[#0f1d2e] dark:via-[#112033] dark:to-[#0c0f17]',
+    borderColor: 'border-[#bae6fd] dark:border-[#1e3a5f]',
+    hoverBorder: 'hover:border-[#4575cd] dark:hover:border-[#38bdf8]',
+    hoverShadow: 'hover:shadow-[0_12px_28px_rgba(69,117,205,0.14)]',
+    iconGradient: 'bg-gradient-to-br from-[#4575cd] to-[#38bdf8]',
     badgeBg:
-      'bg-[#2F6BFF]/10 text-[#2F6BFF] dark:text-[#fffffc] border-[#beb7a4]/50',
-    progressBarGradient: 'from-[#2F6BFF] via-[#5286ff] to-[#beb7a4]',
-    btnBg: 'bg-[#2F6BFF] text-[#fffffc] hover:bg-[#1a4bc7]',
-    accentText: 'text-[#2F6BFF] dark:text-[#fffffc]',
+      'bg-[#4575cd]/10 text-[#4575cd] dark:text-[#7dd3fc] border-[#4575cd]/20',
+    progressBarGradient: 'from-[#4575cd] via-[#0284c7] to-[#38bdf8]',
+    btnBg: 'bg-[#4575cd] text-white hover:bg-[#3462b5]',
+    accentText: 'text-[#4575cd] dark:text-[#7dd3fc]',
   },
 };
 
 const DEFAULT_THEME: ThemeConfig = {
   bgGradient:
-    'bg-gradient-to-br from-[#fffffc] to-[#faf8f4] dark:from-[#111522] dark:to-[#090c15]',
+    'bg-gradient-to-br from-[#f6f6f8] to-[#ffffff] dark:from-[#141824] dark:to-[#0c0f17]',
   borderColor: 'border-edge',
-  hoverBorder: 'hover:border-[#2F6BFF] dark:hover:border-[#2F6BFF]',
+  hoverBorder: 'hover:border-navy dark:hover:border-ice',
   hoverShadow: 'hover:shadow-md',
-  iconGradient: 'bg-[#2F6BFF] text-[#fffffc]',
+  iconGradient: 'bg-navy text-white',
   badgeBg: 'bg-panel text-secondary-ink border-edge',
-  progressBarGradient: 'from-[#2F6BFF] to-[#beb7a4]',
+  progressBarGradient: 'from-banner-start via-dot-blue to-proof-green',
   btnBg: 'btn-primary',
-  accentText: 'text-[#2F6BFF] dark:text-[#fffffc]',
+  accentText: 'text-navy dark:text-white',
 };
 
 export const CuratedPathCard: React.FC<CuratedPathCardProps> = ({

@@ -99,8 +99,8 @@ export const SubjectsPage: React.FC = () => {
               onClick={() => setSortBy('notes')}
               className={`h-[36px] px-4 rounded-[8px] text-[13px] font-mono transition-all border cursor-pointer select-none inline-flex items-center justify-center ${
                 sortBy === 'notes'
-                  ? 'bg-[#2F6BFF] text-[#fffffc] border-[#2F6BFF] shadow-sm font-semibold'
-                  : 'bg-white dark:bg-panel text-body-ink border-edge hover:border-[#2F6BFF] hover:text-[#2F6BFF] hover:bg-[#2F6BFF]/5 shadow-xs'
+                  ? 'bg-gradient-to-r from-[#3e5199] to-[#5568ad] text-white border-[#3e5199] shadow-sm font-semibold'
+                  : 'bg-white dark:bg-panel text-body-ink border-edge hover:border-[#3e5199] hover:text-[#3e5199] hover:bg-[#3e5199]/5 shadow-xs'
               }`}
             >
               <span>Most Notes</span>
@@ -110,8 +110,8 @@ export const SubjectsPage: React.FC = () => {
               onClick={() => setSortBy('updated')}
               className={`h-[36px] px-4 rounded-[8px] text-[13px] font-mono transition-all border cursor-pointer select-none inline-flex items-center justify-center ${
                 sortBy === 'updated'
-                  ? 'bg-[#2F6BFF] text-[#fffffc] border-[#2F6BFF] shadow-sm font-semibold'
-                  : 'bg-white dark:bg-panel text-body-ink border-edge hover:border-[#2F6BFF] hover:text-[#2F6BFF] hover:bg-[#2F6BFF]/5 shadow-xs'
+                  ? 'bg-gradient-to-r from-[#3e5199] to-[#5568ad] text-white border-[#3e5199] shadow-sm font-semibold'
+                  : 'bg-white dark:bg-panel text-body-ink border-edge hover:border-[#3e5199] hover:text-[#3e5199] hover:bg-[#3e5199]/5 shadow-xs'
               }`}
             >
               <span>Recently Updated</span>
@@ -121,8 +121,8 @@ export const SubjectsPage: React.FC = () => {
               onClick={() => setSortBy('alpha')}
               className={`h-[36px] px-4 rounded-[8px] text-[13px] font-mono transition-all border cursor-pointer select-none inline-flex items-center justify-center ${
                 sortBy === 'alpha'
-                  ? 'bg-[#2F6BFF] text-[#fffffc] border-[#2F6BFF] shadow-sm font-semibold'
-                  : 'bg-white dark:bg-panel text-body-ink border-edge hover:border-[#2F6BFF] hover:text-[#2F6BFF] hover:bg-[#2F6BFF]/5 shadow-xs'
+                  ? 'bg-gradient-to-r from-[#3e5199] to-[#5568ad] text-white border-[#3e5199] shadow-sm font-semibold'
+                  : 'bg-white dark:bg-panel text-body-ink border-edge hover:border-[#3e5199] hover:text-[#3e5199] hover:bg-[#3e5199]/5 shadow-xs'
               }`}
             >
               <span>Alphabetical (A-Z)</span>

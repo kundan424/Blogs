@@ -185,8 +185,8 @@ export const SubjectHubPage: React.FC = () => {
               className={cn(
                 'h-[36px] px-4 rounded-[8px] font-mono text-[13px] inline-flex items-center gap-2 transition-all cursor-pointer select-none border',
                 viewMode === 'curriculum'
-                  ? 'bg-[#2F6BFF] text-[#fffffc] border-[#2F6BFF] font-semibold shadow-sm'
-                  : 'bg-white dark:bg-panel text-body-ink border-edge hover:border-[#2F6BFF] hover:text-[#2F6BFF] hover:bg-[#2F6BFF]/5 shadow-xs'
+                  ? 'bg-gradient-to-r from-[#3e5199] to-[#5568ad] text-white border-[#3e5199] font-semibold shadow-sm'
+                  : 'bg-white dark:bg-panel text-body-ink border-edge hover:border-[#3e5199] hover:text-[#3e5199] hover:bg-[#3e5199]/5 shadow-xs'
               )}
             >
               <span className="material-symbols-outlined text-[17px]">schema</span>
@@ -199,8 +199,8 @@ export const SubjectHubPage: React.FC = () => {
               className={cn(
                 'h-[36px] px-4 rounded-[8px] font-mono text-[13px] inline-flex items-center gap-2 transition-all cursor-pointer select-none border',
                 viewMode === 'feed'
-                  ? 'bg-[#2F6BFF] text-[#fffffc] border-[#2F6BFF] font-semibold shadow-sm'
-                  : 'bg-white dark:bg-panel text-body-ink border-edge hover:border-[#2F6BFF] hover:text-[#2F6BFF] hover:bg-[#2F6BFF]/5 shadow-xs'
+                  ? 'bg-gradient-to-r from-[#3e5199] to-[#5568ad] text-white border-[#3e5199] font-semibold shadow-sm'
+                  : 'bg-white dark:bg-panel text-body-ink border-edge hover:border-[#3e5199] hover:text-[#3e5199] hover:bg-[#3e5199]/5 shadow-xs'
               )}
             >
               <span className="material-symbols-outlined text-[17px]">view_stream</span>
@@ -368,10 +368,10 @@ export const SubjectHubPage: React.FC = () => {
                       <Link
                         key={lp.id}
                         to={`/learning-paths/${lp.slug}`}
-                        className="w-full text-left p-2.5 rounded-[8px] bg-canvas border border-edge hover:border-[#2F6BFF] hover:text-[#2F6BFF] dark:hover:text-[#fffffc] group transition-all block"
+                        className="w-full text-left p-2.5 rounded-[8px] bg-canvas dark:bg-[#121620] border border-edge hover:border-navy hover:text-navy dark:hover:text-white group transition-all block"
                       >
                         <div className="flex items-center justify-between">
-                          <span className="font-sans text-[13px] font-medium text-body-ink group-hover:text-[#2F6BFF] dark:group-hover:text-[#fffffc]">
+                          <span className="font-sans text-[13px] font-medium text-body-ink group-hover:text-navy dark:group-hover:text-white">
                             {lp.title}
                           </span>
                           <span className="font-mono text-[10.5px] text-proof-green shrink-0 ml-2">
@@ -407,12 +407,12 @@ export const SubjectHubPage: React.FC = () => {
                     <Link
                       key={topic}
                       to={`/topics/${topic}`}
-                      className="flex items-center justify-between p-2.5 rounded-[8px] bg-canvas border border-edge hover:border-[#2F6BFF] hover:text-[#2F6BFF] dark:hover:text-[#fffffc] group transition-all"
+                      className="flex items-center justify-between p-2.5 rounded-[8px] bg-canvas dark:bg-[#121620] border border-edge hover:border-navy hover:text-navy dark:hover:text-white group transition-all"
                     >
-                      <span className="font-mono text-[12px] text-body-ink group-hover:text-[#2F6BFF] dark:group-hover:text-[#fffffc]">
+                      <span className="font-mono text-[12px] text-body-ink group-hover:text-navy dark:group-hover:text-white">
                         #{topic}
                       </span>
-                      <span className="font-mono text-[11px] text-muted-ink group-hover:text-[#2F6BFF]/80 dark:group-hover:text-[#fffffc]/80">
+                      <span className="font-mono text-[11px] text-muted-ink group-hover:text-navy/80 dark:group-hover:text-white/80">
                         {count} {count === 1 ? 'note' : 'notes'}
                       </span>
                     </Link>
@@ -429,7 +429,7 @@ export const SubjectHubPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setSubTopicsExpanded(!subTopicsExpanded)}
-                      className="inline-flex items-center gap-1 font-mono text-[11px] text-[#2F6BFF] hover:underline cursor-pointer"
+                      className="inline-flex items-center gap-1 font-mono text-[11px] text-[#3e5199] dark:text-ice hover:underline cursor-pointer"
                     >
                       <span className="material-symbols-outlined text-[14px]">
                         {subTopicsExpanded ? 'unfold_less' : 'unfold_more'}

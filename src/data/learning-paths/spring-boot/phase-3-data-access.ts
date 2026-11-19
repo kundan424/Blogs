@@ -225,10 +225,11 @@ export const phase3Modules: LearningModule[] = [
         id: 'sb-16-2',
         number: '16.2',
         title: 'How @Transactional Works: AOP Proxies, ThreadLocal & The Self-Invocation Trap',
+        noteSlug: 'spring-boot-how-transactional-works-aop-proxies-self-invocation-trap',
         description:
           'Deconstructing Spring AOP transaction interception, ThreadLocal connection binding, why private methods fail silently, and solving the self-invocation proxy bypass trap.',
-        status: 'upcoming',
-        readTime: '18m read',
+        status: 'published',
+        readTime: '20m read',
         topics: ['transactional', 'aop-proxies', 'self-invocation', 'thread-local', 'clean-code'],
       },
       {

@@ -3,17 +3,18 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { getLearningPathBySlug, getLearningPathsBySubject } from '../utils/learningPathLoader';
 import { getSubjectBySlug } from '../utils/contentLoader';
 import { Breadcrumb } from '../components/common/Breadcrumb';
+import { PixelSymbol } from '../components/common/PixelSymbol';
+import { EndpointCapsule } from '../components/common/EndpointCapsule';
 import { cn } from '../utils/cn';
 
 export const LearningPathDetailPage: React.FC = () => {
   const { pathSlug } = useParams<{ pathSlug: string }>();
   const navigate = useNavigate();
 
-  // Track open/collapsed state of each module. By default all are collapsed (empty object)
+  // Track open/collapsed state of each module. Default: first module open
   const [expandedModules, setExpandedModules] = useState<Record<string, boolean>>({});
   const [milestonesExpanded, setMilestonesExpanded] = useState(false);
 
-  // Dynamic height synchronization with right-side cards
   const modulesScrollContainerRef = useRef<HTMLDivElement>(null);
   const rightAsideRef = useRef<HTMLDivElement>(null);
   const [asideHeight, setAsideHeight] = useState<number | undefined>(undefined);
@@ -35,9 +36,7 @@ export const LearningPathDetailPage: React.FC = () => {
   };
 
   const handleJumpToModule = (moduleId: string, moduleNumber: string) => {
-    // Automatically expand the module so its articles are visible
     setExpandedModules((prev) => ({ ...prev, [moduleId]: true }));
-    // Smooth scroll inside the scrollable container to that module
     setTimeout(() => {
       const el = document.getElementById(`module-${moduleNumber}`);
       if (el) {
@@ -54,7 +53,6 @@ export const LearningPathDetailPage: React.FC = () => {
     return learningPath ? getSubjectBySlug(learningPath.subjectSlug) : undefined;
   }, [learningPath]);
 
-  // Other pathways in the same subject
   const siblingPaths = useMemo(() => {
     if (!learningPath) return [];
     return getLearningPathsBySubject(learningPath.subjectSlug).filter(
@@ -62,7 +60,6 @@ export const LearningPathDetailPage: React.FC = () => {
     );
   }, [learningPath]);
 
-  // First published lesson to recommend as "Start Learning"
   const firstPublishedLesson = useMemo(() => {
     if (!learningPath) return undefined;
     for (const mod of learningPath.modules) {
@@ -78,7 +75,12 @@ export const LearningPathDetailPage: React.FC = () => {
     return undefined;
   }, [learningPath]);
 
-  // Synchronize modules scroll container height with right aside cards
+  useEffect(() => {
+    if (learningPath && learningPath.modules.length > 0 && Object.keys(expandedModules).length === 0) {
+      setExpandedModules({ [learningPath.modules[0].id]: true });
+    }
+  }, [learningPath]);
+
   useEffect(() => {
     const updateHeight = () => {
       if (window.innerWidth >= 1024 && rightAsideRef.current) {
@@ -110,15 +112,15 @@ export const LearningPathDetailPage: React.FC = () => {
 
   if (!learningPath) {
     return (
-      <div className="w-full bg-canvas text-body-ink min-h-screen py-16">
-        <div className="max-w-column mx-auto px-5 text-center space-y-4">
-          <span className="material-symbols-outlined text-[48px] text-muted-ink">
+      <div className="w-full bg-bright-white dark:bg-[#161616] text-[#161616] dark:text-[#fafafa] min-h-screen py-16">
+        <div className="max-w-[1190px] mx-auto px-6 text-center space-y-4">
+          <span className="material-symbols-outlined text-[48px] text-[#161616] dark:text-[#fafafa]">
             search_off
           </span>
-          <h1 className="text-[28px] font-semibold text-navy dark:text-white">
+          <h1 className="heading-xl text-[#161616] dark:text-[#fafafa]">
             Curriculum Roadmap Not Found
           </h1>
-          <p className="text-secondary-ink max-w-md mx-auto">
+          <p className="font-sans text-[#616161] dark:text-[#a3a3a3] max-w-md mx-auto">
             The requested learning path does not exist or has been restructured.
           </p>
           <Link to="/subjects" className="btn-primary inline-flex mt-4">
@@ -132,15 +134,22 @@ export const LearningPathDetailPage: React.FC = () => {
   const subjectName = parentSubject?.name || 'Subject Domain';
   const subjectSlug = parentSubject?.slug || learningPath.subjectSlug;
 
+  const getSymbolVariant = (p: typeof learningPath) => {
+    const slug = p.slug.toLowerCase();
+    if (slug.includes('database') || slug.includes('storage')) return 'database';
+    if (slug.includes('microservices') || slug.includes('distributed')) return 'network';
+    if (slug.includes('docker') || slug.includes('container')) return 'container';
+    if (slug.includes('system-design')) return 'architecture';
+    if (slug.includes('spring') || slug.includes('java')) return 'runtime';
+    return 'workflow';
+  };
+
   return (
-    <div className="w-full bg-canvas text-body-ink min-h-screen py-10 transition-colors">
-      <div className="max-w-column mx-auto w-full px-5 space-y-10">
+    <div className="w-full bg-bright-white dark:bg-[#161616] text-[#161616] dark:text-[#fafafa] min-h-screen py-10 transition-colors">
+      <div className="max-w-[1190px] mx-auto w-full px-6 space-y-10">
         
-        {/* =====================================================================
-            ZONE 1: ROADMAP HERO HEADER & SYLLABUS OVERVIEW
-            ===================================================================== */}
-        <header className="w-full pb-8 border-b border-edge">
-          {/* Breadcrumbs */}
+        {/* ZONE 1: ROADMAP HERO HEADER */}
+        <header className="p-8 sm:p-10 rounded-[24px] bg-[#f0f0f0] dark:bg-[#212121] border border-[#d9d9d9] dark:border-[#333333]">
           <Breadcrumb
             items={[
               { label: 'Home', href: '/', icon: 'home' },
@@ -148,31 +157,29 @@ export const LearningPathDetailPage: React.FC = () => {
               { label: subjectName, href: `/subjects/${subjectSlug}` },
               { label: learningPath.title },
             ]}
-            className="mb-4"
+            className="mb-5"
           />
 
           <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-8">
             {/* Title & Syllabus Summary */}
             <div className="space-y-4 max-w-2xl">
               <div className="flex items-center gap-3">
-                <span className="w-11 h-11 rounded-[8px] bg-navy text-white flex items-center justify-center shrink-0 shadow-primary-btn">
-                  <span className="material-symbols-outlined text-[22px]">
-                    {learningPath.icon || 'schema'}
-                  </span>
+                <span className="w-12 h-12 rounded-[16px] bg-bright-white dark:bg-[#303030] text-[#161616] dark:text-[#fafafa] flex items-center justify-center shrink-0 border border-[#d9d9d9] dark:border-[#474747]">
+                  <PixelSymbol variant={getSymbolVariant(learningPath)} size={32} />
                 </span>
-                <span className="font-mono text-[11px] uppercase tracking-wider text-proof-green bg-proof-green/10 border border-proof-green/20 px-2.5 py-1 rounded-[8px] font-semibold">
-                  STRUCTURED CURRICULUM ROADMAP
-                </span>
-                <span className="font-mono text-[11px] text-muted-ink uppercase tracking-wider">
+                <EndpointCapsule>
+                  STRUCTURED CURRICULUM
+                </EndpointCapsule>
+                <span className="font-mono text-[11px] text-[#8f8f8f] uppercase tracking-[0.02em]">
                   {learningPath.level || 'Production Scale'}
                 </span>
               </div>
 
-              <h1 className="text-[32px] sm:text-[44px] font-medium leading-[1.1] tracking-[-0.03em] text-navy dark:text-white">
+              <h1 className="heading-xl text-[#161616] dark:text-[#fafafa]">
                 {learningPath.title}
               </h1>
 
-              <p className="text-[15px] sm:text-[16px] leading-relaxed text-secondary-ink dark:text-ash">
+              <p className="font-sans text-[16px] leading-[1.35] text-[#616161] dark:text-[#a3a3a3]">
                 {learningPath.description}
               </p>
 
@@ -184,7 +191,7 @@ export const LearningPathDetailPage: React.FC = () => {
                     className="btn-primary"
                   >
                     <span>Start Lesson 1.1</span>
-                    <span className="material-symbols-outlined text-[14px]">
+                    <span className="material-symbols-outlined text-[16px]">
                       arrow_forward
                     </span>
                   </Link>
@@ -194,7 +201,7 @@ export const LearningPathDetailPage: React.FC = () => {
                   to={`/subjects/${subjectSlug}`}
                   className="btn-secondary"
                 >
-                  <span className="material-symbols-outlined text-[15px]">
+                  <span className="material-symbols-outlined text-[16px]">
                     arrow_back
                   </span>
                   <span>Back to {subjectName}</span>
@@ -203,46 +210,46 @@ export const LearningPathDetailPage: React.FC = () => {
             </div>
 
             {/* Metrics & Overall Progress Panel */}
-            <div className="p-5 bg-white dark:bg-panel rounded-[12px] border border-edge shadow-catalog-edge space-y-4 w-full lg:w-80 shrink-0">
-              <div className="font-mono text-[11px] uppercase tracking-wider text-muted-ink font-semibold flex items-center justify-between pb-2 border-b border-edge">
+            <div className="p-6 bg-bright-white dark:bg-[#161616] rounded-[24px] border border-[#d9d9d9] dark:border-[#333333] space-y-4 w-full lg:w-80 shrink-0">
+              <div className="font-mono text-[11px] uppercase tracking-[0.02em] text-[#8f8f8f] font-medium flex items-center justify-between pb-2 border-b border-[#d9d9d9] dark:border-[#333333]">
                 <span>CURRICULUM METRICS</span>
-                <span className="text-proof-green">VERIFIED</span>
+                <span className="text-[#161616] dark:text-[#fafafa]">VERIFIED</span>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <span className="text-[26px] font-medium text-navy dark:text-white leading-none block">
+                  <span className="font-sans text-[32px] font-medium text-[#161616] dark:text-[#fafafa] leading-none block">
                     {learningPath.modules.length}
                   </span>
-                  <span className="font-mono text-[11px] text-muted-ink uppercase tracking-wider mt-1 block">
+                  <span className="font-mono text-[11px] text-[#8f8f8f] uppercase tracking-[0.02em] mt-1 block">
                     Modules
                   </span>
                 </div>
 
                 <div>
-                  <span className="text-[26px] font-medium text-navy dark:text-white leading-none block">
+                  <span className="font-sans text-[32px] font-medium text-[#161616] dark:text-[#fafafa] leading-none block">
                     {learningPath.totalLessons}
                   </span>
-                  <span className="font-mono text-[11px] text-muted-ink uppercase tracking-wider mt-1 block">
+                  <span className="font-mono text-[11px] text-[#8f8f8f] uppercase tracking-[0.02em] mt-1 block">
                     Total Lessons
                   </span>
                 </div>
               </div>
 
-              <div className="pt-3 border-t border-edge space-y-1.5">
-                <div className="flex items-center justify-between font-mono text-[11.5px] text-muted-ink">
+              <div className="pt-3 border-t border-[#d9d9d9] dark:border-[#333333] space-y-1.5">
+                <div className="flex items-center justify-between font-mono text-[11.5px] uppercase tracking-[0.02em] text-[#8f8f8f]">
                   <span>Published Lessons</span>
-                  <span className="font-medium text-proof-green">
+                  <span className="font-medium text-[#161616] dark:text-[#fafafa]">
                     {learningPath.publishedLessons} / {learningPath.totalLessons}
                   </span>
                 </div>
-                <div className="w-full h-2 rounded-full bg-black/5 dark:bg-white/10 overflow-hidden">
+                <div className="w-full h-2 rounded-full bg-[#f0f0f0] dark:bg-[#303030] overflow-hidden">
                   <div
-                    className="h-full rounded-full bg-gradient-to-r from-banner-start via-dot-blue to-proof-green transition-all duration-500"
+                    className="h-full rounded-full bg-[#161616] dark:bg-[#ffffff] transition-all duration-500"
                     style={{ width: `${Math.max(4, learningPath.progressPercentage)}%` }}
                   />
                 </div>
-                <span className="font-mono text-[10.5px] text-muted-ink block pt-0.5 text-right">
+                <span className="font-mono text-[10.5px] uppercase tracking-[0.02em] text-[#8f8f8f] block pt-0.5 text-right">
                   {learningPath.progressPercentage}% Completed Roadmap
                 </span>
               </div>
@@ -250,48 +257,45 @@ export const LearningPathDetailPage: React.FC = () => {
           </div>
         </header>
 
-        {/* =====================================================================
-            ZONE 2: SEQUENTIAL ROADMAP TIMELINE & LESSONS
-            ===================================================================== */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        {/* ZONE 2: SEQUENTIAL ROADMAP TIMELINE & LESSONS */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Main Roadmap Timeline Spine (8 cols) */}
           <section className="lg:col-span-8 space-y-6 flex flex-col">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-edge gap-3 shrink-0">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-[#d9d9d9] dark:border-[#333333] gap-3 shrink-0">
               <div>
-                <span className="font-mono text-[11px] uppercase tracking-wider text-muted-ink font-semibold block">
+                <span className="font-mono text-[11px] uppercase tracking-[0.02em] text-[#8f8f8f] font-medium block">
                   SEQUENTIAL SYLLABUS
                 </span>
-                <h2 className="text-[22px] font-semibold text-navy dark:text-white tracking-tight">
+                <h2 className="text-[20px] font-medium text-[#161616] dark:text-[#fafafa] tracking-tight">
                   Organized Learning Milestones
                 </h2>
               </div>
-              <div className="flex items-center gap-2 font-mono text-[11.5px]">
+              <div className="flex items-center gap-2 font-mono text-[11.5px] uppercase tracking-[0.02em]">
                 <button
                   type="button"
                   onClick={() => setAllExpanded(true)}
-                  className="px-2.5 py-1 rounded-[6px] bg-white dark:bg-panel border border-edge text-body-ink hover:text-[#3e5199] hover:border-[#3e5199] hover:bg-[#3e5199]/5 transition-all cursor-pointer shadow-2xs"
+                  className="px-3 py-1.5 rounded-full bg-[#f0f0f0] dark:bg-[#212121] border border-[#d9d9d9] dark:border-[#333333] text-[#161616] dark:text-[#fafafa] hover:border-[#161616] transition-all cursor-pointer"
                 >
                   Expand All
                 </button>
                 <button
                   type="button"
                   onClick={() => setAllExpanded(false)}
-                  className="px-2.5 py-1 rounded-[6px] bg-white dark:bg-panel border border-edge text-body-ink hover:text-[#3e5199] hover:border-[#3e5199] hover:bg-[#3e5199]/5 transition-all cursor-pointer shadow-2xs"
+                  className="px-3 py-1.5 rounded-full bg-[#f0f0f0] dark:bg-[#212121] border border-[#d9d9d9] dark:border-[#333333] text-[#161616] dark:text-[#fafafa] hover:border-[#161616] transition-all cursor-pointer"
                 >
                   Collapse All
                 </button>
               </div>
             </div>
 
-            {/* Scrollable Modules Container with respect to right-side cards */}
+            {/* Scrollable Modules Container */}
             <div
               ref={modulesScrollContainerRef}
               style={asideHeight ? { maxHeight: `${Math.max(asideHeight - 84, 460)}px` } : undefined}
               className="overflow-y-auto max-h-[calc(100vh-14rem)] lg:max-h-[680px] pr-2 sm:pr-4 py-2 custom-scrollbar focus:outline-hidden"
             >
-              {/* Modules Sequential Timeline */}
-              <div className="space-y-6 relative before:absolute before:left-5 before:top-4 before:bottom-4 before:w-0.5 before:bg-edge/80 dark:before:bg-edge/40">
+              <div className="space-y-6 relative before:absolute before:left-5 before:top-4 before:bottom-4 before:w-0.5 before:bg-[#d9d9d9] dark:before:bg-[#333333]">
                 {learningPath.modules.map((module) => {
                   const publishedCount = module.lessons.filter(
                     (l) => l.status === 'published'
@@ -305,51 +309,44 @@ export const LearningPathDetailPage: React.FC = () => {
                       className="relative pl-12"
                     >
                       {/* Timeline Node Badge on spine */}
-                      <div className="absolute left-3.5 top-0 -translate-x-1/2 w-7 h-7 rounded-full bg-navy text-white dark:bg-white dark:text-navy flex items-center justify-center font-mono text-[11px] font-semibold shadow-xs ring-4 ring-canvas">
+                      <div className="absolute left-3.5 top-0 -translate-x-1/2 w-7 h-7 rounded-full bg-[#212121] text-[#fafafa] dark:bg-[#fafafa] dark:text-[#212121] flex items-center justify-center font-mono text-[11px] font-medium shadow-xs ring-4 ring-[#fafafa] dark:ring-[#161616]">
                         {module.number}
                       </div>
 
                       {/* Unified Module Container Card */}
                       <div
                         className={cn(
-                          'rounded-[10px] border overflow-hidden transition-all duration-200 shadow-catalog-edge',
+                          'rounded-[20px] border overflow-hidden transition-all duration-200',
                           isExpanded
-                            ? 'border-[#3e5199]/40 dark:border-focus-blue/40 bg-white dark:bg-[#121622]'
-                            : 'border-edge hover:border-[#3e5199]/40 bg-white/80 dark:bg-panel/80'
+                            ? 'border-[#161616] dark:border-[#ffffff] bg-bright-white dark:bg-[#212121]'
+                            : 'border-[#d9d9d9] dark:border-[#333333] hover:border-[#161616] dark:hover:border-[#ffffff] bg-bright-white dark:bg-[#212121]'
                         )}
                       >
                         {/* Interactive Collapsible Module Header */}
                         <button
                           type="button"
                           onClick={() => toggleModule(module.id)}
-                          className="w-full p-3 sm:p-4 text-left transition-colors cursor-pointer select-none space-y-1.5 group hover:bg-canvas/30 dark:hover:bg-white/[0.015]"
+                          className="w-full p-4 sm:p-5 text-left transition-colors cursor-pointer select-none space-y-1.5 group hover:bg-[#f0f0f0]/50 dark:hover:bg-[#303030]/50"
                         >
                           <div className="flex flex-wrap items-center justify-between gap-2">
                             <div className="flex items-center gap-2">
-                              <span
-                                className={cn(
-                                  'px-2 py-0.5 rounded-[4px] font-mono text-[10px] font-semibold tracking-wider',
-                                  isExpanded
-                                    ? 'bg-[#3e5199]/15 text-[#3e5199] dark:bg-[#3e5199]/30 dark:text-ice border border-[#3e5199]/30'
-                                    : 'bg-canvas dark:bg-canvas/50 text-secondary-ink dark:text-ice border border-edge/60'
-                                )}
-                              >
+                              <span className="px-2.5 py-0.5 rounded-full font-mono text-[10.5px] uppercase tracking-[0.02em] font-medium bg-[#f0f0f0] dark:bg-[#303030] text-[#161616] dark:text-[#fafafa] border border-[#d9d9d9] dark:border-[#474747]">
                                 MODULE {module.number}
                               </span>
-                              <span className="font-mono text-[11px] text-muted-ink">
-                                {module.lessons.length} {module.lessons.length === 1 ? 'article' : 'articles'} ({publishedCount} published)
+                              <span className="font-mono text-[11px] uppercase tracking-[0.02em] text-[#8f8f8f]">
+                                {module.lessons.length} {module.lessons.length === 1 ? 'lesson' : 'lessons'} ({publishedCount} published)
                               </span>
                             </div>
 
                             <div className="flex items-center gap-2.5">
-                              <span className="font-mono text-[10px] text-proof-green bg-proof-green/10 px-1.5 py-0.5 rounded font-medium">
+                              <span className="font-mono text-[10px] uppercase tracking-[0.02em] text-[#161616] dark:text-[#fafafa] bg-[#161616]/5 dark:bg-white/10 px-2 py-0.5 rounded-full font-medium">
                                 {publishedCount === module.lessons.length
-                                  ? 'ALL READY'
+                                   ? 'ALL PUBLISHED'
                                   : `${module.lessons.length - publishedCount} UPCOMING`}
                               </span>
                               <span
                                 className={cn(
-                                  'material-symbols-outlined text-[18px] text-muted-ink group-hover:text-navy dark:group-hover:text-white transition-transform duration-200',
+                                  'material-symbols-outlined text-[18px] text-[#8f8f8f] transition-transform duration-200',
                                   isExpanded ? 'rotate-180' : ''
                                 )}
                               >
@@ -359,24 +356,24 @@ export const LearningPathDetailPage: React.FC = () => {
                           </div>
 
                           <div className="flex items-center justify-between gap-4">
-                            <h3 className="text-[15px] sm:text-[16.5px] font-medium text-navy dark:text-white tracking-tight group-hover:text-[#3e5199] dark:group-hover:text-ice transition-colors">
+                            <h3 className="text-[16px] sm:text-[17px] font-medium text-[#161616] dark:text-[#fafafa] tracking-tight group-hover:text-[#161616] dark:group-hover:text-[#ffffff] group-hover:underline transition-colors">
                               {module.title}
                             </h3>
-                            <span className="font-mono text-[10.5px] text-muted-ink shrink-0 hidden sm:inline">
-                              {isExpanded ? 'Click to collapse' : 'Click to view articles'}
+                            <span className="font-mono text-[10.5px] uppercase tracking-[0.02em] text-[#8f8f8f] shrink-0 hidden sm:inline">
+                              {isExpanded ? 'Collapse' : 'Expand'}
                             </span>
                           </div>
 
                           {module.description && (
-                            <p className="text-[12.5px] text-secondary-ink dark:text-muted-ink leading-relaxed">
+                            <p className="text-[13px] text-[#616161] dark:text-[#a3a3a3] leading-relaxed">
                               {module.description}
                             </p>
                           )}
                         </button>
 
-                        {/* Attached Lessons in this Module (Embedded directly with a subtle light background) */}
+                        {/* Attached Lessons */}
                         {isExpanded && (
-                          <div className="border-t border-edge/60 dark:border-edge/30 bg-[#fbfbfd]/70 dark:bg-[#0c0e16]/30 divide-y divide-edge/40 dark:divide-edge/20">
+                          <div className="border-t border-[#d9d9d9] dark:border-[#333333] bg-bright-white dark:bg-[#1a1a1a] divide-y divide-[#d9d9d9] dark:divide-[#303030]">
                             {module.lessons.map((lesson) => {
                               const isPublished = lesson.status === 'published';
 
@@ -389,32 +386,32 @@ export const LearningPathDetailPage: React.FC = () => {
                                     }
                                   }}
                                   className={cn(
-                                    'py-2.5 sm:py-3 px-3.5 sm:px-4.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 transition-colors',
+                                    'py-3 px-4 sm:px-5 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 transition-colors',
                                     isPublished
-                                      ? 'hover:bg-white dark:hover:bg-[#161b28] cursor-pointer group'
-                                      : 'opacity-65 bg-canvas/30'
+                                      ? 'hover:bg-bright-white dark:hover:bg-[#262626] cursor-pointer group'
+                                      : 'opacity-65'
                                   )}
                                 >
-                                  {/* Left: Sequence + Title + Status + Read Time */}
+                                  {/* Left: Sequence + Title + Status */}
                                   <div className="space-y-1 min-w-0 flex-1">
                                     <div className="flex items-center gap-2 flex-wrap">
-                                      <span className="font-mono text-[10px] font-medium px-1.5 py-0.5 rounded bg-canvas dark:bg-[#161a26] text-navy dark:text-ice border border-edge/60">
+                                      <span className="font-mono text-[10.5px] uppercase tracking-[0.02em] font-medium px-2 py-0.5 rounded-full bg-[#f0f0f0] dark:bg-[#303030] text-[#161616] dark:text-[#fafafa] border border-[#d9d9d9] dark:border-[#474747]">
                                         LESSON {lesson.number}
                                       </span>
 
                                       {isPublished ? (
-                                        <span className="inline-flex items-center gap-1 font-mono text-[9.5px] text-proof-green bg-proof-green/10 border border-proof-green/20 px-1.5 py-0.5 rounded-[4px] font-medium">
-                                          <span className="w-1 h-1 rounded-full bg-proof-green" />
-                                          <span>Published Article</span>
+                                        <span className="inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-[0.02em] text-[#161616] dark:text-[#fafafa] bg-[#161616]/5 dark:bg-white/10 border border-[#d9d9d9] dark:border-[#474747] px-2 py-0.5 rounded-full font-medium">
+                                          <span className="w-1.5 h-1.5 rounded-full bg-[#161616] dark:bg-[#ffffff]" />
+                                          <span>Published</span>
                                         </span>
                                       ) : (
-                                        <span className="inline-flex items-center gap-1 font-mono text-[9.5px] text-muted-ink bg-canvas border border-edge/80 px-1.5 py-0.5 rounded-[4px]">
-                                          <span>Scheduled on Roadmap</span>
+                                        <span className="inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-[0.02em] text-[#8f8f8f] bg-[#f0f0f0] dark:bg-[#303030] border border-[#d9d9d9] dark:border-[#474747] px-2 py-0.5 rounded-full">
+                                          <span>Scheduled</span>
                                         </span>
                                       )}
 
                                       {lesson.readTime && isPublished && (
-                                        <span className="font-mono text-[10.5px] text-muted-ink">
+                                        <span className="font-mono text-[11px] text-[#8f8f8f]">
                                           • {lesson.readTime}
                                         </span>
                                       )}
@@ -422,10 +419,10 @@ export const LearningPathDetailPage: React.FC = () => {
 
                                     <h4
                                       className={cn(
-                                        'text-[13px] sm:text-[14px] font-medium leading-snug tracking-tight',
+                                        'text-[14px] font-medium leading-snug tracking-tight',
                                         isPublished
-                                          ? 'text-navy dark:text-white group-hover:text-[#3e5199] dark:group-hover:text-ice transition-colors'
-                                          : 'text-secondary-ink dark:text-muted-ink'
+                                          ? 'text-[#161616] dark:text-[#fafafa] group-hover:text-[#161616] dark:group-hover:text-[#ffffff] group-hover:underline transition-colors'
+                                          : 'text-[#8f8f8f]'
                                       )}
                                     >
                                       {isPublished && lesson.noteSlug ? (
@@ -448,7 +445,7 @@ export const LearningPathDetailPage: React.FC = () => {
                                       <Link
                                         to={`/notes/${lesson.noteSlug}`}
                                         onClick={(e) => e.stopPropagation()}
-                                        className="btn-primary h-7 px-2.5 text-[11px] gap-1 shadow-2xs group-hover:shadow-xs rounded-[5px]"
+                                        className="btn-primary h-8 px-3 text-[11.5px] gap-1"
                                       >
                                         <span>Read Lesson</span>
                                         <span className="material-symbols-outlined text-[13px]">
@@ -456,7 +453,7 @@ export const LearningPathDetailPage: React.FC = () => {
                                         </span>
                                       </Link>
                                     ) : (
-                                      <span className="font-mono text-[10px] text-muted-ink px-2 py-0.5 rounded bg-canvas border border-edge/60">
+                                      <span className="font-mono text-[10px] uppercase tracking-[0.02em] text-[#8f8f8f] px-2.5 py-1 rounded-full bg-[#f0f0f0] dark:bg-[#303030] border border-[#d9d9d9] dark:border-[#474747]">
                                         In Development
                                       </span>
                                     )}
@@ -480,23 +477,22 @@ export const LearningPathDetailPage: React.FC = () => {
               
               {/* "Start Here" Action Card */}
               {firstPublishedLesson && (
-                <div className="p-5 rounded-[12px] bg-gradient-to-br from-[#111a4a] to-[#1b2d70] text-white shadow-md space-y-3">
-                  <span className="font-mono text-[10.5px] uppercase tracking-wider text-ice font-semibold">
+                <div className="p-6 rounded-[24px] bg-[#212121] text-[#fafafa] border border-[#303030] space-y-3">
+                  <span className="font-mono text-[11px] uppercase tracking-[0.02em] text-[#8f8f8f] font-medium block">
                     RECOMMENDED STARTING POINT
                   </span>
-                  <h4 className="text-[16px] font-semibold leading-snug">
+                  <h4 className="text-[17px] font-medium leading-snug">
                     {firstPublishedLesson.lesson.title}
                   </h4>
-                  <p className="text-[12.5px] text-white/80 leading-relaxed font-light">
+                  <p className="text-[13px] text-[#8f8f8f] leading-relaxed">
                     Begin this learning path with the architectural foundations and request lifecycle mechanics.
                   </p>
                   <Link
                     to={`/notes/${firstPublishedLesson.lesson.noteSlug}`}
-                    className="inline-flex items-center justify-center gap-2 w-full h-10 rounded-[8px] bg-white text-[#111a4a] hover:bg-[#c1e8ef] hover:text-[#011821] font-sans text-[13.5px] font-semibold transition-all shadow-sm cursor-pointer"
-                    style={{ color: '#111a4a' }}
+                    className="btn-primary w-full mt-2"
                   >
-                    <span style={{ color: '#111a4a' }}>Read Inaugural Lesson</span>
-                    <span className="material-symbols-outlined text-[16px]" style={{ color: '#111a4a' }}>
+                    <span>Read Inaugural Lesson</span>
+                    <span className="material-symbols-outlined text-[16px]">
                       arrow_forward
                     </span>
                   </Link>
@@ -504,19 +500,19 @@ export const LearningPathDetailPage: React.FC = () => {
               )}
 
               {/* Module Quick Jump Index */}
-              <div className="p-5 rounded-[10px] bg-white dark:bg-panel border border-edge shadow-catalog-edge space-y-3">
-                <div className="flex items-center justify-between pb-2 border-b border-edge">
-                  <span className="font-mono text-[11px] uppercase tracking-wider text-muted-ink font-semibold">
+              <div className="p-6 rounded-[24px] bg-[#f0f0f0] dark:bg-[#212121] border border-[#d9d9d9] dark:border-[#333333] space-y-3">
+                <div className="flex items-center justify-between pb-2 border-b border-[#d9d9d9] dark:border-[#333333]">
+                  <span className="font-mono text-[11px] uppercase tracking-[0.02em] text-[#161616] dark:text-[#fafafa] font-medium">
                     ROADMAP MILESTONES
                   </span>
-                  <span className="font-mono text-[11px] text-muted-ink">
+                  <span className="font-mono text-[11px] text-[#8f8f8f]">
                     {learningPath.modules.length} Modules
                   </span>
                 </div>
 
                 <div
                   className={cn(
-                    'space-y-1.5 font-mono text-[12px] overflow-y-auto custom-scrollbar pr-1.5 transition-all duration-200',
+                    'space-y-1.5 font-mono text-[12px] uppercase tracking-[0.02em] overflow-y-auto custom-scrollbar pr-1.5 transition-all duration-200',
                     milestonesExpanded ? 'max-h-[560px]' : 'max-h-[280px]'
                   )}
                 >
@@ -525,15 +521,15 @@ export const LearningPathDetailPage: React.FC = () => {
                       key={m.id}
                       type="button"
                       onClick={() => handleJumpToModule(m.id, m.number)}
-                      className="w-full flex items-center justify-between p-2 rounded-[6px] hover:bg-canvas dark:hover:bg-canvas/40 text-body-ink hover:text-navy dark:hover:text-white transition-colors cursor-pointer text-left group"
+                      className="w-full flex items-center justify-between p-2 rounded-full hover:bg-bright-white dark:hover:bg-[#303030] text-[#161616] dark:text-[#fafafa] transition-colors cursor-pointer text-left group"
                     >
                       <span className="truncate pr-2">
-                        <strong className="text-navy dark:text-ice mr-1">
+                        <strong className="text-[#161616] dark:text-[#fafafa] mr-1">
                           {m.number}.
                         </strong>
                         {m.title}
                       </span>
-                      <span className="text-muted-ink text-[11px] shrink-0">
+                      <span className="text-[#8f8f8f] text-[10.5px] shrink-0">
                         {m.lessons.length} lessons
                       </span>
                     </button>
@@ -541,11 +537,11 @@ export const LearningPathDetailPage: React.FC = () => {
                 </div>
 
                 {learningPath.modules.length > 7 && (
-                  <div className="pt-2 border-t border-edge/60 flex items-center justify-between">
+                  <div className="pt-2 border-t border-[#d9d9d9] dark:border-[#333333] flex items-center justify-between">
                     <button
                       type="button"
                       onClick={() => setMilestonesExpanded(!milestonesExpanded)}
-                      className="inline-flex items-center gap-1 font-mono text-[11px] text-[#3e5199] dark:text-ice hover:underline cursor-pointer"
+                      className="inline-flex items-center gap-1 font-mono text-[11px] text-[#161616] dark:text-[#fafafa] hover:underline cursor-pointer uppercase tracking-[0.02em]"
                     >
                       <span className="material-symbols-outlined text-[14px]">
                         {milestonesExpanded ? 'unfold_less' : 'unfold_more'}
@@ -556,7 +552,7 @@ export const LearningPathDetailPage: React.FC = () => {
                           : `Show All (${learningPath.modules.length})`}
                       </span>
                     </button>
-                    <span className="font-mono text-[10px] text-muted-ink">
+                    <span className="font-mono text-[10px] text-[#8f8f8f]">
                       Scroll to view
                     </span>
                   </div>
@@ -565,8 +561,8 @@ export const LearningPathDetailPage: React.FC = () => {
 
               {/* Sibling Pathways in this Subject */}
               {siblingPaths.length > 0 && (
-                <div className="p-5 rounded-[10px] bg-white dark:bg-panel border border-edge shadow-catalog-edge space-y-3">
-                  <div className="font-mono text-[11px] uppercase tracking-wider text-muted-ink font-semibold pb-2 border-b border-edge">
+                <div className="p-6 rounded-[24px] bg-[#f0f0f0] dark:bg-[#212121] border border-[#d9d9d9] dark:border-[#333333] space-y-3">
+                  <div className="font-mono text-[11px] uppercase tracking-[0.02em] text-[#161616] dark:text-[#fafafa] font-medium pb-2 border-b border-[#d9d9d9] dark:border-[#333333]">
                     RELATED PATHS IN {subjectName.toUpperCase()}
                   </div>
 
@@ -575,17 +571,17 @@ export const LearningPathDetailPage: React.FC = () => {
                       <Link
                         key={sibling.id}
                         to={`/learning-paths/${sibling.slug}`}
-                        className="p-3 rounded-[8px] bg-canvas dark:bg-[#121620] border border-edge hover:border-navy group block transition-all"
+                        className="p-3 rounded-[16px] bg-bright-white dark:bg-[#161616] border border-[#d9d9d9] dark:border-[#333333] hover:border-[#161616] dark:hover:border-[#ffffff] group block transition-all"
                       >
                         <div className="flex items-center justify-between">
-                          <h5 className="font-sans text-[13.5px] font-medium text-navy dark:text-white group-hover:text-dot-blue transition-colors">
+                          <h5 className="font-sans text-[13.5px] font-medium text-[#161616] dark:text-[#fafafa] group-hover:text-[#161616] dark:group-hover:text-[#ffffff] group-hover:underline transition-colors">
                             {sibling.title}
                           </h5>
-                          <span className="font-mono text-[10.5px] text-proof-green">
+                          <span className="font-mono text-[10.5px] text-[#161616] dark:text-[#fafafa]">
                             {sibling.progressPercentage}%
                           </span>
                         </div>
-                        <span className="font-mono text-[11px] text-muted-ink block mt-1">
+                        <span className="font-mono text-[11px] text-[#8f8f8f] block mt-1 uppercase tracking-[0.02em]">
                           {sibling.modules.length} Modules • {sibling.publishedLessons}/{sibling.totalLessons} Lessons
                         </span>
                       </Link>
@@ -597,16 +593,17 @@ export const LearningPathDetailPage: React.FC = () => {
               {/* Back to Subject Directory */}
               <Link
                 to={`/subjects/${subjectSlug}`}
-                className="flex items-center justify-center gap-2 w-full h-[36px] rounded-[8px] border border-edge bg-white dark:bg-panel text-secondary-ink hover:text-navy dark:hover:text-white hover:border-navy transition-all font-mono text-[12.5px] shadow-xs"
+                className="btn-secondary w-full text-[12px]"
               >
                 <span className="material-symbols-outlined text-[15px]">
                   arrow_back
                 </span>
-                <span className='text-[11px]'>All {subjectName} Articles</span>
+                <span>All {subjectName} Articles</span>
               </Link>
             </div>
           </aside>
         </div>
+
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import { getEnrichedSubjects, getAllNotes } from '../utils/contentLoader';
 import { SubjectCard } from '../components/cards/SubjectCard';
 import { Breadcrumb } from '../components/common/Breadcrumb';
 import { SearchInput } from '../components/common/SearchInput';
+import { EndpointCapsule } from '../components/common/EndpointCapsule';
 
 export const SubjectsPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -34,10 +35,11 @@ export const SubjectsPage: React.FC = () => {
   }, [subjects, searchQuery, sortBy]);
 
   return (
-    <div className="w-full bg-canvas text-body-ink min-h-screen py-10 transition-colors">
-      <div className="max-w-column mx-auto w-full px-5 space-y-10">
-        {/* ZONE 1: Page Header & Global Summary Bar */}
-        <section className="flex flex-col md:flex-row justify-between items-start md:items-end pb-8 gap-6 border-b border-edge">
+    <div className="w-full bg-bright-white dark:bg-[#161616] text-[#161616] dark:text-[#fafafa] min-h-screen py-10 transition-colors">
+      <div className="max-w-[1190px] mx-auto w-full px-6 space-y-10">
+        
+        {/* ZONE 1: Page Header with Dotted Workbench & Telemetry Row */}
+        <section className="p-8 sm:p-10 rounded-[24px] bg-[#f0f0f0] dark:bg-[#212121] border border-[#d9d9d9] dark:border-[#333333] flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
           <div className="space-y-3 max-w-2xl">
             <Breadcrumb
               items={[
@@ -45,31 +47,31 @@ export const SubjectsPage: React.FC = () => {
                 { label: 'Subjects' },
               ]}
             />
-            <div className="column-eyebrow text-muted-ink">DOMAIN DIRECTORY</div>
-            <h1 className="text-[32px] sm:text-[44px] font-medium leading-[1.1] tracking-[-0.03em] text-navy dark:text-white">
+            <EndpointCapsule>DOMAIN DIRECTORY</EndpointCapsule>
+            <h1 className="heading-xl text-[#161616] dark:text-[#fafafa]">
               Subjects &amp; Knowledge Domains
             </h1>
-            <p className="text-[15px] sm:text-[16px] leading-relaxed text-secondary-ink dark:text-ash">
+            <p className="font-sans text-[16px] text-[#616161] dark:text-[#a3a3a3] leading-[1.35]">
               Foundational engineering pillars categorizing in-depth architectural RFCs, production runbooks, internals, and implementation notes.
             </p>
           </div>
 
-          {/* Aggregated Metrics Row */}
-          <div className="flex items-center gap-6 sm:gap-8 self-stretch md:self-auto justify-between md:justify-end pt-4 md:pt-0">
-            <div className="flex flex-col">
-              <span className="text-[28px] sm:text-[32px] font-medium text-navy dark:text-white leading-none">
+          {/* Aggregated Metrics Row (Centered numbers and mono labels) */}
+          <div className="flex items-center justify-center gap-6 sm:gap-8 self-stretch md:self-auto p-5 rounded-[20px] bg-bright-white dark:bg-[#161616] border border-[#d9d9d9] dark:border-[#333333] shrink-0">
+            <div className="flex flex-col items-center text-center min-w-[80px]">
+              <span className="font-sans text-[36px] font-medium text-[#161616] dark:text-[#fafafa] leading-none text-center">
                 {subjects.length}
               </span>
-              <span className="font-mono text-[11px] uppercase tracking-wider text-muted-ink mt-1.5">
-                Total Subjects
+              <span className="font-mono text-[11px] uppercase tracking-[0.02em] text-[#8f8f8f] mt-1.5 text-center">
+                Total Domains
               </span>
             </div>
-            <div className="h-8 w-px bg-edge" />
-            <div className="flex flex-col">
-              <span className="text-[28px] sm:text-[32px] font-medium text-proof-green leading-none">
+            <div className="h-10 w-px bg-[#d9d9d9] dark:bg-[#333333]" />
+            <div className="flex flex-col items-center text-center min-w-[100px]">
+              <span className="font-sans text-[36px] font-medium text-[#161616] dark:text-[#fafafa] leading-none text-center">
                 {allNotes.length}
               </span>
-              <span className="font-mono text-[11px] uppercase tracking-wider text-muted-ink mt-1.5">
+              <span className="font-mono text-[11px] uppercase tracking-[0.02em] text-[#8f8f8f] mt-1.5 text-center">
                 Published Notes
               </span>
             </div>
@@ -77,7 +79,7 @@ export const SubjectsPage: React.FC = () => {
         </section>
 
         {/* ZONE 2: Filter & View Control Bar */}
-        <section className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 py-2">
+        <section className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 py-1">
           {/* Search Input */}
           <div className="w-full sm:w-80">
             <SearchInput
@@ -89,18 +91,18 @@ export const SubjectsPage: React.FC = () => {
             />
           </div>
 
-          {/* Sort Controls */}
+          {/* Sort Controls (42px pill buttons) */}
           <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0 shrink-0">
-            <span className="font-mono text-[11px] uppercase tracking-wider text-muted-ink mr-1 shrink-0 inline">
+            <span className="font-mono text-[11.5px] uppercase tracking-[0.02em] text-[#8f8f8f] mr-1 shrink-0 inline">
               Sort:
             </span>
             <button
               type="button"
               onClick={() => setSortBy('notes')}
-              className={`h-[36px] px-4 rounded-[8px] text-[13px] font-mono transition-all border cursor-pointer select-none inline-flex items-center justify-center ${
+              className={`h-[42px] px-4 rounded-full font-mono text-[12.5px] uppercase tracking-[0.02em] transition-all cursor-pointer select-none inline-flex items-center justify-center border ${
                 sortBy === 'notes'
-                  ? 'bg-gradient-to-r from-[#3e5199] to-[#5568ad] text-white border-[#3e5199] shadow-sm font-semibold'
-                  : 'bg-white dark:bg-panel text-body-ink border-edge hover:border-[#3e5199] hover:text-[#3e5199] hover:bg-[#3e5199]/5 shadow-xs'
+                  ? 'bg-[#212121] text-[#fafafa] border-[#212121] dark:bg-[#fafafa] dark:text-[#212121] dark:border-[#fafafa] font-medium'
+                  : 'bg-[#f0f0f0] dark:bg-[#212121] text-[#616161] dark:text-[#a3a3a3] border-[#d9d9d9] dark:border-[#333333] hover:text-[#161616] dark:hover:text-[#fafafa]'
               }`}
             >
               <span>Most Notes</span>
@@ -108,10 +110,10 @@ export const SubjectsPage: React.FC = () => {
             <button
               type="button"
               onClick={() => setSortBy('updated')}
-              className={`h-[36px] px-4 rounded-[8px] text-[13px] font-mono transition-all border cursor-pointer select-none inline-flex items-center justify-center ${
+              className={`h-[42px] px-4 rounded-full font-mono text-[12.5px] uppercase tracking-[0.02em] transition-all cursor-pointer select-none inline-flex items-center justify-center border ${
                 sortBy === 'updated'
-                  ? 'bg-gradient-to-r from-[#3e5199] to-[#5568ad] text-white border-[#3e5199] shadow-sm font-semibold'
-                  : 'bg-white dark:bg-panel text-body-ink border-edge hover:border-[#3e5199] hover:text-[#3e5199] hover:bg-[#3e5199]/5 shadow-xs'
+                  ? 'bg-[#212121] text-[#fafafa] border-[#212121] dark:bg-[#fafafa] dark:text-[#212121] dark:border-[#fafafa] font-medium'
+                  : 'bg-[#f0f0f0] dark:bg-[#212121] text-[#616161] dark:text-[#a3a3a3] border-[#d9d9d9] dark:border-[#333333] hover:text-[#161616] dark:hover:text-[#fafafa]'
               }`}
             >
               <span>Recently Updated</span>
@@ -119,13 +121,13 @@ export const SubjectsPage: React.FC = () => {
             <button
               type="button"
               onClick={() => setSortBy('alpha')}
-              className={`h-[36px] px-4 rounded-[8px] text-[13px] font-mono transition-all border cursor-pointer select-none inline-flex items-center justify-center ${
+              className={`h-[42px] px-4 rounded-full font-mono text-[12.5px] uppercase tracking-[0.02em] transition-all cursor-pointer select-none inline-flex items-center justify-center border ${
                 sortBy === 'alpha'
-                  ? 'bg-gradient-to-r from-[#3e5199] to-[#5568ad] text-white border-[#3e5199] shadow-sm font-semibold'
-                  : 'bg-white dark:bg-panel text-body-ink border-edge hover:border-[#3e5199] hover:text-[#3e5199] hover:bg-[#3e5199]/5 shadow-xs'
+                  ? 'bg-[#212121] text-[#fafafa] border-[#212121] dark:bg-[#fafafa] dark:text-[#212121] dark:border-[#fafafa] font-medium'
+                  : 'bg-[#f0f0f0] dark:bg-[#212121] text-[#616161] dark:text-[#a3a3a3] border-[#d9d9d9] dark:border-[#333333] hover:text-[#161616] dark:hover:text-[#fafafa]'
               }`}
             >
-              <span>Alphabetical (A-Z)</span>
+              <span>Alphabetical</span>
             </button>
           </div>
         </section>
@@ -139,23 +141,24 @@ export const SubjectsPage: React.FC = () => {
           </div>
 
           {filteredAndSortedSubjects.length === 0 && (
-            <div className="py-16 text-center rounded-[12px] bg-panel border border-edge">
-              <span className="material-symbols-outlined text-[36px] text-muted-ink">
+            <div className="py-20 text-center rounded-[24px] bg-[#f0f0f0] dark:bg-[#212121] border border-[#d9d9d9] dark:border-[#333333] p-8">
+              <span className="material-symbols-outlined text-[36px] text-[#161616] dark:text-[#fafafa]">
                 search_off
               </span>
-              <p className="mt-3 text-[18px] font-medium text-navy dark:text-white">
-                No subjects found matching "{searchQuery}"
+              <p className="mt-3 text-[18px] font-sans font-medium text-[#161616] dark:text-[#fafafa]">
+                No subjects found matching &quot;{searchQuery}&quot;
               </p>
               <button
                 type="button"
                 onClick={() => setSearchQuery('')}
-                className="btn-primary mt-4 cursor-pointer inline-flex items-center justify-center"
+                className="btn-primary mt-5"
               >
                 Reset Search
               </button>
             </div>
           )}
         </section>
+
       </div>
     </div>
   );

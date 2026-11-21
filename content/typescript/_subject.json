@@ -1,0 +1,7 @@
+{
+  "name": "TypeScript",
+  "slug": "typescript",
+  "hubNumber": "Domain Hub #08",
+  "icon": "data_object",
+  "description": "Static type checking, structural typing, algebraic data types, discriminated unions, generic constraints, type-level operations, and React UI engineering."
+}

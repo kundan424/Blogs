@@ -1,5 +1,453 @@
 [
   {
+    "id": "react-from-first-principles",
+    "slug": "react-from-first-principles",
+    "title": "React from First Principles",
+    "description": "Learn React the way it actually works — declarative UI, state, rendering, effects, and the server — in the right order, with the right articles, and nothing extra on the first pass.",
+    "subjectSlug": "frontend-engineering-ui-systems",
+    "icon": "desktop_windows",
+    "level": "Production Scale",
+    "estimatedDuration": "11 Modules • 24 Lessons",
+    "modules": [
+      {
+        "id": "react-mod-0",
+        "number": "00",
+        "title": "Orientation and setup",
+        "description": "Goal: hold the mental model — declarative UI, UI = f(state) — and have a working React app before learning any API.",
+        "lessons": [
+          {
+            "id": "react-0-1",
+            "number": "0.1",
+            "title": "How to Learn from this Syllabus: Study Guide, Mental Model & What to Skip",
+            "description": "The master syllabus guide: declarative UI mental model (UI = f(state)), read-type-break-build loop, study pacing, TypeScript pairing, and what to deliberately skip.",
+            "status": "published",
+            "noteSlug": "how-to-learn-react-from-first-principles",
+            "readTime": "15m read",
+            "topics": [
+              "react",
+              "mental-model",
+              "learning-guide",
+              "typescript"
+            ]
+          },
+          {
+            "id": "react-0-2",
+            "number": "0.2",
+            "title": "Quick Start — React docs",
+            "description": "The 80% tour: components, JSX, conditions, lists, events, state, and sharing data. Read it end to end, in the docs sandbox, before touching your own project.",
+            "status": "upcoming",
+            "noteSlug": "react-quick-start-declarative-ui-mental-model",
+            "readTime": "12m read",
+            "topics": [
+              "react",
+              "jsx",
+              "vite",
+              "typescript"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "react-mod-1",
+        "number": "01",
+        "title": "Describing the UI",
+        "description": "Goal: build any static screen from data using components, props, conditions, and lists — with correct keys and pure components.",
+        "lessons": [
+          {
+            "id": "react-1-1",
+            "number": "1.1",
+            "title": "Describing the UI",
+            "description": "The chapter hub: read it first for the map, then the pages below in order.",
+            "status": "upcoming",
+            "noteSlug": "react-describing-the-ui",
+            "readTime": "10m read",
+            "topics": [
+              "react",
+              "components",
+              "ui-architecture"
+            ]
+          },
+          {
+            "id": "react-1-2",
+            "number": "1.2",
+            "title": "Your First Component",
+            "description": "Declaring and using components; nesting; capital-letter rule.",
+            "status": "upcoming",
+            "noteSlug": "react-your-first-component",
+            "readTime": "11m read",
+            "topics": [
+              "react",
+              "components",
+              "jsx"
+            ]
+          },
+          {
+            "id": "react-1-3",
+            "number": "1.3",
+            "title": "Passing Props to a Component",
+            "description": "Props as read-only inputs; passing any value, including JSX and functions; children.",
+            "status": "upcoming",
+            "noteSlug": "react-passing-props-to-a-component",
+            "readTime": "13m read",
+            "topics": [
+              "react",
+              "props",
+              "typescript"
+            ]
+          },
+          {
+            "id": "react-1-4",
+            "number": "1.4",
+            "title": "Conditional Rendering",
+            "description": "if, ternary, and &&; the 0 trap.",
+            "status": "upcoming",
+            "noteSlug": "react-conditional-rendering-guardrails",
+            "readTime": "10m read",
+            "topics": [
+              "react",
+              "conditional-rendering",
+              "javascript"
+            ]
+          },
+          {
+            "id": "react-1-5",
+            "number": "1.5",
+            "title": "Rendering Lists",
+            "description": "filter and map over data; choosing keys from your data, not from the index.",
+            "status": "upcoming",
+            "noteSlug": "react-rendering-lists-keys-identity",
+            "readTime": "14m read",
+            "topics": [
+              "react",
+              "lists",
+              "keys",
+              "reconciliation"
+            ]
+          },
+          {
+            "id": "react-1-6",
+            "number": "1.6",
+            "title": "Keeping Components Pure",
+            "description": "Why components must be pure, and what breaks when they are not.",
+            "status": "upcoming",
+            "noteSlug": "react-keeping-components-pure",
+            "readTime": "12m read",
+            "topics": [
+              "react",
+              "pure-functions",
+              "immutability"
+            ]
+          },
+          {
+            "id": "react-1-7",
+            "number": "1.7",
+            "title": "Using TypeScript — React docs",
+            "description": "The typing companion for this module: props, children, hooks, and events. Also TypeScript syllabus Module 8 — revisit it here, in React context.",
+            "status": "upcoming",
+            "noteSlug": "react-using-typescript-strict-guide",
+            "readTime": "16m read",
+            "topics": [
+              "react",
+              "typescript",
+              "types"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "react-mod-2",
+        "number": "02",
+        "title": "Thinking in React",
+        "description": "Goal: design a React app on paper before writing it, using the docs' own five-step method.",
+        "lessons": [
+          {
+            "id": "react-2-1",
+            "number": "2.1",
+            "title": "Thinking in React",
+            "description": "The five steps worked through on a searchable product table. Do the whole tutorial, including its challenges.",
+            "status": "upcoming",
+            "noteSlug": "react-thinking-in-react-five-step-method",
+            "readTime": "15m read",
+            "topics": [
+              "react",
+              "architecture",
+              "state-design"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "react-mod-3",
+        "number": "03",
+        "title": "State and the render cycle",
+        "description": "Goal: make components interactive and understand exactly what happens when state changes — the module that explains most React bugs.",
+        "lessons": [
+          {
+            "id": "react-3-1",
+            "number": "3.1",
+            "title": "Adding Interactivity",
+            "description": "The whole chapter in order: Responding to Events; State: A Component’s Memory; Render and Commit; State as a Snapshot; Queueing a Series of State Updates; Updating Objects in State; Updating Arrays in State; Reacting to Input with State. Do every challenge.",
+            "status": "upcoming",
+            "noteSlug": "react-state-render-cycle-interactivity",
+            "readTime": "20m read",
+            "topics": [
+              "react",
+              "state",
+              "usestate",
+              "batching"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "react-mod-4",
+        "number": "04",
+        "title": "How rendering actually works",
+        "description": "Goal: explain, from first principles, what React does between your setState call and the pixels changing.",
+        "lessons": [
+          {
+            "id": "react-4-1",
+            "number": "4.1",
+            "title": "React Fiber Architecture",
+            "description": "The engine, end to end: the stack reconciler vs Fiber, the work loop, time-slicing, lanes, and the render/commit split. Read it after the re-reads, not before.",
+            "status": "upcoming",
+            "noteSlug": "react-fiber-architecture-reconciliation-engine",
+            "readTime": "22m read",
+            "topics": [
+              "react",
+              "fiber-architecture",
+              "reconciliation",
+              "internals"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "react-mod-5",
+        "number": "05",
+        "title": "Structuring and sharing state",
+        "description": "Goal: put each piece of state in the right place, and share it without prop drilling, using the three tools in order: lift, reducer, context.",
+        "lessons": [
+          {
+            "id": "react-5-1",
+            "number": "5.1",
+            "title": "Managing State",
+            "description": "The whole chapter in order: Reacting to Input with State (re-read); Choosing the State Structure; Sharing State Between Components; Preserving and Resetting State (re-read); Extracting State Logic into a Reducer; Passing Data Deeply with Context; Scaling Up with Reducer and Context.",
+            "status": "upcoming",
+            "noteSlug": "react-managing-state-structure-reducers-context",
+            "readTime": "18m read",
+            "topics": [
+              "react",
+              "state-management",
+              "usereducer",
+              "context-api"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "react-mod-6",
+        "number": "06",
+        "title": "Refs and effects",
+        "description": "Goal: step outside React only where you must — refs for values and DOM nodes, effects for synchronization — and delete the effects you do not need.",
+        "lessons": [
+          {
+            "id": "react-6-1",
+            "number": "6.1",
+            "title": "Escape Hatches",
+            "description": "The chapter hub; read it first for the map, then the pages below in order.",
+            "status": "upcoming",
+            "noteSlug": "react-escape-hatches-overview",
+            "readTime": "11m read",
+            "topics": [
+              "react",
+              "escape-hatches",
+              "hooks"
+            ]
+          },
+          {
+            "id": "react-6-2",
+            "number": "6.2",
+            "title": "Referencing Values with Refs",
+            "description": "Refs as memory that does not trigger renders; timeout ids and other non-render values.",
+            "status": "upcoming",
+            "noteSlug": "react-referencing-values-with-refs",
+            "readTime": "13m read",
+            "topics": [
+              "react",
+              "useref",
+              "memory"
+            ]
+          },
+          {
+            "id": "react-6-3",
+            "number": "6.3",
+            "title": "Manipulating the DOM with Refs",
+            "description": "Focus, scroll, and measure; the rules for touching DOM React manages.",
+            "status": "upcoming",
+            "noteSlug": "react-manipulating-dom-with-refs",
+            "readTime": "14m read",
+            "topics": [
+              "react",
+              "useref",
+              "dom",
+              "browser"
+            ]
+          },
+          {
+            "id": "react-6-4",
+            "number": "6.4",
+            "title": "Synchronizing with Effects",
+            "description": "Effects as synchronization; setup, cleanup, and dependencies.",
+            "status": "upcoming",
+            "noteSlug": "react-synchronizing-with-effects",
+            "readTime": "18m read",
+            "topics": [
+              "react",
+              "useeffect",
+              "synchronization"
+            ]
+          },
+          {
+            "id": "react-6-5",
+            "number": "6.5",
+            "title": "You Might Not Need an Effect",
+            "description": "The most important page in this module: which effects to delete, and what to write instead.",
+            "status": "upcoming",
+            "noteSlug": "react-you-might-not-need-an-effect",
+            "readTime": "16m read",
+            "topics": [
+              "react",
+              "useeffect",
+              "clean-code",
+              "derived-state"
+            ]
+          },
+          {
+            "id": "react-6-6",
+            "number": "6.6",
+            "title": "Removing Effect Dependencies",
+            "description": "Make effects re-run less often, honestly.",
+            "status": "upcoming",
+            "noteSlug": "react-removing-effect-dependencies",
+            "readTime": "15m read",
+            "topics": [
+              "react",
+              "useeffect",
+              "dependencies"
+            ]
+          },
+          {
+            "id": "react-6-7",
+            "number": "6.7",
+            "title": "Reusing Logic with Custom Hooks",
+            "description": "Extracting and sharing hook logic between components.",
+            "status": "upcoming",
+            "noteSlug": "react-custom-hooks-rules-of-hooks",
+            "readTime": "17m read",
+            "topics": [
+              "react",
+              "custom-hooks",
+              "rules-of-hooks"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "react-mod-7",
+        "number": "07",
+        "title": "Async UI: Suspense and transitions",
+        "description": "Goal: keep the interface responsive while data loads, by declaring loading states and marking updates as non-urgent.",
+        "lessons": [
+          {
+            "id": "react-7-1",
+            "number": "7.1",
+            "title": "React API Reference (Suspense, Transitions, useDeferredValue, use, lazy)",
+            "description": "The reference index. Read the Suspense, useTransition, useDeferredValue, use, and lazy pages (linked from the index). This is a lookup chapter: read those five pages, not the whole reference.",
+            "status": "upcoming",
+            "noteSlug": "react-async-ui-suspense-transitions-deferred-value",
+            "readTime": "17m read",
+            "topics": [
+              "react",
+              "suspense",
+              "transitions",
+              "concurrency"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "react-mod-8",
+        "number": "08",
+        "title": "Server React",
+        "description": "Goal: decide what runs on the server and what runs in the browser, and build a page that fetches on the server with zero client JavaScript for its static parts.",
+        "lessons": [
+          {
+            "id": "react-8-1",
+            "number": "8.1",
+            "title": "Server Components",
+            "description": "The official reference: what Server Components are, what can and cannot cross the boundary, and the use client / use server directives. Also read the Server Functions page linked from it.",
+            "status": "upcoming",
+            "noteSlug": "react-server-components-rsc-server-functions",
+            "readTime": "20m read",
+            "topics": [
+              "react",
+              "rsc",
+              "server-components",
+              "nextjs"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "react-mod-9",
+        "number": "09",
+        "title": "Performance and production",
+        "description": "Goal: measure first, optimize only what the measurement shows, and let the compiler do the memoization you used to do by hand.",
+        "lessons": [
+          {
+            "id": "react-9-1",
+            "number": "9.1",
+            "title": "React Compiler",
+            "description": "The official guide: what the compiler does, how to install it, and the rules your code must follow for it to work. Also read the memo, useMemo, and useCallback pages linked from the React API reference.",
+            "status": "upcoming",
+            "noteSlug": "react-performance-react-compiler-memoization",
+            "readTime": "18m read",
+            "topics": [
+              "react",
+              "performance",
+              "react-compiler",
+              "profiler"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "react-mod-10",
+        "number": "10",
+        "title": "Capstone project",
+        "description": "Goal: prove the syllabus is absorbed by rebuilding your e-learning frontend in typed React, with a written state design and a written re-render chain.",
+        "lessons": [
+          {
+            "id": "react-10-1",
+            "number": "10.1",
+            "title": "Capstone Project: Rebuilding the E-Learning Frontend in Typed React",
+            "description": "Rebuild the Lumina / EduNest e-learning frontend in React + TypeScript (Vite starter, or Next.js App Router if you did Module 8): course catalog, search and filter, course detail, and an enrol form.",
+            "status": "upcoming",
+            "noteSlug": "react-capstone-project-elearning-frontend",
+            "readTime": "25m read",
+            "topics": [
+              "react",
+              "capstone",
+              "typescript",
+              "project"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "spring-boot-production-mastery",
     "slug": "spring-boot-production-mastery",
     "title": "Spring Boot 3 & Microservices Architecture",
@@ -6511,46 +6959,279 @@
     ]
   },
   {
-    "id": "production-microservices-distributed-architecture",
-    "slug": "production-microservices-distributed-architecture",
-    "title": "Production Microservices & Distributed Architecture",
-    "description": "Architectural principles for resilient microservices: bounded contexts, multi-tenant database partitioning, distributed consensus, and idempotent event streams.",
+    "id": "microservices",
+    "slug": "microservices",
+    "title": "Microservices from First Principles",
+    "description": "Learn microservices the way real engineers think about them — distribution changes the physics, every pattern is a trade-off, and the tool is never the point.",
     "subjectSlug": "backend-distributed-systems",
     "icon": "hub",
-    "level": "Advanced",
-    "estimatedDuration": "2 Modules • 5 Lessons",
+    "level": "Production Scale",
+    "estimatedDuration": "11 Modules • 92 Lessons",
     "modules": [
+      {
+        "id": "ms-mod-00",
+        "number": "00",
+        "title": "Why microservices at all",
+        "description": "Goal: decide with a cost model, not hype — know exactly what you are buying and what you are paying before you split anything.",
+        "lessons": [
+          {
+            "id": "ms-0-1",
+            "number": "0.1",
+            "title": "The Definition That Matters: Nine Characteristics Beyond the Checklist",
+            "description": "Small services in their own processes, built around business capabilities, automated deployment, and lightweight communication mechanisms.",
+            "status": "upcoming",
+            "noteSlug": "microservices-definition-nine-characteristics",
+            "readTime": "12m read",
+            "topics": [
+              "microservices",
+              "architecture",
+              "fundamentals"
+            ]
+          },
+          {
+            "id": "ms-0-2",
+            "number": "0.2",
+            "title": "Independent Deployability: The One-Sentence Litmus Test",
+            "description": "Can this service go to production without any other service going with it? The defining boundary between real microservices and distributed monoliths.",
+            "status": "upcoming",
+            "noteSlug": "independent-deployability-the-litmus-test",
+            "readTime": "10m read",
+            "topics": [
+              "microservices",
+              "deployment",
+              "ci-cd"
+            ]
+          },
+          {
+            "id": "ms-0-3",
+            "number": "0.3",
+            "title": "Conway’s Law: How Organizational Structure Dictates Architecture",
+            "description": "System shapes mirror communication shapes. Team boundaries as the natural first draft of service boundaries.",
+            "status": "upcoming",
+            "noteSlug": "conways-law-and-service-boundaries",
+            "readTime": "11m read",
+            "topics": [
+              "conways-law",
+              "team-topology",
+              "architecture"
+            ]
+          },
+          {
+            "id": "ms-0-4",
+            "number": "0.4",
+            "title": "The Microservice Premium: Calculating the Concrete Cost of Distribution",
+            "description": "Automated deployment, observability, failure handling, and eventual consistency as a tangible engineering tax.",
+            "status": "upcoming",
+            "noteSlug": "the-microservice-premium-cost-model",
+            "readTime": "13m read",
+            "topics": [
+              "microservices",
+              "trade-offs",
+              "cost-model"
+            ]
+          },
+          {
+            "id": "ms-0-5",
+            "number": "0.5",
+            "title": "Monolith First: Why Starting with Microservices on Greenfield Fails",
+            "description": "Why moving boundaries inside a monolith is cheap, while moving boundaries across services is expensive. Evolving from modular monoliths.",
+            "status": "upcoming",
+            "noteSlug": "monolith-first-evolutionary-architecture",
+            "readTime": "12m read",
+            "topics": [
+              "monolith-first",
+              "domain-modeling",
+              "evolutionary-architecture"
+            ]
+          },
+          {
+            "id": "ms-0-6",
+            "number": "0.6",
+            "title": "The Distributed Monolith: Diagnosing the Worst-of-Both-Worlds Anti-Pattern",
+            "description": "Shared databases, synchronous call chains, and lockstep releases. How to detect a distributed monolith on sight from deployment behavior.",
+            "status": "upcoming",
+            "noteSlug": "diagnosing-the-distributed-monolith",
+            "readTime": "14m read",
+            "topics": [
+              "anti-patterns",
+              "distributed-monolith",
+              "resilience"
+            ]
+          },
+          {
+            "id": "ms-0-7",
+            "number": "0.7",
+            "title": "Module 0 Exit Check & Mini-Build: EduNest Decision Memo & Modular Monolith Boundary",
+            "description": "Formulate a 1-page decision memo: split or stay monolith for EduNest, quantify the premium, and draw the modular monolith boundary on paper.",
+            "status": "upcoming",
+            "noteSlug": "module-0-exit-check-edunest-decision-memo",
+            "readTime": "15m read",
+            "topics": [
+              "capstone",
+              "decision-memo",
+              "edunest"
+            ]
+          }
+        ]
+      },
       {
         "id": "ms-mod-01",
         "number": "01",
-        "title": "Service Boundaries & Multi-Tenancy",
-        "description": "Domain decomposition, tenancy models, and database isolation strategies.",
+        "title": "Thinking in distributed systems",
+        "description": "Goal: internalise that the network changes the physics — every pattern from Module 3 onwards is an answer to a fact in this module.",
         "lessons": [
           {
             "id": "ms-1-1",
             "number": "1.1",
-            "title": "Multi-Tenant Database Isolation in SaaS",
-            "description": "Comparative architectural analysis of Database-per-tenant, Schema-per-tenant, and Discriminator Column isolation.",
-            "status": "published",
-            "noteSlug": "designing-multi-tenant-database-isolation-saas",
-            "readTime": "12m read",
+            "title": "The Eight Fallacies of Distributed Computing & Real Outage Case Studies",
+            "description": "Reliability, latency, bandwidth, security, topology, administration, transport cost, and homogeneity. The production outage behind each fallacy.",
+            "status": "upcoming",
+            "noteSlug": "eight-fallacies-of-distributed-computing-deep-dive",
+            "readTime": "16m read",
             "topics": [
-              "saas",
-              "postgresql",
-              "distributed-systems"
+              "distributed-systems",
+              "fallacies",
+              "networking"
             ]
           },
           {
             "id": "ms-1-2",
             "number": "1.2",
-            "title": "Strangler Fig Migration: Decomposing the Monolith",
-            "description": "Incremental edge interception, schema replication pipelines, and zero-downtime service extraction.",
+            "title": "Latency Budgets: Nanosecond In-Process Calls vs Millisecond Network Hops",
+            "description": "In-process calls cost nanoseconds; network calls cost milliseconds. Fanning out to five services pays that penalty 5x or waits on the p99 slowest.",
             "status": "upcoming",
-            "readTime": "10m read",
+            "noteSlug": "latency-budgets-and-fan-out-penalties",
+            "readTime": "12m read",
             "topics": [
-              "microservices",
-              "system-design",
-              "refactoring"
+              "latency",
+              "networking",
+              "performance"
+            ]
+          },
+          {
+            "id": "ms-1-3",
+            "number": "1.3",
+            "title": "Partial Failure & The Timeout Dilemma: The State of Not Knowing",
+            "description": "In one process, a call succeeds or fails. Over the network, it can time out, succeed silently, or succeed twice. The root cause of distributed complexity.",
+            "status": "upcoming",
+            "noteSlug": "partial-failure-and-the-timeout-dilemma",
+            "readTime": "15m read",
+            "topics": [
+              "partial-failure",
+              "timeouts",
+              "distributed-systems"
+            ]
+          },
+          {
+            "id": "ms-1-4",
+            "number": "1.4",
+            "title": "Delivery Guarantees: Why Exactly-Once Message Delivery Does Not Exist",
+            "description": "At-most-once (drop messages), at-least-once (duplicate messages), and proving mathematically why exactly-once physical delivery is impossible over networks.",
+            "status": "upcoming",
+            "noteSlug": "delivery-guarantees-at-least-once-vs-exactly-once",
+            "readTime": "14m read",
+            "topics": [
+              "messaging",
+              "delivery-guarantees",
+              "distributed-systems"
+            ]
+          },
+          {
+            "id": "ms-1-5",
+            "number": "1.5",
+            "title": "Effectively-Once Delivery: Combining At-Least-Once with Idempotent Receivers",
+            "description": "How to buy effectively-once semantics using idempotency keys, unique database constraints, and deduplication tables in Spring Boot.",
+            "status": "upcoming",
+            "noteSlug": "effectively-once-delivery-and-idempotency-keys",
+            "readTime": "15m read",
+            "topics": [
+              "idempotency",
+              "spring-boot",
+              "distributed-systems"
+            ]
+          },
+          {
+            "id": "ms-1-6",
+            "number": "1.6",
+            "title": "Retry Storms & Multiplicative Amplification: When Resilience Turns Deadly",
+            "description": "3 retries at each of 3 layers is 27 requests. How naive retry logic turns localized blips into cascading total cluster outages.",
+            "status": "upcoming",
+            "noteSlug": "retry-storms-and-multiplicative-amplification",
+            "readTime": "13m read",
+            "topics": [
+              "retries",
+              "resilience",
+              "outages"
+            ]
+          },
+          {
+            "id": "ms-1-7",
+            "number": "1.7",
+            "title": "CAP Theorem Said Correctly: Network Partitions Are Not an Option",
+            "description": "Why \"Pick Two\" is a flawed slogan. When network partitions occur, choosing between consistency and availability is forced by the physics of the network.",
+            "status": "upcoming",
+            "noteSlug": "cap-theorem-said-correctly-partitions-inevitable",
+            "readTime": "14m read",
+            "topics": [
+              "cap-theorem",
+              "consistency",
+              "availability"
+            ]
+          },
+          {
+            "id": "ms-1-8",
+            "number": "1.8",
+            "title": "The PACELC Model: The Daily Trade-Off Between Latency and Consistency",
+            "description": "If there is a Partition (P), trade Availability (A) vs Consistency (C); Else (E), trade Latency (L) vs Consistency (C). The real-world production equation.",
+            "status": "upcoming",
+            "noteSlug": "pacelc-model-latency-vs-consistency-in-practice",
+            "readTime": "13m read",
+            "topics": [
+              "pacelc",
+              "latency",
+              "consistency"
+            ]
+          },
+          {
+            "id": "ms-1-9",
+            "number": "1.9",
+            "title": "Consistency Models in Action: Strong Linearizability vs Eventual Convergence",
+            "description": "Strong consistency at the price of waiting vs eventual consistency. Designing systems around what users experience while data converges.",
+            "status": "upcoming",
+            "noteSlug": "consistency-models-strong-vs-eventual-experience",
+            "readTime": "14m read",
+            "topics": [
+              "consistency-models",
+              "eventual-consistency",
+              "ux"
+            ]
+          },
+          {
+            "id": "ms-1-10",
+            "number": "1.10",
+            "title": "Coupling in Time vs Space: Synchronous RPC vs Asynchronous Event Decoupling",
+            "description": "Synchronous calls couple systems in both time (both must be up right now) and space (caller knows endpoint). Events decouple both at the price of complexity.",
+            "status": "upcoming",
+            "noteSlug": "coupling-in-time-vs-space-rpc-vs-events",
+            "readTime": "13m read",
+            "topics": [
+              "coupling",
+              "events",
+              "asynchronous"
+            ]
+          },
+          {
+            "id": "ms-1-11",
+            "number": "1.11",
+            "title": "Module 1 Exit Check & Mini-Build: Two Spring Boot Services with HTTP Failure & Idempotency",
+            "description": "Kill downstream service mid-call, observe HTTP timeout, implement exponential backoff retry, and enforce idempotency keys on receiver.",
+            "status": "upcoming",
+            "noteSlug": "module-1-exit-check-network-failure-idempotency-lab",
+            "readTime": "16m read",
+            "topics": [
+              "spring-boot",
+              "lab",
+              "idempotency"
             ]
           }
         ]
@@ -6558,46 +7239,1109 @@
       {
         "id": "ms-mod-02",
         "number": "02",
-        "title": "Ingress, Distributed Transactions & Resilience",
-        "description": "API gateway topology, outbox CDC streaming, and compensating distributed sagas.",
+        "title": "Boundaries: where to cut",
+        "description": "Goal: draw boundaries the business already has, so a service owns one idea that changes for one reason.",
         "lessons": [
           {
             "id": "ms-2-1",
             "number": "2.1",
-            "title": "API Gateway Routing, Rate Limiting & Circuit Breakers",
-            "description": "Token bucket rate-limiting algorithms, Envoy filter chains, and Resilience4j state machines.",
+            "title": "Bounded Contexts: One Model and Language per Boundary",
+            "description": "Why a \"Course\" in the catalogue (title, description, price) is NOT the same \"Course\" in enrolment (seats, schedule) or billing. Avoiding the unified god model.",
             "status": "upcoming",
-            "readTime": "11m read",
+            "noteSlug": "bounded-contexts-and-semantic-model-isolation",
+            "readTime": "14m read",
             "topics": [
-              "microservices",
-              "api-gateway",
-              "resilience"
+              "ddd",
+              "bounded-context",
+              "domain-modeling"
             ]
           },
           {
             "id": "ms-2-2",
             "number": "2.2",
-            "title": "Transactional Outbox Pattern with Kafka CDC",
-            "description": "Eliminating two-phase commit (2PC) using Postgres WAL tailing and Debezium for at-least-once message delivery.",
+            "title": "Ubiquitous Language: When Vocabulary Conflicts Reveal Architectural Seams",
+            "description": "The words business teams actually use. Translating terms at context boundaries and using linguistic disagreement to identify microservice boundaries.",
             "status": "upcoming",
-            "readTime": "14m read",
+            "noteSlug": "ubiquitous-language-and-linguistic-seams",
+            "readTime": "12m read",
             "topics": [
-              "kafka",
-              "distributed-systems",
-              "wal"
+              "ddd",
+              "ubiquitous-language",
+              "context-mapping"
             ]
           },
           {
             "id": "ms-2-3",
             "number": "2.3",
-            "title": "Distributed Sagas: Orchestration vs Choreography",
-            "description": "Compensating transactions, temporal deadlocks, and event storming for distributed consistency.",
+            "title": "Decomposing by Business Capability: Building Services Along What the Business Does",
+            "description": "Catalogue, enrolment, payment, certification. Why capability cuts remain stable even when company technical stacks undergo churn.",
             "status": "upcoming",
+            "noteSlug": "decompose-by-business-capability-patterns",
+            "readTime": "13m read",
+            "topics": [
+              "microservices",
+              "business-capabilities",
+              "decomposition"
+            ]
+          },
+          {
+            "id": "ms-2-4",
+            "number": "2.4",
+            "title": "Decomposing by Subdomain: Core, Supporting, and Generic Domains in DDD",
+            "description": "Differentiating competitive differentiators (Core) from supporting features and generic utilities (Auth, Email) in microservice scoping.",
+            "status": "upcoming",
+            "noteSlug": "decompose-by-subdomain-core-supporting-generic",
+            "readTime": "13m read",
+            "topics": [
+              "ddd",
+              "subdomains",
+              "strategic-design"
+            ]
+          },
+          {
+            "id": "ms-2-5",
+            "number": "2.5",
+            "title": "Aggregates & Invariants: Clustering Entities That Must Stay Consistent",
+            "description": "An Order and its Line Items belong in one service. If a business invariant spans two separate services, your boundary cut is structurally wrong.",
+            "status": "upcoming",
+            "noteSlug": "aggregates-and-invariants-boundary-enforcement",
+            "readTime": "15m read",
+            "topics": [
+              "aggregates",
+              "invariants",
+              "data-modeling"
+            ]
+          },
+          {
+            "id": "ms-2-6",
+            "number": "2.6",
+            "title": "Anti-Pattern Smells: Table-per-Service, Layer-per-Service & The Entity User Service",
+            "description": "Smelling bad cuts: anemic CRUD table-services, technical \"data services\", and god \"User Services\" that every other team must modify.",
+            "status": "upcoming",
+            "noteSlug": "anti-pattern-smells-in-service-decomposition",
+            "readTime": "14m read",
+            "topics": [
+              "anti-patterns",
+              "code-smells",
+              "refactoring"
+            ]
+          },
+          {
+            "id": "ms-2-7",
+            "number": "2.7",
+            "title": "The Deploy-Alone Test & Change-Together Smell: Detecting Trench Coats",
+            "description": "If two services always change, build, and deploy together, they are one service wearing a trench coat. Merging and refactoring boundaries.",
+            "status": "upcoming",
+            "noteSlug": "deploy-alone-test-and-change-together-smell",
             "readTime": "12m read",
             "topics": [
-              "distributed-systems",
+              "coupling",
+              "cohesion",
+              "deployment"
+            ]
+          },
+          {
+            "id": "ms-2-8",
+            "number": "2.8",
+            "title": "Module 2 Exit Check & Mini-Build: Event Storming EduNest & Mapping Contexts",
+            "description": "Run an event-storming session for EduNest enrolment flow. Map commands, events, aggregates, and establish a formal context map.",
+            "status": "upcoming",
+            "noteSlug": "module-2-exit-check-edunest-event-storming-context-map",
+            "readTime": "16m read",
+            "topics": [
+              "event-storming",
+              "context-map",
+              "edunest"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ms-mod-03",
+        "number": "03",
+        "title": "Communication between services",
+        "description": "Goal: choose the right coupling for each interaction, and keep the choice explicit so it can change later.",
+        "lessons": [
+          {
+            "id": "ms-3-1",
+            "number": "3.1",
+            "title": "The Synchronous vs Asynchronous Decision Framework: Caller Urgency",
+            "description": "Ask: \"Does the caller need the answer right now?\" Browsing catalogue needs an instant answer; sending welcome emails does not. Business needs dictate protocol.",
+            "status": "upcoming",
+            "noteSlug": "synchronous-vs-asynchronous-decision-framework",
+            "readTime": "12m read",
+            "topics": [
+              "communication",
+              "sync-vs-async",
+              "architecture"
+            ]
+          },
+          {
+            "id": "ms-3-2",
+            "number": "3.2",
+            "title": "REST Contracts & Versioning: Expand-and-Contract & The Tolerant Reader",
+            "description": "Contracts as promises to strangers. Evolving APIs without breaking callers: adding fields, migrating consumers, and reading payloads tolerantly.",
+            "status": "upcoming",
+            "noteSlug": "rest-contracts-versioning-and-tolerant-reader",
+            "readTime": "14m read",
+            "topics": [
+              "rest",
+              "api-versioning",
+              "contract-design"
+            ]
+          },
+          {
+            "id": "ms-3-3",
+            "number": "3.3",
+            "title": "gRPC & Protocol Buffers: High-Throughput Binary Internal Communication",
+            "description": "Contracts as code, binary serialization, multiplexed HTTP/2 streams, and bi-directional streaming. When to adopt gRPC vs plain JSON REST.",
+            "status": "upcoming",
+            "noteSlug": "grpc-and-protocol-buffers-internal-communication",
+            "readTime": "15m read",
+            "topics": [
+              "grpc",
+              "protobuf",
+              "high-performance"
+            ]
+          },
+          {
+            "id": "ms-3-4",
+            "number": "3.4",
+            "title": "Queues vs Event Logs: RabbitMQ Message Queues vs Kafka Replayable Logs",
+            "description": "Queues deliver to one consumer and destroy messages; logs append facts for many consumers to replay. Smart endpoints and dumb pipes.",
+            "status": "upcoming",
+            "noteSlug": "queues-vs-event-logs-rabbitmq-vs-kafka",
+            "readTime": "15m read",
+            "topics": [
+              "kafka",
+              "rabbitmq",
+              "event-driven"
+            ]
+          },
+          {
+            "id": "ms-3-5",
+            "number": "3.5",
+            "title": "The API Gateway Pattern: Ingress Routing, SSL Termination & Rate Limiting",
+            "description": "One front door for external traffic: routing, cross-cutting auth, token validation, rate-limiting, and clustering to prevent single points of failure.",
+            "status": "upcoming",
+            "noteSlug": "api-gateway-pattern-routing-and-cross-cutting",
+            "readTime": "14m read",
+            "topics": [
+              "api-gateway",
+              "spring-cloud-gateway",
+              "security"
+            ]
+          },
+          {
+            "id": "ms-3-6",
+            "number": "3.6",
+            "title": "Backend for Frontend (BFF): Decoupling Web and Mobile API Contracts",
+            "description": "Why a single gateway serving web browsers and native mobile apps serves neither. Tailoring payloads, latency profiles, and aggregations per client.",
+            "status": "upcoming",
+            "noteSlug": "backend-for-frontend-bff-tailored-contracts",
+            "readTime": "13m read",
+            "topics": [
+              "bff",
+              "api-gateway",
+              "mobile-architecture"
+            ]
+          },
+          {
+            "id": "ms-3-7",
+            "number": "3.7",
+            "title": "Service Discovery: Client-Side Eureka vs Kubernetes Native DNS",
+            "description": "Dynamic instance IP allocation: Eureka service registries vs platform-native Kubernetes Service DNS records. Knowing when Eureka is obsolete.",
+            "status": "upcoming",
+            "noteSlug": "service-discovery-eureka-vs-kubernetes-dns",
+            "readTime": "14m read",
+            "topics": [
+              "service-discovery",
+              "eureka",
+              "kubernetes"
+            ]
+          },
+          {
+            "id": "ms-3-8",
+            "number": "3.8",
+            "title": "Module 3 Exit Check & Mini-Build: Spring Cloud Gateway with Eureka & Mobile Route Shaping",
+            "description": "Configure Spring Cloud Gateway in front of two Spring Boot services with Eureka discovery, rate limit routes, and shape a mobile-tailored response.",
+            "status": "upcoming",
+            "noteSlug": "module-3-exit-check-spring-cloud-gateway-lab",
+            "readTime": "16m read",
+            "topics": [
+              "spring-cloud-gateway",
+              "eureka",
+              "lab"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ms-mod-04",
+        "number": "04",
+        "title": "Data in a distributed world",
+        "description": "Goal: accept that data consistency is now a design problem, not a database feature — and design it on purpose.",
+        "lessons": [
+          {
+            "id": "ms-4-1",
+            "number": "4.1",
+            "title": "Database per Service: The Non-Negotiable Rule of Independent Deployability",
+            "description": "Each service owns its private database. No foreign keys, no cross-service table joins. Why shared databases are distributed monoliths with latency.",
+            "status": "published",
+            "noteSlug": "designing-multi-tenant-database-isolation-saas",
+            "readTime": "12m read",
+            "topics": [
+              "database-per-service",
+              "data-isolation",
+              "postgresql"
+            ]
+          },
+          {
+            "id": "ms-4-2",
+            "number": "4.2",
+            "title": "The Only Two Distributed Data Problems: Cross-Service Writes & Cross-Service Queries",
+            "description": "When databases are split, you only face two fundamental problems: multi-service transactions and multi-service queries. All data patterns solve one of these.",
+            "status": "upcoming",
+            "noteSlug": "cross-service-writes-and-cross-service-queries",
+            "readTime": "11m read",
+            "topics": [
+              "distributed-data",
+              "transactions",
+              "queries"
+            ]
+          },
+          {
+            "id": "ms-4-3",
+            "number": "4.3",
+            "title": "The Saga Pattern: Coordinating Distributed Transactions with Compensations",
+            "description": "Replacing Two-Phase Commit (2PC) with a sequence of local transactions. Undoing failed steps with business compensations (refunds instead of rollbacks).",
+            "status": "upcoming",
+            "noteSlug": "saga-pattern-distributed-transactions-compensations",
+            "readTime": "16m read",
+            "topics": [
               "saga",
+              "distributed-transactions",
+              "compensations"
+            ]
+          },
+          {
+            "id": "ms-4-4",
+            "number": "4.4",
+            "title": "Saga Coordination Styles: Event Choreography vs Centralized Orchestration",
+            "description": "Choreography (services react to domain events) vs Orchestration (state machine coordinator). Why orchestration is mandatory past three transaction steps.",
+            "status": "upcoming",
+            "noteSlug": "saga-choreography-vs-orchestration-tradeoffs",
+            "readTime": "15m read",
+            "topics": [
+              "saga",
+              "choreography",
+              "orchestration"
+            ]
+          },
+          {
+            "id": "ms-4-5",
+            "number": "4.5",
+            "title": "The Dual-Write Problem: The Quietest and Deadliest Bug in Distributed Systems",
+            "description": "Why you cannot atomically commit to a local database and publish an event to a message broker. Analyzing crashes between commit and publish.",
+            "status": "upcoming",
+            "noteSlug": "the-dual-write-problem-in-distributed-systems",
+            "readTime": "13m read",
+            "topics": [
+              "dual-write",
+              "atomicity",
+              "data-integrity"
+            ]
+          },
+          {
+            "id": "ms-4-6",
+            "number": "4.6",
+            "title": "The Transactional Outbox Pattern: Atomic Publishing via DB Commit & CDC",
+            "description": "Writing events into an outbox table within the same local transaction. Relaying events via Debezium CDC and Postgres WAL tailing.",
+            "status": "upcoming",
+            "noteSlug": "transactional-outbox-pattern-and-cdc-relay",
+            "readTime": "16m read",
+            "topics": [
+              "transactional-outbox",
+              "cdc",
+              "debezium"
+            ]
+          },
+          {
+            "id": "ms-4-7",
+            "number": "4.7",
+            "title": "CQRS (Command Query Responsibility Segregation): Decoupling Writes from Reads",
+            "description": "Separating the write domain model from denormalized read views. Building lightning-fast query projections from domain event streams.",
+            "status": "upcoming",
+            "noteSlug": "cqrs-command-query-responsibility-segregation",
+            "readTime": "16m read",
+            "topics": [
+              "cqrs",
+              "read-models",
+              "event-driven"
+            ]
+          },
+          {
+            "id": "ms-4-8",
+            "number": "4.8",
+            "title": "Event Sourcing: Storing Facts as an Immutable Ledger of Historical Events",
+            "description": "State as a fold over events. Event replay, point-in-time auditing, snapshots, and the heavy price of immutable event schema versioning.",
+            "status": "upcoming",
+            "noteSlug": "event-sourcing-immutable-event-ledgers",
+            "readTime": "16m read",
+            "topics": [
+              "event-sourcing",
+              "audit-log",
+              "event-store"
+            ]
+          },
+          {
+            "id": "ms-4-9",
+            "number": "4.9",
+            "title": "Designing for Eventual Consistency: Transparent UI and User Psychology",
+            "description": "While a saga is in flight, data disagrees. Designing honest user experiences: \"Enrolment Processing\" vs deceptive spinners that fake completion.",
+            "status": "upcoming",
+            "noteSlug": "designing-for-eventual-consistency-in-ui",
+            "readTime": "12m read",
+            "topics": [
+              "eventual-consistency",
+              "ux-design",
+              "distributed-systems"
+            ]
+          },
+          {
+            "id": "ms-4-10",
+            "number": "4.10",
+            "title": "API Composition: Pragmatic Cross-Service Queries Before Reaching for CQRS",
+            "description": "Calling two services and joining in memory at the gateway or BFF. Slow and simple: use it until query volume demands CQRS read projections.",
+            "status": "upcoming",
+            "noteSlug": "api-composition-pragmatic-distributed-queries",
+            "readTime": "12m read",
+            "topics": [
+              "api-composition",
+              "queries",
               "microservices"
+            ]
+          },
+          {
+            "id": "ms-4-11",
+            "number": "4.11",
+            "title": "Module 4 Exit Check & Mini-Build: Choreographed Enrolment Saga with Outbox in EduNest",
+            "description": "Implement enrolment -> payment -> seat reservation saga with Outbox tables. Simulate payment failure and verify compensating rollback executions.",
+            "status": "upcoming",
+            "noteSlug": "module-4-exit-check-edunest-saga-outbox-lab",
+            "readTime": "18m read",
+            "topics": [
+              "saga",
+              "lab",
+              "edunest"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ms-mod-05",
+        "number": "05",
+        "title": "Reliability: designing for failure",
+        "description": "Goal: make failure boring and bounded, so one slow service cannot take the system down with it.",
+        "lessons": [
+          {
+            "id": "ms-5-1",
+            "number": "5.1",
+            "title": "Cascading Failures: How One Slow Dependency Causes Total System Blackouts",
+            "description": "Service A waits on B, B waits on C, C is slow. Thread exhaustion cascades upstream until A dies without having a single bug of its own.",
+            "status": "upcoming",
+            "noteSlug": "cascading-failures-and-thread-exhaustion",
+            "readTime": "13m read",
+            "topics": [
+              "cascading-failures",
+              "reliability",
+              "outages"
+            ]
+          },
+          {
+            "id": "ms-5-2",
+            "number": "5.2",
+            "title": "Timeouts as Architectural Contracts: Deadlines and Failure Propagation",
+            "description": "Timeouts are design decisions, not configuration values. Propagating request deadlines and why timeouts without fallbacks are fast failures.",
+            "status": "upcoming",
+            "noteSlug": "timeouts-deadlines-and-fallback-architecture",
+            "readTime": "12m read",
+            "topics": [
+              "timeouts",
+              "deadlines",
+              "resilience"
+            ]
+          },
+          {
+            "id": "ms-5-3",
+            "number": "5.3",
+            "title": "Circuit Breakers with Resilience4j: Closed, Open, and Half-Open State Machines",
+            "description": "The electrical breaker applied to HTTP. Stopping calls to dying downstream services and allowing them grace periods to recover.",
+            "status": "upcoming",
+            "noteSlug": "circuit-breakers-resilience4j-state-machine",
+            "readTime": "15m read",
+            "topics": [
+              "circuit-breaker",
+              "resilience4j",
+              "fault-tolerance"
+            ]
+          },
+          {
+            "id": "ms-5-4",
+            "number": "5.4",
+            "title": "The Bulkhead Pattern: Isolating Thread and Connection Pools per Dependency",
+            "description": "Ship bulkheads preventing hull breaches from sinking the vessel. Isolate thread pools so payment delays never exhaust catalogue worker pools.",
+            "status": "upcoming",
+            "noteSlug": "bulkhead-pattern-thread-and-connection-isolation",
+            "readTime": "13m read",
+            "topics": [
+              "bulkhead",
+              "thread-pools",
+              "resilience4j"
+            ]
+          },
+          {
+            "id": "ms-5-5",
+            "number": "5.5",
+            "title": "Retries Done Right: Bounded Attempts, Exponential Backoff & Jitter",
+            "description": "Why retries without jitter are synchronized thundering herds. Bounding retries and avoiding retrying non-idempotent failed mutations.",
+            "status": "upcoming",
+            "noteSlug": "retries-exponential-backoff-and-jitter",
+            "readTime": "13m read",
+            "topics": [
+              "retries",
+              "backoff",
+              "jitter"
+            ]
+          },
+          {
+            "id": "ms-5-6",
+            "number": "5.6",
+            "title": "Rate Limiting & Load Shedding: Dropping 10% to Protect 100% of the System",
+            "description": "Refusing requests fast with HTTP 429 when overloaded. Dropping non-critical background requests to protect revenue-generating user flows.",
+            "status": "upcoming",
+            "noteSlug": "rate-limiting-and-load-shedding-heuristics",
+            "readTime": "14m read",
+            "topics": [
+              "rate-limiting",
+              "load-shedding",
+              "scalability"
+            ]
+          },
+          {
+            "id": "ms-5-7",
+            "number": "5.7",
+            "title": "Graceful Degradation and Fallbacks: Providing Degraded Service Instead of Errors",
+            "description": "Showing cached recommendations with \"stale prices\" notes beats rendering 500 error screens. Planning degraded modes per feature.",
+            "status": "upcoming",
+            "noteSlug": "graceful-degradation-and-fallback-strategies",
+            "readTime": "13m read",
+            "topics": [
+              "graceful-degradation",
+              "caching",
+              "fallbacks"
+            ]
+          },
+          {
+            "id": "ms-5-8",
+            "number": "5.8",
+            "title": "Health Checks Done Right: Liveness Probes vs Readiness Probes",
+            "description": "Liveness (is process deadlocked? restart pod) vs Readiness (can service handle traffic? route traffic). Avoiding restart death loops.",
+            "status": "upcoming",
+            "noteSlug": "health-checks-liveness-vs-readiness-probes",
+            "readTime": "12m read",
+            "topics": [
+              "health-checks",
+              "kubernetes",
+              "spring-boot-actuator"
+            ]
+          },
+          {
+            "id": "ms-5-9",
+            "number": "5.9",
+            "title": "Module 5 Exit Check & Mini-Build: Resilience4j Circuit Breaker, Bulkhead & Timeout Lab",
+            "description": "Instrument two Spring Boot services with Resilience4j circuit breakers and bulkheads. Load-test failure to observe breaker transitions under load.",
+            "status": "upcoming",
+            "noteSlug": "module-5-exit-check-resilience4j-lab",
+            "readTime": "16m read",
+            "topics": [
+              "resilience4j",
+              "lab",
+              "load-testing"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ms-mod-06",
+        "number": "06",
+        "title": "Observability: seeing the system",
+        "description": "Goal: answer “which service, and why” in minutes, not hours — because a bug spread across five log files is a guessing game without it.",
+        "lessons": [
+          {
+            "id": "ms-6-1",
+            "number": "6.1",
+            "title": "Monitoring vs Observability: Debugging the Known vs Investigating the Unknown",
+            "description": "Monitoring watches dashboards for predefined metrics; observability allows answering novel questions across distributed service graphs.",
+            "status": "upcoming",
+            "noteSlug": "monitoring-vs-observability-fundamentals",
+            "readTime": "11m read",
+            "topics": [
+              "observability",
+              "monitoring",
+              "sre"
+            ]
+          },
+          {
+            "id": "ms-6-2",
+            "number": "6.2",
+            "title": "The Three Telemetry Signals: Metrics, Structured Logs & Distributed Traces",
+            "description": "Metrics show what is happening; logs show why it happened; traces show where requests traversed. Combining all three for rapid triage.",
+            "status": "upcoming",
+            "noteSlug": "three-telemetry-signals-metrics-logs-traces",
+            "readTime": "13m read",
+            "topics": [
+              "metrics",
+              "logs",
+              "traces"
+            ]
+          },
+          {
+            "id": "ms-6-3",
+            "number": "6.3",
+            "title": "Correlation IDs & W3C TraceContext: Propagating traceparent Across Hops",
+            "description": "Attaching traceparent headers across HTTP and Kafka hops. Unifying logs from 5 independent services into a single coherent incident story.",
+            "status": "upcoming",
+            "noteSlug": "correlation-ids-w3c-trace-context-propagation",
+            "readTime": "14m read",
+            "topics": [
+              "correlation-id",
+              "opentelemetry",
+              "context-propagation"
+            ]
+          },
+          {
+            "id": "ms-6-4",
+            "number": "6.4",
+            "title": "Distributed Tracing Anatomy: Spans, Child Spans & Waterfall Analysis",
+            "description": "Units of work, parent-child spans, error tags, and reading flame charts in Jaeger to pinpoint the slowest span in a call hierarchy.",
+            "status": "upcoming",
+            "noteSlug": "distributed-tracing-spans-and-waterfall-analysis",
+            "readTime": "14m read",
+            "topics": [
+              "jaeger",
+              "opentelemetry",
+              "distributed-tracing"
+            ]
+          },
+          {
+            "id": "ms-6-5",
+            "number": "6.5",
+            "title": "The Four Golden Signals: Measuring Latency Percentiles (p95/p99), Traffic, Errors & Saturation",
+            "description": "Why average latency hides user suffering. Monitoring p95 and p99 percentiles, throughput rates, failure percentages, and queue saturation.",
+            "status": "upcoming",
+            "noteSlug": "four-golden-signals-latency-percentiles-saturation",
+            "readTime": "15m read",
+            "topics": [
+              "golden-signals",
+              "prometheus",
+              "sre"
+            ]
+          },
+          {
+            "id": "ms-6-6",
+            "number": "6.6",
+            "title": "Alerting on Symptoms vs Causes: Eliminating On-Call Alert Fatigue",
+            "description": "Alerting on user-facing symptoms (\"checkout error rate > 1%\") instead of internal causes (\"disk queue depth\"). Creating actionable alerts.",
+            "status": "upcoming",
+            "noteSlug": "alerting-on-symptoms-vs-causes",
+            "readTime": "12m read",
+            "topics": [
+              "alerting",
+              "sre",
+              "on-call"
+            ]
+          },
+          {
+            "id": "ms-6-7",
+            "number": "6.7",
+            "title": "SLOs, SLIs, and Error Budgets: Governing Engineering Reliability Trade-Offs",
+            "description": "Agreeing on what \"reliable enough\" means (99.9% under 200ms). Spending error budgets on shipping velocity rather than chasing 100% uptime.",
+            "status": "upcoming",
+            "noteSlug": "slos-slis-and-error-budgets-governance",
+            "readTime": "14m read",
+            "topics": [
+              "slo",
+              "sli",
+              "error-budgets"
+            ]
+          },
+          {
+            "id": "ms-6-8",
+            "number": "6.8",
+            "title": "Metric Cardinality Explosions: Why User IDs in Prometheus Bankrupt Backends",
+            "description": "Every label combination creates a distinct time-series memory buffer. Keeping high-cardinality values in traces, not in metrics.",
+            "status": "upcoming",
+            "noteSlug": "metric-cardinality-explosions-in-prometheus",
+            "readTime": "12m read",
+            "topics": [
+              "prometheus",
+              "cardinality",
+              "metrics-storage"
+            ]
+          },
+          {
+            "id": "ms-6-9",
+            "number": "6.9",
+            "title": "Module 6 Exit Check & Mini-Build: OpenTelemetry Java Agent, Jaeger & Prometheus Lab",
+            "description": "Attach OpenTelemetry Java agent to services, trace end-to-end enrolment in Jaeger, and formulate Prometheus golden-signal dashboards.",
+            "status": "upcoming",
+            "noteSlug": "module-6-exit-check-opentelemetry-jaeger-lab",
+            "readTime": "16m read",
+            "topics": [
+              "opentelemetry",
+              "jaeger",
+              "prometheus",
+              "lab"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ms-mod-07",
+        "number": "07",
+        "title": "Deployment, scaling and operations",
+        "description": "Goal: treat deployment as a property of the design — a service that only its author can deploy is not a microservice.",
+        "lessons": [
+          {
+            "id": "ms-7-1",
+            "number": "7.1",
+            "title": "The Twelve-Factor App Contract: The Baseline Platform Standard",
+            "description": "Codebase isolation, explicit dependencies, config in environment, stateless processes, port binding, and dev/prod parity evaluated against Spring Boot.",
+            "status": "upcoming",
+            "noteSlug": "twelve-factor-app-contract-for-microservices",
+            "readTime": "14m read",
+            "topics": [
+              "twelve-factor",
+              "cloud-native",
+              "architecture"
+            ]
+          },
+          {
+            "id": "ms-7-2",
+            "number": "7.2",
+            "title": "Containers as Immutable Artifacts: Multi-Stage Docker Builds",
+            "description": "Build once, run anywhere. Compiling slim JRE runtimes, non-root user execution, and guaranteeing staging artifacts match production bit-for-bit.",
+            "status": "upcoming",
+            "noteSlug": "containers-as-immutable-artifacts-docker",
+            "readTime": "13m read",
+            "topics": [
+              "docker",
+              "containers",
+              "packaging"
+            ]
+          },
+          {
+            "id": "ms-7-3",
+            "number": "7.3",
+            "title": "Kubernetes Desired State & The Reconciliation Loop Mental Model",
+            "description": "Declaring intent: \"ensure three replicas of catalogue service exist\". How control loops continuously drive cluster reality to match desired state.",
+            "status": "upcoming",
+            "noteSlug": "kubernetes-desired-state-reconciliation-loop",
+            "readTime": "12m read",
+            "topics": [
+              "kubernetes",
+              "control-loops",
+              "devops"
+            ]
+          },
+          {
+            "id": "ms-7-4",
+            "number": "7.4",
+            "title": "Pods, Deployments, and Services: The Core Trio of Kubernetes Workloads",
+            "description": "Pods as ephemeral compute units, Deployments managing replica rolling updates, and Services providing stable cluster DNS virtual IPs.",
+            "status": "upcoming",
+            "noteSlug": "kubernetes-pods-deployments-and-services",
+            "readTime": "14m read",
+            "topics": [
+              "kubernetes",
+              "pods",
+              "deployments",
+              "services"
+            ]
+          },
+          {
+            "id": "ms-7-5",
+            "number": "7.5",
+            "title": "Horizontal vs Vertical Scaling: Stateless Processes & Autoscaling",
+            "description": "Why adding stateless instances beats scaling up CPU cores. Configuring Kubernetes Horizontal Pod Autoscalers (HPA) on load metrics.",
+            "status": "upcoming",
+            "noteSlug": "horizontal-vs-vertical-scaling-stateless-hpa",
+            "readTime": "12m read",
+            "topics": [
+              "scaling",
+              "hpa",
+              "statelessness"
+            ]
+          },
+          {
+            "id": "ms-7-6",
+            "number": "7.6",
+            "title": "Zero-Downtime Deployment Strategies: Rolling Updates, Blue-Green & Canaries",
+            "description": "Progressive rolling updates, blue-green environment switches, and canary traffic slicing using weighted ingress gateways.",
+            "status": "upcoming",
+            "noteSlug": "zero-downtime-deployments-rolling-blue-green-canary",
+            "readTime": "15m read",
+            "topics": [
+              "deployments",
+              "canary",
+              "blue-green"
+            ]
+          },
+          {
+            "id": "ms-7-7",
+            "number": "7.7",
+            "title": "Configuration & Secrets Management: ConfigMaps, Secrets & Dynamic Injection",
+            "description": "Injecting application settings at boot time without rebuilding Docker images. Mounting Kubernetes ConfigMaps and Secrets as environment variables.",
+            "status": "upcoming",
+            "noteSlug": "configuration-and-secrets-management-kubernetes",
+            "readTime": "13m read",
+            "topics": [
+              "configmaps",
+              "secrets",
+              "kubernetes"
+            ]
+          },
+          {
+            "id": "ms-7-8",
+            "number": "7.8",
+            "title": "Zero-Downtime Database Migrations: The Expand-and-Contract Schema Pattern",
+            "description": "Ensuring databases tolerate both old and new microservice versions simultaneously during rolling deployments. Safe column and table migrations.",
+            "status": "upcoming",
+            "noteSlug": "zero-downtime-database-migrations-expand-contract",
+            "readTime": "14m read",
+            "topics": [
+              "database-migrations",
+              "zero-downtime",
+              "flyway"
+            ]
+          },
+          {
+            "id": "ms-7-9",
+            "number": "7.9",
+            "title": "Module 7 Exit Check & Mini-Build: Docker Compose Orchestration & Kubernetes Rolling Update Lab",
+            "description": "Containerize EduNest microservices with Docker Compose, deploy one service to local minikube/kind, and execute zero-downtime rolling update.",
+            "status": "upcoming",
+            "noteSlug": "module-7-exit-check-docker-kubernetes-lab",
+            "readTime": "16m read",
+            "topics": [
+              "docker-compose",
+              "kubernetes",
+              "lab"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ms-mod-08",
+        "number": "08",
+        "title": "Security and configuration",
+        "description": "Goal: assume the network is hostile, including inside — Fallacy 4 (“the network is secure”) is the one that gets companies breached.",
+        "lessons": [
+          {
+            "id": "ms-8-1",
+            "number": "8.1",
+            "title": "Zero Trust Architecture: Rejecting Perimeter Security Inside the Cluster",
+            "description": "Why assuming internal cluster networks are safe leads to catastrophic lateral breaches. Authenticating and authorizing every internal hop.",
+            "status": "upcoming",
+            "noteSlug": "zero-trust-architecture-internal-security",
+            "readTime": "13m read",
+            "topics": [
+              "zero-trust",
+              "security",
+              "distributed-systems"
+            ]
+          },
+          {
+            "id": "ms-8-2",
+            "number": "8.2",
+            "title": "Service Identity & Mutual TLS (mTLS): Cryptographic Machine-to-Machine Auth",
+            "description": "Proving service identity via X.509 certificates and encrypting all cluster communication bidirectionally without code modifications.",
+            "status": "upcoming",
+            "noteSlug": "service-identity-and-mutual-tls-mtls",
+            "readTime": "14m read",
+            "topics": [
+              "mtls",
+              "cryptography",
+              "service-identity"
+            ]
+          },
+          {
+            "id": "ms-8-3",
+            "number": "8.3",
+            "title": "Authentication vs Authorization: Edge Identity vs Service-Level Permissions",
+            "description": "Who you are (Identity) vs what you are permitted to do (Permissions). Scoped RBAC/ABAC role enforcement across distributed endpoints.",
+            "status": "upcoming",
+            "noteSlug": "authentication-vs-authorization-in-microservices",
+            "readTime": "12m read",
+            "topics": [
+              "authn",
+              "authz",
+              "rbac"
+            ]
+          },
+          {
+            "id": "ms-8-4",
+            "number": "8.4",
+            "title": "Token Architecture: OAuth2, OpenID Connect & Stateless JWT Verification",
+            "description": "Identity providers issuing signed JWT tokens. Asymmetric key verification (JWKS) allowing microservices to validate signatures without network lookups.",
+            "status": "upcoming",
+            "noteSlug": "token-architecture-oauth2-oidc-jwt",
+            "readTime": "15m read",
+            "topics": [
+              "oauth2",
+              "jwt",
+              "oidc"
+            ]
+          },
+          {
+            "id": "ms-8-5",
+            "number": "8.5",
+            "title": "The Gateway Security Edge: Authenticate Once at Ingress, Propagate Claims Downstream",
+            "description": "Gateway validates client credentials and injects sanitized internal tokens (UserContext headers) into downstream microservice requests.",
+            "status": "upcoming",
+            "noteSlug": "gateway-security-edge-token-propagation",
+            "readTime": "14m read",
+            "topics": [
+              "api-gateway",
+              "security",
+              "token-propagation"
+            ]
+          },
+          {
+            "id": "ms-8-6",
+            "number": "8.6",
+            "title": "Secrets Management & Rotation: HashiCorp Vault, Kubernetes Secrets & Dynamic Leases",
+            "description": "Never baking passwords or API keys into source code or Docker images. Storing secrets in external vaults with short-lived leases and automatic rotation.",
+            "status": "upcoming",
+            "noteSlug": "secrets-management-and-dynamic-rotation",
+            "readTime": "13m read",
+            "topics": [
+              "vault",
+              "secrets",
+              "rotation"
+            ]
+          },
+          {
+            "id": "ms-8-7",
+            "number": "8.7",
+            "title": "Least Privilege & Blast Radius Minimization: Restricting Service Permissions",
+            "description": "The Enrolment service may call Payment, but must never call the billing database directly or read admin queues. Limiting breach blast radius.",
+            "status": "upcoming",
+            "noteSlug": "least-privilege-and-blast-radius-minimization",
+            "readTime": "13m read",
+            "topics": [
+              "least-privilege",
+              "blast-radius",
+              "security"
+            ]
+          },
+          {
+            "id": "ms-8-8",
+            "number": "8.8",
+            "title": "Module 8 Exit Check & Mini-Build: Gateway JWT Authentication & Downstream Token Propagation Lab",
+            "description": "Configure JWT validation on Spring Cloud Gateway, propagate user identity headers to services, and extract secret tokens to runtime environment variables.",
+            "status": "upcoming",
+            "noteSlug": "module-8-exit-check-jwt-propagation-lab",
+            "readTime": "16m read",
+            "topics": [
+              "jwt",
+              "spring-security",
+              "lab"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ms-mod-09",
+        "number": "09",
+        "title": "Testing and evolving the system",
+        "description": "Goal: change the system safely while it is running — because the system never stops for you to test it.",
+        "lessons": [
+          {
+            "id": "ms-9-1",
+            "number": "9.1",
+            "title": "The Reshaped Testing Pyramid: Unit, Component, Contract & E2E Tests",
+            "description": "Inverting the inverted pyramid: fast unit tests, component tests with Testcontainers, boundary contract tests, and a small suite of golden-path E2E tests.",
+            "status": "upcoming",
+            "noteSlug": "reshaped-testing-pyramid-for-microservices",
+            "readTime": "14m read",
+            "topics": [
+              "testing",
+              "test-pyramid",
+              "testcontainers"
+            ]
+          },
+          {
+            "id": "ms-9-2",
+            "number": "9.2",
+            "title": "Consumer-Driven Contract Testing with Pact: The Load-Bearing Test Layer",
+            "description": "Consumers write tests declaring expected payloads; providers verify contracts in their CI pipelines. Catching breaking API changes before deployment.",
+            "status": "upcoming",
+            "noteSlug": "consumer-driven-contracts-with-pact",
+            "readTime": "16m read",
+            "topics": [
+              "contract-testing",
+              "pact",
+              "ci-cd"
+            ]
+          },
+          {
+            "id": "ms-9-3",
+            "number": "9.3",
+            "title": "Why End-to-End Tests Fail at Scale: Environmental Flakiness & Maintenance Nightmares",
+            "description": "Why full-system E2E test suites with 50+ services become untrusted maintenance liabilities that train developers to ignore pipeline failures.",
+            "status": "upcoming",
+            "noteSlug": "why-end-to-end-tests-fail-at-scale",
+            "readTime": "12m read",
+            "topics": [
+              "e2e-testing",
+              "anti-patterns",
+              "flaky-tests"
+            ]
+          },
+          {
+            "id": "ms-9-4",
+            "number": "9.4",
+            "title": "Testing in Production: Feature Flags, Canary Slicing & Shadow Traffic",
+            "description": "The only tests that exercise real data and real user behavior. Feature flags as instant kill-switches and shadow traffic mirroring.",
+            "status": "upcoming",
+            "noteSlug": "testing-in-production-flags-canary-shadowing",
+            "readTime": "13m read",
+            "topics": [
+              "feature-flags",
+              "shadow-traffic",
+              "production-testing"
+            ]
+          },
+          {
+            "id": "ms-9-5",
+            "number": "9.5",
+            "title": "The Strangler Fig Migration Pattern: Incremental Monolith Decomposition",
+            "description": "Never do a big-bang rewrite. Place a routing facade in front of the monolith, extract one service at a time, and shrink the monolith until zero legacy code remains.",
+            "status": "upcoming",
+            "noteSlug": "strangler-fig-migration-pattern-deep-dive",
+            "readTime": "15m read",
+            "topics": [
+              "strangler-fig",
+              "monolith-migration",
+              "refactoring"
+            ]
+          },
+          {
+            "id": "ms-9-6",
+            "number": "9.6",
+            "title": "Service Extraction Order: Least Coupled and Highest Learning Value First",
+            "description": "Extracting the service that teaches the most about deployment infrastructure with the least coupling. Leaving complex relational tables for later phases.",
+            "status": "upcoming",
+            "noteSlug": "service-extraction-order-heuristics",
+            "readTime": "13m read",
+            "topics": [
+              "extraction-order",
+              "architecture-strategy",
+              "migration"
+            ]
+          },
+          {
+            "id": "ms-9-7",
+            "number": "9.7",
+            "title": "The Reverse Gear: Merging Microservices Back When Boundaries Prove Wrong",
+            "description": "Recognizing when service cuts create friction, chatty network hops, or coordination bottlenecks. Overcoming ego and merging services back together.",
+            "status": "upcoming",
+            "noteSlug": "the-reverse-gear-merging-services-back",
+            "readTime": "12m read",
+            "topics": [
+              "refactoring",
+              "merging-services",
+              "pragmatism"
+            ]
+          },
+          {
+            "id": "ms-9-8",
+            "number": "9.8",
+            "title": "Module 9 Exit Check & Mini-Build: Pact Consumer-Driven Contract Testing Lab",
+            "description": "Author a Pact contract for the catalogue-to-enrolment boundary. Break the provider contract intentionally to verify CI build failure before deployment.",
+            "status": "upcoming",
+            "noteSlug": "module-9-exit-check-pact-contract-testing-lab",
+            "readTime": "16m read",
+            "topics": [
+              "pact",
+              "contract-testing",
+              "lab"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ms-mod-10",
+        "number": "10",
+        "title": "Capstone: split EduNest",
+        "description": "Goal: prove the whole course on a system you already know — a design document and a working skeleton, not a demo that only works on your laptop.",
+        "lessons": [
+          {
+            "id": "ms-10-1",
+            "number": "10.1",
+            "title": "Capstone Deconstruction: Splitting EduNest into Four Microservices",
+            "description": "Catalogue (courses, search), Enrolment (seats, enrolment flow), User (profiles, roles), and Payment stub (simulated transactions with controlled failure rates).",
+            "status": "upcoming",
+            "noteSlug": "capstone-edunest-four-service-decomposition",
+            "readTime": "16m read",
+            "topics": [
+              "capstone",
+              "edunest",
+              "decomposition"
+            ]
+          },
+          {
+            "id": "ms-10-2",
+            "number": "10.2",
+            "title": "Data Architecture & Distributed Enrolment Saga Implementation",
+            "description": "Database-per-service for all four domains, API composition for catalog views, and an enrolment -> payment -> seat reservation saga with compensating actions.",
+            "status": "upcoming",
+            "noteSlug": "capstone-edunest-database-per-service-and-saga",
+            "readTime": "18m read",
+            "topics": [
+              "capstone",
+              "saga",
+              "database-per-service"
+            ]
+          },
+          {
+            "id": "ms-10-3",
+            "number": "10.3",
+            "title": "Gateway, Resilience & Distributed Observability Pipeline Wiring",
+            "description": "Spring Cloud Gateway ingress with Eureka discovery, Resilience4j circuit breakers on payment calls, and OpenTelemetry end-to-end trace correlation in Jaeger.",
+            "status": "upcoming",
+            "noteSlug": "capstone-edunest-gateway-resilience-observability",
+            "readTime": "18m read",
+            "topics": [
+              "capstone",
+              "resilience4j",
+              "opentelemetry"
+            ]
+          },
+          {
+            "id": "ms-10-4",
+            "number": "10.4",
+            "title": "Production Deliverables & The Failure Walkthrough Exit Defense",
+            "description": "Authoring the Bounded Context Design Document, the 1-page Decision Log, and narrating the complete failure lifecycle when payment goes down during enrolment.",
+            "status": "upcoming",
+            "noteSlug": "capstone-edunest-production-artifacts-and-exit-defense",
+            "readTime": "20m read",
+            "topics": [
+              "capstone",
+              "adr",
+              "exit-defense"
             ]
           }
         ]
@@ -6802,6 +8546,1501 @@
               "docker",
               "performance",
               "security"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "typescript",
+    "slug": "typescript",
+    "title": "TypeScript Syllabus for React",
+    "description": "The TypeScript you need to read and write real React code — in the right order, with the right articles, and nothing extra on the first pass. Designed for Java developers transitioning to modern typed frontend engineering.",
+    "subjectSlug": "typescript",
+    "icon": "data_object",
+    "level": "Intermediate",
+    "estimatedDuration": "11 Modules • 93 Lessons",
+    "modules": [
+      {
+        "id": "ts-mod-00",
+        "number": "00",
+        "title": "Orientation: From Java to TypeScript",
+        "description": "Goal: understand what TypeScript is and how its type system differs from Java's, before writing a line of it (Weight 5% · ~2 hrs).",
+        "lessons": [
+          {
+            "id": "ts-0-1",
+            "number": "0.1",
+            "title": "How to Learn TypeScript for React: Mental Model, Study Guide & Roadmap",
+            "description": "Why Java developers learn TypeScript faster, how to use the read-type-break-build loop, and what advanced type gymnastics to deliberately skip on the first pass.",
+            "status": "upcoming",
+            "noteSlug": "how-to-learn-typescript-for-react-guide",
+            "readTime": "12m read",
+            "topics": [
+              "typescript",
+              "mental-model",
+              "learning-guide",
+              "react"
+            ]
+          },
+          {
+            "id": "ts-0-2",
+            "number": "0.2",
+            "title": "TypeScript as a Static Type Checker & Erasure Runtime",
+            "description": "Types exist solely at compile time and are completely erased during emit. Why nothing about TypeScript types exists in the JavaScript runtime.",
+            "status": "published",
+            "noteSlug": "typescript-static-type-checker-erasure-runtime",
+            "readTime": "14m read",
+            "topics": [
+              "typescript",
+              "compiler",
+              "type-erasure",
+              "javascript"
+            ]
+          },
+          {
+            "id": "ts-0-3",
+            "number": "0.3",
+            "title": "Structural Typing vs Java’s Nominal Typing: Shape-Based Compatibility",
+            "description": "Why two types with the exact same shape are interchangeable without inheritance or shared interfaces: the Car vs Golfer problem demystified.",
+            "status": "published",
+            "noteSlug": "structural-typing-vs-java-nominal-typing",
+            "readTime": "16m read",
+            "topics": [
+              "typescript",
+              "structural-typing",
+              "java-comparison",
+              "type-system"
+            ]
+          },
+          {
+            "id": "ts-0-4",
+            "number": "0.4",
+            "title": "Types as Sets of Values: Set Theory & Union Semantics",
+            "description": "Thinking about types as sets of allowable values. Why unions (string | number) represent the mathematical union of two value domains.",
+            "status": "published",
+            "noteSlug": "types-as-sets-unions-string-or-number",
+            "readTime": "16m read",
+            "topics": [
+              "typescript",
+              "set-theory",
+              "unions",
+              "type-system"
+            ]
+          },
+          {
+            "id": "ts-0-5",
+            "number": "0.5",
+            "title": "TypeScript in 5 Minutes: Rapid Tour of Inference, Interfaces & Generics",
+            "description": "A high-speed walkthrough connecting inference, interfaces, unions, and generics with runnable code snippets.",
+            "status": "upcoming",
+            "noteSlug": "typescript-rapid-tour-inference-interfaces-generics",
+            "readTime": "08m read",
+            "topics": [
+              "typescript",
+              "quickstart",
+              "syntax",
+              "generics"
+            ]
+          },
+          {
+            "id": "ts-0-6",
+            "number": "0.6",
+            "title": "Free Functions and Data: Why Code Does Not Have to Live Inside a Class",
+            "description": "Moving away from Java’s \"everything must be inside a class\" constraint: module-level functions, closures, and plain data structures.",
+            "status": "upcoming",
+            "noteSlug": "free-functions-and-data-first-class-functions",
+            "readTime": "09m read",
+            "topics": [
+              "typescript",
+              "functional-programming",
+              "modular-design"
+            ]
+          },
+          {
+            "id": "ts-0-7",
+            "number": "0.7",
+            "title": "Module 0 Mini-Build: Installing TSC & Observing Type Erasure",
+            "description": "Set up a TypeScript development sandbox with npm, write a typed greeting script, compile with tsc, and inspect the emitted clean JavaScript.",
+            "status": "upcoming",
+            "noteSlug": "module-0-mini-build-tsc-type-erasure",
+            "readTime": "15m read",
+            "topics": [
+              "typescript",
+              "hands-on",
+              "tsc",
+              "build-tools"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ts-mod-01",
+        "number": "01",
+        "title": "Core Types and Everyday Types",
+        "description": "Goal: learn the vocabulary every React file uses — primitives, unions, interfaces, aliases, inference, and null handling (Weight 20% · ~8 hrs).",
+        "lessons": [
+          {
+            "id": "ts-1-1",
+            "number": "1.1",
+            "title": "The Basics: Static vs Dynamic Typing & Non-Exception Failures",
+            "description": "What the TypeScript compiler catches before runtime, why tsc emits JavaScript even when errors occur, and how to configure strict compilation.",
+            "status": "upcoming",
+            "noteSlug": "typescript-basics-static-vs-dynamic-typing",
+            "readTime": "10m read",
+            "topics": [
+              "typescript",
+              "static-typing",
+              "compiler-options"
+            ]
+          },
+          {
+            "id": "ts-1-2",
+            "number": "1.2",
+            "title": "TypeScript Primitives: string, number, and boolean",
+            "description": "Working with lowercase primitives versus JavaScript wrapper objects (String, Number, Boolean), and template string literals.",
+            "status": "upcoming",
+            "noteSlug": "typescript-primitives-string-number-boolean",
+            "readTime": "08m read",
+            "topics": [
+              "typescript",
+              "primitives",
+              "types"
+            ]
+          },
+          {
+            "id": "ts-1-3",
+            "number": "1.3",
+            "title": "Arrays and Fixed Tuples in TypeScript",
+            "description": "Declaring T[] vs Array<T>, readonly arrays, and fixed-length tuples like the pair returned by React useState.",
+            "status": "upcoming",
+            "noteSlug": "typescript-arrays-and-tuples",
+            "readTime": "09m read",
+            "topics": [
+              "typescript",
+              "arrays",
+              "tuples",
+              "immutability"
+            ]
+          },
+          {
+            "id": "ts-1-4",
+            "number": "1.4",
+            "title": "Special Types: any vs unknown vs never vs void",
+            "description": "Understanding top types (any, unknown), the bottom type (never), and void return semantics: when to use unknown instead of any.",
+            "status": "upcoming",
+            "noteSlug": "special-types-any-unknown-never-void",
+            "readTime": "12m read",
+            "topics": [
+              "typescript",
+              "any",
+              "unknown",
+              "never",
+              "type-safety"
+            ]
+          },
+          {
+            "id": "ts-1-5",
+            "number": "1.5",
+            "title": "Type Annotations vs Type Inference: The Java Habit to Unlearn",
+            "description": "Why over-annotating harms readability: letting the compiler infer variable, return, and expression types naturally.",
+            "status": "upcoming",
+            "noteSlug": "type-annotations-vs-type-inference",
+            "readTime": "10m read",
+            "topics": [
+              "typescript",
+              "inference",
+              "best-practices",
+              "java-comparison"
+            ]
+          },
+          {
+            "id": "ts-1-6",
+            "number": "1.6",
+            "title": "Typing Functions: Parameter & Return Annotations and Promise<T>",
+            "description": "Annotating parameters, optional arguments, inferred return types, and typing asynchronous operations returning Promise<T>.",
+            "status": "upcoming",
+            "noteSlug": "typing-functions-parameters-returns-promises",
+            "readTime": "11m read",
+            "topics": [
+              "typescript",
+              "functions",
+              "promises",
+              "async"
+            ]
+          },
+          {
+            "id": "ts-1-7",
+            "number": "1.7",
+            "title": "Contextual Typing of Callbacks and Event Handlers",
+            "description": "How the compiler automatically infers parameter types of anonymous functions and callbacks based on their call location.",
+            "status": "upcoming",
+            "noteSlug": "contextual-typing-callbacks-event-handlers",
+            "readTime": "09m read",
+            "topics": [
+              "typescript",
+              "callbacks",
+              "contextual-typing"
+            ]
+          },
+          {
+            "id": "ts-1-8",
+            "number": "1.8",
+            "title": "Object Types, Optional Properties (?), and the Optional Chaining Operator (?.)",
+            "description": "Defining anonymous object types, marking optional properties with ?, and combining with runtime optional chaining (?.) and nullish coalescing (??).",
+            "status": "upcoming",
+            "noteSlug": "object-types-optional-properties-chaining",
+            "readTime": "11m read",
+            "topics": [
+              "typescript",
+              "objects",
+              "optional-properties",
+              "null-safety"
+            ]
+          },
+          {
+            "id": "ts-1-9",
+            "number": "1.9",
+            "title": "Union and Intersection Types: Composing Shapes with | and &",
+            "description": "Expressing values that can be one of several types (|) versus combining multiple object specifications into a single combined contract (&).",
+            "status": "upcoming",
+            "noteSlug": "union-and-intersection-types",
+            "readTime": "10m read",
+            "topics": [
+              "typescript",
+              "unions",
+              "intersections",
+              "composition"
+            ]
+          },
+          {
+            "id": "ts-1-10",
+            "number": "1.10",
+            "title": "Literal Types for UI Status and Component Variant Props",
+            "description": "Using exact string literals (\"primary\" | \"secondary\" | \"danger\", \"open\" | \"closed\") to create strict, self-documenting component props.",
+            "status": "upcoming",
+            "noteSlug": "literal-types-status-variant-props",
+            "readTime": "09m read",
+            "topics": [
+              "typescript",
+              "literal-types",
+              "react-props",
+              "ui-design"
+            ]
+          },
+          {
+            "id": "ts-1-11",
+            "number": "1.11",
+            "title": "Type Aliases vs Interfaces: When to Prefer Each",
+            "description": "Evaluating type vs interface: declaration merging, extension ergonomics, compiler error caching, and the standard convention for React props.",
+            "status": "upcoming",
+            "noteSlug": "type-aliases-vs-interfaces-comparison",
+            "readTime": "10m read",
+            "topics": [
+              "typescript",
+              "interfaces",
+              "type-aliases",
+              "architecture"
+            ]
+          },
+          {
+            "id": "ts-1-12",
+            "number": "1.12",
+            "title": "Strict Null Checks: Handling null and undefined Under strictNullChecks",
+            "description": "Why strictNullChecks prevents the \"billion-dollar mistake\", and how to safely narrow optional props before reading properties.",
+            "status": "upcoming",
+            "noteSlug": "strict-null-checks-null-and-undefined",
+            "readTime": "11m read",
+            "topics": [
+              "typescript",
+              "strict-null-checks",
+              "null-safety",
+              "debugging"
+            ]
+          },
+          {
+            "id": "ts-1-13",
+            "number": "1.13",
+            "title": "Module 1 Mini-Build: Typed Command-Line Student Records with Zero any",
+            "description": "Build a strict command-line record system with interfaces, Promise returns, status literal unions, and zero occurrences of any.",
+            "status": "upcoming",
+            "noteSlug": "module-1-mini-build-typed-student-records",
+            "readTime": "20m read",
+            "topics": [
+              "typescript",
+              "hands-on",
+              "mini-build",
+              "strict-mode"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ts-mod-02",
+        "number": "02",
+        "title": "Narrowing and Control Flow",
+        "description": "Goal: understand how the compiler refines a type inside a branch — the mechanism behind most TypeScript error messages (Weight 12% · ~5 hrs).",
+        "lessons": [
+          {
+            "id": "ts-2-1",
+            "number": "2.1",
+            "title": "typeof Type Guards and Truthiness Narrowing",
+            "description": "Refining broad types using typeof (string, number, boolean) and truthiness checks, with caution around empty strings and 0.",
+            "status": "upcoming",
+            "noteSlug": "typeof-type-guards-truthiness-narrowing",
+            "readTime": "10m read",
+            "topics": [
+              "typescript",
+              "narrowing",
+              "type-guards",
+              "control-flow"
+            ]
+          },
+          {
+            "id": "ts-2-2",
+            "number": "2.2",
+            "title": "The typeof null === \"object\" Trap and Safe Null Discrimination",
+            "description": "JavaScript’s infamous historical quirk where typeof null returns \"object\", and how to write rock-solid defensive guards.",
+            "status": "upcoming",
+            "noteSlug": "typeof-null-object-trap",
+            "readTime": "08m read",
+            "topics": [
+              "typescript",
+              "gotchas",
+              "javascript-quirks",
+              "null-checks"
+            ]
+          },
+          {
+            "id": "ts-2-3",
+            "number": "2.3",
+            "title": "Equality Narrowing with === and != null",
+            "description": "Using strict equality (===, !==) and loose equality (!= null) to eliminate null and undefined in a single check.",
+            "status": "upcoming",
+            "noteSlug": "equality-narrowing-strict-loose-equality",
+            "readTime": "09m read",
+            "topics": [
+              "typescript",
+              "equality-narrowing",
+              "operators"
+            ]
+          },
+          {
+            "id": "ts-2-4",
+            "number": "2.4",
+            "title": "The \"in\" Operator for Property Existence Narrowing",
+            "description": "Narrowing unshared properties between candidate object shapes using the \"in\" operator (e.g., \"fly\" in animal).",
+            "status": "upcoming",
+            "noteSlug": "in-operator-property-narrowing",
+            "readTime": "08m read",
+            "topics": [
+              "typescript",
+              "in-operator",
+              "narrowing",
+              "objects"
+            ]
+          },
+          {
+            "id": "ts-2-5",
+            "number": "2.5",
+            "title": "instanceof Narrowing for Error Classes and DOM Nodes",
+            "description": "Branching based on prototype chain verification for custom error classes and DOM element hierarchies (HTMLElement, HTMLInputElement).",
+            "status": "upcoming",
+            "noteSlug": "instanceof-narrowing-classes-dom",
+            "readTime": "09m read",
+            "topics": [
+              "typescript",
+              "instanceof",
+              "error-handling",
+              "dom"
+            ]
+          },
+          {
+            "id": "ts-2-6",
+            "number": "2.6",
+            "title": "Discriminated Unions: Modeling State & API Responses in React",
+            "description": "The single most important modeling pattern in React: using a shared literal discriminant field (status: \"loading\" | \"ok\" | \"error\").",
+            "status": "upcoming",
+            "noteSlug": "discriminated-unions-state-api-responses",
+            "readTime": "13m read",
+            "topics": [
+              "typescript",
+              "discriminated-unions",
+              "react-state",
+              "api-design"
+            ]
+          },
+          {
+            "id": "ts-2-7",
+            "number": "2.7",
+            "title": "Exhaustiveness Checking with the never Type",
+            "description": "Making the compiler mathematically prove you have handled every possible union branch using the assertNever helper.",
+            "status": "upcoming",
+            "noteSlug": "exhaustiveness-checking-with-never",
+            "readTime": "10m read",
+            "topics": [
+              "typescript",
+              "never-type",
+              "exhaustiveness",
+              "compiler-checks"
+            ]
+          },
+          {
+            "id": "ts-2-8",
+            "number": "2.8",
+            "title": "Custom Type Predicates: The \"x is T\" Return Signature",
+            "description": "Authoring user-defined type guard functions with custom return predicates, and using them to filter typed arrays safely.",
+            "status": "upcoming",
+            "noteSlug": "custom-type-predicates-x-is-type",
+            "readTime": "11m read",
+            "topics": [
+              "typescript",
+              "type-predicates",
+              "type-guards",
+              "arrays"
+            ]
+          },
+          {
+            "id": "ts-2-9",
+            "number": "2.9",
+            "title": "Assertion Functions and Invariant Checks",
+            "description": "Typing functions that throw errors if an invariant condition fails using the asserts condition and asserts val is T syntax.",
+            "status": "upcoming",
+            "noteSlug": "assertion-functions-asserts-condition",
+            "readTime": "09m read",
+            "topics": [
+              "typescript",
+              "assertions",
+              "invariants",
+              "defensive-programming"
+            ]
+          },
+          {
+            "id": "ts-2-10",
+            "number": "2.10",
+            "title": "Module 2 Mini-Build: Discriminated Union API Fetcher with Exhaustive Switch",
+            "description": "Construct an end-to-end async data handler modeling ApiState as a discriminated union, with exhaustive compile-time verification.",
+            "status": "upcoming",
+            "noteSlug": "module-2-mini-build-discriminated-api-fetcher",
+            "readTime": "20m read",
+            "topics": [
+              "typescript",
+              "hands-on",
+              "mini-build",
+              "discriminated-unions"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ts-mod-03",
+        "number": "03",
+        "title": "Functions in Depth",
+        "description": "Goal: type functions the way React needs them — callbacks, handlers, and generic helpers (Weight 10% · ~4 hrs).",
+        "lessons": [
+          {
+            "id": "ts-3-1",
+            "number": "3.1",
+            "title": "Function Type Expressions vs Call Signatures",
+            "description": "Writing concise arrow function types ((a: string) => void) versus object call signatures, and choosing the right form for props.",
+            "status": "upcoming",
+            "noteSlug": "function-type-expressions-vs-call-signatures",
+            "readTime": "10m read",
+            "topics": [
+              "typescript",
+              "functions",
+              "signatures",
+              "react-props"
+            ]
+          },
+          {
+            "id": "ts-3-2",
+            "number": "3.2",
+            "title": "Generic Functions: Type Parameters & Call-Site Inference",
+            "description": "Writing functions that operate over arbitrary types while preserving relationship constraints: first<T>(items: T[]): T | undefined.",
+            "status": "upcoming",
+            "noteSlug": "generic-functions-type-parameters-inference",
+            "readTime": "11m read",
+            "topics": [
+              "typescript",
+              "generics",
+              "type-inference",
+              "functions"
+            ]
+          },
+          {
+            "id": "ts-3-3",
+            "number": "3.3",
+            "title": "Generic Constraints: Constraining Type Parameters with extends",
+            "description": "Restricting generic parameters to shapes satisfying a minimum contract using <T extends { length: number }>.",
+            "status": "upcoming",
+            "noteSlug": "generic-constraints-with-extends",
+            "readTime": "10m read",
+            "topics": [
+              "typescript",
+              "generics",
+              "constraints",
+              "extends"
+            ]
+          },
+          {
+            "id": "ts-3-4",
+            "number": "3.4",
+            "title": "Optional, Default, and Rest Parameters",
+            "description": "Rules for ordering optional parameters (x?: number), default parameter values (x = 10), and typing variable-length rest parameters (...rest).",
+            "status": "upcoming",
+            "noteSlug": "optional-default-rest-parameters",
+            "readTime": "09m read",
+            "topics": [
+              "typescript",
+              "functions",
+              "parameters",
+              "rest-parameters"
+            ]
+          },
+          {
+            "id": "ts-3-5",
+            "number": "3.5",
+            "title": "Understanding void Return Types in Callbacks",
+            "description": "Why a callback typed as () => void can return a non-void value without error: substitution rules and React onClick compatibility.",
+            "status": "upcoming",
+            "noteSlug": "void-return-types-callbacks-handlers",
+            "readTime": "09m read",
+            "topics": [
+              "typescript",
+              "void",
+              "callbacks",
+              "subtyping"
+            ]
+          },
+          {
+            "id": "ts-3-6",
+            "number": "3.6",
+            "title": "Function Overloads: Reading Library Declarations vs Writing Them",
+            "description": "How TypeScript library types declare multiple signatures for the same function, and why application code should prefer unions or generics.",
+            "status": "upcoming",
+            "noteSlug": "function-overloads-reading-vs-writing",
+            "readTime": "10m read",
+            "topics": [
+              "typescript",
+              "function-overloads",
+              "library-types"
+            ]
+          },
+          {
+            "id": "ts-3-7",
+            "number": "3.7",
+            "title": "This Types and Construct Signatures: What to Know & What to Skip",
+            "description": "Recognizing new () => T construct signatures and this parameters in library .d.ts files without complicating your React functional code.",
+            "status": "upcoming",
+            "noteSlug": "this-types-and-construct-signatures",
+            "readTime": "08m read",
+            "topics": [
+              "typescript",
+              "this-type",
+              "construct-signatures",
+              "scoping"
+            ]
+          },
+          {
+            "id": "ts-3-8",
+            "number": "3.8",
+            "title": "Module 3 Mini-Build: Generic Utility Helpers (filter, groupBy, pluck)",
+            "description": "Implement a suite of typed utility functions from scratch with generic type parameters, constraints, and strict test assertions.",
+            "status": "upcoming",
+            "noteSlug": "module-3-mini-build-generic-utility-helpers",
+            "readTime": "20m read",
+            "topics": [
+              "typescript",
+              "hands-on",
+              "mini-build",
+              "generics"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ts-mod-04",
+        "number": "04",
+        "title": "Object Types and Interfaces",
+        "description": "Goal: model props, state, and API payloads as object types, and know when an interface beats a type alias (Weight 10% · ~4 hrs).",
+        "lessons": [
+          {
+            "id": "ts-4-1",
+            "number": "4.1",
+            "title": "Property Modifiers: readonly and Optional (?) Properties",
+            "description": "Enforcing compile-time immutability on domain model IDs and state objects using readonly, and handling optional object fields.",
+            "status": "upcoming",
+            "noteSlug": "property-modifiers-readonly-and-optional",
+            "readTime": "10m read",
+            "topics": [
+              "typescript",
+              "readonly",
+              "immutability",
+              "object-types"
+            ]
+          },
+          {
+            "id": "ts-4-2",
+            "number": "4.2",
+            "title": "Extending Interfaces: Composing Component Shapes",
+            "description": "Composing base UI contracts into specialized variants: interface PrimaryButtonProps extends BaseButtonProps.",
+            "status": "upcoming",
+            "noteSlug": "extending-interfaces-composing-component-shapes",
+            "readTime": "09m read",
+            "topics": [
+              "typescript",
+              "interfaces",
+              "inheritance",
+              "react-props"
+            ]
+          },
+          {
+            "id": "ts-4-3",
+            "number": "4.3",
+            "title": "Interface Extension vs Intersection Types: Structural Differences",
+            "description": "Comparing extends with intersection operators (&): error reporting clarity, property type conflict resolution, and performance.",
+            "status": "upcoming",
+            "noteSlug": "interface-extension-vs-intersection-types",
+            "readTime": "10m read",
+            "topics": [
+              "typescript",
+              "interfaces",
+              "intersections",
+              "architecture"
+            ]
+          },
+          {
+            "id": "ts-4-4",
+            "number": "4.4",
+            "title": "Index Signatures for Dictionary Objects & Their Limits",
+            "description": "Typing dynamic key-value lookups with [key: string]: ValueType, understanding why undefined can leak, and comparing with Record<K, V>.",
+            "status": "upcoming",
+            "noteSlug": "index-signatures-dictionary-objects-limits",
+            "readTime": "10m read",
+            "topics": [
+              "typescript",
+              "index-signatures",
+              "dictionaries",
+              "records"
+            ]
+          },
+          {
+            "id": "ts-4-5",
+            "number": "4.5",
+            "title": "Generic Object Types: Parameterized Interfaces & Payloads",
+            "description": "Designing reusable container interfaces like ApiResponse<T>, Paginated<T>, and DropdownOption<T> for enterprise React apps.",
+            "status": "upcoming",
+            "noteSlug": "generic-object-types-parameterized-payloads",
+            "readTime": "10m read",
+            "topics": [
+              "typescript",
+              "generics",
+              "interfaces",
+              "api-contracts"
+            ]
+          },
+          {
+            "id": "ts-4-6",
+            "number": "4.6",
+            "title": "Interfaces vs Type Aliases: Practical Guidelines for React",
+            "description": "Clear rules of thumb: use interface for props, state shapes, and public contracts; use type for unions, tuples, and computed types.",
+            "status": "upcoming",
+            "noteSlug": "interfaces-vs-type-aliases-react-guidelines",
+            "readTime": "09m read",
+            "topics": [
+              "typescript",
+              "interfaces",
+              "type-aliases",
+              "conventions"
+            ]
+          },
+          {
+            "id": "ts-4-7",
+            "number": "4.7",
+            "title": "Module 4 Mini-Build: Modeling Blog Domain Entities (Post, Author, Comment)",
+            "description": "Design and validate a complete domain model for a blog engine with shared base entity interfaces, readonly IDs, and optional relations.",
+            "status": "upcoming",
+            "noteSlug": "module-4-mini-build-blog-domain-entities",
+            "readTime": "20m read",
+            "topics": [
+              "typescript",
+              "hands-on",
+              "mini-build",
+              "domain-modeling"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ts-mod-05",
+        "number": "05",
+        "title": "Generics and Creating Types from Types",
+        "description": "Goal: write reusable typed code with generics, and derive new types from existing ones instead of repeating yourself (Weight 10% · ~5 hrs).",
+        "lessons": [
+          {
+            "id": "ts-5-1",
+            "number": "5.1",
+            "title": "Generics in Classes and Data Structures",
+            "description": "Building generic collections and data buffers: type parameters, default types (<T = string>), and static member generic restrictions.",
+            "status": "upcoming",
+            "noteSlug": "generics-in-classes-data-structures",
+            "readTime": "10m read",
+            "topics": [
+              "typescript",
+              "generics",
+              "classes",
+              "data-structures"
+            ]
+          },
+          {
+            "id": "ts-5-2",
+            "number": "5.2",
+            "title": "The keyof Type Operator: Extracting Object Keys as Unions",
+            "description": "Extracting the union of string and numeric keys from an object type: keyof Person produces \"id\" | \"name\" | \"email\".",
+            "status": "upcoming",
+            "noteSlug": "keyof-type-operator-extracting-keys",
+            "readTime": "09m read",
+            "topics": [
+              "typescript",
+              "keyof",
+              "type-operators",
+              "unions"
+            ]
+          },
+          {
+            "id": "ts-5-3",
+            "number": "5.3",
+            "title": "The typeof Type Operator: Deriving Types from JavaScript Values",
+            "description": "Capturing the type of runtime constants, config objects, and action dictionaries into type space without writing manual interfaces.",
+            "status": "upcoming",
+            "noteSlug": "typeof-type-operator-deriving-types-from-values",
+            "readTime": "10m read",
+            "topics": [
+              "typescript",
+              "typeof",
+              "type-queries",
+              "dry-code"
+            ]
+          },
+          {
+            "id": "ts-5-4",
+            "number": "5.4",
+            "title": "Indexed Access Types: Looking Up Properties with T[K]",
+            "description": "Drilling down into complex types: accessing nested properties (User[\"address\"][\"city\"]) and array element types (UsersArray[number]).",
+            "status": "upcoming",
+            "noteSlug": "indexed-access-types-property-lookup",
+            "readTime": "09m read",
+            "topics": [
+              "typescript",
+              "indexed-access",
+              "lookup-types",
+              "nested-types"
+            ]
+          },
+          {
+            "id": "ts-5-5",
+            "number": "5.5",
+            "title": "The Universal get Helper: Combining Generics, keyof, and Indexed Access",
+            "description": "Anatomy of function get<T, K extends keyof T>(obj: T, key: K): T[K] — how TypeScript’s type system guarantees complete key-value type safety.",
+            "status": "upcoming",
+            "noteSlug": "universal-get-helper-generics-keyof-indexed-access",
+            "readTime": "11m read",
+            "topics": [
+              "typescript",
+              "generics",
+              "keyof",
+              "indexed-access"
+            ]
+          },
+          {
+            "id": "ts-5-6",
+            "number": "5.6",
+            "title": "Advanced Type-Level Awareness: Conditional, Mapped & Template Literal Types",
+            "description": "Recognizing advanced type constructs in library definitions: T extends U ? X : Y, [P in K]: T, and `on${Capitalize<string>}` without trying to author them yet.",
+            "status": "upcoming",
+            "noteSlug": "advanced-type-level-awareness-conditional-mapped",
+            "readTime": "12m read",
+            "topics": [
+              "typescript",
+              "conditional-types",
+              "mapped-types",
+              "template-literals"
+            ]
+          },
+          {
+            "id": "ts-5-7",
+            "number": "5.7",
+            "title": "Module 5 Mini-Build: Typed In-Memory Store with get, set, update & pluck",
+            "description": "Construct a fully typed in-memory reactive store supporting safe key updates via Partial<T> and generic pluck operations.",
+            "status": "upcoming",
+            "noteSlug": "module-5-mini-build-typed-in-memory-store",
+            "readTime": "20m read",
+            "topics": [
+              "typescript",
+              "hands-on",
+              "mini-build",
+              "state-store"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ts-mod-06",
+        "number": "06",
+        "title": "Classes, Fast Pass",
+        "description": "Goal: map your Java class knowledge onto TypeScript and note only the differences. React barely uses classes now, so keep this short (Weight 4% · ~2 hrs).",
+        "lessons": [
+          {
+            "id": "ts-6-1",
+            "number": "6.1",
+            "title": "Fields, Constructors, and Parameter Properties",
+            "description": "Using concise constructor parameter properties (constructor(public id: string, private secret: string)) to eliminate Java boilerplate.",
+            "status": "upcoming",
+            "noteSlug": "class-fields-constructors-parameter-properties",
+            "readTime": "09m read",
+            "topics": [
+              "typescript",
+              "classes",
+              "parameter-properties",
+              "oop"
+            ]
+          },
+          {
+            "id": "ts-6-2",
+            "number": "6.2",
+            "title": "Access Modifiers: public, private, protected vs JavaScript #private",
+            "description": "TypeScript compile-time access modifiers versus ECMAScript hard private fields (#field), and their respective runtime visibility.",
+            "status": "upcoming",
+            "noteSlug": "access-modifiers-public-private-protected-hash-private",
+            "readTime": "09m read",
+            "topics": [
+              "typescript",
+              "access-modifiers",
+              "encapsulation",
+              "javascript"
+            ]
+          },
+          {
+            "id": "ts-6-3",
+            "number": "6.3",
+            "title": "Class Inheritance: implements, extends, and Abstract Classes",
+            "description": "Translating Java inheritance paradigms: implementing multiple interfaces, overriding methods, calling super(), and declaring abstract templates.",
+            "status": "upcoming",
+            "noteSlug": "class-inheritance-implements-extends-abstract",
+            "readTime": "10m read",
+            "topics": [
+              "typescript",
+              "inheritance",
+              "abstract-classes",
+              "interfaces"
+            ]
+          },
+          {
+            "id": "ts-6-4",
+            "number": "6.4",
+            "title": "Structural Compatibility Between Classes: The Car and Golfer Puzzle",
+            "description": "Why two distinct class instances with identical public member shapes can be substituted for one another in TypeScript, unlike Java.",
+            "status": "upcoming",
+            "noteSlug": "structural-compatibility-between-classes",
+            "readTime": "10m read",
+            "topics": [
+              "typescript",
+              "structural-typing",
+              "classes",
+              "type-compatibility"
+            ]
+          },
+          {
+            "id": "ts-6-5",
+            "number": "6.5",
+            "title": "What to Skip in Classes: Decorators, Mixins, and Legacy OOP in React",
+            "description": "Why modern React uses functional components and hooks instead of class inheritance, and why experimental decorators should be deferred.",
+            "status": "upcoming",
+            "noteSlug": "classes-what-to-skip-decorators-mixins",
+            "readTime": "08m read",
+            "topics": [
+              "typescript",
+              "react",
+              "oop-vs-functional",
+              "what-to-skip"
+            ]
+          },
+          {
+            "id": "ts-6-6",
+            "number": "6.6",
+            "title": "Module 6 Mini-Build: Interchanging Class Instances with Domain Interfaces",
+            "description": "Convert a domain data interface into a class with parameter properties and demonstrate structural assignability in strict code.",
+            "status": "upcoming",
+            "noteSlug": "module-6-mini-build-interchanging-classes-interfaces",
+            "readTime": "15m read",
+            "topics": [
+              "typescript",
+              "hands-on",
+              "mini-build",
+              "classes"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ts-mod-07",
+        "number": "07",
+        "title": "Modules and Project Setup",
+        "description": "Goal: organise code into files and configure a real project so the compiler checks it the way React tooling expects (Weight 8% · ~3 hrs).",
+        "lessons": [
+          {
+            "id": "ts-7-1",
+            "number": "7.1",
+            "title": "ES Module Syntax: Named, Default, and Wildcard Exports",
+            "description": "Mastering ES modules: export const, default export ergonomics, export * re-exports, and standard module organization conventions in React.",
+            "status": "upcoming",
+            "noteSlug": "es-module-syntax-named-default-wildcard-exports",
+            "readTime": "09m read",
+            "topics": [
+              "typescript",
+              "modules",
+              "es-modules",
+              "exports"
+            ]
+          },
+          {
+            "id": "ts-7-2",
+            "number": "7.2",
+            "title": "Type-Only Imports and Exports: import type and export type",
+            "description": "Using import type and verbatimModuleSyntax to ensure types are stripped cleanly without leaving residual runtime JavaScript imports.",
+            "status": "upcoming",
+            "noteSlug": "type-only-imports-and-exports",
+            "readTime": "09m read",
+            "topics": [
+              "typescript",
+              "import-type",
+              "tree-shaking",
+              "bundle-size"
+            ]
+          },
+          {
+            "id": "ts-7-3",
+            "number": "7.3",
+            "title": "File Extensions: .ts vs .tsx and the JSX Transformation",
+            "description": "When .tsx is mandatory, how the JSX compiler parses angle brackets, and avoiding parsing ambiguities with generic arrow functions (<T,>).",
+            "status": "upcoming",
+            "noteSlug": "file-extensions-ts-vs-tsx-jsx-transform",
+            "readTime": "09m read",
+            "topics": [
+              "typescript",
+              "tsx",
+              "jsx",
+              "compiler"
+            ]
+          },
+          {
+            "id": "ts-7-4",
+            "number": "7.4",
+            "title": "tsconfig.json Essentials: strict, target, lib, and module",
+            "description": "Demystifying the critical tsconfig flags: target, lib, module, jsx, and the full strict family (noImplicitAny, strictNullChecks).",
+            "status": "upcoming",
+            "noteSlug": "tsconfig-json-essentials-strict-target-lib",
+            "readTime": "11m read",
+            "topics": [
+              "typescript",
+              "tsconfig",
+              "configuration",
+              "strict-mode"
+            ]
+          },
+          {
+            "id": "ts-7-5",
+            "number": "7.5",
+            "title": "Bundler Settings: moduleResolution \"bundler\", noEmit, and verbatimModuleSyntax",
+            "description": "Configuring TypeScript for modern bundlers like Vite and Next.js where bundlers handle code generation and tsc acts solely as a type checker.",
+            "status": "upcoming",
+            "noteSlug": "bundler-settings-module-resolution-noemit",
+            "readTime": "10m read",
+            "topics": [
+              "typescript",
+              "bundler",
+              "vite",
+              "module-resolution"
+            ]
+          },
+          {
+            "id": "ts-7-6",
+            "number": "7.6",
+            "title": "Scaffolding Vite React-TS & Debugging \"Cannot Find Module\" Errors",
+            "description": "Setting up a clean Vite + React + TS starter, configuring path aliases (@/*), and fixing common module resolution gotchas.",
+            "status": "upcoming",
+            "noteSlug": "scaffolding-vite-react-ts-debugging-module-resolution",
+            "readTime": "11m read",
+            "topics": [
+              "typescript",
+              "vite",
+              "react",
+              "path-aliases",
+              "troubleshooting"
+            ]
+          },
+          {
+            "id": "ts-7-7",
+            "number": "7.7",
+            "title": "Module 7 Mini-Build: Multi-File Blog Types & Component Integration with tsc --noEmit",
+            "description": "Organize domain interfaces into a shared types.ts module, consume them across components, and verify a clean tsc --noEmit pass.",
+            "status": "upcoming",
+            "noteSlug": "module-7-mini-build-multi-file-blog-types-noemit",
+            "readTime": "15m read",
+            "topics": [
+              "typescript",
+              "hands-on",
+              "mini-build",
+              "tsc-noemit"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ts-mod-08",
+        "number": "08",
+        "title": "TypeScript in React",
+        "description": "Goal: apply everything so far to React — typed components, hooks, events, and data fetching (Weight 15% · ~7 hrs).",
+        "lessons": [
+          {
+            "id": "ts-8-1",
+            "number": "8.1",
+            "title": "Typing Component Props: Interfaces, Optional Props, and Defaults",
+            "description": "Defining clean prop interfaces, handling optional props with destructured defaults, and why React.FC is considered unnecessary boilerplate.",
+            "status": "upcoming",
+            "noteSlug": "typing-component-props-interfaces-defaults",
+            "readTime": "11m read",
+            "topics": [
+              "react",
+              "typescript",
+              "props",
+              "components"
+            ]
+          },
+          {
+            "id": "ts-8-2",
+            "number": "8.2",
+            "title": "Typing useState: Primitive State, Union States, and Lazy Initialization",
+            "description": "Inferred state vs explicit generic state (<User | null>), functional state updates, and typing lazy initializer functions.",
+            "status": "upcoming",
+            "noteSlug": "typing-use-state-unions-lazy-initialization",
+            "readTime": "10m read",
+            "topics": [
+              "react",
+              "typescript",
+              "use-state",
+              "hooks"
+            ]
+          },
+          {
+            "id": "ts-8-3",
+            "number": "8.3",
+            "title": "Typing useEffect and Cleanup Functions",
+            "description": "Why effect callbacks must return void or a cleanup destructor (() => void), and why passing an async function directly causes compile errors.",
+            "status": "upcoming",
+            "noteSlug": "typing-use-effect-cleanup-functions",
+            "readTime": "09m read",
+            "topics": [
+              "react",
+              "typescript",
+              "use-effect",
+              "cleanup"
+            ]
+          },
+          {
+            "id": "ts-8-4",
+            "number": "8.4",
+            "title": "Typing useRef: DOM Refs vs Mutable Value Containers",
+            "description": "The critical difference between useRef<HTMLInputElement>(null) (read-only current for DOM nodes) and useRef<number>(0) (mutable instance variables).",
+            "status": "upcoming",
+            "noteSlug": "typing-use-ref-dom-refs-mutable-containers",
+            "readTime": "11m read",
+            "topics": [
+              "react",
+              "typescript",
+              "use-ref",
+              "dom"
+            ]
+          },
+          {
+            "id": "ts-8-5",
+            "number": "8.5",
+            "title": "Typing useReducer: Discriminated Union Actions and State Reducers",
+            "description": "Modeling complex component state transitions with typed action unions ({ type: \"set_filter\"; payload: string }) and exhaustive reducers.",
+            "status": "upcoming",
+            "noteSlug": "typing-use-reducer-discriminated-union-actions",
+            "readTime": "12m read",
+            "topics": [
+              "react",
+              "typescript",
+              "use-reducer",
+              "discriminated-unions"
+            ]
+          },
+          {
+            "id": "ts-8-6",
+            "number": "8.6",
+            "title": "Typing useMemo and useCallback: Dependencies and Return Types",
+            "description": "Inference of memoized values and handler references, typing event callback arguments, and avoiding stale closures with typed dependency arrays.",
+            "status": "upcoming",
+            "noteSlug": "typing-use-memo-and-use-callback",
+            "readTime": "10m read",
+            "topics": [
+              "react",
+              "typescript",
+              "use-memo",
+              "use-callback"
+            ]
+          },
+          {
+            "id": "ts-8-7",
+            "number": "8.7",
+            "title": "Typing DOM & Form Events: ChangeEvent, MouseEvent, and FormEvent",
+            "description": "Typing HTML event handlers accurately: React.ChangeEvent<HTMLInputElement>, React.MouseEvent<HTMLButtonElement>, and React.FormEvent.",
+            "status": "upcoming",
+            "noteSlug": "typing-dom-form-events-change-mouse-submit",
+            "readTime": "11m read",
+            "topics": [
+              "react",
+              "typescript",
+              "events",
+              "forms"
+            ]
+          },
+          {
+            "id": "ts-8-8",
+            "number": "8.8",
+            "title": "Typing Children: React.ReactNode vs React.ReactElement",
+            "description": "Understanding the React component hierarchy: why children: React.ReactNode is the standard for wrapper components and slots.",
+            "status": "upcoming",
+            "noteSlug": "typing-children-react-node-vs-react-element",
+            "readTime": "09m read",
+            "topics": [
+              "react",
+              "typescript",
+              "children",
+              "react-node"
+            ]
+          },
+          {
+            "id": "ts-8-9",
+            "number": "8.9",
+            "title": "Generic Components: Building a Typed List<T> and Dropdown<T>",
+            "description": "Authoring components that accept arbitrary data arrays and render items with full type inference: function List<T>({ items, renderItem }).",
+            "status": "upcoming",
+            "noteSlug": "generic-components-typed-list-and-dropdown",
+            "readTime": "12m read",
+            "topics": [
+              "react",
+              "typescript",
+              "generic-components",
+              "ui-patterns"
+            ]
+          },
+          {
+            "id": "ts-8-10",
+            "number": "8.10",
+            "title": "Typing Async API Data: Fetch Responses and Discriminated UI States",
+            "description": "Connecting backend contracts to UI states: typing fetch results, narrowing loading/success/error discriminated states in component renders.",
+            "status": "upcoming",
+            "noteSlug": "typing-async-api-data-fetch-responses-discriminated-states",
+            "readTime": "12m read",
+            "topics": [
+              "react",
+              "typescript",
+              "data-fetching",
+              "async-ui"
+            ]
+          },
+          {
+            "id": "ts-8-11",
+            "number": "8.11",
+            "title": "Typing React Context: createContext and the Undefined Default Dilemma",
+            "description": "Solving the undefined default value problem in createContext<T | undefined>(undefined) with a custom useAuth() validation hook.",
+            "status": "upcoming",
+            "noteSlug": "typing-react-context-undefined-default-dilemma",
+            "readTime": "11m read",
+            "topics": [
+              "react",
+              "typescript",
+              "context-api",
+              "custom-hooks"
+            ]
+          },
+          {
+            "id": "ts-8-12",
+            "number": "8.12",
+            "title": "Utility Component Types: ComponentProps, ComponentPropsWithoutRef, and JSX.Element",
+            "description": "Building polymorphic UI controls that mirror native HTML button/input attributes without retyping standard DOM properties.",
+            "status": "upcoming",
+            "noteSlug": "utility-component-types-component-props-without-ref",
+            "readTime": "10m read",
+            "topics": [
+              "react",
+              "typescript",
+              "component-props",
+              "polymorphism"
+            ]
+          },
+          {
+            "id": "ts-8-13",
+            "number": "8.13",
+            "title": "Module 8 Mini-Build: Searchable List App with Public API, Forms & Zero any",
+            "description": "Assemble a complete typed React micro-application: public API fetch, typed state machine, generic list rendering, and typed form submission.",
+            "status": "upcoming",
+            "noteSlug": "module-8-mini-build-searchable-list-app",
+            "readTime": "25m read",
+            "topics": [
+              "react",
+              "typescript",
+              "hands-on",
+              "mini-build"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ts-mod-09",
+        "number": "09",
+        "title": "Utility Types",
+        "description": "Goal: use the ten built-in utility types that replace most hand-written type gymnastics in React code (Weight 6% · ~3 hrs).",
+        "lessons": [
+          {
+            "id": "ts-9-1",
+            "number": "9.1",
+            "title": "Shaping Object Types: Partial<T> for Form Edits and Drafts",
+            "description": "Constructing types where all properties are optional: drafting form inputs, patch payloads, and state updates.",
+            "status": "upcoming",
+            "noteSlug": "utility-types-partial-form-edits-drafts",
+            "readTime": "09m read",
+            "topics": [
+              "typescript",
+              "utility-types",
+              "partial",
+              "forms"
+            ]
+          },
+          {
+            "id": "ts-9-2",
+            "number": "9.2",
+            "title": "Shaping Object Types: Required<T> and Readonly<T>",
+            "description": "Making all properties mandatory with Required<T>, and preventing state mutation bugs using Readonly<T> on immutable configurations.",
+            "status": "upcoming",
+            "noteSlug": "utility-types-required-and-readonly",
+            "readTime": "08m read",
+            "topics": [
+              "typescript",
+              "utility-types",
+              "required",
+              "readonly"
+            ]
+          },
+          {
+            "id": "ts-9-3",
+            "number": "9.3",
+            "title": "Picking and Omitting Properties: Pick<T, K> and Omit<T, K>",
+            "description": "Slicing object types for lightweight UI previews (Pick<User, \"id\" | \"name\">) and stripping unwanted props (Omit<ButtonProps, \"onClick\">).",
+            "status": "upcoming",
+            "noteSlug": "utility-types-pick-and-omit",
+            "readTime": "10m read",
+            "topics": [
+              "typescript",
+              "utility-types",
+              "pick",
+              "omit"
+            ]
+          },
+          {
+            "id": "ts-9-4",
+            "number": "9.4",
+            "title": "Dictionary Collections: Record<K, V> for Maps and Caches",
+            "description": "Typing key-value lookup dictionaries, permission maps, and local caches: Record<string, User> and Record<Status, ColorBadge>.",
+            "status": "upcoming",
+            "noteSlug": "utility-types-record-maps-caches",
+            "readTime": "09m read",
+            "topics": [
+              "typescript",
+              "utility-types",
+              "record",
+              "dictionaries"
+            ]
+          },
+          {
+            "id": "ts-9-5",
+            "number": "9.5",
+            "title": "Shaping Union Types: Exclude<T, U> and Extract<T, U>",
+            "description": "Refining unions by filtering out unwanted variants (Exclude<Status, \"archived\">) or extracting shared subtypes (Extract<Event, ClickEvent>).",
+            "status": "upcoming",
+            "noteSlug": "utility-types-exclude-and-extract",
+            "readTime": "09m read",
+            "topics": [
+              "typescript",
+              "utility-types",
+              "exclude",
+              "extract",
+              "unions"
+            ]
+          },
+          {
+            "id": "ts-9-6",
+            "number": "9.6",
+            "title": "Null Removal: NonNullable<T>",
+            "description": "Stripping null and undefined from an input type: ensuring API response fields are strictly present before passing to UI renderers.",
+            "status": "upcoming",
+            "noteSlug": "utility-types-non-nullable",
+            "readTime": "08m read",
+            "topics": [
+              "typescript",
+              "utility-types",
+              "non-nullable",
+              "null-safety"
+            ]
+          },
+          {
+            "id": "ts-9-7",
+            "number": "9.7",
+            "title": "Function & Promise Reflection: ReturnType<T>, Parameters<T>, and Awaited<T>",
+            "description": "Extracting return values and parameter tuples from functions, and unwrapping nested async promise types with Awaited<ReturnType<typeof fetchUsers>>.",
+            "status": "upcoming",
+            "noteSlug": "utility-types-return-type-parameters-awaited",
+            "readTime": "11m read",
+            "topics": [
+              "typescript",
+              "utility-types",
+              "return-type",
+              "awaited",
+              "reflection"
+            ]
+          },
+          {
+            "id": "ts-9-8",
+            "number": "9.8",
+            "title": "Decision Matrix: Built-in Utility Types vs Hand-Written Custom Types",
+            "description": "When to use built-in utility types versus when custom handwritten interfaces yield clearer error messages and better maintainability.",
+            "status": "upcoming",
+            "noteSlug": "decision-matrix-utility-types-vs-custom-handwritten",
+            "readTime": "09m read",
+            "topics": [
+              "typescript",
+              "utility-types",
+              "architecture",
+              "best-practices"
+            ]
+          },
+          {
+            "id": "ts-9-9",
+            "number": "9.9",
+            "title": "Module 9 Mini-Build: Refactoring React App Types with Built-In Utilities",
+            "description": "Refactor an existing typed codebase to eliminate redundant interface declarations using Partial, Pick, Record, and Awaited.",
+            "status": "upcoming",
+            "noteSlug": "module-9-mini-build-refactoring-react-types-utilities",
+            "readTime": "18m read",
+            "topics": [
+              "typescript",
+              "hands-on",
+              "mini-build",
+              "refactoring"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ts-mod-10",
+        "number": "10",
+        "title": "Capstone Project & Beyond",
+        "description": "Goal: prove the syllabus is absorbed by shipping one complete typed React app, with no tutorial to copy from, and knowing what to skip vs learn next (Weight ~6 hrs).",
+        "lessons": [
+          {
+            "id": "ts-10-1",
+            "number": "10.1",
+            "title": "Capstone Project Architecture & Requirements: Typed Task Manager",
+            "description": "Project blueprint: Task and User domain interfaces, discriminated union state machines, API integration, and complete application specification.",
+            "status": "upcoming",
+            "noteSlug": "capstone-project-typed-task-manager-architecture",
+            "readTime": "12m read",
+            "topics": [
+              "capstone",
+              "typescript",
+              "react",
+              "project-architecture"
+            ]
+          },
+          {
+            "id": "ts-10-2",
+            "number": "10.2",
+            "title": "Implementing Typed State & Custom Hooks for the Task Manager",
+            "description": "Authoring typed useState, useEffect data synchronization, useRef input focus controllers, and useMemo filter computation.",
+            "status": "upcoming",
+            "noteSlug": "capstone-project-implementing-typed-state-hooks",
+            "readTime": "15m read",
+            "topics": [
+              "capstone",
+              "react",
+              "typescript",
+              "hooks"
+            ]
+          },
+          {
+            "id": "ts-10-3",
+            "number": "10.3",
+            "title": "Implementing Generic UI Components & Typed Form Event Handlers",
+            "description": "Writing the generic List<T> component, typed dropdown filters, form submit handlers with input validation, and task detail inspection.",
+            "status": "upcoming",
+            "noteSlug": "capstone-project-generic-components-event-handlers",
+            "readTime": "15m read",
+            "topics": [
+              "capstone",
+              "react",
+              "typescript",
+              "generic-components",
+              "forms"
+            ]
+          },
+          {
+            "id": "ts-10-4",
+            "number": "10.4",
+            "title": "Passing strict Mode & The Extensibility Test: Adding New Features Safely",
+            "description": "Verifying zero any under strict mode, passing tsc --noEmit, and proving maintainability by adding task sorting driven entirely by compiler errors.",
+            "status": "upcoming",
+            "noteSlug": "capstone-project-strict-mode-extensibility-test",
+            "readTime": "15m read",
+            "topics": [
+              "capstone",
+              "strict-mode",
+              "type-driven-development",
+              "tsc-noemit"
+            ]
+          },
+          {
+            "id": "ts-10-5",
+            "number": "10.5",
+            "title": "What to Skip for Now: Decorators, Namespaces, Enums, and Deep Metaprogramming",
+            "description": "Strategic omissions: why string union literals beat numeric enums, why namespaces and decorators wait, and avoiding premature type gymnastics.",
+            "status": "upcoming",
+            "noteSlug": "typescript-what-to-skip-decorators-namespaces-enums",
+            "readTime": "10m read",
+            "topics": [
+              "typescript",
+              "what-to-skip",
+              "enums",
+              "decorators",
+              "best-practices"
+            ]
+          },
+          {
+            "id": "ts-10-6",
+            "number": "10.6",
+            "title": "After the Syllabus: TanStack Query, Typed State Management & Real-World Habits",
+            "description": "Next steps in your frontend journey: adopting TanStack Query for typed server state, typed state management (Zustand/Redux), and daily Handbook lookup habits.",
+            "status": "upcoming",
+            "noteSlug": "after-the-syllabus-react-query-typed-state-next-steps",
+            "readTime": "11m read",
+            "topics": [
+              "typescript",
+              "react",
+              "tanstack-query",
+              "learning-roadmap"
             ]
           }
         ]

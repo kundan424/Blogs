@@ -1,0 +1,7 @@
+{
+  "name": "React",
+  "slug": "frontend-engineering-ui-systems",
+  "hubNumber": "Domain Hub #07",
+  "icon": "desktop_windows",
+  "description": "Declarative UI runtime mechanics, React Fiber tree reconciliation, immutable state models, concurrent scheduling, Server Components, and client performance engineering."
+}

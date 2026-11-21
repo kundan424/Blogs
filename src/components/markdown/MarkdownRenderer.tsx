@@ -17,7 +17,91 @@ type ContentBlock =
   | { type: 'figure'; content: string }
   | { type: 'formula'; title: string; content: string }
   | { type: 'interactive'; widget: string }
-  | { type: 'svg'; content: string };
+  | { type: 'svg'; content: string }
+  | { type: 'details'; title: string; content: string };
+
+/**
+ * Replaces common LaTeX math commands and symbols with standard Unicode equivalents.
+ */
+function replaceLatexSymbols(input: string): string {
+  let text = input;
+
+  // 1. Unpack text and font wrappers
+  while (/\\(?:text(?:tt)?|mathbf|mathit|mathrm|mathcal)\{([^{}]+)\}/.test(text)) {
+    text = text.replace(/\\(?:text(?:tt)?|mathbf|mathit|mathrm|mathcal)\{([^{}]+)\}/g, '$1');
+  }
+
+  // 2. Blackboard bold & specialized math sets
+  text = text
+    .replace(/\\mathbb\{U\}/g, '𝕌')
+    .replace(/\\mathbb\{R\}/g, 'ℝ')
+    .replace(/\\mathbb\{N\}/g, 'ℕ')
+    .replace(/\\mathbb\{Z\}/g, 'ℤ')
+    .replace(/\\mathbb\{C\}/g, 'ℂ')
+    .replace(/\\mathbb\{Q\}/g, 'ℚ');
+
+  // 3. Set theory symbols
+  text = text
+    .replace(/\\emptyset/g, '∅')
+    .replace(/\\varnothing/g, '∅')
+    .replace(/\\subseteq/g, '⊆')
+    .replace(/\\supseteq/g, '⊇')
+    .replace(/\\subset(?![a-zA-Z])/g, '⊂')
+    .replace(/\\supset(?![a-zA-Z])/g, '⊃')
+    .replace(/\\nsubseteq/g, '⊈')
+    .replace(/\\cup/g, '∪')
+    .replace(/\\cap/g, '∩')
+    .replace(/\\setminus/g, '\\')
+    .replace(/\\in(?![a-zA-Z])/g, '∈')
+    .replace(/\\notin/g, '∉')
+    .replace(/\\lor/g, '∨')
+    .replace(/\\land/g, '∧')
+    .replace(/\\mid(?![a-zA-Z])/g, '|')
+    .replace(/\\vert(?![a-zA-Z])/g, '|');
+
+  // 4. Arithmetic & relational operators
+  text = text
+    .replace(/\\times/g, '×')
+    .replace(/\\cdot/g, '·')
+    .replace(/\\pm/g, '±')
+    .replace(/\\neq/g, '≠')
+    .replace(/\\ne(?![a-zA-Z])/g, '≠')
+    .replace(/\\le(?![a-zA-Z])/g, '≤')
+    .replace(/\\ge(?![a-zA-Z])/g, '≥')
+    .replace(/\\approx/g, '≈')
+    .replace(/\\dots/g, '…')
+    .replace(/\\cdots/g, '…')
+    .replace(/\\circ/g, '∘')
+    .replace(/\\forall/g, '∀')
+    .replace(/\\exists/g, '∃')
+    .replace(/\\infty/g, '∞')
+    .replace(/\\partial/g, '∂')
+    .replace(/\\nabla/g, '∇');
+
+  // 5. Arrows & logic
+  text = text
+    .replace(/\\longrightarrow/g, '⟶')
+    .replace(/\\rightarrow/g, '→')
+    .replace(/\\to(?![a-zA-Z])/g, '→')
+    .replace(/\\leftarrow/g, '←')
+    .replace(/\\Rightarrow/g, '⇒')
+    .replace(/\\Leftarrow/g, '⇐')
+    .replace(/\\leftrightarrow/g, '↔')
+    .replace(/\\iff/g, '⟺')
+    .replace(/\\implies/g, '⟹');
+
+  // 6. Spacing and escaped characters
+  text = text
+    .replace(/\\;/g, ' ')
+    .replace(/\\quad/g, ' ')
+    .replace(/\\qquad/g, '  ')
+    .replace(/\\&/g, '&')
+    .replace(/\\\{/g, '{')
+    .replace(/\\\}/g, '}')
+    .replace(/\\_/g, '_');
+
+  return text;
+}
 
 /**
  * Automatically cleans stray LaTeX notation (e.g. \text{...}, \times, $...$)
@@ -35,63 +119,17 @@ function sanitizeLatexArtifacts(raw: string): string {
 
       // 1. Convert block math $$...$$ to :::formula blocks if present
       cleaned = cleaned.replace(/\$\$\s*\r?\n?([\s\S]*?)\r?\n?\$\$/g, (_, eq) => {
-        let cleanEq = eq;
-        while (/\\text(?:tt)?\{([^{}]+)\}/.test(cleanEq)) {
-          cleanEq = cleanEq.replace(/\\text(?:tt)?\{([^{}]+)\}/g, '$1');
-        }
-        cleanEq = cleanEq
-          .replace(/\\times/g, '×')
-          .replace(/\\longrightarrow/g, '⟶')
-          .replace(/\\rightarrow/g, '→')
-          .replace(/\\leftarrow/g, '←')
-          .replace(/\\Rightarrow/g, '⇒')
-          .replace(/\\Leftarrow/g, '⇐')
-          .replace(/\\leftrightarrow/g, '↔')
-          .replace(/\\iff/g, '⟺')
-          .replace(/\\implies/g, '⟹')
-          .replace(/\\le(?![a-zA-Z])/g, '≤')
-          .replace(/\\ge(?![a-zA-Z])/g, '≥')
-          .replace(/\\ne(?![a-zA-Z])/g, '≠')
-          .replace(/\\approx/g, '≈')
-          .replace(/\\dots/g, '…')
-          .replace(/\\;/g, ' ')
-          .replace(/\\quad/g, ' ')
-          .replace(/\\qquad/g, '  ')
-          .replace(/\\&/g, '&')
-          .trim();
-        return `\n:::formula{title="Formula"}\n${cleanEq}\n:::\n`;
+        const cleanEq = replaceLatexSymbols(eq).trim();
+        return `\n:::formula\n${cleanEq}\n:::\n`;
       });
 
-      // 2. Unpack \text{...} and \texttt{...}
-      while (/\\text(?:tt)?\{([^{}]+)\}/.test(cleaned)) {
-        cleaned = cleaned.replace(/\\text(?:tt)?\{([^{}]+)\}/g, '$1');
-      }
-
-      // 3. Replace common LaTeX math symbols and arrows
-      cleaned = cleaned
-        .replace(/\\times/g, '×')
-        .replace(/\\longrightarrow/g, '⟶')
-        .replace(/\\rightarrow/g, '→')
-        .replace(/\\leftarrow/g, '←')
-        .replace(/\\Rightarrow/g, '⇒')
-        .replace(/\\Leftarrow/g, '⇐')
-        .replace(/\\leftrightarrow/g, '↔')
-        .replace(/\\iff/g, '⟺')
-        .replace(/\\implies/g, '⟹')
-        .replace(/\\le(?![a-zA-Z])/g, '≤')
-        .replace(/\\ge(?![a-zA-Z])/g, '≥')
-        .replace(/\\ne(?![a-zA-Z])/g, '≠')
-        .replace(/\\approx/g, '≈')
-        .replace(/\\dots/g, '…')
-        .replace(/\\;/g, ' ')
-        .replace(/\\quad/g, ' ')
-        .replace(/\\qquad/g, '  ')
-        .replace(/\\&/g, '&');
-
-      // 4. Strip stray $...$ around inline math expressions and arrows (e.g. $O(1)$, $\rightarrow$, $850MB$)
+      // 2. Strip stray $...$ around inline math expressions and convert symbols
       cleaned = cleaned.replace(/(?<!\\)\$([^$\n\r]+?)\$/g, (_match, inner) => {
-        return inner.trim();
+        return replaceLatexSymbols(inner).trim();
       });
+
+      // 3. Replace any remaining LaTeX math symbols across prose
+      cleaned = replaceLatexSymbols(cleaned);
 
       return cleaned;
     })
@@ -104,9 +142,9 @@ function sanitizeLatexArtifacts(raw: string): string {
  */
 function parseContentBlocks(raw: string): ContentBlock[] {
   const blocks: ContentBlock[] = [];
-  // Match raw <svg ... </svg> OR :::directive{attrs} ... :::
+  // Match raw <svg ... </svg> OR <details ... </details> OR :::directive{attrs} ... :::
   const blockRegex =
-    /(<svg[\s\S]*?<\/svg>)|(?:::([a-z]+)(?:\{([^}]*)\})?\r?\n([\s\S]*?)\r?\n:::)/gi;
+    /(<svg[\s\S]*?<\/svg>)|(<details[\s\S]*?<\/details>)|(?::::([a-z]+)(?:\{([^}]*)\})?\r?\n([\s\S]*?)\r?\n:::)/gi;
 
   let lastIndex = 0;
   let match: RegExpExecArray | null;
@@ -129,9 +167,29 @@ function parseContentBlocks(raw: string): ContentBlock[] {
       continue;
     }
 
-    const directiveType = match[2];
-    const attrsString = match[3] || '';
-    const body = match[4];
+    // Direct <details> HTML Block
+    if (match[2]) {
+      const detailsRaw = match[2];
+      const sumMatch = detailsRaw.match(/<summary[^>]*>([\s\S]*?)<\/summary>/i);
+      const title = sumMatch ? sumMatch[1].trim() : 'Click to unfold answer';
+      const innerContent = detailsRaw
+        .replace(/<details[^>]*>/i, '')
+        .replace(/<\/details>/i, '')
+        .replace(/<summary[^>]*>[\s\S]*?<\/summary>/i, '')
+        .trim();
+
+      blocks.push({
+        type: 'details',
+        title,
+        content: innerContent,
+      });
+      lastIndex = blockRegex.lastIndex;
+      continue;
+    }
+
+    const directiveType = match[3];
+    const attrsString = match[4] || '';
+    const body = match[5];
 
     const typeMatch = attrsString.match(/type="([^"]+)"/);
     const titleMatch = attrsString.match(/title="([^"]+)"/);
@@ -162,6 +220,12 @@ function parseContentBlocks(raw: string): ContentBlock[] {
       blocks.push({
         type: 'interactive',
         widget: widget.toLowerCase(),
+      });
+    } else if (directiveType === 'solution' || directiveType === 'details' || directiveType === 'accordion') {
+      blocks.push({
+        type: 'details',
+        title: title || 'Reveal Logical Answer & Explanation',
+        content: body,
       });
     }
 
@@ -370,8 +434,8 @@ export const DiagramFigure: React.FC<DiagramFigureProps> = ({ src, alt, title })
 
   return (
     <>
-      <figure className="my-8 rounded-[8px] overflow-hidden border border-[#232730]/30 dark:border-[#232730] bg-white dark:bg-[#12161e] shadow-catalog-edge group">
-        <div className="w-full flex justify-center bg-white dark:bg-[#12161e] p-0 overflow-hidden">
+      <figure className="my-8 rounded-[8px] overflow-hidden border border-[#232730]/30 dark:border-[#232730] bg-bright-white dark:bg-[#12161e] shadow-catalog-edge group">
+        <div className="w-full flex justify-center bg-bright-white dark:bg-[#12161e] p-0 overflow-hidden">
           {isSvg && svgContent ? (
             <div
               className="w-full h-auto flex justify-center overflow-hidden [&>svg]:w-full [&>svg]:h-auto [&>svg]:max-w-full [&>svg]:block"
@@ -387,13 +451,13 @@ export const DiagramFigure: React.FC<DiagramFigureProps> = ({ src, alt, title })
           )}
         </div>
 
-        <figcaption className="px-3.5 py-2.5 flex flex-wrap items-center justify-between gap-2 font-mono text-[11px] border-t border-[#232730]/20 dark:border-[#232730] bg-white dark:bg-[#12161e]">
-          <div className="flex items-center gap-1.5 text-[#3e5199] dark:text-[#5568ad] min-w-0">
-            <span className="material-symbols-outlined text-[15px] shrink-0 text-[#167e6c]">schema</span>
-            <span className="font-semibold uppercase tracking-wider text-[10.5px] shrink-0 text-[#1b2d70] dark:text-[#5568ad]">
+        <figcaption className="px-3.5 py-2.5 flex flex-wrap items-center justify-between gap-2 font-mono text-[11px] border-t border-[#d9d9d9] dark:border-[#333333] bg-bright-white dark:bg-[#161616]">
+          <div className="flex items-center gap-1.5 text-[#161616] dark:text-[#fafafa] min-w-0">
+            <span className="material-symbols-outlined text-[15px] shrink-0 text-[#161616] dark:text-[#fafafa]">schema</span>
+            <span className="font-semibold uppercase tracking-wider text-[10.5px] shrink-0 text-[#161616] dark:text-[#fafafa]">
               DIAGRAM:
             </span>
-            <span className="text-[#000000] dark:text-[#f8fafc] truncate font-sans text-[12px] font-medium">
+            <span className="text-[#161616] dark:text-[#fafafa] truncate font-sans text-[12px] font-medium">
               {alt || title || 'Architecture Blueprint'}
             </span>
           </div>
@@ -408,8 +472,8 @@ export const DiagramFigure: React.FC<DiagramFigureProps> = ({ src, alt, title })
                   className={cn(
                     'inline-flex items-center gap-1 px-2 py-1 rounded-[5px] text-[11px] font-mono transition-all cursor-pointer border',
                     copied
-                      ? 'border-[#167e6c] bg-[#167e6c]/15 text-[#167e6c]'
-                      : 'border-[#232730]/30 dark:border-[#232730] text-[#3e5199] dark:text-[#5568ad] hover:text-white hover:bg-[#3e5199] dark:hover:bg-[#1b2d70]'
+                      ? 'border-[#161616] bg-[#161616] text-white dark:border-white dark:bg-white dark:text-black'
+                      : 'border-[#d9d9d9] dark:border-[#333333] text-[#161616] dark:text-[#fafafa] hover:bg-[#f0f0f0] dark:hover:bg-[#2b2b2b]'
                   )}
                   title="Copy raw SVG code to clipboard"
                 >
@@ -421,7 +485,7 @@ export const DiagramFigure: React.FC<DiagramFigureProps> = ({ src, alt, title })
                 <button
                   type="button"
                   onClick={handleDownloadSvg}
-                  className="inline-flex items-center gap-1 px-2 py-1 rounded-[5px] text-[11px] font-mono border border-[#232730]/30 dark:border-[#232730] text-[#3e5199] dark:text-[#5568ad] hover:text-white hover:bg-[#3e5199] dark:hover:bg-[#1b2d70] transition-colors cursor-pointer"
+                  className="inline-flex items-center gap-1 px-2 py-1 rounded-[5px] text-[11px] font-mono border border-[#d9d9d9] dark:border-[#333333] text-[#161616] dark:text-[#fafafa] hover:bg-[#f0f0f0] dark:hover:bg-[#2b2b2b] transition-colors cursor-pointer"
                   title="Download vector SVG file"
                 >
                   <span className="material-symbols-outlined text-[13px]">file_download</span>
@@ -433,7 +497,7 @@ export const DiagramFigure: React.FC<DiagramFigureProps> = ({ src, alt, title })
                   type="button"
                   onClick={handleDownloadPng}
                   disabled={isPngDownloading}
-                  className="inline-flex items-center gap-1 px-2 py-1 rounded-[5px] text-[11px] font-mono border border-[#232730]/30 dark:border-[#232730] text-[#3e5199] dark:text-[#5568ad] hover:text-white hover:bg-[#3e5199] dark:hover:bg-[#1b2d70] transition-colors cursor-pointer disabled:opacity-50"
+                  className="inline-flex items-center gap-1 px-2 py-1 rounded-[5px] text-[11px] font-mono border border-[#d9d9d9] dark:border-[#333333] text-[#161616] dark:text-[#fafafa] hover:bg-[#f0f0f0] dark:hover:bg-[#2b2b2b] transition-colors cursor-pointer disabled:opacity-50"
                   title="Export 2x high-resolution PNG"
                 >
                   <span className="material-symbols-outlined text-[13px]">{isPngDownloading ? 'hourglass_top' : 'image'}</span>
@@ -466,9 +530,9 @@ export const DiagramFigure: React.FC<DiagramFigureProps> = ({ src, alt, title })
           aria-modal="true"
         >
           {/* Modal Header */}
-          <div className="flex items-center justify-between pb-3 border-b border-[#232730] shrink-0">
+          <div className="flex items-center justify-between pb-3 border-b border-[#333333] shrink-0">
             <div className="flex items-center gap-2 min-w-0 pr-4">
-              <span className="material-symbols-outlined text-[20px] text-[#167e6c] shrink-0">schema</span>
+              <span className="material-symbols-outlined text-[20px] text-white shrink-0">schema</span>
               <h3 className="font-mono text-[13.5px] font-semibold text-white tracking-tight truncate">
                 {alt || title || 'Architectural Diagram'}
               </h3>
@@ -479,19 +543,19 @@ export const DiagramFigure: React.FC<DiagramFigureProps> = ({ src, alt, title })
               <button
                 type="button"
                 onClick={() => setZoom((z) => Math.max(0.4, Number((z - 0.2).toFixed(1))))}
-                className="p-1.5 rounded-[6px] text-[#5568ad] hover:text-white hover:bg-[#1b2d70] border border-[#232730] transition-colors"
+                className="p-1.5 rounded-[6px] text-[#a3a3a3] hover:text-white hover:bg-[#333333] border border-[#333333] transition-colors"
                 title="Zoom Out"
               >
                 <span className="material-symbols-outlined text-[18px]">zoom_out</span>
               </button>
-              <span className="font-mono text-[11px] text-[#5568ad] w-12 text-center select-none">
+              <span className="font-mono text-[11px] text-[#a3a3a3] w-12 text-center select-none">
                 {Math.round(zoom * 100)}%
               </span>
               {/* Zoom In */}
               <button
                 type="button"
                 onClick={() => setZoom((z) => Math.min(3, Number((z + 0.2).toFixed(1))))}
-                className="p-1.5 rounded-[6px] text-[#5568ad] hover:text-white hover:bg-[#1b2d70] border border-[#232730] transition-colors"
+                className="p-1.5 rounded-[6px] text-[#a3a3a3] hover:text-white hover:bg-[#333333] border border-[#333333] transition-colors"
                 title="Zoom In"
               >
                 <span className="material-symbols-outlined text-[18px]">zoom_in</span>
@@ -499,13 +563,13 @@ export const DiagramFigure: React.FC<DiagramFigureProps> = ({ src, alt, title })
               <button
                 type="button"
                 onClick={() => setZoom(1)}
-                className="px-2 py-1 rounded-[6px] text-[#5568ad] hover:text-white hover:bg-[#1b2d70] border border-[#232730] transition-colors font-mono text-[11px]"
+                className="px-2 py-1 rounded-[6px] text-[#a3a3a3] hover:text-white hover:bg-[#333333] border border-[#333333] transition-colors font-mono text-[11px]"
                 title="Reset Zoom"
               >
                 Reset
               </button>
 
-              <div className="h-4 w-px bg-[#232730] mx-1 hidden sm:block" />
+              <div className="h-4 w-px bg-[#333333] mx-1 hidden sm:block" />
 
               {/* Action Buttons in Modal */}
               <button
@@ -514,8 +578,8 @@ export const DiagramFigure: React.FC<DiagramFigureProps> = ({ src, alt, title })
                 className={cn(
                   'hidden sm:inline-flex items-center gap-1 px-2.5 py-1.5 rounded-[6px] font-mono text-[11.5px] transition-colors border',
                   copied
-                    ? 'border-[#167e6c] bg-[#167e6c]/20 text-[#167e6c]'
-                    : 'border-[#232730] text-[#5568ad] hover:text-white hover:bg-[#3e5199]'
+                    ? 'border-white bg-white text-black'
+                    : 'border-[#333333] text-[#a3a3a3] hover:text-white hover:bg-[#333333]'
                 )}
               >
                 <span className="material-symbols-outlined text-[15px]">{copied ? 'check' : 'content_copy'}</span>
@@ -630,12 +694,12 @@ const markdownComponents: Components = {
     return (
       <h2
         id={id}
-        className="scroll-mt-24 mt-10 mb-3 text-[18px] sm:text-[21px] text-navy dark:text-white font-medium tracking-tight border-b border-edge pb-2 flex items-center justify-between group"
+        className="scroll-mt-24 mt-10 mb-3 font-sans text-[22px] sm:text-[26px] text-[#161616] dark:text-[#fafafa] font-medium tracking-tight border-b border-[#e5e5e5] dark:border-[#333333] pb-2 flex items-center justify-between group"
       >
         <span>{children}</span>
         <a
           href={`#${id}`}
-          className="opacity-0 group-hover:opacity-100 text-muted-ink hover:text-navy dark:hover:text-white transition-opacity text-[14px] font-mono"
+          className="opacity-0 group-hover:opacity-100 text-[#8f8f8f] hover:text-[#161616] dark:hover:text-[#fafafa] transition-opacity text-[14px] font-mono"
           aria-label="Link to section"
         >
           #
@@ -738,7 +802,7 @@ const markdownComponents: Components = {
     const isExternal = typeof href === 'string' && (href.startsWith('http://') || href.startsWith('https://'));
 
     const linkClasses = cn(
-      "font-medium text-[#2F6BFF] hover:text-[#2055dd] dark:text-[#2F6BFF] dark:hover:text-[#6ba1ff] hover:underline decoration-[#2F6BFF]/70 underline-offset-2 transition-colors duration-150 cursor-pointer"
+      "font-medium text-[#161616] dark:text-[#fafafa] hover:underline decoration-[#161616]/70 dark:decoration-[#fafafa]/70 underline-offset-2 transition-colors duration-150 cursor-pointer"
     );
 
     if (isInternal) {
@@ -774,7 +838,7 @@ const markdownComponents: Components = {
     if (isInline) {
       return (
         <code
-          className="rounded-[4px] bg-canvas dark:bg-[#121620] border border-edge px-1.5 py-0.5 font-mono text-[12px] text-navy dark:text-ice"
+          className="rounded-[6px] bg-[#f0f2f5] dark:bg-[#212121] border border-[#d9d9d9] dark:border-[#333333] px-1.5 py-0.5 font-mono text-[12.5px] text-[#161616] dark:text-[#fafafa] selection:bg-[#eeeff2] selection:text-[#1a2251]"
           {...props}
         >
           {children}
@@ -802,7 +866,7 @@ const markdownComponents: Components = {
   pre: ({ children }) => <>{children}</>,
 
   blockquote: ({ children }) => (
-    <blockquote className="my-6 border-l-2 border-focus-blue dark:border-focus-blue pl-4 italic text-body-charcoal dark:text-body-ink text-[15px]">
+    <blockquote className="my-6 border-l-3 border-[#161616] dark:border-[#ffffff] pl-4 italic text-[#616161] dark:text-[#a3a3a3] text-[15px]">
       {children}
     </blockquote>
   ),
@@ -848,7 +912,7 @@ const markdownComponents: Components = {
   },
 
   table: ({ children }) => (
-    <div className="my-8 overflow-x-auto rounded-[8px] border border-edge bg-white dark:bg-panel shadow-catalog-edge">
+    <div className="my-8 overflow-x-auto rounded-[14px] border border-[#d9d9d9] dark:border-[#333333] bg-bright-white dark:bg-[#212121] shadow-2xs">
       <table className="w-full text-left font-mono text-[13px]">
         {children}
       </table>
@@ -865,17 +929,17 @@ const markdownComponents: Components = {
     return <DiagramFigure src={resolvedSrc} alt={alt} title={title} />;
   },
   thead: ({ children }) => (
-    <thead className="bg-canvas border-b border-edge text-navy dark:text-white font-medium">
+    <thead className="bg-[#f0f0f0] dark:bg-[#161616] border-b border-[#d9d9d9] dark:border-[#333333] text-[#161616] dark:text-[#fafafa] font-medium">
       {children}
     </thead>
   ),
   tbody: ({ children }) => (
-    <tbody className="divide-y divide-edge text-secondary-ink dark:text-ash">
+    <tbody className="divide-y divide-[#d9d9d9] dark:divide-[#333333] text-[#616161] dark:text-[#a3a3a3]">
       {children}
     </tbody>
   ),
   tr: ({ children }) => (
-    <tr className="hover:bg-canvas transition-colors">
+    <tr className="hover:bg-[#f8f8f8] dark:hover:bg-[#282828] transition-colors">
       {children}
     </tr>
   ),
@@ -908,24 +972,24 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
         if (block.type === 'callout') {
           let iconName = 'info';
           let borderStyle =
-            'border-focus-blue/50 bg-ice/20 text-navy dark:text-ice';
-          let badgeColor = 'text-navy dark:text-ice';
+            'border-[#d9d9d9] dark:border-[#333333] bg-[#f0f0f0] dark:bg-[#1a1a1a] text-[#161616] dark:text-[#fafafa]';
+          let badgeColor = 'text-[#161616] dark:text-[#fafafa]';
 
           if (block.calloutType === 'warning') {
             iconName = 'warning';
             borderStyle =
-              'border-customer-ember/40 bg-customer-ember/10 text-body-charcoal dark:text-body-ink';
-            badgeColor = 'text-customer-ember';
+              'border-[#d9d9d9] dark:border-[#333333] bg-[#f0f0f0] dark:bg-[#1a1a1a] text-[#161616] dark:text-[#fafafa]';
+            badgeColor = 'text-[#161616] dark:text-[#fafafa]';
           } else if (block.calloutType === 'danger') {
             iconName = 'error';
             borderStyle =
-              'border-red-500/40 bg-red-500/10 text-red-900 dark:text-red-300';
-            badgeColor = 'text-red-600 dark:text-red-400';
+              'border-[#161616] dark:border-[#ffffff] bg-[#f0f0f0] dark:bg-[#1a1a1a] text-[#161616] dark:text-[#fafafa]';
+            badgeColor = 'text-[#161616] dark:text-[#ffffff]';
           } else if (block.calloutType === 'tip') {
             iconName = 'lightbulb';
             borderStyle =
-              'border-proof-green/40 bg-proof-green/10 text-body-charcoal dark:text-body-ink';
-            badgeColor = 'text-proof-green';
+              'border-[#d9d9d9] dark:border-[#333333] bg-[#f0f0f0] dark:bg-[#1a1a1a] text-[#161616] dark:text-[#fafafa]';
+            badgeColor = 'text-[#161616] dark:text-[#fafafa]';
           }
 
           return (
@@ -960,7 +1024,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
           return (
             <div
               key={idx}
-              className="my-8 rounded-[8px] border border-edge bg-white dark:bg-panel p-0 text-center shadow-catalog-edge overflow-hidden"
+              className="my-8 rounded-[8px] border border-edge bg-bright-white dark:bg-panel p-0 text-center shadow-catalog-edge overflow-hidden"
             >
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
@@ -973,15 +1037,22 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
         }
 
         if (block.type === 'formula') {
+          const hasCustomTitle =
+            block.title &&
+            block.title !== 'Formula' &&
+            block.title !== 'Formula Heuristic';
+
           return (
             <div
               key={idx}
-              className="my-3.5 px-4 py-2.5 rounded-[6px] border border-edge bg-canvas shadow-catalog-edge w-fit min-w-[220px] max-w-full mx-auto"
+              className="my-2.5 px-4 py-2 rounded-[6px] border border-edge bg-canvas/80 dark:bg-panel/50 shadow-xs w-fit min-w-[180px] max-w-full mx-auto text-center"
             >
-              <div className="font-mono text-[10px] uppercase tracking-wider text-muted-ink mb-1 font-medium">
-                {block.title}
-              </div>
-              <div className="text-center font-mono text-[13.5px] text-navy dark:text-white py-0.5">
+              {hasCustomTitle && (
+                <div className="font-mono text-[10px] uppercase tracking-wider text-muted-ink mb-1 font-semibold border-b border-edge/60 pb-0.5">
+                  {block.title}
+                </div>
+              )}
+              <div className="font-mono text-[13.5px] sm:text-[14px] text-navy dark:text-white py-0.5 tracking-wide [&_p]:my-0 [&_p]:inline [&_p]:leading-normal">
                 <ReactMarkdown
                   remarkPlugins={[remarkGfm]}
                   components={markdownComponents}
@@ -997,7 +1068,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
           return (
             <div
               key={idx}
-              className="my-8 rounded-[8px] border border-edge bg-white dark:bg-panel p-0 flex justify-center shadow-catalog-edge overflow-hidden [&>svg]:w-full [&>svg]:h-auto [&>svg]:block"
+              className="my-8 rounded-[8px] border border-edge bg-bright-white dark:bg-panel p-0 flex justify-center shadow-catalog-edge overflow-hidden [&>svg]:w-full [&>svg]:h-auto [&>svg]:block"
               dangerouslySetInnerHTML={{ __html: block.content }}
             />
           );
@@ -1012,6 +1083,37 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
             );
           }
           return null;
+        }
+
+        if (block.type === 'details') {
+          return (
+            <details
+              key={idx}
+              className="group my-5 rounded-[8px] border border-edge bg-canvas/60 dark:bg-panel/40 overflow-hidden shadow-xs transition-all"
+            >
+              <summary className="flex items-center justify-between px-4 py-3 cursor-pointer select-none font-medium text-[14.5px] text-navy dark:text-ice bg-canvas hover:bg-canvas/80 dark:bg-panel/60 transition-colors list-none [&::-webkit-details-marker]:hidden">
+                <div className="flex items-center gap-2.5">
+                  <span className="material-symbols-outlined text-[19px] text-[#2F6BFF] group-open:rotate-90 transition-transform duration-200 select-none">
+                    chevron_right
+                  </span>
+                  <span className="font-semibold text-navy dark:text-white">
+                    {block.title || 'Unfold Answer & Explanation'}
+                  </span>
+                </div>
+                <span className="font-mono text-[11px] text-muted-ink uppercase tracking-wider px-2 py-0.5 rounded bg-panel dark:bg-canvas border border-edge shrink-0 ml-2">
+                  Toggle Answer
+                </span>
+              </summary>
+              <div className="px-5 py-4 border-t border-edge text-[14.5px] leading-relaxed bg-bright-white/70 dark:bg-[#0c1017]/70 text-body-ink">
+                <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
+                  components={markdownComponents}
+                >
+                  {block.content}
+                </ReactMarkdown>
+              </div>
+            </details>
+          );
         }
 
         return null;

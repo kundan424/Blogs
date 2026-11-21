@@ -2,163 +2,98 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { EnrichedLearningPath } from '../../utils/learningPathLoader';
 import { cn } from '../../utils/cn';
+import { PixelSymbol } from '../common/PixelSymbol';
+import { EndpointCapsule } from '../common/EndpointCapsule';
 
 interface CuratedPathCardProps {
   path: EnrichedLearningPath;
   index: number;
   className?: string;
+  compact?: boolean;
 }
-
-interface ThemeConfig {
-  bgGradient: string;
-  borderColor: string;
-  hoverBorder: string;
-  hoverShadow: string;
-  iconGradient: string;
-  badgeBg: string;
-  progressBarGradient: string;
-  btnBg: string;
-  accentText: string;
-}
-
-const THEMES: Record<string, ThemeConfig> = {
-  // 1. Spring Boot (Indigo / Periwinkle theme)
-  'spring-boot-production-mastery': {
-    bgGradient:
-      'bg-gradient-to-br from-[#f0f3ff] via-[#f7f9ff] to-[#ffffff] dark:from-[#11162b] dark:via-[#141829] dark:to-[#0c0f17]',
-    borderColor: 'border-[#c7d2fe] dark:border-[#273256]',
-    hoverBorder: 'hover:border-[#3e5199] dark:hover:border-[#6366f1]',
-    hoverShadow: 'hover:shadow-[0_12px_28px_rgba(62,81,153,0.12)]',
-    iconGradient: 'bg-gradient-to-br from-[#3e5199] to-[#5568ad]',
-    badgeBg:
-      'bg-[#3e5199]/10 text-[#3e5199] dark:text-[#a5b4fc] border-[#3e5199]/20',
-    progressBarGradient: 'from-[#3e5199] via-[#5568ad] to-[#818cf8]',
-    btnBg: 'bg-[#111a4a] text-white hover:bg-[#1f2963]',
-    accentText: 'text-[#3e5199] dark:text-[#a5b4fc]',
-  },
-  // 2. Microservices (Teal / Proof Green theme)
-  'production-microservices-distributed-architecture': {
-    bgGradient:
-      'bg-gradient-to-br from-[#ecfdf5] via-[#f2faf7] to-[#ffffff] dark:from-[#0a1f1d] dark:via-[#0e2421] dark:to-[#0c0f17]',
-    borderColor: 'border-[#a7f3d0] dark:border-[#1b3d39]',
-    hoverBorder: 'hover:border-[#167e6c] dark:hover:border-[#2dd4bf]',
-    hoverShadow: 'hover:shadow-[0_12px_28px_rgba(22,126,108,0.14)]',
-    iconGradient: 'bg-gradient-to-br from-[#167e6c] to-[#0d9488]',
-    badgeBg:
-      'bg-[#167e6c]/10 text-[#167e6c] dark:text-[#6ee7b7] border-[#167e6c]/20',
-    progressBarGradient: 'from-[#167e6c] via-[#0d9488] to-[#2dd4bf]',
-    btnBg: 'bg-[#167e6c] text-white hover:bg-[#126859]',
-    accentText: 'text-[#167e6c] dark:text-[#6ee7b7]',
-  },
-  // 3. Java Core & OOP (Customer Ember / Amber theme)
-  'java-core-oop-deep-dives': {
-    bgGradient:
-      'bg-gradient-to-br from-[#fff7ed] via-[#fefaf6] to-[#ffffff] dark:from-[#211510] dark:via-[#221813] dark:to-[#0c0f17]',
-    borderColor: 'border-[#fed7aa] dark:border-[#3d291e]',
-    hoverBorder: 'hover:border-[#ec652b] dark:hover:border-[#fb923c]',
-    hoverShadow: 'hover:shadow-[0_12px_28px_rgba(236,101,43,0.12)]',
-    iconGradient: 'bg-gradient-to-br from-[#ec652b] to-[#f97316]',
-    badgeBg:
-      'bg-[#ec652b]/10 text-[#ec652b] dark:text-[#fdba74] border-[#ec652b]/20',
-    progressBarGradient: 'from-[#ec652b] via-[#f97316] to-[#fbbf24]',
-    btnBg: 'bg-[#ec652b] text-white hover:bg-[#d4541e]',
-    accentText: 'text-[#ec652b] dark:text-[#fdba74]',
-  },
-  // 4. Docker / Container (Dot Blue / Cyan theme)
-  'docker-container-runtime-mastery': {
-    bgGradient:
-      'bg-gradient-to-br from-[#f0f9ff] via-[#f5fbff] to-[#ffffff] dark:from-[#0f1d2e] dark:via-[#112033] dark:to-[#0c0f17]',
-    borderColor: 'border-[#bae6fd] dark:border-[#1e3a5f]',
-    hoverBorder: 'hover:border-[#4575cd] dark:hover:border-[#38bdf8]',
-    hoverShadow: 'hover:shadow-[0_12px_28px_rgba(69,117,205,0.14)]',
-    iconGradient: 'bg-gradient-to-br from-[#4575cd] to-[#38bdf8]',
-    badgeBg:
-      'bg-[#4575cd]/10 text-[#4575cd] dark:text-[#7dd3fc] border-[#4575cd]/20',
-    progressBarGradient: 'from-[#4575cd] via-[#0284c7] to-[#38bdf8]',
-    btnBg: 'bg-[#4575cd] text-white hover:bg-[#3462b5]',
-    accentText: 'text-[#4575cd] dark:text-[#7dd3fc]',
-  },
-};
-
-const DEFAULT_THEME: ThemeConfig = {
-  bgGradient:
-    'bg-gradient-to-br from-[#f6f6f8] to-[#ffffff] dark:from-[#141824] dark:to-[#0c0f17]',
-  borderColor: 'border-edge',
-  hoverBorder: 'hover:border-navy dark:hover:border-ice',
-  hoverShadow: 'hover:shadow-md',
-  iconGradient: 'bg-navy text-white',
-  badgeBg: 'bg-panel text-secondary-ink border-edge',
-  progressBarGradient: 'from-banner-start via-dot-blue to-proof-green',
-  btnBg: 'btn-primary',
-  accentText: 'text-navy dark:text-white',
-};
 
 export const CuratedPathCard: React.FC<CuratedPathCardProps> = ({
   path,
   index,
   className,
+  compact = false,
 }) => {
   const navigate = useNavigate();
-  const theme = THEMES[path.slug] || DEFAULT_THEME;
   const pathUrl = `/learning-paths/${path.slug}`;
+
+  const getSymbolVariant = (p: EnrichedLearningPath) => {
+    const slug = p.slug.toLowerCase();
+    if (slug.includes('database') || slug.includes('storage')) return 'database';
+    if (slug.includes('microservices') || slug.includes('distributed')) return 'network';
+    if (slug.includes('docker') || slug.includes('container')) return 'container';
+    if (slug.includes('system-design')) return 'architecture';
+    if (slug.includes('spring') || slug.includes('java')) return 'runtime';
+    return 'workflow';
+  };
 
   return (
     <article
       onClick={() => navigate(pathUrl)}
       className={cn(
-        'group relative flex flex-col justify-between p-6 sm:p-7 rounded-[12px] border transition-all duration-300 cursor-pointer overflow-hidden shadow-2xs',
-        theme.bgGradient,
-        theme.borderColor,
-        theme.hoverBorder,
-        theme.hoverShadow,
-        'hover:-translate-y-1',
+        // Solid bright white surface with subtle monochrome base
+        'group relative flex flex-col justify-between rounded-[22px]',
+        'bg-white dark:bg-[#212121]',
+        'bg-gradient-to-b from-[#ffffff] via-[#ffffff] to-[#f5f5f5] dark:from-[#212121] dark:via-[#212121] dark:to-[#1a1a1a]',
+        'border border-[#d9d9d9] dark:border-[#333333]',
+        'transition-all duration-200 cursor-pointer overflow-hidden',
+        compact ? 'p-4 sm:p-5' : 'p-6 sm:p-7 rounded-[24px]',
+        'hover:border-[#161616] dark:hover:border-[#ffffff] hover:-translate-y-0.5',
+        'shadow-[0_4px_20px_-2px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.4)]',
         className
       )}
     >
-      {/* Absolute Stretched Link for accessibility & keyboard navigation */}
+      {/* Absolute Stretched Link */}
       <Link
         to={pathUrl}
-        className="absolute inset-0 z-0 rounded-[12px] focus:outline-hidden focus:ring-2 focus:ring-focus-blue"
+        className={cn(
+          "absolute inset-0 z-0 focus:outline-hidden focus:ring-1 focus:ring-[#161616] dark:focus:ring-[#ffffff]",
+          compact ? "rounded-[22px]" : "rounded-[24px]"
+        )}
         aria-label={`Open curriculum roadmap for ${path.title}`}
         onClick={(e) => e.stopPropagation()}
       />
 
-      <div className="relative z-10 space-y-5">
-        {/* Top Header Row: Roadmap Track Pill + Level Badge */}
-        <div className="flex items-center justify-between gap-2 flex-wrap">
-          <div className="flex items-center gap-2">
-            <span
-              className={cn(
-                'px-2.5 py-1 rounded-[6px] font-mono text-[11px] font-semibold uppercase tracking-wider border',
-                theme.badgeBg
-              )}
-            >
+      {/* Subtle Monochrome Base Wash */}
+      <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/[0.03] via-black/[0.01] to-transparent dark:from-white/[0.04] dark:via-white/[0.01] to-transparent pointer-events-none" />
+
+      {/* Monochrome Base Bottom Edge Line */}
+      <div className="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-transparent via-[#161616]/30 to-transparent dark:via-white/40 pointer-events-none" />
+
+      <div className={cn("relative z-10", compact ? "space-y-3" : "space-y-4")}>
+        {/* Top Header Row: Roadmap Track Pill + Level Badge + Phases count */}
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex items-center gap-1.5">
+            <EndpointCapsule className={cn(compact ? "text-[10px] py-0.5 px-2.5" : "text-[11px] py-0.5 px-3")}>
               ROADMAP {String(index + 1).padStart(2, '0')}
-            </span>
-            <span className="font-mono text-[11px] text-muted-ink uppercase tracking-wider">
+            </EndpointCapsule>
+            <span className="font-mono text-[10.5px] text-[#616161] dark:text-[#8f8f8f] uppercase tracking-[0.02em] hidden sm:inline">
               {path.level || 'Production Scale'}
             </span>
           </div>
 
-          <span className="font-mono text-[11px] text-muted-ink bg-white/70 dark:bg-panel/70 px-2 py-0.5 rounded-[4px] border border-edge/60">
-            {path.estimatedDuration || `${path.modules.length} Modules`}
+          <span className="font-mono text-[10px] text-[#616161] dark:text-[#8f8f8f] bg-[#f0f0f0] dark:bg-[#303030] px-2 py-0.5 rounded-full border border-[#d9d9d9] dark:border-[#474747] uppercase tracking-[0.02em] shrink-0">
+            {path.modules.length} {path.modules.length === 1 ? 'Phase' : 'Phases'}
           </span>
         </div>
 
         {/* Title & Icon Lockup */}
-        <div className="flex items-start gap-3.5">
-          <div
-            className={cn(
-              'w-11 h-11 rounded-[8px] flex items-center justify-center shrink-0 transition-transform group-hover:scale-105 shadow-xs',
-              theme.iconGradient
-            )}
-          >
-            <span className="material-symbols-outlined text-[22px] text-white">
-              {path.icon || 'schema'}
-            </span>
+        <div className="flex items-start gap-3">
+          <div className={cn(
+            "rounded-[14px] bg-[#f7f7f7] dark:bg-[#2b2b2b] border border-[#d9d9d9] dark:border-[#474747] flex items-center justify-center shrink-0 transition-transform group-hover:scale-105 shadow-2xs",
+            compact ? "w-10 h-10" : "w-12 h-12 rounded-[16px]"
+          )}>
+            <PixelSymbol variant={getSymbolVariant(path)} size={compact ? 22 : 28} />
           </div>
-          <div>
-            <h3 className="text-[20px] sm:text-[22px] font-semibold text-navy dark:text-white leading-tight tracking-tight group-hover:text-dot-blue dark:group-hover:text-ice transition-colors">
+          <div className="min-w-0 flex-1">
+            <h3 className={cn(
+              "font-medium text-[#161616] dark:text-[#fafafa] leading-[1.25] tracking-[-0.01em] group-hover:underline transition-colors line-clamp-1",
+              compact ? "text-[16px] sm:text-[17px]" : "text-[19px] sm:text-[21px]"
+            )}>
               <Link
                 to={pathUrl}
                 className="focus:outline-hidden"
@@ -167,92 +102,93 @@ export const CuratedPathCard: React.FC<CuratedPathCardProps> = ({
                 {path.title}
               </Link>
             </h3>
-            <span className="font-mono text-[11.5px] text-muted-ink mt-0.5 block">
-              {path.totalLessons} Lessons • {path.publishedLessons} Available Now
+            <span className="font-mono text-[10.5px] text-[#8f8f8f] mt-0.5 block uppercase tracking-[0.02em]">
+              {path.totalLessons} Lessons • {path.publishedLessons} Available
             </span>
           </div>
         </div>
 
         {/* Narrative Description */}
-        <p className="text-[13.5px] sm:text-[14px] text-secondary-ink dark:text-body-ink leading-relaxed line-clamp-2">
+        <p className={cn(
+          "text-[#616161] dark:text-[#a3a3a3] line-clamp-2 font-sans",
+          compact ? "text-[12px] sm:text-[12.5px] leading-snug" : "text-[14px] leading-[1.35]"
+        )}>
           {path.description}
         </p>
 
-        {/* Module Outline Roadmap Preview */}
-        <div className="p-3 rounded-[8px] bg-white/60 dark:bg-panel/50 border border-edge/60 space-y-2 font-mono text-[11.5px]">
-          <div className="text-[10.5px] uppercase tracking-wider text-muted-ink font-semibold flex items-center justify-between pb-1 border-b border-edge/40">
-            <span>CURRICULUM MODULES</span>
+        {/* Minimal Modular Curriculum Outline */}
+        <div className={cn(
+          "rounded-[14px] bg-[#fafafa] dark:bg-[#1a1a1a] border border-[#e5e5e5] dark:border-[#303030] font-mono uppercase tracking-[0.02em]",
+          compact ? "p-2 sm:p-2.5 space-y-1.5" : "p-3 space-y-2 rounded-[16px]"
+        )}>
+          <div className="text-[9.5px] sm:text-[10px] text-[#8f8f8f] font-medium flex items-center justify-between pb-0.5">
             <span className="flex items-center gap-1.5">
-              <span>{path.modules.length} Modules</span>
-              {path.modules.length > 5 && (
-                <span className="text-[9.5px] text-muted-ink/80 font-normal lowercase">(scroll)</span>
-              )}
+              <span className="w-1.5 h-1.5 rounded-full bg-[#161616] dark:bg-[#fafafa]" />
+              <span>CURRICULUM PHASES</span>
             </span>
+            <span className="text-[#161616] dark:text-[#fafafa] font-semibold">{path.modules.length} MODULES</span>
           </div>
-          <div
-            className="max-h-[145px] overflow-y-auto custom-scrollbar pr-1.5 space-y-1.5 focus:outline-hidden"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {path.modules.map((mod) => (
-              <div
-                key={mod.id}
-                className="flex items-center justify-between text-body-ink dark:text-muted-ink hover:text-navy dark:hover:text-white transition-colors truncate py-0.5"
-              >
-                <span className="truncate pr-2">
-                  <span className={cn('font-semibold mr-1.5', theme.accentText)}>
-                    {mod.number}.
-                  </span>
-                  {mod.title}
+
+          {/* Minimal Modular Chips / Pills */}
+          <div className="flex flex-wrap gap-1 pt-0.5">
+            {path.modules.slice(0, 3).map((mod) => {
+              const cleanTitle = mod.title.replace(/^(Phase\s*\d+:|Module\s*\d+:|\d+\.\s*)/i, '').trim();
+              return (
+                <span
+                  key={mod.id}
+                  className="inline-flex items-center gap-1 px-2 py-0.5 rounded-[6px] text-[10px] bg-white dark:bg-[#262626] border border-[#e2e2e2] dark:border-[#363636] text-[#161616] dark:text-[#fafafa] truncate max-w-[130px]"
+                  title={mod.title}
+                >
+                  <span className="text-[#161616] dark:text-[#fafafa] font-bold">{mod.number}</span>
+                  <span className="truncate">{cleanTitle}</span>
                 </span>
-                <span className="text-muted-ink shrink-0 text-[10.5px]">
-                  {mod.lessons.length} {mod.lessons.length === 1 ? 'lesson' : 'lessons'}
-                </span>
-              </div>
-            ))}
+              );
+            })}
+            {path.modules.length > 3 && (
+              <span className="inline-flex items-center px-1.5 py-0.5 rounded-[6px] text-[9.5px] bg-[#f0f0f0] dark:bg-[#2b2b2b] text-[#8f8f8f] border border-[#e2e2e2] dark:border-[#363636]">
+                +{path.modules.length - 3} more
+              </span>
+            )}
           </div>
         </div>
       </div>
 
       {/* Card Footer: Progress Bar + Open Roadmap Button */}
-      <div className="relative z-10 mt-6 pt-4 border-t border-edge/60 dark:border-edge/30 space-y-3">
-        {/* Progress Bar */}
+      <div className={cn(
+        "relative z-10 border-t border-[#e8e8e8] dark:border-[#333333]",
+        compact ? "mt-3 pt-2.5 space-y-2" : "mt-5 pt-3.5 space-y-3"
+      )}>
+        {/* Progress Bar Monochrome */}
         <div className="space-y-1">
-          <div className="flex items-center justify-between font-mono text-[11px] text-muted-ink">
+          <div className="flex items-center justify-between font-mono text-[10px] text-[#8f8f8f] uppercase tracking-[0.02em]">
             <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-proof-green" />
-              <span>{path.publishedLessons} of {path.totalLessons} lessons published</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#161616] dark:bg-[#fafafa]" />
+              <span>{path.publishedLessons} of {path.totalLessons} published</span>
             </span>
-            <span className="font-medium text-navy dark:text-white">
-              {path.progressPercentage}% Complete
+            <span className="font-semibold text-[#161616] dark:text-[#fafafa]">
+              {path.progressPercentage}%
             </span>
           </div>
-          <div className="w-full h-1.5 rounded-full bg-black/5 dark:bg-white/10 overflow-hidden">
+          <div className="w-full h-1.5 rounded-full bg-[#ebebeb] dark:bg-[#303030] overflow-hidden">
             <div
-              className={cn(
-                'h-full rounded-full bg-gradient-to-r transition-all duration-500',
-                theme.progressBarGradient
-              )}
-              style={{ width: `${Math.max(4, path.progressPercentage)}%` }}
+              className="h-full rounded-full bg-[#161616] dark:bg-[#ffffff] transition-all duration-500"
+              style={{ width: `${Math.max(6, path.progressPercentage)}%` }}
             />
           </div>
         </div>
 
         {/* Action Row */}
-        <div className="flex items-center justify-between pt-1">
-          <span className="font-mono text-[12px] text-muted-ink flex items-center gap-1">
+        <div className="flex items-center justify-between pt-0.5">
+          <span className="font-mono text-[10px] uppercase tracking-[0.02em] text-[#8f8f8f] flex items-center gap-1">
             <span>Structured Path</span>
           </span>
 
-          <span
-            className={cn(
-              'inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-[8px] font-sans text-[13px] font-medium transition-all shadow-2xs group-hover:shadow-xs',
-              theme.btnBg
-            )}
-          >
-            <span>Explore Roadmap</span>
-            <span className="material-symbols-outlined text-[14px] transition-transform group-hover:translate-x-1">
-              arrow_forward
-            </span>
+          <span className={cn(
+            "btn-primary",
+            compact ? "h-[30px] px-3 text-[11px]" : "h-[34px] px-3.5 text-[12px]"
+          )}>
+            <span>Explore</span>
+            <span className="material-symbols-outlined text-[13px]">arrow_forward</span>
           </span>
         </div>
       </div>

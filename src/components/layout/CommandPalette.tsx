@@ -54,15 +54,15 @@ export const CommandPalette: React.FC = () => {
     <div
       aria-modal="true"
       role="dialog"
-      className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 px-4 bg-navy/40 backdrop-blur-sm transition-opacity"
+      className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 px-4 bg-[#161616]/60 backdrop-blur-sm transition-opacity"
       onClick={(e) => {
         if (e.target === e.currentTarget) closeSearch();
       }}
     >
-      <div className="w-full max-w-2xl overflow-hidden rounded-[8px] bg-white dark:bg-panel border border-edge shadow-floating-glass transition-all">
+      <div className="w-full max-w-2xl overflow-hidden rounded-[24px] bg-bright-white dark:bg-[#212121] border border-[#d9d9d9] dark:border-[#333333] shadow-2xs transition-all">
         {/* Search Input Header */}
-        <div className="relative flex items-center bg-white dark:bg-panel px-4 py-3.5 border-b border-edge">
-          <span className="material-symbols-outlined text-[20px] text-muted-ink">search</span>
+        <div className="relative flex items-center bg-[#f0f0f0] dark:bg-[#262626] px-5 py-3.5 border-b border-[#d9d9d9] dark:border-[#333333]">
+          <span className="material-symbols-outlined text-[20px] text-[#8f8f8f]">search</span>
           <input
             ref={inputRef}
             type="text"
@@ -71,40 +71,46 @@ export const CommandPalette: React.FC = () => {
             placeholder="Search subjects, notes, tags, or concepts..."
             spellCheck="false"
             autoComplete="off"
-            className="ml-3 flex-1 bg-transparent font-mono text-[14px] text-body-ink placeholder:text-muted-ink focus:outline-none"
+            className="ml-3 flex-1 bg-transparent font-mono text-[14px] text-[#161616] dark:text-[#fafafa] placeholder:text-[#8f8f8f] focus:outline-none"
           />
           <button
             type="button"
             onClick={closeSearch}
-            className="rounded-[6px] p-1 text-muted-ink hover:bg-canvas hover:text-navy dark:hover:text-white transition-colors cursor-pointer"
+            className="rounded-full p-1.5 text-[#8f8f8f] hover:bg-[#d9d9d9] dark:hover:bg-[#333333] hover:text-[#161616] dark:hover:text-[#fafafa] transition-colors cursor-pointer"
           >
             <span className="material-symbols-outlined text-[18px]">close</span>
           </button>
         </div>
 
         {/* Results Container */}
-        <div className="max-h-[60vh] overflow-y-auto p-3 space-y-4">
+        <div className="max-h-[60vh] overflow-y-auto p-4 space-y-5 custom-scrollbar">
           {/* Category: Subjects */}
           {filteredSubjects.length > 0 && (
             <div>
-              <div className="px-2 pb-1 font-mono text-[11px] uppercase tracking-wider text-muted-ink font-medium">
-                Core Subjects
+              <div className="px-3 pb-2 font-mono text-[11px] uppercase tracking-[0.02em] text-[#8f8f8f] font-medium flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#161616] dark:bg-[#fafafa]" />
+                <span>Core Subjects</span>
               </div>
               <div className="space-y-1">
                 {filteredSubjects.slice(0, 4).map((s) => (
                   <div
                     key={s.id}
                     onClick={() => handleSelect(`/subjects/${s.slug}`)}
-                    className="palette-item flex cursor-pointer items-center justify-between rounded-[8px] px-3 py-2 text-body-ink hover:bg-canvas transition-colors"
+                    className="palette-item flex cursor-pointer items-center justify-between rounded-[14px] px-3.5 py-2.5 text-[#161616] dark:text-[#fafafa] hover:bg-[#f0f0f0] dark:hover:bg-[#2a2a2a] transition-colors"
                   >
-                    <div className="flex items-center gap-2.5">
-                      <span className="material-symbols-outlined text-[18px] text-navy dark:text-ice">
+                    <div className="flex items-center gap-3">
+                      <span className="material-symbols-outlined text-[20px] text-[#8f8f8f]">
                         {s.icon}
                       </span>
-                      <span className="text-[14px] font-medium">{s.name}</span>
+                      <div>
+                        <div className="font-sans font-medium text-[14px]">{s.name}</div>
+                        <div className="text-[12px] text-[#8f8f8f] line-clamp-1">
+                          {s.description}
+                        </div>
+                      </div>
                     </div>
-                    <span className="font-mono text-[11px] text-muted-ink">
-                      {s.notesCount} Notes
+                    <span className="font-mono text-[11px] uppercase tracking-[0.02em] text-[#8f8f8f] px-2.5 py-0.5 rounded-full bg-[#f0f0f0] dark:bg-[#303030] shrink-0 border border-[#d9d9d9] dark:border-[#474747]">
+                      {s.notesCount} notes
                     </span>
                   </div>
                 ))}
@@ -115,25 +121,29 @@ export const CommandPalette: React.FC = () => {
           {/* Category: Notes */}
           {filteredNotes.length > 0 && (
             <div>
-              <div className="px-2 pb-1 font-mono text-[11px] uppercase tracking-wider text-muted-ink font-medium">
-                Technical Notes
+              <div className="px-3 pb-2 font-mono text-[11px] uppercase tracking-[0.02em] text-[#8f8f8f] font-medium flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#161616] dark:bg-[#fafafa]" />
+                <span>Published Notes &amp; RFCs</span>
               </div>
               <div className="space-y-1">
-                {filteredNotes.slice(0, 6).map((n) => (
+                {filteredNotes.slice(0, 8).map((n) => (
                   <div
                     key={n.id}
                     onClick={() => handleSelect(`/notes/${n.slug}`)}
-                    className="palette-item flex cursor-pointer items-center justify-between rounded-[8px] px-3 py-2 text-body-ink hover:bg-canvas transition-colors"
+                    className="palette-item flex cursor-pointer items-center justify-between rounded-[14px] px-3.5 py-2.5 text-[#161616] dark:text-[#fafafa] hover:bg-[#f0f0f0] dark:hover:bg-[#2a2a2a] transition-colors"
                   >
-                    <div className="flex items-center gap-2.5 truncate max-w-[80%]">
-                      <span className="material-symbols-outlined text-[18px] text-muted-ink shrink-0">
+                    <div className="flex items-center gap-3 min-w-0 pr-3">
+                      <span className="material-symbols-outlined text-[18px] text-[#8f8f8f] shrink-0">
                         description
                       </span>
-                      <span className="text-[14px] truncate">
-                        {n.title}
-                      </span>
+                      <div className="truncate">
+                        <div className="font-sans font-medium text-[14px] truncate">{n.title}</div>
+                        <div className="text-[12px] text-[#8f8f8f] truncate font-mono">
+                          {n.subjectName} • {n.publishDate}
+                        </div>
+                      </div>
                     </div>
-                    <span className="font-mono text-[11px] text-muted-ink shrink-0 ml-2">
+                    <span className="font-mono text-[11px] text-[#8f8f8f] shrink-0">
                       {n.readTime}
                     </span>
                   </div>
@@ -142,19 +152,20 @@ export const CommandPalette: React.FC = () => {
             </div>
           )}
 
-          {/* Category: Topics & Tags */}
+          {/* Category: Topics */}
           {filteredTopics.length > 0 && (
             <div>
-              <div className="px-2 pb-1 font-mono text-[11px] uppercase tracking-wider text-muted-ink font-medium">
-                Topic Tags
+              <div className="px-3 pb-2 font-mono text-[11px] uppercase tracking-[0.02em] text-[#8f8f8f] font-medium flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#161616] dark:bg-[#fafafa]" />
+                <span>Topics &amp; Internals</span>
               </div>
-              <div className="flex flex-wrap gap-1.5 px-2 pt-1">
+              <div className="flex flex-wrap gap-2 px-3">
                 {filteredTopics.slice(0, 10).map((t) => (
                   <button
-                    key={t.id}
+                    key={t.slug}
                     type="button"
                     onClick={() => handleSelect(`/topics/${t.slug}`)}
-                    className="cursor-pointer rounded-[8px] bg-canvas border border-edge px-2.5 py-1 font-mono text-[11.5px] text-secondary-ink hover:border-navy hover:text-navy dark:hover:text-white transition-colors"
+                    className="px-3 py-1 rounded-full bg-[#f0f0f0] dark:bg-[#161616] border border-[#d9d9d9] dark:border-[#333333] font-mono text-[12px] uppercase tracking-[0.02em] text-[#616161] dark:text-[#a3a3a3] hover:text-[#161616] dark:hover:text-[#fafafa] hover:border-[#161616] dark:hover:border-[#ffffff] transition-colors cursor-pointer"
                   >
                     #{t.name}
                   </button>
@@ -163,22 +174,18 @@ export const CommandPalette: React.FC = () => {
             </div>
           )}
 
-          {filteredSubjects.length === 0 &&
-            filteredNotes.length === 0 &&
-            filteredTopics.length === 0 && (
-              <div className="py-8 text-center text-muted-ink text-[14px]">
-                No matching results found for "{query}"
-              </div>
-            )}
+          {filteredSubjects.length === 0 && filteredNotes.length === 0 && (
+            <div className="py-12 text-center text-[#8f8f8f]">
+              <span className="material-symbols-outlined text-[32px] text-[#161616] dark:text-[#fafafa]">search_off</span>
+              <p className="mt-2 text-[14px]">No matches found for &quot;{query}&quot;</p>
+            </div>
+          )}
         </div>
 
-        {/* Modal Bottom Hints */}
-        <div className="flex items-center justify-between px-4 py-2.5 bg-canvas border-t border-edge font-mono text-[11px] text-muted-ink">
-          <div className="flex items-center gap-3">
-            <span><kbd className="px-1.5 py-0.5 rounded-[4px] bg-white border border-edge text-navy shadow-xs">ESC</kbd> to close</span>
-            <span><kbd className="px-1.5 py-0.5 rounded-[4px] bg-white border border-edge text-navy shadow-xs">↵</kbd> to select</span>
-          </div>
-          <span>dev.notes index v2.4</span>
+        {/* Footer shortcuts */}
+        <div className="px-5 py-3 bg-[#f0f0f0] dark:bg-[#1c1c1c] border-t border-[#d9d9d9] dark:border-[#333333] flex items-center justify-between text-[11.5px] font-mono uppercase tracking-[0.02em] text-[#8f8f8f]">
+          <span>Navigate with click or Enter</span>
+          <span>ESC to close</span>
         </div>
       </div>
     </div>

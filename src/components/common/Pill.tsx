@@ -24,49 +24,46 @@ export const Pill: React.FC<PillProps> = ({
   prefix,
 }) => {
   const baseClasses =
-    'inline-flex items-center gap-1.5 transition-all font-mono rounded-[8px] whitespace-nowrap cursor-pointer select-none text-[13px]';
+    'inline-flex items-center gap-1.5 transition-all font-sans rounded-full whitespace-nowrap cursor-pointer select-none text-[12px] font-medium tracking-normal';
 
   let variantClasses = '';
   switch (variant) {
     case 'filter':
       variantClasses = active
-        ? 'h-[36px] px-3.5 bg-gradient-to-r from-[#3e5199] to-[#5568ad] text-white border border-[#3e5199] font-medium shadow-sm'
-        : 'h-[36px] px-3.5 bg-white dark:bg-panel border border-edge text-body-ink hover:text-[#3e5199] dark:hover:text-white hover:border-[#3e5199] hover:bg-[#3e5199]/5 dark:hover:bg-white/5 shadow-xs';
+        ? 'h-[32px] sm:h-[34px] px-3 bg-[#161616] text-[#ffffff] dark:bg-[#ffffff] dark:text-[#161616] font-medium shadow-xs'
+        : 'h-[32px] sm:h-[34px] px-3 bg-[#f0f0f0] dark:bg-[#212121] border border-[#d9d9d9] dark:border-[#333333] text-[#616161] dark:text-[#a3a3a3] hover:text-[#161616] dark:hover:text-[#fafafa] hover:border-[#161616] dark:hover:border-[#ffffff] hover:bg-[#e8e8e8] dark:hover:bg-[#303030]';
       break;
     case 'hash':
       variantClasses = active
-        ? 'h-[32px] px-3 bg-gradient-to-r from-[#3e5199] to-[#5568ad] text-white border border-[#3e5199] font-medium shadow-sm'
-        : 'h-[32px] px-3 bg-white dark:bg-panel border border-edge text-body-ink hover:text-[#3e5199] dark:hover:text-white hover:border-[#3e5199] hover:bg-[#3e5199]/5 shadow-xs';
+        ? 'h-[30px] px-2.5 bg-[#161616] text-[#ffffff] dark:bg-[#ffffff] dark:text-[#161616] font-medium text-[11.5px]'
+        : 'h-[30px] px-2.5 bg-[#f0f0f0] dark:bg-[#212121] border border-[#d9d9d9] dark:border-[#333333] text-[#616161] dark:text-[#a3a3a3] hover:text-[#161616] dark:hover:text-[#fafafa] hover:border-[#161616] dark:hover:border-[#ffffff] text-[11.5px]';
       break;
     case 'status':
       variantClasses =
-        'bg-ice/40 text-deep-teal border border-ice font-medium px-2.5 py-0.5 text-[12px]';
+        'bg-[#f0f0f0] dark:bg-[#303030] text-[#161616] dark:text-[#fafafa] border border-[#d9d9d9] dark:border-[#474747] font-medium px-2 py-0.5 text-[10.5px] rounded-full';
       break;
     case 'outline':
       variantClasses =
-        'h-[36px] px-3.5 bg-white dark:bg-panel text-[#3e5199] dark:text-white border border-edge hover:border-[#3e5199] shadow-xs';
+        'h-[32px] sm:h-[34px] px-3 bg-transparent text-[#161616] dark:text-[#fafafa] border border-[#d9d9d9] dark:border-[#474747] hover:border-[#161616] dark:hover:border-[#ffffff]';
       break;
     case 'tag':
     default:
-      variantClasses = active
-        ? 'h-[30px] px-2.5 bg-gradient-to-r from-[#3e5199] to-[#5568ad] text-white border border-[#3e5199] font-medium shadow-sm text-[12px]'
-        : 'h-[30px] px-2.5 bg-white dark:bg-panel border border-edge text-body-ink hover:border-[#3e5199] hover:text-[#3e5199] hover:bg-[#3e5199]/5 dark:hover:text-white text-[12px] shadow-2xs';
+      variantClasses =
+        'h-[26px] px-2 bg-[#f0f0f0] dark:bg-[#212121] border border-[#d9d9d9] dark:border-[#333333] text-[#616161] dark:text-[#a3a3a3] hover:text-[#161616] dark:hover:text-[#fafafa] hover:border-[#161616] dark:hover:border-[#ffffff] text-[10.5px]';
       break;
   }
 
   const content = (
     <>
       {prefix}
-      <span className={active ? 'text-white font-semibold' : 'text-body-ink'}>
-        {label}
-      </span>
+      <span>{label}</span>
       {count !== undefined && (
         <span
           className={cn(
-            'px-1.5 py-0.5 rounded-[4px] text-[11px] font-mono leading-none',
+            'text-[11px] px-1.5 py-0.2 rounded-full font-mono',
             active
-              ? 'bg-white/25 text-white font-semibold'
-              : 'bg-panel dark:bg-white/10 text-muted-ink'
+              ? 'bg-white/20 text-white dark:bg-black/20 dark:text-[#161616]'
+              : 'bg-[#d9d9d9] dark:bg-[#303030] text-[#161616] dark:text-[#fafafa]'
           )}
         >
           {count}

@@ -149,50 +149,50 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
   return (
     <div
       className={cn(
-        'group relative my-6 rounded-[8px] overflow-hidden bg-[#0c0d12] border border-[#1b1c28] text-[#e2e8f0] shadow-catalog-edge',
+        'group relative my-6 rounded-[14px] overflow-hidden bg-[#0c0d12] border border-[#262626] dark:border-[#333333] text-[#e2e8f0] shadow-2xs',
         className
       )}
     >
       {/* Show header bar ONLY when an explicit filename is provided */}
       {filename ? (
-        <div className="flex items-center justify-between px-5 py-2.5 bg-[#0e1017] border-b border-[#1b1d28] font-mono text-[12px] text-[#818cf8]">
+        <div className="flex items-center justify-between px-5 py-2.5 bg-[#161616] border-b border-[#262626] dark:border-[#333333] font-mono text-[12px] text-[#fafafa]">
           <div className="flex items-center gap-2">
-            <span className="material-symbols-outlined text-[15px] text-[#a78bfa]">
+            <span className="material-symbols-outlined text-[15px] text-[#fafafa]">
               code
             </span>
-            <span className="text-[#cbd5e1] font-medium tracking-tight">{filename}</span>
+            <span className="text-[#fafafa] font-medium tracking-tight">{filename}</span>
           </div>
           <button
             type="button"
             onClick={handleCopy}
-            className="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[#94a3b8] hover:text-[#f8fafc] hover:bg-[#1a1c28] transition-all"
+            className="flex items-center gap-1.5 px-2.5 py-1 rounded-[6px] border border-[#333333] text-[#8f8f8f] hover:text-[#fafafa] hover:border-[#555] bg-[#161616] transition-all cursor-pointer"
             title="Copy code snippet"
           >
-            <span className="material-symbols-outlined text-[15px]">
+            <span className="material-symbols-outlined text-[14px]">
               {copied ? 'check' : 'content_copy'}
             </span>
             <span className="text-[11px] font-mono">{copied ? 'Copied' : 'Copy'}</span>
           </button>
         </div>
       ) : (
-        /* Floating hover copy button when no header bar is present (matches modern developer IDE screenshot) */
+        /* Floating copy button matching screenshot [ 📋 Copy ] */
         <button
           type="button"
           onClick={handleCopy}
-          className="absolute right-3 top-3 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#141520]/85 backdrop-blur-md border border-[#23263b] text-[#94a3b8] hover:text-white hover:bg-[#1f2235] opacity-0 group-hover:opacity-100 transition-all text-[11px] font-mono shadow-md"
+          className="absolute right-3.5 top-3.5 z-10 flex items-center gap-1.5 px-2.5 py-1 rounded-[6px] bg-[#161616]/95 hover:bg-[#212121] border border-[#333333] hover:border-[#555555] text-[#8f8f8f] hover:text-[#ffffff] transition-all text-[11px] font-mono cursor-pointer shadow-sm select-none"
           title="Copy code snippet"
         >
-          <span className="material-symbols-outlined text-[14px]">
+          <span className="material-symbols-outlined text-[13px]">
             {copied ? 'check' : 'content_copy'}
           </span>
           <span>{copied ? 'Copied' : 'Copy'}</span>
         </button>
       )}
 
-      {/* Code Text Area: switches to monospace box-drawing font with tight line height for ASCII art */}
+      {/* Code Text Area: selection:bg-[#eeeff2] selection:text-[#1a2251] */}
       <pre
         className={cn(
-          'p-5 overflow-x-auto text-[#e2e8f0] selection:bg-[#3b2d54] selection:text-[#f5f3ff]',
+          'p-5 overflow-x-auto text-[#e2e8f0] selection:bg-[#eeeff2] selection:text-[#1a2251]',
           isAsciiDiagram
             ? 'text-[12.5px] sm:text-[13px] leading-[1.18] tracking-normal'
             : 'text-[13.5px] font-mono leading-[1.75] tracking-[-0.01em]'

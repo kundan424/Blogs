@@ -17,54 +17,27 @@ export const Navbar: React.FC = () => {
   ];
 
   return (
-    <>
-      {/* =========================================================================
-          COLUMN ANNOUNCEMENT STRIP
-          40px height, gradient #3e5199 to #5568ad, 14px/1.1 weight 500
-          ========================================================================= */}
-      <aside
-        aria-label="Announcement"
-        style={{ background: 'linear-gradient(90deg, #3e5199 0%, #5568ad 100%)' }}
-        className="w-full h-10 px-4 sm:px-5 flex items-center justify-center gap-2 text-white text-[12.5px] sm:text-[14px] font-medium leading-none hover:brightness-105 transition-all shadow-xs"
-      >
-        <Link
-          to="/subjects"
-          className="inline-flex items-center gap-1.5 sm:gap-2 hover:underline text-white font-medium truncate max-w-full"
-          style={{ color: '#ffffff' }}
-        >
-          <span className="font-semibold tracking-wide text-white shrink-0" style={{ color: '#ffffff' }}>
-            Infrastructure Knowledge Base
-          </span>
-          <span className="text-white/90 inline truncate" style={{ color: 'rgba(255, 255, 255, 0.92)' }}>
-            — Deep systems, concurrency &amp; database internals
-          </span>
-          <span className="material-symbols-outlined text-[15px] translate-y-0.5 text-white shrink-0" style={{ color: '#ffffff' }}>
-            arrow_forward
-          </span>
-        </Link>
-      </aside>
-
-      {/* =========================================================================
-          COLUMN NAVIGATION HEADER
-          Transparent / cool canvas header aligned to 1112px shell with 20px padding
-          ========================================================================= */}
-      <header className="sticky top-0 w-full z-[1002] bg-canvas/90 dark:bg-[#0c0f17]/90 backdrop-blur-md border-b border-edge/80 dark:border-edge/40 transition-colors">
-        <div className="h-16 max-w-column mx-auto px-5 flex items-center justify-between gap-4">
-          {/* Left: Brand Wordmark */}
-          <div className="flex items-center gap-8">
-            <Link to="/" className="flex items-center gap-2.5 group text-navy dark:text-white">
-              <span className="flex items-center justify-center w-7 h-7 rounded-[6px] bg-navy text-white font-mono text-[12px] font-medium transition-transform group-hover:scale-105">
+    <div className="sticky top-0 z-[1002] w-full pt-3 px-4 sm:px-6 pointer-events-none">
+      <header className="max-w-[1344px] mx-auto pointer-events-auto">
+        {/* Navigation capsule: 50px height, 9999px pill, soft gray, action-label text */}
+        <div className="nav-capsule shadow-nav-float backdrop-blur-md">
+          {/* Brand mark on left */}
+          <div className="flex items-center gap-6 pl-2">
+            <Link to="/" className="flex items-center gap-2 group">
+              <span className="flex items-center justify-center w-7 h-7 rounded-full bg-[#212121] dark:bg-[#fafafa] text-[#fafafa] dark:text-[#212121] font-mono text-[12px] font-medium transition-transform group-hover:scale-105">
                 $_
               </span>
-              <div className="flex flex-col leading-none">
-                <span className="font-sans text-[15.5px] font-semibold tracking-tight text-heading-ink dark:text-white">
+              <div className="flex items-baseline gap-1.5">
+                <span className="font-sans font-medium text-[16px] tracking-tight text-[#161616] dark:text-[#fafafa]">
                   dev.notes
                 </span>
-             
+                <span className="hidden sm:inline font-mono text-[11px] text-[#616161] dark:text-[#8f8f8f] uppercase tracking-[0.02em]">
+                  /learnings
+                </span>
               </div>
             </Link>
 
-            {/* Desktop Navigation Links */}
+            {/* Desktop Navigation Links in center: action-label (14px/18px uppercase mono) */}
             <nav className="hidden md:flex items-center gap-1">
               {navLinks.map((link) => {
                 const isActive =
@@ -77,10 +50,10 @@ export const Navbar: React.FC = () => {
                     key={link.path}
                     to={link.path}
                     className={cn(
-                      'px-3.5 py-1.5 rounded-[8px] font-sans text-[14px] font-medium transition-all',
+                      'px-3.5 py-1.5 rounded-full font-mono text-[13px] uppercase tracking-[0.02em] transition-all',
                       isActive
-                        ? 'bg-panel dark:bg-panel/40 text-navy dark:text-white shadow-2xs'
-                        : 'text-secondary-ink dark:text-secondary-ink hover:text-navy dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5'
+                        ? 'bg-bright-white dark:bg-[#303030] text-[#161616] dark:text-[#fafafa] font-medium shadow-xs'
+                        : 'text-[#616161] dark:text-[#a3a3a3] hover:text-[#161616] dark:hover:text-[#fafafa] hover:bg-[#d9d9d9]/40 dark:hover:bg-[#303030]/40'
                     )}
                   >
                     {link.label}
@@ -90,17 +63,18 @@ export const Navbar: React.FC = () => {
             </nav>
           </div>
 
-          {/* Right: Actions */}
-          <div className="flex items-center gap-2.5">
-            {/* Search Trigger (36px Secondary key button) */}
+          {/* Right Actions: Search trigger, Mode switcher, Primary Teal pill */}
+          <div className="flex items-center gap-2 pr-1">
+            {/* Search Trigger */}
             <button
               type="button"
               onClick={openSearch}
-              className="btn-secondary h-9 px-3 gap-2 text-secondary-ink dark:text-control-ink"
+              className="h-[36px] px-3 rounded-full bg-bright-white dark:bg-[#161616] border border-[#d9d9d9] dark:border-[#333333] flex items-center gap-2 font-mono text-[12px] uppercase text-[#616161] dark:text-[#a3a3a3] hover:text-[#161616] dark:hover:text-[#fafafa] hover:border-[#161616] dark:hover:border-[#ffffff] transition-all cursor-pointer"
+              aria-label="Search documentation"
             >
               <span className="material-symbols-outlined text-[16px]">search</span>
-              <span className="hidden sm:inline font-sans text-[13.5px]">Search docs</span>
-              <kbd className="hidden sm:inline-flex items-center px-1.5 py-0.5 rounded bg-black/5 dark:bg-white/10 font-mono text-[10.5px] text-muted-ink">
+              <span className="hidden sm:inline">Search</span>
+              <kbd className="hidden sm:inline-flex items-center px-1.5 py-0.5 rounded bg-[#f0f0f0] dark:bg-[#212121] text-[10px] text-[#616161] dark:text-[#a3a3a3]">
                 ⌘K
               </kbd>
             </button>
@@ -108,25 +82,29 @@ export const Navbar: React.FC = () => {
             {/* Dark Mode Switcher */}
             <ModeSwitcher />
 
-            {/* Primary Action Button (Column 36px Navy Key) */}
+            {/* Primary Action Button: Monochrome pill control (#161616 / #ffffff) */}
             <button
               type="button"
               onClick={() => {
-                const el = document.getElementById('explore-catalog') || document.getElementById('feed-section');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
+                const el = document.getElementById('catalog-section') || document.getElementById('feed-section');
+                if (el) {
+                  el.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                  window.location.href = '/subjects';
+                }
               }}
-              className="btn-primary hidden sm:inline-flex"
+              className="btn-primary btn-primary-compact hidden sm:inline-flex"
             >
               <span>Explore Notes</span>
-              <span className="material-symbols-outlined text-[14px]">chevron_right</span>
+              <span className="material-symbols-outlined text-[15px]">arrow_forward</span>
             </button>
 
-            {/* Mobile Menu Toggle */}
+            {/* Mobile Menu Toggle Button */}
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-[8px] text-secondary-ink hover:text-navy hover:bg-panel"
-              aria-label="Toggle Mobile Menu"
+              className="md:hidden w-8 h-8 rounded-full flex items-center justify-center text-[#161616] dark:text-[#fafafa] hover:bg-[#d9d9d9] dark:hover:bg-[#303030]"
+              aria-label="Toggle Navigation Menu"
             >
               <span className="material-symbols-outlined text-[20px]">
                 {mobileMenuOpen ? 'close' : 'menu'}
@@ -137,20 +115,34 @@ export const Navbar: React.FC = () => {
 
         {/* Mobile Menu Drawer */}
         {mobileMenuOpen && (
-          <div className="md:hidden px-5 py-4 bg-canvas dark:bg-[#0c0f17] border-t border-edge space-y-2">
+          <div className="md:hidden mt-2 p-3 bg-[#f0f0f0] dark:bg-[#212121] border border-[#d9d9d9] dark:border-[#333333] rounded-[24px] space-y-1 shadow-nav-float">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-3 py-2 rounded-[8px] text-[14px] font-medium text-heading-ink dark:text-white hover:bg-panel transition-colors"
+                className="block px-4 py-2.5 rounded-full font-mono text-[13px] uppercase tracking-[0.02em] font-medium text-[#161616] dark:text-[#fafafa] hover:bg-bright-white dark:hover:bg-[#303030] transition-colors"
               >
                 {link.label}
               </Link>
             ))}
+            <div className="pt-2 border-t border-[#d9d9d9] dark:border-[#333333]">
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  const el = document.getElementById('catalog-section') || document.getElementById('feed-section');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="w-full btn-primary"
+              >
+                <span>Explore Notes</span>
+                <span className="material-symbols-outlined text-[15px]">arrow_forward</span>
+              </button>
+            </div>
           </div>
         )}
       </header>
-    </>
+    </div>
   );
 };

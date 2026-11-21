@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { EnrichedLearningPath } from '../../utils/learningPathLoader';
 import { cn } from '../../utils/cn';
+import { PixelSymbol } from '../common/PixelSymbol';
+import { EndpointCapsule } from '../common/EndpointCapsule';
 
 interface LearningPathCardProps {
   path: EnrichedLearningPath;
@@ -31,73 +33,87 @@ export const LearningPathCard: React.FC<LearningPathCardProps> = ({
     }));
   };
 
+  const getSymbolVariant = (p: EnrichedLearningPath) => {
+    const slug = p.slug.toLowerCase();
+    if (slug.includes('database') || slug.includes('storage')) return 'database';
+    if (slug.includes('microservices') || slug.includes('distributed')) return 'network';
+    if (slug.includes('docker') || slug.includes('container')) return 'container';
+    if (slug.includes('system-design')) return 'architecture';
+    if (slug.includes('spring') || slug.includes('java')) return 'runtime';
+    return 'workflow';
+  };
+
   return (
     <article
       id={path.slug}
       className={cn(
-        'catalog-card relative flex flex-col p-6 sm:p-7 transition-all duration-200 border border-edge/80 shadow-catalog-edge',
+        'relative flex flex-col p-6 sm:p-8 rounded-[24px] bg-white dark:bg-[#212121] bg-gradient-to-b from-[#ffffff] via-[#ffffff] to-[#f5f5f5] dark:from-[#212121] dark:via-[#212121] dark:to-[#1a1a1a] border border-[#d9d9d9] dark:border-[#333333] transition-all duration-200 overflow-hidden shadow-[0_4px_20px_-2px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_24px_-4px_rgba(0,0,0,0.4)]',
         className
       )}
     >
+      {/* Subtle Monochrome Base Wash */}
+      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/[0.03] via-black/[0.01] to-transparent dark:from-white/[0.04] dark:via-white/[0.01] to-transparent pointer-events-none" />
+
+      {/* Monochrome Base Bottom Edge Line */}
+      <div className="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-transparent via-[#161616]/30 to-transparent dark:via-white/40 pointer-events-none" />
+
       {/* =====================================================================
           PATH HEADER: ICON, TITLE, LEVEL & PROGRESS
           ===================================================================== */}
-      <div className="pb-6 border-b border-edge/80">
+      <div className="relative z-10 pb-6 border-b border-[#d9d9d9] dark:border-[#333333]">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <span className="flex h-11 w-11 items-center justify-center rounded-[8px] bg-navy text-white shadow-primary-btn shrink-0">
-              <span className="material-symbols-outlined text-[22px]">
-                {path.icon || 'school'}
-              </span>
+          <div className="flex items-center gap-4">
+            <span className="flex h-12 w-12 items-center justify-center rounded-[16px] bg-[#f0f0f0] dark:bg-[#303030] text-[#161616] dark:text-[#fafafa] border border-[#d9d9d9] dark:border-[#474747] shrink-0">
+              <PixelSymbol variant={getSymbolVariant(path)} size={32} />
             </span>
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-mono text-[10.5px] font-semibold text-proof-green uppercase tracking-wider">
+                <EndpointCapsule className="text-[11px] py-0.5 px-3">
                   CURATED LEARNING PATH
-                </span>
-                <span className="text-muted-ink text-[10px]">•</span>
-                <span className="font-mono text-[10.5px] text-muted-ink uppercase tracking-wider">
+                </EndpointCapsule>
+                <span className="text-[#8f8f8f] text-[10px]">•</span>
+                <span className="font-mono text-[11px] text-[#8f8f8f] uppercase tracking-[0.02em]">
                   {path.level || 'Production Scale'}
                 </span>
               </div>
-              <h3 className="text-[22px] sm:text-[24px] font-semibold text-navy dark:text-white leading-tight tracking-tight mt-0.5">
+              <h3 className="text-[22px] sm:text-[24px] font-medium text-[#161616] dark:text-[#fafafa] leading-tight tracking-[-0.01em] mt-1">
                 {path.title}
               </h3>
             </div>
           </div>
 
           {/* Quick Metrics Badge */}
-          <div className="flex items-center gap-2 self-start sm:self-auto font-mono text-[12px]">
-            <span className="px-2.5 py-1 rounded-[6px] bg-panel dark:bg-panel/60 border border-edge text-secondary-ink dark:text-muted-ink">
+          <div className="flex items-center gap-2 self-start sm:self-auto font-mono text-[12px] uppercase tracking-[0.02em]">
+            <span className="px-3 py-1 rounded-full bg-[#f0f0f0] dark:bg-[#303030] border border-[#d9d9d9] dark:border-[#474747] text-[#616161] dark:text-[#a3a3a3]">
               {path.modules.length} {path.modules.length === 1 ? 'Module' : 'Modules'}
             </span>
-            <span className="px-2.5 py-1 rounded-[6px] bg-panel dark:bg-panel/60 border border-edge text-secondary-ink dark:text-muted-ink">
+            <span className="px-3 py-1 rounded-full bg-[#f0f0f0] dark:bg-[#303030] border border-[#d9d9d9] dark:border-[#474747] text-[#616161] dark:text-[#a3a3a3]">
               {path.totalLessons} Lessons
             </span>
           </div>
         </div>
 
         {/* Path Description */}
-        <p className="mt-3.5 text-[14px] sm:text-[14.5px] text-secondary-ink dark:text-body-ink leading-relaxed">
+        <p className="mt-3.5 text-[14px] sm:text-[15px] text-[#616161] dark:text-[#a3a3a3] leading-[1.35] font-sans">
           {path.description}
         </p>
 
-        {/* Linear Progress Bar */}
+        {/* Linear Progress Bar Monochrome */}
         <div className="mt-5 space-y-1.5">
-          <div className="flex items-center justify-between text-[11.5px] font-mono text-muted-ink">
+          <div className="flex items-center justify-between text-[11.5px] font-mono uppercase tracking-[0.02em] text-[#8f8f8f]">
             <span className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-proof-green" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#161616] dark:bg-[#fafafa]" />
               <span>
                 Roadmap Progress: {path.publishedLessons} of {path.totalLessons} Lessons Published
               </span>
             </span>
-            <span className="font-medium text-navy dark:text-ice">
+            <span className="font-medium text-[#161616] dark:text-[#fafafa]">
               {path.progressPercentage}% Complete
             </span>
           </div>
-          <div className="w-full h-2 rounded-full bg-edge/60 dark:bg-panel overflow-hidden">
+          <div className="w-full h-2 rounded-full bg-[#f0f0f0] dark:bg-[#303030] overflow-hidden">
             <div
-              className="h-full rounded-full bg-gradient-to-r from-banner-start via-dot-blue to-proof-green transition-all duration-500"
+              className="h-full rounded-full bg-[#161616] dark:bg-[#ffffff] transition-all duration-500"
               style={{ width: `${Math.max(4, path.progressPercentage)}%` }}
             />
           </div>
@@ -107,7 +123,7 @@ export const LearningPathCard: React.FC<LearningPathCardProps> = ({
       {/* =====================================================================
           PATH MODULES ACCORDION LIST
           ===================================================================== */}
-      <div className="mt-6 space-y-4">
+      <div className="relative z-10 mt-6 space-y-4">
         {path.modules.map((module) => {
           const isOpen = Boolean(openModules[module.id]);
           const publishedCount = module.lessons.filter(
@@ -117,24 +133,24 @@ export const LearningPathCard: React.FC<LearningPathCardProps> = ({
           return (
             <div
               key={module.id}
-              className="rounded-[8px] border border-edge/80 dark:border-edge/40 bg-white/70 dark:bg-panel/40 overflow-hidden shadow-2xs transition-all"
+              className="rounded-[16px] border border-[#d9d9d9] dark:border-[#333333] bg-bright-white dark:bg-[#1c1c1c] overflow-hidden transition-all"
             >
               {/* Module Header Bar (Accordion Trigger) */}
               <button
                 type="button"
                 onClick={() => toggleModule(module.id)}
-                className="w-full px-4 sm:px-5 py-3.5 flex items-center justify-between gap-3 bg-panel/40 dark:bg-panel/80 hover:bg-panel/70 dark:hover:bg-panel transition-colors text-left cursor-pointer select-none"
+                className="w-full px-4 sm:px-5 py-3.5 flex items-center justify-between gap-3 bg-[#f0f0f0] dark:bg-[#262626] hover:bg-[#e6e6e6] dark:hover:bg-[#303030] transition-colors text-left cursor-pointer select-none"
               >
                 <div className="flex items-center gap-3 min-w-0">
-                  <span className="px-2 py-0.5 rounded-[4px] bg-navy text-white dark:bg-white dark:text-navy font-mono text-[11px] font-semibold shrink-0">
+                  <span className="px-2.5 py-0.5 rounded-full bg-[#212121] text-[#fafafa] dark:bg-[#fafafa] dark:text-[#212121] font-mono text-[11px] uppercase tracking-[0.02em] font-medium shrink-0">
                     MODULE {module.number}
                   </span>
                   <div className="min-w-0">
-                    <h4 className="font-sans text-[15px] sm:text-[16px] font-semibold text-navy dark:text-white truncate">
+                    <h4 className="font-sans text-[15px] sm:text-[16px] font-medium text-[#161616] dark:text-[#fafafa] truncate">
                       {module.title}
                     </h4>
                     {module.description && (
-                      <p className="text-[12px] text-muted-ink truncate hidden sm:block">
+                      <p className="text-[12px] text-[#8f8f8f] truncate hidden sm:block">
                         {module.description}
                       </p>
                     )}
@@ -142,12 +158,12 @@ export const LearningPathCard: React.FC<LearningPathCardProps> = ({
                 </div>
 
                 <div className="flex items-center gap-3 shrink-0">
-                  <span className="font-mono text-[11px] text-muted-ink">
+                  <span className="font-mono text-[11px] uppercase tracking-[0.02em] text-[#8f8f8f]">
                     {publishedCount}/{module.lessons.length} published
                   </span>
                   <span
                     className={cn(
-                      'material-symbols-outlined text-[18px] text-muted-ink transition-transform duration-200',
+                      'material-symbols-outlined text-[18px] text-[#8f8f8f] transition-transform duration-200',
                       isOpen && 'rotate-180'
                     )}
                   >
@@ -158,7 +174,7 @@ export const LearningPathCard: React.FC<LearningPathCardProps> = ({
 
               {/* Module Lessons Content */}
               {isOpen && (
-                <div className="divide-y divide-edge/60 dark:divide-edge/30 px-3 sm:px-5 py-1">
+                <div className="divide-y divide-[#d9d9d9] dark:divide-[#303030] px-3 sm:px-5 py-1">
                   {module.lessons.map((lesson) => {
                     const isPublished = lesson.status === 'published';
 
@@ -166,46 +182,46 @@ export const LearningPathCard: React.FC<LearningPathCardProps> = ({
                       <div
                         key={lesson.id}
                         className={cn(
-                          'py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 group transition-colors rounded-[6px] px-2',
-                          isPublished && 'hover:bg-navy/[0.02] dark:hover:bg-white/[0.02]'
+                          'py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3 group transition-colors rounded-[8px] px-2',
+                          isPublished && 'hover:bg-[#f0f0f0] dark:hover:bg-[#262626]'
                         )}
                       >
                         {/* Left: Lesson Number + Title + Description */}
                         <div className="space-y-1 min-w-0 flex-1">
                           <div className="flex items-center gap-2 flex-wrap">
-                            <span className="font-mono text-[11.5px] font-semibold text-navy dark:text-ice bg-panel px-1.5 py-0.5 rounded">
+                            <span className="font-mono text-[11.5px] font-medium text-[#161616] dark:text-[#fafafa] bg-[#f0f0f0] dark:bg-[#303030] px-2 py-0.5 rounded-full border border-[#d9d9d9] dark:border-[#474747]">
                               {lesson.number}
                             </span>
 
                             {isPublished ? (
                               <Link
                                 to={`/notes/${lesson.noteSlug}`}
-                                className="font-sans text-[14.5px] font-medium text-navy dark:text-white hover:text-dot-blue dark:hover:text-ice transition-colors hover:underline"
+                                className="font-sans text-[14.5px] font-medium text-[#161616] dark:text-[#fafafa] hover:underline transition-colors"
                               >
                                 {lesson.title}
                               </Link>
                             ) : (
-                              <span className="font-sans text-[14.5px] font-normal text-secondary-ink/80 dark:text-muted-ink">
+                              <span className="font-sans text-[14.5px] font-normal text-[#8f8f8f]">
                                 {lesson.title}
                               </span>
                             )}
 
                             {/* Status Badge */}
                             {isPublished ? (
-                              <span className="inline-flex items-center gap-1 font-mono text-[10.5px] text-proof-green bg-proof-green/10 border border-proof-green/20 px-2 py-0.5 rounded-[4px] font-medium">
-                                <span className="w-1.5 h-1.5 rounded-full bg-proof-green" />
+                              <span className="inline-flex items-center gap-1 font-mono text-[10.5px] uppercase tracking-[0.02em] text-[#161616] dark:text-[#fafafa] bg-[#161616]/10 dark:bg-white/10 border border-[#161616]/20 dark:border-white/20 px-2 py-0.5 rounded-full font-medium">
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#161616] dark:bg-[#fafafa]" />
                                 <span>Published</span>
                               </span>
                             ) : (
-                              <span className="inline-flex items-center gap-1 font-mono text-[10.5px] text-muted-ink bg-panel border border-edge/80 px-2 py-0.5 rounded-[4px]">
-                                <span>Upcoming in roadmap</span>
+                              <span className="inline-flex items-center gap-1 font-mono text-[10.5px] uppercase tracking-[0.02em] text-[#8f8f8f] bg-[#f0f0f0] dark:bg-[#303030] border border-[#d9d9d9] dark:border-[#474747] px-2 py-0.5 rounded-full">
+                                <span>Upcoming</span>
                               </span>
                             )}
                           </div>
 
                           {/* Lesson Summary Description */}
                           {lesson.description && (
-                            <p className="text-[12.5px] text-secondary-ink dark:text-muted-ink leading-relaxed pl-7">
+                            <p className="text-[12.5px] text-[#616161] dark:text-[#8f8f8f] leading-relaxed pl-7">
                               {lesson.description}
                             </p>
                           )}
@@ -216,13 +232,13 @@ export const LearningPathCard: React.FC<LearningPathCardProps> = ({
                           {isPublished ? (
                             <div className="flex items-center gap-2">
                               {lesson.readTime && (
-                                <span className="font-mono text-[11px] text-muted-ink hidden md:inline">
+                                <span className="font-mono text-[11px] text-[#8f8f8f] hidden md:inline">
                                   {lesson.readTime}
                                 </span>
                               )}
                               <Link
                                 to={`/notes/${lesson.noteSlug}`}
-                                className="btn-primary h-8 px-3 text-[12.5px] gap-1.5 shadow-2xs hover:shadow-xs"
+                                className="btn-primary h-8 px-3 text-[12px] gap-1 shadow-xs"
                               >
                                 <span>Read Note</span>
                                 <span className="material-symbols-outlined text-[13px]">
@@ -231,7 +247,7 @@ export const LearningPathCard: React.FC<LearningPathCardProps> = ({
                               </Link>
                             </div>
                           ) : (
-                            <span className="font-mono text-[11px] text-muted-ink/70 px-2.5 py-1 rounded bg-panel/50 border border-edge/40">
+                            <span className="font-mono text-[11px] uppercase tracking-[0.02em] text-[#8f8f8f] px-2.5 py-1 rounded-full bg-[#f0f0f0] dark:bg-[#303030] border border-[#d9d9d9] dark:border-[#474747]">
                               Scheduled
                             </span>
                           )}

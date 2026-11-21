@@ -1,3 +1,6 @@
+/* hallmark: theme: n8n-soft-machinery; genre: modern-minimal; material: engineering; */
+/* critique: bright white technical workbench, deep teal & aqua controls, compact grotesk headings, uppercase mono labels, 24px corners */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,180 +8,153 @@
 @layer base {
   :root {
     /* =========================================================================
-       COLUMN BRAND PALETTE
+       MONOCHROME BRAND TOKENS (Pure Black #161616 & Bright White #ffffff)
        ========================================================================= */
-    /* Default headings, main buttons and directory labels; supporting copy at 60% */
-    --color-navy: #111a4a;
-    --color-navy-ink: #111a4a;
-
-    /* Left side of the narrow announcement gradient */
-    --color-announcement-indigo: #3e5199;
-    --color-banner-start: #3e5199;
-
-    /* Right side of the announcement gradient */
-    --color-announcement-periwinkle: #5568ad;
-    --color-banner-end: #5568ad;
-
-    /* Bounded infrastructure chapters */
-    --color-deep-teal: #011821;
-
-    /* Darker blue controls and closing headings in warm theme */
-    --color-launch-midnight: #080b32;
+    --color-pink: #161616;
+    --color-pink-strong: #161616;
+    --color-teal: #161616;
+    --color-aqua: #ffffff;
 
     /* =========================================================================
-       COLUMN NEUTRAL PALETTE
+       NEUTRAL TOKENS
        ========================================================================= */
-    /* Compact customer quotations; alpha versions supply fine shadows */
-    --color-quote-black: #000000;
-    --color-black: #000000;
+    --color-ink: #161616;          /* Primary ink */
+    --color-charcoal: #212121;     /* Workbench charcoal */
+    --color-raised-dark: #303030;  /* Secondary charcoal */
+    --color-edge-dark: #474747;    /* Dark separator */
+    --color-muted: #616161;        /* Secondary copy */
+    --color-subtle: #8f8f8f;       /* Subtle link gray */
+    --color-card: #d9d9d9;         /* Mid-light gray */
+    --color-soft: #f0f0f0;         /* Soft gray */
+    --color-canvas: #ffffff;       /* Bright white canvas */
+    --color-bright-white: #ffffff; /* Explicit Bright White */
+    --color-edge: #d9d9d9;         /* Default border */
 
-    /* Navigation and product-detail headings */
-    --color-near-black: #12161e;
-    --color-near-black-ink: #12161e;
-    --color-heading-ink: #12161e;
+    /* Page-type variants */
+    --color-article-link: #161616;
+    --color-widget: #e6e6e6;
 
-    /* Secondary button labels */
-    --color-control-charcoal: #232730;
-    --color-control-ink: #232730;
-
-    /* Longer explanations and catalog titles */
-    --color-body-charcoal: #3b3e47;
-    --color-body-ink: #3b3e47;
-
-    /* Small descriptive copy and subtle control edges */
-    --color-secondary-gray: #575a64;
-    --color-secondary-ink: #575a64;
-
-    /* Captions, directory links and subdued supporting text */
-    --color-muted-gray: #7c7f88;
-    --color-muted-ink: #7c7f88;
-
-    /* Warm panel's outline (editorial product launches) */
-    --color-warm-hairline: #e7e4e0;
-
-    /* Section rules and the closing panel's 1px outline */
-    --color-cool-hairline: #e3e4e8;
-    --color-edge: #e3e4e8;
-
-    /* Warm launch theme canvas (editorial product launches) */
-    --color-warm-stone: #eceae7;
-
-    /* Closing panel and technical response backing */
-    --color-closing-gray: #eeeff2;
-    --color-panel: #eeeff2;
-
-    /* Warm launch closing panel (editorial product launches) */
-    --color-warm-milk: #f5f3f1;
-
-    /* Default marketing canvas */
-    --color-cool-canvas: #f6f6f8;
-    --color-canvas: #f6f6f8;
-
-    /* Slightly cooler canvas for product-detail pages */
-    --color-product-frost: #f6f7fa;
-
-    /* White surfaces, reversed text and glass edges */
-    --color-milk-white: #ffffff;
+    /* Aliases for backwards compatibility (Monochrome) */
+    --color-headline-accent: #161616;
+    --color-label-accent: #161616;
+    --color-glow: #161616;
+    --color-inverse-accent: #ffffff;
     --color-white: #ffffff;
-
-    /* =========================================================================
-       COLUMN ACCENT PALETTE
-       ========================================================================= */
-    /* Active customer tab and compact proof objects; not default conversion */
-    --color-customer-ember: #ec652b;
-    --color-orange: #ec652b;
-    --color-ember: #ec652b;
-
-    /* Metrics, proof labels and small graph endpoints */
-    --color-proof-green: #167e6c;
-
-    /* Closing matrix icons, with inactive dots at 20% opacity */
-    --color-dot-blue: #4575cd;
-
-    /* Emphasized narrative statements (company and culture narratives) */
-    --color-editorial-blue: #1b2d70;
-
-    /* 2px navigation focus ring and editorial quote rules */
-    --color-focus-blue: #a2c1ed;
-
-    /* Headlines on deep teal */
-    --color-icy-cyan: #c1e8ef;
-    --color-ice: #c1e8ef;
-
-    /* Semantic / Backwards Compatibility Mappings */
-    --color-eggshell: #f6f6f8;
-    --color-warm-taupe: #ffffff;
-    --color-ink: #111a4a;
-    --color-strong: #12161e;
-    --color-stone: #e3e4e8;
-    --color-smoke: #575a64;
-    --color-ash: #7c7f88;
-    --color-accent: #111a4a;
-    --color-gallery: #eeeff2;
-    --color-preview: #ffffff;
-    --color-footer: #eeeff2;
-    --color-footer-heading: #111a4a;
-    --color-footer-text: #7c7f88;
+    --color-story: #f0f0f0;
+    --color-dim: #8f8f8f;
+    --color-hover: #303030;
+    --color-closing: #212121;
+    --color-navy: #161616;
+    --color-navy-ink: #161616;
+    --color-heading-ink: #161616;
+    --color-near-black: #161616;
+    --color-body-charcoal: #161616;
+    --color-body-ink: #161616;
+    --color-secondary-gray: #616161;
+    --color-secondary-ink: #616161;
+    --color-muted-gray: #8f8f8f;
+    --color-muted-ink: #8f8f8f;
+    --color-cool-canvas: #ffffff;
+    --color-panel: #f0f0f0;
+    --color-milk-white: #ffffff;
+    --color-quote-black: #161616;
+    --color-proof-green: #161616;
+    --color-dot-blue: #161616;
   }
 
   html.dark {
-    /* Deep Slate / Dark Column Mode */
-    --color-canvas: #0c0f17;
-    --color-cool-canvas: #0c0f17;
-    --color-product-frost: #0c0f17;
-    --color-panel: #141824;
-    --color-closing-gray: #141824;
-    --color-edge: #232a3d;
-    --color-cool-hairline: #232a3d;
-    --color-warm-hairline: #2d354d;
-    --color-white: #171d2b;
-    --color-milk-white: #171d2b;
-    --color-navy: #ffffff;
-    --color-navy-ink: #ffffff;
-    --color-heading-ink: #ffffff;
-    --color-near-black: #ffffff;
-    --color-near-black-ink: #ffffff;
-    --color-strong: #ffffff;
-    --color-ink: #edf1fa;
-    --color-body-charcoal: #b8c1d9;
-    --color-body-ink: #b8c1d9;
-    --color-secondary-gray: #94a0bf;
-    --color-secondary-ink: #94a0bf;
-    --color-muted-gray: #6b7799;
-    --color-muted-ink: #6b7799;
-    --color-control-charcoal: #edf1fa;
-    --color-control-ink: #edf1fa;
+    --color-canvas: #161616;
+    --color-ink: #fafafa;
+    --color-charcoal: #1c1c1c;
+    --color-raised-dark: #262626;
+    --color-edge-dark: #3a3a3a;
+    --color-muted: #a3a3a3;
+    --color-subtle: #737373;
+    --color-card: #262626;
+    --color-soft: #212121;
+    --color-edge: #333333;
+    --color-widget: #262626;
 
-    --color-eggshell: #0c0f17;
-    --color-warm-taupe: #141824;
-    --color-stone: #232a3d;
-    --color-smoke: #94a0bf;
-    --color-ash: #6b7799;
-    --color-accent: #c1e8ef;
-    --color-gallery: #141824;
-    --color-preview: #171d2b;
-    --color-footer: #0c0f17;
-    --color-footer-heading: #ffffff;
-    --color-footer-text: #6b7799;
+    --color-headline-accent: #ffffff;
+    --color-label-accent: #fafafa;
+    --color-glow: #ffffff;
+    --color-inverse-accent: #161616;
+    --color-article-link: #ffffff;
+    --color-proof-green: #fafafa;
+    --color-pink: #ffffff;
+    --color-pink-strong: #ffffff;
+    --color-teal: #ffffff;
+    --color-aqua: #fafafa;
+    --color-white: #212121;
+    --color-story: #212121;
+    --color-dim: #737373;
+    --color-hover: #333333;
+    --color-closing: #161616;
+    --color-navy: #fafafa;
+    --color-navy-ink: #fafafa;
+    --color-heading-ink: #fafafa;
+    --color-near-black: #fafafa;
+    --color-body-charcoal: #e5e5e5;
+    --color-body-ink: #e5e5e5;
+    --color-secondary-gray: #a3a3a3;
+    --color-secondary-ink: #a3a3a3;
+    --color-muted-gray: #737373;
+    --color-muted-ink: #737373;
+    --color-cool-canvas: #161616;
+    --color-panel: #212121;
+    --color-milk-white: #212121;
+    --color-quote-black: #fafafa;
+    --color-dot-blue: #ffffff;
   }
 
-  /* 2px focus ring using focus-blue (#a2c1ed) */
+  html, body {
+    overflow-x: clip;
+  }
+
+  /* Global Text & Code Selection matching technical workbench screenshot (#eeeff2 selection with deep ink text #1a2251) */
+  ::selection {
+    background-color: #eeeff2;
+    color: #1a2251;
+  }
+
+  ::-moz-selection {
+    background-color: #eeeff2;
+    color: #1a2251;
+  }
+
+  code::selection,
+  pre::selection,
+  pre *::selection,
+  .code-block::selection,
+  .code-block *::selection {
+    background-color: #eeeff2;
+    color: #1a2251;
+  }
+
   :focus-visible {
-    outline: 2px solid var(--color-focus-blue, #a2c1ed);
+    outline: 1px solid var(--color-ink);
     outline-offset: 2px;
   }
 
   body {
     background-color: var(--color-canvas);
-    color: var(--color-body-ink);
-    font-family: "SuisseIntl", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--color-ink);
+    font-family: "Inter", Helvetica, system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--color-ink);
+    font-family: "Inter", Helvetica, system-ui, -apple-system, sans-serif;
+    font-weight: 500;
   }
 }
 
 /* =========================================================================
-   COLUMN BUTTON RECIPES (Physical Key Controls: 36px high, 8px radius)
+   n8n BUTTON & CONTROL RECIPES
+   Controls feel like soft equipment labels: 42px-high pill buttons use
+   14px/18px uppercase mono with 0.02em tracking, 12px 16px padding.
    ========================================================================= */
 
 .btn-primary {
@@ -186,251 +162,441 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  height: 36px;
-  padding: 0 16px;
-  border-radius: 8px;
-  background-color: #111a4a;
+  height: 42px;
+  padding: 12px 18px;
+  border-radius: 9999px;
+  background-color: #161616;
   color: #ffffff;
-  font-family: inherit;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
   font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
   font-weight: 500;
-  line-height: 1;
   text-decoration: none;
-  box-shadow: 0px 0px 0px 1px #111a4a, 0px 2px 4px 0px rgba(0,0,0,0.25), 0px 1px 2px 0px rgba(0,0,0,0.25);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid #161616;
+  transition: background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1), transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   white-space: nowrap;
 }
 
 .btn-primary:hover {
-  background-color: #1a2561;
-  box-shadow: 0px 0px 0px 1px #1a2561, 0px 3px 6px 0px rgba(0,0,0,0.3);
+  background-color: #2b2b2b;
 }
 
 .btn-primary:active {
-  box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.2);
   transform: translateY(0.5px);
 }
 
 .dark .btn-primary {
   background-color: #ffffff;
-  color: #111a4a;
-  box-shadow: 0px 0px 0px 1px #ffffff, 0px 2px 4px 0px rgba(0,0,0,0.5);
+  color: #161616;
+  border-color: #ffffff;
 }
 
 .dark .btn-primary:hover {
-  background-color: #f6f6f8;
-  box-shadow: 0px 0px 0px 1px #f6f6f8, 0px 3px 6px 0px rgba(0,0,0,0.6);
+  background-color: #e5e5e5;
 }
 
+.btn-primary-compact {
+  height: 38px;
+  padding: 8px 14px;
+  font-size: 13px;
+}
+
+/* Secondary button: Sales or low-priority destination */
 .btn-secondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  height: 36px;
-  padding: 0 16px;
-  border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.65);
-  color: #232730;
-  font-family: inherit;
+  height: 42px;
+  padding: 12px 18px;
+  border-radius: 9999px;
+  background-color: #d9d9d9;
+  color: #161616;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
   font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
   font-weight: 500;
-  line-height: 1;
   text-decoration: none;
-  backdrop-filter: blur(4px);
-  box-shadow: 0px 0px 0px 1px rgba(87, 90, 100, 0.15);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid transparent;
+  transition: background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1), transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   white-space: nowrap;
 }
 
 .btn-secondary:hover {
-  background-color: #ffffff;
-  box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.1), 0px 0px 0px 1px rgba(87, 90, 100, 0.25);
+  background-color: #c2c2c2;
 }
 
 .btn-secondary:active {
-  box-shadow: 0px 0px 0px 1px rgba(87, 90, 100, 0.2);
   transform: translateY(0.5px);
 }
 
 .dark .btn-secondary {
-  background-color: rgba(23, 29, 43, 0.7);
-  color: #edf1fa;
-  box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.1);
+  background-color: #303030;
+  color: #fafafa;
 }
 
 .dark .btn-secondary:hover {
-  background-color: rgba(23, 29, 43, 1);
-  box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.25), 0px 1px 3px 0px rgba(0, 0, 0, 0.3);
+  background-color: #474747;
+}
+
+.btn-secondary-large {
+  height: 42px;
+  padding: 12px 20px;
+}
+
+/* Navigation capsule */
+.nav-capsule {
+  background-color: #f0f0f0;
+  border-radius: 9999px;
+  height: 50px;
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #e6e6e6;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.dark .nav-capsule {
+  background-color: #212121;
+  border-color: #303030;
+}
+
+/* Action label utility */
+.action-label {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
 /* =========================================================================
-   COLUMN SURFACES & CONTAINERS
+   n8n SIGNATURE SURFACES & GRAPHICS
    ========================================================================= */
 
-.floating-glass {
-  background: rgba(255, 255, 255, 0.85);
-  border-radius: 8px;
-  backdrop-filter: blur(12px);
-  box-shadow: 24px 48px 64px 0px rgba(30, 30, 44, 0.12), 0px 0px 0px 1px #ffffff inset;
-  border: 1px solid rgba(227, 228, 232, 0.6);
+/* Dotted work surface (light version): SVG / CSS pattern on bright white */
+.dotted-work-surface {
+  background-color: #ffffff;
+  background-image: radial-gradient(circle, #e2e8f0 1.5px, transparent 1.5px);
+  background-size: 20px 20px;
 }
 
-.dark .floating-glass {
-  background: rgba(20, 24, 36, 0.85);
-  box-shadow: 24px 48px 64px 0px rgba(0, 0, 0, 0.4), 0px 0px 0px 1px rgba(255, 255, 255, 0.05) inset;
-  border: 1px solid rgba(35, 42, 61, 0.8);
+.dark .dotted-work-surface {
+  background-color: #161616;
+  background-image: radial-gradient(circle, #303030 1.5px, transparent 1.5px);
+  background-size: 20px 20px;
 }
 
-.deep-platform-chapter {
-  background-color: #011821;
-  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
-  background-size: 16px 16px;
-  border-radius: 12px;
-  margin-left: 12px;
-  margin-right: 12px;
+/* MindCloud Radiant Gradient Hero Surface with Crisp Visible Dots */
+.hero-mindcloud-surface {
+  position: relative;
+  background-color: #020617;
+  background-image: 
+    radial-gradient(circle, rgba(255, 255, 255, 0.22) 1.5px, transparent 1.5px),
+    linear-gradient(180deg, 
+      #020617 0%, 
+      #040c26 14%, 
+      #002482 32%, 
+      #0047d9 52%, 
+      #0e66f8 72%, 
+      #428eff 87%, 
+      #7eb8ff 96%,
+      #a8d1ff 100%
+    );
+  background-size: 24px 24px, 100% 100%;
+  background-position: 0 0, 0 0;
 }
 
-.closing-destination {
-  background-color: #eeeff2;
-  border: 1px solid #e3e4e8;
-  border-radius: 12px;
-  margin-left: 12px;
-  margin-right: 12px;
+.dark .hero-mindcloud-surface {
+  background-color: #020617;
+  background-image: 
+    radial-gradient(circle, rgba(255, 255, 255, 0.20) 1.5px, transparent 1.5px),
+    linear-gradient(180deg, 
+      #020617 0%, 
+      #040c26 14%, 
+      #002482 32%, 
+      #0047d9 52%, 
+      #0e66f8 72%, 
+      #357eee 88%, 
+      #1f54b8 96%,
+      #161616 100%
+    );
+  background-size: 24px 24px, 100% 100%;
+  background-position: 0 0, 0 0;
+}
+
+/* Dark footer dot field: 2px-radius #303030 dots at 24px intervals on #212121 */
+.footer-dot-field {
+  background-color: #212121;
+  background-image: radial-gradient(circle, #303030 2px, transparent 2px);
+  background-size: 24px 24px;
+}
+
+/* Dark workbench: Level 1 */
+.workbench-panel {
+  background-color: #212121;
+  color: #fafafa;
+  border-radius: 24px;
+}
+
+/* Soft card: Level 1 */
+.soft-card {
+  background-color: #f0f0f0;
+  border-radius: 24px;
+  box-shadow: none;
+}
+
+.dark .soft-card {
+  background-color: #212121;
+  border: 1px solid #303030;
+}
+
+/* Embossed cell: Level 2 */
+.embossed-cell {
+  border-radius: 16px;
+  box-shadow: 3px 3px 6px 0px rgba(0,0,0,0.1) inset, -3px -3px 6px 0px rgba(255,255,255,0.6) inset;
+}
+
+.dark .embossed-cell {
+  box-shadow: 3px 3px 6px 0px rgba(0,0,0,0.4) inset, -3px -3px 6px 0px rgba(255,255,255,0.05) inset;
+}
+
+/* Endpoint capsule with 6px teal endpoint dots */
+.endpoint-capsule {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #f0f0f0;
+  color: #161616;
+  border-radius: 9999px;
+  padding: 4px 14px;
+  position: relative;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 13px;
+  line-height: 18px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.dark .endpoint-capsule {
+  background-color: #303030;
+  color: #fafafa;
+}
+
+.endpoint-capsule::before {
+  content: '';
+  position: absolute;
+  left: -3px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background-color: #161616;
+}
+
+.dark .endpoint-capsule::before {
+  background-color: #fafafa;
+}
+
+.endpoint-capsule::after {
+  content: '';
+  position: absolute;
+  right: -3px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background-color: #161616;
+}
+
+.dark .endpoint-capsule::after {
+  background-color: #fafafa;
+}
+
+/* Prompt bar natural language search */
+.prompt-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 680px;
+  height: 48px;
+  background-color: #f0f0f0;
+  border: 1px solid #d9d9d9;
+  border-radius: 9999px;
+  padding: 4px 18px;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.prompt-bar:focus-within {
+  border-color: #161616;
+  background-color: #ffffff;
+}
+
+.dark .prompt-bar {
+  background-color: #212121;
+  border-color: #3a3a3a;
+}
+
+.dark .prompt-bar:focus-within {
+  border-color: #ffffff;
+  background-color: #1c1c1c;
+}
+
+/* n8n Headings */
+.display-title {
+  font-family: "Inter", Helvetica, system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 64px;
+  line-height: 0.88;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 768px) {
+  .display-title {
+    font-size: 42px;
+    line-height: 1;
+  }
+}
+
+.heading-xl {
+  font-family: "Inter", Helvetica, system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 768px) {
+  .heading-xl {
+    font-size: 34px;
+    line-height: 1.05;
+  }
+}
+
+.heading-lg {
+  font-family: "Inter", Helvetica, system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 768px) {
+  .heading-lg {
+    font-size: 28px;
+    line-height: 1.1;
+  }
+}
+
+/* Backward compatibility classes to keep other components stable */
+.typeform-eyebrow,
+.column-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 13px;
+  line-height: 18px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #161616;
+}
+
+.dark .typeform-eyebrow,
+.dark .column-eyebrow {
+  color: #fafafa;
+}
+
+.gallery-card,
+.catalog-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border: 1px solid #d9d9d9;
+  border-radius: 24px;
   overflow: hidden;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.dark .closing-destination {
-  background-color: #121622;
-  border-color: #232a3d;
+.gallery-card:hover,
+.catalog-card:hover {
+  transform: translateY(-2px);
+  border-color: #161616;
+}
+
+.dark .gallery-card,
+.dark .catalog-card {
+  background-color: #212121;
+  border-color: #333333;
+}
+
+.dark .gallery-card:hover,
+.dark .catalog-card:hover {
+  border-color: #ffffff;
+}
+
+.dark-translucent-proof {
+  background: #212121;
+  border-radius: 24px;
+  padding: 32px 28px;
+  border: 1px solid #333333;
+  color: #fafafa;
+}
+
+.integration-enclosure {
+  background-color: #f0f0f0;
+  border-radius: 24px;
+  padding: 56px 32px;
+  border: 1px solid #d9d9d9;
+}
+
+.dark .integration-enclosure {
+  background-color: #212121;
+  border-color: #333333;
+}
+
+.closing-glow-section {
+  background-color: #212121;
+  color: #fafafa;
 }
 
 .closing-route-card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: flex-start;
-  padding: 24px 28px 28px;
-  height: 209px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.45);
-  border: 1px solid #ffffff;
-  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
-  backdrop-filter: blur(12px);
-  transition: all 0.2s ease;
+  padding: 24px;
+  border-radius: 24px;
+  background: #303030;
+  border: 1px solid #474747;
+  color: #fafafa;
   text-decoration: none;
-}
-
-.dark .closing-route-card {
-  background: rgba(23, 29, 43, 0.45);
-  border-color: rgba(255, 255, 255, 0.08);
+  transition: transform 0.15s ease, border-color 0.15s ease;
 }
 
 .closing-route-card:hover {
-  background: rgba(255, 255, 255, 0.75);
-  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.08);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  border-color: #ffffff;
 }
 
-.dark .closing-route-card:hover {
-  background: rgba(23, 29, 43, 0.8);
-}
-
-.catalog-card {
-  background: rgba(255, 255, 255, 0.7);
-  border-radius: 8px;
-  padding: 24px;
-  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.05), 0px 1px 3px 0px rgba(0, 0, 0, 0.05);
-  backdrop-filter: blur(4px);
-  transition: all 0.25s ease;
-}
-
-.dark .catalog-card {
-  background: rgba(20, 24, 36, 0.7);
-  box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.06), 0px 1px 3px 0px rgba(0, 0, 0, 0.3);
-}
-
-.catalog-card:hover {
-  box-shadow: 0px 0px 0px 1px rgba(17, 26, 74, 0.2), 0px 4px 14px 0px rgba(17, 26, 74, 0.08);
-  transform: translateY(-1px);
-}
-
-.dark .catalog-card:hover {
-  box-shadow: 0px 0px 0px 1px rgba(193, 232, 239, 0.25), 0px 4px 14px 0px rgba(0, 0, 0, 0.4);
-}
-
-/* =========================================================================
-   COLUMN HALFTONE MINT-BLUE ATMOSPHERE
-   ========================================================================= */
-
-.halftone-atmosphere {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 65%;
-  pointer-events: none;
-  background-image: 
-    radial-gradient(circle at 70% 35%, rgba(193, 232, 239, 0.35) 0%, rgba(69, 117, 205, 0.08) 50%, transparent 75%),
-    radial-gradient(circle, #4575cd 1.2px, transparent 1.2px);
-  background-size: 100% 100%, 14px 14px;
-  mask-image: radial-gradient(circle at 65% 45%, black 40%, transparent 80%);
-  -webkit-mask-image: radial-gradient(circle at 65% 45%, black 40%, transparent 80%);
-  opacity: 0.85;
-}
-
-.dark .halftone-atmosphere {
-  opacity: 0.35;
-}
-
-/* Monospace Eyebrow with terminal cursor */
-.column-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: "SuisseIntlMono", "IBM Plex Mono", monospace;
-  font-size: 12px;
-  line-height: 1.5;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #7c7f88;
-}
-
-.column-eyebrow::after {
-  content: "▋";
-  font-size: 10px;
-  color: #4575cd;
-  animation: blink 1.2s infinite;
-}
-
-@keyframes blink {
-  0%, 49% { opacity: 1; }
-  50%, 100% { opacity: 0; }
-}
-
-/* Sleek Column Custom Scrollbar */
-.custom-scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-edge, #e3e4e8) transparent;
-}
-
-.custom-scrollbar::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: var(--color-edge, #e3e4e8);
-  border-radius: 9999px;
-  transition: background-color 0.2s ease;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: var(--color-announcement-indigo, #3e5199);
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
 }

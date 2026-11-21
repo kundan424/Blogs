@@ -25,6 +25,9 @@ dist-ssr/
 .env.local
 .env.*.local
 
+# IDE files
+.idea/
+
 # Operating system files
 .DS_Store
 Thumbs.db
